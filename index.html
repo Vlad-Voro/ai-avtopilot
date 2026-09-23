@@ -39,7 +39,7 @@
 
   <!-- Security Headers & Policies -->
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://ai-avtopilot.ru; connect-src 'self' https://api.web3forms.com https://formsubmit.co;" />
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://yastatic.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://ai-avtopilot.ru https://mc.yandex.ru; connect-src 'self' https://api.web3forms.com https://formsubmit.co https://mc.yandex.ru; frame-src https://mc.yandex.ru blob:; child-src https://mc.yandex.ru blob:;" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
@@ -149,6 +149,25 @@
     ]
   }
   </script>
+
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js?id=112978516", "ym");
+
+    ym(112978516, "init", {
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+      webvisor: true,
+      ecommerce: "dataLayer"
+    });
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/112978516" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
 </head>
 
 <body>
@@ -658,7 +677,7 @@
           <!-- Согласие 152-ФЗ -->
           <div class="form-checkbox-group">
             <label class="form-checkbox-label">
-              <input type="checkbox" id="contact-consent" name="consent" required checked />
+              <input type="checkbox" id="contact-consent" name="consent" required />
               <span>Согласен на обработку персональных данных в соответствии с <a href="/privacy.html" target="_blank" class="form-link">Политикой конфиденциальности</a> (152-ФЗ)</span>
             </label>
           </div>
@@ -692,6 +711,140 @@
     </div>
   </footer>
 
+  <!-- Yandex.Metrika Custom Goals Tracking -->
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+      var COUNTER_ID = 112978516;
+      function reach(goalName) {
+        if (typeof ym !== 'undefined') {
+          ym(COUNTER_ID, 'reachGoal', goalName);
+        }
+      }
+
+      // 1. Макро: Заявка на аудит отправлена (JS)
+      var form = document.getElementById('contact-form');
+      if (form) {
+        form.addEventListener('submit', function() {
+          reach('lead_form_submitted');
+        });
+      }
+
+      // 2. Микро: Клик по кнопке аудита (CTA)
+      var ctaSelectors = ['#cta-main', '.btn--nav', '.scard--accent .btn', '.roi__cta-block .btn', 'a[href="#contact"]'];
+      ctaSelectors.forEach(function(sel) {
+        document.querySelectorAll(sel).forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            reach('click_cta_audit');
+          });
+        });
+      });
+
+      // 3. Микро: Взаимодействие с калькулятором ROI
+      var sliders = ['#slider-employees', '#slider-hours', '#slider-salary'];
+      var calcTracked = false;
+      sliders.forEach(function(sel) {
+        var slider = document.querySelector(sel);
+        if (slider) {
+          slider.addEventListener('change', function() {
+            if (!calcTracked) {
+              reach('calc_interacted');
+              calcTracked = true;
+            }
+          });
+        }
+      });
+
+      // 4. Микро: Доскролл до кейсов (Глубокий интерес)
+      var casesSec = document.getElementById('cases');
+      if (casesSec && 'IntersectionObserver' in window) {
+        var casesObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              reach('scroll_cases_deep');
+              casesObserver.disconnect();
+            }
+          });
+        }, { threshold: 0.25 });
+        casesObserver.observe(casesSec);
+      }
+
+      // 5. Микро: Клик по контактам (Email / Telegram)
+      document.querySelectorAll('a[href^="mailto:"], a[href*="t.me"]').forEach(function(el) {
+        el.addEventListener('click', function() {
+          reach('click_contact');
+        });
+      });
+    });
+  </script>
+
+  <!-- Cookie Consent (152-ФЗ) -->
+  <div id="cookie-banner" class="cookie-banner" style="display:none;">
+    <div class="cookie-banner__inner">
+      <span>Мы используем cookies и аналитику для улучшения работы сайта. Подробнее в <a href="/privacy.html" class="cookie-link">Политике конфиденциальности</a>.</span>
+      <button id="cookie-accept" class="btn btn--cookie">Понятно</button>
+    </div>
+  </div>
+  <style>
+    .cookie-banner {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 40px);
+      max-width: 720px;
+      background: rgba(17, 17, 25, 0.95);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      backdrop-filter: blur(12px);
+      padding: 14px 20px;
+      border-radius: 12px;
+      z-index: 9999;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      color: #c4c4d4;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    .cookie-banner__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .cookie-link {
+      color: #818cf8;
+      text-decoration: underline;
+    }
+    .btn--cookie {
+      background: #6366f1;
+      color: #fff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .btn--cookie:hover {
+      background: #4f46e5;
+    }
+  </style>
+  <script type="text/javascript">
+    (function() {
+      try {
+        if (!localStorage.getItem('cookie_consent')) {
+          var b = document.getElementById('cookie-banner');
+          if (b) b.style.display = 'block';
+          var btn = document.getElementById('cookie-accept');
+          if (btn) btn.addEventListener('click', function() {
+            localStorage.setItem('cookie_consent', '1');
+            if (b) b.style.display = 'none';
+          });
+        }
+      } catch (e) {}
+    })();
+  </script>
 </body>
 
 </html>
