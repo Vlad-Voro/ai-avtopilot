@@ -11,6 +11,11 @@
     content="ии автоматизация, ии агенты, автоматизация бизнес процессов, внедрение ии в 1с, автоматизация sap, нейросети для бизнеса, rpa роботы, документооборот эдо, автопилот ии, ai avtopilot, искусственный интеллект для бизнеса, автоматизация ритейла" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <link rel="canonical" href="https://ai-avtopilot.ru/" />
+  <meta name="theme-color" content="#08080c" />
+
+  <!-- Search Console Verification Placeholders -->
+  <!-- <meta name="yandex-verification" content="YOUR_YANDEX_VERIFICATION_CODE" /> -->
+  <!-- <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE" /> -->
 
   <!-- Open Graph / VK / Facebook -->
   <meta property="og:locale" content="ru_RU" />
@@ -35,11 +40,12 @@
 
   <!-- Favicon & Icons -->
   <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+  <link rel="apple-touch-icon" href="/icon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
 
   <!-- Security Headers & Policies -->
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://yastatic.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://ai-avtopilot.ru https://mc.yandex.ru; connect-src 'self' https://api.web3forms.com https://formsubmit.co https://mc.yandex.ru; frame-src https://mc.yandex.ru blob:; child-src https://mc.yandex.ru blob:;" />
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://yastatic.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://ai-avtopilot.ru https://mc.yandex.ru; connect-src 'self' https://api.web3forms.com https://formsubmit.co https://mc.yandex.ru wss://mc.yandex.ru; frame-src https://mc.yandex.ru blob:; child-src https://mc.yandex.ru blob:;" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
@@ -173,8 +179,8 @@
 <body>
 
   <!-- ═══════════════════ NAVIGATION ═══════════════════ -->
-  <nav class="nav" id="nav">
-    <div class="nav__inner container">
+  <header class="nav" id="site-header">
+    <nav class="nav__inner container" aria-label="Основная навигация">
       <a href="#home" class="nav__logo">
         <span class="nav__logo-icon">⬡</span>
         АвтоПилот
@@ -190,8 +196,10 @@
         <span></span>
         <span></span>
       </button>
-    </div>
-  </nav>
+    </nav>
+  </header>
+
+  <main id="main-content">
 
   <!-- ═══════════════════ HERO ═══════════════════ -->
   <section class="hero" id="home">
@@ -205,11 +213,11 @@
         <h1 class="hero__title">
           <span class="hero__title-static">Ваши процессы</span>
           <span class="hero__title-accent-box">
-            <span class="hero__title-accent" id="typed-text">работают на автопилоте</span><span class="hero__cursor">|</span>
+            <span class="hero__title-accent" id="typed-text">работают на автопилоте</span><span class="hero__cursor" aria-hidden="true">|</span>
           </span>
         </h1>
         <p class="hero__sub">
-          Внедряем ИИ-агентов в 1C, SAP, Excel и любые системы.<br />
+          Внедряем искусственный интеллект и нейросети для бизнеса в 1C, SAP, Excel и любые системы.<br />
           Рутина уходит — вы масштабируетесь.
         </p>
         <div class="hero__actions">
@@ -678,7 +686,7 @@
           <div class="form-checkbox-group">
             <label class="form-checkbox-label">
               <input type="checkbox" id="contact-consent" name="consent" required />
-              <span>Согласен на обработку персональных данных в соответствии с <a href="/privacy.html" target="_blank" class="form-link">Политикой конфиденциальности</a> (152-ФЗ)</span>
+              <span>Согласен на обработку персональных данных в соответствии с <a href="/privacy.html" target="_blank" rel="noopener noreferrer" class="form-link">Политикой конфиденциальности</a> (152-ФЗ)</span>
             </label>
           </div>
 
@@ -690,6 +698,7 @@
       </div>
     </div>
   </section>
+  </main>
 
   <!-- ═══════════════════ FOOTER ═══════════════════ -->
   <footer class="footer">
