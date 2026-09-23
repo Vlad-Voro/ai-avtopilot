@@ -9,3 +9,8 @@
 .hidden{display:none!important}
 .loader{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-radius:50%;border-top-color:#fff;animation:spin .8s linear infinite;vertical-align:middle;margin-right:8px}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+/* Zero CLS Hero Title Animation Box */
+.hero__title-static{display:block}
+.hero__title-accent-box{display:block;height:2.3em;line-height:1.1;overflow:hidden}
+@media(min-width:1025px){.hero__title-accent-box{height:1.15em}}
