@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Политика конфиденциальности — АвтоПилот (152-ФЗ)</title>
+  <meta name="description"
+    content="Политика в отношении обработки и защиты персональных данных пользователей сервиса «АвтоПилот» в соответствии с Федеральным законом № 152-ФЗ." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://ai-avtopilot.ru/privacy.html" />
+  <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #08080c;
+      --card-bg: #111119;
+      --text-main: #f1f1f5;
+      --text-muted: #9494a6;
+      --accent: #6366f1;
+      --accent-hover: #4f46e5;
+      --border: #222232;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+      padding-bottom: 60px;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: rgba(8, 8, 12, 0.85);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+    }
+
+    .logo {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-icon {
+      color: var(--accent);
+      font-size: 1.4rem;
+    }
+
+    .back-btn {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    .back-btn:hover {
+      color: #fff;
+      border-color: var(--accent);
+      background: rgba(99, 102, 241, 0.1);
+    }
+
+    main {
+      padding: 50px 0 80px;
+    }
+
+    .doc-header {
+      margin-bottom: 40px;
+    }
+
+    .doc-tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--accent);
+      background: rgba(99, 102, 241, 0.12);
+      padding: 4px 12px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+
+    .doc-date {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .content-block {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #fff;
+      margin-top: 32px;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    h2:first-of-type {
+      margin-top: 0;
+    }
+
+    p {
+      margin-bottom: 16px;
+      color: var(--text-muted);
+    }
+
+    p strong {
+      color: var(--text-main);
+    }
+
+    ul {
+      margin-bottom: 16px;
+      padding-left: 24px;
+      color: var(--text-muted);
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-box {
+      background: rgba(99, 102, 241, 0.08);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-top: 24px;
+    }
+
+    .contact-box p {
+      margin-bottom: 6px;
+      color: #fff;
+    }
+
+    .contact-box a {
+      font-weight: 600;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 600px) {
+      .content-block {
+        padding: 24px 18px;
+      }
+
+      h1 {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a href="/" class="logo">
+          <span class="logo-icon">⬡</span>
+          АвтоПилот
+        </a>
+        <a href="/" class="back-btn">← На главную</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="doc-header">
+        <span class="doc-tag">152-ФЗ РФ</span>
+        <h1>Политика конфиденциальности и обработки персональных данных</h1>
+        <div class="doc-date">Действует с: 1 января 2025 г. · Последнее обновление: 21 сентября 2026 г.</div>
+      </div>
+
+      <div class="content-block">
+        <h2>1. Общие положения</h2>
+        <p>Настоящая Политика обработки персональных данных (далее — «Политика») определяет порядок сбора, хранения, передачи и иных видов обработки персональных данных, осуществляемых проектом <strong>«АвтоПилот»</strong> (далее — «Оператор»), на веб-сайте <strong>https://ai-avtopilot.ru/</strong> (далее — «Сайт»), а также меры по обеспечению безопасности данных.</p>
+        <p>Политика разработана в строгом соответствии с положениями Конституции Российской Федерации, Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных» и иными нормативно-правовыми актами РФ в области защиты информации.</p>
+        <p>Использование сервисов Сайта, заполнение форм обратной связи и отправка запроса на аудит означает безоговорочное согласие Пользователя с настоящей Политикой и указанными в ней условиями обработки персональных данных.</p>
+
+        <h2>2. Состав обрабатываемых персональных данных</h2>
+        <p>Оператор обрабатывает персональные данные, добровольно предоставляемые Пользователем при заполнении контактных форм на Сайте:</p>
+        <ul>
+          <li><strong>Имя Пользователя</strong> (или контактного лица);</li>
+          <li><strong>Наименование компании / организации</strong>;</li>
+          <li><strong>Контактные данные</strong>: адрес электронной почты (E-mail) и/или логин в мессенджере Telegram, номер телефона;</li>
+          <li><strong>Обезличенные технические данные</strong>, собираемые автоматически при посещении страниц (IP-адрес, файлы cookies, данные о браузере и операционной системе, источник перехода).</li>
+        </ul>
+
+        <h2>3. Цели обработки персональных данных</h2>
+        <p>Персональные данные Пользователя обрабатываются исключительно в следующих законных целях:</p>
+        <ul>
+          <li>Проведение бесплатного аудита бизнес-процессов компании Пользователя;</li>
+          <li>Подготовка индивидуального расчёта ROI и коммерческого предложения по внедрению ИИ-агентов;</li>
+          <li>Связь с Пользователем, направление уведомлений, ответов на запросы и консультаций;</li>
+          <li>Заключение, исполнение и прекращение договоров на оказание услуг по автоматизации;</li>
+          <li>Улучшение качества работы Сайта, удобства использования и аналитика пользовательского опыта.</li>
+        </ul>
+
+        <h2>4. Правовые основания обработки</h2>
+        <p>Правовыми основаниями обработки персональных данных Оператором являются:</p>
+        <ul>
+          <li>Ст. 6 Федерального закона № 152-ФЗ «О персональных данных»;</li>
+          <li>Согласие Пользователя на обработку его персональных данных, выраженное путем проставления соответствующей отметки в форме заявки на Сайте;</li>
+          <li>Договоры, заключаемые между Оператором и Пользователем.</li>
+        </ul>
+
+        <h2>5. Порядок сбора, хранения и безопасность</h2>
+        <p>Безопасность персональных данных обеспечивается реализацией правовых, организационных и технических мер, необходимых для выполнения требований законодательства РФ в области защиты данных:</p>
+        <ul>
+          <li>Персональные данные Пользователей хранятся на серверах, размещенных на территории Российской Федерации.</li>
+          <li>Оператор не осуществляет передачу персональных данных третьим лицам без прямого согласия Пользователя, за исключением случаев, предусмотренных законодательством РФ.</li>
+          <li>При передаче данных через Сайт применяется защищенный протокол шифрования SSL/TLS.</li>
+          <li>Срок обработки персональных данных определяется достижением целей сбора или до момента отзыва согласия Пользователем.</li>
+        </ul>
+
+        <h2>6. Права Пользователя (субъекта данных)</h2>
+        <p>В соответствии с 152-ФЗ Пользователь имеет право:</p>
+        <ul>
+          <li>Получать сведения, касающиеся обработки его персональных данных;</li>
+          <li>Требовать уточнения своих персональных данных, их блокирования или уничтожения в случае, если данные являются неполными, устаревшими, неточными или незаконно полученными;</li>
+          <li>В любой момент отозвать данное ранее согласие на обработку персональных данных, направив соответствующее заявление Оператору.</li>
+        </ul>
+
+        <div class="contact-box">
+          <p><strong>Контакт для направления обращений и отзывов согласия:</strong></p>
+          <p>E-mail: <a href="mailto:mr.vladimir.voronin@ya.ru">mr.vladimir.voronin@ya.ru</a></p>
+          <p>Срок рассмотрения запроса и удаления данных: до 10 рабочих дней.</p>
+        </div>
+
+        <h2>7. Использование файлов Cookie и веб-аналитики</h2>
+        <p>Сайт может использовать файлы cookie и сервисы веб-аналитики (включая Яндекс.Метрику) для сбора статистики и оптимизации работы интерфейса. Пользователь вправе в любой момент отключить сохранение cookies в настройках своего интернет-браузера.</p>
+
+        <h2>8. Заключительные положения</h2>
+        <p>Оператор имеет право вносить изменения в настоящую Политику конфиденциальности в одностороннем порядке. Новая редакция вступает в силу с момента её опубликования на данной странице Сайта.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2025–2026 АвтоПилот (ai-avtopilot.ru). Все права защищены. Обработка данных в соответствии с 152-ФЗ РФ.
+    </div>
+  </footer>
+
+</body>
+
+</html>

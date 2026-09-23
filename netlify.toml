@@ -1,0 +1,31 @@
+functionsDirectory = "C:\\Users\\User\\Downloads\\Work\\Prototype\\Antigravity\\website\\netlify\\functions"
+functionsDirectoryOrigin = "config-v1"
+plugins = []
+headers = []
+redirects = []
+
+[build]
+publish = "C:\\Users\\User\\Downloads\\Work\\Prototype\\Antigravity\\website\\dist"
+publishOrigin = "config"
+commandOrigin = "ui"
+base = "C:\\Users\\User\\Downloads\\Work\\Prototype\\Antigravity\\website"
+command = "npm run build"
+functions = "C:\\Users\\User\\Downloads\\Work\\Prototype\\Antigravity\\website\\netlify\\functions"
+
+  [build.environment]
+
+  [build.processing]
+
+    [build.processing.css]
+
+    [build.processing.html]
+
+    [build.processing.images]
+
+    [build.processing.js]
+
+  [build.services]
+
+[functions]
+
+  [functions."*"]

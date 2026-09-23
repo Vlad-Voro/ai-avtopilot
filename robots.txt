@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /forms.html
+
+# Sitemap & Host for Yandex & Google
+Host: ai-avtopilot.ru
+Sitemap: https://ai-avtopilot.ru/sitemap.xml
