@@ -13,7 +13,7 @@
 
   <!-- Open Graph / VK / Facebook -->
   <meta property="og:locale" content="ru_RU" />
-  <meta property="og:type" content="article" />
+  <meta property="og:type" content="website" />
   <meta property="og:site_name" content="АвтоПилот" />
   <meta property="og:url" content="https://ai-avtopilot.ru/privacy.html" />
   <meta property="og:title" content="Политика конфиденциальности — АвтоПилот (152-ФЗ)" />
@@ -56,26 +56,23 @@
           "name": "АвтоПилот — ИИ-автоматизация бизнеса"
         },
         "breadcrumb": {
-          "@id": "https://ai-avtopilot.ru/privacy.html#breadcrumb"
+          "@type": "BreadcrumbList",
+          "@id": "https://ai-avtopilot.ru/privacy.html#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Главная",
+              "item": "https://ai-avtopilot.ru/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Политика конфиденциальности",
+              "item": "https://ai-avtopilot.ru/privacy.html"
+            }
+          ]
         }
-      },
-      {
-        "@type": "BreadcrumbList",
-        "@id": "https://ai-avtopilot.ru/privacy.html#breadcrumb",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Главная",
-            "item": "https://ai-avtopilot.ru/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Политика конфиденциальности",
-            "item": "https://ai-avtopilot.ru/privacy.html"
-          }
-        ]
       }
     ]
   }
@@ -312,7 +309,7 @@
 
   <header>
     <div class="container">
-      <nav class="nav">
+      <nav class="nav" aria-label="Навигация">
         <a href="/" class="logo">
           <span class="logo-icon">⬡</span>
           АвтоПилот
