@@ -177,20 +177,24 @@
 
 <body>
 
+  <div class="nav__backdrop" id="nav-backdrop"></div>
+
   <!-- ═══════════════════ NAVIGATION ═══════════════════ -->
   <header class="nav" id="site-header">
     <nav class="nav__inner container" aria-label="Основная навигация">
-      <a href="#home" class="nav__logo">
+      <a href="/" class="nav__logo">
         <span class="nav__logo-icon">⬡</span>
         АвтоПилот
       </a>
-      <ul class="nav__links">
-        <li><a href="#services" class="nav__link">Услуги</a></li>
-        <li><a href="#cases" class="nav__link">Кейсы</a></li>
-        <li><a href="#calculator" class="nav__link">Калькулятор</a></li>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="/dashboard" class="nav__link">Дашборд</a></li>
+        <li><a href="/services" class="nav__link">Услуги</a></li>
+        <li><a href="/cases" class="nav__link">Кейсы</a></li>
+        <li><a href="/calculator" class="nav__link">Калькулятор</a></li>
+        <li class="nav__link-mobile"><a href="/contact" class="nav__link">Контакты</a></li>
       </ul>
-      <a href="#contact" class="btn btn--nav">Получить аудит</a>
-      <button class="nav__burger" aria-label="Menu" id="burger">
+      <a href="/contact" class="btn btn--nav">Получить аудит</a>
+      <button class="nav__burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-links" id="burger">
         <span></span>
         <span></span>
         <span></span>
@@ -220,8 +224,8 @@
           Рутина уходит — вы масштабируетесь.
         </p>
         <div class="hero__actions">
-          <a href="#contact" class="btn btn--primary" id="cta-main">Запустить автоматизацию</a>
-          <a href="#cases" class="btn btn--ghost">Смотреть кейсы →</a>
+          <a href="/contact" class="btn btn--primary" id="cta-main">Запустить автоматизацию</a>
+          <a href="/cases" class="btn btn--ghost">Смотреть кейсы →</a>
         </div>
         <div class="hero__kpis">
           <div class="kpi-card">
@@ -280,6 +284,66 @@
             </div>
             <div class="agent-card__bar">
               <div class="agent-card__fill" style="width:23%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ LIVE DASHBOARD ═══════════════════ -->
+  <section class="dashboard" id="dashboard">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag" data-reveal>Центр управления</p>
+        <h2 class="section-title" data-reveal>Ваши агенты работают прямо сейчас</h2>
+      </div>
+      <div class="dashboard__grid" data-reveal>
+        <div class="dashboard__main">
+          <div class="dash-card dash-card--chart">
+            <div class="dash-card__header">
+              <span class="dash-card__title">Обработанные задачи за сутки</span>
+              <span class="dash-card__live"><span class="pulse-dot"></span>Live</span>
+            </div>
+            <div class="chart" id="dash-chart">
+              <div class="chart__bars" id="chart-bars"></div>
+              <div class="chart__labels" id="chart-labels"></div>
+            </div>
+          </div>
+          <div class="dash-metrics">
+            <div class="dash-metric">
+              <span class="dash-metric__num" id="dm1">840</span>
+              <span class="dash-metric__label">задач/час</span>
+              <span class="dash-metric__delta dash-metric__delta--up">↑ 12%</span>
+            </div>
+            <div class="dash-metric">
+              <span class="dash-metric__num" id="dm2">0.3s</span>
+              <span class="dash-metric__label">ср. время задачи</span>
+              <span class="dash-metric__delta dash-metric__delta--up">↓ 40%</span>
+            </div>
+            <div class="dash-metric">
+              <span class="dash-metric__num" id="dm3">99.8%</span>
+              <span class="dash-metric__label">точность</span>
+              <span class="dash-metric__delta dash-metric__delta--up">↑ 2%</span>
+            </div>
+          </div>
+        </div>
+        <div class="dashboard__side">
+          <div class="dash-card dash-card--log">
+            <div class="dash-card__header">
+              <span class="dash-card__title">Лог событий</span>
+            </div>
+            <div class="log" id="event-log">
+              <!-- JS fills this -->
+            </div>
+          </div>
+          <div class="dash-card dash-card--agents">
+            <div class="dash-card__header">
+              <span class="dash-card__title">Агенты онлайн</span>
+              <span class="dash-card__count" id="agent-count">12</span>
+            </div>
+            <div class="agent-list" id="agent-list">
+              <!-- JS fills this -->
             </div>
           </div>
         </div>
@@ -381,72 +445,13 @@
           <div class="scard__icon">⚡</div>
           <h3 class="scard__title">Быстрый старт</h3>
           <p class="scard__desc">Пилотный робот за 14 дней. Видимый результат до подписания основного контракта.</p>
-          <a href="#contact" class="btn btn--primary">Начать →</a>
+          <a href="/contact" class="btn btn--primary">Начать →</a>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════ LIVE DASHBOARD ═══════════════════ -->
-  <section class="dashboard" id="dashboard">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-tag" data-reveal>Центр управления</p>
-        <h2 class="section-title" data-reveal>Ваши агенты работают прямо сейчас</h2>
-      </div>
-      <div class="dashboard__grid" data-reveal>
-        <div class="dashboard__main">
-          <div class="dash-card dash-card--chart">
-            <div class="dash-card__header">
-              <span class="dash-card__title">Обработанные задачи за сутки</span>
-              <span class="dash-card__live"><span class="pulse-dot"></span>Live</span>
-            </div>
-            <div class="chart" id="dash-chart">
-              <div class="chart__bars" id="chart-bars"></div>
-              <div class="chart__labels" id="chart-labels"></div>
-            </div>
-          </div>
-          <div class="dash-metrics">
-            <div class="dash-metric">
-              <span class="dash-metric__num" id="dm1">840</span>
-              <span class="dash-metric__label">задач/час</span>
-              <span class="dash-metric__delta dash-metric__delta--up">↑ 12%</span>
-            </div>
-            <div class="dash-metric">
-              <span class="dash-metric__num" id="dm2">0.3s</span>
-              <span class="dash-metric__label">ср. время задачи</span>
-              <span class="dash-metric__delta dash-metric__delta--up">↓ 40%</span>
-            </div>
-            <div class="dash-metric">
-              <span class="dash-metric__num" id="dm3">99.8%</span>
-              <span class="dash-metric__label">точность</span>
-              <span class="dash-metric__delta dash-metric__delta--up">↑ 2%</span>
-            </div>
-          </div>
-        </div>
-        <div class="dashboard__side">
-          <div class="dash-card dash-card--log">
-            <div class="dash-card__header">
-              <span class="dash-card__title">Лог событий</span>
-            </div>
-            <div class="log" id="event-log">
-              <!-- JS fills this -->
-            </div>
-          </div>
-          <div class="dash-card dash-card--agents">
-            <div class="dash-card__header">
-              <span class="dash-card__title">Агенты онлайн</span>
-              <span class="dash-card__count" id="agent-count">12</span>
-            </div>
-            <div class="agent-list" id="agent-list">
-              <!-- JS fills this -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ═══════════════════ CASE STUDIES ═══════════════════ -->
   <section class="cases" id="cases">
@@ -606,17 +611,29 @@
             <label class="roi-label">Сотрудников на рутинных задачах <span class="roi-value-display"
                 id="display-employees">10</span></label>
             <input type="range" class="roi-slider" id="slider-employees" min="1" max="100" value="10" />
+            <div class="roi-slider-limits">
+              <span>1 чел</span>
+              <span>100 чел</span>
+            </div>
           </div>
           <div class="roi-input-group">
             <label class="roi-label">Часов/нед тратят на рутину <span class="roi-value-display"
                 id="display-hours">20</span></label>
             <input type="range" class="roi-slider" id="slider-hours" min="1" max="40" value="20" />
+            <div class="roi-slider-limits">
+              <span>1 ч</span>
+              <span>40 ч</span>
+            </div>
           </div>
           <div class="roi-input-group">
             <label class="roi-label">Ср. зарплата сотрудника (₽/мес) <span class="roi-value-display"
                 id="display-salary">80 000</span></label>
             <input type="range" class="roi-slider" id="slider-salary" min="30000" max="300000" step="5000"
               value="80000" />
+            <div class="roi-slider-limits">
+              <span>30 000 ₽</span>
+              <span>300 000 ₽</span>
+            </div>
           </div>
         </div>
         <div class="roi__results">
@@ -634,7 +651,7 @@
           </div>
           <div class="roi__cta-block">
             <p>Готовы увидеть реальные цифры для вашего бизнеса?</p>
-            <a href="#contact" class="btn btn--primary">Получить бесплатный аудит</a>
+            <a href="/contact" class="btn btn--primary">Получить бесплатный аудит</a>
           </div>
         </div>
       </div>
@@ -664,10 +681,6 @@
           <input type="hidden" name="_template" value="table" />
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="from_name" value="АвтоПилот Лид" />
-          <!-- Spam protection Honeypot -->
-          <input type="checkbox" name="botcheck" class="hidden" style="display:none;" />
-          <input type="text" name="_honey" style="display:none;" />
-
           <div class="form-group">
             <label for="contact-name">Ваше имя</label>
             <input type="text" id="contact-name" name="name" placeholder="Алексей Иванов" required autocomplete="name" />
@@ -689,6 +702,9 @@
             </label>
           </div>
 
+          <!-- Spam protection Honeypot -->
+          <input type="text" name="_honey" style="display:none;" tabindex="-1" autocomplete="off" />
+
           <button type="submit" class="btn btn--primary btn--full" id="form-submit">
             Записаться на аудит
           </button>
@@ -707,10 +723,11 @@
         <p>ИИ-автоматизация бизнес-процессов.<br />Сделано в России.</p>
       </div>
       <div class="footer__links">
-        <a href="#services">Услуги</a>
-        <a href="#cases">Кейсы</a>
-        <a href="#calculator">Калькулятор</a>
-        <a href="#contact">Контакты</a>
+        <a href="/dashboard">Дашборд</a>
+        <a href="/services">Услуги</a>
+        <a href="/cases">Кейсы</a>
+        <a href="/calculator">Калькулятор</a>
+        <a href="/contact">Контакты</a>
         <a href="/privacy.html">Политика конфиденциальности (152-ФЗ)</a>
       </div>
       <div class="footer__copy">

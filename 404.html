@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>АвтоПилот — Загрузка...</title>
+  <script>
+    // GitHub Pages SPA router redirect handler
+    var path = window.location.pathname;
+    var search = window.location.search;
+    var hash = window.location.hash;
+    var validRoutes = ['dashboard', 'services', 'cases', 'calculator', 'contact', 'home'];
+    var cleanSegment = path.replace(/^\/+|\/+$/g, '');
+
+    if (validRoutes.indexOf(cleanSegment) !== -1) {
+      sessionStorage.setItem('spa_redirect', '/' + cleanSegment + search + hash);
+      window.location.replace('/?p=/' + cleanSegment + (search ? '&' + search.slice(1) : '') + hash);
+    } else {
+      sessionStorage.setItem('spa_redirect', path + search + hash);
+      window.location.replace('/' + (search ? search : '') + hash);
+    }
+  </script>
+</head>
+<body style="background:#050507;color:#f4f4f5;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;">
+  <p>Загрузка страницы...</p>
+</body>
+</html>
