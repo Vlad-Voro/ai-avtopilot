@@ -285,14 +285,10 @@
     }
   </style>
 
-  <!-- Yandex.Metrika counter -->
+  <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
   <script type="text/javascript">
-    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-    m[i].l=1*new Date();
-    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js?id=112978516", "ym");
-
+    window.ym = window.ym || function(){(window.ym.a = window.ym.a || []).push(arguments)};
+    window.ym.l = 1 * new Date();
     ym(112978516, "init", {
       clickmap: true,
       trackLinks: true,
@@ -300,6 +296,29 @@
       webvisor: true,
       ecommerce: "dataLayer"
     });
+    (function() {
+      var loaded = false;
+      function loadMetrika() {
+        if (loaded) return;
+        loaded = true;
+        var k = document.createElement("script"),
+            a = document.getElementsByTagName("script")[0];
+        k.async = true;
+        k.src = "https://mc.yandex.ru/metrika/tag.js?id=112978516";
+        a.parentNode.insertBefore(k, a);
+      }
+      var evts = ['scroll', 'touchstart', 'mousemove', 'keydown', 'click'];
+      function onInteract() {
+        loadMetrika();
+        evts.forEach(function(e) { window.removeEventListener(e, onInteract, {passive: true}); });
+      }
+      evts.forEach(function(e) { window.addEventListener(e, onInteract, {passive: true, once: true}); });
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(function() { setTimeout(loadMetrika, 2000); });
+      } else {
+        window.addEventListener('load', function() { setTimeout(loadMetrika, 2000); });
+      }
+    })();
   </script>
   <noscript><div><img src="https://mc.yandex.ru/watch/112978516" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
   <!-- /Yandex.Metrika counter -->
