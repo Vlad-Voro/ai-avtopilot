@@ -43,7 +43,7 @@
 
   <!-- Security Headers & Policies -->
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://yastatic.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://ai-avtopilot.ru https://mc.yandex.ru; connect-src 'self' https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev https://api.web3forms.com https://formsubmit.co https://mc.yandex.ru wss://mc.yandex.ru; frame-src https://mc.yandex.ru blob:; child-src https://mc.yandex.ru blob:;" />
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://mc.yandex.com https://yastatic.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://ai-avtopilot.ru https://mc.yandex.ru https://mc.yandex.com; connect-src 'self' https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev https://api.web3forms.com https://formsubmit.co https://mc.yandex.ru https://mc.yandex.com wss://mc.yandex.ru wss://mc.yandex.com; frame-src https://mc.yandex.ru https://mc.yandex.com blob:; child-src https://mc.yandex.ru https://mc.yandex.com blob:;" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
@@ -206,9 +206,9 @@
       }
       evts.forEach(function(e) { window.addEventListener(e, onInteract, {passive: true, once: true}); });
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(function() { setTimeout(loadMetrika, 2000); });
+        requestIdleCallback(function() { setTimeout(loadMetrika, 3500); });
       } else {
-        window.addEventListener('load', function() { setTimeout(loadMetrika, 2000); });
+        window.addEventListener('load', function() { setTimeout(loadMetrika, 3500); });
       }
     })();
   </script>
@@ -649,27 +649,27 @@
       <div class="roi__card" data-reveal>
         <div class="roi__inputs">
           <div class="roi-input-group">
-            <label class="roi-label">Сотрудников на рутинных задачах <span class="roi-value-display"
+            <label class="roi-label" for="slider-employees">Сотрудников на рутинных задачах <span class="roi-value-display"
                 id="display-employees">10</span></label>
-            <input type="range" class="roi-slider" id="slider-employees" min="1" max="100" value="10" />
+            <input type="range" class="roi-slider" id="slider-employees" aria-label="Количество сотрудников на рутинных задачах" min="1" max="100" value="10" />
             <div class="roi-slider-limits">
               <span>1 чел</span>
               <span>100 чел</span>
             </div>
           </div>
           <div class="roi-input-group">
-            <label class="roi-label">Часов/нед тратят на рутину <span class="roi-value-display"
+            <label class="roi-label" for="slider-hours">Часов/нед тратят на рутину <span class="roi-value-display"
                 id="display-hours">20</span></label>
-            <input type="range" class="roi-slider" id="slider-hours" min="1" max="40" value="20" />
+            <input type="range" class="roi-slider" id="slider-hours" aria-label="Количество часов в неделю на рутину" min="1" max="40" value="20" />
             <div class="roi-slider-limits">
               <span>1 ч</span>
               <span>40 ч</span>
             </div>
           </div>
           <div class="roi-input-group">
-            <label class="roi-label">Ср. зарплата сотрудника (₽/мес) <span class="roi-value-display"
+            <label class="roi-label" for="slider-salary">Ср. зарплата сотрудника (₽/мес) <span class="roi-value-display"
                 id="display-salary">80 000</span></label>
-            <input type="range" class="roi-slider" id="slider-salary" min="30000" max="300000" step="5000"
+            <input type="range" class="roi-slider" id="slider-salary" aria-label="Средняя зарплата сотрудника в рублях в месяц" min="30000" max="300000" step="5000"
               value="80000" />
             <div class="roi-slider-limits">
               <span>30 000 ₽</span>
@@ -732,7 +732,7 @@
           </div>
           <div class="form-group">
             <label for="contact-email">Телефон или почта / Telegram</label>
-            <input type="text" id="contact-email" name="contact" placeholder="+7 (999) 000-00-00 или @username" required autocomplete="tel email" />
+            <input type="text" id="contact-email" name="contact" placeholder="+7 (999) 000-00-00 или @username" required autocomplete="on" />
           </div>
 
           <!-- Согласие 152-ФЗ -->
@@ -862,7 +862,7 @@
   <div id="cookie-banner" class="cookie-banner" style="display:none;">
     <div class="cookie-banner__inner">
       <span>Мы используем cookies и аналитику для улучшения работы сайта. Подробнее в <a href="/privacy.html" class="cookie-link">Политике конфиденциальности</a>.</span>
-      <button id="cookie-accept" class="btn btn--cookie">Понятно</button>
+      <button id="cookie-accept" class="btn btn--cookie" aria-label="Принять условия использования файлов cookie">Понятно</button>
     </div>
   </div>
   <style>
@@ -896,8 +896,8 @@
       text-decoration: underline;
     }
     .btn--cookie {
-      background: #6366f1;
-      color: #fff;
+      background: #4f46e5;
+      color: #ffffff;
       border: none;
       padding: 8px 18px;
       border-radius: 8px;
@@ -908,7 +908,7 @@
       transition: background 0.2s;
     }
     .btn--cookie:hover {
-      background: #4f46e5;
+      background: #4338ca;
     }
   </style>
   <script type="text/javascript">
