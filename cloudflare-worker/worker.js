@@ -54,8 +54,7 @@ function escapeHtml(text) {
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+    .replace(/"/g, "&quot;");
 }
 
 function getMskTime() {
@@ -138,7 +137,9 @@ export default {
 
     // ── 1. Webhook Setup Helper: GET /set-webhook (Protected) ───────────────
     if (url.pathname === "/set-webhook") {
-      const providedKey = url.searchParams.get("key");
+      const authHeader = request.headers.get("Authorization") || "";
+      const bearerKey = authHeader.startsWith("Bearer ") ? authHeader.slice(7).trim() : null;
+      const providedKey = bearerKey || url.searchParams.get("key");
       if (providedKey !== adminKey) {
         return new Response(JSON.stringify({ error: "Unauthorized: Invalid admin key" }), {
           status: 401,
@@ -183,8 +184,8 @@ export default {
 
     // ── 3. Lead Submission: POST /submit or POST /api/lead ──────────────────
     if ((url.pathname === "/submit" || url.pathname === "/api/lead") && request.method === "POST") {
-      // Origin check
-      if (requestOrigin && !ALLOWED_ORIGINS.has(requestOrigin)) {
+      // Strict Origin check: reject unauthorized external/empty origins on form submission
+      if (!requestOrigin || !ALLOWED_ORIGINS.has(requestOrigin)) {
         return new Response(JSON.stringify({ success: false, error: "Origin not allowed" }), {
           status: 403,
           headers: { "Content-Type": "application/json", ...corsHeaders },
@@ -219,6 +220,16 @@ export default {
           return new Response(JSON.stringify({ success: true, status: "ok" }), {
             headers: { "Content-Type": "application/json", ...corsHeaders },
           });
+        }
+
+        // Zero-Overhead Timing Bot Trap: if client timestamp provided, require minimum 1000ms human delay
+        if (data._ts) {
+          const elapsed = Date.now() - Number(data._ts);
+          if (elapsed < 1000 || Number(data._ts) > Date.now() + 60000) {
+            return new Response(JSON.stringify({ success: true, status: "ok" }), {
+              headers: { "Content-Type": "application/json", ...corsHeaders },
+            });
+          }
         }
 
         // Field clamping & validation
@@ -296,10 +307,12 @@ export default {
 
           // If Admin is replying to a forwarded lead/message
           if (replyTo && replyTo.text) {
+            // Strip any user-supplied blockquote content to prevent ID spoofing injection
+            const trustedSystemText = replyTo.text.replace(/<blockquote>[\s\S]*?<\/blockquote>/gi, "");
             const match =
-              replyTo.text.match(/ID:\s*<code>?(\d+)<?\/code>?/i) ||
-              replyTo.text.match(/ID клиента:\s*<code>?(\d+)<?\/code>?/i) ||
-              replyTo.text.match(/Telegram ID:\s*<code>?(\d+)<?\/code>?/i);
+              trustedSystemText.match(/🆔\s*(?:<b>)?ID клиента:(?:<\/b>)?\s*<code>?(\d+)<?\/code>?/i) ||
+              trustedSystemText.match(/ID клиента:\s*<code>?(\d+)<?\/code>?/i) ||
+              trustedSystemText.match(/Telegram ID:\s*<code>?(\d+)<?\/code>?/i);
 
             if (match && match[1]) {
               const targetClientId = parseInt(match[1], 10);
