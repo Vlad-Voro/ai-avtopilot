@@ -10,7 +10,18 @@ Allow: /
 Disallow: /forms.html
 Disallow: /404.html
 Disallow: /success.html
-Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid /
+Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&_openstat&from&vk_source&gclid&fbclid /
 
+# AI & LLM Search Crawlers (Perplexity, ChatGPT, Claude, Yandex Neuro)
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# LLM Context: https://ai-avtopilot.ru/llms.txt
 # Sitemap
 Sitemap: https://ai-avtopilot.ru/sitemap.xml
