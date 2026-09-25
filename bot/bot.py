@@ -39,7 +39,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger("AiAvtopilotBot")
 
-BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "8701592211:AAFQoBr-UB4TOEk7zQXZqWURtjC5QfcLivU")
+BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
 ADMIN_CHAT_ID = int(os.getenv("TELEGRAM_ADMIN_ID", "111288881"))
 LOCAL_PROXIES = ["http://127.0.0.1:10809", "socks5://127.0.0.1:10808"]
 API_URL = f"https://api.telegram.org/bot{BOT_TOKEN}"
