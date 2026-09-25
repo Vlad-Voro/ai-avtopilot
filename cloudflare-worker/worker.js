@@ -12,12 +12,7 @@
  * 8. Zero Info Disclosure: Redacts administrative Telegram IDs from public endpoints.
  */
 
-// Configuration & Default Secrets
-const DEFAULT_BOT_TOKEN = "8701592211:AAFQoBr-UB4TOEk7zQXZqWURtjC5QfcLivU";
-const DEFAULT_ADMIN_ID = 111288881;
-const DEFAULT_TG_SECRET = "797684410562341c7ef5fb6abd9d4816e1126889006ec712";
-const DEFAULT_ADMIN_KEY = "b5f6ad91c449a2138fc405b1a5de8dcc";
-
+// Configuration
 const ALLOWED_ORIGINS = new Set([
   "https://ai-avtopilot.ru",
   "https://www.ai-avtopilot.ru",
@@ -122,10 +117,10 @@ async function sendTelegramMessage(token, chatId, text, parseMode = "HTML", repl
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
-    const botToken = env.BOT_TOKEN || DEFAULT_BOT_TOKEN;
-    const adminChatId = parseInt(env.ADMIN_CHAT_ID || DEFAULT_ADMIN_ID, 10);
-    const tgSecret = env.TG_SECRET_TOKEN || DEFAULT_TG_SECRET;
-    const adminKey = env.ADMIN_KEY || DEFAULT_ADMIN_KEY;
+    const botToken = env.BOT_TOKEN;
+    const adminChatId = parseInt(env.ADMIN_CHAT_ID || "111288881", 10);
+    const tgSecret = env.TG_SECRET_TOKEN;
+    const adminKey = env.ADMIN_KEY;
 
     // ── CORS & Origin Validation ────────────────────────────────────────────
     const requestOrigin = request.headers.get("Origin") || "";
