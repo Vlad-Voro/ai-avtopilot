@@ -1,13 +1,16 @@
 User-agent: *
 Allow: /
 Disallow: /forms.html
+Disallow: /404.html
+Disallow: /success.html
 
 # Yandex-specific directives
 User-agent: Yandex
 Allow: /
 Disallow: /forms.html
+Disallow: /404.html
+Disallow: /success.html
 Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid /
 
 # Sitemap
 Sitemap: https://ai-avtopilot.ru/sitemap.xml
-
