@@ -25,6 +25,7 @@
   .container{padding:0 16px}
   .roi__card{padding:20px 12px}
   .roi__card > *{min-width:0}
+  .form-group input{padding:13px 14px;font-size:0.9rem;text-overflow:ellipsis}
 }
 
 /* Mobile Navigation UX & 48px Touch Targets (F3) */
