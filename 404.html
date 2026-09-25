@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>АвтоПилот — Загрузка...</title>
+  <title>404 — Страница не найдена | АвтоПилот</title>
+  <meta name="description" content="Запрашиваемая страница не существует или была перемещена. Перейдите на главную страницу сервиса ИИ-автоматизации АвтоПилот.">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#08080c">
+
+  <!-- Favicon & Icons -->
+  <link rel="icon" type="image/svg+xml" href="/icon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
   <script>
-    // GitHub Pages SPA router redirect handler
+    // GitHub Pages SPA router redirect handler for registered clean routes
     var path = window.location.pathname;
     var search = window.location.search;
     var hash = window.location.hash;
@@ -15,13 +31,462 @@
     if (validRoutes.indexOf(cleanSegment) !== -1) {
       sessionStorage.setItem('spa_redirect', '/' + cleanSegment + search + hash);
       window.location.replace('/?p=/' + cleanSegment + (search ? '&' + search.slice(1) : '') + hash);
-    } else {
-      sessionStorage.setItem('spa_redirect', path + search + hash);
-      window.location.replace('/' + (search ? search : '') + hash);
     }
   </script>
+
+  <style>
+    :root {
+      --bg: #08080c;
+      --card-bg: #111119;
+      --card-hover: #171724;
+      --border: #222232;
+      --border-focus: #3b3b55;
+      --text-main: #f4f4f6;
+      --text-muted: #9494a6;
+      --accent: #6366f1;
+      --accent-hover: #4f46e5;
+      --accent-glow: rgba(99, 102, 241, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Ambient background gradient glow */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(139, 92, 246, 0.05) 50%, transparent 80%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    header {
+      position: relative;
+      z-index: 10;
+      border-bottom: 1px solid var(--border);
+      background: rgba(8, 8, 12, 0.8);
+      backdrop-filter: blur(12px);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .nav {
+      height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav__logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+
+    .nav__logo-icon {
+      color: var(--accent);
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .nav__back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.02);
+      transition: all 0.2s ease;
+    }
+
+    .nav__back-link:hover {
+      color: #fff;
+      border-color: var(--border-focus);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 56px 24px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .error-card {
+      max-width: 680px;
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 48px 36px;
+      text-align: center;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+      position: relative;
+    }
+
+    .error-card::after {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 15%;
+      right: 15%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.6), transparent);
+    }
+
+    .badge-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #818cf8;
+      margin-bottom: 20px;
+      letter-spacing: 0.02em;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      background: #818cf8;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #818cf8;
+    }
+
+    .error-code {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(4.5rem, 12vw, 6.5rem);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #ffffff 40%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.04em;
+    }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(1.4rem, 4vw, 1.85rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .error-desc {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 520px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+
+    .actions-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 14px 36px;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 8px 24px var(--accent-glow);
+      transition: all 0.25s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 28px rgba(99, 102, 241, 0.4);
+    }
+
+    .sections-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #6a6a7c;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    .quick-nav {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      text-align: left;
+    }
+
+    .nav-tile {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .nav-tile:hover {
+      background: var(--card-hover);
+      border-color: var(--border-focus);
+      transform: translateY(-1px);
+    }
+
+    .tile-icon {
+      font-size: 1.25rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .tile-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      overflow: hidden;
+    }
+
+    .tile-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .tile-subtitle {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    footer {
+      position: relative;
+      z-index: 10;
+      border-top: 1px solid var(--border);
+      padding: 24px 0;
+      background: rgba(8, 8, 12, 0.6);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.85rem;
+      color: #6a6a7c;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .error-card {
+        padding: 36px 20px;
+      }
+
+      .quick-nav {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js?id=112978516", "ym");
+
+    ym(112978516, "init", {
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+      webvisor: true,
+      ecommerce: "dataLayer"
+    });
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/112978516" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
 </head>
-<body style="background:#050507;color:#f4f4f5;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;">
-  <p>Загрузка страницы...</p>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav class="nav" aria-label="Навигация">
+        <a href="/" class="nav__logo" aria-label="АвтоПилот Главная">
+          <span class="nav__logo-icon">⬡</span>
+          <span>АвтоПилот</span>
+        </a>
+        <a href="/" class="nav__back-link">
+          <span>← На главную</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Error Content -->
+  <main>
+    <div class="error-card">
+      <div class="badge-wrap">
+        <span class="badge-dot"></span>
+        <span>Ошибка маршрута</span>
+      </div>
+
+      <div class="error-code">404</div>
+      <h1>Страница не найдена</h1>
+      <p class="error-desc">
+        Кажется, запрашиваемый адрес был удалён, перемещён или в ссылке допущена опечатка. Воспользуйтесь ссылками ниже для перехода к разделам сайта.
+      </p>
+
+      <div class="actions-wrap">
+        <!-- Direct requirement of SEO audit: clear link back to site -->
+        <a href="/" class="btn-primary">
+          <span>Вернуться на главную</span>
+          <span>→</span>
+        </a>
+      </div>
+
+      <div class="sections-title">Полезные разделы сайта</div>
+      <div class="quick-nav">
+        <a href="/services/" class="nav-tile">
+          <div class="tile-icon">⚡</div>
+          <div class="tile-text">
+            <span class="tile-title">Услуги и агенты</span>
+            <span class="tile-subtitle">Интеграция 1С, CRM и процессов</span>
+          </div>
+        </a>
+
+        <a href="/cases/" class="nav-tile">
+          <div class="tile-icon">📊</div>
+          <div class="tile-text">
+            <span class="tile-title">Кейсы внедрения</span>
+            <span class="tile-subtitle">Результаты и примеры решений</span>
+          </div>
+        </a>
+
+        <a href="/calculator/" class="nav-tile">
+          <div class="tile-icon">🧮</div>
+          <div class="tile-text">
+            <span class="tile-title">Калькулятор ROI</span>
+            <span class="tile-subtitle">Расчёт экономии и окупаемости</span>
+          </div>
+        </a>
+
+        <a href="/contact/" class="nav-tile">
+          <div class="tile-icon">✉️</div>
+          <div class="tile-text">
+            <span class="tile-title">Связаться с нами</span>
+            <span class="tile-subtitle">Бесплатный аудит процессов</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>© 2026 АвтоПилот. ИИ-автоматизация бизнеса в России.</div>
+        <div class="footer-links">
+          <a href="/">Главная</a>
+          <a href="/services/">Услуги</a>
+          <a href="/privacy.html">Политика конфиденциальности</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof ym !== 'undefined') {
+        ym(112978516, 'hit', window.location.href, { title: '404 — Страница не найдена' });
+      }
+    });
+  </script>
 </body>
+
 </html>
