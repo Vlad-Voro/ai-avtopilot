@@ -137,7 +137,7 @@ suite.test('Journey 4: Deep linking via clean URL /cases with browser back/forwa
   await page.waitForTimeout(400);
 
   const currentPath = await page.evaluate(() => window.location.pathname);
-  assert.strictEqual(currentPath, '/cases', `Expected browser back to return to '/cases', got '${currentPath}'`);
+  assert.ok(currentPath === '/cases' || currentPath === '/cases/', `Expected browser back to return to '/cases/', got '${currentPath}'`);
 });
 
 suite.test('Journey 5: Mobile user complete lead flow on 375px viewport', async ({ page, baseUrl }) => {

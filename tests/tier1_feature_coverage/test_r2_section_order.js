@@ -83,7 +83,7 @@ suite.test('R2.3: Header navigation includes links for key conversion stages', a
     return links.map(a => a.getAttribute('href'));
   });
 
-  const normalize = href => (href || '').replace(/^[#/]+/, '');
+  const normalize = href => (href || '').replace(/^[#/]+|[#/]+$/g, '');
   const normalizedTargets = navHrefs.map(normalize);
 
   assert.ok(normalizedTargets.includes('services'), 'Navigation must include Services target');

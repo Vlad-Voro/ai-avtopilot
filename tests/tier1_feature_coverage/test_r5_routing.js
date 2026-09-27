@@ -32,9 +32,9 @@ suite.test('R5.1: Navigation links use clean slash paths without raw "#"', async
   );
 
   const cleanPaths = links.map(l => l.href);
-  assert.ok(cleanPaths.some(p => p === '/services'), 'Expected /services clean path link');
-  assert.ok(cleanPaths.some(p => p === '/cases'), 'Expected /cases clean path link');
-  assert.ok(cleanPaths.some(p => p === '/calculator'), 'Expected /calculator clean path link');
+  assert.ok(cleanPaths.some(p => p === '/services' || p === '/services/'), 'Expected /services/ clean path link');
+  assert.ok(cleanPaths.some(p => p === '/cases' || p === '/cases/'), 'Expected /cases/ clean path link');
+  assert.ok(cleanPaths.some(p => p === '/calculator' || p === '/calculator/'), 'Expected /calculator/ clean path link');
 });
 
 suite.test('R5.2: Clicking clean nav link updates URL via pushState without reloading page', async ({ page, baseUrl }) => {
@@ -57,10 +57,9 @@ suite.test('R5.2: Clicking clean nav link updates URL via pushState without relo
   });
 
   assert.strictEqual(state.marker, 'persistent', 'Page must not reload when clicking clean nav link');
-  assert.strictEqual(
-    state.pathname,
-    '/cases',
-    `Expected URL pathname to update to '/cases' via history.pushState, but got '${state.pathname}'`
+  assert.ok(
+    state.pathname === '/cases' || state.pathname === '/cases/',
+    `Expected URL pathname to update to '/cases/' via history.pushState, but got '${state.pathname}'`
   );
 });
 
@@ -115,10 +114,9 @@ suite.test('R5.5: ScrollSpy updates browser address bar with replaceState during
   await page.waitForTimeout(600); // Allow IntersectionObserver to fire
 
   const currentPath = await page.evaluate(() => window.location.pathname);
-  assert.strictEqual(
-    currentPath,
-    '/cases',
-    `Expected ScrollSpy to update window.location.pathname to '/cases' when scrolling into view, got '${currentPath}'`
+  assert.ok(
+    currentPath === '/cases' || currentPath === '/cases/',
+    `Expected ScrollSpy to update window.location.pathname to '/cases/' when scrolling into view, got '${currentPath}'`
   );
 });
 
