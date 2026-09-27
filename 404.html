@@ -25,7 +25,7 @@
     var path = window.location.pathname;
     var search = window.location.search;
     var hash = window.location.hash;
-    var validRoutes = ['dashboard', 'services', 'cases', 'calculator', 'contact', 'home'];
+    var validRoutes = ['dashboard', 'services', 'cases', 'calculator', 'faq', 'contact', 'home'];
     var cleanSegment = path.replace(/^\/+|\/+$/g, '');
 
     if (validRoutes.indexOf(cleanSegment) !== -1) {

@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Cloudflare Wrangler & Secrets
+.wrangler/
+.env
+.env.*
+*.pem
+*.key
+credentials.json
+
+# Temporary & Build artifacts
+tmp/
+dist/
+*.log
+
+# OS metadata
+.DS_Store
+Thumbs.db

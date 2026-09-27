@@ -44,6 +44,10 @@ function checkRateLimit(ip) {
         ipRequests.delete(k);
       }
     }
+    // Hard clamp if still overflowing under flood attack
+    if (ipRequests.size > 5000) {
+      ipRequests.clear();
+    }
   }
 
   return true;
@@ -117,7 +121,7 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const botToken = env.BOT_TOKEN;
-    const adminChatId = parseInt(env.ADMIN_CHAT_ID || "111288881", 10);
+    const adminChatId = parseInt(env.ADMIN_CHAT_ID || "0", 10);
     const tgSecret = env.TG_SECRET_TOKEN;
     const adminKey = env.ADMIN_KEY;
 
@@ -127,7 +131,7 @@ export default {
     const corsHeaders = {
       "Access-Control-Allow-Origin": isAllowedOrigin && requestOrigin ? requestOrigin : "https://ai-avtopilot.ru",
       "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type, Accept",
+      "Access-Control-Allow-Headers": "Content-Type, Accept, Authorization",
       "X-Content-Type-Options": "nosniff",
     };
 
@@ -139,8 +143,7 @@ export default {
     if (url.pathname === "/set-webhook") {
       const authHeader = request.headers.get("Authorization") || "";
       const bearerKey = authHeader.startsWith("Bearer ") ? authHeader.slice(7).trim() : null;
-      const providedKey = bearerKey || url.searchParams.get("key");
-      if (providedKey !== adminKey) {
+      if (!bearerKey || bearerKey !== adminKey) {
         return new Response(JSON.stringify({ error: "Unauthorized: Invalid admin key" }), {
           status: 401,
           headers: { "Content-Type": "application/json; charset=utf-8", ...corsHeaders },
@@ -159,21 +162,29 @@ export default {
       );
     }
 
-    // ── 2. Health & Status: GET /status or GET / (Sanitized) ─────────────────
+    // ── 2. Health & Status: GET /status or GET / (Sanitized & DoS-Protected) ─────────────────
     if (url.pathname === "/status" || url.pathname === "/") {
-      const me = await tgCall(botToken, "getMe");
-      const whInfo = await tgCall(botToken, "getWebhookInfo");
+      const authHeader = request.headers.get("Authorization") || "";
+      const isAdmin = authHeader.startsWith("Bearer ") && authHeader.slice(7).trim() === adminKey;
+
+      let extra = {};
+      if (isAdmin && botToken) {
+        const me = await tgCall(botToken, "getMe");
+        const whInfo = await tgCall(botToken, "getWebhookInfo");
+        extra = {
+          bot_username: me?.result?.username || "unknown",
+          webhook_live: whInfo?.result?.url ? true : false,
+          pending_updates: whInfo?.result?.pending_update_count ?? 0,
+        };
+      }
 
       return new Response(
         JSON.stringify(
           {
             status: "active",
             service: "Ai-Avtopilot 24/7 Hardened Gateway",
-            bot_username: me?.result?.username || "unknown",
-            webhook_live: whInfo?.result?.url ? true : false,
-            pending_updates: whInfo?.result?.pending_update_count ?? 0,
-            has_secret_token: whInfo?.result?.has_custom_certificate ? true : true,
             server_time: getMskTime(),
+            ...extra,
           },
           null,
           2
@@ -346,7 +357,7 @@ export default {
           // Admin commands
           if (rawText.startsWith("/start") || rawText === "/status") {
             const adminPanel =
-              "👋 <b>Приветствую, Владимир!</b>\n\n" +
+              "👋 <b>Панель администратора «АвтоПилот»</b>\n\n" +
               "🤖 Бот <b>АвтоПилот</b> (<code>@AiAvtopilotbot</code>) защищён и активен в облаке 24/7.\n\n" +
               "🟢 <b>Статус:</b> Защищённый Cloudflare Worker\n" +
               "🛡️ <b>Вебхук:</b> Защищён Secret Token\n" +

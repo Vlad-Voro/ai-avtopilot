@@ -2,8 +2,8 @@
 """Ai-Avtopilot Telegram Lead & Assistant Bot (@AiAvtopilotbot).
 
 Listens for incoming messages from potential clients, provides
-instant welcome/onboarding, forwards leads to administrator Vladimir Voro
-(Chat ID: 111288881), and supports two-way admin replies via Telegram Reply.
+instant welcome/onboarding, forwards leads to duty administrator,
+and supports two-way admin replies via Telegram Reply.
 Also provides a local HTTP endpoint for receiving leads from the web form.
 """
 
@@ -40,7 +40,7 @@ logging.basicConfig(
 logger = logging.getLogger("AiAvtopilotBot")
 
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
-ADMIN_CHAT_ID = int(os.getenv("TELEGRAM_ADMIN_ID", "111288881"))
+ADMIN_CHAT_ID = int(os.getenv("TELEGRAM_ADMIN_ID", "0"))
 LOCAL_PROXIES = ["http://127.0.0.1:10809", "socks5://127.0.0.1:10808"]
 API_URL = f"https://api.telegram.org/bot{BOT_TOKEN}"
 HTTP_PORT = int(os.getenv("BOT_HTTP_PORT", "8765"))
