@@ -498,28 +498,6 @@ section[id]{scroll-margin-top:72px}
   color: var(--text-3) !important;
 }
 
-/* F6: Footer Descriptions, Links & Copyright */
-.footer__brand p {
-  color: var(--text-3) !important;
-  font-size: 0.85rem;
-  margin-top: 8px;
-  line-height: 1.6;
-}
-
-.footer__links a {
-  color: var(--text-3) !important;
-  font-size: 0.85rem;
-  transition: color 0.2s;
-}
-
-.footer__links a:hover {
-  color: var(--text-1) !important;
-}
-
-.footer__copy {
-  color: var(--text-3) !important;
-  font-size: 0.8rem;
-}
 
 /* Readability & Typography Enhancements (The Measure & Micro-Label Scaling) */
 .kpi-card__label {
@@ -544,12 +522,122 @@ section[id]{scroll-margin-top:72px}
   }
 }
 
+/* ═══════════════════ FOOTER COMPONENT ═══════════════════ */
+.footer {
+  padding: 40px 0 28px;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.footer__inner {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  text-align: left !important;
+  gap: 20px !important;
+  width: 100%;
+}
+
+.footer__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+}
+
+.footer__top .nav__logo {
+  font-family: var(--font-head);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-1);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.footer__body {
+  width: 100%;
+}
+
+.footer__brand p {
+  color: var(--text-3) !important;
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.footer__support {
+  display: inline-block;
+  color: var(--text-3);
+  font-size: 0.8rem;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+.footer__links-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  width: 100%;
+}
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+
+.footer__links a {
+  color: var(--text-3) !important;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer__links a:hover {
+  color: var(--text-1) !important;
+}
+
+.footer__meta-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  align-items: center;
+}
+
+.footer__meta-links a {
+  color: var(--text-3);
+  font-size: 0.82rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer__meta-links a:hover {
+  color: var(--text-1);
+}
+
+.footer__bottom {
+  width: 100%;
+}
+
+.footer__copy {
+  color: var(--text-3) !important;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
 /* Telegram Bot CTA in Footer */
 .footer__tg-cta {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin-top: 8px;
+  margin: 0;
   padding: 6px 14px;
   background: rgba(99, 102, 241, 0.08);
   border: 1px solid rgba(99, 102, 241, 0.22);
@@ -644,6 +732,66 @@ section[id]{scroll-margin-top:72px}
 
 .footer__tg-cta:hover .footer__tg-handle {
   color: var(--accent-1);
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 28px 0 24px;
+  }
+  .footer__inner {
+    gap: 16px !important;
+    text-align: left !important;
+    align-items: stretch !important;
+  }
+  .footer__top {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .footer__top .nav__logo {
+    font-size: 1.05rem;
+  }
+  .footer__tg-cta {
+    padding: 5px 9px;
+    gap: 6px;
+  }
+  .footer__tg-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .footer__tg-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+  .footer__tg-title {
+    font-size: 0.78rem;
+    gap: 4px;
+  }
+  .footer__tg-badge {
+    font-size: 0.6rem;
+    padding: 0 4px;
+  }
+  .footer__tg-handle {
+    font-size: 0.68rem;
+  }
+  .footer__links-row {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 14px;
+    gap: 12px;
+  }
+  .footer__links {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: start;
+    gap: 10px 24px;
+    width: 100%;
+  }
+  .footer__meta-links {
+    gap: 8px 16px;
+    width: 100%;
+  }
 }
 
 /* ==========================================================================
@@ -1942,9 +2090,8 @@ section[id] {
   <!-- ═══════════════════ FOOTER ═══════════════════ -->
   <footer class="footer">
     <div class="container footer__inner">
-      <div class="footer__brand">
-        <span class="nav__logo">⬡ АвтоПилот</span>
-        <p>ИИ-автоматизация бизнес-процессов.<br />г. Москва · Работаем по всей России.<br /><span style="color:var(--text-3);font-size:0.8rem;">Поддержка: 24/7 онлайн</span></p>
+      <div class="footer__top">
+        <a href="/" class="nav__logo" aria-label="АвтоПилот Главная">⬡ АвтоПилот</a>
         <a href="https://t.me/AiAvtopilotbot" target="_blank" rel="noopener noreferrer" class="footer__tg-cta" aria-label="Написать нам в Telegram бот @AiAvtopilotbot">
           <div class="footer__tg-icon">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
@@ -1960,18 +2107,29 @@ section[id] {
           </div>
         </a>
       </div>
-      <div class="footer__links">
-        <a href="/dashboard/">Дашборд</a>
-        <a href="/services/">Услуги</a>
-        <a href="/cases/">Кейсы</a>
-        <a href="/calculator/">Калькулятор</a>
-        <a href="/faq/">FAQ</a>
-        <a href="/contact/">Контакты</a>
-        <a href="mailto:contact@ai-avtopilot.ru">contact@ai-avtopilot.ru</a>
-        <a href="/privacy.html">Политика конфиденциальности (152-ФЗ)</a>
+      <div class="footer__body">
+        <div class="footer__brand">
+          <p>ИИ-автоматизация бизнес-процессов.<br />г. Москва · Работаем по всей России.<br /><span class="footer__support">Поддержка: 24/7 онлайн</span></p>
+        </div>
       </div>
-      <div class="footer__copy">
-        © 2025–2026 АвтоПилот. Все права защищены.
+      <div class="footer__links-row">
+        <div class="footer__links">
+          <a href="/dashboard/">Дашборд</a>
+          <a href="/services/">Услуги</a>
+          <a href="/cases/">Кейсы</a>
+          <a href="/calculator/">Калькулятор</a>
+          <a href="/faq/">FAQ</a>
+          <a href="/contact/">Контакты</a>
+        </div>
+        <div class="footer__meta-links">
+          <a href="mailto:contact@ai-avtopilot.ru" class="footer__email">contact@ai-avtopilot.ru</a>
+          <a href="/privacy.html" class="footer__privacy">Политика конфиденциальности (152-ФЗ)</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div class="footer__copy">
+          © 2025–2026 АвтоПилот. Все права защищены.
+        </div>
       </div>
     </div>
   </footer>

@@ -1,0 +1,43 @@
+name: Deploy to Beget Production
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+concurrency:
+  group: production_deploy
+  cancel-in-progress: false
+
+jobs:
+  web-deploy:
+    name: Deploy via FTPS
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Sync files to Beget FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: f91009a4.beget.tech
+          username: ${{ secrets.BEGET_USER }}
+          password: ${{ secrets.BEGET_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: ./
+          server-dir: f91009a4.beget.tech/public_html/
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/tests/**
+            **/bot/**
+            **/cloudflare-worker/**
+            **/scripts/**
+            **/*.md
+            **/*.ps1
+            **/.gitignore
+            **/node_modules/**
