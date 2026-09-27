@@ -232,6 +232,16 @@ async function runSecuritySuite() {
     assert.ok(indexHtml.includes('name="_honey"'), 'Form must contain _honey anti-bot field');
   });
 
+  // Test 8: SEC-08 - Anti-Clickjacking Frame Guard
+  await test('SEC-08: OWASP Anti-Clickjacking Frame Guard is present across all pages', async () => {
+    const files = ['index.html', 'services/index.html', 'cases/index.html', 'calculator/index.html', 'dashboard/index.html', 'faq/index.html', 'contact/index.html'];
+    files.forEach(f => {
+      const html = fs.readFileSync(path.resolve(__dirname, '../../', f), 'utf8');
+      assert.ok(html.includes('id="anti-clickjack"'), `Missing anti-clickjack style in ${f}`);
+      assert.ok(html.includes('self === top'), `Missing frame check in ${f}`);
+    });
+  });
+
   console.log(`\n${C.bold}========================================================================${C.reset}`);
   console.log(`${C.bold}SECURITY TEST SUMMARY${C.reset}`);
   console.log(`========================================================================`);

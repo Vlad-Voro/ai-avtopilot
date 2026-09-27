@@ -50,6 +50,17 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
+  <!-- Anti-Clickjacking Frame Guard (OWASP Defense) -->
+  <style id="anti-clickjack">body{display:none !important;}</style>
+  <script>
+    if (self === top) {
+      var acj = document.getElementById('anti-clickjack');
+      if (acj) acj.parentNode.removeChild(acj);
+    } else {
+      top.location = self.location;
+    }
+  </script>
+
   <!-- DNS Prefetch for Outbound Endpoints -->
   <link rel="dns-prefetch" href="https://mc.yandex.ru" />
   <link rel="dns-prefetch" href="https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev" />
