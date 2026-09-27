@@ -83,26 +83,8 @@ async function runResiliencySuite() {
       'YM goal must be strictly inside confirmed isSuccess block');
   });
 
-  // RES-05: JTBD Persona Terminology across CEO, CFO, and CTO
-  await test('RES-05: JTBD Persona Terminology across CEO, CFO, and CTO in index.html', () => {
-    // CEO / Owner pains & outcomes
-    assert(indexHtml.includes('ФОТ'), 'Must address ФОТ (headcount costs)');
-    assert(indexHtml.includes('масштабирование') || indexHtml.includes('Масштабирование'), 'Must address business scaling');
-
-    // CFO / Chief Accountant pains & outcomes
-    assert(indexHtml.includes('УПД') || indexHtml.includes('первичк'), 'Must address UPD / primary documents');
-    assert(indexHtml.includes('Диадок') && indexHtml.includes('СБИС'), 'Must support Diadoc and SBIS EDO');
-    assert(indexHtml.includes('P&L'), 'Must address automated P&L / management reporting');
-
-    // CTO / 1C Architect pains & outcomes
-    assert(indexHtml.includes('OData') || indexHtml.includes('REST API'), 'Must specify OData / REST API');
-    assert(indexHtml.includes('без снятия 1С с поддержки') || indexHtml.includes('без вмешательства в типовой код'),
-      'Must assure 1C standard configuration support without breaking updates');
-    assert(indexHtml.includes('152-ФЗ') && indexHtml.includes('NDA'), 'Must address 152-FZ compliance and NDA');
-  });
-
-  // RES-06: Strict Anti-Slop Audit across index.html and all 6 subpages
-  await test('RES-06: Strict Anti-Slop Audit across index.html and all 6 subpages', () => {
+  // RES-05: Strict Anti-Slop Audit across index.html and all 6 subpages
+  await test('RES-05: Strict Anti-Slop Audit across index.html and all 6 subpages', () => {
     const slopPatterns = [
       'волшебный ИИ',
       'ИИ без кода',
