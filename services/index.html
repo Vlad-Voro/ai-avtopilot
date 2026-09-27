@@ -902,6 +902,44 @@ section[id] {
     .nav__links{padding:80px 24px;gap:10px;overflow-y:auto;}
   }
 
+  /* Hero Badge Adaptive & Anti-Break Styling */
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .hero__badge-text {
+    display: inline-block;
+    white-space: nowrap;
+  }
+  @media (max-width: 640px) {
+    .hero__badge {
+      font-size: 0.78rem;
+      padding: 7px 14px;
+      gap: 7px;
+    }
+  }
+  @media (max-width: 480px) {
+    .hero__badge {
+      font-size: 0.72rem;
+      padding: 6px 12px;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .hero__badge-word {
+      display: none;
+    }
+  }
+  @media (max-width: 360px) {
+    .hero__badge {
+      font-size: 0.67rem;
+      padding: 5px 10px;
+      gap: 5px;
+    }
+  }
+
   /* Item 4: Compare Cards Hover Animation */
   .compare__card {
     transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
@@ -1415,7 +1453,7 @@ section[id] {
       <div class="hero__content">
         <div class="hero__badge">
           <span class="hero__badge-dot"></span>
-          Системы активны · <span id="hero-agent-count">48</span> автономных агентов в контуре
+          <span class="hero__badge-text">Системы активны · <span id="hero-agent-count">48</span> <span class="hero__badge-word">автономных </span>агентов в контуре</span>
         </div>
         <h2 class="hero__title">
           <span class="hero__title-static">Ваши процессы </span>
