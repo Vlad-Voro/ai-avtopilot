@@ -47,6 +47,10 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
+  <!-- DNS Prefetch for Outbound Endpoints -->
+  <link rel="dns-prefetch" href="https://mc.yandex.ru" />
+  <link rel="dns-prefetch" href="https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev" />
+
   <!-- Preload Local Core Fonts -->
   <link rel="preload" href="/assets/fonts/Inter-400-1.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/assets/fonts/Inter-400-6.woff2" as="font" type="font/woff2" crossorigin />
@@ -886,6 +890,16 @@ section[id] {
       "sameAs": [
         "https://t.me/AiAvtopilotbot"
       ],
+      "slogan": "Ваши процессы работают на автопилоте",
+      "knowsAbout": [
+        "ИИ-агенты",
+        "Роботизация бизнес-процессов (RPA)",
+        "Интеграция 1С OData",
+        "Контур.Диадок SDK",
+        "СБИС API",
+        "Автоматизация ERP и CRM",
+        "152-ФЗ комплаенс"
+      ],
       "areaServed": {
         "@type": "Country",
         "name": "Россия"
@@ -899,7 +913,14 @@ section[id] {
       "image": "https://ai-avtopilot.ru/og-image.png",
       "priceRange": "₽₽₽",
       "currenciesAccepted": "RUB",
-      "paymentAccepted": "Безналичный расчет, банковский перевод, СБП",
+      "paymentAccepted": "Безналичный расчет, расчетный счет, банковский перевод, СБП, выставление счета через ЭДО (Диадок / СБИС)",
+      "serviceType": [
+        "Внедрение ИИ-агентов",
+        "Интеграция 1С и SAP",
+        "Цифровой документооборот ЭДО",
+        "Автоматизация ритейла и склада",
+        "Аналитика данных"
+      ],
       "email": "contact@ai-avtopilot.ru",
       "address": {
         "@type": "PostalAddress",
@@ -1165,6 +1186,12 @@ section[id] {
         <p style="color:var(--text-2);font-size:0.95rem;line-height:1.65;">
           Каждый проект начинается с фиксированного 14-дневного пилота. Мы берем 1–3 ключевых участка рутины, подключаем модель к вашим тестовым или боевым данным через защищенный шлюз и калибруем точность до 99%+. Вы оплачиваете основной контракт только после подтверждения измеримого экономического эффекта.
         </p>
+
+        <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:24px;">
+          <a href="/cases/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Смотреть кейсы внедрения →</a>
+          <a href="/calculator/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Рассчитать ROI на калькуляторе →</a>
+          <a href="/faq/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Частые вопросы (FAQ) →</a>
+        </div>
       </div>
 
   </div>

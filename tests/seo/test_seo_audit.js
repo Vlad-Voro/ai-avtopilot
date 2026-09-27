@@ -229,8 +229,58 @@ runCheck('SEO-14', 'Lead form includes required 152-FZ consent checkbox and link
   });
 });
 
-// SEO-15: Test execution time benchmark
-runCheck('SEO-15', 'Full SEO verification suite completes in under 500ms', () => {
+console.log('\n▶ [Category 6] Advanced GEO, PageRank Mesh & Commercial Trust');
+
+// SEO-15: Passive DNS prefetching
+runCheck('SEO-15', 'DNS prefetch tags for external endpoints (Metrika, Worker) present across all pages', () => {
+  PAGES.forEach(p => {
+    const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
+    assert.ok(html.includes('rel="dns-prefetch"') && html.includes('https://mc.yandex.ru'), `Missing dns-prefetch for Metrika in ${p.file}`);
+    assert.ok(html.includes('rel="dns-prefetch"') && html.includes('ai-avtopilot-bot.mr-vladimir-voronin.workers.dev'), `Missing dns-prefetch for Worker in ${p.file}`);
+  });
+});
+
+// SEO-16: knowsAbout taxonomy & B2B entity enrichment in JSON-LD
+runCheck('SEO-16', 'Schema.org JSON-LD contains knowsAbout expertise taxonomy and B2B terms in @graph', () => {
+  PAGES.forEach(p => {
+    const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
+    const m = html.match(/<script\s+type="application\/ld\+json">(.*?)<\/script>/s);
+    assert.ok(m, `Missing JSON-LD in ${p.file}`);
+    const data = JSON.parse(m[1].trim());
+    const org = data['@graph'].find(item => item['@type'] === 'Organization');
+    assert.ok(org, `Missing Organization in ${p.file}`);
+    assert.ok(Array.isArray(org.knowsAbout) && org.knowsAbout.length >= 5, `Missing knowsAbout array in ${p.file}`);
+    assert.ok(org.knowsAbout.includes('ИИ-агенты'), `Missing ИИ-агенты in knowsAbout in ${p.file}`);
+    assert.ok(org.knowsAbout.includes('Роботизация бизнес-процессов (RPA)'), `Missing RPA in knowsAbout in ${p.file}`);
+    assert.ok(org.knowsAbout.includes('152-ФЗ комплаенс'), `Missing 152-ФЗ in knowsAbout in ${p.file}`);
+  });
+});
+
+// SEO-17: Contextual PageRank cross-linking mesh across subpages
+runCheck('SEO-17', 'All 6 subpages contain subpage-links-grid cross-linking mesh to eliminate dead ends', () => {
+  PAGES.filter(p => p.slug !== '').forEach(p => {
+    const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
+    assert.ok(html.includes('class="subpage-links-grid"'), `Missing subpage-links-grid in ${p.file}`);
+    assert.ok(html.includes('class="btn btn--') || html.includes('class="btn btn--primary"'), `Missing subpage links in ${p.file}`);
+  });
+});
+
+// SEO-18: B2B Commercial Trust Signals (EDO, NDA, Cashless)
+runCheck('SEO-18', 'B2B commercial trust terms (Диадок / СБИС, ЭДО, безналичный расчет, счет-договор, NDA) present', () => {
+  const contactHtml = fs.readFileSync(path.join(ROOT_DIR, 'contact/index.html'), 'utf8');
+  const contactLower = contactHtml.toLowerCase();
+  assert.ok(contactLower.includes('диадок'), 'Missing Диадок in /contact/');
+  assert.ok(contactLower.includes('сбис'), 'Missing СБИС in /contact/');
+  assert.ok(contactLower.includes('эдо'), 'Missing ЭДО in /contact/');
+  assert.ok(contactHtml.includes('NDA'), 'Missing NDA in /contact/');
+  assert.ok(contactLower.includes('безналичный расчет'), 'Missing безналичный расчет in /contact/');
+
+  const indexHtml = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8');
+  assert.ok(indexHtml.includes('Диадок') || indexHtml.includes('ЭДО'), 'Missing EDO terms in index.html');
+});
+
+// SEO-19: Test execution time benchmark
+runCheck('SEO-19', 'Full SEO verification suite completes in under 500ms', () => {
   assert.ok(true);
 });
 

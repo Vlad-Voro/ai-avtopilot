@@ -74,6 +74,12 @@ SUBPAGES_SPEC = {
         <p style="color:var(--text-2);font-size:0.95rem;line-height:1.65;">
           Каждый проект начинается с фиксированного 14-дневного пилота. Мы берем 1–3 ключевых участка рутины, подключаем модель к вашим тестовым или боевым данным через защищенный шлюз и калибруем точность до 99%+. Вы оплачиваете основной контракт только после подтверждения измеримого экономического эффекта.
         </p>
+
+        <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:24px;">
+          <a href="/cases/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Смотреть кейсы внедрения →</a>
+          <a href="/calculator/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Рассчитать ROI на калькуляторе →</a>
+          <a href="/faq/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Частые вопросы (FAQ) →</a>
+        </div>
       </div>
 """,
     },
@@ -131,6 +137,12 @@ SUBPAGES_SPEC = {
             </tbody>
           </table>
         </div>
+
+        <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:24px;">
+          <a href="/calculator/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Рассчитать ROI под ваши параметры →</a>
+          <a href="/services/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Стек интеграции (1С, ЭДО, CRM) →</a>
+          <a href="/contact/" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Заказать бесплатный аудит →</a>
+        </div>
       </div>
 """,
     },
@@ -162,6 +174,12 @@ SUBPAGES_SPEC = {
         <p style="color:var(--text-3);font-size:0.85rem;line-height:1.6;">
           Коэффициент 80% отражает консервативную долю типовых операций, которые полностью делегируются ИИ-агентам без участия человека. Оставшиеся 20% нестандартных исключений направляются на верификацию ведущим специалистам.
         </p>
+
+        <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:24px;">
+          <a href="/cases/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Реальные кейсы клиентов с ROI 340% →</a>
+          <a href="/faq/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Вопросы и ответы по окупаемости →</a>
+          <a href="/contact/" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Получить экспресс-аудит (30 мин) →</a>
+        </div>
       </div>
 """,
     },
@@ -197,6 +215,10 @@ SUBPAGES_SPEC = {
             <strong style="color:var(--text-1);display:block;font-size:1.3rem;font-family:var(--font-head);">99.9%</strong>
             <span style="color:var(--text-3);font-size:0.8rem;">Гарантированный SLA доступности</span>
           </div>
+        <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:24px;">
+          <a href="/services/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Каталог поддерживаемых систем →</a>
+          <a href="/cases/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Кейсы с подтвержденными метриками →</a>
+          <a href="/contact/" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Подключить телеметрию для бизнеса →</a>
         </div>
       </div>
 """,
@@ -253,6 +275,12 @@ SUBPAGES_SPEC = {
             </tbody>
           </table>
         </div>
+
+        <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:24px;">
+          <a href="/services/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Технический стек и протоколы →</a>
+          <a href="/calculator/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Интерактивный калькулятор экономии →</a>
+          <a href="/contact/" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Записаться на 30-минутный аудит →</a>
+        </div>
       </div>
 """,
     },
@@ -298,6 +326,27 @@ SUBPAGES_SPEC = {
               <span style="color:var(--text-3);font-size:0.8rem;">г. Москва · Работаем по всей России</span>
             </p>
           </div>
+        </div>
+
+        <h3 style="color:var(--text-1);margin:28px 0 16px;font-family:var(--font-head);font-size:1.2rem;">Корпоративные стандарты работы и гарантии (B2B)</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:16px;margin-bottom:24px;">
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;">
+            <strong style="color:var(--accent-1);display:block;margin-bottom:6px;">ЭДО (Диадок / СБИС)</strong>
+            <span style="color:var(--text-2);font-size:0.85rem;line-height:1.5;display:block;">Мгновенный обмен юридически значимыми документами и закрывающими актами без бумаги.</span>
+          </div>
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;">
+            <strong style="color:var(--green);display:block;margin-bottom:6px;">Безналичный расчет</strong>
+            <span style="color:var(--text-2);font-size:0.85rem;line-height:1.5;display:block;">Официальный счет-договор для юридических лиц и ИП с фиксацией SLA и измеримых KPI.</span>
+          </div>
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;">
+            <strong style="color:var(--text-1);display:block;margin-bottom:6px;">NDA и безопасность</strong>
+            <span style="color:var(--text-2);font-size:0.85rem;line-height:1.5;display:block;">Строгое соглашение о неразглашении перед стартом. Обработка данных строго по 152-ФЗ РФ.</span>
+          </div>
+        </div>
+
+        <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;">
+          <a href="/faq/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">База знаний и частые вопросы →</a>
+          <a href="/cases/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Смотреть подтвержденные кейсы →</a>
         </div>
       </div>
 """,
