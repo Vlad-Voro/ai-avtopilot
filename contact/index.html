@@ -851,6 +851,7 @@ section[id] {
   .scard,
   .case-card,
   .dash-card,
+  .compare__card,
   .btn,
   .btn--primary,
   .footer__tg-cta {
@@ -860,6 +861,7 @@ section[id] {
   .scard:hover,
   .case-card:hover,
   .dash-card:hover,
+  .compare__card:hover,
   .btn:hover,
   .btn:active,
   .btn--primary:hover,
@@ -899,6 +901,182 @@ section[id] {
     .contact__inner{gap:24px;padding:24px 18px;}
     .nav__links{padding:80px 24px;gap:10px;overflow-y:auto;}
   }
+
+  /* Item 4: Compare Cards Hover Animation */
+  .compare__card {
+    transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: default;
+  }
+  .compare__card:hover {
+    transform: translateY(-4px);
+  }
+  .compare__card--pain:hover {
+    border-color: rgba(239, 68, 68, 0.45);
+    box-shadow: 0 16px 48px rgba(239, 68, 68, 0.14);
+  }
+  .compare__card--win:hover {
+    border-color: rgba(99, 102, 241, 0.5);
+    box-shadow: 0 16px 48px rgba(99, 102, 241, 0.22);
+  }
+  .compare__card .compare__icon {
+    transition: transform 0.3s ease;
+  }
+  .compare__card:hover .compare__icon {
+    transform: scale(1.08);
+  }
+
+  /* Item 2: Hero Agent Core Cards Interactive Styling */
+  .agent-card {
+    cursor: pointer;
+    user-select: none;
+    transition: border-color 0.25s, transform 0.25s, background 0.25s, box-shadow 0.25s;
+  }
+  .agent-card:hover, .agent-card.agent-card--selected {
+    border-color: rgba(99, 102, 241, 0.5);
+    background: var(--surface-2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15);
+  }
+  .agent-card:active {
+    transform: translateY(0);
+  }
+  .terminal__dot {
+    cursor: pointer;
+    transition: transform 0.2s, filter 0.2s;
+  }
+  .terminal__dot:hover {
+    transform: scale(1.2);
+    filter: brightness(1.2);
+  }
+
+  /* Item 3: Desktop Horizontal Agents & Compact Dashboard */
+  @media(min-width: 1025px) {
+    .dashboard__grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 16px;
+    }
+    .dash-card--agents {
+      grid-column: 1 / -1;
+      padding: 18px 24px;
+    }
+    .dash-card--agents .dash-card__header {
+      margin-bottom: 12px;
+    }
+    .agent-list {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+    }
+    .agent-list-item {
+      padding: 10px 12px;
+      min-width: 0;
+    }
+  }
+  @media(max-width: 1024px) and (min-width: 769px) {
+    .dash-card--agents {
+      grid-column: 1 / -1;
+      padding: 16px 20px;
+    }
+    .agent-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+  }
+  @media(max-width: 768px) {
+    .agent-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .agent-list-item {
+      padding: 8px 10px;
+      font-size: 0.78rem;
+      min-width: 0;
+    }
+  }
+  @media(max-width: 480px) {
+    .agent-list {
+      grid-template-columns: 1fr;
+    }
+  }
+  .agent-list-item {
+    transition: border-color 0.25s, transform 0.25s, background 0.25s;
+    cursor: pointer;
+  }
+  .agent-list-item:hover {
+    border-color: rgba(99, 102, 241, 0.4);
+    background: var(--surface-2);
+    transform: translateY(-2px);
+  }
+  .agent-list-item__name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .agent-list-item__num {
+    white-space: nowrap;
+    font-weight: 600;
+  }
+  .dash-metric {
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  }
+  .dash-metric:hover {
+    border-color: rgba(99, 102, 241, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  }
+  .chart__bar {
+    cursor: pointer;
+    transition: height 1s cubic-bezier(.4,0,.2,1), filter 0.2s, transform 0.2s;
+  }
+  .chart__bar:hover {
+    filter: brightness(1.25);
+  }
+
+  /* Item 5: Domain Case Styles & WCAG AA Colors */
+  .case-card--retail .case-card__industry { color: #fbbf24; }
+  .case-card--edi .case-card__industry { color: #a78bfa; }
+  .case-card--service .case-card__industry { color: #22d3ee; }
+  .case-card--hr .case-card__industry { color: #c084fc; }
+  .case-card--logistics .case-card__industry { color: #34d399; }
+  .case-card--fintech .case-card__industry { color: #38bdf8; }
+
+  .case-card__badge-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .case-card__badge-dot--retail { background: #fbbf24; box-shadow: 0 0 8px rgba(251, 191, 36, 0.6); }
+  .case-card__badge-dot--edi { background: #a78bfa; box-shadow: 0 0 8px rgba(167, 139, 250, 0.6); }
+  .case-card__badge-dot--service { background: #22d3ee; box-shadow: 0 0 8px rgba(34, 211, 238, 0.6); }
+  .case-card__badge-dot--hr { background: #c084fc; box-shadow: 0 0 8px rgba(192, 132, 252, 0.6); }
+  .case-card__badge-dot--logistics { background: #34d399; box-shadow: 0 0 8px rgba(52, 211, 153, 0.6); }
+  .case-card__badge-dot--fintech { background: #38bdf8; box-shadow: 0 0 8px rgba(56, 189, 248, 0.6); }
+
+  .case-highlight {
+    color: var(--text-1);
+    font-weight: 500;
+  }
+  .case-highlight--retail { border-bottom: 1px dotted rgba(251, 191, 36, 0.4); }
+  .case-highlight--edi { border-bottom: 1px dotted rgba(167, 139, 250, 0.4); }
+  .case-highlight--service { border-bottom: 1px dotted rgba(34, 211, 238, 0.4); }
+  .case-highlight--hr { border-bottom: 1px dotted rgba(192, 132, 252, 0.4); }
+  .case-highlight--logistics { border-bottom: 1px dotted rgba(52, 211, 153, 0.4); }
+  .case-highlight--fintech { border-bottom: 1px dotted rgba(56, 189, 248, 0.4); }
+
+  .case-num--green { color: #34d399 !important; }
+  .case-num--gold { color: #fbbf24 !important; }
+  .case-num--cyan { color: #22d3ee !important; }
+  .case-num--violet { color: #a78bfa !important; }
+  .case-num--lilac { color: #c084fc !important; }
+  .case-num--sky { color: #38bdf8 !important; }
   </style>
 
   <!-- Scripts -->
@@ -1233,7 +1411,7 @@ section[id] {
       <div class="hero__content">
         <div class="hero__badge">
           <span class="hero__badge-dot"></span>
-          Системы активны · 12 автономных агентов в контуре
+          Системы активны · <span id="hero-agent-count">48</span> автономных агентов в контуре
         </div>
         <h2 class="hero__title">
           <span class="hero__title-static">Ваши процессы </span>
@@ -1278,7 +1456,7 @@ section[id] {
           </div>
         </div>
         <div class="hero__agent-cards">
-          <div class="agent-card">
+          <div class="agent-card" role="button" tabindex="0" data-agent="reports" aria-label="Инспектировать агента Отчёты">
             <div class="agent-card__icon">🤖</div>
             <div class="agent-card__info">
               <span class="agent-card__name">Агент: Отчёты</span>
@@ -1288,7 +1466,7 @@ section[id] {
               <div class="agent-card__fill" style="width:78%"></div>
             </div>
           </div>
-          <div class="agent-card">
+          <div class="agent-card" role="button" tabindex="0" data-agent="warehouse" aria-label="Инспектировать агента Склад">
             <div class="agent-card__icon">📦</div>
             <div class="agent-card__info">
               <span class="agent-card__name">Агент: Склад</span>
@@ -1298,7 +1476,7 @@ section[id] {
               <div class="agent-card__fill" style="width:62%"></div>
             </div>
           </div>
-          <div class="agent-card">
+          <div class="agent-card" role="button" tabindex="0" data-agent="invoices" aria-label="Инспектировать агента Счета">
             <div class="agent-card__icon">💳</div>
             <div class="agent-card__info">
               <span class="agent-card__name">Агент: Счета</span>
@@ -1359,14 +1537,14 @@ section[id] {
               <!-- JS fills this -->
             </div>
           </div>
-          <div class="dash-card dash-card--agents">
-            <div class="dash-card__header">
-              <span class="dash-card__title">Агенты онлайн</span>
-              <span class="dash-card__count" id="agent-count">12</span>
-            </div>
-            <div class="agent-list" id="agent-list">
-              <!-- JS fills this -->
-            </div>
+        </div>
+        <div class="dash-card dash-card--agents">
+          <div class="dash-card__header">
+            <span class="dash-card__title">Агенты онлайн</span>
+            <span class="dash-card__count" id="agent-count">48</span>
+          </div>
+          <div class="agent-list" id="agent-list">
+            <!-- JS fills this -->
           </div>
         </div>
       </div>
@@ -1481,10 +1659,10 @@ section[id] {
       </div>
       <div class="cases__grid">
 
-        <div class="case-card" data-reveal>
-          <div class="case-card__industry">🏪 Сеть магазинов · 230 точек</div>
+        <div class="case-card case-card--retail" data-reveal>
+          <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--retail"></span>🏪 Сеть магазинов · 230 точек</div>
           <h3 class="case-card__title">Автоматизация инвентаризации и заказов</h3>
-          <p class="case-card__desc">Внедрили агентов для синхронизации остатков между складами и точками продаж,
+          <p class="case-card__desc">Внедрили агентов для <span class="case-highlight case-highlight--retail">синхронизации остатков</span> между складами и точками продаж,
             автоматической генерации заявок поставщикам при снижении ТМЦ ниже порога.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -1492,21 +1670,21 @@ section[id] {
               <span class="case-result__label">ручного труда в учёте</span>
             </div>
             <div class="case-result">
-              <span class="case-result__num">+18%</span>
+              <span class="case-result__num case-num--green">+18%</span>
               <span class="case-result__label">оборачиваемость склада</span>
             </div>
             <div class="case-result">
-              <span class="case-result__num">9 200</span>
+              <span class="case-result__num case-num--gold">9 200</span>
               <span class="case-result__label">часов сэкономлено/год</span>
             </div>
           </div>
           <div class="case-card__tags"><span>1С:Розница</span><span>RPA</span><span>ИИ-агент</span></div>
         </div>
 
-        <div class="case-card" data-reveal>
-          <div class="case-card__industry">🏭 Производство · Средний бизнес</div>
+        <div class="case-card case-card--edi" data-reveal>
+          <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--edi"></span>🏭 Производство · Средний бизнес</div>
           <h3 class="case-card__title">Полностью цифровой документооборот</h3>
-          <p class="case-card__desc">Переход с бумажных актов и накладных на автоматический ЭДО. Роботы создают,
+          <p class="case-card__desc">Переход с бумажных актов и накладных на <span class="case-highlight case-highlight--edi">автоматический ЭДО</span>. Роботы создают,
             проверяют, подписывают и архивируют документы без участия бухгалтера.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -1514,29 +1692,29 @@ section[id] {
               <span class="case-result__label">бумажного документооборота</span>
             </div>
             <div class="case-result">
-              <span class="case-result__num">5 мин</span>
+              <span class="case-result__num case-num--cyan">5 мин</span>
               <span class="case-result__label">вместо 3 дней на отчёт</span>
             </div>
             <div class="case-result">
-              <span class="case-result__num">≥ 400%</span>
+              <span class="case-result__num case-num--violet">≥ 400%</span>
               <span class="case-result__label">ROI за первый год</span>
             </div>
           </div>
           <div class="case-card__tags"><span>ЭДО</span><span>SAP</span><span>Автоматизация</span></div>
         </div>
 
-        <div class="case-card" data-reveal>
-          <div class="case-card__industry">📞 Сервисный центр · 40 000 клиентов/мес</div>
+        <div class="case-card case-card--service" data-reveal>
+          <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--service"></span>📞 Сервисный центр · 40 000 клиентов/мес</div>
           <h3 class="case-card__title">ИИ-оператор поддержки 24/7</h3>
-          <p class="case-card__desc">Заменили первую линию поддержки ИИ-агентом, который понимает запросы, обращается к
+          <p class="case-card__desc">Заменили первую линию поддержки <span class="case-highlight case-highlight--service">ИИ-агентом</span>, который понимает запросы, обращается к
             базе знаний и решает типовые вопросы без передачи оператору.</p>
           <div class="case-card__results">
             <div class="case-result">
-              <span class="case-result__num">80%</span>
+              <span class="case-result__num case-num--green">80%</span>
               <span class="case-result__label">запросов закрыто ИИ</span>
             </div>
             <div class="case-result">
-              <span class="case-result__num">&lt; 3s</span>
+              <span class="case-result__num case-num--cyan">&lt; 3s</span>
               <span class="case-result__label">время ответа</span>
             </div>
             <div class="case-result">
@@ -1547,10 +1725,10 @@ section[id] {
           <div class="case-card__tags"><span>LLM</span><span>Чатбот</span><span>CRM</span></div>
         </div>
 
-        <div class="case-card" data-reveal>
-          <div class="case-card__industry">👥 HR-департамент · Крупный ритейл</div>
+        <div class="case-card case-card--hr" data-reveal>
+          <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--hr"></span>👥 HR-департамент · Крупный ритейл</div>
           <h3 class="case-card__title">Автоматизация найма и онбординга</h3>
-          <p class="case-card__desc">Внедрение ИИ-агента для скрининга 5000+ резюме в месяц, автоматического назначения
+          <p class="case-card__desc">Внедрение ИИ-агента для <span class="case-highlight case-highlight--hr">скрининга 5000+ резюме</span> в месяц, автоматического назначения
             собеседований и подготовки документов.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -1558,21 +1736,21 @@ section[id] {
               <span class="case-result__label">времени на отбор</span>
             </div>
             <div class="case-result">
-              <span class="case-result__num">+40%</span>
+              <span class="case-result__num case-num--green">+40%</span>
               <span class="case-result__label">скорость найма</span>
             </div>
             <div class="case-result">
-              <span class="case-result__num">0</span>
+              <span class="case-result__num case-num--lilac">0</span>
               <span class="case-result__label">пропущенных резюме</span>
             </div>
           </div>
           <div class="case-card__tags"><span>NLP</span><span>HR-Tech</span><span>Automation</span></div>
         </div>
 
-        <div class="case-card" data-reveal>
-          <div class="case-card__industry">🚛 Логистический хаб · Cargo Express</div>
+        <div class="case-card case-card--logistics" data-reveal>
+          <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--logistics"></span>🚛 Логистический хаб · Cargo Express</div>
           <h3 class="case-card__title">Управление цепочками поставок</h3>
-          <p class="case-card__desc">Агенты мониторят статус грузов в реальном времени, формируют таможенные декларации
+          <p class="case-card__desc">Агенты мониторят статус грузов в <span class="case-highlight case-highlight--logistics">реальном времени</span>, формируют таможенные декларации
             и уведомляют клиентов о задержках.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -1580,21 +1758,21 @@ section[id] {
               <span class="case-result__label">затрат на логистику</span>
             </div>
             <div class="case-result">
-              <span class="case-result__num">100%</span>
+              <span class="case-result__num case-num--green">100%</span>
               <span class="case-result__label">точность документов</span>
             </div>
             <div class="case-result">
-              <span class="case-result__num">&lt; 1 мин</span>
+              <span class="case-result__num case-num--cyan">&lt; 1 мин</span>
               <span class="case-result__label">уведомление о задержке рейса</span>
             </div>
           </div>
           <div class="case-card__tags"><span>Logistics</span><span>ИИ-агенты</span><span>API</span></div>
         </div>
 
-        <div class="case-card" data-reveal>
-          <div class="case-card__industry">💳 Финтех-стартап · b2b платежи</div>
+        <div class="case-card case-card--fintech" data-reveal>
+          <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--fintech"></span>💳 Финтех-стартап · b2b платежи</div>
           <h3 class="case-card__title">Автоматическая сверка транзакций</h3>
-          <p class="case-card__desc">Роботизация сверки тысяч транзакций между банками и CRM. Агенты находят расхождения
+          <p class="case-card__desc">Роботизация сверки <span class="case-highlight case-highlight--fintech">тысяч транзакций</span> между банками и CRM. Агенты находят расхождения
             и мгновенно формируют отчеты.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -1602,11 +1780,11 @@ section[id] {
               <span class="case-result__label">ошибок в расчетах</span>
             </div>
             <div class="case-result">
-              <span class="case-result__num">10s</span>
+              <span class="case-result__num case-num--gold">10s</span>
               <span class="case-result__label">вместо 4 часов</span>
             </div>
             <div class="case-result">
-              <span class="case-result__num">100%</span>
+              <span class="case-result__num case-num--sky">100%</span>
               <span class="case-result__label">соответствие 152-ФЗ и ЦБ</span>
             </div>
           </div>
