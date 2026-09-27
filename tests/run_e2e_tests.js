@@ -101,50 +101,65 @@ async function main() {
   });
   console.log(`${C.green}✔${C.reset} Headless Edge browser launched (${browser.version()})\n`);
 
-  const context = await browser.newContext({
-    viewport: { width: 1440, height: 900 },
-    locale: 'ru-RU',
-    timezoneId: 'Europe/Moscow'
-  });
-
-  const page = await context.newPage();
-
   // Test execution state
   const testResults = [];
   const startTime = Date.now();
 
-  try {
-    for (const suiteRelPath of SUITE_PATHS) {
-      const suiteModule = require(suiteRelPath);
-      const suite = suiteModule.default || suiteModule;
+  // Prepare filtered suites
+  const queuedSuites = [];
+  for (const suiteRelPath of SUITE_PATHS) {
+    const suiteModule = require(suiteRelPath);
+    const suite = suiteModule.default || suiteModule;
+    if (filterTier && suite.metadata.tier !== filterTier) continue;
+    if (filterMilestone && suite.metadata.milestone !== filterMilestone) continue;
+    queuedSuites.push(suite);
+  }
 
-      if (filterTier && suite.metadata.tier !== filterTier) continue;
-      if (filterMilestone && suite.metadata.milestone !== filterMilestone) continue;
+  const CONCURRENCY = Math.min(3, Math.max(1, queuedSuites.length));
+  console.log(`${C.dim}Executing ${queuedSuites.length} suites with concurrency=${CONCURRENCY}...${C.reset}\n`);
 
-      console.log(`${C.bold}${C.blue}▶ [Tier ${suite.metadata.tier || 1}] ${suite.name}${C.reset} ${C.dim}(${suite.metadata.milestone || 'General'})${C.reset}`);
+  async function runWorker(suiteQueue) {
+    while (suiteQueue.length > 0) {
+      const suite = suiteQueue.shift();
+      if (!suite) break;
 
-      const results = await suite.run({
-        browser,
-        context,
-        page,
-        baseUrl
+      const workerContext = await browser.newContext({
+        viewport: { width: 1440, height: 900 },
+        locale: 'ru-RU',
+        timezoneId: 'Europe/Moscow'
       });
+      const workerPage = await workerContext.newPage();
 
-      for (const res of results) {
-        if (filterGrep && !filterGrep.test(res.title)) continue;
+      try {
+        const results = await suite.run({
+          browser,
+          context: workerContext,
+          page: workerPage,
+          baseUrl
+        });
 
-        testResults.push(res);
-
-        if (res.status === 'pass') {
-          console.log(`   ${C.green}✔ PASS${C.reset} ${res.title} ${C.dim}(${res.durationMs}ms)${C.reset}`);
-        } else {
-          console.log(`   ${C.red}✖ FAIL${C.reset} ${res.title} ${C.dim}(${res.durationMs}ms)${C.reset}`);
-          const msg = res.error ? (res.error.message || String(res.error)).split('\n')[0] : 'Unknown error';
-          console.log(`     ${C.dim}→ ${msg}${C.reset}`);
+        let suiteOutput = `${C.bold}${C.blue}▶ [Tier ${suite.metadata.tier || 1}] ${suite.name}${C.reset} ${C.dim}(${suite.metadata.milestone || 'General'})${C.reset}\n`;
+        for (const res of results) {
+          if (filterGrep && !filterGrep.test(res.title)) continue;
+          testResults.push(res);
+          if (res.status === 'pass') {
+            suiteOutput += `   ${C.green}✔ PASS${C.reset} ${res.title} ${C.dim}(${res.durationMs}ms)${C.reset}\n`;
+          } else {
+            suiteOutput += `   ${C.red}✖ FAIL${C.reset} ${res.title} ${C.dim}(${res.durationMs}ms)${C.reset}\n`;
+            const msg = res.error ? (res.error.message || String(res.error)).split('\n')[0] : 'Unknown error';
+            suiteOutput += `     ${C.dim}→ ${msg}${C.reset}\n`;
+          }
         }
+        console.log(suiteOutput);
+      } finally {
+        await workerContext.close();
       }
-      console.log('');
     }
+  }
+
+  try {
+    const workers = Array.from({ length: CONCURRENCY }, () => runWorker(queuedSuites));
+    await Promise.all(workers);
   } finally {
     await browser.close();
     await server.stop();

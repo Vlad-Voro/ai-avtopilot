@@ -34,11 +34,11 @@ suite.test('Rapid Navigation: Rapid clicking across multiple nav links does not 
 
 suite.test('Rapid Navigation: Rapid clicking logo returns to top (#home or /)', async ({ page, baseUrl }) => {
   await page.goto(`${baseUrl}/#contact`);
-  await page.waitForTimeout(300);
+  await page.waitForFunction(() => window.scrollY > 100).catch(() => {});
 
   const logo = page.locator('.nav__logo').first();
   await logo.click();
-  await page.waitForTimeout(500);
+  await page.waitForFunction(() => window.scrollY < 150);
 
   const scrollY = await page.evaluate(() => window.scrollY);
   assert.ok(scrollY < 150, `Expected page to scroll back to top on logo click, got scrollY=${scrollY}`);

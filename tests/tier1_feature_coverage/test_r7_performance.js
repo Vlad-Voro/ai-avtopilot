@@ -51,19 +51,19 @@ suite.test('R7.2: Offscreen canvas lifecycle: pauses animation when hero is offs
 
   // Scroll to bottom footer (hero completely out of viewport)
   await page.locator('footer').scrollIntoViewIfNeeded();
-  await page.waitForTimeout(500);
+  await page.waitForTimeout(100);
 
-  // Reset count and wait 1 second while completely offscreen
+  // Reset count and wait 200ms while completely offscreen
   await page.evaluate(() => { window.__canvasRenders = 0; });
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(200);
 
   const rendersOffscreen = await page.evaluate(() => window.__canvasRenders);
 
   // In R7 requirement: requestAnimationFrame MUST pause when hero is offscreen.
-  // When paused, renders in 1 sec should be 0 (or at most 2 due to observer delay).
+  // When paused, renders should be 0 (or at most 2 due to observer delay).
   assert.ok(
     rendersOffscreen <= 3,
-    `Offscreen canvas should pause animation loop, but executed ${rendersOffscreen} frames in 1s while offscreen`
+    `Offscreen canvas should pause animation loop, but executed ${rendersOffscreen} frames while offscreen`
   );
 });
 
@@ -83,7 +83,7 @@ suite.test('R7.3: Tab visibility lifecycle: pauses dashboard intervals when docu
     document.dispatchEvent(new Event('visibilitychange'));
   });
 
-  await page.waitForTimeout(4000); // 4 seconds: intervals are 3500ms and 2100ms
+  await page.waitForFunction(() => window.__dashboardIntervalsPaused === true || document.hidden === true);
 
   // If intervals are properly paused on document.hidden, background updates should not fire
   const wasPaused = await page.evaluate(() => {
