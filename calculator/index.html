@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Калькулятор окупаемости ИИ и расчет ROI автоматизации | АвтоПилот</title>
   <meta name="description" content="Интерактивный онлайн калькулятор окупаемости ИИ-агентов. Рассчитайте экономию затрат, высвобождаемые часы сотрудников и срок окупаемости для вашего бизнеса." />
   <meta name="keywords"
@@ -417,10 +417,13 @@
 .nav__backdrop{position:fixed;inset:0;background:rgba(5,5,7,0.75);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);z-index:9998;opacity:0;pointer-events:none;transition:opacity .35s cubic-bezier(.16,1,.3,1)}
 .nav__backdrop.active{opacity:1;pointer-events:auto}
 @media(max-width:768px){
-  .nav__burger{display:flex}
+  .nav{padding:10px 0;padding-top:max(10px, env(safe-area-inset-top));padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+  .nav.nav--scrolled{padding:8px 0;padding-top:max(8px, env(safe-area-inset-top))}
+  .nav__burger{display:flex;width:44px;height:44px;min-width:44px;min-height:44px}
   .nav__links{visibility:hidden;opacity:0;pointer-events:none}
   .nav__links.active{visibility:visible;opacity:1;pointer-events:auto}
   .nav__links .nav__link{display:flex;align-items:center;width:100%;min-height:48px;padding:12px 16px;box-sizing:border-box}
+  .hero{padding:calc(88px + env(safe-area-inset-top, 0px)) 0 24px;min-height:auto}
 }
 
 /* Hero Grid Stabilization & Zero CLS (Defect 1) */
