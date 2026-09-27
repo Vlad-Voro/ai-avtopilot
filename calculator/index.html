@@ -515,6 +515,29 @@ section[id]{scroll-margin-top:72px}
   font-size: 0.8rem;
 }
 
+/* Readability & Typography Enhancements (The Measure & Micro-Label Scaling) */
+.kpi-card__label {
+  font-size: 0.8rem !important;
+  letter-spacing: 0.06em;
+}
+.agent-card__status {
+  font-size: 0.78rem !important;
+}
+.scard--wide .scard__desc {
+  max-width: 58ch;
+}
+.contact__desc {
+  max-width: 58ch;
+}
+@media (max-width: 768px) {
+  .hero__title {
+    line-height: 1.18 !important;
+  }
+  .section-title {
+    line-height: 1.18 !important;
+  }
+}
+
 /* Telegram Bot CTA in Footer */
 .footer__tg-cta {
   display: inline-flex;
@@ -1180,7 +1203,7 @@ section[id] {
       <div class="hero__content">
         <div class="hero__badge">
           <span class="hero__badge-dot"></span>
-          Системы активны · 12 агентов онлайн
+          Системы активны · 12 автономных агентов в контуре
         </div>
         <h2 class="hero__title">
           <span class="hero__title-static">Ваши процессы </span>
@@ -1189,8 +1212,8 @@ section[id] {
           </span>
         </h2>
         <p class="hero__sub">
-          Внедряем искусственный интеллект и нейросети для бизнеса в 1С, SAP, Excel и любые системы.<br />
-          Рутина уходит — вы масштабируетесь.
+          Внедряем автономных ИИ-агентов в 1С:ERP, CRM и ЭДО за 14 дней.<br />
+          Забираем ручной перенос данных, сверку документов и рутинные ответы — высвобождая до 80% времени команды.
         </p>
         <div class="hero__actions">
           <a href="/contact/" class="btn btn--primary" id="cta-main">Запустить автоматизацию</a>
@@ -1324,8 +1347,8 @@ section[id] {
   <section class="compare" id="compare">
     <div class="container">
       <div class="section-header">
-        <p class="section-tag" data-reveal>Реальность без нас</p>
-        <h2 class="section-title" data-reveal>Вы узнаёте себя?</h2>
+        <p class="section-tag" data-reveal>До и после автоматизации</p>
+        <h2 class="section-title" data-reveal>Что забирают агенты и что меняется в процессах</h2>
       </div>
       <div class="compare__grid">
         <div class="compare__card compare__card--pain" data-reveal>
@@ -1349,9 +1372,9 @@ section[id] {
           <ul class="compare__list">
             <li>ИИ-агент передаёт данные между системами за секунды, без ошибок</li>
             <li>Отчёт готов автоматически каждое утро в 8:00 у вас на почте</li>
-            <li>Роботы не устают, не ошибаются и не уходят в отпуск</li>
+            <li>Автономная обработка 24/7 без очередей, задержек и человеческого фактора</li>
             <li>Документооборот 100% цифровой: от создания до подписи</li>
-            <li>Масштабирование = добавить агента за 1 день</li>
+            <li>Рост объемов без расширения штата: масштабирование мощности за 1 день</li>
           </ul>
         </div>
       </div>
@@ -1362,16 +1385,15 @@ section[id] {
   <section class="services" id="services">
     <div class="container">
       <div class="section-header">
-        <p class="section-tag" data-reveal>Что мы автоматизируем</p>
-        <h2 class="section-title" data-reveal>Услуги</h2>
+        <p class="section-tag" data-reveal>Решения и интеграции</p>
+        <h2 class="section-title" data-reveal>Готовые сценарии автоматизации</h2>
       </div>
       <div class="services__bento" data-reveal>
 
         <div class="scard scard--wide">
           <div class="scard__icon">🔄</div>
           <h3 class="scard__title">Интеграция систем</h3>
-          <p class="scard__desc">Связываем 1С, SAP, CRM, ERP, Excel и любые другие системы через умных ИИ-агентов.
-            Данные синхронизируются в реальном времени.</p>
+          <p class="scard__desc">Бесшовная синхронизация 1С, CRM (Битрикс24/amoCRM) и учетных баз через API. Автоматический обмен без ручных выгрузок в Excel.</p>
           <div class="scard__tags">
             <span>1С</span><span>SAP</span><span>Bitrix24</span><span>Excel</span>
           </div>
@@ -1380,7 +1402,7 @@ section[id] {
         <div class="scard">
           <div class="scard__icon">📊</div>
           <h3 class="scard__title">Автоотчётность</h3>
-          <p class="scard__desc">Сбор, обработка и рассылка отчётов по расписанию. Без Excel, без ручного труда.</p>
+          <p class="scard__desc">Сводные отчеты по продажам, остаткам и P&L формируются автоматически. Доставка руководителю в Telegram или на почту каждое утро в 8:00.</p>
         </div>
 
         <div class="scard">
@@ -1393,21 +1415,19 @@ section[id] {
         <div class="scard">
           <div class="scard__icon">📄</div>
           <h3 class="scard__title">Документооборот</h3>
-          <p class="scard__desc">ЭДО, счета, акты, договоры — роботы создают, проверяют и отправляют документы без
-            участия человека.</p>
+          <p class="scard__desc">Автоматическое распознавание первички (УПД, счета-фактуры), сверка реквизитов и маршрутизация в Диадок/СБИС без участия бухгалтера.</p>
         </div>
 
         <div class="scard">
           <div class="scard__icon">💬</div>
           <h3 class="scard__title">ИИ-поддержка клиентов</h3>
-          <p class="scard__desc">Чат-боты и ИИ-операторы отвечают на 80% запросов клиентов мгновенно, 24/7.</p>
+          <p class="scard__desc">Ассистент первой линии с доступом к базе знаний и 1С: квалифицирует лидов, выставляет счета и отвечает за 3 секунды 24/7.</p>
         </div>
 
         <div class="scard scard--dark">
           <div class="scard__icon">🧠</div>
           <h3 class="scard__title">ИИ-аналитика</h3>
-          <p class="scard__desc">Прогнозирование спроса, аномалии в данных, рекомендации — ИИ работает как персональный
-            аналитик.</p>
+          <p class="scard__desc">Мониторинг кассовых разрывов, расчет неснижаемого складского остатка и выявление ценовых аномалий поставщиков.</p>
         </div>
 
         <div class="scard scard--accent">

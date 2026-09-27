@@ -1,3 +1,10 @@
 name = "ai-avtopilot-bot"
 main = "worker.js"
 compatibility_date = "2024-09-25"
+
+# Enterprise Custom Domain Routing (Masks workers.dev subdomain completely)
+routes = [
+  { pattern = "ai-avtopilot.ru/submit", zone_name = "ai-avtopilot.ru" },
+  { pattern = "www.ai-avtopilot.ru/submit", zone_name = "ai-avtopilot.ru" },
+  { pattern = "ai-avtopilot.ru/status", zone_name = "ai-avtopilot.ru" }
+]
