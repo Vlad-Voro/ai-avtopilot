@@ -34,6 +34,12 @@ Allow: /
 User-agent: Meta-ExternalAgent
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 # LLM Context: https://ai-avtopilot.ru/llms.txt
 # LLM Full Context: https://ai-avtopilot.ru/llms-full.txt
 # Sitemap
