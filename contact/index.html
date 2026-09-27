@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Контакты и запись на бесплатный аудит процессов | АвтоПилот</title>
-  <meta name="description" content="Запишитесь на 60-минутный бесплатный аудит бизнес-процессов. Официальные контакты: Telegram-бот @AiAvtopilotbot, e-mail contact@ai-avtopilot.ru, график Пн-Пт 9-19 МСК." />
+  <meta name="description" content="Запишитесь на 30-минутный бесплатный аудит бизнес-процессов. Официальные контакты: Telegram-бот @AiAvtopilotbot, e-mail contact@ai-avtopilot.ru, поддержка 24/7 онлайн." />
   <meta name="keywords"
     content="ии автоматизация, ии агенты, автоматизация бизнес процессов, внедрение ии в 1с, автоматизация sap, нейросети для бизнеса, rpa роботы, документооборот эдо, автопилот ии, ai avtopilot, искусственный интеллект для бизнеса, автоматизация ритейла" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -21,7 +21,7 @@
   <meta property="og:url" content="https://ai-avtopilot.ru/contact/" />
   <meta property="og:site_name" content="АвтоПилот" />
   <meta property="og:title" content="Контакты и запись на бесплатный аудит процессов | АвтоПилот" />
-  <meta property="og:description" content="Запишитесь на 60-минутный бесплатный аудит бизнес-процессов. Официальные контакты: Telegram-бот @AiAvtopilotbot, e-mail contact@ai-avtopilot.ru, график Пн-Пт 9-19 МСК." />
+  <meta property="og:description" content="Запишитесь на 30-минутный бесплатный аудит бизнес-процессов. Официальные контакты: Telegram-бот @AiAvtopilotbot, e-mail contact@ai-avtopilot.ru, поддержка 24/7 онлайн." />
   <meta property="og:image" content="https://ai-avtopilot.ru/og-image.png" />
   <meta property="og:image:secure_url" content="https://ai-avtopilot.ru/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -31,7 +31,7 @@
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Контакты и запись на бесплатный аудит процессов | АвтоПилот" />
-  <meta name="twitter:description" content="Запишитесь на 60-минутный бесплатный аудит бизнес-процессов. Официальные контакты: Telegram-бот @AiAvtopilotbot, e-mail contact@ai-avtopilot.ru, график Пн-Пт 9-19 МСК." />
+  <meta name="twitter:description" content="Запишитесь на 30-минутный бесплатный аудит бизнес-процессов. Официальные контакты: Telegram-бот @AiAvtopilotbot, e-mail contact@ai-avtopilot.ru, поддержка 24/7 онлайн." />
   <meta name="twitter:image" content="https://ai-avtopilot.ru/og-image.png" />
 
   <!-- Favicon & Icons -->
@@ -845,6 +845,22 @@ section[id] {
     transition: none !important;
   }
 }
+  .contact{padding:20px 0 45px;}
+  .contact__inner{gap:40px;padding:36px 40px;}
+  .contact__title{font-size:clamp(1.5rem,3.2vw,2rem);margin-bottom:12px;}
+  .contact__desc{margin-bottom:18px;font-size:0.92rem;line-height:1.55;}
+  .contact__benefits{gap:8px;}
+  .contact__benefits li{font-size:0.88rem;}
+  .contact__form{gap:12px;}
+  .form-group{gap:4px;}
+  .form-group label{font-size:0.8rem;}
+  .form-group input{padding:10px 14px;font-size:0.9rem;}
+  .form-checkbox-group{margin:2px 0 4px;font-size:0.8rem;}
+  .form-privacy{margin-top:4px;}
+  @media(max-width:768px){
+    .contact__inner{gap:24px;padding:24px 18px;}
+    .nav__links{padding:80px 24px;gap:10px;overflow-y:auto;}
+  }
   </style>
 
   <!-- Scripts -->
@@ -868,8 +884,7 @@ section[id] {
       "email": "contact@ai-avtopilot.ru",
       "description": "Внедрение ИИ-агентов и роботизация бизнес-процессов в 1С, SAP, CRM и ERP для компаний в России.",
       "sameAs": [
-        "https://t.me/AiAvtopilotbot",
-        "https://t.me/vlvoro"
+        "https://t.me/AiAvtopilotbot"
       ],
       "areaServed": {
         "@type": "Country",
@@ -898,10 +913,12 @@ section[id] {
           "Tuesday",
           "Wednesday",
           "Thursday",
-          "Friday"
+          "Friday",
+          "Saturday",
+          "Sunday"
         ],
-        "opens": "09:00",
-        "closes": "19:00"
+        "opens": "00:00",
+        "closes": "23:59"
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -993,10 +1010,10 @@ section[id] {
         },
         {
           "@type": "Question",
-          "name": "Что входит в бесплатный 60-минутный экспресс-аудит?",
+          "name": "Что входит в бесплатный 30-минутный экспресс-аудит?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "В рамках аудита наш архитектор анализирует 3 самых трудоёмких процесса вашей компании, рассчитывает индивидуальную матрицу окупаемости (ROI) и готовит пошаговую архитектурную схему внедрения пилотного агента."
+            "text": "В рамках 30-минутного экспресс-аудита наш архитектор анализирует 3 самых трудоёмких процесса вашей компании, рассчитывает индивидуальную матрицу окупаемости (ROI) и готовит пошаговую архитектурную схему внедрения пилотного агента."
           }
         }
       ]
@@ -1078,6 +1095,7 @@ section[id] {
         <li><a href="/services/" class="nav__link">Услуги</a></li>
         <li><a href="/cases/" class="nav__link">Кейсы</a></li>
         <li><a href="/calculator/" class="nav__link">Калькулятор</a></li>
+        <li><a href="/faq/" class="nav__link">FAQ</a></li>
         <li class="nav__link-mobile"><a href="/contact/" class="nav__link">Контакты</a></li>
       </ul>
       <a href="/contact/" class="btn btn--nav">Получить аудит</a>
@@ -1100,7 +1118,7 @@ section[id] {
         </nav>
         <h1 class="subpage-deep__title">Контакты и запись на бесплатный экспресс-аудит</h1>
         <p class="subpage-deep__desc">
-          Оставьте заявку на бесплатный 60-минутный аудит или свяжитесь с нами напрямую через официальные каналы. Мы оперативно ответим и подберем оптимальный сценарий автоматизации для вашего стека систем.
+          Оставьте заявку на бесплатный 30-минутный аудит или свяжитесь с нами напрямую через официальные каналы. Мы оперативно ответим и подберем оптимальный сценарий автоматизации для вашего стека систем.
         </p>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:20px;margin:24px 0;">
@@ -1122,8 +1140,8 @@ section[id] {
             <span style="color:var(--accent-1);font-family:var(--font-mono);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;">График работы</span>
             <h4 style="font-family:var(--font-head);font-size:1.2rem;margin:8px 0 12px;">Режим поддержки</h4>
             <p style="color:var(--text-2);font-size:0.9rem;line-height:1.6;">
-              Понедельник — Пятница<br />
-              <strong>09:00 — 19:00 (МСК)</strong><br />
+              Круглосуточно<br />
+              <strong>24/7 онлайн</strong><br />
               <span style="color:var(--text-3);font-size:0.8rem;">г. Москва · Работаем по всей России</span>
             </p>
           </div>
@@ -1645,12 +1663,12 @@ section[id] {
 
         <div class="faq-item">
           <button class="faq-item__header" aria-expanded="false" type="button">
-            <span class="faq-item__question">Что входит в бесплатный 60-минутный экспресс-аудит?</span>
+            <span class="faq-item__question">Что входит в бесплатный 30-минутный экспресс-аудит?</span>
             <span class="faq-item__icon">+</span>
           </button>
           <div class="faq-item__answer">
             <div class="faq-item__inner">
-              <p>В рамках аудита наш архитектор анализирует 3 самых трудоёмких процесса вашей компании, рассчитывает индивидуальную матрицу окупаемости (ROI) и готовит пошаговую архитектурную схему внедрения пилотного агента.</p>
+              <p>В рамках 30-минутного экспресс-аудита наш архитектор анализирует 3 самых трудоёмких процесса вашей компании, рассчитывает индивидуальную матрицу окупаемости (ROI) и готовит пошаговую архитектурную схему внедрения пилотного агента.</p>
             </div>
           </div>
         </div>
@@ -1664,7 +1682,7 @@ section[id] {
       <div class="contact__inner" data-reveal>
         <div class="contact__text">
           <h2 class="contact__title">Первый шаг — бесплатный аудит</h2>
-          <p class="contact__desc">За 60 минут раскроем, сколько вы теряете на рутине и какие процессы можно
+          <p class="contact__desc">За 30 минут раскроем, сколько вы теряете на рутине и какие процессы можно
             автоматизировать уже через 2 недели.</p>
           <ul class="contact__benefits">
             <li>✓ Анализ 3 ключевых процессов бесплатно</li>
@@ -1720,7 +1738,7 @@ section[id] {
     <div class="container footer__inner">
       <div class="footer__brand">
         <span class="nav__logo">⬡ АвтоПилот</span>
-        <p>ИИ-автоматизация бизнес-процессов.<br />г. Москва · Работаем по всей России.<br /><span style="color:var(--text-3);font-size:0.8rem;">Пн–Пт: 09:00 – 19:00 (МСК)</span></p>
+        <p>ИИ-автоматизация бизнес-процессов.<br />г. Москва · Работаем по всей России.<br /><span style="color:var(--text-3);font-size:0.8rem;">Поддержка: 24/7 онлайн</span></p>
         <a href="https://t.me/AiAvtopilotbot" target="_blank" rel="noopener noreferrer" class="footer__tg-cta" aria-label="Написать нам в Telegram бот @AiAvtopilotbot">
           <div class="footer__tg-icon">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
@@ -1741,6 +1759,7 @@ section[id] {
         <a href="/services/">Услуги</a>
         <a href="/cases/">Кейсы</a>
         <a href="/calculator/">Калькулятор</a>
+        <a href="/faq/">FAQ</a>
         <a href="/contact/">Контакты</a>
         <a href="mailto:contact@ai-avtopilot.ru">contact@ai-avtopilot.ru</a>
         <a href="/privacy.html">Политика конфиденциальности (152-ФЗ)</a>

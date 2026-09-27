@@ -147,7 +147,7 @@ suite.test('Journey 5: Mobile user complete lead flow on 375px viewport', async 
   // Open mobile burger menu
   const burger = page.locator('#burger, .nav__burger');
   await burger.click();
-  await page.waitForTimeout(200);
+  await page.waitForTimeout(450);
 
   // Navigate to Contact from burger menu (should be present inside mobile navigation)
   const navContact = page.locator('.nav__links a[href*="contact"]');

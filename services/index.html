@@ -845,6 +845,22 @@ section[id] {
     transition: none !important;
   }
 }
+  .contact{padding:20px 0 45px;}
+  .contact__inner{gap:40px;padding:36px 40px;}
+  .contact__title{font-size:clamp(1.5rem,3.2vw,2rem);margin-bottom:12px;}
+  .contact__desc{margin-bottom:18px;font-size:0.92rem;line-height:1.55;}
+  .contact__benefits{gap:8px;}
+  .contact__benefits li{font-size:0.88rem;}
+  .contact__form{gap:12px;}
+  .form-group{gap:4px;}
+  .form-group label{font-size:0.8rem;}
+  .form-group input{padding:10px 14px;font-size:0.9rem;}
+  .form-checkbox-group{margin:2px 0 4px;font-size:0.8rem;}
+  .form-privacy{margin-top:4px;}
+  @media(max-width:768px){
+    .contact__inner{gap:24px;padding:24px 18px;}
+    .nav__links{padding:80px 24px;gap:10px;overflow-y:auto;}
+  }
   </style>
 
   <!-- Scripts -->
@@ -868,8 +884,7 @@ section[id] {
       "email": "contact@ai-avtopilot.ru",
       "description": "Внедрение ИИ-агентов и роботизация бизнес-процессов в 1С, SAP, CRM и ERP для компаний в России.",
       "sameAs": [
-        "https://t.me/AiAvtopilotbot",
-        "https://t.me/vlvoro"
+        "https://t.me/AiAvtopilotbot"
       ],
       "areaServed": {
         "@type": "Country",
@@ -898,10 +913,12 @@ section[id] {
           "Tuesday",
           "Wednesday",
           "Thursday",
-          "Friday"
+          "Friday",
+          "Saturday",
+          "Sunday"
         ],
-        "opens": "09:00",
-        "closes": "19:00"
+        "opens": "00:00",
+        "closes": "23:59"
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -993,10 +1010,10 @@ section[id] {
         },
         {
           "@type": "Question",
-          "name": "Что входит в бесплатный 60-минутный экспресс-аудит?",
+          "name": "Что входит в бесплатный 30-минутный экспресс-аудит?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "В рамках аудита наш архитектор анализирует 3 самых трудоёмких процесса вашей компании, рассчитывает индивидуальную матрицу окупаемости (ROI) и готовит пошаговую архитектурную схему внедрения пилотного агента."
+            "text": "В рамках 30-минутного экспресс-аудита наш архитектор анализирует 3 самых трудоёмких процесса вашей компании, рассчитывает индивидуальную матрицу окупаемости (ROI) и готовит пошаговую архитектурную схему внедрения пилотного агента."
           }
         }
       ]
@@ -1078,6 +1095,7 @@ section[id] {
         <li><a href="/services/" class="nav__link">Услуги</a></li>
         <li><a href="/cases/" class="nav__link">Кейсы</a></li>
         <li><a href="/calculator/" class="nav__link">Калькулятор</a></li>
+        <li><a href="/faq/" class="nav__link">FAQ</a></li>
         <li class="nav__link-mobile"><a href="/contact/" class="nav__link">Контакты</a></li>
       </ul>
       <a href="/contact/" class="btn btn--nav">Получить аудит</a>
@@ -1664,12 +1682,12 @@ section[id] {
 
         <div class="faq-item">
           <button class="faq-item__header" aria-expanded="false" type="button">
-            <span class="faq-item__question">Что входит в бесплатный 60-минутный экспресс-аудит?</span>
+            <span class="faq-item__question">Что входит в бесплатный 30-минутный экспресс-аудит?</span>
             <span class="faq-item__icon">+</span>
           </button>
           <div class="faq-item__answer">
             <div class="faq-item__inner">
-              <p>В рамках аудита наш архитектор анализирует 3 самых трудоёмких процесса вашей компании, рассчитывает индивидуальную матрицу окупаемости (ROI) и готовит пошаговую архитектурную схему внедрения пилотного агента.</p>
+              <p>В рамках 30-минутного экспресс-аудита наш архитектор анализирует 3 самых трудоёмких процесса вашей компании, рассчитывает индивидуальную матрицу окупаемости (ROI) и готовит пошаговую архитектурную схему внедрения пилотного агента.</p>
             </div>
           </div>
         </div>
@@ -1683,7 +1701,7 @@ section[id] {
       <div class="contact__inner" data-reveal>
         <div class="contact__text">
           <h2 class="contact__title">Первый шаг — бесплатный аудит</h2>
-          <p class="contact__desc">За 60 минут раскроем, сколько вы теряете на рутине и какие процессы можно
+          <p class="contact__desc">За 30 минут раскроем, сколько вы теряете на рутине и какие процессы можно
             автоматизировать уже через 2 недели.</p>
           <ul class="contact__benefits">
             <li>✓ Анализ 3 ключевых процессов бесплатно</li>
@@ -1739,7 +1757,7 @@ section[id] {
     <div class="container footer__inner">
       <div class="footer__brand">
         <span class="nav__logo">⬡ АвтоПилот</span>
-        <p>ИИ-автоматизация бизнес-процессов.<br />г. Москва · Работаем по всей России.<br /><span style="color:var(--text-3);font-size:0.8rem;">Пн–Пт: 09:00 – 19:00 (МСК)</span></p>
+        <p>ИИ-автоматизация бизнес-процессов.<br />г. Москва · Работаем по всей России.<br /><span style="color:var(--text-3);font-size:0.8rem;">Поддержка: 24/7 онлайн</span></p>
         <a href="https://t.me/AiAvtopilotbot" target="_blank" rel="noopener noreferrer" class="footer__tg-cta" aria-label="Написать нам в Telegram бот @AiAvtopilotbot">
           <div class="footer__tg-icon">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
@@ -1760,6 +1778,7 @@ section[id] {
         <a href="/services/">Услуги</a>
         <a href="/cases/">Кейсы</a>
         <a href="/calculator/">Калькулятор</a>
+        <a href="/faq/">FAQ</a>
         <a href="/contact/">Контакты</a>
         <a href="mailto:contact@ai-avtopilot.ru">contact@ai-avtopilot.ru</a>
         <a href="/privacy.html">Политика конфиденциальности (152-ФЗ)</a>

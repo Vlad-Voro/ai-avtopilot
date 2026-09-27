@@ -201,10 +201,65 @@ SUBPAGES_SPEC = {
       </div>
 """,
     },
+    "faq": {
+        "dir": os.path.join(ROOT_DIR, "faq"),
+        "title": "Частые вопросы по внедрению ИИ-агентов и автоматизации | АвтоПилот",
+        "description": "Ответы на ключевые вопросы по роботизации бизнеса: сроки запуска за 14 дней, интеграция с 1С и SAP без доработок, безопасность данных по 152-ФЗ, окупаемость и ROI.",
+        "h1": "Вопросы и ответы по внедрению ИИ-агентов и автоматизации",
+        "breadcrumb_name": "FAQ",
+        "deep_content": """
+      <div class="subpage-deep" data-reveal>
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+          <a href="/">Главная</a>
+          <span class="breadcrumbs__sep">/</span>
+          <span>Вопросы и ответы</span>
+        </nav>
+        <h1 class="subpage-deep__title">База знаний и частые вопросы по ИИ-автоматизации</h1>
+        <p class="subpage-deep__desc">
+          Собрали подробные экспертные ответы на самые частые вопросы собственников, финансовых директоров и IT-руководителей о внедрении, безопасности, интеграции с 1С и окупаемости ИИ-агентов.
+        </p>
+
+        <h3 style="color:var(--text-1);margin:24px 0 12px;font-family:var(--font-head);font-size:1.2rem;">Сводная карта внедрения и регламенты</h3>
+        <div style="overflow-x:auto;">
+          <table class="subpage-table">
+            <thead>
+              <tr>
+                <th>Вопрос / Направление</th>
+                <th>Регламент АвтоПилот</th>
+                <th>Технические гарантии</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Сроки запуска пилота</strong></td>
+                <td>14 календарных дней до первых результатов</td>
+                <td>Готовые коннекторы 1С OData, Диадок SDK, amoCRM</td>
+              </tr>
+              <tr>
+                <td><strong>Безопасность и 152-ФЗ</strong></td>
+                <td>Строгое соблюдение законодательства РФ + NDA</td>
+                <td>Обработка в РФ, опция On-Premise в закрытом контуре</td>
+              </tr>
+              <tr>
+                <td><strong>Окупаемость и ROI</strong></td>
+                <td>Средний срок окупаемости 1.5–3 месяца</td>
+                <td>Фиксация KPI экономии в договоре, средний ROI 340%</td>
+              </tr>
+              <tr>
+                <td><strong>Экспресс-аудит 30 минут</strong></td>
+                <td>Бесплатный расчет матрицы окупаемости</td>
+                <td>Архитектурная схема интеграции для 3 процессов компании</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+""",
+    },
     "contact": {
         "dir": os.path.join(ROOT_DIR, "contact"),
         "title": "Контакты и запись на бесплатный аудит процессов | АвтоПилот",
-        "description": "Запишитесь на 60-минутный бесплатный аудит бизнес-процессов. Официальные контакты: Telegram-бот @AiAvtopilotbot, e-mail contact@ai-avtopilot.ru, график Пн-Пт 9-19 МСК.",
+        "description": "Запишитесь на 30-минутный бесплатный аудит бизнес-процессов. Официальные контакты: Telegram-бот @AiAvtopilotbot, e-mail contact@ai-avtopilot.ru, поддержка 24/7 онлайн.",
         "h1": "Контакты и запись на бесплатный экспресс-аудит",
         "breadcrumb_name": "Контакты",
         "deep_content": """
@@ -216,7 +271,7 @@ SUBPAGES_SPEC = {
         </nav>
         <h1 class="subpage-deep__title">Контакты и запись на бесплатный экспресс-аудит</h1>
         <p class="subpage-deep__desc">
-          Оставьте заявку на бесплатный 60-минутный аудит или свяжитесь с нами напрямую через официальные каналы. Мы оперативно ответим и подберем оптимальный сценарий автоматизации для вашего стека систем.
+          Оставьте заявку на бесплатный 30-минутный аудит или свяжитесь с нами напрямую через официальные каналы. Мы оперативно ответим и подберем оптимальный сценарий автоматизации для вашего стека систем.
         </p>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:20px;margin:24px 0;">
@@ -238,8 +293,8 @@ SUBPAGES_SPEC = {
             <span style="color:var(--accent-1);font-family:var(--font-mono);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;">График работы</span>
             <h4 style="font-family:var(--font-head);font-size:1.2rem;margin:8px 0 12px;">Режим поддержки</h4>
             <p style="color:var(--text-2);font-size:0.9rem;line-height:1.6;">
-              Понедельник — Пятница<br />
-              <strong>09:00 — 19:00 (МСК)</strong><br />
+              Круглосуточно<br />
+              <strong>24/7 онлайн</strong><br />
               <span style="color:var(--text-3);font-size:0.8rem;">г. Москва · Работаем по всей России</span>
             </p>
           </div>
@@ -345,7 +400,7 @@ def main():
         subpage_html = generate_subpage(slug, spec, master_html)
         with open(target_path, "w", encoding="utf-8") as out_f:
             out_f.write(subpage_html)
-        print(f"  ✔ Generated Multi-Entry Hybrid subpage: {slug}/index.html ({len(subpage_html)} bytes)")
+        print(f"  [OK] Generated Multi-Entry Hybrid subpage: {slug}/index.html ({len(subpage_html)} bytes)")
 
     print("All subpages successfully synchronized with zero CSS drift.")
 

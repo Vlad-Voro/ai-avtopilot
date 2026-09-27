@@ -16,6 +16,7 @@ const PAGES = [
   { slug: 'cases', file: 'cases/index.html', url: 'https://ai-avtopilot.ru/cases/', hasBreadcrumbs: true },
   { slug: 'calculator', file: 'calculator/index.html', url: 'https://ai-avtopilot.ru/calculator/', hasBreadcrumbs: true },
   { slug: 'dashboard', file: 'dashboard/index.html', url: 'https://ai-avtopilot.ru/dashboard/', hasBreadcrumbs: true },
+  { slug: 'faq', file: 'faq/index.html', url: 'https://ai-avtopilot.ru/faq/', hasBreadcrumbs: true },
   { slug: 'contact', file: 'contact/index.html', url: 'https://ai-avtopilot.ru/contact/', hasBreadcrumbs: true }
 ];
 
@@ -88,7 +89,7 @@ runCheck('SEO-04', 'Internal navigation links in all HTML files use trailing sla
   PAGES.forEach(p => {
     const filePath = path.join(ROOT_DIR, p.file);
     const html = fs.readFileSync(filePath, 'utf8');
-    const invalidLinks = html.match(/href="\/(services|cases|calculator|dashboard|contact)"/g);
+    const invalidLinks = html.match(/href="\/(services|cases|calculator|dashboard|faq|contact)"/g);
     assert.strictEqual(
       invalidLinks,
       null,
@@ -100,7 +101,7 @@ runCheck('SEO-04', 'Internal navigation links in all HTML files use trailing sla
 console.log('\n▶ [Category 3] On-Page Semantics, Headings & Uniqueness');
 
 // SEO-05: Title uniqueness & length
-runCheck('SEO-05', 'Title tags are unique across all 6 pages and between 30-80 chars', () => {
+runCheck('SEO-05', 'Title tags are unique across all 7 pages and between 30-80 chars', () => {
   const titles = new Map();
   PAGES.forEach(p => {
     const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
@@ -114,7 +115,7 @@ runCheck('SEO-05', 'Title tags are unique across all 6 pages and between 30-80 c
 });
 
 // SEO-06: Description uniqueness
-runCheck('SEO-06', 'Meta descriptions are unique across all 6 pages and between 70-170 chars', () => {
+runCheck('SEO-06', 'Meta descriptions are unique across all 7 pages and between 70-170 chars', () => {
   const descs = new Map();
   PAGES.forEach(p => {
     const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
@@ -178,7 +179,7 @@ runCheck('SEO-10', 'Schema.org JSON-LD @graph contains Organization, Professiona
 });
 
 // SEO-11: BreadcrumbList on subpages
-runCheck('SEO-11', 'All 5 subpages include valid BreadcrumbList schema in JSON-LD', () => {
+runCheck('SEO-11', 'All 6 subpages include valid BreadcrumbList schema in JSON-LD', () => {
   PAGES.filter(p => p.hasBreadcrumbs).forEach(p => {
     const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
     const m = html.match(/<script\s+type="application\/ld\+json">(.*?)<\/script>/s);
@@ -209,12 +210,13 @@ runCheck('SEO-12', 'FAQ accordion questions in DOM match JSON-LD FAQPage entitie
 console.log('\n▶ [Category 5] Commercial & Compliance Factors (Yandex & 152-FZ)');
 
 // SEO-13: Contact channels and hours
-runCheck('SEO-13', 'Official channels (Telegram bot, email) and support hours present in footer', () => {
+runCheck('SEO-13', 'Official channels (Telegram bot, email) and 24/7 support hours present in footer', () => {
   PAGES.forEach(p => {
     const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
     assert.ok(html.includes('@AiAvtopilotbot'), `Missing Telegram bot handle in ${p.file}`);
     assert.ok(html.includes('contact@ai-avtopilot.ru'), `Missing email in ${p.file}`);
-    assert.ok(html.includes('09:00 – 19:00'), `Missing support hours in ${p.file}`);
+    assert.ok(html.includes('24/7'), `Missing 24/7 support hours in ${p.file}`);
+    assert.ok(!html.includes('vlvoro'), `Founder handle must NOT be present in ${p.file}`);
   });
 });
 
