@@ -1,54 +1,40 @@
-# Инструкция по настройке домена ai-avtopilot.ru и деплою на GitHub Pages
+# Инструкция по архитектуре домена ai-avtopilot.ru, хостингу на Beget и защите
 
-Данное руководство содержит пошаговую инструкцию по покупке домена `ai-avtopilot.ru`, настройке DNS-записей для GitHub Pages, выпуску бесплатного SSL-сертификата (HTTPS), подключению формы заявок и индексации в поисковых системах Яндекс и Google.
+Данное руководство содержит регламент инфраструктуры домена `ai-avtopilot.ru`: хостинг в РФ на Beget, проксирование и защита через Cloudflare (Flexible SSL, HTTP/3, TLS 1.3, DNSSEC), автоматический деплой через FTPS из приватного репозитория GitHub Actions, подключение формы лидогенерации и верификацию в Яндекс Вебмастер и Google Search Console.
 
 ---
 
 ## Шаг 1. Регистрация домена `ai-avtopilot.ru`
 
-Домен в зоне `.ru` можно зарегистрировать у любого аккредитованного российского регистратора. Рекомендуемые варианты:
-
-### Вариант A: Beget.com (Рекомендуется — удобный и быстрый DNS-редактор)
-1. Перейдите на [beget.com](https://beget.com/) и зарегистрируйте личный кабинет.
-2. Откройте раздел **«Домены и поддомены»** → **«Регистрация домена»**.
-3. Введите `ai-avtopilot.ru` и оформите заказ (стоимость обычно ~199–290 ₽/год).
-4. Заполните паспортные данные администратора домена (требование законодательства РФ для зоны `.ru`).
-5. После подтверждения оплаты домен появится в панели управления.
-
-### Вариант B: Reg.ru
-1. Перейдите на [reg.ru](https://www.reg.ru/).
-2. В строке поиска введите `ai-avtopilot.ru`.
-3. Добавьте домен в корзину и завершите регистрацию.
-
-### Вариант C: TimeWeb
-1. Перейдите на [timeweb.com](https://timeweb.com/).
-2. Раздел **«Домены»** → **«Зарегистрировать домен»** → `ai-avtopilot.ru`.
+Домен в зоне `.ru` зарегистрирован у аккредитованного регистратора **REG.RU** с делегированием NS на Cloudflare и активацией DNSSEC (записи DS).
 
 ---
 
-## Шаг 2. Настройка DNS-записей для хостинга Beget (РФ)
+## Шаг 2. Настройка DNS-записей в Cloudflare и хостинга Beget (РФ)
 
-После добавления домена в панель Beget направьте его на IP-адрес сервера Beget:
-Откройте **«Управление зоной DNS»** (в Cloudflare DNS или у регистратора Reg.ru).
+Основной сервер сайта размещен на бесплатном тарифе Beget (`185.50.25.55`, аккаунт `f91009a4`, виртуальный хост `f91009a4.beget.tech/public_html`).
+Трафик маршрутизируется через Cloudflare Edge с проксированием (`Orange Cloud`).
 
-### 1. Добавьте запись `A` для основного домена `@` (ai-avtopilot.ru):
+### 1. Записи A в Cloudflare DNS:
 
-| Тип | Субдомен / Хост | Значение (IP-адрес) | TTL | Proxy status |
+| Тип | Имя / Хост | Значение (IP-адрес) | TTL | Proxy status | Назначение |
+|---|---|---|---|---|---|
+| **A** | `@` | `185.50.25.55` | Auto | Proxied (Orange) | Главный домен (Apex) |
+| **A** | `www` | `185.50.25.55` | Auto | Proxied (Orange) | Алиас `www` (301 на Apex) |
+
+### 2. Режим SSL/TLS в Cloudflare:
+- **Encryption Mode**: **Flexible**.
+- **Edge**: Защищенное соединение между клиентом и Cloudflare (HTTPS, TLS 1.3, HTTP/3, HSTS 1 год).
+- **Origin**: Cloudflare запрашивает статику у Beget по HTTP (порт 80).
+- **DNSSEC**: Активирован в Cloudflare и подтвержден записями DS в панели REG.RU.
+
+### 3. DNS-записи для поисковой верификации:
+
+| Тип | Имя | Значение | TTL | Назначение |
 |---|---|---|---|---|
-| **A** | `@` | `185.50.25.55` | Auto / 300s | DNS only (серый) |
+| **TXT** | `@` | `google-site-verification=u42j0jjBKadmyE77f9wlqfy5gkyDONXtaPzcPRZ51R8` | Auto | Google Search Console DNS-верификация |
 
-> **Важно:** Замените старые A-записи GitHub Pages (`185.199.x.x`) на один IP Beget: `185.50.25.55`.
-
-### 2. Добавьте запись `CNAME` (или `A`) для поддомена `www`:
-
-| Тип | Субдомен / Хост | Значение | TTL | Proxy status |
-|---|---|---|---|---|
-| **CNAME** | `www` | `ai-avtopilot.ru` | Auto / 300s | DNS only (серый) |
-
-*(Например: `vlad-voro.github.io.`)*
-
-### 3. (Опционально) Добавьте DNS-записи для доменной почты `contact@ai-avtopilot.ru`:
-Если вы хотите иметь полноценный почтовый ящик на домене (например, в **Яндекс 360** или **VK WorkMail**):
+### 4. (Опционально) Записи для доменной почты `contact@ai-avtopilot.ru`:
 
 | Сервис | Тип | Хост | Значение | Приоритет |
 |---|---|---|---|---|
@@ -57,25 +43,31 @@
 | **VK WorkMail** | **MX** | `@` | `emx.mail.ru.` | 10 |
 | **VK WorkMail** | **TXT** | `@` | `v=spf1 include:_spf.mail.ru ~all` | — |
 
-*После добавления MX-записи создайте ящик `contact@ai-avtopilot.ru` в кабинете Яндекс 360 / VK WorkMail.*
-
 ---
 
-## Шаг 3. Настройка репозитория GitHub Pages
+## Шаг 3. Деплой на хостинг Beget через FTPS (GitHub Actions)
 
-1. Загрузите файлы сайта из папки `D:\AI\data\ai-avtopilot` в ваш репозиторий GitHub (например, `ai-avtopilot` или `<username>.github.io`):
-   - Убедитесь, что в корне репозитория присутствует файл `CNAME` со строкой `ai-avtopilot.ru`.
-2. В репозитории GitHub перейдите во вкладку **Settings** (Настройки).
-3. В левом боковом меню выберите раздел **Pages**.
-4. В блоке **Build and deployment**:
-   - **Source**: `Deploy from a branch`
-   - **Branch**: `main` (или `master`), папка `/ (root)` → нажмите **Save**.
-5. В блоке **Custom domain**:
-   - Введите: `ai-avtopilot.ru`
-   - Нажмите **Save**. GitHub выполнит проверку DNS-записей.
-6. В блоке **Enforce HTTPS**:
-   - Установите галочку **Enforce HTTPS**.
-   - *Примечание:* Выпуск бесплатного TLS/SSL сертификата Let's Encrypt занимает от 15 минут до пары часов после обновления DNS. Пока сертификат генерируется, галочка может быть неактивна. Зайдите через 1-2 часа и включите её.
+Репозиторий `Vlad-Voro/ai-avtopilot` переведен в приватный режим (скрыт от индексации поисковыми роботами). Деплой происходит автоматически через CI/CD:
+
+1. В репозитории GitHub настроен воркфлоу [`.github/workflows/deploy.yml`](file:///.github/workflows/deploy.yml).
+2. При каждом коммите в ветку `main` GitHub Action запускает `SamKirkland/FTP-Deploy-Action@v4.3.5`:
+   - Подключение: протокол `ftps` (порт 21, TLS 1.2+).
+   - Сервер: `f91009a4.beget.tech`.
+   - Целевая директория: `f91009a4.beget.tech/public_html/`.
+   - Исключения: `.git*`, `tests/`, `bot/`, `cloudflare-worker/`, `scripts/`, `*.md`, `_headers`, `CNAME`, `package*.json`.
+3. Секреты деплоя в GitHub Secrets:
+   - `BEGET_USER` — логин учетной записи FTP Beget (`f91009a4`).
+   - `BEGET_PASSWORD` — пароль FTP-аккаунта Beget.
+
+### Конфигурация веб-сервера `.htaccess`:
+В корень сайта на Beget развернут файл [`.htaccess`](file:///.htaccess):
+- Кастомная страница 404 (`ErrorDocument 404 /404.html`).
+- Канонический 301-редирект с `www` на `https://ai-avtopilot.ru/`.
+- Нормализация trailing slashes с сохранением протокола HTTPS через заголовок `X-Forwarded-Proto`.
+- MIME-типы для шрифтов `.woff2`, изображений `.svg` и манифеста `.webmanifest`.
+- Заголовки безопасности (`nosniff`, `SAMEORIGIN`, `strict-origin-when-cross-origin`, `Strict-Transport-Security`).
+- Блокировка доступа к служебным файлам (`_headers`, `.git`, `.env`, `package*.json`, `*.md`).
+- Кеширование: 1 год (`max-age=31536000, immutable`) для статики; `no-cache, must-revalidate` для HTML.
 
 ---
 
@@ -109,41 +101,39 @@
 ### 1. Проверка DNS:
 В терминале выполните:
 ```bash
-nslookup ai-avtopilot.ru
+nslookup ai-avtopilot.ru 1.1.1.1
 ```
-В ответе должны появиться IP-адреса GitHub:
-`185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`.
+В ответе должны отображаться IP-адреса Cloudflare Proxy (Anycast), подтверждающие защиту от DDoS и скрытие IP сервера-источника Beget.
 
-### 2. Проверка доступности сайта:
-Откройте в браузере:
+### 2. Проверка доступности страниц:
+Откройте в браузере или через curl:
 - `https://ai-avtopilot.ru/` — главная страница
+- `https://ai-avtopilot.ru/services/` — 1С и ERP автоматизация
+- `https://ai-avtopilot.ru/cases/` — подтвержденные кейсы
+- `https://ai-avtopilot.ru/calculator/` — интерактивный калькулятор ROI
+- `https://ai-avtopilot.ru/dashboard/` — симулятор рабочих нагрузок
+- `https://ai-avtopilot.ru/faq/` — B2B FAQ (1С/ЭДО/152-ФЗ)
+- `https://ai-avtopilot.ru/contact/` — форма заявки
 - `https://ai-avtopilot.ru/privacy.html` — политика конфиденциальности (152-ФЗ)
 - `https://ai-avtopilot.ru/robots.txt` — директивы для поисковых систем
 - `https://ai-avtopilot.ru/sitemap.xml` — карта сайта
-
-### 3. Тестовая заявка:
-Заполните форму внизу страницы и нажмите **«Записаться на аудит»**. Убедитесь, что появилось сообщение об успешной отправке и уведомление пришло на `ваш_email@example.ru`.
+- `https://ai-avtopilot.ru/llms.txt` — спецификация для LLM-агентов
+- `https://ai-avtopilot.ru/non-existent-page` — проверка кастомной 404 страницы
 
 ---
 
 ## Шаг 6. Индексация в Яндекс и Google (B2B продвижение в РФ)
 
-Для максимальной видимости в российском B2B-сегменте выполните следующие шаги:
+Для максимальной видимости в российском B2B-сегменте подтверждены права владельца:
 
 1. **Яндекс Вебмастер**:
-   - Зайдите на [webmaster.yandex.ru](https://webmaster.yandex.ru/).
-   - Добавьте сайт `https://ai-avtopilot.ru`.
-   - Подтвердите права через метатег в `<head>` или DNS-запись.
-   - Перейдите в раздел **«Индексирование»** → **«Файлы Sitemap»** и укажите `https://ai-avtopilot.ru/sitemap.xml`.
-   - Перейдите в **«Региональность»** и укажите целевой регион (Россия / Москва).
+   - Верификационный файл: `https://ai-avtopilot.ru/yandex_cd29b4304b5e16c6.html` (отдает `200 OK`).
+   - Добавлен `https://ai-avtopilot.ru/sitemap.xml`.
+   - Указан целевой регион: Россия / Москва.
 
-2. **Яндекс Бизнес (Справочник)**:
-   - Зарегистрируйте карточку компании в [yandex.ru/sprav](https://yandex.ru/sprav/) с категорией «Автоматизация бизнеса / IT-услуги». Это даст отображение на Яндекс Картах и в сниппетах поисковой выдачи.
-
-3. **Google Search Console**:
-   - Зайдите на [search.google.com/search-console](https://search.google.com/search-console).
-   - Добавьте ресурс `https://ai-avtopilot.ru`.
-   - Отправьте `https://ai-avtopilot.ru/sitemap.xml`.
+2. **Google Search Console**:
+   - Верификация: DNS TXT-запись `google-site-verification=u42j0jjBKadmyE77f9wlqfy5gkyDONXtaPzcPRZ51R8` в Cloudflare DNS + дублирующий метатег в `index.html`.
+   - Отправлен `https://ai-avtopilot.ru/sitemap.xml`.
 
 ---
 

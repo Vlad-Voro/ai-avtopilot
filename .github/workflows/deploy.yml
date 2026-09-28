@@ -41,3 +41,6 @@ jobs:
             **/*.ps1
             **/.gitignore
             **/node_modules/**
+            **/_headers
+            **/CNAME
+            **/package*.json

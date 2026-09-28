@@ -1,7 +1,7 @@
 # Architectural Reference & Project Map: ai-avtopilot.ru
 
-> **Status**: Production Hardened | **Updated**: 2026-09-27  
-> **Live URL**: [https://ai-avtopilot.ru/](https://ai-avtopilot.ru/) | **Repo**: `Vlad-Voro/ai-avtopilot` (`main`)  
+> **Status**: Production Hardened | **Updated**: 2026-09-28  
+> **Live URL**: [https://ai-avtopilot.ru/](https://ai-avtopilot.ru/) | **Repo**: `Vlad-Voro/ai-avtopilot` (`main` - Private)  
 > **Local Root**: `d:\AI\data\ai-avtopilot`  
 > **Verification**: 115 / 115 PASS (78 E2E + 19 SEO + 13 Security + 5 Resiliency, 0 regressions)
 
@@ -11,22 +11,22 @@
 
 ```mermaid
 flowchart TD
-    Client["Client (Browser / Mobile / Tablet)"] -->|HTTPS / HTTP/3 / TLS 1.3| CF["Cloudflare Zero-Trust Edge (Proxy: ON)"]
+    Client["Client (Browser / Mobile / Tablet)"] -->|HTTPS / HTTP/3 / TLS 1.3| CF["Cloudflare Zero-Trust Edge (Proxy: ON, Flexible SSL)"]
     
     subgraph EdgeLayer ["1. Edge & DNS Layer (Cloudflare)"]
-        CF -->|1. Static Assets & HTML| GHP["GitHub Pages Origin (CNAME ai-avtopilot.ru)"]
+        CF -->|1. Static Assets & HTML (Port 80)| BGT["Beget Production Origin (185.50.25.55 / Apache)"]
         CF -->|2. POST /submit (Lead Ingestion)| CFW["Cloudflare Worker (ai-avtopilot-bot)"]
         CF -->|3. HSTS 1y + Preload + WAF| SEC["OWASP Frame Guard + Sliding Rate Limiter"]
     end
     
-    subgraph AppLayer ["2. Static Hybrid Multi-Entry SSG"]
-        GHP --> P1["/ (Main Landing)"]
-        GHP --> P2["/services/ (1C / ERP / RPA Services)"]
-        GHP --> P3["/cases/ (340% Proven ROI Metrics)"]
-        GHP --> P4["/calculator/ (Interactive ROI Engine)"]
-        GHP --> P5["/dashboard/ (Real-Time Workload Simulator)"]
-        GHP --> P6["/faq/ (B2B FAQ: 1C/EDI/152-FZ)"]
-        GHP --> P7["/contact/ (Express Audit Capture)"]
+    subgraph AppLayer ["2. Static Hybrid Multi-Entry SSG (.htaccess Hardened)"]
+        BGT --> P1["/ (Main Landing)"]
+        BGT --> P2["/services/ (1C / ERP / RPA Services)"]
+        BGT --> P3["/cases/ (340% Proven ROI Metrics)"]
+        BGT --> P4["/calculator/ (Interactive ROI Engine)"]
+        BGT --> P5["/dashboard/ (Real-Time Workload Simulator)"]
+        BGT --> P6["/faq/ (B2B FAQ: 1C/EDI/152-FZ)"]
+        BGT --> P7["/contact/ (Express Audit Capture)"]
     end
     
     subgraph LeadDelivery ["3. Resilient Ingestion & Notifications"]
@@ -35,16 +35,29 @@ flowchart TD
         CFW -.->|Fallback on network error| W3F["Web3Forms API + FormSubmit .co"]
         W3F -.-> Mail["contact@ai-avtopilot.ru"]
     end
+
+    subgraph CICD ["4. Automated CI/CD Pipeline"]
+        GHA["GitHub Actions (deploy.yml)"] -->|FTPS Sync (TLS 1.2+)| BGT
+    end
 ```
 
 ### 1.1. DNS & Edge Routing
-- **Domain**: `ai-avtopilot.ru` (`.ru` TLD).
-- **GitHub Pages + Cloudflare Proxy**:
-  - Root `CNAME`: `ai-avtopilot.ru`.
-  - A records: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` (proxied via Cloudflare orange cloud).
-  - CNAME `www` $\to$ `ai-avtopilot.ru`.
-  - Protocols: HTTP/3 (QUIC), TLS 1.2/1.3, enforced HTTP $\to$ HTTPS.
-  - HSTS: `max-age=31536000; includeSubDomains; preload`.
+- **Domain**: `ai-avtopilot.ru` (`.ru` TLD, registrar REG.RU with DNSSEC DS records).
+- **Beget Origin + Cloudflare Proxy**:
+  - Origin IP: `185.50.25.55` (Beget, Saint Petersburg / Moscow DC).
+  - Virtual Host: `f91009a4.beget.tech/public_html/`.
+  - Cloudflare SSL/TLS Mode: **Flexible** (Edge terminates client HTTPS with HTTP/3 & TLS 1.3; connects to Beget over port 80).
+  - DNSSEC: Signed zone via REG.RU DS key records.
+  - A records: `@` $\to$ `185.50.25.55` (Proxied), `www` $\to$ `185.50.25.55` (Proxied).
+  - Webmaster Verification:
+    - Google Search Console: DNS TXT `google-site-verification=u42j0jjBKadmyE77f9wlqfy5gkyDONXtaPzcPRZ51R8` + meta tag.
+    - Yandex Webmaster: HTML verification file `/yandex_cd29b4304b5e16c6.html`.
+- **Security & Caching (.htaccess on Beget)**:
+  - Custom 404 handler (`ErrorDocument 404 /404.html`).
+  - Sensitive file cloaking (`_headers`, `.git`, `.env`, `package*.json`, `*.md`).
+  - MIME types for modern formats (`font/woff2`, `image/svg+xml`, `application/manifest+json`).
+  - Strict security headers (`X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, `Referrer-Policy: strict-origin-when-cross-origin`).
+  - Static asset caching (`max-age=31536000, public, immutable`) and dynamic HTML revalidation (`no-cache, must-revalidate`).
 - **Mail Compliance**:
   - SPF: `v=spf1 include:_spf.mx.cloudflare.net ~all`.
   - DMARC: `_dmarc.ai-avtopilot.ru TXT "v=DMARC1; p=none; sp=none; aspf=r;"` (audit mode; avoids dropping legitimate mail).
@@ -96,7 +109,7 @@ index.html (Master Template)
 ```
 
 ### 3.1. SSG Generator (`scripts/sync_pages.py`)
-- **Problem**: In SPA routing on GitHub Pages, direct deep navigation to `/services/` triggered 404 redirects, degrading SEO indexation.
+- **Problem**: In static hosting environments without server-side rendering, direct deep navigation to sub-routes could trigger generic server 404s, degrading SEO indexation and UX.
 - **Solution**: Multi-Entry Hybrid SSG:
   - 6 physical directories with dedicated `index.html`.
   - Unique `<title>`, `<meta description>`, OpenGraph, Twitter Cards, canonical `<link rel="canonical">`.
@@ -110,11 +123,11 @@ index.html (Master Template)
 
 ### 3.2. Trailing Slash Normalization (Zero 301 Hops)
 - All internal links in header, footer, mesh, and JS routing use trailing slashes: `/services/`, `/cases/`, `/calculator/`, `/dashboard/`, `/faq/`, `/contact/`.
-- Eliminates silent server 301 redirects (`/services` $\to$ `/services/`), conserving crawler budget.
+- Combined with `.htaccess` rewrite rules checking `X-Forwarded-Proto = https`, eliminating multi-hop protocol downgrades and preserving crawler budget.
 
-### 3.3. SPA 404 Fallback
-- `404.html` catches direct deep links or misdirected URLs.
-- Stores target in query param `/?p=` and `sessionStorage.setItem('spa_redirect', path)` then routes to root.
+### 3.3. SOTA 404 Fallback & Custom Error Handling
+- Hardened `.htaccess` directive: `ErrorDocument 404 /404.html`.
+- `404.html` branded with design system, catches non-existent URLs and provides immediate navigation back to core landing pages or SPA recovery.
 - `index.html` router on `DOMContentLoaded` reads the stored path, restores clean URL via `history.replaceState`, and smooth scrolls to target with `scroll-margin-top: 80px`.
 
 ### 3.4. Deterministic ScrollSpy (ADR 2026-09-25)

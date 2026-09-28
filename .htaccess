@@ -1,0 +1,104 @@
+# ==============================================================================
+# AI-AVTOPILOT.RU - BEGET ORIGIN CONFIGURATION (.htaccess)
+# SOTA SEO, Security, MIME & Performance Rules
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. CUSTOM ERROR DOCUMENTS
+# ------------------------------------------------------------------------------
+ErrorDocument 404 /404.html
+
+# ------------------------------------------------------------------------------
+# 2. REWRITE ENGINE & CANONICAL REDIRECTS
+# ------------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # A. Strip index.html from URLs (canonical apex)
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^/]+/)*index\.html\ HTTP/
+    RewriteRule ^(([^/]+/)*)index\.html$ https://ai-avtopilot.ru/$1 [R=301,L]
+
+    # B. Redirect www.ai-avtopilot.ru -> ai-avtopilot.ru (Apex)
+    RewriteCond %{HTTP_HOST} ^www\.ai-avtopilot\.ru$ [NC]
+    RewriteRule ^(.*)$ https://ai-avtopilot.ru/$1 [R=301,L]
+
+    # C. Trailing slash normalization for directories (preserving HTTPS via Cloudflare proxy)
+    # Avoid default Apache port 80 redirect which causes 2-hop redirect chain
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteCond %{REQUEST_URI} !/$
+    RewriteCond %{HTTP:X-Forwarded-Proto} =https [OR]
+    RewriteCond %{HTTPS} on
+    RewriteRule ^(.*)$ https://ai-avtopilot.ru/$1/ [R=301,L]
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# 3. MIME TYPES
+# ------------------------------------------------------------------------------
+<IfModule mod_mime.c>
+    AddType font/woff2 .woff2
+    AddType font/woff .woff
+    AddType image/svg+xml .svg .svgz
+    AddType application/manifest+json .webmanifest
+    AddType text/plain .txt
+    AddType application/xml .xml
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# 4. SECURITY HEADERS & CACHING
+# ------------------------------------------------------------------------------
+<IfModule mod_headers.c>
+    # Prevent MIME type sniffing
+    Header always set X-Content-Type-Options "nosniff"
+
+    # Clickjacking protection
+    Header always set X-Frame-Options "SAMEORIGIN"
+
+    # Referrer policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # XSS filter legacy defense
+    Header always set X-XSS-Protection "1; mode=block"
+
+    # Restrict device APIs
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+
+    # HSTS (Strict-Transport-Security) - max-age 6 months (15552000s)
+    SetEnvIf X-Forwarded-Proto "^https$" HTTPS=on
+    Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains" env=HTTPS
+
+    # Cache-Control: Static assets (immutable 1 year)
+    <FilesMatch "\.(css|js|woff2|woff|svg|png|jpg|jpeg|webp|ico)$">
+        Header set Cache-Control "max-age=31536000, public, immutable"
+    </FilesMatch>
+
+    # Cache-Control: HTML and data feeds (freshness guaranteed)
+    <FilesMatch "\.(html|xml|txt|json)$">
+        Header set Cache-Control "public, max-age=0, must-revalidate"
+    </FilesMatch>
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# 5. ACCESS RESTRICTIONS & CLOAKING
+# ------------------------------------------------------------------------------
+# Block access to hidden files and directories (starting with a dot)
+<FilesMatch "^\.">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# Block access to sensitive development / build / deployment files
+<FilesMatch "(^#.*#|\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|sw[op]|md|yml|yaml|env|lock)|package.*\.json|composer.*\.json|_headers|CNAME)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
