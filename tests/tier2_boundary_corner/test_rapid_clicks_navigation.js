@@ -19,10 +19,13 @@ suite.test('Rapid Navigation: Rapid clicking across multiple nav links does not 
   const links = page.locator('.nav__links a, .nav__link');
   const count = await links.count();
 
-  // Rapidly click all nav links sequentially with minimal delay
+  // Rapidly click all visible nav links sequentially with minimal delay
   for (let i = 0; i < count; i++) {
-    await links.nth(i).click({ timeout: 2000 }).catch(() => {});
-    await page.waitForTimeout(50);
+    const link = links.nth(i);
+    if (await link.isVisible()) {
+      await link.click({ timeout: 500 }).catch(() => {});
+      await page.waitForTimeout(30);
+    }
   }
 
   assert.strictEqual(

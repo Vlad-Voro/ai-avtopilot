@@ -61,6 +61,14 @@ class TestSuite {
             try {
               await context.page.setViewportSize({ width: 1440, height: 900 });
               context.page.setDefaultTimeout(4000);
+              await context.page.addInitScript(() => {
+                try {
+                  const style = document.createElement('style');
+                  style.textContent = '* { scroll-behavior: auto !important; }';
+                  if (document.head) document.head.appendChild(style);
+                  else document.addEventListener('DOMContentLoaded', () => document.head.appendChild(style));
+                } catch (e) {}
+              });
             } catch (e) {}
           }
 

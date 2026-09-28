@@ -21,7 +21,19 @@ const MIME_TYPES = {
 };
 
 function createStaticServer(baseDir) {
-  const root = path.resolve(baseDir);
+  const fileCache = new Map();
+  function getFile(p) {
+    if (fileCache.has(p)) return fileCache.get(p);
+    try {
+      if (fs.existsSync(p) && fs.statSync(p).isFile()) {
+        const buf = fs.readFileSync(p);
+        fileCache.set(p, buf);
+        return buf;
+      }
+    } catch (e) {}
+    fileCache.set(p, null);
+    return null;
+  }
 
   const server = http.createServer((req, res) => {
     // Parse URL path, ignore query params for file lookup
@@ -41,14 +53,22 @@ function createStaticServer(baseDir) {
       return;
     }
 
+    let targetFile = filePath;
+    try {
+      if (fs.existsSync(targetFile) && fs.statSync(targetFile).isDirectory()) {
+        targetFile = path.join(targetFile, 'index.html');
+      }
+    } catch (e) {}
+
     // Check if the requested file exists
-    if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-      const ext = path.extname(filePath).toLowerCase();
+    const fileBuf = getFile(targetFile);
+    if (fileBuf) {
+      const ext = path.extname(targetFile).toLowerCase();
       res.writeHead(200, {
         'Content-Type': MIME_TYPES[ext] || 'application/octet-stream',
         'Cache-Control': 'no-store'
       });
-      fs.createReadStream(filePath).pipe(res);
+      res.end(fileBuf);
       return;
     }
 
@@ -56,12 +76,13 @@ function createStaticServer(baseDir) {
     // If requesting a clean path like /services or /cases and 404.html exists in root,
     // GitHub Pages serves 404.html (with status 404, allowing redirect script to run).
     const fallback404 = path.join(root, '404.html');
-    if (fs.existsSync(fallback404) && fs.statSync(fallback404).isFile()) {
+    const fallbackBuf = getFile(fallback404);
+    if (fallbackBuf) {
       res.writeHead(404, {
         'Content-Type': 'text/html; charset=utf-8',
         'Cache-Control': 'no-store'
       });
-      fs.createReadStream(fallback404).pipe(res);
+      res.end(fallbackBuf);
       return;
     }
 

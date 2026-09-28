@@ -115,7 +115,7 @@ async function main() {
     queuedSuites.push(suite);
   }
 
-  const CONCURRENCY = Math.min(3, Math.max(1, queuedSuites.length));
+  const CONCURRENCY = Math.min(8, Math.max(1, queuedSuites.length));
   console.log(`${C.dim}Executing ${queuedSuites.length} suites with concurrency=${CONCURRENCY}...${C.reset}\n`);
 
   async function runWorker(suiteQueue) {

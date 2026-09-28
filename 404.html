@@ -29,8 +29,8 @@
     var cleanSegment = path.replace(/^\/+|\/+$/g, '');
 
     if (validRoutes.indexOf(cleanSegment) !== -1) {
-      sessionStorage.setItem('spa_redirect', '/' + cleanSegment + search + hash);
-      window.location.replace('/?p=/' + cleanSegment + (search ? '&' + search.slice(1) : '') + hash);
+      sessionStorage.setItem('spa_redirect', '/' + cleanSegment + '/' + search + hash);
+      window.location.replace('/?p=/' + cleanSegment + '/' + (search ? '&' + search.slice(1) : '') + hash);
     }
   </script>
 

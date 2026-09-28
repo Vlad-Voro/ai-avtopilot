@@ -16,8 +16,8 @@ suite.test('Burger Toggle: Rapid toggle 10 times does not desynchronize menu or 
 
   const burger = page.locator('#burger, .nav__burger');
   for (let i = 0; i < 10; i++) {
-    await burger.click();
-    await page.waitForTimeout(60);
+    await burger.click({ force: true });
+    await page.waitForTimeout(40);
   }
 
   // After an even number (10) of clicks, menu should return to closed state

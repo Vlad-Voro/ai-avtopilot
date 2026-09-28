@@ -227,62 +227,9 @@ SUBPAGES_SPEC = {
         "dir": os.path.join(ROOT_DIR, "faq"),
         "title": "Частые вопросы по внедрению ИИ-агентов и автоматизации | АвтоПилот",
         "description": "Ответы на ключевые вопросы по роботизации бизнеса: сроки запуска за 14 дней, интеграция с 1С и SAP без доработок, безопасность данных по 152-ФЗ, окупаемость и ROI.",
-        "h1": "Вопросы и ответы по внедрению ИИ-агентов и автоматизации",
+        "h1": "Часто задаваемые вопросы",
         "breadcrumb_name": "FAQ",
-        "deep_content": """
-      <div class="subpage-deep" data-reveal>
-        <nav class="breadcrumbs" aria-label="Хлебные крошки">
-          <a href="/">Главная</a>
-          <span class="breadcrumbs__sep">/</span>
-          <span>Вопросы и ответы</span>
-        </nav>
-        <h1 class="subpage-deep__title">База знаний и частые вопросы по ИИ-автоматизации</h1>
-        <p class="subpage-deep__desc">
-          Собрали подробные экспертные ответы на самые частые вопросы собственников, финансовых директоров и IT-руководителей о внедрении, безопасности, интеграции с 1С и окупаемости ИИ-агентов.
-        </p>
-
-        <h3 style="color:var(--text-1);margin:24px 0 12px;font-family:var(--font-head);font-size:1.2rem;">Сводная карта внедрения и регламенты</h3>
-        <div style="overflow-x:auto;">
-          <table class="subpage-table">
-            <thead>
-              <tr>
-                <th>Вопрос / Направление</th>
-                <th>Регламент АвтоПилот</th>
-                <th>Технические гарантии</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Сроки запуска пилота</strong></td>
-                <td>14 календарных дней до первых результатов</td>
-                <td>Готовые коннекторы 1С OData, Диадок SDK, amoCRM</td>
-              </tr>
-              <tr>
-                <td><strong>Безопасность и 152-ФЗ</strong></td>
-                <td>Строгое соблюдение законодательства РФ + NDA</td>
-                <td>Обработка в РФ, опция On-Premise в закрытом контуре</td>
-              </tr>
-              <tr>
-                <td><strong>Окупаемость и ROI</strong></td>
-                <td>Средний срок окупаемости 1.5–3 месяца</td>
-                <td>Фиксация KPI экономии в договоре, средний ROI 340%</td>
-              </tr>
-              <tr>
-                <td><strong>Экспресс-аудит 30 минут</strong></td>
-                <td>Бесплатный расчет матрицы окупаемости</td>
-                <td>Архитектурная схема интеграции для 3 процессов компании</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:24px;">
-          <a href="/services/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Технический стек и протоколы →</a>
-          <a href="/calculator/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Интерактивный калькулятор экономии →</a>
-          <a href="/contact/" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Записаться на 30-минутный аудит →</a>
-        </div>
-      </div>
-""",
+        "deep_content": "",
     },
     "contact": {
         "dir": os.path.join(ROOT_DIR, "contact"),
@@ -426,9 +373,31 @@ def generate_subpage(slug: str, spec: dict, master_html: str) -> str:
     # 6. Transform <h1 class="hero__title"> to <h2 class="hero__title"> on subpages so exactly 1 H1 exists
     html = re.sub(r'<h1 class="hero__title">(.*?)</h1>', r'<h2 class="hero__title">\1</h2>', html, flags=re.DOTALL)
 
-    # 7. Insert deep_content at the beginning of <main id="main-content">
+    # For FAQ subpage: promote FAQ section title to H1 and append PageRank mesh under accordion
+    if slug == "faq":
+        html = html.replace(
+            '<h2 class="section-title">Часто задаваемые вопросы</h2>',
+            '<h1 class="section-title">Часто задаваемые вопросы</h1>',
+            1,
+        )
+        faq_mesh_target = (
+            "      </div>\n    </div>\n  </section>\n\n  <!-- ═══════════════════ CTA + CONTACT ═══════════════════ -->"
+        )
+        faq_mesh_replacement = """        <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;justify-content:center;">
+          <a href="/services/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Технический стек и протоколы →</a>
+          <a href="/calculator/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Интерактивный калькулятор экономии →</a>
+          <a href="/contact/" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Записаться на 30-минутный аудит →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CTA + CONTACT ═══════════════════ -->"""
+        html = html.replace(faq_mesh_target, faq_mesh_replacement, 1)
+
+    # 7. Insert deep_content at the beginning of <main id="main-content"> (if present)
     main_tag = '<main id="main-content">'
-    if main_tag in html:
+    if main_tag in html and spec.get("deep_content"):
         injection = (
             f'{main_tag}\n  <div class="container" style="padding-top:100px;">\n{spec["deep_content"]}\n  </div>'
         )
