@@ -8,6 +8,9 @@
 # ------------------------------------------------------------------------------
 ErrorDocument 404 /404.html
 
+Options -Indexes
+DirectorySlash Off
+
 # ------------------------------------------------------------------------------
 # 2. REWRITE ENGINE & CANONICAL REDIRECTS
 # ------------------------------------------------------------------------------
@@ -23,12 +26,10 @@ ErrorDocument 404 /404.html
     RewriteCond %{HTTP_HOST} ^www\.ai-avtopilot\.ru$ [NC]
     RewriteRule ^(.*)$ https://ai-avtopilot.ru/$1 [R=301,L]
 
-    # C. Trailing slash normalization for directories (preserving HTTPS via Cloudflare proxy)
-    # Avoid default Apache port 80 redirect which causes 2-hop redirect chain
+    # C. Trailing slash normalization for directories (direct 1-hop 301 to HTTPS)
+    # mod_dir DirectorySlash Off prevents Apache port 80 redirect
     RewriteCond %{REQUEST_FILENAME} -d
     RewriteCond %{REQUEST_URI} !/$
-    RewriteCond %{HTTP:X-Forwarded-Proto} =https [OR]
-    RewriteCond %{HTTPS} on
     RewriteRule ^(.*)$ https://ai-avtopilot.ru/$1/ [R=301,L]
 </IfModule>
 
