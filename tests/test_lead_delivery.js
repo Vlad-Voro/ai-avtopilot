@@ -79,7 +79,7 @@ async function runDeliveryTests(options = {}) {
       // Click submit with empty form
       const submitBtn = page.locator('#form-submit');
       await submitBtn.click();
-      await page.waitForTimeout(100);
+      await page.waitForSelector('#contact-name.is-invalid');
 
       // Name input should receive .is-invalid
       const nameInput = page.locator('#contact-name');
@@ -130,7 +130,7 @@ async function runDeliveryTests(options = {}) {
 
       const submitBtn = page.locator('#form-submit');
       await submitBtn.click();
-      await page.waitForTimeout(100);
+      await page.waitForSelector('#contact-name.is-invalid');
 
       const nameInput = page.locator('#contact-name');
       await nameInput.fill('Алексей');
