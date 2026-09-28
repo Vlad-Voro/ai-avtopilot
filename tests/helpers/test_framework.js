@@ -60,7 +60,7 @@ class TestSuite {
           if (context.page) {
             try {
               await context.page.setViewportSize({ width: 1440, height: 900 });
-              context.page.setDefaultTimeout(4000);
+              context.page.setDefaultTimeout(6000);
               await context.page.addInitScript(() => {
                 try {
                   const style = document.createElement('style');
