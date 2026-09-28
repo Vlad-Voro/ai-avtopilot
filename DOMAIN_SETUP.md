@@ -63,9 +63,8 @@ Cloudflare используется исключительно как автор
    - Служебные каталоги: `tests/`, `bot/`, `cloudflare-worker/`, `scripts/`.
    - В результате файлы `https://ai-avtopilot.ru/_headers` и `https://ai-avtopilot.ru/ARCHITECTURE.md` физически не публикуются в Edge CDN и возвращают `404 Not Found`.
 
-3. **Резервный деплой на Beget через FTPS (GitHub Actions)**:
-   - Воркфлоу [`.github/workflows/deploy.yml`](file:///.github/workflows/deploy.yml) сохраняется как аварийный бэкап контура.
-   - Конфигурация [`.htaccess`](file:///.htaccess) сохранена в репозитории для обеспечения совместимости при аварийном переключении DNS обратно на Beget Apache.
+3. **Очистка устаревших конфигураций**:
+   - Устаревшие файлы конфигурации Beget (`.htaccess`, `.github/workflows/deploy.yml`), Cloudflare Pages (`_headers`) и GitHub Pages (`CNAME`) удалены из кодовой базы для исключения бесполезных начислений минут раннеров и устранения когнитивной нагрузки.
 
 ---
 

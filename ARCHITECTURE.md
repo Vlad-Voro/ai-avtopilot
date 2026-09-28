@@ -38,8 +38,8 @@ flowchart TD
     end
 
     subgraph CICD ["4. Automated CI/CD Pipelines"]
-        VDeploy["Vercel Git Integration"] -->|Push to main| Vercel
-        GHA["GitHub Actions (healthcheck.yml & deploy.yml)"] -->|Synthetic Monitor & Beget Backup| Orig["Origin / Tests"]
+        VDeploy["Vercel Git Integration"] -->|Push to main (Auto Deploy)| Vercel
+        GHA["GitHub Actions (healthcheck.yml)"] -->|Synthetic Monitor (Daily & Push)| Vercel
     end
 ```
 
