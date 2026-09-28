@@ -19,7 +19,7 @@ suite.test('R2.1: DOM sections follow canonical conversion sequence', async ({ p
     return sections.map(s => s.id).filter(id => id);
   });
 
-  const expectedSequence = ['home', 'dashboard', 'compare', 'services', 'cases', 'calculator', 'contact'];
+  const expectedSequence = ['home', 'calculator', 'compare', 'services', 'cases', 'faq', 'dashboard', 'contact'];
 
   // Check that all expected sections exist
   for (const expected of expectedSequence) {
@@ -39,39 +39,52 @@ suite.test('R2.1: DOM sections follow canonical conversion sequence', async ({ p
   );
 });
 
-suite.test('R2.2: Live Dashboard is positioned immediately after Hero section', async ({ page, baseUrl }) => {
+suite.test('R2.2: Calculator is positioned immediately after Hero section and Dashboard precedes Contact', async ({ page, baseUrl }) => {
   await page.goto(`${baseUrl}/`);
 
-  const dashboardPosition = await page.evaluate(() => {
+  const positions = await page.evaluate(() => {
     const hero = document.getElementById('home') || document.querySelector('.hero');
-    const dashboard = document.getElementById('dashboard') || document.querySelector('.dashboard');
+    const calculator = document.getElementById('calculator') || document.querySelector('.roi');
     const compare = document.getElementById('compare') || document.querySelector('.compare');
+    const dashboard = document.getElementById('dashboard') || document.querySelector('.dashboard');
+    const contact = document.getElementById('contact') || document.querySelector('.contact');
 
-    if (!hero || !dashboard) return null;
+    if (!hero || !calculator || !dashboard || !contact) return null;
 
-    const heroIndex = Array.from(document.querySelectorAll('section')).indexOf(hero);
-    const dashIndex = Array.from(document.querySelectorAll('section')).indexOf(dashboard);
-    const compIndex = compare ? Array.from(document.querySelectorAll('section')).indexOf(compare) : -1;
+    const sections = Array.from(document.querySelectorAll('section'));
+    const heroIndex = sections.indexOf(hero);
+    const calcIndex = sections.indexOf(calculator);
+    const compIndex = compare ? sections.indexOf(compare) : -1;
+    const dashIndex = sections.indexOf(dashboard);
+    const contIndex = sections.indexOf(contact);
 
     return {
       heroIndex,
-      dashIndex,
+      calcIndex,
       compIndex,
-      isImmediatelyAfterHero: dashIndex === heroIndex + 1,
-      isBeforeCompare: compIndex !== -1 && dashIndex < compIndex
+      dashIndex,
+      contIndex,
+      isCalcImmediatelyAfterHero: calcIndex === heroIndex + 1,
+      isCalcBeforeCompare: compIndex !== -1 && calcIndex < compIndex,
+      isDashImmediatelyBeforeContact: dashIndex === contIndex - 1
     };
   });
 
-  assert.ok(dashboardPosition, 'Hero or Dashboard section missing in DOM');
+  assert.ok(positions, 'Required sections missing in DOM');
   assert.strictEqual(
-    dashboardPosition.isImmediatelyAfterHero,
+    positions.isCalcImmediatelyAfterHero,
     true,
-    `Dashboard (index ${dashboardPosition.dashIndex}) must immediately follow Hero (index ${dashboardPosition.heroIndex})`
+    `Calculator (index ${positions.calcIndex}) must immediately follow Hero (index ${positions.heroIndex})`
   );
   assert.strictEqual(
-    dashboardPosition.isBeforeCompare,
+    positions.isCalcBeforeCompare,
     true,
-    `Dashboard must appear before Compare section in conversion chain`
+    `Calculator must appear before Compare section in conversion chain`
+  );
+  assert.strictEqual(
+    positions.isDashImmediatelyBeforeContact,
+    true,
+    `Dashboard (index ${positions.dashIndex}) must immediately precede Contact (index ${positions.contIndex})`
   );
 });
 

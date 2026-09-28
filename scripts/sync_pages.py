@@ -380,9 +380,7 @@ def generate_subpage(slug: str, spec: dict, master_html: str) -> str:
             '<h1 class="section-title">Часто задаваемые вопросы</h1>',
             1,
         )
-        faq_mesh_target = (
-            "      </div>\n    </div>\n  </section>\n\n  <!-- ═══════════════════ CTA + CONTACT ═══════════════════ -->"
-        )
+        faq_mesh_target = "      </div>\n    </div>\n  </section>\n\n  <!-- ═══════════════════ LIVE DASHBOARD ═══════════════════ -->"
         faq_mesh_replacement = """        <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;justify-content:center;">
           <a href="/services/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Технический стек и протоколы →</a>
           <a href="/calculator/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Интерактивный калькулятор экономии →</a>
@@ -392,7 +390,7 @@ def generate_subpage(slug: str, spec: dict, master_html: str) -> str:
     </div>
   </section>
 
-  <!-- ═══════════════════ CTA + CONTACT ═══════════════════ -->"""
+  <!-- ═══════════════════ LIVE DASHBOARD ═══════════════════ -->"""
         html = html.replace(faq_mesh_target, faq_mesh_replacement, 1)
 
     # 7. Insert deep_content at the beginning of <main id="main-content"> (if present)

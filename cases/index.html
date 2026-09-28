@@ -1678,11 +1678,11 @@ section[id] {
         АвтоПилот
       </a>
       <ul class="nav__links" id="nav-links">
-        <li><a href="/dashboard/" class="nav__link">Дашборд</a></li>
+        <li><a href="/calculator/" class="nav__link">Калькулятор</a></li>
         <li><a href="/services/" class="nav__link">Услуги</a></li>
         <li><a href="/cases/" class="nav__link">Кейсы</a></li>
-        <li><a href="/calculator/" class="nav__link">Калькулятор</a></li>
         <li><a href="/faq/" class="nav__link">FAQ</a></li>
+        <li><a href="/dashboard/" class="nav__link">Дашборд</a></li>
         <li class="nav__link-mobile"><a href="/contact/" class="nav__link">Контакты</a></li>
       </ul>
       <a href="/contact/" class="btn btn--nav">Получить аудит</a>
@@ -1759,10 +1759,6 @@ section[id] {
     <div class="hero__particles" id="particles"></div>
     <div class="container hero__inner">
       <div class="hero__content">
-        <div class="hero__badge">
-          <span class="hero__badge-dot"></span>
-          <span class="hero__badge-text">Системы активны · <span id="hero-agent-count">48</span> <span class="hero__badge-word">автономных </span>агентов в контуре</span>
-        </div>
         <h2 class="hero__title">
           <span class="hero__title-static">Ваши процессы </span>
           <span class="hero__title-accent-box">
@@ -1841,68 +1837,60 @@ section[id] {
     </div>
   </section>
 
-  <!-- ═══════════════════ LIVE DASHBOARD ═══════════════════ -->
-  <section class="dashboard" id="dashboard">
+  <!-- ═══════════════════ ROI CALCULATOR ═══════════════════ -->
+  <section class="roi" id="calculator">
     <div class="container">
       <div class="section-header">
-        <p class="section-tag" data-reveal>Центр управления</p>
-        <h2 class="section-title" data-reveal>Ваши агенты работают прямо сейчас</h2>
+        <p class="section-tag" data-reveal>Посчитайте свои деньги</p>
+        <h2 class="section-title" data-reveal>Калькулятор окупаемости</h2>
       </div>
-      <div class="dashboard__grid" data-reveal>
-        <div class="dashboard__main">
-          <div class="dash-card dash-card--chart">
-            <div class="dash-card__header">
-              <span class="dash-card__title">Обработанные задачи за сутки</span>
-              <span class="dash-card__live"><span class="pulse-dot"></span>Live</span>
-            </div>
-            <div class="chart" id="dash-chart">
-              <div class="chart__bars" id="chart-bars"></div>
-              <div class="chart__labels" id="chart-labels"></div>
+      <div class="roi__card" data-reveal>
+        <div class="roi__inputs">
+          <div class="roi-input-group">
+            <label class="roi-label" for="slider-employees">Сотрудников на рутинных задачах <span class="roi-value-display"
+                id="display-employees">10</span></label>
+            <input type="range" class="roi-slider" id="slider-employees" aria-label="Количество сотрудников на рутинных задачах" min="1" max="100" value="10" />
+            <div class="roi-slider-limits">
+              <span>1 чел</span>
+              <span>100 чел</span>
             </div>
           </div>
-          <div class="dash-metrics">
-            <div class="dash-metric">
-              <span class="dash-metric__num" id="dm1">840</span>
-              <span class="dash-metric__label">задач/час</span>
-              <span class="dash-metric__delta dash-metric__delta--up">↑ 12%</span>
+          <div class="roi-input-group">
+            <label class="roi-label" for="slider-hours">Часов/нед тратят на рутину <span class="roi-value-display"
+                id="display-hours">20</span></label>
+            <input type="range" class="roi-slider" id="slider-hours" aria-label="Количество часов в неделю на рутину" min="1" max="40" value="20" />
+            <div class="roi-slider-limits">
+              <span>1 ч</span>
+              <span>40 ч</span>
             </div>
-            <div class="dash-metric">
-              <span class="dash-metric__num" id="dm2">0.3s</span>
-              <span class="dash-metric__label">ср. время задачи</span>
-              <span class="dash-metric__delta dash-metric__delta--up">↓ 40%</span>
-            </div>
-            <div class="dash-metric">
-              <span class="dash-metric__num" id="dm3">99.8%</span>
-              <span class="dash-metric__label">точность</span>
-              <span class="dash-metric__delta dash-metric__delta--up">↑ 2%</span>
+          </div>
+          <div class="roi-input-group">
+            <label class="roi-label" for="slider-salary">Ср. зарплата сотрудника (₽/мес) <span class="roi-value-display"
+                id="display-salary">80 000</span></label>
+            <input type="range" class="roi-slider" id="slider-salary" aria-label="Средняя зарплата сотрудника в рублях в месяц" min="30000" max="300000" step="5000"
+              value="80000" />
+            <div class="roi-slider-limits">
+              <span>30 000 ₽</span>
+              <span>300 000 ₽</span>
             </div>
           </div>
         </div>
-        <div class="dashboard__side">
-          <div class="dash-card dash-card--board">
-            <div class="dash-card__header">
-              <div role="tablist" aria-label="Информационная панель" class="board-tabs">
-                <button type="button" role="tab" aria-selected="true" aria-controls="panel-log" id="tab-log" class="board-tab board-tab--active">
-                  <span class="board-tab__dot"></span>Лог событий
-                </button>
-                <button type="button" role="tab" aria-selected="false" aria-controls="panel-agents" id="tab-agents" class="board-tab" tabindex="-1">
-                  Агенты онлайн <span class="board-tab__badge" id="agent-count">48</span>
-                </button>
-              </div>
-              <span class="dash-card__live" title="Данные в реальном времени"><span class="pulse-dot"></span>Live</span>
-            </div>
-            <div class="board-panels">
-              <div role="tabpanel" id="panel-log" aria-labelledby="tab-log" class="board-panel board-panel--active">
-                <div class="log" id="event-log">
-                  <!-- JS fills this -->
-                </div>
-              </div>
-              <div role="tabpanel" id="panel-agents" aria-labelledby="tab-agents" class="board-panel" hidden>
-                <div class="agent-list" id="agent-list">
-                  <!-- JS fills this -->
-                </div>
-              </div>
-            </div>
+        <div class="roi__results">
+          <div class="roi-result-card">
+            <span class="roi-result-label">Стоимость рутины в год</span>
+            <span class="roi-result-num" id="roi-cost">0 ₽</span>
+          </div>
+          <div class="roi-result-card roi-result-card--accent">
+            <span class="roi-result-label">Экономия с АвтоПилотом (80%)</span>
+            <span class="roi-result-num" id="roi-save">0 ₽</span>
+          </div>
+          <div class="roi-result-card">
+            <span class="roi-result-label">Освободится человеко-часов/год</span>
+            <span class="roi-result-num" id="roi-hours">0 ч</span>
+          </div>
+          <div class="roi__cta-block">
+            <p>Готовы увидеть реальные цифры для вашего бизнеса?</p>
+            <a href="/contact/" class="btn btn--primary">Получить бесплатный аудит</a>
           </div>
         </div>
       </div>
@@ -2155,66 +2143,6 @@ section[id] {
     </div>
   </section>
 
-  <!-- ═══════════════════ ROI CALCULATOR ═══════════════════ -->
-  <section class="roi" id="calculator">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-tag" data-reveal>Посчитайте свои деньги</p>
-        <h2 class="section-title" data-reveal>Калькулятор окупаемости</h2>
-      </div>
-      <div class="roi__card" data-reveal>
-        <div class="roi__inputs">
-          <div class="roi-input-group">
-            <label class="roi-label" for="slider-employees">Сотрудников на рутинных задачах <span class="roi-value-display"
-                id="display-employees">10</span></label>
-            <input type="range" class="roi-slider" id="slider-employees" aria-label="Количество сотрудников на рутинных задачах" min="1" max="100" value="10" />
-            <div class="roi-slider-limits">
-              <span>1 чел</span>
-              <span>100 чел</span>
-            </div>
-          </div>
-          <div class="roi-input-group">
-            <label class="roi-label" for="slider-hours">Часов/нед тратят на рутину <span class="roi-value-display"
-                id="display-hours">20</span></label>
-            <input type="range" class="roi-slider" id="slider-hours" aria-label="Количество часов в неделю на рутину" min="1" max="40" value="20" />
-            <div class="roi-slider-limits">
-              <span>1 ч</span>
-              <span>40 ч</span>
-            </div>
-          </div>
-          <div class="roi-input-group">
-            <label class="roi-label" for="slider-salary">Ср. зарплата сотрудника (₽/мес) <span class="roi-value-display"
-                id="display-salary">80 000</span></label>
-            <input type="range" class="roi-slider" id="slider-salary" aria-label="Средняя зарплата сотрудника в рублях в месяц" min="30000" max="300000" step="5000"
-              value="80000" />
-            <div class="roi-slider-limits">
-              <span>30 000 ₽</span>
-              <span>300 000 ₽</span>
-            </div>
-          </div>
-        </div>
-        <div class="roi__results">
-          <div class="roi-result-card">
-            <span class="roi-result-label">Стоимость рутины в год</span>
-            <span class="roi-result-num" id="roi-cost">0 ₽</span>
-          </div>
-          <div class="roi-result-card roi-result-card--accent">
-            <span class="roi-result-label">Экономия с АвтоПилотом (80%)</span>
-            <span class="roi-result-num" id="roi-save">0 ₽</span>
-          </div>
-          <div class="roi-result-card">
-            <span class="roi-result-label">Освободится человеко-часов/год</span>
-            <span class="roi-result-num" id="roi-hours">0 ч</span>
-          </div>
-          <div class="roi__cta-block">
-            <p>Готовы увидеть реальные цифры для вашего бизнеса?</p>
-            <a href="/contact/" class="btn btn--primary">Получить бесплатный аудит</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ═══════════════════ FAQ SECTION ═══════════════════ -->
   <section class="faq" id="faq">
     <div class="container">
@@ -2280,6 +2208,78 @@ section[id] {
           <div class="faq-item__answer">
             <div class="faq-item__inner">
               <p>В рамках 30-минутного экспресс-аудита наш архитектор анализирует 3 самых трудоёмких процесса вашей компании, рассчитывает индивидуальную матрицу окупаемости (ROI) и готовит пошаговую архитектурную схему внедрения пилотного агента.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ LIVE DASHBOARD ═══════════════════ -->
+  <section class="dashboard" id="dashboard">
+    <div class="container">
+      <div class="section-header">
+        <div class="hero__badge" data-reveal style="margin-bottom:14px;">
+          <span class="hero__badge-dot"></span>
+          <span class="hero__badge-text">Системы активны · <span id="hero-agent-count">48</span> <span class="hero__badge-word">автономных </span>агентов в контуре</span>
+        </div>
+        <p class="section-tag" data-reveal>Центр управления</p>
+        <h2 class="section-title" data-reveal>Ваши агенты работают прямо сейчас</h2>
+      </div>
+      <div class="dashboard__grid" data-reveal>
+        <div class="dashboard__main">
+          <div class="dash-card dash-card--chart">
+            <div class="dash-card__header">
+              <span class="dash-card__title">Обработанные задачи за сутки</span>
+              <span class="dash-card__live"><span class="pulse-dot"></span>Live</span>
+            </div>
+            <div class="chart" id="dash-chart">
+              <div class="chart__bars" id="chart-bars"></div>
+              <div class="chart__labels" id="chart-labels"></div>
+            </div>
+          </div>
+          <div class="dash-metrics">
+            <div class="dash-metric">
+              <span class="dash-metric__num" id="dm1">840</span>
+              <span class="dash-metric__label">задач/час</span>
+              <span class="dash-metric__delta dash-metric__delta--up">↑ 12%</span>
+            </div>
+            <div class="dash-metric">
+              <span class="dash-metric__num" id="dm2">0.3s</span>
+              <span class="dash-metric__label">ср. время задачи</span>
+              <span class="dash-metric__delta dash-metric__delta--up">↓ 40%</span>
+            </div>
+            <div class="dash-metric">
+              <span class="dash-metric__num" id="dm3">99.8%</span>
+              <span class="dash-metric__label">точность</span>
+              <span class="dash-metric__delta dash-metric__delta--up">↑ 2%</span>
+            </div>
+          </div>
+        </div>
+        <div class="dashboard__side">
+          <div class="dash-card dash-card--board">
+            <div class="dash-card__header">
+              <div role="tablist" aria-label="Информационная панель" class="board-tabs">
+                <button type="button" role="tab" aria-selected="true" aria-controls="panel-log" id="tab-log" class="board-tab board-tab--active">
+                  <span class="board-tab__dot"></span>Лог событий
+                </button>
+                <button type="button" role="tab" aria-selected="false" aria-controls="panel-agents" id="tab-agents" class="board-tab" tabindex="-1">
+                  Агенты онлайн <span class="board-tab__badge" id="agent-count">48</span>
+                </button>
+              </div>
+              <span class="dash-card__live" title="Данные в реальном времени"><span class="pulse-dot"></span>Live</span>
+            </div>
+            <div class="board-panels">
+              <div role="tabpanel" id="panel-log" aria-labelledby="tab-log" class="board-panel board-panel--active">
+                <div class="log" id="event-log">
+                  <!-- JS fills this -->
+                </div>
+              </div>
+              <div role="tabpanel" id="panel-agents" aria-labelledby="tab-agents" class="board-panel" hidden>
+                <div class="agent-list" id="agent-list">
+                  <!-- JS fills this -->
+                </div>
+              </div>
             </div>
           </div>
         </div>
