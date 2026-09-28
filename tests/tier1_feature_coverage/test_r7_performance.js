@@ -25,8 +25,8 @@ suite.test('R7.1: Zero CLS: Terminal and chart elements have fixed layout height
   assert.ok(heights.termHeight, 'Terminal body element .terminal__body not found');
   assert.strictEqual(
     heights.termHeight,
-    '380px',
-    `Expected terminal body to have fixed height: 380px for zero CLS, got '${heights.termHeight}'`
+    '240px',
+    `Expected terminal body to have fixed height: 240px for zero CLS, got '${heights.termHeight}'`
   );
 });
 

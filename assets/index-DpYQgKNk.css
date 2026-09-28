@@ -329,7 +329,7 @@
 @media(min-width:1025px){.hero__title-accent-box{min-height:2.4em;height:auto;overflow:visible}}
 
 /* Zero CLS Terminal & Cursor */
-.terminal__body{height:380px}
+.terminal__body{height:240px}
 .hero__cursor{position:static;display:inline-block;vertical-align:baseline;margin-left:4px}
 
 /* Responsive Container & Scroll Stabilization (F2) */

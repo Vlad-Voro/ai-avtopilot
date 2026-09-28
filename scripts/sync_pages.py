@@ -235,68 +235,9 @@ SUBPAGES_SPEC = {
         "dir": os.path.join(ROOT_DIR, "contact"),
         "title": "Контакты и запись на бесплатный аудит процессов | АвтоПилот",
         "description": "Запишитесь на 30-минутный бесплатный аудит бизнес-процессов. Официальные контакты: Telegram-бот @AiAvtopilotbot, e-mail contact@ai-avtopilot.ru, поддержка 24/7 онлайн.",
-        "h1": "Контакты и запись на бесплатный экспресс-аудит",
+        "h1": "Первый шаг — бесплатный аудит",
         "breadcrumb_name": "Контакты",
-        "deep_content": """
-      <div class="subpage-deep" data-reveal>
-        <nav class="breadcrumbs" aria-label="Хлебные крошки">
-          <a href="/">Главная</a>
-          <span class="breadcrumbs__sep">/</span>
-          <span>Контакты</span>
-        </nav>
-        <h1 class="subpage-deep__title">Контакты и запись на бесплатный экспресс-аудит</h1>
-        <p class="subpage-deep__desc">
-          Оставьте заявку на бесплатный 30-минутный аудит или свяжитесь с нами напрямую через официальные каналы. Мы оперативно ответим и подберем оптимальный сценарий автоматизации для вашего стека систем.
-        </p>
-
-        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:20px;margin:24px 0;">
-          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px;">
-            <span style="color:var(--accent-1);font-family:var(--font-mono);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;">Прямой контакт</span>
-            <h4 style="font-family:var(--font-head);font-size:1.2rem;margin:8px 0 12px;">Telegram-бот</h4>
-            <p style="color:var(--text-2);font-size:0.9rem;margin-bottom:16px;">Мгновенная связь с дежурным инженером и ботом автоматизации</p>
-            <a href="https://t.me/AiAvtopilotbot" target="_blank" rel="noopener noreferrer" class="btn btn--primary" style="padding:10px 20px;font-size:0.88rem;">@AiAvtopilotbot →</a>
-          </div>
-
-          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px;">
-            <span style="color:var(--accent-1);font-family:var(--font-mono);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;">Электронная почта</span>
-            <h4 style="font-family:var(--font-head);font-size:1.2rem;margin:8px 0 12px;">Email для запросов</h4>
-            <p style="color:var(--text-2);font-size:0.9rem;margin-bottom:16px;">Для отправки ТЗ, проектов договоров и соглашений о конфиденциальности (NDA)</p>
-            <a href="mailto:contact@ai-avtopilot.ru" class="btn btn--ghost" style="padding:10px 20px;font-size:0.88rem;">contact@ai-avtopilot.ru</a>
-          </div>
-
-          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px;">
-            <span style="color:var(--accent-1);font-family:var(--font-mono);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;">График работы</span>
-            <h4 style="font-family:var(--font-head);font-size:1.2rem;margin:8px 0 12px;">Режим поддержки</h4>
-            <p style="color:var(--text-2);font-size:0.9rem;line-height:1.6;">
-              Круглосуточно<br />
-              <strong>24/7 онлайн</strong><br />
-              <span style="color:var(--text-3);font-size:0.8rem;">г. Москва · Работаем по всей России</span>
-            </p>
-          </div>
-        </div>
-
-        <h3 style="color:var(--text-1);margin:28px 0 16px;font-family:var(--font-head);font-size:1.2rem;">Корпоративные стандарты работы и гарантии (B2B)</h3>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:16px;margin-bottom:24px;">
-          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;">
-            <strong style="color:var(--accent-1);display:block;margin-bottom:6px;">ЭДО (Диадок / СБИС)</strong>
-            <span style="color:var(--text-2);font-size:0.85rem;line-height:1.5;display:block;">Мгновенный обмен юридически значимыми документами и закрывающими актами без бумаги.</span>
-          </div>
-          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;">
-            <strong style="color:var(--green);display:block;margin-bottom:6px;">Безналичный расчет</strong>
-            <span style="color:var(--text-2);font-size:0.85rem;line-height:1.5;display:block;">Официальный счет-договор для юридических лиц и ИП с фиксацией SLA и измеримых KPI.</span>
-          </div>
-          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;">
-            <strong style="color:var(--text-1);display:block;margin-bottom:6px;">NDA и безопасность</strong>
-            <span style="color:var(--text-2);font-size:0.85rem;line-height:1.5;display:block;">Строгое соглашение о неразглашении перед стартом. Обработка данных строго по 152-ФЗ РФ.</span>
-          </div>
-        </div>
-
-        <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;">
-          <a href="/faq/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">База знаний и частые вопросы →</a>
-          <a href="/cases/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Смотреть подтвержденные кейсы →</a>
-        </div>
-      </div>
-""",
+        "deep_content": "",
     },
 }
 
@@ -392,6 +333,41 @@ def generate_subpage(slug: str, spec: dict, master_html: str) -> str:
 
   <!-- ═══════════════════ LIVE DASHBOARD ═══════════════════ -->"""
         html = html.replace(faq_mesh_target, faq_mesh_replacement, 1)
+
+    # For Contact subpage: promote Contact title to H1 and append B2B trust mesh & subpage links at the bottom
+    if slug == "contact":
+        html = html.replace(
+            '<h2 class="contact__title">Первый шаг — бесплатный аудит</h2>',
+            '<h1 class="contact__title">Первый шаг — бесплатный аудит</h1>',
+            1,
+        )
+        contact_mesh_target = "    </div>\n  </section>\n  </main>"
+        contact_mesh_replacement = """      <div class="contact-b2b" style="margin-top:36px;border-top:1px solid var(--border);padding-top:24px;">
+        <h3 style="color:var(--text-1);margin-bottom:16px;font-family:var(--font-head);font-size:1.15rem;">Корпоративные стандарты работы и гарантии (B2B)</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:16px;margin-bottom:24px;">
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;">
+            <strong style="color:var(--accent-1);display:block;margin-bottom:6px;">ЭДО (Диадок / СБИС)</strong>
+            <span style="color:var(--text-2);font-size:0.85rem;line-height:1.5;display:block;">Мгновенный обмен юридически значимыми документами и закрывающими актами без бумаги.</span>
+          </div>
+          <div style="background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.3);border-radius:var(--radius-sm);padding:16px;">
+            <strong style="color:var(--green);display:block;margin-bottom:6px;">Безналичный расчет</strong>
+            <span style="color:var(--text-2);font-size:0.85rem;line-height:1.5;display:block;">Официальный счет-договор для юридических лиц и ИП с фиксацией SLA и измеримых KPI.</span>
+          </div>
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;">
+            <strong style="color:var(--text-1);display:block;margin-bottom:6px;">NDA и безопасность</strong>
+            <span style="color:var(--text-2);font-size:0.85rem;line-height:1.5;display:block;">Строгое соглашение о неразглашении перед стартом. Обработка данных строго по 152-ФЗ РФ.</span>
+          </div>
+        </div>
+        <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:20px;">
+          <a href="/cases/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Смотреть подтвержденные кейсы →</a>
+          <a href="/calculator/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Рассчитать окупаемость →</a>
+          <a href="/faq/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Частые вопросы (FAQ) →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>"""
+        html = html.replace(contact_mesh_target, contact_mesh_replacement, 1)
 
     # 7. Insert deep_content at the beginning of <main id="main-content"> (if present)
     main_tag = '<main id="main-content">'

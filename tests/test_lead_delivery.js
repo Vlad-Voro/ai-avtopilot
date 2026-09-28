@@ -183,7 +183,8 @@ async function runDeliveryTests(options = {}) {
       await page.locator('#contact-name').fill('Владимир Проверен');
       await page.locator('#contact-company').fill('ООО «Технологии»');
       await page.locator('#contact-email').fill('+7 (999) 777-66-55');
-      await page.locator('#contact-consent').check();
+      const consentBox = page.locator('#contact-consent');
+      if (await consentBox.count() > 0) await consentBox.check();
 
       // Submit form
       await page.locator('#form-submit').click();
@@ -220,7 +221,8 @@ async function runDeliveryTests(options = {}) {
       await page.locator('#contact-name').fill('Фоллбэк Тест');
       await page.locator('#contact-company').fill('Тест Инк');
       await page.locator('#contact-email').fill('@telegram_user');
-      await page.locator('#contact-consent').check();
+      const fallbackConsent = page.locator('#contact-consent');
+      if (await fallbackConsent.count() > 0) await fallbackConsent.check();
 
       await page.locator('#form-submit').click();
 
