@@ -277,11 +277,11 @@ ul{list-style:none}
 .nav__link:hover{color:var(--text-1)}
 .nav__link:hover:after,.nav__link.active:after{width:100%}
 .nav__link.active{color:var(--text-1);font-weight:600}
-.hero{min-height:100vh;padding:80px 0 30px;position:relative;display:flex;align-items:center}
+.hero{min-height:100vh;padding:104px 0 40px;position:relative;display:flex;align-items:flex-start}
 .hero:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 40%,rgba(99,102,241,.12) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 20% 70%,rgba(168,85,247,.08) 0%,transparent 50%);pointer-events:none}
 .hero__particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;width:100%;height:100%}
 .hero__particles canvas{display:block;width:100%!important;height:100%!important}
-.hero__inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:1}
+.hero__inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:flex-start;position:relative;z-index:1}
 .hero__badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:.8rem;color:var(--text-2);background:var(--surface);border:1px solid var(--border);padding:8px 16px;border-radius:100px;margin-bottom:16px}
 .hero__badge-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse-green 2s ease-in-out infinite}
 @keyframes pulse-green{0%,to{box-shadow:0 0 #22c55e66}
@@ -293,10 +293,10 @@ ul{list-style:none}
 @keyframes blink{0%,to{opacity:1}
 50%{opacity:0}
 }
-.hero__sub{color:var(--text-2);font-size:1.1rem;line-height:1.7;margin-bottom:20px;max-width:480px}
-.hero__actions{display:flex;gap:16px;margin-bottom:24px;flex-wrap:wrap}
-.hero__kpis{display:flex;gap:24px;flex-wrap:wrap}
-.kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 24px;text-align:center;flex:1;min-width:110px}
+.hero__sub{color:var(--text-2);font-size:1.1rem;line-height:1.7;margin-bottom:20px;max-width:500px}
+.hero__actions{display:flex;gap:16px;margin-top:36px;margin-bottom:24px;flex-wrap:wrap}
+.hero__kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:20px 16px;text-align:center;min-width:0}
 .kpi-card__num{display:block;font-family:var(--font-head);font-size:1.6rem;font-weight:900;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:4px}
 .kpi-card__label{font-size:.72rem;color:var(--text-3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.05em}
 .hero__terminal-wrap{position:relative}
@@ -354,7 +354,6 @@ to{opacity:1}
 .scard__tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
 .scard__tags span{font-family:var(--font-mono);font-size:.7rem;color:var(--accent-1);background:#6366f11a;border:1px solid rgba(99,102,241,.2);padding:4px 10px;border-radius:6px}
 .services-dots{display:none;min-height:24px}
-.services-swipe-pill{display:none}
 .dashboard{padding:15px 0 30px;background:var(--surface)}
 .dashboard__grid{display:grid;grid-template-columns:1fr 380px;gap:16px}
 .dashboard__main,.dashboard__side{display:flex;flex-direction:column;gap:16px}
@@ -499,7 +498,6 @@ to{opacity:1;transform:scale(1) translateY(0)}
 .services__bento::-webkit-scrollbar{display:none}
 .services__bento .scard{flex:0 0 min(320px,78vw);scroll-snap-align:center;scroll-snap-stop:normal;display:flex;flex-direction:column;padding:24px 20px;grid-column:auto}
 .services-dots{display:flex;justify-content:center;gap:8px;margin-top:8px;min-height:24px}
-.services-swipe-pill{display:inline-flex;align-items:center;gap:4px;font-size:.68rem;font-family:var(--font-mono);color:var(--accent-1);background:#6366f11f;border:1px solid #6366f140;padding:2px 8px;border-radius:999px;margin-left:8px;vertical-align:middle}
 @keyframes sNudge{0%,100%{transform:translate3d(0,0,0)}35%{transform:translate3d(-24px,0,0)}70%{transform:translate3d(4px,0,0)}}
 .services__bento.is-nudging{animation:sNudge .65s cubic-bezier(.25,1,.5,1) 1;will-change:transform}
 .cases__grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;gap:16px;padding:8px 4px 18px;margin:0 -4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
@@ -513,8 +511,10 @@ to{opacity:1;transform:scale(1) translateY(0)}
 .nav__links{position:fixed;top:0;right:0;width:280px;height:100vh;height:100dvh;background:#08080cfa;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);flex-direction:column;padding:100px 40px;transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1);box-shadow:-10px 0 30px #00000080;border-left:1px solid var(--border);display:flex;visibility:hidden;opacity:0;pointer-events:none}
 .nav__links.active{transform:translateX(0);visibility:visible;opacity:1;pointer-events:auto}
 .btn--nav{display:none}
-.hero__inner{grid-template-columns:1fr;gap:40px}
+.hero{padding:90px 0 30px}
+.hero__inner{grid-template-columns:1fr;gap:32px}
 .hero__terminal-wrap{display:none}
+.hero__actions{margin-top:20px}
 .hero__kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .hero__title{font-size:clamp(2rem,8vw,3rem)}
 .hero__sub{font-size:1rem}
@@ -1786,7 +1786,7 @@ section[id] {
   <section class="roi" id="calculator">
     <div class="container">
       <div class="section-header">
-        <p class="section-tag" data-reveal>Посчитайте свои деньги</p>
+        <p class="section-tag" data-reveal>Посчитайте вашу экономию</p>
         <h2 class="section-title" data-reveal>Калькулятор окупаемости</h2>
       </div>
       <div class="roi__card" data-reveal>
@@ -1796,21 +1796,21 @@ section[id] {
                 id="display-employees">10</span></label>
             <input type="range" class="roi-slider" id="slider-employees" aria-label="Количество сотрудников на рутинных задачах" min="1" max="100" value="10" />
             <div class="roi-slider-limits">
-              <span>1 чел</span>
-              <span>100 чел</span>
+              <span>1 человек</span>
+              <span>100 человек</span>
             </div>
           </div>
           <div class="roi-input-group">
-            <label class="roi-label" for="slider-hours">Часов/нед тратят на рутину <span class="roi-value-display"
+            <label class="roi-label" for="slider-hours">Часов в неделю тратят на рутину <span class="roi-value-display"
                 id="display-hours">20</span></label>
             <input type="range" class="roi-slider" id="slider-hours" aria-label="Количество часов в неделю на рутину" min="1" max="40" value="20" />
             <div class="roi-slider-limits">
-              <span>1 ч</span>
-              <span>40 ч</span>
+              <span>1 час</span>
+              <span>40 часов</span>
             </div>
           </div>
           <div class="roi-input-group">
-            <label class="roi-label" for="slider-salary">Ср. зарплата сотрудника (₽/мес) <span class="roi-value-display"
+            <label class="roi-label" for="slider-salary">Средняя зарплата сотрудника (рублей в месяц) <span class="roi-value-display"
                 id="display-salary">80 000</span></label>
             <input type="range" class="roi-slider" id="slider-salary" aria-label="Средняя зарплата сотрудника в рублях в месяц" min="30000" max="300000" step="5000"
               value="80000" />
@@ -1830,8 +1830,8 @@ section[id] {
             <span class="roi-result-num" id="roi-save">0 ₽</span>
           </div>
           <div class="roi-result-card">
-            <span class="roi-result-label">Освободится человеко-часов/год</span>
-            <span class="roi-result-num" id="roi-hours">0 ч</span>
+            <span class="roi-result-label">Освободится человеко-часов в год</span>
+            <span class="roi-result-num" id="roi-hours">0 часов</span>
           </div>
           <div class="roi__cta-block">
             <p>Готовы увидеть реальные цифры для вашего бизнеса?</p>
@@ -1884,7 +1884,7 @@ section[id] {
   <section class="services" id="services">
     <div class="container">
       <div class="section-header">
-        <p class="section-tag" data-reveal>Решения и интеграции<span class="services-swipe-pill" aria-hidden="true">⇄ свайп</span></p>
+        <p class="section-tag" data-reveal>Решения и интеграции</p>
         <h2 class="section-title" data-reveal>Готовые сценарии автоматизации</h2>
       </div>
       <div class="services__bento" data-reveal tabindex="0" role="region" aria-roledescription="carousel" aria-label="Сценарии автоматизации">
@@ -1937,7 +1937,7 @@ section[id] {
         </div>
 
       </div>
-      <div class="carousel-dots services-dots" id="services-dots" aria-hidden="true"></div>
+      <div class="carousel-dots services-dots" id="services-dots"></div>
     </div>
   </section>
 
@@ -2084,7 +2084,7 @@ section[id] {
         </div>
 
       </div>
-      <div class="carousel-dots" id="carousel-dots" aria-hidden="true"></div>
+      <div class="carousel-dots" id="carousel-dots"></div>
     </div>
   </section>
 
@@ -2169,7 +2169,7 @@ section[id] {
           <span class="hero__badge-text">Системы активны · <span id="hero-agent-count">48</span> <span class="hero__badge-word">автономных </span>агентов в контуре</span>
         </div>
         <p class="section-tag" data-reveal>Центр управления</p>
-        <h2 class="section-title" data-reveal>Ваши агенты работают прямо сейчас</h2>
+        <h2 class="section-title" data-reveal>Ваши агенты могут работать прямо сейчас</h2>
       </div>
       <div class="dashboard__grid" data-reveal>
         <div class="dashboard__main">

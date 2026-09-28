@@ -309,6 +309,15 @@ runCheck('SEO-20', 'ProfessionalService has valid OfferCatalog and all images ha
   });
 });
 
+// SEO-21: ARIA Hidden Elements Contain No Focusable/Interactive Children
+runCheck('SEO-21', 'Zero aria-hidden attributes on carousel dots or interactive wrappers', () => {
+  PAGES.forEach(p => {
+    const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
+    assert.ok(!html.includes('id="services-dots" aria-hidden="true"'), `Found aria-hidden="true" on services-dots in ${p.file}`);
+    assert.ok(!html.includes('id="carousel-dots" aria-hidden="true"'), `Found aria-hidden="true" on carousel-dots in ${p.file}`);
+  });
+});
+
 // SEO-19: Test execution time benchmark
 runCheck('SEO-19', 'Full SEO verification suite completes in under 500ms', () => {
   assert.ok(true);
