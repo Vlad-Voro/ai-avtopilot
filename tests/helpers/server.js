@@ -21,6 +21,7 @@ const MIME_TYPES = {
 };
 
 function createStaticServer(baseDir) {
+  const root = path.resolve(baseDir);
   const fileCache = new Map();
   function getFile(p) {
     if (fileCache.has(p)) return fileCache.get(p);
