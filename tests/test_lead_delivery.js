@@ -23,13 +23,16 @@ const C = {
   yellow: '\x1b[33m'
 };
 
-async function runDeliveryTests() {
+async function runDeliveryTests(options = {}) {
   console.log(`${C.bold}${C.cyan}========================================================================${C.reset}`);
   console.log(`${C.bold}${C.cyan}    AI AVTOPILOT - FORM DELIVERY & BRANDED VALIDATION SUITE             ${C.reset}`);
   console.log(`${C.bold}${C.cyan}========================================================================${C.reset}\n`);
 
-  let server;
-  let browser;
+  let server = options.server;
+  let browser = options.browser;
+  let baseUrl = options.baseUrl;
+  let ownServer = false;
+  let ownBrowser = false;
   let passed = 0;
   let failed = 0;
 
@@ -46,14 +49,20 @@ async function runDeliveryTests() {
   }
 
   try {
-    const rootDir = path.resolve(__dirname, '..');
-    server = createStaticServer(rootDir);
-    const { baseUrl } = await server.start();
-
-    browser = await chromium.launch({
-      channel: 'msedge',
-      headless: true
-    });
+    if (!server && !baseUrl) {
+      const rootDir = path.resolve(__dirname, '..');
+      server = createStaticServer(rootDir);
+      const res = await server.start();
+      baseUrl = res.baseUrl;
+      ownServer = true;
+    }
+    if (!browser) {
+      browser = await chromium.launch({
+        channel: 'msedge',
+        headless: true
+      });
+      ownBrowser = true;
+    }
 
     // TEST 1: Branded validation tooltip on empty required fields
     await test('FORM-01: Empty submit triggers branded tooltip and prevents native bubble', async () => {
@@ -102,8 +111,8 @@ async function runDeliveryTests() {
       // Check required badge on phone field
       const requiredBadge = page.locator('.required-badge');
       const badgeCount = await requiredBadge.count();
-      assert.strictEqual(badgeCount, 1, 'Contact/phone field must display .required-badge');
-      const badgeText = await requiredBadge.textContent();
+      assert.strictEqual(badgeCount, 2, 'Both Name and Contact fields must display .required-badge');
+      const badgeText = await requiredBadge.first().textContent();
       assert.strictEqual(badgeText.trim(), 'обязательно');
 
       // Check optional hint on Company
@@ -235,8 +244,8 @@ async function runDeliveryTests() {
     });
 
   } finally {
-    if (browser) await browser.close();
-    if (server) await server.stop();
+    if (ownBrowser && browser) await browser.close();
+    if (ownServer && server) await server.stop();
   }
 
   console.log(`\n${C.bold}========================================================================${C.reset}`);
@@ -246,14 +255,20 @@ async function runDeliveryTests() {
   console.log(`Passing:      ${C.green}${passed}${C.reset}`);
   console.log(`Failing:      ${failed > 0 ? C.red : C.green}${failed}${C.reset}`);
 
-  if (failed > 0) {
-    process.exit(1);
-  } else {
+  if (failed === 0) {
     console.log(`\n${C.bold}${C.green}ALL FORM DELIVERY AND BRANDED VALIDATION TESTS PASSED!${C.reset}\n`);
   }
+
+  return { totalChecks: passed + failed, passedChecks: passed, failedChecks: failed };
 }
 
-runDeliveryTests().catch(err => {
-  console.error('Test execution failed:', err);
-  process.exit(1);
-});
+if (require.main === module) {
+  runDeliveryTests().then(res => {
+    process.exit(res.failedChecks === 0 ? 0 : 1);
+  }).catch(err => {
+    console.error('Test execution failed:', err);
+    process.exit(1);
+  });
+}
+
+module.exports = { runDeliveryTests };

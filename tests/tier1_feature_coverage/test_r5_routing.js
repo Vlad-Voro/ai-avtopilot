@@ -47,7 +47,7 @@ suite.test('R5.2: Clicking clean nav link updates URL via pushState without relo
 
   const casesLink = page.locator('.nav__links a, .nav__link', { hasText: 'Кейсы' }).first();
   await casesLink.click();
-  await page.waitForTimeout(400);
+  await page.waitForFunction(() => window.location.pathname === '/cases' || window.location.pathname === '/cases/');
 
   const state = await page.evaluate(() => {
     return {
@@ -111,7 +111,7 @@ suite.test('R5.5: ScrollSpy updates browser address bar with replaceState during
   // Scroll to cases section
   const casesSection = page.locator('#cases');
   await casesSection.scrollIntoViewIfNeeded();
-  await page.waitForTimeout(600); // Allow IntersectionObserver to fire
+  await page.waitForFunction(() => window.location.pathname === '/cases' || window.location.pathname === '/cases/');
 
   const currentPath = await page.evaluate(() => window.location.pathname);
   assert.ok(
@@ -122,7 +122,12 @@ suite.test('R5.5: ScrollSpy updates browser address bar with replaceState during
 
 suite.test('R5.6: Backward compatibility: direct navigation with #hash jumps cleanly', async ({ page, baseUrl }) => {
   await page.goto(`${baseUrl}/#calculator`);
-  await page.waitForTimeout(500);
+  await page.waitForFunction(() => {
+    const el = document.getElementById('calculator');
+    if (!el) return false;
+    const rect = el.getBoundingClientRect();
+    return rect.top >= -50 && rect.top <= window.innerHeight;
+  });
 
   const isVisibleInViewport = await page.locator('#calculator').evaluate(el => {
     const rect = el.getBoundingClientRect();

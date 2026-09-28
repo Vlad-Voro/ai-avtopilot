@@ -21,7 +21,12 @@ suite.test('Interaction 1: Navigation link click while user is actively scrollin
   // Immediately click navigation link to Cases
   const casesLink = page.locator('.nav__links a, .nav__link', { hasText: 'Кейсы' }).first();
   await casesLink.click();
-  await page.waitForTimeout(600);
+  await page.waitForFunction(() => {
+    const el = document.getElementById('cases');
+    if (!el) return false;
+    const r = el.getBoundingClientRect();
+    return r.top >= -50 && r.top <= window.innerHeight;
+  });
 
   const isInCases = await page.locator('#cases').evaluate(el => {
     const r = el.getBoundingClientRect();
@@ -66,7 +71,7 @@ suite.test('Interaction 3: Burger menu open locks body scroll and prevents backg
 
   const burger = page.locator('#burger, .nav__burger');
   await burger.click();
-  await page.waitForTimeout(200);
+  await page.waitForFunction(() => document.querySelector('.nav__links').classList.contains('active'));
 
   // Attempt to scroll body
   const canScroll = await page.evaluate(() => {
@@ -85,12 +90,17 @@ suite.test('Interaction 3: Burger menu open locks body scroll and prevents backg
 suite.test('Interaction 4: Hash backward compatibility combined with clean slash pushState navigation', async ({ page, baseUrl }) => {
   // Arrive with legacy #contact hash
   await page.goto(`${baseUrl}/#contact`);
-  await page.waitForTimeout(400);
+  await page.waitForFunction(() => {
+    const el = document.getElementById('contact');
+    if (!el) return false;
+    const r = el.getBoundingClientRect();
+    return r.top >= -50 && r.top <= window.innerHeight;
+  });
 
   // Then click clean slash navigation link for Services
   const servicesLink = page.locator('.nav__links a, .nav__link', { hasText: 'Услуги' }).first();
   await servicesLink.click();
-  await page.waitForTimeout(400);
+  await page.waitForFunction(() => window.location.pathname === '/services' || window.location.pathname === '/services/');
 
   const pathname = await page.evaluate(() => window.location.pathname);
   assert.ok(
@@ -104,11 +114,11 @@ suite.test('Interaction 5: Typewriter phrase cycling while viewport resizes acro
   await page.goto(`${baseUrl}/`);
 
   // Wait for typewriter to start typing
-  await page.waitForTimeout(1000);
+  await page.waitForFunction(() => (document.getElementById('typed-text')?.textContent || '').length > 0);
 
   // Resize to breakpoint threshold 1025px
   await page.setViewportSize({ width: 1025, height: 800 });
-  await page.waitForTimeout(500);
+  await page.waitForFunction(() => window.innerWidth === 1025);
 
   const cursorState = await page.evaluate(() => {
     const cursor = document.querySelector('.hero__cursor');
@@ -135,7 +145,7 @@ suite.test('Interaction 6: Contact form inputs focus without fixed header occlus
   const input = page.locator('input[type="text"], input[name="name"], input[placeholder*="имя" i]').first();
   if (await input.count() > 0) {
     await input.focus();
-    await page.waitForTimeout(200);
+    await page.waitForFunction(() => document.activeElement && document.activeElement.tagName === 'INPUT');
 
     const isOccludedByHeader = await page.evaluate(() => {
       const activeEl = document.activeElement;

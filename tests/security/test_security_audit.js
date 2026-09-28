@@ -260,14 +260,20 @@ async function runSecuritySuite() {
   console.log(`Passing:              ${C.green}${passed}${C.reset}`);
   console.log(`Failing:              ${failed > 0 ? C.red : C.green}${failed}${C.reset}`);
 
-  if (failed > 0) {
-    process.exit(1);
-  } else {
+  if (failed === 0) {
     console.log(`\n${C.bold}${C.green}ALL SECURITY CHECKS PASSED! HARDENING CONFIRMED WITH ZERO REGRESSIONS.${C.reset}\n`);
   }
+
+  return { totalChecks: passed + failed, passedChecks: passed, failedChecks: failed };
 }
 
-runSecuritySuite().catch(err => {
-  console.error('Fatal test error:', err);
-  process.exit(1);
-});
+if (require.main === module) {
+  runSecuritySuite().then(res => {
+    process.exit(res.failedChecks === 0 ? 0 : 1);
+  }).catch(err => {
+    console.error('Fatal test error:', err);
+    process.exit(1);
+  });
+}
+
+module.exports = { runSecuritySuite };

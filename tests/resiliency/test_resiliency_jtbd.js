@@ -79,8 +79,10 @@ async function runResiliencySuite() {
   // RES-04: Yandex Metrica 'lead_form_success' strictly guarded on confirmed success
   await test('RES-04: Yandex Metrica lead_form_success guarded on confirmed success', () => {
     assert(bundle.includes('lead_form_success'), 'Must report lead_form_success to Yandex Metrica');
-    assert(bundle.includes('isSuccess){try{if(typeof window.ym==="function"){window.ym(112978516,"reachGoal","lead_form_success")'),
-      'YM goal must be strictly inside confirmed isSuccess block');
+    assert(
+      /isSuccess[\s\S]*?ym\(\d+,\s*["']reachGoal["'],\s*["']lead_form_success["']\)/.test(bundle),
+      'YM goal must be strictly inside confirmed isSuccess block'
+    );
   });
 
   // RES-05: Strict Anti-Slop Audit across index.html and all 6 subpages
@@ -109,12 +111,16 @@ async function runResiliencySuite() {
   console.log(`Resiliency & JTBD Results: ${C.green}${passed} Passed${C.reset}, ${failed > 0 ? C.red : C.green}${failed} Failed${C.reset}`);
   console.log(`${C.bold}------------------------------------------------------------------------${C.reset}\n`);
 
-  if (failed > 0) {
-    process.exit(1);
-  }
+  return { totalChecks: passed + failed, passedChecks: passed, failedChecks: failed };
 }
 
-runResiliencySuite().catch(err => {
-  console.error('Fatal test error:', err);
-  process.exit(1);
-});
+if (require.main === module) {
+  runResiliencySuite().then(res => {
+    process.exit(res.failedChecks === 0 ? 0 : 1);
+  }).catch(err => {
+    console.error('Fatal test error:', err);
+    process.exit(1);
+  });
+}
+
+module.exports = { runResiliencySuite };

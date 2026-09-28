@@ -37,11 +37,16 @@ function runCheck(id, desc, testFn) {
   }
 }
 
-console.log('========================================================================');
-console.log('    AI AVTOPILOT - TECHNICAL & SEO AUDIT VERIFICATION SUITE             ');
-console.log('========================================================================\n');
+function runSeoSuite() {
+  totalChecks = 0;
+  passedChecks = 0;
+  failedChecks = 0;
 
-console.log('▶ [Category 1] Directives & Discovery (Robots, Sitemap, LLMs)');
+  console.log('========================================================================');
+  console.log('    AI AVTOPILOT - TECHNICAL & SEO AUDIT VERIFICATION SUITE             ');
+  console.log('========================================================================\n');
+
+  console.log('▶ [Category 1] Directives & Discovery (Robots, Sitemap, LLMs)');
 
 // SEO-01: sitemap.xml
 runCheck('SEO-01', 'sitemap.xml is valid, contains all canonical URLs with HTTPS', () => {
@@ -309,17 +314,25 @@ runCheck('SEO-19', 'Full SEO verification suite completes in under 500ms', () =>
   assert.ok(true);
 });
 
-console.log('\n========================================================================');
-console.log('SEO TEST SUMMARY');
-console.log('========================================================================');
-console.log(`Total SEO Checks: ${totalChecks}`);
-console.log(`Passing:          ${passedChecks}`);
-console.log(`Failing:          ${failedChecks}`);
+  console.log('\n========================================================================');
+  console.log('SEO TEST SUMMARY');
+  console.log('========================================================================');
+  console.log(`Total SEO Checks: ${totalChecks}`);
+  console.log(`Passing:          ${passedChecks}`);
+  console.log(`Failing:          ${failedChecks}`);
 
-if (failedChecks === 0) {
-  console.log('\nALL SEO CHECKS PASSED! ENTERPRISE SEO AND ZERO-REGRESSION CONFIRMED.\n');
-  process.exit(0);
-} else {
-  console.error('\nSOME SEO CHECKS FAILED! REVIEW OUTPUT ABOVE.\n');
-  process.exit(1);
+  if (failedChecks === 0) {
+    console.log('\nALL SEO CHECKS PASSED! ENTERPRISE SEO AND ZERO-REGRESSION CONFIRMED.\n');
+  } else {
+    console.error('\nSOME SEO CHECKS FAILED! REVIEW OUTPUT ABOVE.\n');
+  }
+
+  return { totalChecks, passedChecks, failedChecks };
 }
+
+if (require.main === module) {
+  const res = runSeoSuite();
+  process.exit(res.failedChecks === 0 ? 0 : 1);
+}
+
+module.exports = { runSeoSuite };

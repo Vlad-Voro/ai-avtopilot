@@ -42,11 +42,11 @@ suite.test('Burger Toggle: Closing menu releases body scroll lock (overflow beco
 
   // Open menu
   await burger.click();
-  await page.waitForTimeout(150);
+  await page.waitForFunction(() => document.querySelector('.nav__links').classList.contains('active'));
 
   // Close menu
   await burger.click();
-  await page.waitForTimeout(150);
+  await page.waitForFunction(() => !document.querySelector('.nav__links').classList.contains('active'));
 
   const bodyOverflow = await page.evaluate(() => window.getComputedStyle(document.body).overflow);
   assert.notStrictEqual(
@@ -62,11 +62,11 @@ suite.test('Burger Toggle: ESC key closes open mobile navigation menu', async ({
 
   const burger = page.locator('#burger, .nav__burger');
   await burger.click();
-  await page.waitForTimeout(200);
+  await page.waitForFunction(() => document.querySelector('.nav__links').classList.contains('active'));
 
   // Press ESC
   await page.keyboard.press('Escape');
-  await page.waitForTimeout(200);
+  await page.waitForFunction(() => !document.querySelector('.nav__links').classList.contains('active'));
 
   const isClosed = await page.locator('.nav__links').evaluate(el => {
     return !el.classList.contains('active') && !el.classList.contains('is-open');
@@ -81,11 +81,11 @@ suite.test('Burger Toggle: Clicking mobile nav link closes menu automatically', 
 
   const burger = page.locator('#burger, .nav__burger');
   await burger.click();
-  await page.waitForTimeout(200);
+  await page.waitForFunction(() => document.querySelector('.nav__links').classList.contains('active'));
 
   const link = page.locator('.nav__links a, .nav__link').first();
   await link.click();
-  await page.waitForTimeout(300);
+  await page.waitForFunction(() => !document.querySelector('.nav__links').classList.contains('active'));
 
   const isClosed = await page.locator('.nav__links').evaluate(el => {
     return !el.classList.contains('active') && !el.classList.contains('is-open');
@@ -100,7 +100,7 @@ suite.test('Burger Toggle: Aria-expanded attribute updates synchronously with me
 
   const burger = page.locator('#burger, .nav__burger');
   await burger.click();
-  await page.waitForTimeout(150);
+  await page.waitForFunction(() => document.querySelector('#burger, .nav__burger').getAttribute('aria-expanded') === 'true');
 
   const expanded = await burger.getAttribute('aria-expanded');
   assert.strictEqual(expanded, 'true', "Expected aria-expanded='true' when burger menu is open");

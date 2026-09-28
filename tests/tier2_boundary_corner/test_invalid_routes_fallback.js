@@ -15,7 +15,7 @@ suite.test('Fallback Routing: Non-existent direct route loads 404 fallback witho
   page.on('framenavigated', () => { redirectCount++; });
 
   const res = await page.goto(`${baseUrl}/completely-invalid-subpath-xyz`);
-  await page.waitForTimeout(500);
+  await page.waitForLoadState('domcontentloaded');
 
   // Even if redirected, redirectCount should be bounded (not infinite loop)
   assert.ok(redirectCount < 6, `Excessive redirects detected: ${redirectCount}`);
@@ -24,7 +24,12 @@ suite.test('Fallback Routing: Non-existent direct route loads 404 fallback witho
 suite.test('Fallback Routing: Direct landing on valid clean path /services hydrates properly', async ({ page, baseUrl }) => {
   // Directly navigate to /services (which via static server serves 404.html -> hydrates or serves index)
   await page.goto(`${baseUrl}/services`);
-  await page.waitForTimeout(600);
+  await page.waitForFunction(() => {
+    const s = document.getElementById('services');
+    if (!s) return false;
+    const rect = s.getBoundingClientRect();
+    return rect.top >= -50 && rect.top <= window.innerHeight;
+  });
 
   // The application router should resolve and scroll to #services
   const isServicesTargeted = await page.evaluate(() => {
@@ -47,7 +52,7 @@ suite.test('Fallback Routing: Path with query parameters preserves parameter or 
   page.on('pageerror', err => errors.push(err.message));
 
   await page.goto(`${baseUrl}/?utm_source=google&utm_campaign=test`);
-  await page.waitForTimeout(400);
+  await page.locator('#home, .hero').first().waitFor({ state: 'visible' });
 
   assert.strictEqual(errors.length, 0);
   const heroVisible = await page.locator('#home, .hero').isVisible();
@@ -56,7 +61,12 @@ suite.test('Fallback Routing: Path with query parameters preserves parameter or 
 
 suite.test('Fallback Routing: Mixed query parameter and hash /?ref=tg#calculator', async ({ page, baseUrl }) => {
   await page.goto(`${baseUrl}/?ref=tg#calculator`);
-  await page.waitForTimeout(600);
+  await page.waitForFunction(() => {
+    const el = document.getElementById('calculator');
+    if (!el) return false;
+    const r = el.getBoundingClientRect();
+    return r.top >= -50 && r.top <= window.innerHeight;
+  });
 
   const calcVisible = await page.locator('#calculator').evaluate(el => {
     const r = el.getBoundingClientRect();
@@ -71,7 +81,7 @@ suite.test('Fallback Routing: Double slashes or trailing slashes /services/ norm
   page.on('pageerror', err => errors.push(err.message));
 
   await page.goto(`${baseUrl}/services/`);
-  await page.waitForTimeout(500);
+  await page.waitForLoadState('domcontentloaded');
 
   assert.strictEqual(errors.length, 0);
 });

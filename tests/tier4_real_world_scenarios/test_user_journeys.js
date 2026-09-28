@@ -44,7 +44,12 @@ suite.test('Journey 2: Service exploration - user navigates to services bento gr
   // Click Services nav link
   const servicesLink = page.locator('.nav__links a, .nav__link', { hasText: 'Услуги' }).first();
   await servicesLink.click();
-  await page.waitForTimeout(80);
+  await page.waitForFunction(() => {
+    const el = document.getElementById('services');
+    if (!el) return false;
+    const r = el.getBoundingClientRect();
+    return r.top >= -50 && r.top <= window.innerHeight;
+  });
 
   // Verify services in view
   const isServicesInView = await page.locator('#services').evaluate(el => {
@@ -56,7 +61,6 @@ suite.test('Journey 2: Service exploration - user navigates to services bento gr
   // Hover first bento card
   const firstCard = page.locator('.scard').first();
   await firstCard.hover();
-  await page.waitForTimeout(60);
 
   const cardVisible = await firstCard.isVisible();
   assert.ok(cardVisible, 'Bento service card should be clearly visible');
@@ -68,7 +72,12 @@ suite.test('Journey 3: Executive ROI calculation with custom parameters and lead
   // Navigate to calculator
   const calcLink = page.locator('.nav__links a, .nav__link', { hasText: 'Калькулятор' }).first();
   await calcLink.click();
-  await page.waitForTimeout(80);
+  await page.waitForFunction(() => {
+    const el = document.getElementById('calculator');
+    if (!el) return false;
+    const r = el.getBoundingClientRect();
+    return r.top >= -50 && r.top <= window.innerHeight;
+  });
 
   // Adjust parameters: 15 employees, 10 hrs/week, 120,000 rub/month
   // D = 10 / 160 = 0.0625
@@ -103,7 +112,12 @@ suite.test('Journey 3: Executive ROI calculation with custom parameters and lead
   // Click CTA in calculator to capture lead
   const calcCta = page.locator('.roi__cta-block a, .roi a[href*="contact"]').first();
   await calcCta.click();
-  await page.waitForTimeout(80);
+  await page.waitForFunction(() => {
+    const el = document.getElementById('contact');
+    if (!el) return false;
+    const r = el.getBoundingClientRect();
+    return r.top >= -50 && r.top <= window.innerHeight;
+  });
 
   const contactInView = await page.locator('#contact').evaluate(el => {
     const r = el.getBoundingClientRect();
@@ -115,7 +129,12 @@ suite.test('Journey 3: Executive ROI calculation with custom parameters and lead
 suite.test('Journey 4: Deep linking via clean URL /cases with browser back/forward navigation', async ({ page, baseUrl }) => {
   // Directly navigate to /cases
   await page.goto(`${baseUrl}/cases`);
-  await page.waitForTimeout(100);
+  await page.waitForFunction(() => {
+    const el = document.getElementById('cases');
+    if (!el) return false;
+    const r = el.getBoundingClientRect();
+    return r.top >= -50 && r.top <= window.innerHeight;
+  });
 
   const hasCases = (await page.locator('#cases').count()) > 0;
   assert.ok(hasCases, 'Direct navigation to /cases failed: page did not hydrate to #cases (missing 404 SPA fallback or clean routing)');
@@ -130,11 +149,16 @@ suite.test('Journey 4: Deep linking via clean URL /cases with browser back/forwa
   // Navigate to calculator via menu
   const calcLink = page.locator('.nav__links a, .nav__link', { hasText: 'Калькулятор' }).first();
   await calcLink.click();
-  await page.waitForTimeout(80);
+  await page.waitForFunction(() => {
+    const el = document.getElementById('calculator');
+    if (!el) return false;
+    const r = el.getBoundingClientRect();
+    return r.top >= -50 && r.top <= window.innerHeight;
+  });
 
   // Hit browser back
   await page.goBack();
-  await page.waitForTimeout(80);
+  await page.waitForFunction(() => window.location.pathname.startsWith('/cases'));
 
   const currentPath = await page.evaluate(() => window.location.pathname);
   assert.ok(currentPath === '/cases' || currentPath === '/cases/', `Expected browser back to return to '/cases/', got '${currentPath}'`);
