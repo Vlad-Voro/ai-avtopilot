@@ -46,7 +46,7 @@
 
   <!-- Security Headers & Policies -->
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://mc.yandex.com https://yastatic.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://ai-avtopilot.ru https://mc.yandex.ru https://mc.yandex.com; connect-src 'self' https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev https://api.web3forms.com https://formsubmit.co https://mc.yandex.ru https://mc.yandex.com wss://mc.yandex.ru wss://mc.yandex.com; frame-src https://mc.yandex.ru https://mc.yandex.com blob:; child-src https://mc.yandex.ru https://mc.yandex.com blob:;" />
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://mc.yandex.com https://yastatic.net https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://ai-avtopilot.ru https://mc.yandex.ru https://mc.yandex.com; connect-src 'self' https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev https://api.web3forms.com https://formsubmit.co https://mc.yandex.ru https://mc.yandex.com wss://mc.yandex.ru wss://mc.yandex.com https://cloudflareinsights.com; frame-src https://mc.yandex.ru https://mc.yandex.com blob:; child-src https://mc.yandex.ru https://mc.yandex.com blob:;" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
@@ -398,6 +398,7 @@
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* Zero CLS Hero Title Animation Box */
+@media(min-width:769px){.hero__title{font-size:clamp(2.1rem,3.2vw,3rem)}}
 .hero__title-static{display:block}
 .hero__title-accent-box{display:block;min-height:2.4em;height:auto;line-height:1.1;position:relative;overflow:visible}
 @media(min-width:1025px){.hero__title-accent-box{min-height:2.4em;height:auto;overflow:visible}}
@@ -432,6 +433,9 @@
 /* Hero Grid Stabilization & Zero CLS (Defect 1) */
 @media(min-width:769px){
   .hero__inner{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+}
+@media(min-width:1025px){
+  .cases__grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 .hero__content,.hero__terminal-wrap{min-width:0}
 
