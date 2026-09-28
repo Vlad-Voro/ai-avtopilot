@@ -89,9 +89,9 @@ async function runDeliveryTests(options = {}) {
       // Form tooltip must exist and have branded warning icon and text
       const tooltip = page.locator('.form-tooltip');
       const tooltipCount = await tooltip.count();
-      assert.strictEqual(tooltipCount, 1, 'Exactly one branded tooltip should be rendered');
+      assert.strictEqual(tooltipCount, 2, 'Both Name and Contact must receive branded tooltips on empty submit');
 
-      const tooltipText = await tooltip.textContent();
+      const tooltipText = await tooltip.first().textContent();
       assert.ok(tooltipText.includes('!'), 'Tooltip must show warning badge');
       assert.ok(tooltipText.includes('Заполните это поле'), 'Tooltip must show friendly fill prompt');
 
@@ -136,22 +136,19 @@ async function runDeliveryTests(options = {}) {
       await nameInput.fill('Алексей');
 
       const nameHasError = await nameInput.evaluate(el => el.classList.contains('is-invalid'));
-      assert.strictEqual(nameHasError, false, 'Typing must clear is-invalid class');
-
-      const tooltip = page.locator('.form-tooltip');
-      const tooltipCount = await tooltip.count();
-      assert.strictEqual(tooltipCount, 0, 'Typing must remove .form-tooltip');
-
-      // Now click submit again -> should highlight contact field
-      await submitBtn.click();
-      await page.waitForTimeout(100);
+      assert.strictEqual(nameHasError, false, 'Typing must clear is-invalid class on name');
 
       const contactInput = page.locator('#contact-email');
       const contactHasError = await contactInput.evaluate(el => el.classList.contains('is-invalid'));
-      assert.strictEqual(contactHasError, true, 'Contact input must receive is-invalid when name is filled');
+      assert.strictEqual(contactHasError, true, 'Contact input must retain is-invalid until filled');
 
-      const contactTooltip = page.locator('.form-tooltip');
-      assert.strictEqual(await contactTooltip.count(), 1, 'Tooltip must appear on contact field');
+      // Typing into contact input clears its tooltip
+      await contactInput.fill('+7 (999) 111-22-33');
+      const contactCleared = await contactInput.evaluate(el => el.classList.contains('is-invalid'));
+      assert.strictEqual(contactCleared, false, 'Typing in contact must clear is-invalid');
+
+      const remainingTooltips = await page.locator('.form-tooltip').count();
+      assert.strictEqual(remainingTooltips, 0, 'All tooltips must be cleared once fields are filled');
 
       await page.close();
     });
