@@ -365,11 +365,12 @@ to{opacity:1}
 .chart__bar--active{background:linear-gradient(180deg,var(--accent-hot),rgba(249,115,22,.4))}
 .chart__labels{display:flex;gap:6px;margin-top:8px}
 .chart__label{flex:1;text-align:center;font-family:var(--font-mono);font-size:.65rem;color:var(--text-3)}
-.dash-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.dash-metric{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center}
-.dash-metric__num{display:block;font-family:var(--font-head);font-size:1.6rem;font-weight:900;color:var(--text-1);margin-bottom:4px}
-.dash-metric__label{font-size:.75rem;color:var(--text-3);display:block;margin-bottom:8px}
-.dash-metric__delta{font-family:var(--font-mono);font-size:.72rem}
+.dash-metrics{display:flex;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;align-items:stretch;margin-top:14px}
+.dash-metric{flex:1;background:none;border:none;border-radius:0;padding:14px 10px;text-align:center;position:relative;min-width:0}
+.dash-metric + .dash-metric::before{content:'';position:absolute;left:0;top:20%;height:60%;width:1px;background:var(--border)}
+.dash-metric__num{display:block;font-family:var(--font-head);font-size:clamp(1.15rem,2.2vw,1.6rem);font-weight:900;color:var(--text-1);margin-bottom:2px;white-space:nowrap}
+.dash-metric__label{font-size:clamp(.65rem,1.2vw,.75rem);color:var(--text-3);display:block;margin-bottom:4px;white-space:nowrap}
+.dash-metric__delta{font-family:var(--font-mono);font-size:clamp(.65rem,1.1vw,.72rem);white-space:nowrap}
 .dash-metric__delta--up{color:var(--green)}
 .log{display:flex;flex-direction:column;gap:8px;max-height:220px;overflow:hidden}
 .log-item{display:flex;gap:10px;font-family:var(--font-mono);font-size:.72rem;line-height:1.5;animation:log-slide .3s ease-out}
@@ -381,15 +382,33 @@ to{opacity:1}
 .log-item--success .log-item__text{color:var(--green)}
 .log-item--warn .log-item__text{color:var(--yellow)}
 .agent-list{display:flex;flex-direction:column;gap:8px}
-.agent-list-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--surface);border-radius:var(--radius-sm);font-size:.82rem}
+.agent-list-item{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--surface);border-radius:var(--radius-sm);font-size:.82rem}
 .agent-list-item__dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0}
 .agent-list-item__name{flex:1;color:var(--text-2)}
 .agent-list-item__num{font-family:var(--font-mono);font-size:.7rem;color:var(--accent-1)}
-.dash-card--log .dash-card__header{margin-bottom:12px}
+.dash-card--board{display:flex;flex-direction:column;padding:20px 22px;height:100%}
+.dash-card--board .dash-card__header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
+.board-tabs{display:inline-flex;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:3px;gap:2px}
+.board-tab{font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--text-3);background:transparent;border:none;padding:6px 12px;border-radius:7px;cursor:pointer;transition:all .2s ease;display:inline-flex;align-items:center;gap:6px;outline:none}
+.board-tab:hover{color:var(--text-1)}
+.board-tab:focus-visible{outline:2px solid var(--accent-1);outline-offset:1px}
+.board-tab--active,.board-tab[aria-selected="true"]{background:rgba(99,102,241,.2);color:#fff;font-weight:600;border:1px solid rgba(99,102,241,.35)}
+.board-tab__dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0}
+.board-tab__badge{font-family:var(--font-mono);font-size:.68rem;font-weight:700;background:rgba(99,102,241,.25);color:#c7d2fe;padding:1px 6px;border-radius:999px}
+.dash-card__live{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:.72rem;color:var(--green)}
+.pulse-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(34,197,94,.6);animation:pulse-dot 1.8s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.3)}}
+.board-panels{height:236px;position:relative;overflow:hidden}
+.board-panel{height:100%;overflow-y:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.board-panel::-webkit-scrollbar{display:none}
+.board-panel[hidden]{display:none}
 .cases{padding:15px 0 30px}
 .cases__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .case-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;display:flex;flex-direction:column;gap:20px;height:100%;transition:border-color .3s,transform .3s}
 .case-card:hover{border-color:var(--border-glow);transform:translateY(-6px)}
+.carousel-dots{display:none}
+.carousel-dot{width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,.2);border:none;padding:0;cursor:pointer;transition:all .25s ease}
+.carousel-dot.active{width:24px;background:var(--accent-1)}
 .case-card__industry{font-family:var(--font-mono);font-size:.75rem;color:var(--accent-1)}
 .case-card__title{font-family:var(--font-head);font-size:1.1rem;font-weight:700}
 .case-card__desc{color:var(--text-2);font-size:.88rem;line-height:1.7;flex:1}
@@ -474,7 +493,10 @@ to{opacity:1;transform:scale(1) translateY(0)}
 [data-reveal]{opacity:0;transform:translateY(32px)}
 @media(max-width:1024px){.services__bento{grid-template-columns:repeat(2,1fr)}
 .scard--wide{grid-column:span 2}
-.cases__grid{grid-template-columns:1fr 1fr}
+.cases__grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;gap:16px;padding:8px 4px 18px;margin:0 -4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.cases__grid::-webkit-scrollbar{display:none}
+.cases__grid .case-card{flex:0 0 min(330px,80vw);scroll-snap-align:center;scroll-snap-stop:normal;padding:24px 20px}
+.carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:8px}
 .dashboard__grid{grid-template-columns:1fr}
 .roi__card{gap:40px}
 }
@@ -491,22 +513,22 @@ to{opacity:1;transform:scale(1) translateY(0)}
 .compare__arrow{display:none}
 .services__bento{grid-template-columns:1fr}
 .scard--wide{grid-column:span 1}
-.cases__grid{grid-template-columns:1fr;gap:20px}
 .case-card{padding:24px}
 .case-card__results{grid-template-columns:repeat(3,1fr);gap:8px}
 .roi__card{grid-template-columns:1fr;padding:28px 20px;gap:32px}
 .contact__inner{grid-template-columns:1fr;padding:32px 20px;gap:36px}
 .dashboard__grid{grid-template-columns:1fr}
-.dash-metrics{grid-template-columns:repeat(3,1fr);gap:10px}
 .footer__inner{flex-direction:column;text-align:center;align-items:center;gap:14px}
 .footer__links{flex-wrap:wrap;justify-content:center;gap:10px 18px}
 .section-header{margin-bottom:20px}
 }
-@media(max-width:480px){.hero__kpis,.case-card__results,.dash-metrics{grid-template-columns:1fr}
+@media(max-width:480px){.hero__kpis,.case-card__results{grid-template-columns:1fr}
+.dash-metric{padding:10px 4px}
+.cases__grid .case-card{flex:0 0 84vw;padding:20px 16px}
 .roi__card{padding:20px 16px}
 .contact__inner{padding:24px 16px}
 .kpi-card{padding:14px 16px}
-.scard,.case-card{padding:24px}
+.scard{padding:24px}
 .btn{padding:12px 20px;font-size:.88rem}
 .section-title{font-size:1.75rem}
 }
@@ -1462,70 +1484,26 @@ section[id] {
   }
 
 
-  /* Item 3: Desktop Horizontal Agents & Compact Dashboard */
+  /* Item 3: Compact 2-Column Dashboard & Integrated Board */
   @media(min-width: 1025px) {
     .dashboard__grid {
       display: grid;
       grid-template-columns: 1fr 380px;
       gap: 16px;
+      align-items: stretch;
     }
-
-    .dash-card--agents {
-      grid-column: 1 / -1;
-      padding: 18px 24px;
-    }
-
-    .dash-card--agents .dash-card__header {
-      margin-bottom: 12px;
-    }
-
-    .agent-list {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 12px;
-    }
-
-    .agent-list-item {
-      padding: 10px 12px;
-      min-width: 0;
-    }
-
   }
 
-  @media(max-width: 1024px) and (min-width: 769px) {
-    .dash-card--agents {
-      grid-column: 1 / -1;
-      padding: 16px 20px;
-    }
-
-    .agent-list {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-
+  .agent-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
 
-  @media(max-width: 768px) {
-    .agent-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
-    }
-
-    .agent-list-item {
-      padding: 8px 10px;
-      font-size: 0.78rem;
-      min-width: 0;
-    }
-
-  }
-
-  @media(max-width: 480px) {
-    .agent-list {
-      grid-template-columns: 1fr;
-    }
-
+  .agent-list-item {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    min-width: 0;
   }
 
   .agent-list-item {
@@ -1872,22 +1850,30 @@ section[id] {
           </div>
         </div>
         <div class="dashboard__side">
-          <div class="dash-card dash-card--log">
+          <div class="dash-card dash-card--board">
             <div class="dash-card__header">
-              <span class="dash-card__title">Лог событий</span>
+              <div role="tablist" aria-label="Информационная панель" class="board-tabs">
+                <button type="button" role="tab" aria-selected="true" aria-controls="panel-log" id="tab-log" class="board-tab board-tab--active">
+                  <span class="board-tab__dot"></span>Лог событий
+                </button>
+                <button type="button" role="tab" aria-selected="false" aria-controls="panel-agents" id="tab-agents" class="board-tab" tabindex="-1">
+                  Агенты онлайн <span class="board-tab__badge" id="agent-count">48</span>
+                </button>
+              </div>
+              <span class="dash-card__live" title="Данные в реальном времени"><span class="pulse-dot"></span>Live</span>
             </div>
-            <div class="log" id="event-log">
-              <!-- JS fills this -->
+            <div class="board-panels">
+              <div role="tabpanel" id="panel-log" aria-labelledby="tab-log" class="board-panel board-panel--active">
+                <div class="log" id="event-log">
+                  <!-- JS fills this -->
+                </div>
+              </div>
+              <div role="tabpanel" id="panel-agents" aria-labelledby="tab-agents" class="board-panel" hidden>
+                <div class="agent-list" id="agent-list">
+                  <!-- JS fills this -->
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="dash-card dash-card--agents">
-          <div class="dash-card__header">
-            <span class="dash-card__title">Агенты онлайн</span>
-            <span class="dash-card__count" id="agent-count">48</span>
-          </div>
-          <div class="agent-list" id="agent-list">
-            <!-- JS fills this -->
           </div>
         </div>
       </div>
@@ -2000,9 +1986,9 @@ section[id] {
         <p class="section-tag" data-reveal>Результаты клиентов</p>
         <h2 class="section-title" data-reveal>Кейсы внедрения</h2>
       </div>
-      <div class="cases__grid">
+      <div class="cases__grid" data-reveal>
 
-        <div class="case-card case-card--retail" data-reveal>
+        <div class="case-card case-card--retail">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--retail"></span>🏪 Сеть магазинов · 230 точек</div>
           <h3 class="case-card__title">Автоматизация инвентаризации и заказов</h3>
           <p class="case-card__desc">Внедрили агентов для <span class="case-highlight case-highlight--retail">синхронизации остатков</span> между складами и точками продаж,
@@ -2024,7 +2010,7 @@ section[id] {
           <div class="case-card__tags"><span>1С:Розница</span><span>RPA</span><span>ИИ-агент</span></div>
         </div>
 
-        <div class="case-card case-card--edi" data-reveal>
+        <div class="case-card case-card--edi">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--edi"></span>🏭 Производство · Средний бизнес</div>
           <h3 class="case-card__title">Полностью цифровой документооборот</h3>
           <p class="case-card__desc">Переход с бумажных актов и накладных на <span class="case-highlight case-highlight--edi">автоматический ЭДО</span>. Роботы создают,
@@ -2046,7 +2032,7 @@ section[id] {
           <div class="case-card__tags"><span>ЭДО</span><span>SAP</span><span>Автоматизация</span></div>
         </div>
 
-        <div class="case-card case-card--service" data-reveal>
+        <div class="case-card case-card--service">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--service"></span>📞 Сервисный центр · 40 000 клиентов/мес</div>
           <h3 class="case-card__title">ИИ-оператор поддержки 24/7</h3>
           <p class="case-card__desc">Заменили первую линию поддержки <span class="case-highlight case-highlight--service">ИИ-агентом</span>, который понимает запросы, обращается к
@@ -2068,7 +2054,7 @@ section[id] {
           <div class="case-card__tags"><span>LLM</span><span>Чатбот</span><span>CRM</span></div>
         </div>
 
-        <div class="case-card case-card--hr" data-reveal>
+        <div class="case-card case-card--hr">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--hr"></span>👥 HR-департамент · Крупный ритейл</div>
           <h3 class="case-card__title">Автоматизация найма и онбординга</h3>
           <p class="case-card__desc">Внедрение ИИ-агента для <span class="case-highlight case-highlight--hr">скрининга 5000+ резюме</span> в месяц, автоматического назначения
@@ -2090,7 +2076,7 @@ section[id] {
           <div class="case-card__tags"><span>NLP</span><span>HR-Tech</span><span>Automation</span></div>
         </div>
 
-        <div class="case-card case-card--logistics" data-reveal>
+        <div class="case-card case-card--logistics">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--logistics"></span>🚛 Логистический хаб · Cargo Express</div>
           <h3 class="case-card__title">Управление цепочками поставок</h3>
           <p class="case-card__desc">Агенты мониторят статус грузов в <span class="case-highlight case-highlight--logistics">реальном времени</span>, формируют таможенные декларации
@@ -2112,7 +2098,7 @@ section[id] {
           <div class="case-card__tags"><span>Logistics</span><span>ИИ-агенты</span><span>API</span></div>
         </div>
 
-        <div class="case-card case-card--fintech" data-reveal>
+        <div class="case-card case-card--fintech">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--fintech"></span>💳 Финтех-стартап · b2b платежи</div>
           <h3 class="case-card__title">Автоматическая сверка транзакций</h3>
           <p class="case-card__desc">Роботизация сверки <span class="case-highlight case-highlight--fintech">тысяч транзакций</span> между банками и CRM. Агенты находят расхождения
@@ -2135,6 +2121,7 @@ section[id] {
         </div>
 
       </div>
+      <div class="carousel-dots" id="carousel-dots" aria-hidden="true"></div>
     </div>
   </section>
 
@@ -2523,6 +2510,110 @@ section[id] {
         }
       } catch (e) {}
     })();
+  </script>
+
+  <!-- Compact Layout Interactive Controls: Dashboard Board Tabs & Cases Carousel -->
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+      // 1. Dashboard Tabbed Board
+      var tabList = document.querySelector('.board-tabs');
+      if (tabList) {
+        var tabs = Array.from(tabList.querySelectorAll('[role="tab"]'));
+        var panels = Array.from(document.querySelectorAll('.board-panel'));
+
+        function activateTab(tab, setFocus) {
+          if (!tab) return;
+          tabs.forEach(function(t) {
+            var isSelected = (t === tab);
+            t.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+            t.setAttribute('tabindex', isSelected ? '0' : '-1');
+            t.classList.toggle('board-tab--active', isSelected);
+          });
+          var targetId = tab.getAttribute('aria-controls');
+          panels.forEach(function(p) {
+            var isTarget = (p.id === targetId);
+            p.hidden = !isTarget;
+            p.classList.toggle('board-panel--active', isTarget);
+          });
+          if (setFocus) tab.focus();
+        }
+
+        tabList.addEventListener('click', function(e) {
+          var tab = e.target.closest('[role="tab"]');
+          if (tab) activateTab(tab, false);
+        });
+
+        tabList.addEventListener('keydown', function(e) {
+          var idx = tabs.indexOf(document.activeElement);
+          if (idx === -1) return;
+          if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            activateTab(tabs[(idx + 1) % tabs.length], true);
+          } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            activateTab(tabs[(idx - 1 + tabs.length) % tabs.length], true);
+          } else if (e.key === 'Home') {
+            e.preventDefault();
+            activateTab(tabs[0], true);
+          } else if (e.key === 'End') {
+            e.preventDefault();
+            activateTab(tabs[tabs.length - 1], true);
+          }
+        });
+      }
+
+      // 2. Cases Horizontal Carousel Dots
+      var casesGrid = document.querySelector('.cases__grid');
+      var dotsWrap = document.getElementById('carousel-dots');
+      if (casesGrid && dotsWrap) {
+        var cards = Array.from(casesGrid.querySelectorAll('.case-card'));
+        if (cards.length > 0) {
+          dotsWrap.innerHTML = '';
+          cards.forEach(function(_, i) {
+            var dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Кейс ' + (i + 1) + ' из ' + cards.length);
+            dot.addEventListener('click', function() {
+              cards[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            });
+            dotsWrap.appendChild(dot);
+          });
+
+          var dots = Array.from(dotsWrap.querySelectorAll('.carousel-dot'));
+          var isTicking = false;
+
+          function updateActiveDot() {
+            var gridRect = casesGrid.getBoundingClientRect();
+            var gridCenter = gridRect.left + gridRect.width / 2;
+            var closestIdx = 0;
+            var minDiff = Infinity;
+
+            cards.forEach(function(card, idx) {
+              var r = card.getBoundingClientRect();
+              var cardCenter = r.left + r.width / 2;
+              var diff = Math.abs(gridCenter - cardCenter);
+              if (diff < minDiff) {
+                minDiff = diff;
+                closestIdx = idx;
+              }
+            });
+
+            dots.forEach(function(d, idx) {
+              d.classList.toggle('active', idx === closestIdx);
+            });
+            isTicking = false;
+          }
+
+          casesGrid.addEventListener('scroll', function() {
+            if (!isTicking) {
+              window.requestAnimationFrame(updateActiveDot);
+              isTicking = true;
+            }
+          }, { passive: true });
+        }
+      }
+    });
   </script>
 
   <!--email_off-->
