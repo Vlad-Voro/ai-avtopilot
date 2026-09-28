@@ -155,7 +155,12 @@ suite.test('Journey 5: Mobile user complete lead flow on 375px viewport', async 
   assert.ok(hasContactInNav, 'Mobile navigation menu must expose a Contact link for mobile users');
 
   await navContact.first().click();
-  await page.waitForTimeout(100);
+  await page.waitForFunction(() => {
+    const el = document.getElementById('contact');
+    if (!el) return false;
+    const r = el.getBoundingClientRect();
+    return r.top >= -100 && r.top <= window.innerHeight;
+  }, { timeout: 3000 }).catch(() => {});
 
   // Contact form should be in view
   const contactVisible = await page.locator('#contact').evaluate(el => {
