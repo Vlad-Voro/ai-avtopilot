@@ -1,0 +1,18 @@
+# Vercel Deployment Exclusions
+# Prevent source files, test suites, internal docs, and scripts from exposure
+
+# Documentation & Internal Specs
+*.md
+
+# Server configs & git meta
+_headers
+.htaccess
+.gitignore
+push_to_github.ps1
+CNAME
+
+# Internal source code, tests, and utility scripts
+bot/
+cloudflare-worker/
+scripts/
+tests/

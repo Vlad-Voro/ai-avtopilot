@@ -1,6 +1,6 @@
-# Инструкция по архитектуре домена ai-avtopilot.ru, хостингу на Beget и защите
+# Инструкция по архитектуре домена ai-avtopilot.ru, хостингу на Vercel Edge и защите
 
-Данное руководство содержит регламент инфраструктуры домена `ai-avtopilot.ru`: хостинг в РФ на Beget, проксирование и защита через Cloudflare (Flexible SSL, HTTP/3, TLS 1.3, DNSSEC), автоматический деплой через FTPS из приватного репозитория GitHub Actions, подключение формы лидогенерации и верификацию в Яндекс Вебмастер и Google Search Console.
+Данное руководство содержит регламент инфраструктуры домена `ai-avtopilot.ru`: хостинг на Vercel Edge CDN (`76.76.21.21`), авторитетный DNS через Cloudflare в режиме DNS-only (Grey Cloud, DNSSEC), автоматический деплой из приватного репозитория GitHub, изоляция служебных файлов через `.vercelignore`, подключение формы лидогенерации и верификация в Яндекс Вебмастер и Google Search Console.
 
 ---
 
@@ -45,29 +45,27 @@ Cloudflare используется исключительно как автор
 
 ---
 
-## Шаг 3. Деплой на хостинг Beget через FTPS (GitHub Actions)
+## Шаг 3. Деплой на Vercel Edge и изоляция служебных файлов
 
-Репозиторий `Vlad-Voro/ai-avtopilot` переведен в приватный режим (скрыт от индексации поисковыми роботами). Деплой происходит автоматически через CI/CD:
+Репозиторий `Vlad-Voro/ai-avtopilot` подключен к **Vercel** через официальную интеграцию GitHub. Деплой происходит автоматически при каждом коммите в ветку `main`:
 
-1. В репозитории GitHub настроен воркфлоу [`.github/workflows/deploy.yml`](file:///.github/workflows/deploy.yml).
-2. При каждом коммите в ветку `main` GitHub Action запускает `SamKirkland/FTP-Deploy-Action@v4.3.5`:
-   - Подключение: протокол `ftps` (порт 21, TLS 1.2+).
-   - Сервер: `f91009a4.beget.tech`.
-   - Целевая директория: `f91009a4.beget.tech/public_html/`.
-   - Исключения: `.git*`, `tests/`, `bot/`, `cloudflare-worker/`, `scripts/`, `*.md`, `_headers`, `CNAME`, `package*.json`.
-3. Секреты деплоя в GitHub Secrets:
-   - `BEGET_USER` — логин учетной записи FTP Beget (`f91009a4`).
-   - `BEGET_PASSWORD` — пароль FTP-аккаунта Beget.
+1. **Конфигурация Vercel (`vercel.json`)**:
+   - `cleanUrls: true` — чистые URL без `.html`.
+   - `trailingSlash: true` — 308 канонический редирект на URL со слешем `/` для sub-роутов.
+   - Заголовки безопасности: `nosniff`, `SAMEORIGIN`, `strict-origin-when-cross-origin`, `Strict-Transport-Security` (HSTS 1 год с preload), `Permissions-Policy`.
+   - Кеширование: 1 год (`max-age=31536000, immutable`) для статики в `/assets/`; `max-age=0, must-revalidate` для HTML и манифестов.
+   - Автоматическая обработка 404: Vercel отдает кастомный `/404.html` на любые несуществующие маршруты.
 
-### Конфигурация веб-сервера `.htaccess`:
-В корень сайта на Beget развернут файл [`.htaccess`](file:///.htaccess):
-- Кастомная страница 404 (`ErrorDocument 404 /404.html`).
-- Канонический 301-редирект с `www` на `https://ai-avtopilot.ru/`.
-- Нормализация trailing slashes с сохранением протокола HTTPS через заголовок `X-Forwarded-Proto`.
-- MIME-типы для шрифтов `.woff2`, изображений `.svg` и манифеста `.webmanifest`.
-- Заголовки безопасности (`nosniff`, `SAMEORIGIN`, `strict-origin-when-cross-origin`, `Strict-Transport-Security`).
-- Блокировка доступа к служебным файлам (`_headers`, `.git`, `.env`, `package*.json`, `*.md`).
-- Кеширование: 1 год (`max-age=31536000, immutable`) для статики; `no-cache, must-revalidate` для HTML.
+2. **Изоляция и безопасность (`.vercelignore`)**:
+   Для предотвращения публичного доступа к служебным файлам, тестам и исходному коду ботов/воркеров в корень добавлен `.vercelignore`:
+   - Документация и спецификации: `*.md` (`ARCHITECTURE.md`, `DOMAIN_SETUP.md`, `TEST_READY.md`).
+   - Серверные конфиги и мета: `_headers`, `.htaccess`, `.gitignore`, `push_to_github.ps1`, `CNAME`.
+   - Служебные каталоги: `tests/`, `bot/`, `cloudflare-worker/`, `scripts/`.
+   - В результате файлы `https://ai-avtopilot.ru/_headers` и `https://ai-avtopilot.ru/ARCHITECTURE.md` физически не публикуются в Edge CDN и возвращают `404 Not Found`.
+
+3. **Резервный деплой на Beget через FTPS (GitHub Actions)**:
+   - Воркфлоу [`.github/workflows/deploy.yml`](file:///.github/workflows/deploy.yml) сохраняется как аварийный бэкап контура.
+   - Конфигурация [`.htaccess`](file:///.htaccess) сохранена в репозитории для обеспечения совместимости при аварийном переключении DNS обратно на Beget Apache.
 
 ---
 
@@ -103,22 +101,24 @@ Cloudflare используется исключительно как автор
 ```bash
 nslookup ai-avtopilot.ru 1.1.1.1
 ```
-В ответе должны отображаться IP-адреса Cloudflare Proxy (Anycast), подтверждающие защиту от DDoS и скрытие IP сервера-источника Beget.
+В ответе должен отображаться IP-адрес `76.76.21.21` (Vercel Anycast Edge), подтверждающий прямое подключение без проксирования Cloudflare и отсутствие замедлений ТСПУ в РФ.
 
-### 2. Проверка доступности страниц:
+### 2. Проверка доступности страниц и изоляции:
 Откройте в браузере или через curl:
-- `https://ai-avtopilot.ru/` — главная страница
-- `https://ai-avtopilot.ru/services/` — 1С и ERP автоматизация
-- `https://ai-avtopilot.ru/cases/` — подтвержденные кейсы
-- `https://ai-avtopilot.ru/calculator/` — интерактивный калькулятор ROI
-- `https://ai-avtopilot.ru/dashboard/` — симулятор рабочих нагрузок
-- `https://ai-avtopilot.ru/faq/` — B2B FAQ (1С/ЭДО/152-ФЗ)
-- `https://ai-avtopilot.ru/contact/` — форма заявки
-- `https://ai-avtopilot.ru/privacy.html` — политика конфиденциальности (152-ФЗ)
-- `https://ai-avtopilot.ru/robots.txt` — директивы для поисковых систем
-- `https://ai-avtopilot.ru/sitemap.xml` — карта сайта
-- `https://ai-avtopilot.ru/llms.txt` — спецификация для LLM-агентов
-- `https://ai-avtopilot.ru/non-existent-page` — проверка кастомной 404 страницы
+- `https://ai-avtopilot.ru/` — главная страница (200 OK, <0.3s)
+- `https://ai-avtopilot.ru/services/` — 1С и ERP автоматизация (200 OK)
+- `https://ai-avtopilot.ru/cases/` — подтвержденные кейсы (200 OK)
+- `https://ai-avtopilot.ru/calculator/` — интерактивный калькулятор ROI (200 OK)
+- `https://ai-avtopilot.ru/dashboard/` — симулятор рабочих нагрузок (200 OK)
+- `https://ai-avtopilot.ru/faq/` — B2B FAQ (1С/ЭДО/152-ФЗ) (200 OK)
+- `https://ai-avtopilot.ru/contact/` — форма заявки (200 OK)
+- `https://ai-avtopilot.ru/privacy.html` — политика конфиденциальности (152-ФЗ) (200 OK)
+- `https://ai-avtopilot.ru/robots.txt` — директивы для поисковых систем (200 OK)
+- `https://ai-avtopilot.ru/sitemap.xml` — карта сайта (200 OK)
+- `https://ai-avtopilot.ru/llms.txt` — спецификация для LLM-агентов (200 OK)
+- `https://ai-avtopilot.ru/_headers` — проверка изоляции (возвращает 404 кастомную страницу)
+- `https://ai-avtopilot.ru/ARCHITECTURE.md` — проверка изоляции (возвращает 404 кастомную страницу)
+- `https://ai-avtopilot.ru/non-existent-page` — проверка кастомной 404 страницы (404 Not Found)
 
 ---
 

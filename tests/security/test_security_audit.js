@@ -242,6 +242,17 @@ async function runSecuritySuite() {
     });
   });
 
+  // Test 9: SEC-09 - Vercel Deployment Isolation (.vercelignore)
+  await test('SEC-09: .vercelignore excludes sensitive docs, tests, and server config', async () => {
+    const vercelIgnorePath = path.resolve(__dirname, '../../.vercelignore');
+    assert.ok(fs.existsSync(vercelIgnorePath), '.vercelignore must exist');
+    const content = fs.readFileSync(vercelIgnorePath, 'utf8');
+    const requiredPatterns = ['_headers', '*.md', 'tests/', 'bot/', 'cloudflare-worker/', 'scripts/'];
+    requiredPatterns.forEach(pattern => {
+      assert.ok(content.includes(pattern), `.vercelignore must contain pattern: ${pattern}`);
+    });
+  });
+
   console.log(`\n${C.bold}========================================================================${C.reset}`);
   console.log(`${C.bold}SECURITY TEST SUMMARY${C.reset}`);
   console.log(`========================================================================`);

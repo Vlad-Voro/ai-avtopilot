@@ -36,11 +36,12 @@ jobs:
 
       - name: Live Production Ping & Edge Status
         run: |
-          echo "Checking https://ai-avtopilot.ru/ status..."
-          STATUS=$(curl -s -o /dev/null -w "%{http_code}" -A "Mozilla/5.0 (HealthCheckBot)" https://ai-avtopilot.ru/)
-          echo "Status: $STATUS"
-          if [ "$STATUS" -ne 200 ]; then
-            echo "Error: Expected 200 OK, got $STATUS"
+          echo "Checking https://ai-avtopilot.ru/ status and full download..."
+          curl -v -m 20 -A "Mozilla/5.0 (HealthCheckBot)" https://ai-avtopilot.ru/ -o live_full.html
+          SIZE=$(wc -c < live_full.html)
+          echo "Downloaded size: $SIZE bytes"
+          if [ "$SIZE" -lt 50000 ]; then
+            echo "Error: Downloaded size too small ($SIZE bytes)!"
             exit 1
           fi
           curl -s -f -m 15 -A "Mozilla/5.0 (HealthCheckBot)" https://ai-avtopilot.ru/ -o live_page.html

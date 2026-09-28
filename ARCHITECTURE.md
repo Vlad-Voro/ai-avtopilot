@@ -3,7 +3,7 @@
 > **Status**: Production Hardened | **Updated**: 2026-09-28  
 > **Live URL**: [https://ai-avtopilot.ru/](https://ai-avtopilot.ru/) | **Repo**: `Vlad-Voro/ai-avtopilot` (`main` - Private)  
 > **Local Root**: `d:\AI\data\ai-avtopilot`  
-> **Verification**: 115 / 115 PASS (78 E2E + 19 SEO + 13 Security + 5 Resiliency, 0 regressions)
+> **Verification**: 117 / 117 PASS (78 E2E + 20 SEO + 14 Security + 5 Resiliency, 0 regressions)
 
 ---
 
@@ -11,22 +11,23 @@
 
 ```mermaid
 flowchart TD
-    Client["Client (Browser / Mobile / Tablet)"] -->|HTTPS / HTTP/3 / TLS 1.3| CF["Cloudflare Zero-Trust Edge (Proxy: ON, Flexible SSL)"]
+    Client["Client (Browser / Mobile / Tablet)"] -->|HTTPS / TLS 1.3 / Anycast IP 76.76.21.21| Vercel["Vercel Edge Network (Hobby Tier)"]
     
-    subgraph EdgeLayer ["1. Edge & DNS Layer (Cloudflare)"]
-        CF -->|1. Static Assets & HTML (Port 80)| BGT["Beget Production Origin (185.50.25.55 / Apache)"]
-        CF -->|2. POST /submit (Lead Ingestion)| CFW["Cloudflare Worker (ai-avtopilot-bot)"]
-        CF -->|3. HSTS 1y + Preload + WAF| SEC["OWASP Frame Guard + Sliding Rate Limiter"]
+    subgraph EdgeLayer ["1. Edge & Routing Layer (Vercel + Cloudflare DNS)"]
+        Vercel -->|1. Static Assets & HTML| VEdge["Vercel Anycast Edge (vercel.json)"]
+        Vercel -->|2. POST /submit (Lead Ingestion)| CFW["Cloudflare Worker (ai-avtopilot-bot)"]
+        VEdge -->|3. Security Headers + 1y Cache| VSec["HSTS, CSP, Frame Guard, Permissions-Policy"]
+        VEdge -->|4. Deployment Isolation| VIgn[".vercelignore (blocks _headers, *.md, tests, bot)"]
     end
     
-    subgraph AppLayer ["2. Static Hybrid Multi-Entry SSG (.htaccess Hardened)"]
-        BGT --> P1["/ (Main Landing)"]
-        BGT --> P2["/services/ (1C / ERP / RPA Services)"]
-        BGT --> P3["/cases/ (340% Proven ROI Metrics)"]
-        BGT --> P4["/calculator/ (Interactive ROI Engine)"]
-        BGT --> P5["/dashboard/ (Real-Time Workload Simulator)"]
-        BGT --> P6["/faq/ (B2B FAQ: 1C/EDI/152-FZ)"]
-        BGT --> P7["/contact/ (Express Audit Capture)"]
+    subgraph AppLayer ["2. Static Hybrid Multi-Entry SSG"]
+        VEdge --> P1["/ (Main Landing)"]
+        VEdge --> P2["/services/ (1C / ERP / RPA Services)"]
+        VEdge --> P3["/cases/ (340% Proven ROI Metrics)"]
+        VEdge --> P4["/calculator/ (Interactive ROI Engine)"]
+        VEdge --> P5["/dashboard/ (Real-Time Workload Simulator)"]
+        VEdge --> P6["/faq/ (B2B FAQ: 1C/EDI/152-FZ)"]
+        VEdge --> P7["/contact/ (Express Audit Capture)"]
     end
     
     subgraph LeadDelivery ["3. Resilient Ingestion & Notifications"]
@@ -36,28 +37,28 @@ flowchart TD
         W3F -.-> Mail["contact@ai-avtopilot.ru"]
     end
 
-    subgraph CICD ["4. Automated CI/CD Pipeline"]
-        GHA["GitHub Actions (deploy.yml)"] -->|FTPS Sync (TLS 1.2+)| BGT
+    subgraph CICD ["4. Automated CI/CD Pipelines"]
+        VDeploy["Vercel Git Integration"] -->|Push to main| Vercel
+        GHA["GitHub Actions (healthcheck.yml & deploy.yml)"] -->|Synthetic Monitor & Beget Backup| Orig["Origin / Tests"]
     end
 ```
 
 ### 1.1. DNS & Edge Routing
 - **Domain**: `ai-avtopilot.ru` (`.ru` TLD, registrar REG.RU with DNSSEC DS records).
-- **Beget Origin + Cloudflare Proxy**:
-  - Origin IP: `185.50.25.55` (Beget, Saint Petersburg / Moscow DC).
-  - Virtual Host: `f91009a4.beget.tech/public_html/`.
-  - Cloudflare SSL/TLS Mode: **Flexible** (Edge terminates client HTTPS with HTTP/3 & TLS 1.3; connects to Beget over port 80).
-  - DNSSEC: Signed zone via REG.RU DS key records.
-  - A records: `@` $\to$ `185.50.25.55` (Proxied), `www` $\to$ `185.50.25.55` (Proxied).
+- **Vercel Edge + Cloudflare DNS-Only (TSPU DPI Resilience)**:
+  - Origin / Edge: Vercel Global Anycast Edge (`76.76.21.21`, zero 24KB stall in Russia).
+  - Cloudflare Mode: **DNS only (Grey Cloud)** — serves authoritative DNS with DNSSEC without proxying, completely eliminating TSPU DPI throttling on Russian ISPs.
+  - A record: `@` $\to$ `76.76.21.21` (DNS only).
+  - CNAME record: `www` $\to$ `cname.vercel-dns.com` (DNS only, canonical 301 redirect to apex).
   - Webmaster Verification:
     - Google Search Console: DNS TXT `google-site-verification=u42j0jjBKadmyE77f9wlqfy5gkyDONXtaPzcPRZ51R8` + meta tag.
     - Yandex Webmaster: HTML verification file `/yandex_cd29b4304b5e16c6.html`.
-- **Security & Caching (.htaccess on Beget)**:
-  - Custom 404 handler (`ErrorDocument 404 /404.html`).
-  - Sensitive file cloaking (`_headers`, `.git`, `.env`, `package*.json`, `*.md`).
-  - MIME types for modern formats (`font/woff2`, `image/svg+xml`, `application/manifest+json`).
-  - Strict security headers (`X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, `Referrer-Policy: strict-origin-when-cross-origin`).
-  - Static asset caching (`max-age=31536000, public, immutable`) and dynamic HTML revalidation (`no-cache, must-revalidate`).
+- **Security & Caching (vercel.json & .vercelignore)**:
+  - Custom 404 handler (`404.html` caught natively by Vercel for non-existent routes).
+  - Sensitive file isolation via `.vercelignore`: blocks `_headers`, `*.md`, `tests/**`, `bot/**`, `cloudflare-worker/**`, `scripts/**`, `.htaccess`, `push_to_github.ps1`.
+  - Clean URLs & Trailing Slash normalization configured in `vercel.json`.
+  - Security headers enforced edge-wide: `X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, `Referrer-Policy: strict-origin-when-cross-origin`, `Strict-Transport-Security: max-age=31536000; includeSubDomains; preload`, `Permissions-Policy`.
+  - Static asset caching (`/assets/*` with `max-age=31536000, immutable`) and dynamic HTML revalidation (`public, max-age=0, must-revalidate`).
 - **Mail Compliance**:
   - SPF: `v=spf1 include:_spf.mx.cloudflare.net ~all`.
   - DMARC: `_dmarc.ai-avtopilot.ru TXT "v=DMARC1; p=none; sp=none; aspf=r;"` (audit mode; avoids dropping legitimate mail).
@@ -123,10 +124,10 @@ index.html (Master Template)
 
 ### 3.2. Trailing Slash Normalization (Zero 301 Hops)
 - All internal links in header, footer, mesh, and JS routing use trailing slashes: `/services/`, `/cases/`, `/calculator/`, `/dashboard/`, `/faq/`, `/contact/`.
-- Combined with `.htaccess` rewrite rules checking `X-Forwarded-Proto = https`, eliminating multi-hop protocol downgrades and preserving crawler budget.
+- Configured at Edge level via `vercel.json` (`"trailingSlash": true`), automatically serving subpages with canonical trailing slash (308 redirect) while eliminating multi-hop protocol downgrades.
 
 ### 3.3. SOTA 404 Fallback & Custom Error Handling
-- Hardened `.htaccess` directive: `ErrorDocument 404 /404.html`.
+- Native Vercel static error handling: automatically serves root `/404.html` on any non-existent route with 404 status.
 - `404.html` branded with design system, catches non-existent URLs and provides immediate navigation back to core landing pages or SPA recovery.
 - `index.html` router on `DOMContentLoaded` reads the stored path, restores clean URL via `history.replaceState`, and smooth scrolls to target with `scroll-margin-top: 80px`.
 
