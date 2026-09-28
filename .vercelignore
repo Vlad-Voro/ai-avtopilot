@@ -10,6 +10,7 @@ _headers
 .gitignore
 push_to_github.ps1
 CNAME
+package*.json
 
 # Internal source code, tests, and utility scripts
 bot/
