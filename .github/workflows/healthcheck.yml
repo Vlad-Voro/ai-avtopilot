@@ -1,0 +1,45 @@
+name: Synthetic Health & SEO Verification
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    # Run daily at 06:00 UTC (09:00 MSK)
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: healthcheck
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: SEO, Security & Resiliency Verification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run SEO Master Verification Suite
+        run: node tests/seo/test_seo_audit.js
+
+      - name: Run Edge Security & Hardening Suite
+        run: node tests/security/test_security_audit.js
+
+      - name: Run Resiliency & JTBD Suite
+        run: node tests/resiliency/test_resiliency_jtbd.js
+
+      - name: Live Production Ping & Edge Status
+        run: |
+          echo "Checking https://ai-avtopilot.ru/ status..."
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" -A "Mozilla/5.0 (HealthCheckBot)" https://ai-avtopilot.ru/)
+          echo "Status: $STATUS"
+          if [ "$STATUS" -ne 200 ]; then
+            echo "Error: Expected 200 OK, got $STATUS"
+            exit 1
+          fi

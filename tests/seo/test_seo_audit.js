@@ -279,6 +279,31 @@ runCheck('SEO-18', 'B2B commercial trust terms (Диадок / СБИС, ЭДО,
   assert.ok(indexHtml.includes('Диадок') || indexHtml.includes('ЭДО'), 'Missing EDO terms in index.html');
 });
 
+// SEO-20: OfferCatalog and Zero Missing Alt Tags
+runCheck('SEO-20', 'ProfessionalService has valid OfferCatalog and all images have descriptive alt attributes', () => {
+  PAGES.forEach(p => {
+    const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
+    
+    // Check alt tags
+    const imgMatches = html.matchAll(/<img\s+[^>]*alt=(["'])(.*?)\1[^>]*>/gi);
+    for (const match of imgMatches) {
+      const altValue = match[2].trim();
+      assert.ok(altValue.length > 0, `Empty alt attribute detected in ${p.file}`);
+    }
+
+    // Check OfferCatalog in Schema.org
+    const scriptMatch = html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s);
+    assert.ok(scriptMatch, `Missing JSON-LD in ${p.file}`);
+    const data = JSON.parse(scriptMatch[1].trim());
+    const service = data['@graph'].find(item => item['@type'] === 'ProfessionalService');
+    assert.ok(service, `Missing ProfessionalService in ${p.file}`);
+    assert.ok(service.hasOfferCatalog, `Missing hasOfferCatalog in ${p.file}`);
+    assert.strictEqual(service.hasOfferCatalog['@type'], 'OfferCatalog', `Invalid OfferCatalog type in ${p.file}`);
+    assert.ok(Array.isArray(service.hasOfferCatalog.itemListElement), `itemListElement is not array in ${p.file}`);
+    assert.ok(service.hasOfferCatalog.itemListElement.length >= 3, `Expected at least 3 offers in ${p.file}`);
+  });
+});
+
 // SEO-19: Test execution time benchmark
 runCheck('SEO-19', 'Full SEO verification suite completes in under 500ms', () => {
   assert.ok(true);

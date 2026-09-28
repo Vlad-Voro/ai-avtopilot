@@ -249,13 +249,13 @@ Prevents crawler index pollution and duplicate pages across 11 standard Russian 
 
 ---
 
-## 8. Verification Matrix: 115 Automated Tests
+## 8. Verification Matrix: 116 Automated Tests & Synthetic Healthcheck
 
 ```powershell
 # 1. 78 E2E tests (Rendering, responsive, routing, math, user journeys)
 node data/ai-avtopilot/tests/run_e2e_tests.js
 
-# 2. 19 Technical & SEO tests (Directives, canonicals, schemas, PageRank mesh)
+# 2. 20 Technical & SEO tests (Directives, canonicals, OfferCatalog, PageRank mesh)
 node data/ai-avtopilot/tests/seo/test_seo_audit.js
 
 # 3. 13 Edge Security tests (Worker gateway, sanitization, anti-bot, clickjack)
@@ -264,6 +264,9 @@ node data/ai-avtopilot/tests/security/test_security_audit.js
 # 4. 5 Resiliency & JTBD tests (AbortController, fallback UI, anti-slop)
 node data/ai-avtopilot/tests/resiliency/test_resiliency_jtbd.js
 ```
+
+### Synthetic Monitoring & CI/CD Gate
+- **Daily Cron & Push Verification**: `.github/workflows/healthcheck.yml` executes SEO, Security, Resiliency suites, and live HTTP 200 ping.
 
 ### 4-Tier E2E Architecture (78 tests, 3-worker context pool, ~25s runtime)
 - **Tier 1 (Feature Coverage R1–R7, 39 tests)**: Hero layout, section sequence, WCAG AA contrast, bento/card hover, slash routing, slider 7px track/math, fixed CLS heights, visibility lifecycle, passive listeners.
