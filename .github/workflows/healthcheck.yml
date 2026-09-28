@@ -31,6 +31,9 @@ jobs:
       - name: Run Edge Security & Hardening Suite
         run: node tests/security/test_security_audit.js
 
+      - name: Run SSL/TLS Automated Edge Audit
+        run: node tests/security/test_ssl_tls_audit.js
+
       - name: Run Resiliency & JTBD Suite
         run: node tests/resiliency/test_resiliency_jtbd.js
 

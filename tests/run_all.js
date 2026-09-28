@@ -18,6 +18,7 @@ const { chromium } = require('playwright');
 const { createStaticServer } = require('./helpers/server');
 const { runSeoSuite } = require('./seo/test_seo_audit');
 const { runSecuritySuite } = require('./security/test_security_audit');
+const { runSslAuditSuite } = require('./security/test_ssl_tls_audit');
 const { runResiliencySuite } = require('./resiliency/test_resiliency_jtbd');
 const { runDeliveryTests } = require('./test_lead_delivery');
 
@@ -79,13 +80,18 @@ async function main() {
     totalPassing += secRes.passedChecks;
     totalFailing += secRes.failedChecks;
 
+    const sslRes = await runSslAuditSuite();
+    totalTests += sslRes.passed + sslRes.failed;
+    totalPassing += sslRes.passed;
+    totalFailing += sslRes.failed;
+
     const resRes = await runResiliencySuite();
     totalTests += resRes.totalChecks;
     totalPassing += resRes.passedChecks;
     totalFailing += resRes.failedChecks;
 
     const p1Duration = ((Date.now() - p1Start) / 1000).toFixed(2);
-    console.log(`${C.green}✔ Phase 1 completed in ${p1Duration}s (39 checks)${C.reset}\n`);
+    console.log(`${C.green}✔ Phase 1 completed in ${p1Duration}s (${totalTests} checks)${C.reset}\n`);
 
     if (runOnlyFast) {
       printSummary(totalTests, totalPassing, totalFailing, globalStart);
