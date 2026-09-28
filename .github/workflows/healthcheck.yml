@@ -43,3 +43,10 @@ jobs:
             echo "Error: Expected 200 OK, got $STATUS"
             exit 1
           fi
+          curl -s -f -m 15 -A "Mozilla/5.0 (HealthCheckBot)" https://ai-avtopilot.ru/ -o live_page.html
+          SIZE=$(wc -c < live_page.html)
+          echo "Downloaded full live page: $SIZE bytes"
+          if [ "$SIZE" -lt 50000 ]; then
+            echo "Error: Page download was truncated ($SIZE bytes)!"
+            exit 1
+          fi

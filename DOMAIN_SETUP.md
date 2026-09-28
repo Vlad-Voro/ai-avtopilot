@@ -10,23 +10,23 @@
 
 ---
 
-## Шаг 2. Настройка DNS-записей в Cloudflare и хостинга Beget (РФ)
+## Шаг 2. Настройка DNS-записей в Cloudflare и хостинга на Vercel (Edge CDN)
 
-Основной сервер сайта размещен на бесплатном тарифе Beget (`185.50.25.55`, аккаунт `f91009a4`, виртуальный хост `f91009a4.beget.tech/public_html`).
-Трафик маршрутизируется через Cloudflare Edge с проксированием (`Orange Cloud`).
+Хостинг статики размещён на платформе **Vercel** (тариф Hobby, 100% бесплатно, поддержка приватных репозиториев, автоматический Let's Encrypt SSL, 29 мс пинг в РФ).
+Cloudflare используется исключительно как авторитетный DNS-провайдер с поддержкой DNSSEC в режиме **DNS only** (серое облако), что полностью исключает замедления и фильтрацию ТСПУ в РФ.
 
-### 1. Записи A в Cloudflare DNS:
+### 1. DNS-записи в Cloudflare (DNS only / Grey Cloud):
 
-| Тип | Имя / Хост | Значение (IP-адрес) | TTL | Proxy status | Назначение |
+| Тип | Имя / Хост | Значение (IP / CNAME) | TTL | Proxy status | Назначение |
 |---|---|---|---|---|---|
-| **A** | `@` | `185.50.25.55` | Auto | Proxied (Orange) | Главный домен (Apex) |
-| **A** | `www` | `185.50.25.55` | Auto | Proxied (Orange) | Алиас `www` (301 на Apex) |
+| **A** | `@` | `76.76.21.21` | Auto | DNS only (Grey) | Главный домен (Apex на Vercel Edge) |
+| **CNAME** | `www` | `cname.vercel-dns.com` | Auto | DNS only (Grey) | Алиас `www` (Vercel canonical redirect) |
 
-### 2. Режим SSL/TLS в Cloudflare:
-- **Encryption Mode**: **Flexible**.
-- **Edge**: Защищенное соединение между клиентом и Cloudflare (HTTPS, TLS 1.3, HTTP/3, HSTS 1 год).
-- **Origin**: Cloudflare запрашивает статику у Beget по HTTP (порт 80).
+### 2. Режим SSL/TLS и безопасность:
+- **SSL-сертификат**: Выпускается Vercel автоматически (Let's Encrypt / DigiCert) с автоматическим продлением.
 - **DNSSEC**: Активирован в Cloudflare и подтвержден записями DS в панели REG.RU.
+- **Приватность**: Репозиторий `Vlad-Voro/ai-avtopilot` остаётся 100% приватным.
+- **CI/CD**: Автоматический деплой при каждом коммите в ветку `main`.
 
 ### 3. DNS-записи для поисковой верификации:
 
