@@ -15,13 +15,12 @@
 
 const path = require('path');
 const os = require('os');
-const { chromium } = require('playwright');
-const { createStaticServer } = require('./helpers/server');
+// Phase 1 suites — stdlib only, no npm deps required
 const { runSeoSuite } = require('./seo/test_seo_audit');
 const { runSecuritySuite } = require('./security/test_security_audit');
 const { runSslAuditSuite } = require('./security/test_ssl_tls_audit');
 const { runResiliencySuite } = require('./resiliency/test_resiliency_jtbd');
-const { runDeliveryTests } = require('./test_lead_delivery');
+// Phase 2 (playwright + server) — loaded lazily below, only when E2E runs
 
 // ANSI Colors
 const C = {
@@ -103,6 +102,11 @@ async function main() {
   // PHASE 2: Browser E2E Suites
   const p2Start = Date.now();
   console.log(`${C.bold}${C.blue}▶ PHASE 2: Playwright Browser E2E Suites (Headless Edge)${C.reset}\n`);
+
+  // Lazy-load heavy deps: only executed when E2E actually runs (not --fast)
+  const { chromium } = require('playwright');
+  const { createStaticServer } = require('./helpers/server');
+  const { runDeliveryTests } = require('./test_lead_delivery');
 
   const projectDir = path.resolve(__dirname, '..');
   const server = createStaticServer(projectDir);
