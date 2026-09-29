@@ -25,17 +25,12 @@ jobs:
         with:
           node-version: 20
 
-      - name: Run SEO Master Verification Suite
-        run: node tests/seo/test_seo_audit.js
+      - name: Install dependencies
+        run: npm ci
+        working-directory: .
 
-      - name: Run Edge Security & Hardening Suite
-        run: node tests/security/test_security_audit.js
-
-      - name: Run SSL/TLS Automated Edge Audit
-        run: node tests/security/test_ssl_tls_audit.js
-
-      - name: Run Resiliency & JTBD Suite
-        run: node tests/resiliency/test_resiliency_jtbd.js
+      - name: Run Full Phase 1 Suite (SEO + Security + SSL + Resiliency)
+        run: node tests/run_all.js --fast
 
       - name: Live Production Ping & Edge Status
         run: |

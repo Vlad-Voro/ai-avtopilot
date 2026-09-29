@@ -11,9 +11,11 @@ const suite = createSuite('Tier 1 - R2: Section Ordering & Information Architect
   feature: 'R2'
 });
 
-suite.test('R2.1: DOM sections follow canonical conversion sequence', async ({ page, baseUrl }) => {
+suite.before(async ({ page, baseUrl }) => {
   await page.goto(`${baseUrl}/`);
+});
 
+suite.test('R2.1: DOM sections follow canonical conversion sequence', async ({ page }) => {
   const sectionIds = await page.evaluate(() => {
     const sections = Array.from(document.querySelectorAll('main > section, #main-content > section, section[id]'));
     return sections.map(s => s.id).filter(id => id);
@@ -39,9 +41,7 @@ suite.test('R2.1: DOM sections follow canonical conversion sequence', async ({ p
   );
 });
 
-suite.test('R2.2: Calculator is positioned immediately after Hero section and Dashboard precedes Contact', async ({ page, baseUrl }) => {
-  await page.goto(`${baseUrl}/`);
-
+suite.test('R2.2: Calculator is positioned immediately after Hero section and Dashboard precedes Contact', async ({ page }) => {
   const positions = await page.evaluate(() => {
     const hero = document.getElementById('home') || document.querySelector('.hero');
     const calculator = document.getElementById('calculator') || document.querySelector('.roi');
@@ -88,9 +88,7 @@ suite.test('R2.2: Calculator is positioned immediately after Hero section and Da
   );
 });
 
-suite.test('R2.3: Header navigation includes links for key conversion stages', async ({ page, baseUrl }) => {
-  await page.goto(`${baseUrl}/`);
-
+suite.test('R2.3: Header navigation includes links for key conversion stages', async ({ page }) => {
   const navHrefs = await page.evaluate(() => {
     const links = Array.from(document.querySelectorAll('.nav__links a, .nav__link, .btn--nav'));
     return links.map(a => a.getAttribute('href'));
@@ -105,9 +103,7 @@ suite.test('R2.3: Header navigation includes links for key conversion stages', a
   assert.ok(normalizedTargets.includes('contact'), 'Navigation must include Contact target');
 });
 
-suite.test('R2.4: Semantic structure uses main, sections, and unique section IDs', async ({ page, baseUrl }) => {
-  await page.goto(`${baseUrl}/`);
-
+suite.test('R2.4: Semantic structure uses main, sections, and unique section IDs', async ({ page }) => {
   const structure = await page.evaluate(() => {
     const main = document.querySelector('main, #main-content');
     const sections = Array.from(document.querySelectorAll('section'));
@@ -126,9 +122,7 @@ suite.test('R2.4: Semantic structure uses main, sections, and unique section IDs
   assert.ok(structure.hasUniqueIds, 'All section IDs must be unique');
 });
 
-suite.test('R2.5: Footer navigation contains valid links matching site sections', async ({ page, baseUrl }) => {
-  await page.goto(`${baseUrl}/`);
-
+suite.test('R2.5: Footer navigation contains valid links matching site sections', async ({ page }) => {
   const footerLinks = await page.evaluate(() => {
     const links = Array.from(document.querySelectorAll('footer a, .footer a'));
     return links.map(a => a.getAttribute('href')).filter(Boolean);

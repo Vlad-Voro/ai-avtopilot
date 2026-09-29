@@ -10,11 +10,13 @@ const suite = createSuite('Tier 2 - Boundary: Rapid Clicking & Fast Nav', {
   feature: 'Boundaries: Rapid Clicks'
 });
 
-suite.test('Rapid Navigation: Rapid clicking across multiple nav links does not throw errors', async ({ page, baseUrl }) => {
+suite.before(async ({ page, baseUrl }) => {
+  await page.goto(`${baseUrl}/`);
+});
+
+suite.test('Rapid Navigation: Rapid clicking across multiple nav links does not throw errors', async ({ page }) => {
   const errors = [];
   page.on('pageerror', err => errors.push(err.message));
-
-  await page.goto(`${baseUrl}/`);
 
   const links = page.locator('.nav__links a, .nav__link');
   const count = await links.count();
@@ -23,8 +25,8 @@ suite.test('Rapid Navigation: Rapid clicking across multiple nav links does not 
   for (let i = 0; i < count; i++) {
     const link = links.nth(i);
     if (await link.isVisible()) {
-      await link.click({ timeout: 500 }).catch(() => {});
-      await page.waitForTimeout(30);
+      await link.click({ timeout: 500, noWaitAfter: true }).catch(() => {});
+      await page.evaluate(() => new Promise(r => requestAnimationFrame(r)));
     }
   }
 
@@ -47,16 +49,14 @@ suite.test('Rapid Navigation: Rapid clicking logo returns to top (#home or /)', 
   assert.ok(scrollY < 150, `Expected page to scroll back to top on logo click, got scrollY=${scrollY}`);
 });
 
-suite.test('Rapid Navigation: Repeated rapid clicks on CTA button do not open duplicate overlays', async ({ page, baseUrl }) => {
+suite.test('Rapid Navigation: Repeated rapid clicks on CTA button do not open duplicate overlays', async ({ page }) => {
   const errors = [];
   page.on('pageerror', err => errors.push(err.message));
 
-  await page.goto(`${baseUrl}/`);
-
   const cta = page.locator('#cta-main, .btn--primary').first();
   for (let i = 0; i < 5; i++) {
-    await cta.click().catch(() => {});
-    await page.waitForTimeout(30);
+    await cta.click({ noWaitAfter: true }).catch(() => {});
+    await page.evaluate(() => new Promise(r => requestAnimationFrame(r)));
   }
 
   assert.strictEqual(errors.length, 0);
@@ -73,26 +73,24 @@ suite.test('Rapid Navigation: History pushState and popState back/forward stabil
   });
 
   await page.goBack();
-  await page.waitForTimeout(100);
+  await page.waitForFunction(() => window.location.pathname.startsWith('/cases'));
   const path1 = await page.evaluate(() => window.location.pathname);
-  assert.strictEqual(path1, '/cases');
+  assert.ok(path1 === '/cases' || path1 === '/cases/', `Expected /cases, got ${path1}`);
 
   await page.goBack();
-  await page.waitForTimeout(100);
+  await page.waitForFunction(() => window.location.pathname === '/services');
   const path2 = await page.evaluate(() => window.location.pathname);
   assert.strictEqual(path2, '/services');
 
   await page.goForward();
-  await page.waitForTimeout(100);
+  await page.waitForFunction(() => window.location.pathname === '/cases');
   const path3 = await page.evaluate(() => window.location.pathname);
   assert.strictEqual(path3, '/cases');
 });
 
-suite.test('Rapid Navigation: Rapid hash hashchange events do not break scroll listener', async ({ page, baseUrl }) => {
+suite.test('Rapid Navigation: Rapid hash hashchange events do not break scroll listener', async ({ page }) => {
   const errors = [];
   page.on('pageerror', err => errors.push(err.message));
-
-  await page.goto(`${baseUrl}/`);
 
   await page.evaluate(() => {
     location.hash = '#services';
@@ -101,7 +99,7 @@ suite.test('Rapid Navigation: Rapid hash hashchange events do not break scroll l
     location.hash = '#contact';
   });
 
-  await page.waitForTimeout(300);
+  await page.waitForFunction(() => location.hash === '#contact');
   assert.strictEqual(errors.length, 0);
 });
 

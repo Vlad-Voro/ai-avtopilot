@@ -12,9 +12,11 @@ const suite = createSuite('Tier 1 - R3: WCAG AA Contrast & Typography', {
   feature: 'R3'
 });
 
-suite.test('R3.1: CSS Variable --text-3 satisfies WCAG AA contrast (>= 4.5:1) against dark backgrounds', async ({ page, baseUrl }) => {
+suite.before(async ({ page, baseUrl }) => {
   await page.goto(`${baseUrl}/`);
+});
 
+suite.test('R3.1: CSS Variable --text-3 satisfies WCAG AA contrast (>= 4.5:1) against dark backgrounds', async ({ page }) => {
   const colors = await page.evaluate(() => {
     const root = document.documentElement;
     const computed = window.getComputedStyle(root);
@@ -38,9 +40,7 @@ suite.test('R3.1: CSS Variable --text-3 satisfies WCAG AA contrast (>= 4.5:1) ag
   );
 });
 
-suite.test('R3.2: CSS Variable --text-2 satisfies WCAG AA contrast (>= 4.5:1) against dark backgrounds', async ({ page, baseUrl }) => {
-  await page.goto(`${baseUrl}/`);
-
+suite.test('R3.2: CSS Variable --text-2 satisfies WCAG AA contrast (>= 4.5:1) against dark backgrounds', async ({ page }) => {
   const colors = await page.evaluate(() => {
     const root = document.documentElement;
     const computed = window.getComputedStyle(root);
@@ -57,9 +57,7 @@ suite.test('R3.2: CSS Variable --text-2 satisfies WCAG AA contrast (>= 4.5:1) ag
   );
 });
 
-suite.test('R3.3: Case Study result labels have readable font size (>= 0.8rem / 12.8px) and contrast', async ({ page, baseUrl }) => {
-  await page.goto(`${baseUrl}/`);
-
+suite.test('R3.3: Case Study result labels have readable font size (>= 0.8rem / 12.8px) and contrast', async ({ page }) => {
   const metrics = await page.evaluate(() => {
     const label = document.querySelector('.case-result__label');
     if (!label) return null;
@@ -86,9 +84,7 @@ suite.test('R3.3: Case Study result labels have readable font size (>= 0.8rem / 
   );
 });
 
-suite.test('R3.4: Case card tags have sufficient contrast against dark background', async ({ page, baseUrl }) => {
-  await page.goto(`${baseUrl}/`);
-
+suite.test('R3.4: Case card tags have sufficient contrast against dark background', async ({ page }) => {
   const tagData = await page.evaluate(() => {
     const tag = document.querySelector('.case-card__tags span');
     if (!tag) return null;
@@ -109,9 +105,7 @@ suite.test('R3.4: Case card tags have sufficient contrast against dark backgroun
   );
 });
 
-suite.test('R3.5: Dashboard chart and metric labels maintain WCAG AA readability', async ({ page, baseUrl }) => {
-  await page.goto(`${baseUrl}/`);
-
+suite.test('R3.5: Dashboard chart and metric labels maintain WCAG AA readability', async ({ page }) => {
   const labelsData = await page.evaluate(() => {
     const chartLabel = document.querySelector('.chart__label');
     const metricLabel = document.querySelector('.dash-metric__label');

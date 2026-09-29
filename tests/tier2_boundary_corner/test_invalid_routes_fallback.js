@@ -14,7 +14,7 @@ suite.test('Fallback Routing: Non-existent direct route loads 404 fallback witho
   let redirectCount = 0;
   page.on('framenavigated', () => { redirectCount++; });
 
-  const res = await page.goto(`${baseUrl}/completely-invalid-subpath-xyz`, { waitUntil: 'domcontentloaded' });
+  await page.goto(`${baseUrl}/completely-invalid-subpath-xyz`, { waitUntil: 'commit' });
 
   // Even if redirected, redirectCount should be bounded (not infinite loop)
   assert.ok(redirectCount < 6, `Excessive redirects detected: ${redirectCount}`);

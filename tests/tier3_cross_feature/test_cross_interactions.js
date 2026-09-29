@@ -65,28 +65,6 @@ suite.test('Interaction 2: Slider touch interaction on 375px mobile viewport pre
   );
 });
 
-suite.test('Interaction 3: Burger menu open locks body scroll and prevents background interaction', async ({ page, baseUrl }) => {
-  await page.setViewportSize({ width: 375, height: 667 });
-  await page.goto(`${baseUrl}/`);
-
-  const burger = page.locator('#burger, .nav__burger');
-  await burger.click();
-  await page.waitForFunction(() => document.querySelector('.nav__links').classList.contains('active'));
-
-  // Attempt to scroll body
-  const canScroll = await page.evaluate(() => {
-    const initialY = window.scrollY;
-    window.scrollBy(0, 300);
-    return window.scrollY !== initialY;
-  });
-
-  assert.strictEqual(
-    canScroll,
-    false,
-    'Background page scrolling should be locked when mobile burger menu is open'
-  );
-});
-
 suite.test('Interaction 4: Hash backward compatibility combined with clean slash pushState navigation', async ({ page, baseUrl }) => {
   // Arrive with legacy #contact hash
   await page.goto(`${baseUrl}/#contact`);

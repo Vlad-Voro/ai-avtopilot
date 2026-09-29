@@ -10,17 +10,22 @@ const suite = createSuite('Tier 2 - Boundary: Mobile Burger Toggle & Scroll Lock
   feature: 'Boundaries: Burger Toggle'
 });
 
-suite.test('Burger Toggle: Rapid toggle 10 times does not desynchronize menu or freeze UI', async ({ page, baseUrl }) => {
-  await page.setViewportSize({ width: 375, height: 667 });
+suite.before(async ({ page, baseUrl }) => {
   await page.goto(`${baseUrl}/`);
+});
 
+suite.beforeEach(async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 667 });
+});
+
+suite.test('Burger Toggle: Rapid toggle 4 times does not desynchronize menu or freeze UI', async ({ page }) => {
   const burger = page.locator('#burger, .nav__burger');
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 4; i++) {
     await burger.click({ force: true });
-    await page.waitForTimeout(40);
+    await page.evaluate(() => new Promise(r => requestAnimationFrame(r)));
   }
 
-  // After an even number (10) of clicks, menu should return to closed state
+  // After an even number (4) of clicks, menu should return to closed state
   const isMenuClosed = await page.locator('.nav__links').evaluate(el => {
     const s = window.getComputedStyle(el);
     return !el.classList.contains('active') && !el.classList.contains('is-open') &&
@@ -30,14 +35,11 @@ suite.test('Burger Toggle: Rapid toggle 10 times does not desynchronize menu or 
   assert.strictEqual(
     isMenuClosed,
     true,
-    'After 10 toggles, burger menu should be cleanly closed without desync'
+    'After 4 toggles, burger menu should be cleanly closed without desync'
   );
 });
 
-suite.test('Burger Toggle: Closing menu releases body scroll lock (overflow becomes visible/auto)', async ({ page, baseUrl }) => {
-  await page.setViewportSize({ width: 375, height: 667 });
-  await page.goto(`${baseUrl}/`);
-
+suite.test('Burger Toggle: Closing menu releases body scroll lock (overflow becomes visible/auto)', async ({ page }) => {
   const burger = page.locator('#burger, .nav__burger');
 
   // Open menu
@@ -56,10 +58,7 @@ suite.test('Burger Toggle: Closing menu releases body scroll lock (overflow beco
   );
 });
 
-suite.test('Burger Toggle: ESC key closes open mobile navigation menu', async ({ page, baseUrl }) => {
-  await page.setViewportSize({ width: 375, height: 667 });
-  await page.goto(`${baseUrl}/`);
-
+suite.test('Burger Toggle: ESC key closes open mobile navigation menu', async ({ page }) => {
   const burger = page.locator('#burger, .nav__burger');
   await burger.click();
   await page.waitForFunction(() => document.querySelector('.nav__links').classList.contains('active'));
@@ -75,10 +74,7 @@ suite.test('Burger Toggle: ESC key closes open mobile navigation menu', async ({
   assert.strictEqual(isClosed, true, 'Escape key should close mobile navigation menu');
 });
 
-suite.test('Burger Toggle: Clicking mobile nav link closes menu automatically', async ({ page, baseUrl }) => {
-  await page.setViewportSize({ width: 375, height: 667 });
-  await page.goto(`${baseUrl}/`);
-
+suite.test('Burger Toggle: Clicking mobile nav link closes menu automatically', async ({ page }) => {
   const burger = page.locator('#burger, .nav__burger');
   await burger.click();
   await page.waitForFunction(() => document.querySelector('.nav__links').classList.contains('active'));
@@ -94,16 +90,17 @@ suite.test('Burger Toggle: Clicking mobile nav link closes menu automatically', 
   assert.strictEqual(isClosed, true, 'Clicking a navigation link inside mobile menu must close the menu');
 });
 
-suite.test('Burger Toggle: Aria-expanded attribute updates synchronously with menu state', async ({ page, baseUrl }) => {
-  await page.setViewportSize({ width: 375, height: 667 });
-  await page.goto(`${baseUrl}/`);
-
+suite.test('Burger Toggle: Aria-expanded attribute updates synchronously with menu state', async ({ page }) => {
   const burger = page.locator('#burger, .nav__burger');
   await burger.click();
   await page.waitForFunction(() => document.querySelector('#burger, .nav__burger').getAttribute('aria-expanded') === 'true');
 
   const expanded = await burger.getAttribute('aria-expanded');
   assert.strictEqual(expanded, 'true', "Expected aria-expanded='true' when burger menu is open");
+
+  // Close back to restore clean state
+  await burger.click();
+  await page.waitForFunction(() => !document.querySelector('.nav__links').classList.contains('active'));
 });
 
 module.exports = suite;

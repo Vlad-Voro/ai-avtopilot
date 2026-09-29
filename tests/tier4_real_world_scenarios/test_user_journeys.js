@@ -10,9 +10,11 @@ const suite = createSuite('Tier 4 - Real-World Workload User Journeys', {
   feature: 'User Journeys'
 });
 
-suite.test('Journey 1: First-time visitor lands, observes hero typewriter and examines live dashboard', async ({ page, baseUrl }) => {
+suite.before(async ({ page, baseUrl }) => {
   await page.goto(`${baseUrl}/`);
+});
 
+suite.test('Journey 1: First-time visitor lands, observes hero typewriter and examines live dashboard', async ({ page }) => {
   // 1. Hero offer inspection
   const heroTitle = await page.locator('.hero__title').textContent();
   assert.ok(heroTitle.includes('Ваши процессы'), 'Hero title must be present');
@@ -25,7 +27,7 @@ suite.test('Journey 1: First-time visitor lands, observes hero typewriter and ex
   // 3. Scroll to Live Dashboard
   const dashboard = page.locator('#dashboard, .dashboard').first();
   await dashboard.scrollIntoViewIfNeeded();
-  await page.waitForTimeout(60);
+  await page.waitForSelector('#dashboard, .dashboard', { state: 'visible' });
 
   // 4. Verify dashboard metrics / chart exist
   const hasDashboardElements = await page.evaluate(() => {
@@ -38,9 +40,7 @@ suite.test('Journey 1: First-time visitor lands, observes hero typewriter and ex
   assert.ok(hasDashboardElements, 'Dashboard elements should be populated and visible');
 });
 
-suite.test('Journey 2: Service exploration - user navigates to services bento grid and inspects offerings', async ({ page, baseUrl }) => {
-  await page.goto(`${baseUrl}/`);
-
+suite.test('Journey 2: Service exploration - user navigates to services bento grid and inspects offerings', async ({ page }) => {
   // Click Services nav link
   const servicesLink = page.locator('.nav__links a, .nav__link', { hasText: 'Услуги' }).first();
   await servicesLink.click();
@@ -66,9 +66,7 @@ suite.test('Journey 2: Service exploration - user navigates to services bento gr
   assert.ok(cardVisible, 'Bento service card should be clearly visible');
 });
 
-suite.test('Journey 3: Executive ROI calculation with custom parameters and lead capture transition', async ({ page, baseUrl }) => {
-  await page.goto(`${baseUrl}/`);
-
+suite.test('Journey 3: Executive ROI calculation with custom parameters and lead capture transition', async ({ page }) => {
   // Navigate to calculator
   const calcLink = page.locator('.nav__links a, .nav__link', { hasText: 'Калькулятор' }).first();
   await calcLink.click();
@@ -171,7 +169,7 @@ suite.test('Journey 5: Mobile user complete lead flow on 375px viewport', async 
   // Open mobile burger menu
   const burger = page.locator('#burger, .nav__burger');
   await burger.click();
-  await page.waitForTimeout(100);
+  await page.waitForFunction(() => document.querySelector('.nav__links')?.classList.contains('active'));
 
   // Navigate to Contact from burger menu (should be present inside mobile navigation)
   const navContact = page.locator('.nav__links a[href*="contact"]');

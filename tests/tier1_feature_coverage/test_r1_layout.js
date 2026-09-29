@@ -124,7 +124,7 @@ suite.test('R1.5: Mobile menu toggles open and displays navigation links', async
 
   const burger = page.locator('#burger, .nav__burger');
   await burger.click();
-  await page.waitForTimeout(200);
+  await page.waitForFunction(() => document.querySelector('.nav__links')?.classList.contains('active'));
 
   const menuState = await page.locator('.nav__links').evaluate(el => {
     const style = window.getComputedStyle(el);
@@ -148,7 +148,7 @@ suite.test('R1.6: Body scroll lock engages when mobile navigation is open', asyn
 
   const burger = page.locator('#burger, .nav__burger');
   await burger.click();
-  await page.waitForTimeout(200);
+  await page.waitForFunction(() => window.getComputedStyle(document.body).overflow.includes('hidden'));
 
   const bodyOverflow = await page.evaluate(() => {
     return window.getComputedStyle(document.body).overflow;

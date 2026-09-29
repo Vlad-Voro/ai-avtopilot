@@ -11,15 +11,20 @@ const suite = createSuite('Tier 1 - R4: Micro-Interactions & Animation System', 
   feature: 'R4'
 });
 
-suite.test('R4.1: Bento service cards (.scard) have hover elevation and glow styling', async ({ page, baseUrl }) => {
+suite.before(async ({ page, baseUrl }) => {
   await page.goto(`${baseUrl}/`);
+});
 
+suite.test('R4.1: Bento service cards (.scard) have hover elevation and glow styling', async ({ page }) => {
   const card = page.locator('.scard').first();
   await card.scrollIntoViewIfNeeded();
 
   const beforeBox = await card.boundingBox();
   await card.hover();
-  await page.waitForTimeout(350); // allow CSS transition
+  await page.waitForFunction(() => {
+    const el = document.querySelector('.scard');
+    return el && window.getComputedStyle(el).boxShadow !== 'none';
+  });
 
   const hoverStyle = await card.evaluate(el => {
     const s = window.getComputedStyle(el);
@@ -41,14 +46,15 @@ suite.test('R4.1: Bento service cards (.scard) have hover elevation and glow sty
   );
 });
 
-suite.test('R4.2: Case study cards (.case-card) exhibit unified hover elevation and shadow', async ({ page, baseUrl }) => {
-  await page.goto(`${baseUrl}/`);
-
+suite.test('R4.2: Case study cards (.case-card) exhibit unified hover elevation and shadow', async ({ page }) => {
   const card = page.locator('.case-card').first();
   await card.scrollIntoViewIfNeeded();
 
   await card.hover();
-  await page.waitForTimeout(350);
+  await page.waitForFunction(() => {
+    const el = document.querySelector('.case-card');
+    return el && window.getComputedStyle(el).boxShadow !== 'none';
+  });
 
   const hoverData = await card.evaluate(el => {
     const s = window.getComputedStyle(el);
@@ -69,15 +75,16 @@ suite.test('R4.2: Case study cards (.case-card) exhibit unified hover elevation 
   );
 });
 
-suite.test('R4.3: Dashboard cards (.dash-card) provide hover feedback and border glow', async ({ page, baseUrl }) => {
-  await page.goto(`${baseUrl}/`);
-
+suite.test('R4.3: Dashboard cards (.dash-card) provide hover feedback and border glow', async ({ page }) => {
   const dashCard = page.locator('.dash-card').first();
   await dashCard.scrollIntoViewIfNeeded();
 
   const initialStyle = await dashCard.evaluate(el => window.getComputedStyle(el).boxShadow);
   await dashCard.hover();
-  await page.waitForTimeout(350);
+  await page.waitForFunction(() => {
+    const el = document.querySelector('.dash-card');
+    return el && (window.getComputedStyle(el).boxShadow !== 'none' || window.getComputedStyle(el).transform !== 'none');
+  });
 
   const hoverStyle = await dashCard.evaluate(el => {
     const s = window.getComputedStyle(el);
@@ -94,17 +101,13 @@ suite.test('R4.3: Dashboard cards (.dash-card) provide hover feedback and border
   );
 });
 
-suite.test('R4.4: Primary CTA buttons (.btn--primary) have active tactile response', async ({ page, baseUrl }) => {
-  await page.goto(`${baseUrl}/`);
-
+suite.test('R4.4: Primary CTA buttons (.btn--primary) have active tactile response', async ({ page }) => {
   const btn = page.locator('.btn--primary').first();
   const transition = await btn.evaluate(el => window.getComputedStyle(el).transition);
   assert.ok(transition && transition !== 'none', 'Primary buttons must have CSS transition');
 });
 
-suite.test('R4.5: Pulse indicator animations are defined without abrupt jumps', async ({ page, baseUrl }) => {
-  await page.goto(`${baseUrl}/`);
-
+suite.test('R4.5: Pulse indicator animations are defined without abrupt jumps', async ({ page }) => {
   const pulseState = await page.evaluate(() => {
     const dot = document.querySelector('.pulse-green, .pulse-dot, .hero__badge-dot');
     if (!dot) return null;
@@ -122,10 +125,7 @@ suite.test('R4.5: Pulse indicator animations are defined without abrupt jumps', 
   );
 });
 
-suite.test('R4.6: Prefers-reduced-motion media query is respected in stylesheet', async ({ page, baseUrl }) => {
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto(`${baseUrl}/`);
-
+suite.test('R4.6: Prefers-reduced-motion media query is respected in stylesheet', async ({ page }) => {
   const hasReducedMotionRule = await page.evaluate(() => {
     let found = false;
     for (const sheet of document.styleSheets) {

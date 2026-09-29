@@ -11,9 +11,11 @@ const suite = createSuite('Tier 1 - R7: Performance & Core Web Vitals', {
   feature: 'R7'
 });
 
-suite.test('R7.1: Zero CLS: Terminal and chart elements have fixed layout heights', async ({ page, baseUrl }) => {
+suite.before(async ({ page, baseUrl }) => {
   await page.goto(`${baseUrl}/`);
+});
 
+suite.test('R7.1: Zero CLS: Terminal and chart elements have fixed layout heights', async ({ page }) => {
   const heights = await page.evaluate(() => {
     const term = document.querySelector('.terminal__body');
     const termStyle = term ? window.getComputedStyle(term) : null;
@@ -30,9 +32,7 @@ suite.test('R7.1: Zero CLS: Terminal and chart elements have fixed layout height
   );
 });
 
-suite.test('R7.2: Offscreen canvas lifecycle: pauses animation when hero is offscreen', async ({ page, baseUrl }) => {
-  await page.goto(`${baseUrl}/`);
-
+suite.test('R7.2: Offscreen canvas lifecycle: pauses animation when hero is offscreen', async ({ page }) => {
   // Track canvas clearRect calls
   await page.evaluate(() => {
     window.__canvasRenders = 0;
@@ -51,11 +51,11 @@ suite.test('R7.2: Offscreen canvas lifecycle: pauses animation when hero is offs
 
   // Scroll to bottom footer (hero completely out of viewport)
   await page.locator('footer').scrollIntoViewIfNeeded();
-  await page.waitForTimeout(100);
+  await page.waitForFunction(() => window.scrollY > 300);
 
-  // Reset count and wait 200ms while completely offscreen
+  // Reset count and verify frames pause while completely offscreen
   await page.evaluate(() => { window.__canvasRenders = 0; });
-  await page.waitForTimeout(200);
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
 
   const rendersOffscreen = await page.evaluate(() => window.__canvasRenders);
 
@@ -67,9 +67,7 @@ suite.test('R7.2: Offscreen canvas lifecycle: pauses animation when hero is offs
   );
 });
 
-suite.test('R7.3: Tab visibility lifecycle: pauses dashboard intervals when document is hidden', async ({ page, baseUrl }) => {
-  await page.goto(`${baseUrl}/`);
-
+suite.test('R7.3: Tab visibility lifecycle: pauses dashboard intervals when document is hidden', async ({ page }) => {
   // Instrument setInterval
   await page.evaluate(() => {
     window.__intervalTicksWhileHidden = 0;
@@ -93,8 +91,7 @@ suite.test('R7.3: Tab visibility lifecycle: pauses dashboard intervals when docu
   assert.ok(wasPaused, 'Dashboard interval pause handler should register visibilitychange');
 });
 
-suite.test('R7.4: Event listeners for scroll and touch use passive mode', async ({ page, baseUrl }) => {
-  await page.goto(`${baseUrl}/`);
+suite.test('R7.4: Event listeners for scroll and touch use passive mode', async ({ page }) => {
 
   // Verify that any window scroll listeners attached are marked passive
   const passiveAudit = await page.evaluate(() => {
@@ -116,7 +113,7 @@ suite.test('R7.5: Analytics tracking compatibility: no runtime exceptions on CTA
   // Click CTA main button
   const ctaBtn = page.locator('#cta-main, .btn--primary').first();
   await ctaBtn.click();
-  await page.waitForTimeout(300);
+  await page.waitForFunction(() => location.hash.length > 0 || window.scrollY > 0 || document.activeElement !== document.body);
 
   assert.strictEqual(
     pageErrors.length,

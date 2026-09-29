@@ -64,11 +64,13 @@ async function runDeliveryTests(options = {}) {
       ownBrowser = true;
     }
 
+    // TESTS 1-3: Shared page workflow for validation, badges, and auto-clearing
+    const sharedPage = await browser.newPage();
+    await sharedPage.goto(`${baseUrl}/`);
+
     // TEST 1: Branded validation tooltip on empty required fields
     await test('FORM-01: Empty submit triggers branded tooltip and prevents native bubble', async () => {
-      const page = await browser.newPage();
-      await page.goto(`${baseUrl}/`);
-
+      const page = sharedPage;
       const form = page.locator('#contact-form');
       await form.scrollIntoViewIfNeeded();
 
@@ -94,15 +96,11 @@ async function runDeliveryTests(options = {}) {
       const tooltipText = await tooltip.first().textContent();
       assert.ok(tooltipText.includes('!'), 'Tooltip must show warning badge');
       assert.ok(tooltipText.includes('Заполните это поле'), 'Tooltip must show friendly fill prompt');
-
-      await page.close();
     });
 
     // TEST 2: Required field highlighting
     await test('FORM-02: Phone & Name fields display required-star and required-badge', async () => {
-      const page = await browser.newPage();
-      await page.goto(`${baseUrl}/`);
-
+      const page = sharedPage;
       // Check required stars
       const requiredStars = page.locator('.required-star');
       const starCount = await requiredStars.count();
@@ -119,19 +117,11 @@ async function runDeliveryTests(options = {}) {
       const optionalHint = page.locator('.optional-hint');
       const hintCount = await optionalHint.count();
       assert.strictEqual(hintCount, 1, 'Company field must display .optional-hint');
-
-      await page.close();
     });
 
     // TEST 3: Auto-clearing error tooltip on input typing
     await test('FORM-03: Typing into invalid field immediately removes error state and tooltip', async () => {
-      const page = await browser.newPage();
-      await page.goto(`${baseUrl}/`);
-
-      const submitBtn = page.locator('#form-submit');
-      await submitBtn.click();
-      await page.waitForSelector('#contact-name.is-invalid');
-
+      const page = sharedPage;
       const nameInput = page.locator('#contact-name');
       await nameInput.fill('Алексей');
 
@@ -150,7 +140,7 @@ async function runDeliveryTests(options = {}) {
       const remainingTooltips = await page.locator('.form-tooltip').count();
       assert.strictEqual(remainingTooltips, 0, 'All tooltips must be cleared once fields are filled');
 
-      await page.close();
+      await sharedPage.close().catch(() => {});
     });
 
     // TEST 4: End-to-end lead delivery via Cloudflare Worker with success card render

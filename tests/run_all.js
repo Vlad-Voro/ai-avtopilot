@@ -14,6 +14,7 @@
  */
 
 const path = require('path');
+const os = require('os');
 const { chromium } = require('playwright');
 const { createStaticServer } = require('./helpers/server');
 const { runSeoSuite } = require('./seo/test_seo_audit');
@@ -39,20 +40,20 @@ const runOnlyFast = args.includes('--fast');
 const runOnlyE2e = args.includes('--e2e');
 
 const SUITE_PATHS = [
-  './tier1_feature_coverage/test_r1_layout.js',
-  './tier1_feature_coverage/test_r2_section_order.js',
-  './tier1_feature_coverage/test_r3_contrast.js',
-  './tier1_feature_coverage/test_r4_micro_interactions.js',
-  './tier1_feature_coverage/test_r5_routing.js',
-  './tier1_feature_coverage/test_r6_roi_sliders.js',
-  './tier1_feature_coverage/test_r7_performance.js',
-  './tier2_boundary_corner/test_responsive_viewports.js',
-  './tier2_boundary_corner/test_slider_boundaries.js',
+  './tier4_real_world_scenarios/test_user_journeys.js',
   './tier2_boundary_corner/test_rapid_clicks_navigation.js',
-  './tier2_boundary_corner/test_invalid_routes_fallback.js',
   './tier2_boundary_corner/test_burger_rapid_toggle.js',
   './tier3_cross_feature/test_cross_interactions.js',
-  './tier4_real_world_scenarios/test_user_journeys.js'
+  './tier1_feature_coverage/test_r1_layout.js',
+  './tier2_boundary_corner/test_invalid_routes_fallback.js',
+  './tier1_feature_coverage/test_r5_routing.js',
+  './tier1_feature_coverage/test_r6_roi_sliders.js',
+  './tier2_boundary_corner/test_slider_boundaries.js',
+  './tier2_boundary_corner/test_responsive_viewports.js',
+  './tier1_feature_coverage/test_r4_micro_interactions.js',
+  './tier1_feature_coverage/test_r7_performance.js',
+  './tier1_feature_coverage/test_r3_contrast.js',
+  './tier1_feature_coverage/test_r2_section_order.js'
 ];
 
 async function main() {
@@ -109,25 +110,41 @@ async function main() {
   console.log(`${C.green}✔${C.reset} Ephemeral static server active on ${C.bold}${baseUrl}${C.reset} (port ${port})`);
 
   const browser = await chromium.launch({
-    channel: 'msedge',
+    channel: process.platform === 'win32' ? 'msedge' : undefined,
     headless: true
   });
   console.log(`${C.green}✔${C.reset} Headless Edge browser pool active (${browser.version()})\n`);
 
   try {
-    // 1. Run 14 standard E2E suites with controlled concurrency
-    const queuedSuites = SUITE_PATHS.map(sp => {
+    // 1. Run all E2E suites + Lead Delivery concurrently with LPT scheduling
+    const standardSuites = SUITE_PATHS.map(sp => {
       const mod = require(sp);
       return mod.default || mod;
     });
 
-    const CONCURRENCY = Math.min(3, queuedSuites.length);
+    const queuedSuites = [
+      {
+        isDelivery: true,
+        run: async () => runDeliveryTests({ server, browser, baseUrl })
+      },
+      ...standardSuites
+    ];
+
+    const CONCURRENCY = 4;
     console.log(`${C.dim}Running ${queuedSuites.length} Playwright suites (concurrency=${CONCURRENCY})...${C.reset}\n`);
 
     let suiteIndex = 0;
     const workers = Array.from({ length: CONCURRENCY }, async () => {
       while (suiteIndex < queuedSuites.length) {
         const suite = queuedSuites[suiteIndex++];
+        if (suite.isDelivery) {
+          const deliveryRes = await suite.run();
+          totalTests += deliveryRes.totalChecks;
+          totalPassing += deliveryRes.passedChecks;
+          totalFailing += deliveryRes.failedChecks;
+          continue;
+        }
+
         const page = await browser.newPage();
         try {
           const results = await suite.run({ page, baseUrl, browser });
@@ -150,15 +167,11 @@ async function main() {
 
     await Promise.all(workers);
 
-    // 2. Run Lead Form Delivery Suite within same browser/server pool
-    console.log(`\n${C.bold}Running Lead Form Delivery Suite...${C.reset}`);
-    const deliveryRes = await runDeliveryTests({ server, browser, baseUrl });
-    totalTests += deliveryRes.totalChecks;
-    totalPassing += deliveryRes.passedChecks;
-    totalFailing += deliveryRes.failedChecks;
-
   } finally {
-    await browser.close().catch(() => {});
+    await Promise.race([
+      browser.close().catch(() => {}),
+      new Promise(r => setTimeout(r, 250))
+    ]);
     await server.stop().catch(() => {});
   }
 
