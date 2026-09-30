@@ -1684,11 +1684,8 @@ section[id] {
 <div class="hero__particles" id="particles"></div>
 <div class="container hero__inner">
 <div class="hero__content">
-<h1 class="hero__title"><span class="hero__title-static">Сводные отчеты по продажам, остаткам и P&amp;L </span><span class="hero__title-accent-box"><span class="hero__title-accent" id="typed-text">на автопилоте</span><span aria-hidden="true" class="hero__cursor">|</span></span></h1>
-<p class="hero__sub">
-          Внедряем автономных ИИ-агентов в 1С:ERP, CRM и ЭДО за 14 дней.<br/>
-          Забираем ручной перенос данных, сверку документов и рутинные ответы — высвобождая до 80% времени команды.
-        </p>
+<h1 class="hero__title"><span class="hero__title-static">Сводные отчеты по продажам, остаткам и P&amp;L </span><span class="hero__title-accent-box"><span class="hero__title-accent" data-phrases='["каждое утро в Telegram в 09:00", "на автопилоте без Excel", "с расчетом P&amp;L за секунды", "без ожидания закрытия месяца"]' id="typed-text">каждое утро в Telegram в 09:00</span><span aria-hidden="true" class="hero__cursor">|</span></span></h1>
+<p class="hero__sub">Автоматизируем сбор управленческой отчетности, расчет маржинальности и P&amp;L из любых конфигураций 1С без программистов. Доставляем ежедневные срезы и алерты по рискам в Telegram топ-менеджменту.</p>
 <div class="hero__actions"><a class="btn btn--primary" href="#contact">Запустить автоотчетность</a><a class="btn btn--ghost" href="#dashboard">Смотреть демо-сводку →</a></div>
 <div class="hero__kpis">
 <div class="kpi-card">
@@ -1762,7 +1759,7 @@ section[id] {
 <div class="roi__card" data-reveal="">
 <div class="roi__inputs">
 <div class="roi-input-group">
-<label class="roi-label" for="slider-employees">Экономистов и аналитиков на сведении отчетов <span class="roi-value-display" id="display-employees">2</span></label>
+<label class="roi-label" for="slider-employees"><span>Экономистов и аналитиков на сведении отчетов</span><span class="roi-value-display" id="display-employees">2</span></label>
 <input aria-label="Количество сотрудников на рутинных задачах" class="roi-slider" id="slider-employees" max="15" min="1" type="range" value="2"/>
 <div class="roi-slider-limits">
 <span>1 человек</span>
@@ -1770,7 +1767,7 @@ section[id] {
 </div>
 </div>
 <div class="roi-input-group">
-<label class="roi-label" for="slider-hours">Часов в неделю тратят на сведение P&amp;L и отчетов <span class="roi-value-display" id="display-hours">20</span></label>
+<label class="roi-label" for="slider-hours"><span>Часов в неделю тратят на сведение P&amp;L</span><span class="roi-value-display" id="display-hours">20</span></label>
 <input aria-label="Количество часов в неделю на рутину" class="roi-slider" id="slider-hours" max="40" min="1" type="range" value="20"/>
 <div class="roi-slider-limits">
 <span>1 час</span>
@@ -1778,7 +1775,7 @@ section[id] {
 </div>
 </div>
 <div class="roi-input-group">
-<label class="roi-label" for="slider-salary">Средняя зарплата специалиста (рублей в месяц) <span class="roi-value-display" id="display-salary">90 000</span></label>
+<label class="roi-label" for="slider-salary"><span>Средняя зарплата специалиста (руб/мес)</span><span class="roi-value-display" id="display-salary" style="white-space:nowrap;flex-shrink:0;margin-left:8px;">90 000</span></label>
 <input aria-label="Средняя зарплата сотрудника в рублях в месяц" class="roi-slider" id="slider-salary" max="250000" min="40000" step="5000" type="range" value="90000"/>
 <div class="roi-slider-limits">
 <span>30 000 ₽</span>
@@ -1789,15 +1786,15 @@ section[id] {
 <div class="roi__results">
 <div class="roi-result-card">
 <span class="roi-result-label">Стоимость рутины в год</span>
-<span class="roi-result-num" id="roi-cost">0 ₽</span>
+<span class="roi-result-num" id="roi-cost">270 000 ₽</span>
 </div>
 <div class="roi-result-card roi-result-card--accent">
 <span class="roi-result-label">Экономия с АвтоПилотом (80%)</span>
-<span class="roi-result-num" id="roi-save">0 ₽</span>
+<span class="roi-result-num" id="roi-save">216 000 ₽</span>
 </div>
 <div class="roi-result-card">
 <span class="roi-result-label">Освободится человеко-часов в год</span>
-<span class="roi-result-num" id="roi-hours">0 часов</span>
+<span class="roi-result-num" id="roi-hours">2 080 часов</span>
 </div>
 <div class="roi__cta-block"><p>Хотите убрать ручной сбор таблиц в вашей компании?</p><a class="btn btn--primary" href="#contact">Заказать аудит 1С-отчетности</a></div>
 </div>
@@ -1812,58 +1809,30 @@ section[id] {
 <h2 class="section-title" data-reveal="">Как формируется управленка: ручной хаос vs автопилот</h2>
 </div>
 <div class="compare__grid">
-<div class="compare__col compare__col--before">
-<div class="compare__header">
-<span class="compare__badge compare__badge--before">Сейчас (Excel + 1С) 😰</span>
-</div>
+<div class="compare__card compare__card--pain" data-reveal="">
+<div class="compare__badge">Сейчас (Excel + 1С)</div>
+<div class="compare__icon">😰</div>
 <ul class="compare__list">
-<li class="compare__item">
-<span class="compare__icon">✕</span>
-<span><strong>P&amp;L собирается к 15–20 числу следующего месяца</strong> — стратегические решения принимаются вслепую на устаревших цифрах.</span>
-</li>
-<li class="compare__item">
-<span class="compare__icon">✕</span>
-<span><strong>«Бумажная» прибыль в 1С есть, а денег на счетах нет</strong> — путаница между начисленной прибылью (P&amp;L) и кассовыми разрывами (ДДС).</span>
-</li>
-<li class="compare__item">
-<span class="compare__icon">✕</span>
-<span><strong>Ошибки в формулах VLOOKUP и сломанных связях</strong> между таблицами приводят к случайной выплате дивидендов из оборотных средств.</span>
-</li>
-<li class="compare__item">
-<span class="compare__icon">✕</span>
-<span><strong>О неликвидах на складе и зависших миллионах</strong> узнают постфактум раз в год во время плановой инвентаризации.</span>
-</li>
-<li class="compare__item">
-<span class="compare__icon">✕</span>
-<span><strong>Руководитель привязан к рабочему месту</strong> — посмотреть реальную маржинальность со смартфона вне офиса невозможно.</span>
-</li>
+<li><strong>P&amp;L собирается к 15–20 числу:</strong> стратегические решения принимаются вслепую на устаревших цифрах.</li>
+<li><strong>«Бумажная» прибыль есть, а денег нет:</strong> путаница между начисленной прибылью (P&amp;L) и кассовыми разрывами (ДДС).</li>
+<li><strong>Ошибки в VLOOKUP и связях таблиц:</strong> риск случайной выплаты дивидендов из оборотных средств.</li>
+<li><strong>Зависшие миллионы на складе:</strong> о неликвидах узнают постфактум раз в год во время плановой ревизии.</li>
+<li><strong>Руководитель привязан к офису:</strong> посмотреть реальную маржинальность со смартфона вне офиса невозможно.</li>
 </ul>
 </div>
-<div class="compare__col compare__col--after">
-<div class="compare__header">
-<span class="compare__badge compare__badge--after">С агентами АвтоПилот 🚀</span>
+<div class="compare__arrow" data-reveal="">
+<div class="compare__arrow-line"></div>
+<span>→</span>
 </div>
+<div class="compare__card compare__card--win" data-reveal="">
+<div class="compare__badge compare__badge--win">С агентами АвтоПилот</div>
+<div class="compare__icon">🚀</div>
 <ul class="compare__list">
-<li class="compare__item">
-<span class="compare__icon">✓</span>
-<span><strong>Выручка, себестоимость и чистая прибыль</strong> рассчитываются ежедневно и приходят в Telegram в 09:00 утра.</span>
-</li>
-<li class="compare__item">
-<span class="compare__icon">✓</span>
-<span><strong>Сквозная связка P&amp;L с отчетом ДДС</strong> и платежным календарем предупреждает о рисках кассовых разрывов за 10 дней.</span>
-</li>
-<li class="compare__item">
-<span class="compare__icon">✓</span>
-<span><strong>100% точность данных на уровне регистров 1С</strong> без человеческого фактора, опечаток и ручного копирования.</span>
-</li>
-<li class="compare__item">
-<span class="compare__icon">✓</span>
-<span><strong>Ежедневные упреждающие алерты</strong> по замороженным остаткам, просроченной дебиторке и отклонениям от плана продаж.</span>
-</li>
-<li class="compare__item">
-<span class="compare__icon">✓</span>
-<span><strong>Вся картина бизнеса в смартфоне</strong> руководителя в любой точке мира в защищенном корпоративном боте.</span>
-</li>
+<li><strong>P&amp;L рассчитывается ежедневно:</strong> утренняя сводка маржи и прибыли готова в Telegram в 09:00.</li>
+<li><strong>Сквозная связка P&amp;L и ДДС:</strong> платежный календарь предупреждает о рисках кассовых разрывов за 10 дней.</li>
+<li><strong>100% точность регистров 1С:</strong> исключены человеческий фактор, опечатки и ручные переносы ячеек.</li>
+<li><strong>Упреждающие алерты по неликвидам:</strong> ежедневные уведомления о зависших позициях и просроченной дебиторке.</li>
+<li><strong>Вся картина бизнеса в смартфоне:</strong> закрытый защищенный бот доступен владельцу в любой точке мира.</li>
 </ul>
 </div>
 </div>
@@ -1877,10 +1846,12 @@ section[id] {
 <h2 class="section-title" data-reveal="">6 модулей автоматической управленческой отчетности</h2>
 </div>
 <div aria-label="Сценарии автоматизации" aria-roledescription="carousel" class="services__bento" data-reveal="" role="region" tabindex="0">
-<div class="scard">
+<div class="scard" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+<div>
 <div class="scard__icon">📊</div>
 <h3 class="scard__title">Ежедневная утренняя сводка продаж</h3>
 <p class="scard__desc">Выручка за вчера, факт выполнения плана в %, средний чек, маржинальность дня и топ менеджеров по отгрузкам к 09:00.</p>
+</div>
 <div class="scard__tags">
 <span class="tag">1С:УТ 11</span>
 <span class="tag">1С:КА 2</span>
@@ -1888,10 +1859,12 @@ section[id] {
 <span class="tag">Telegram</span>
 </div>
 </div>
-<div class="scard">
+<div class="scard" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+<div>
 <div class="scard__icon">📈</div>
 <h3 class="scard__title">Управленческий P&amp;L (ОПиУ) в реальном времени</h3>
 <p class="scard__desc">Расчет чистой прибыли и EBITDA методом начисления (Выручка - Себестоимость ФИФО - OPEX) без ожидания закрытия месяца бухгалтерией.</p>
+</div>
 <div class="scard__tags">
 <span class="tag">1С:ERP</span>
 <span class="tag">1С:БП 3.0</span>
@@ -1899,10 +1872,12 @@ section[id] {
 <span class="tag">Маржинальность</span>
 </div>
 </div>
-<div class="scard">
+<div class="scard" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+<div>
 <div class="scard__icon">📦</div>
 <h3 class="scard__title">Контроль остатков и неликвидов</h3>
 <p class="scard__desc">Анализ оборачиваемости товарных позиций, аудит замороженных в запасах миллионов и упреждающие алерты риска Out-of-Stock.</p>
+</div>
 <div class="scard__tags">
 <span class="tag">Склад</span>
 <span class="tag">Маркетплейсы</span>
@@ -1910,30 +1885,36 @@ section[id] {
 <span class="tag">Резервы</span>
 </div>
 </div>
-<div class="scard">
+<div class="scard" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+<div>
 <div class="scard__icon">💸</div>
 <h3 class="scard__title">Прогноз кассовых разрывов и дебиторка</h3>
 <p class="scard__desc">Интерактивный платежный календарь ДДС на 14 дней вперед, реестр старения дебиторки и автоматические напоминания по должникам.</p>
+</div>
 <div class="scard__tags">
 <span class="tag">ДДС</span>
 <span class="tag">Платежный календарь</span>
 <span class="tag">Дебиторка</span>
 </div>
 </div>
-<div class="scard">
+<div class="scard" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+<div>
 <div class="scard__icon">🔄</div>
 <h3 class="scard__title">Консолидация нескольких баз (Интеркампани)</h3>
 <p class="scard__desc">Сведение финансовой аналитики группы компаний из разных юридических лиц с автоматическим исключением межфирменных оборотов.</p>
+</div>
 <div class="scard__tags">
 <span class="tag">Холдинг</span>
 <span class="tag">Мультибаза</span>
 <span class="tag">Элиминация</span>
 </div>
 </div>
-<div class="scard">
+<div class="scard" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+<div>
 <div class="scard__icon">📱</div>
 <h3 class="scard__title">Доставка в удобные каналы руководителя</h3>
 <p class="scard__desc">Закрытый защищенный Telegram-бот с персональным доступом, рассылка PDF/Excel на Email и интерактивный живой веб-дашборд.</p>
+</div>
 <div class="scard__tags">
 <span class="tag">Telegram API</span>
 <span class="tag">Email PDF</span>
@@ -1952,70 +1933,76 @@ section[id] {
 <h2 class="section-title" data-reveal="">Кейсы внедрения управленческой автоотчетности</h2>
 </div>
 <div class="cases__grid" data-reveal="">
-<div class="case-card">
-<div class="case-card__header">
-<div class="case-card__industry">🏪 Оптовый дистрибьютор · 3 базы 1С</div>
-<div class="case-card__badge">Оборот 680 млн ₽</div>
-</div>
+<div class="case-card case-card--fintech" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+<div>
+<div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--fintech"></span>🏪 Оптовый дистрибьютор · 3 базы 1С</div>
 <h3 class="case-card__title">Консолидация P&amp;L и остатков холдинга в Telegram</h3>
 <p class="case-card__desc">Связали базы 1С:УТ и 1С:БП через агента. Настроили автоматическое вычитание интеркампани и утреннюю сводку маржи генеральному директору.</p>
-<div class="case-card__metrics">
-<div class="cmetric">
-<span class="cmetric__val">с 18 дней до 2 ч</span>
-<span class="cmetric__lbl">срок подготовки P&amp;L</span>
 </div>
-<div class="cmetric">
-<span class="cmetric__val">55 ч/мес</span>
-<span class="cmetric__lbl">высвобождено у CFO</span>
+<div>
+<div class="case-card__results">
+<div class="case-result">
+<span class="case-result__num case-num--cyan">с 18 дн до 2 ч</span>
+<span class="case-result__label">срок подготовки P&amp;L</span>
 </div>
-<div class="cmetric">
-<span class="cmetric__val">18 дней</span>
-<span class="cmetric__lbl">срок окупаемости пилота</span>
+<div class="case-result">
+<span class="case-result__num case-num--green">55 ч/мес</span>
+<span class="case-result__label">высвобождено у CFO</span>
+</div>
+<div class="case-result">
+<span class="case-result__num case-num--gold">18 дней</span>
+<span class="case-result__label">окупаемость пилота</span>
 </div>
 </div>
+<div class="case-card__tags"><span>1С:УТ</span><span>1С:БП</span><span>Интеркампани</span><span>P&amp;L</span></div>
 </div>
-<div class="case-card">
-<div class="case-card__header">
-<div class="case-card__industry">🛒 Федеральная розничная сеть · 45 магазинов</div>
-<div class="case-card__badge">14 000 SKU</div>
 </div>
-<h3 class="case-card__title">Предиктивный платежный календарь и ликвидация кассовых разрывов</h3>
+<div class="case-card case-card--retail" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+<div>
+<div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--retail"></span>🛒 Розничная сеть · 45 магазинов</div>
+<h3 class="case-card__title">Предиктивный платежный календарь и защита от кассовых разрывов</h3>
 <p class="case-card__desc">Объединили потоки данных из 1С:Розница и банковских выписок. Запустили предиктивный платежный календарь с алертами неликвидных остатков.</p>
-<div class="case-card__metrics">
-<div class="cmetric">
-<span class="cmetric__val">0 разрывов</span>
-<span class="cmetric__lbl">за 6 месяцев работы</span>
 </div>
-<div class="cmetric">
-<span class="cmetric__val">4.2 млн ₽</span>
-<span class="cmetric__lbl">выведено из неликвидов</span>
+<div>
+<div class="case-card__results">
+<div class="case-result">
+<span class="case-result__num case-num--green">0 разрывов</span>
+<span class="case-result__label">за 6 месяцев работы</span>
 </div>
-<div class="cmetric">
-<span class="cmetric__val">340%</span>
-<span class="cmetric__lbl">ROI за первый квартал</span>
+<div class="case-result">
+<span class="case-result__num case-num--gold">4.2 млн ₽</span>
+<span class="case-result__label">выведено из неликвида</span>
+</div>
+<div class="case-result">
+<span class="case-result__num case-num--violet">340%</span>
+<span class="case-result__label">ROI за 1-й квартал</span>
 </div>
 </div>
+<div class="case-card__tags"><span>1С:Розница</span><span>ДДС</span><span>Платежный календарь</span></div>
 </div>
-<div class="case-card">
-<div class="case-card__header">
-<div class="case-card__industry">🏭 Производственное предприятие · 1С:ERP</div>
-<div class="case-card__badge">Серийный выпуск</div>
 </div>
+<div class="case-card case-card--edi" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+<div>
+<div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--edi"></span>🏭 Производственное предприятие · 1С:ERP</div>
 <h3 class="case-card__title">Оперативный расчет фактической себестоимости и маржи партий</h3>
 <p class="case-card__desc">Подключили агента к регистрам выпуска продукции. Руководство видит фактическую маржинальность каждой спецификации до момента отгрузки клиенту.</p>
-<div class="case-card__metrics">
-<div class="cmetric">
-<span class="cmetric__val">+4.3%</span>
-<span class="cmetric__lbl">рост рентабельности сделок</span>
 </div>
-<div class="cmetric">
-<span class="cmetric__val">&lt; 1 мин</span>
-<span class="cmetric__lbl">калькуляция маржи заказа</span>
+<div>
+<div class="case-card__results">
+<div class="case-result">
+<span class="case-result__num case-num--green">+4.3%</span>
+<span class="case-result__label">рентабельность сделок</span>
 </div>
-<div class="cmetric">
-<span class="cmetric__val">14 дней</span>
-<span class="cmetric__lbl">запуск без остановки 1С</span>
+<div class="case-result">
+<span class="case-result__num case-num--cyan">&lt; 1 мин</span>
+<span class="case-result__label">калькуляция маржи</span>
 </div>
+<div class="case-result">
+<span class="case-result__num case-num--gold">14 дней</span>
+<span class="case-result__label">запуск без простоя</span>
+</div>
+</div>
+<div class="case-card__tags"><span>1С:ERP</span><span>ФИФО</span><span>Маржинальность</span></div>
 </div>
 </div>
 </div>
@@ -2033,56 +2020,56 @@ section[id] {
 <div class="faq__grid" data-reveal="">
 <div class="faq-item">
 <button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Сколько времени занимает запуск первого пилотного проекта?</span>
+<span class="faq-item__question">Нужно ли дорабатывать или снимать 1С с типовой поддержки?</span>
 <span class="faq-item__icon">+</span>
 </button>
 <div class="faq-item__answer">
 <div class="faq-item__inner">
-<p>Развёртывание первого работающего ИИ-агента в вашем контуре занимает ровно <strong>14 календарных дней</strong>. Мы подключаемся к 1–3 ключевым процессам, проводим калибровку точности до 99%+ и передаём результат с гарантией окупаемости.</p>
+<p>Нет. Агент подключается через внешнюю обработку (.epf) или внешнее расширение (.cfe). Конфигурация остается полностью типовой и обновляется штатными средствами без ограничений.</p>
 </div>
 </div>
 </div>
 <div class="faq-item">
 <button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Нужно ли дорабатывать или менять существующую 1С, SAP или CRM?</span>
+<span class="faq-item__question">Как считается себестоимость в P&amp;L до официального закрытия месяца?</span>
 <span class="faq-item__icon">+</span>
 </button>
 <div class="faq-item__answer">
 <div class="faq-item__inner">
-<p><strong>Нет, менять ничего не требуется.</strong> ИИ-агенты подключаются через стандартные протоколы (1C OData REST API, HTTP-сервисы, Webhooks, Диадок SDK). Мы не вмешиваемся в типовую конфигурацию и не нарушаем штатные процессы вашей системы.</p>
+<p>Используется оперативный расчет по методу ФИФО или средней скользящей себестоимости на основе регистров партий и движений товаров. После регламентного закрытия месяца бухгалтерией агент автоматически пересчитывает исторические данные.</p>
 </div>
 </div>
 </div>
 <div class="faq-item">
 <button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Как обеспечивается безопасность коммерческих данных и соблюдение 152-ФЗ?</span>
+<span class="faq-item__question">Как обеспечивается безопасность финансовых данных по 152-ФЗ?</span>
 <span class="faq-item__icon">+</span>
 </button>
 <div class="faq-item__answer">
 <div class="faq-item__inner">
-<p>Все данные обрабатываются на защищённых серверах в Российской Федерации в строгом соответствии с <strong>152-ФЗ РФ</strong>. Перед началом работ подписывается соглашение о неразглашении (NDA). Для предприятий с повышенными требованиями безопасности возможно развёртывание <strong>локальных On-Premise моделей</strong> внутри закрытого периметра без выхода во внешние сети.</p>
+<p>Агент развертывается в закрытом On-Premise контуре вашей компании (на вашем сервере). Базы 1С не открываются в интернет, сырые данные не передаются в сторонние облачные сервисы. Доступ к боту строго ограничен белым списком Telegram ID топ-менеджеров.</p>
 </div>
 </div>
 </div>
 <div class="faq-item">
 <button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Какова средняя окупаемость (ROI) и экономический эффект?</span>
+<span class="faq-item__question">Что если учет ведется в нескольких разных базах 1С (Интеркампани)?</span>
 <span class="faq-item__icon">+</span>
 </button>
 <div class="faq-item__answer">
 <div class="faq-item__inner">
-<p>В среднем внедрение окупается за <strong>1.5–3 месяца</strong> после ввода в эксплуатацию. Средний доказанный ROI составляет <strong>340% годовых</strong> за счёт сокращения рутинного ручного труда на 70–80% и ликвидации человеческих ошибок в первичных документах.</p>
+<p>Агент умеет одновременно опрашивать несколько баз (например, 1С:УТ по торговле и 1С:Бухгалтерию по расходам), сопоставлять справочники номенклатуры и автоматически исключать внутригрупповые обороты (интеркампани).</p>
 </div>
 </div>
 </div>
 <div class="faq-item">
 <button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Что входит в бесплатный 30-минутный экспресс-аудит?</span>
+<span class="faq-item__question">Сколько времени занимает внедрение первого рабочего отчета?</span>
 <span class="faq-item__icon">+</span>
 </button>
 <div class="faq-item__answer">
 <div class="faq-item__inner">
-<p>В рамках 30-минутного экспресс-аудита наш архитектор анализирует 3 самых трудоёмких процесса вашей компании, рассчитывает индивидуальную матрицу окупаемости (ROI) и готовит пошаговую архитектурную схему внедрения пилотного агента.</p>
+<p>Развертывание агента и запуск первого рабочего пилота утренней сводки в Telegram занимает от 7 до 14 рабочих дней под ключ.</p>
 </div>
 </div>
 </div>
@@ -2151,9 +2138,8 @@ section[id] {
 <div>3. <strong>Просроченная дебиторка:</strong> 1.2 млн ₽ (&gt;14 дней, ООО «Вектор»)</div>
 </div>
 </div>
-<div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap;">
-<a class="btn btn--primary" href="#contact" style="flex:1;justify-content:center;font-size:0.9rem;">Подключить для вашей 1С</a>
-<a class="btn btn--ghost" href="#contact" style="font-size:0.9rem;">Запросить демо-выгрузку</a>
+<div style="margin-top:16px;">
+<a class="btn btn--primary btn--full" href="#contact" style="justify-content:center;font-size:0.95rem;width:100%;">Подключить для вашей 1С</a>
 </div>
 </div>
 </div>
@@ -2204,18 +2190,6 @@ section[id] {
 <input autocomplete="name" id="contact-name" name="name" placeholder="Алексей Иванов" required="" type="text"/>
 </div>
 </div>
-<div class="form-group">
-<label class="form-label" for="user_system">Конфигурация 1С / Учетная система</label>
-<select class="form-input" id="user_system" name="system" style="background:var(--bg);color:var(--text-1);">
-<option value="1C:ERP">1С:ERP Управление предприятием</option>
-<option value="1C:Комплексная автоматизация">1С:Комплексная автоматизация (КА 2)</option>
-<option value="1C:Управление торговлей">1С:Управление торговлей (УТ 11)</option>
-<option value="1C:Бухгалтерия">1С:Бухгалтерия предприятия (БП 3.0)</option>
-<option value="Несколько баз 1С">Несколько баз 1С (Холдинг)</option>
-<option value="МойСклад / Другое">МойСклад / Другая система</option>
-</select>
-</div>
-
 <div class="form-group">
 <div class="form-label-row">
 <label for="contact-company">Компания</label>
@@ -2734,8 +2708,54 @@ section[id] {
       "inLanguage": "ru-RU"
     },
     {
+      "@type": "FAQPage",
+      "@id": "https://ai-avtopilot.ru/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Сколько времени занимает запуск первого пилотного проекта?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Развёртывание первого работающего ИИ-агента в вашем контуре занимает ровно 14 календарных дней. Мы подключаемся к 1–3 ключевым процессам, проводим калибровку точности до 99%+ и передаём результат с гарантией окупаемости."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Нужно ли дорабатывать или менять существующую 1С, SAP или CRM?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Нет, менять ничего не требуется. ИИ-агенты подключаются через стандартные протоколы (1C OData REST API, HTTP-сервисы, Webhooks, Диадок SDK). Мы не вмешиваемся в типовую конфигурацию и не нарушаем штатные процессы вашей системы."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как обеспечивается безопасность коммерческих данных и соблюдение 152-ФЗ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Все данные обрабатываются на защищённых серверах в Российской Федерации в строгом соответствии с 152-ФЗ РФ. Перед началом работ подписывается соглашение о неразглашении (NDA). Для предприятий с повышенными требованиями безопасности возможно развёртывание локальных On-Premise моделей внутри закрытого периметра без выхода во внешние сети."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Какова средняя окупаемость (ROI) и экономический эффект?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "В среднем внедрение окупается за 1.5–3 месяца после ввода в эксплуатацию. Средний доказанный ROI составляет 340% годовых за счёт сокращения рутинного ручного труда на 70–80% и ликвидации человеческих ошибок в первичных документах."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Что входит в бесплатный 30-минутный экспресс-аудит?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "В рамках 30-минутного экспресс-аудита наш архитектор анализирует 3 самых трудоёмких процесса вашей компании, рассчитывает индивидуальную матрицу окупаемости (ROI) и готовит пошаговую архитектурную схему внедрения пилотного агента."
+          }
+        }
+      ]
+    },
+    {
       "@type": "BreadcrumbList",
-      "@id": "https://ai-avtopilot.ru/automated-reporting/#breadcrumbs",
+      "@id": "https://ai-avtopilot.ru/automated-reporting/#breadcrumb",
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -2746,7 +2766,7 @@ section[id] {
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Автоотчетность P&L",
+          "name": "Автоотчетность и P&L из 1С",
           "item": "https://ai-avtopilot.ru/automated-reporting/"
         }
       ]

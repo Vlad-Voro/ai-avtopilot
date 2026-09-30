@@ -1,75 +1,86 @@
 #!/usr/bin/env python3
-"""
-Builder for automated-reporting landing page on ai-avtopilot.ru.
-Generates data/ai-avtopilot/automated-reporting/index.html with 1:1 structural alignment with the main page.
+"""Builds the automated-reporting/index.html production landing page for ai-avtopilot.ru.
+
+Fully aligns with the 8-block canonical main page architecture, with:
+- Zero AI-slop anti-fluff standard
+- 1:1 design system integration (canonical CSS classes)
+- Interactive ROI calculator & Telegram phone simulator
+- Schema.org BreadcrumbList, SoftwareApplication, FAQPage
 """
 
+import json
 import os
 import re
-import json
 from bs4 import BeautifulSoup
 
-ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-INDEX_PATH = os.path.join(ROOT_DIR, "index.html")
-OUTPUT_DIR = os.path.join(ROOT_DIR, "automated-reporting")
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+INDEX_PATH = os.path.join(PROJECT_DIR, "index.html")
+OUTPUT_DIR = os.path.join(PROJECT_DIR, "automated-reporting")
 OUTPUT_PATH = os.path.join(OUTPUT_DIR, "index.html")
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 with open(INDEX_PATH, "r", encoding="utf-8") as f:
-    master_html = f.read()
+    html_content = f.read()
 
-soup = BeautifulSoup(master_html, "html.parser")
+soup = BeautifulSoup(html_content, "html.parser")
 
-# 1. Update Title & Meta
-title_text = "Отчеты по продажам, остаткам и P&L из 1С в Telegram | АвтоПилот"
-desc_text = "Автоматический сбор управленческой аналитики из 1С:ERP, УТ, КА в Telegram и Email: сводки продаж, P&L (ОПиУ), остатки и алерты кассовых разрывов за 10 дней."
-canonical_url = "https://ai-avtopilot.ru/automated-reporting/"
+# 1. Update Head metadata
+title_tag = soup.find("title")
+if title_tag:
+    title_tag.string = "Отчеты по продажам, остаткам и P&L из 1С в Telegram | АвтоПилот"
 
-if soup.title:
-    soup.title.string = title_text
+desc_tag = soup.find("meta", attrs={"name": "description"})
+if desc_tag:
+    desc_tag["content"] = (
+        "Автоматический сбор управленческой аналитики из 1С:ERP, УТ, КА в Telegram и Email: "
+        "сводки продаж, P&L (ОПиУ), остатки и алерты кассовых разрывов за 10 дней."
+    )
 
-# Update Meta Description
-meta_desc = soup.find("meta", attrs={"name": "description"})
-if meta_desc:
-    meta_desc["content"] = desc_text
+canonical_tag = soup.find("link", attrs={"rel": "canonical"})
+if canonical_tag:
+    canonical_tag["href"] = "https://ai-avtopilot.ru/automated-reporting/"
 
-# Update Canonical
-canonical = soup.find("link", rel="canonical")
-if canonical:
-    canonical["href"] = canonical_url
-
-# Update OpenGraph
+# OG / Twitter
 for prop, val in [
-    ("og:url", canonical_url),
-    ("og:title", title_text),
-    ("og:description", desc_text),
-    ("twitter:title", title_text),
-    ("twitter:description", desc_text),
+    ("og:title", "Отчеты по продажам, остаткам и P&L из 1С в Telegram | АвтоПилот"),
+    ("og:url", "https://ai-avtopilot.ru/automated-reporting/"),
+    (
+        "og:description",
+        "Автоматический сбор управленческой аналитики из 1С:ERP, УТ, КА в Telegram и Email: "
+        "сводки продаж, P&L (ОПиУ), остатки и алерты кассовых разрывов за 10 дней.",
+    ),
+    ("twitter:title", "Отчеты по продажам, остаткам и P&L из 1С в Telegram | АвтоПилот"),
+    (
+        "twitter:description",
+        "Автоматический сбор управленческой аналитики из 1С:ERP, УТ, КА в Telegram и Email: "
+        "сводки продаж, P&L (ОПиУ), остатки и алерты кассовых разрывов за 10 дней.",
+    ),
 ]:
-    tag = soup.find("meta", property=prop) or soup.find("meta", attrs={"name": prop})
-    if tag:
-        tag["content"] = val
+    meta = soup.find("meta", attrs={"property": prop}) or soup.find("meta", attrs={"name": prop})
+    if meta:
+        meta["content"] = val
 
-# Update Schema.org
-json_ld = soup.find("script", type="application/ld+json")
+# Schema.org JSON-LD
+json_ld = soup.find("script", attrs={"type": "application/ld+json"})
 if json_ld and json_ld.string:
     try:
         data = json.loads(json_ld.string)
-        # Add BreadcrumbList and SoftwareApplication
         graph = data.get("@graph", [])
-        graph = [
-            item for item in graph if item.get("@type") not in ["BreadcrumbList", "FAQPage", "SoftwareApplication"]
-        ]
 
-        # Breadcrumbs
+        # BreadcrumbList
         graph.append(
             {
                 "@type": "BreadcrumbList",
-                "@id": f"{canonical_url}#breadcrumbs",
+                "@id": "https://ai-avtopilot.ru/automated-reporting/#breadcrumb",
                 "itemListElement": [
                     {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://ai-avtopilot.ru/"},
-                    {"@type": "ListItem", "position": 2, "name": "Автоотчетность P&L", "item": canonical_url},
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Автоотчетность и P&L из 1С",
+                        "item": "https://ai-avtopilot.ru/automated-reporting/",
+                    },
                 ],
             }
         )
@@ -78,11 +89,11 @@ if json_ld and json_ld.string:
         graph.append(
             {
                 "@type": "SoftwareApplication",
-                "@id": f"{canonical_url}#app",
+                "@id": "https://ai-avtopilot.ru/automated-reporting/#app",
                 "name": "АвтоПилот: Управленческая автоотчетность 1С",
                 "operatingSystem": "Windows, Linux (1C:Enterprise 8.3)",
                 "applicationCategory": "BusinessApplication",
-                "description": desc_text,
+                "description": "Автоматический сбор управленческой аналитики из 1С:ERP, УТ, КА в Telegram и Email: сводки продаж, P&L (ОПиУ), остатки и алерты кассовых разрывов за 10 дней.",
                 "offers": {
                     "@type": "Offer",
                     "price": "0",
@@ -96,7 +107,7 @@ if json_ld and json_ld.string:
         graph.append(
             {
                 "@type": "FAQPage",
-                "@id": f"{canonical_url}#faq",
+                "@id": "https://ai-avtopilot.ru/automated-reporting/#faq",
                 "mainEntity": [
                     {
                         "@type": "Question",
@@ -159,23 +170,33 @@ if hero_sec:
         h1 = hero_inner.find("h1")
         if h1:
             h1.clear()
+            phrases_json = '["каждое утро в Telegram в 09:00", "на автопилоте без Excel", "с расчетом P&L за секунды", "без ожидания закрытия месяца"]'
             h1.append(
                 BeautifulSoup(
-                    """<span class="hero__title-static">Сводные отчеты по продажам, остаткам и P&L </span><span class="hero__title-accent-box"><span class="hero__title-accent" id="typed-text">на автопилоте</span><span aria-hidden="true" class="hero__cursor">|</span></span>""",
+                    f'<span class="hero__title-static">Сводные отчеты по продажам, остаткам и P&amp;L </span>'
+                    f'<span class="hero__title-accent-box">'
+                    f'<span class="hero__title-accent" id="typed-text" data-phrases=\'{phrases_json}\'>каждое утро в Telegram в 09:00</span>'
+                    f'<span aria-hidden="true" class="hero__cursor">|</span></span>',
                     "html.parser",
                 )
             )
 
-        desc = hero_inner.find("p", class_="hero__desc")
-        if desc:
-            desc.string = "Автономные агенты забирают данные из ваших баз 1С:ERP, УТ, КА и CRM, рассчитывают реальную чистую прибыль и присылают утреннюю сводку руководителю в Telegram или Email. Без ожидания экономистов до 15-го числа и без риска ошибок в формулах Excel."
+        # Replace generic hero subtitle!
+        sub = hero_inner.find("p", class_="hero__sub")
+        if sub:
+            sub.string = (
+                "Автоматизируем сбор управленческой отчетности, расчет маржинальности и P&L "
+                "из любых конфигураций 1С без программистов. Доставляем ежедневные срезы и "
+                "алерты по рискам в Telegram топ-менеджменту."
+            )
 
         actions = hero_inner.find("div", class_="hero__actions")
         if actions:
             actions.clear()
             actions.append(
                 BeautifulSoup(
-                    """<a href="#contact" class="btn btn--primary">Запустить автоотчетность</a><a href="#dashboard" class="btn btn--ghost">Смотреть демо-сводку →</a>""",
+                    '<a href="#contact" class="btn btn--primary">Запустить автоотчетность</a>'
+                    '<a href="#dashboard" class="btn btn--ghost">Смотреть демо-сводку →</a>',
                     "html.parser",
                 )
             )
@@ -211,12 +232,13 @@ if calc_sec:
     h2 = calc_sec.find("h2", class_="section-title")
     if h2:
         h2.string = "Калькулятор окупаемости автоотчетности"
+
     lbl_emp = calc_sec.find("label", attrs={"for": "slider-employees"})
     if lbl_emp:
         lbl_emp.clear()
         lbl_emp.append(
             BeautifulSoup(
-                """Экономистов и аналитиков на сведении отчетов <span class="roi-value-display" id="display-employees">2</span>""",
+                '<span>Экономистов и аналитиков на сведении отчетов</span><span class="roi-value-display" id="display-employees">2</span>',
                 "html.parser",
             )
         )
@@ -230,7 +252,7 @@ if calc_sec:
         lbl_hrs.clear()
         lbl_hrs.append(
             BeautifulSoup(
-                """Часов в неделю тратят на сведение P&L и отчетов <span class="roi-value-display" id="display-hours">20</span>""",
+                '<span>Часов в неделю тратят на сведение P&amp;L</span><span class="roi-value-display" id="display-hours">20</span>',
                 "html.parser",
             )
         )
@@ -240,7 +262,7 @@ if calc_sec:
         lbl_sal.clear()
         lbl_sal.append(
             BeautifulSoup(
-                """Средняя зарплата специалиста (рублей в месяц) <span class="roi-value-display" id="display-salary">90 000</span>""",
+                '<span>Средняя зарплата специалиста (руб/мес)</span><span class="roi-value-display" id="display-salary" style="white-space:nowrap;flex-shrink:0;margin-left:8px;">90 000</span>',
                 "html.parser",
             )
         )
@@ -250,17 +272,28 @@ if calc_sec:
         slider_sal["min"] = "40000"
         slider_sal["max"] = "250000"
 
+    # Set initial SSR fallback values
+    cost_el = calc_sec.find("span", id="roi-cost")
+    if cost_el:
+        cost_el.string = "270 000 ₽"
+    save_el = calc_sec.find("span", id="roi-save")
+    if save_el:
+        save_el.string = "216 000 ₽"
+    hours_el = calc_sec.find("span", id="roi-hours")
+    if hours_el:
+        hours_el.string = "2 080 часов"
+
     cta_block = calc_sec.find("div", class_="roi__cta-block")
     if cta_block:
         cta_block.clear()
         cta_block.append(
             BeautifulSoup(
-                """<p>Хотите убрать ручной сбор таблиц в вашей компании?</p><a class="btn btn--primary" href="#contact">Заказать аудит 1С-отчетности</a>""",
+                '<p>Хотите убрать ручной сбор таблиц в вашей компании?</p><a class="btn btn--primary" href="#contact">Заказать аудит 1С-отчетности</a>',
                 "html.parser",
             )
         )
 
-# 4. Block 3: #compare
+# 4. Block 3: #compare (Canonical cards & equal heights)
 compare_sec = soup.find("section", id="compare")
 if compare_sec:
     h2 = compare_sec.find("h2", class_="section-title")
@@ -272,58 +305,30 @@ if compare_sec:
         grid.append(
             BeautifulSoup(
                 """
-        <div class="compare__col compare__col--before">
-          <div class="compare__header">
-            <span class="compare__badge compare__badge--before">Сейчас (Excel + 1С) 😰</span>
-          </div>
+        <div class="compare__card compare__card--pain" data-reveal>
+          <div class="compare__badge">Сейчас (Excel + 1С)</div>
+          <div class="compare__icon">😰</div>
           <ul class="compare__list">
-            <li class="compare__item">
-              <span class="compare__icon">✕</span>
-              <span><strong>P&L собирается к 15–20 числу следующего месяца</strong> — стратегические решения принимаются вслепую на устаревших цифрах.</span>
-            </li>
-            <li class="compare__item">
-              <span class="compare__icon">✕</span>
-              <span><strong>«Бумажная» прибыль в 1С есть, а денег на счетах нет</strong> — путаница между начисленной прибылью (P&L) и кассовыми разрывами (ДДС).</span>
-            </li>
-            <li class="compare__item">
-              <span class="compare__icon">✕</span>
-              <span><strong>Ошибки в формулах VLOOKUP и сломанных связях</strong> между таблицами приводят к случайной выплате дивидендов из оборотных средств.</span>
-            </li>
-            <li class="compare__item">
-              <span class="compare__icon">✕</span>
-              <span><strong>О неликвидах на складе и зависших миллионах</strong> узнают постфактум раз в год во время плановой инвентаризации.</span>
-            </li>
-            <li class="compare__item">
-              <span class="compare__icon">✕</span>
-              <span><strong>Руководитель привязан к рабочему месту</strong> — посмотреть реальную маржинальность со смартфона вне офиса невозможно.</span>
-            </li>
+            <li><strong>P&amp;L собирается к 15–20 числу:</strong> стратегические решения принимаются вслепую на устаревших цифрах.</li>
+            <li><strong>«Бумажная» прибыль есть, а денег нет:</strong> путаница между начисленной прибылью (P&amp;L) и кассовыми разрывами (ДДС).</li>
+            <li><strong>Ошибки в VLOOKUP и связях таблиц:</strong> риск случайной выплаты дивидендов из оборотных средств.</li>
+            <li><strong>Зависшие миллионы на складе:</strong> о неликвидах узнают постфактум раз в год во время плановой ревизии.</li>
+            <li><strong>Руководитель привязан к офису:</strong> посмотреть реальную маржинальность со смартфона вне офиса невозможно.</li>
           </ul>
         </div>
-        <div class="compare__col compare__col--after">
-          <div class="compare__header">
-            <span class="compare__badge compare__badge--after">С агентами АвтоПилот 🚀</span>
-          </div>
+        <div class="compare__arrow" data-reveal>
+          <div class="compare__arrow-line"></div>
+          <span>→</span>
+        </div>
+        <div class="compare__card compare__card--win" data-reveal>
+          <div class="compare__badge compare__badge--win">С агентами АвтоПилот</div>
+          <div class="compare__icon">🚀</div>
           <ul class="compare__list">
-            <li class="compare__item">
-              <span class="compare__icon">✓</span>
-              <span><strong>Выручка, себестоимость и чистая прибыль</strong> рассчитываются ежедневно и приходят в Telegram в 09:00 утра.</span>
-            </li>
-            <li class="compare__item">
-              <span class="compare__icon">✓</span>
-              <span><strong>Сквозная связка P&L с отчетом ДДС</strong> и платежным календарем предупреждает о рисках кассовых разрывов за 10 дней.</span>
-            </li>
-            <li class="compare__item">
-              <span class="compare__icon">✓</span>
-              <span><strong>100% точность данных на уровне регистров 1С</strong> без человеческого фактора, опечаток и ручного копирования.</span>
-            </li>
-            <li class="compare__item">
-              <span class="compare__icon">✓</span>
-              <span><strong>Ежедневные упреждающие алерты</strong> по замороженным остаткам, просроченной дебиторке и отклонениям от плана продаж.</span>
-            </li>
-            <li class="compare__item">
-              <span class="compare__icon">✓</span>
-              <span><strong>Вся картина бизнеса в смартфоне</strong> руководителя в любой точке мира в защищенном корпоративном боте.</span>
-            </li>
+            <li><strong>P&amp;L рассчитывается ежедневно:</strong> утренняя сводка маржи и прибыли готова в Telegram в 09:00.</li>
+            <li><strong>Сквозная связка P&amp;L и ДДС:</strong> платежный календарь предупреждает о рисках кассовых разрывов за 10 дней.</li>
+            <li><strong>100% точность регистров 1С:</strong> исключены человеческий фактор, опечатки и ручные переносы ячеек.</li>
+            <li><strong>Упреждающие алерты по неликвидам:</strong> ежедневные уведомления о зависших позициях и просроченной дебиторке.</li>
+            <li><strong>Вся картина бизнеса в смартфоне:</strong> закрытый защищенный бот доступен владельцу в любой точке мира.</li>
           </ul>
         </div>
         """,
@@ -331,7 +336,7 @@ if compare_sec:
             )
         )
 
-# 5. Block 4: #services
+# 5. Block 4: #services (6 modules with uniform cards)
 services_sec = soup.find("section", id="services")
 if services_sec:
     tag = services_sec.find("p", class_="section-tag")
@@ -346,10 +351,12 @@ if services_sec:
         bento.append(
             BeautifulSoup(
                 """
-        <div class="scard">
-          <div class="scard__icon">📊</div>
-          <h3 class="scard__title">Ежедневная утренняя сводка продаж</h3>
-          <p class="scard__desc">Выручка за вчера, факт выполнения плана в %, средний чек, маржинальность дня и топ менеджеров по отгрузкам к 09:00.</p>
+        <div class="scard" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+          <div>
+            <div class="scard__icon">📊</div>
+            <h3 class="scard__title">Ежедневная утренняя сводка продаж</h3>
+            <p class="scard__desc">Выручка за вчера, факт выполнения плана в %, средний чек, маржинальность дня и топ менеджеров по отгрузкам к 09:00.</p>
+          </div>
           <div class="scard__tags">
             <span class="tag">1С:УТ 11</span>
             <span class="tag">1С:КА 2</span>
@@ -357,10 +364,12 @@ if services_sec:
             <span class="tag">Telegram</span>
           </div>
         </div>
-        <div class="scard">
-          <div class="scard__icon">📈</div>
-          <h3 class="scard__title">Управленческий P&L (ОПиУ) в реальном времени</h3>
-          <p class="scard__desc">Расчет чистой прибыли и EBITDA методом начисления (Выручка - Себестоимость ФИФО - OPEX) без ожидания закрытия месяца бухгалтерией.</p>
+        <div class="scard" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+          <div>
+            <div class="scard__icon">📈</div>
+            <h3 class="scard__title">Управленческий P&amp;L (ОПиУ) в реальном времени</h3>
+            <p class="scard__desc">Расчет чистой прибыли и EBITDA методом начисления (Выручка - Себестоимость ФИФО - OPEX) без ожидания закрытия месяца бухгалтерией.</p>
+          </div>
           <div class="scard__tags">
             <span class="tag">1С:ERP</span>
             <span class="tag">1С:БП 3.0</span>
@@ -368,10 +377,12 @@ if services_sec:
             <span class="tag">Маржинальность</span>
           </div>
         </div>
-        <div class="scard">
-          <div class="scard__icon">📦</div>
-          <h3 class="scard__title">Контроль остатков и неликвидов</h3>
-          <p class="scard__desc">Анализ оборачиваемости товарных позиций, аудит замороженных в запасах миллионов и упреждающие алерты риска Out-of-Stock.</p>
+        <div class="scard" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+          <div>
+            <div class="scard__icon">📦</div>
+            <h3 class="scard__title">Контроль остатков и неликвидов</h3>
+            <p class="scard__desc">Анализ оборачиваемости товарных позиций, аудит замороженных в запасах миллионов и упреждающие алерты риска Out-of-Stock.</p>
+          </div>
           <div class="scard__tags">
             <span class="tag">Склад</span>
             <span class="tag">Маркетплейсы</span>
@@ -379,30 +390,36 @@ if services_sec:
             <span class="tag">Резервы</span>
           </div>
         </div>
-        <div class="scard">
-          <div class="scard__icon">💸</div>
-          <h3 class="scard__title">Прогноз кассовых разрывов и дебиторка</h3>
-          <p class="scard__desc">Интерактивный платежный календарь ДДС на 14 дней вперед, реестр старения дебиторки и автоматические напоминания по должникам.</p>
+        <div class="scard" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+          <div>
+            <div class="scard__icon">💸</div>
+            <h3 class="scard__title">Прогноз кассовых разрывов и дебиторка</h3>
+            <p class="scard__desc">Интерактивный платежный календарь ДДС на 14 дней вперед, реестр старения дебиторки и автоматические напоминания по должникам.</p>
+          </div>
           <div class="scard__tags">
             <span class="tag">ДДС</span>
             <span class="tag">Платежный календарь</span>
             <span class="tag">Дебиторка</span>
           </div>
         </div>
-        <div class="scard">
-          <div class="scard__icon">🔄</div>
-          <h3 class="scard__title">Консолидация нескольких баз (Интеркампани)</h3>
-          <p class="scard__desc">Сведение финансовой аналитики группы компаний из разных юридических лиц с автоматическим исключением межфирменных оборотов.</p>
+        <div class="scard" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+          <div>
+            <div class="scard__icon">🔄</div>
+            <h3 class="scard__title">Консолидация нескольких баз (Интеркампани)</h3>
+            <p class="scard__desc">Сведение финансовой аналитики группы компаний из разных юридических лиц с автоматическим исключением межфирменных оборотов.</p>
+          </div>
           <div class="scard__tags">
             <span class="tag">Холдинг</span>
             <span class="tag">Мультибаза</span>
             <span class="tag">Элиминация</span>
           </div>
         </div>
-        <div class="scard">
-          <div class="scard__icon">📱</div>
-          <h3 class="scard__title">Доставка в удобные каналы руководителя</h3>
-          <p class="scard__desc">Закрытый защищенный Telegram-бот с персональным доступом, рассылка PDF/Excel на Email и интерактивный живой веб-дашборд.</p>
+        <div class="scard" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+          <div>
+            <div class="scard__icon">📱</div>
+            <h3 class="scard__title">Доставка в удобные каналы руководителя</h3>
+            <p class="scard__desc">Закрытый защищенный Telegram-бот с персональным доступом, рассылка PDF/Excel на Email и интерактивный живой веб-дашборд.</p>
+          </div>
           <div class="scard__tags">
             <span class="tag">Telegram API</span>
             <span class="tag">Email PDF</span>
@@ -414,7 +431,7 @@ if services_sec:
             )
         )
 
-# 6. Block 5: #cases
+# 6. Block 5: #cases (Canonical case-card, case-card__results and equal heights)
 cases_sec = soup.find("section", id="cases")
 if cases_sec:
     h2 = cases_sec.find("h2", class_="section-title")
@@ -426,70 +443,78 @@ if cases_sec:
         grid.append(
             BeautifulSoup(
                 """
-        <div class="case-card">
-          <div class="case-card__header">
-            <div class="case-card__industry">🏪 Оптовый дистрибьютор · 3 базы 1С</div>
-            <div class="case-card__badge">Оборот 680 млн ₽</div>
+        <div class="case-card case-card--fintech" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+          <div>
+            <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--fintech"></span>🏪 Оптовый дистрибьютор · 3 базы 1С</div>
+            <h3 class="case-card__title">Консолидация P&amp;L и остатков холдинга в Telegram</h3>
+            <p class="case-card__desc">Связали базы 1С:УТ и 1С:БП через агента. Настроили автоматическое вычитание интеркампани и утреннюю сводку маржи генеральному директору.</p>
           </div>
-          <h3 class="case-card__title">Консолидация P&L и остатков холдинга в Telegram</h3>
-          <p class="case-card__desc">Связали базы 1С:УТ и 1С:БП через агента. Настроили автоматическое вычитание интеркампани и утреннюю сводку маржи генеральному директору.</p>
-          <div class="case-card__metrics">
-            <div class="cmetric">
-              <span class="cmetric__val">с 18 дней до 2 ч</span>
-              <span class="cmetric__lbl">срок подготовки P&L</span>
+          <div>
+            <div class="case-card__results">
+              <div class="case-result">
+                <span class="case-result__num case-num--cyan">с 18 дн до 2 ч</span>
+                <span class="case-result__label">срок подготовки P&amp;L</span>
+              </div>
+              <div class="case-result">
+                <span class="case-result__num case-num--green">55 ч/мес</span>
+                <span class="case-result__label">высвобождено у CFO</span>
+              </div>
+              <div class="case-result">
+                <span class="case-result__num case-num--gold">18 дней</span>
+                <span class="case-result__label">окупаемость пилота</span>
+              </div>
             </div>
-            <div class="cmetric">
-              <span class="cmetric__val">55 ч/мес</span>
-              <span class="cmetric__lbl">высвобождено у CFO</span>
-            </div>
-            <div class="cmetric">
-              <span class="cmetric__val">18 дней</span>
-              <span class="cmetric__lbl">срок окупаемости пилота</span>
-            </div>
-          </div>
-        </div>
-        <div class="case-card">
-          <div class="case-card__header">
-            <div class="case-card__industry">🛒 Федеральная розничная сеть · 45 магазинов</div>
-            <div class="case-card__badge">14 000 SKU</div>
-          </div>
-          <h3 class="case-card__title">Предиктивный платежный календарь и ликвидация кассовых разрывов</h3>
-          <p class="case-card__desc">Объединили потоки данных из 1С:Розница и банковских выписок. Запустили предиктивный платежный календарь с алертами неликвидных остатков.</p>
-          <div class="case-card__metrics">
-            <div class="cmetric">
-              <span class="cmetric__val">0 разрывов</span>
-              <span class="cmetric__lbl">за 6 месяцев работы</span>
-            </div>
-            <div class="cmetric">
-              <span class="cmetric__val">4.2 млн ₽</span>
-              <span class="cmetric__lbl">выведено из неликвидов</span>
-            </div>
-            <div class="cmetric">
-              <span class="cmetric__val">340%</span>
-              <span class="cmetric__lbl">ROI за первый квартал</span>
-            </div>
+            <div class="case-card__tags"><span>1С:УТ</span><span>1С:БП</span><span>Интеркампани</span><span>P&amp;L</span></div>
           </div>
         </div>
-        <div class="case-card">
-          <div class="case-card__header">
-            <div class="case-card__industry">🏭 Производственное предприятие · 1С:ERP</div>
-            <div class="case-card__badge">Серийный выпуск</div>
+
+        <div class="case-card case-card--retail" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+          <div>
+            <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--retail"></span>🛒 Розничная сеть · 45 магазинов</div>
+            <h3 class="case-card__title">Предиктивный платежный календарь и защита от кассовых разрывов</h3>
+            <p class="case-card__desc">Объединили потоки данных из 1С:Розница и банковских выписок. Запустили предиктивный платежный календарь с алертами неликвидных остатков.</p>
           </div>
-          <h3 class="case-card__title">Оперативный расчет фактической себестоимости и маржи партий</h3>
-          <p class="case-card__desc">Подключили агента к регистрам выпуска продукции. Руководство видит фактическую маржинальность каждой спецификации до момента отгрузки клиенту.</p>
-          <div class="case-card__metrics">
-            <div class="cmetric">
-              <span class="cmetric__val">+4.3%</span>
-              <span class="cmetric__lbl">рост рентабельности сделок</span>
+          <div>
+            <div class="case-card__results">
+              <div class="case-result">
+                <span class="case-result__num case-num--green">0 разрывов</span>
+                <span class="case-result__label">за 6 месяцев работы</span>
+              </div>
+              <div class="case-result">
+                <span class="case-result__num case-num--gold">4.2 млн ₽</span>
+                <span class="case-result__label">выведено из неликвида</span>
+              </div>
+              <div class="case-result">
+                <span class="case-result__num case-num--violet">340%</span>
+                <span class="case-result__label">ROI за 1-й квартал</span>
+              </div>
             </div>
-            <div class="cmetric">
-              <span class="cmetric__val">&lt; 1 мин</span>
-              <span class="cmetric__lbl">калькуляция маржи заказа</span>
+            <div class="case-card__tags"><span>1С:Розница</span><span>ДДС</span><span>Платежный календарь</span></div>
+          </div>
+        </div>
+
+        <div class="case-card case-card--edi" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+          <div>
+            <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--edi"></span>🏭 Производственное предприятие · 1С:ERP</div>
+            <h3 class="case-card__title">Оперативный расчет фактической себестоимости и маржи партий</h3>
+            <p class="case-card__desc">Подключили агента к регистрам выпуска продукции. Руководство видит фактическую маржинальность каждой спецификации до момента отгрузки клиенту.</p>
+          </div>
+          <div>
+            <div class="case-card__results">
+              <div class="case-result">
+                <span class="case-result__num case-num--green">+4.3%</span>
+                <span class="case-result__label">рентабельность сделок</span>
+              </div>
+              <div class="case-result">
+                <span class="case-result__num case-num--cyan">&lt; 1 мин</span>
+                <span class="case-result__label">калькуляция маржи</span>
+              </div>
+              <div class="case-result">
+                <span class="case-result__num case-num--gold">14 дней</span>
+                <span class="case-result__label">запуск без простоя</span>
+              </div>
             </div>
-            <div class="cmetric">
-              <span class="cmetric__val">14 дней</span>
-              <span class="cmetric__lbl">запуск без остановки 1С</span>
-            </div>
+            <div class="case-card__tags"><span>1С:ERP</span><span>ФИФО</span><span>Маржинальность</span></div>
           </div>
         </div>
         """,
@@ -497,7 +522,7 @@ if cases_sec:
             )
         )
 
-# 7. Block 6: #faq
+# 7. Block 6: #faq (Dedicated questions and answers, working accordion)
 faq_sec = soup.find("section", id="faq")
 if faq_sec:
     h2 = faq_sec.find("h2", class_="section-title")
@@ -506,63 +531,79 @@ if faq_sec:
     desc = faq_sec.find("p", class_="section-desc")
     if desc:
         desc.string = "Всё, что важно знать о безопасности, интеграции с 1С и методике расчетов"
-    acc = faq_sec.find("div", class_="faq__accordion")
-    if acc:
-        acc.clear()
-        acc.append(
+
+    # Find the faq grid in the original page structure
+    faq_grid = faq_sec.find("div", class_="faq__grid")
+    if faq_grid:
+        faq_grid.clear()
+        faq_grid.append(
             BeautifulSoup(
                 """
-        <details class="faq__item">
-          <summary class="faq__question">
-            <span>Нужно ли дорабатывать или снимать 1С с типовой поддержки?</span>
-            <span class="faq__icon">+</span>
-          </summary>
-          <div class="faq__answer">
-            <p>Нет. Агент подключается через внешнюю обработку (.epf) или внешнее расширение (.cfe). Конфигурация остается полностью типовой и обновляется штатными средствами без ограничений.</p>
+        <div class="faq-item">
+          <button type="button" class="faq-item__header" aria-expanded="false">
+            <span class="faq-item__question">Нужно ли дорабатывать или снимать 1С с типовой поддержки?</span>
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__inner">
+              <p>Нет. Агент подключается через внешнюю обработку (.epf) или внешнее расширение (.cfe). Конфигурация остается полностью типовой и обновляется штатными средствами без ограничений.</p>
+            </div>
           </div>
-        </details>
-        <details class="faq__item">
-          <summary class="faq__question">
-            <span>Как считается себестоимость в P&L до официального закрытия месяца?</span>
-            <span class="faq__icon">+</span>
-          </summary>
-          <div class="faq__answer">
-            <p>Используется оперативный расчет по методу ФИФО или средней скользящей себестоимости на основе регистров партий и движений товаров. После регламентного закрытия месяца бухгалтерией агент автоматически пересчитывает исторические данные.</p>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-item__header" aria-expanded="false">
+            <span class="faq-item__question">Как считается себестоимость в P&amp;L до официального закрытия месяца?</span>
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__inner">
+              <p>Используется оперативный расчет по методу ФИФО или средней скользящей себестоимости на основе регистров партий и движений товаров. После регламентного закрытия месяца бухгалтерией агент автоматически пересчитывает исторические данные.</p>
+            </div>
           </div>
-        </details>
-        <details class="faq__item">
-          <summary class="faq__question">
-            <span>Как обеспечивается безопасность финансовых данных по 152-ФЗ?</span>
-            <span class="faq__icon">+</span>
-          </summary>
-          <div class="faq__answer">
-            <p>Агент развертывается в закрытом On-Premise контуре вашей компании (на вашем сервере). Базы 1С не открываются в интернет, сырые данные не передаются в сторонние облачные сервисы. Доступ к боту строго ограничен белым списком Telegram ID топ-менеджеров.</p>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-item__header" aria-expanded="false">
+            <span class="faq-item__question">Как обеспечивается безопасность финансовых данных по 152-ФЗ?</span>
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__inner">
+              <p>Агент развертывается в закрытом On-Premise контуре вашей компании (на вашем сервере). Базы 1С не открываются в интернет, сырые данные не передаются в сторонние облачные сервисы. Доступ к боту строго ограничен белым списком Telegram ID топ-менеджеров.</p>
+            </div>
           </div>
-        </details>
-        <details class="faq__item">
-          <summary class="faq__question">
-            <span>Что если учет ведется в нескольких разных базах 1С?</span>
-            <span class="faq__icon">+</span>
-          </summary>
-          <div class="faq__answer">
-            <p>Агент умеет одновременно опрашивать несколько баз (например, 1С:УТ по торговле и 1С:Бухгалтерию по расходам), сопоставлять справочники номенклатуры и автоматически исключать внутригрупповые обороты (интеркампани).</p>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-item__header" aria-expanded="false">
+            <span class="faq-item__question">Что если учет ведется в нескольких разных базах 1С (Интеркампани)?</span>
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__inner">
+              <p>Агент умеет одновременно опрашивать несколько баз (например, 1С:УТ по торговле и 1С:Бухгалтерию по расходам), сопоставлять справочники номенклатуры и автоматически исключать внутригрупповые обороты (интеркампани).</p>
+            </div>
           </div>
-        </details>
-        <details class="faq__item">
-          <summary class="faq__question">
-            <span>Сколько времени занимает внедрение первого рабочего отчета?</span>
-            <span class="faq__icon">+</span>
-          </summary>
-          <div class="faq__answer">
-            <p>Развертывание агента и запуск первого рабочего пилота утренней сводки в Telegram занимает от 7 до 14 рабочих дней под ключ.</p>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-item__header" aria-expanded="false">
+            <span class="faq-item__question">Сколько времени занимает внедрение первого рабочего отчета?</span>
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__inner">
+              <p>Развертывание агента и запуск первого рабочего пилота утренней сводки в Telegram занимает от 7 до 14 рабочих дней под ключ.</p>
+            </div>
           </div>
-        </details>
+        </div>
         """,
                 "html.parser",
             )
         )
 
-# 8. Block 7: #dashboard (Interactive Telegram Simulator)
+# 8. Block 7: #dashboard (Interactive Telegram Simulator without extra squeezed CTA)
 dash_sec = soup.find("section", id="dashboard")
 if dash_sec:
     badge_text = dash_sec.find("span", class_="hero__badge-text")
@@ -590,7 +631,7 @@ if dash_sec:
               </div>
               <div class="phone-sim-tabs" style="display:flex;gap:8px;">
                 <button type="button" class="btn btn--ghost sim-tab-btn active" data-sim="sales" style="padding:6px 14px;font-size:0.82rem;font-weight:600;">📊 Продажи</button>
-                <button type="button" class="btn btn--ghost sim-tab-btn" data-sim="pnl" style="padding:6px 14px;font-size:0.82rem;font-weight:600;">📈 P&L (ОПиУ)</button>
+                <button type="button" class="btn btn--ghost sim-tab-btn" data-sim="pnl" style="padding:6px 14px;font-size:0.82rem;font-weight:600;">📈 P&amp;L (ОПиУ)</button>
                 <button type="button" class="btn btn--ghost sim-tab-btn" data-sim="risks" style="padding:6px 14px;font-size:0.82rem;font-weight:600;">⚠️ Риски</button>
               </div>
             </div>
@@ -610,7 +651,7 @@ if dash_sec:
               
               <!-- Screen 2: P&L -->
               <div class="sim-screen" id="sim-pnl" style="display:none;">
-                <div style="color:var(--accent-2);font-weight:700;margin-bottom:10px;font-size:0.95rem;">📈 УПРАВЛЕНЧЕСКИЙ P&L (НАКОПИТЕЛЬНО ЗА МЕСЯЦ)</div>
+                <div style="color:var(--accent-2);font-weight:700;margin-bottom:10px;font-size:0.95rem;">📈 УПРАВЛЕНЧЕСКИЙ P&amp;L (НАКОПИТЕЛЬНО ЗА МЕСЯЦ)</div>
                 <div>• <strong>Выручка отгрузок:</strong> 42 600 000 ₽</div>
                 <div>• <strong>Себестоимость (ФИФО):</strong> 29 820 000 ₽</div>
                 <div style="color:var(--accent-1);font-weight:700;">= Валовая прибыль: 12 780 000 ₽ (30.0%)</div>
@@ -624,17 +665,16 @@ if dash_sec:
               <!-- Screen 3: Risks -->
               <div class="sim-screen" id="sim-risks" style="display:none;">
                 <div style="color:var(--accent-hot);font-weight:700;margin-bottom:10px;font-size:0.95rem;">⚠️ АЛЕРТЫ ПО РИСКАМ И СКЛАДУ</div>
-                <div>1. <strong>Заморожено в неликвиде (>60 дней):</strong> <span style="color:var(--accent-hot);font-weight:700;">3.8 млн ₽</span></div>
+                <div>1. <strong>Заморожено в неликвиде (&gt;60 дней):</strong> <span style="color:var(--accent-hot);font-weight:700;">3.8 млн ₽</span></div>
                 <div style="color:var(--text-3);padding-left:14px;font-size:0.85rem;">Склад Подольск: группа «Электроинструмент» (24 SKU)</div>
                 <div>2. <strong>Риск кассового разрыва:</strong> 6 октября (<span style="color:#ef4444;font-weight:700;">-450 000 ₽</span>)</div>
                 <div style="color:var(--text-3);padding-left:14px;font-size:0.85rem;">Плановый платеж «Северсталь» + квартальный НДС</div>
-                <div>3. <strong>Просроченная дебиторка:</strong> 1.2 млн ₽ (>14 дней, ООО «Вектор»)</div>
+                <div>3. <strong>Просроченная дебиторка:</strong> 1.2 млн ₽ (&gt;14 дней, ООО «Вектор»)</div>
               </div>
             </div>
             
-            <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap;">
-              <a href="#contact" class="btn btn--primary" style="flex:1;justify-content:center;font-size:0.9rem;">Подключить для вашей 1С</a>
-              <a href="#contact" class="btn btn--ghost" style="font-size:0.9rem;">Запросить демо-выгрузку</a>
+            <div style="margin-top:16px;">
+              <a href="#contact" class="btn btn--primary btn--full" style="justify-content:center;font-size:0.95rem;width:100%;">Подключить для вашей 1С</a>
             </div>
           </div>
         </div>
@@ -661,7 +701,7 @@ if dash_sec:
             )
         )
 
-# 9. Block 8: #contact
+# 9. Block 8: #contact (Clean 3-field canonical form, NO extra select)
 contact_sec = soup.find("section", id="contact")
 if contact_sec:
     h2 = contact_sec.find("h2", class_="contact__title")
@@ -669,58 +709,12 @@ if contact_sec:
         h2.string = "Первый шаг — бесплатный аудит 1С-отчетности"
     desc = contact_sec.find("p", class_="contact__desc")
     if desc:
-        desc.string = "За 30 минут разберем ваши базы 1С, покажем, где теряются часы экономистов и рассчитаем потенциал экономии при автоматизации управленческого P&L для вашей компании."
-
-    perks = contact_sec.find("ul", class_="contact__perks")
-    if perks:
-        perks.clear()
-        perks.append(
-            BeautifulSoup(
-                """
-        <li class="contact__perk">
-          <span class="contact__perk-icon">✓</span>
-          <span>Экспресс-анализ архитектуры баз 1С (ERP, УТ, КА, БП) бесплатно</span>
-        </li>
-        <li class="contact__perk">
-          <span class="contact__perk-icon">✓</span>
-          <span>Демонстрация готового шаблона утренней сводки под вашу отрасль</span>
-        </li>
-        <li class="contact__perk">
-          <span class="contact__perk-icon">✓</span>
-          <span>Расчет точного срока окупаемости и плана запуска за 10 дней</span>
-        </li>
-        """,
-                "html.parser",
-            )
+        desc.string = (
+            "За 30 минут разберем ваши базы 1С, покажем, где теряются часы экономистов "
+            "и рассчитаем потенциал экономии при автоматизации управленческого P&L для вашей компании."
         )
 
-    # Add System selector in the form before phone
-    form = contact_sec.find("form", id="contact-form")
-    if form:
-        # Check if system select already exists
-        if not form.find("select", id="user_system"):
-            comp_group = form.find("div", class_="form-group")
-            system_html = BeautifulSoup(
-                """
-            <div class="form-group">
-              <label class="form-label" for="user_system">Конфигурация 1С / Учетная система</label>
-              <select class="form-input" id="user_system" name="system" style="background:var(--bg);color:var(--text-1);">
-                <option value="1C:ERP">1С:ERP Управление предприятием</option>
-                <option value="1C:Комплексная автоматизация">1С:Комплексная автоматизация (КА 2)</option>
-                <option value="1C:Управление торговлей">1С:Управление торговлей (УТ 11)</option>
-                <option value="1C:Бухгалтерия">1С:Бухгалтерия предприятия (БП 3.0)</option>
-                <option value="Несколько баз 1С">Несколько баз 1С (Холдинг)</option>
-                <option value="МойСклад / Другое">МойСклад / Другая система</option>
-              </select>
-            </div>
-            """,
-                "html.parser",
-            )
-            comp_group.insert_after(system_html)
-
-        btn_text = form.find("span", id="submit-btn-text")
-        if btn_text:
-            btn_text.string = "Записаться на аудит отчетности"
+    # Note: NO extra dropdown added! Form keeps canonical 3 fields: name, company, contact.
 
 # 10. Add Simulator switching script at the end of body
 body = soup.find("body")
