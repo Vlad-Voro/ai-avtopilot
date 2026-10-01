@@ -180,7 +180,7 @@ if hero_sec:
     if hero_inner:
         badge_text = hero_inner.find("span", class_="hero__badge-text")
         if badge_text:
-            badge_text.string = "Системы активны · Предиктивный мониторинг 1С в реальном времени"
+            badge_text.string = "Системы активны · Мониторинг аномалий 1С"
 
         h1 = hero_inner.find("h1")
         if h1:
@@ -685,7 +685,7 @@ dash_sec = soup.find("section", id="dashboard")
 if dash_sec:
     badge_text = dash_sec.find("span", class_="hero__badge-text")
     if badge_text:
-        badge_text.string = "Системы активны · Предиктивный мониторинг аномалий 1С"
+        badge_text.string = "Системы активны · Мониторинг аномалий 1С"
     h2 = dash_sec.find("h2", class_="section-title")
     if h2:
         h2.string = "Интерактивный симулятор предиктивных алертов"

@@ -166,7 +166,7 @@ if hero_sec:
     if hero_inner:
         badge_text = hero_inner.find("span", class_="hero__badge-text")
         if badge_text:
-            badge_text.string = "Системы активны · Управленческая аналитика в реальном времени"
+            badge_text.string = "Системы активны · Автоотчеты в 09:00"
 
         h1 = hero_inner.find("h1")
         if h1:
@@ -584,7 +584,7 @@ dash_sec = soup.find("section", id="dashboard")
 if dash_sec:
     badge_text = dash_sec.find("span", class_="hero__badge-text")
     if badge_text:
-        badge_text.string = "Системы активны · Утренняя сводка руководителя в 09:00"
+        badge_text.string = "Системы активны · Автоотчеты в 09:00"
     h2 = dash_sec.find("h2", class_="section-title")
     if h2:
         h2.string = "Попробуйте утренний отчет руководителя в действии"

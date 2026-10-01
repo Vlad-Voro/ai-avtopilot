@@ -494,7 +494,7 @@ def generate_service_html(data: dict) -> str:
           <span class="breadcrumbs__sep">/</span>
           <span>{h1_static.rstrip(":")}</span>
         </nav>
-        <div class="hero__badge" data-reveal="" style="margin-bottom:14px;">
+        <div class="hero__badge" data-reveal="" title="{hero_badge}" style="margin-bottom:14px;">
           <span class="hero__badge-dot"></span>
           <span class="hero__badge-text">{hero_badge}</span>
         </div>
@@ -676,7 +676,7 @@ def generate_service_html(data: dict) -> str:
   <section class="dashboard" id="dashboard">
     <div class="container">
       <div class="section-header">
-        <div class="hero__badge" data-reveal="" style="margin-bottom:14px;">
+        <div class="hero__badge" data-reveal="" title="{hero_badge}" style="margin-bottom:14px;">
           <span class="hero__badge-dot"></span>
           <span class="hero__badge-text">{hero_badge}</span>
         </div>
