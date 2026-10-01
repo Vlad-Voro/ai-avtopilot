@@ -76,6 +76,7 @@
 - Каталог услуг: https://ai-avtopilot.ru/services/
 - Автоматические отчеты по продажам, остаткам и P&L: https://ai-avtopilot.ru/services/automated-reporting/
 - Кейсы клиентов: https://ai-avtopilot.ru/cases/
+- Кейс автоматизации розничной сети (230 точек, 1С:Розница): https://ai-avtopilot.ru/cases/retail-inventory-automation/
 - Калькулятор ROI: https://ai-avtopilot.ru/calculator/
 - Интерактивный дашборд: https://ai-avtopilot.ru/dashboard/
 - Запись на бесплатный аудит: https://ai-avtopilot.ru/contact/
