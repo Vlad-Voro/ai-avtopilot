@@ -21,9 +21,8 @@ const CLUSTER_SERVICES = [
 ];
 
 suite.test('E2E-1: Bento cards on homepage navigate to all 5 service landing pages', async ({ page, baseUrl }) => {
-  await page.goto(`${baseUrl}/`);
-
   for (const svc of CLUSTER_SERVICES) {
+    await page.goto(`${baseUrl}/`);
     const cardLink = page.locator(`a[href="/services/${svc.slug}/"]`).first();
     await assert.ok(await cardLink.count() > 0, `Homepage must contain bento card link for /services/${svc.slug}/`);
     
@@ -42,9 +41,8 @@ suite.test('E2E-1: Bento cards on homepage navigate to all 5 service landing pag
 });
 
 suite.test('E2E-2: Bento cards on /services/ hub navigate to all 5 service landing pages', async ({ page, baseUrl }) => {
-  await page.goto(`${baseUrl}/services/`);
-
   for (const svc of CLUSTER_SERVICES) {
+    await page.goto(`${baseUrl}/services/`);
     const cardLink = page.locator(`a[href="/services/${svc.slug}/"]`).first();
     await assert.ok(await cardLink.count() > 0, `/services/ hub must contain bento card link for /services/${svc.slug}/`);
     

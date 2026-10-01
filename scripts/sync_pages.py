@@ -172,29 +172,9 @@ def generate_subpage(slug: str, spec: dict, master_html: str) -> str:
             1,
         )
 
-    # For Services subpage: append cross-linking mesh before contact section
+    # For Services subpage: link primary CTA to #contact
     if slug == "services":
         html = html.replace('href="/contact/" class="btn btn--primary"', 'href="#contact" class="btn btn--primary"')
-        services_directions_mesh = """  <!-- ═══════════════════ PAGERANK CROSS-LINKING MESH ═══════════════════ -->
-  <section class="container" style="padding: 10px 24px 30px;">
-    <div class="subpage-deep" data-reveal="">
-      <h3 style="font-family:var(--font-head); font-size:1.15rem; margin-bottom:14px; color:var(--text-1);">Другие направления автоматизации АвтоПилот</h3>
-      <div class="subpage-links-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">
-        <a href="/services/automated-reporting/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">📊 Автоотчётность</a>
-        <a href="/services/ai-analytics/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🧠 ИИ-аналитика</a>
-        <a href="/services/system-integration/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🔄 Интеграция систем</a>
-        <a href="/services/retail-inventory/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🏪 Ритейл и склад</a>
-        <a href="/services/document-automation/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">📄 Документооборот</a>
-        <a href="/services/customer-support/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">💬 ИИ-поддержка</a>
-        <a href="/services/rapid-pilot/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">⚡ Быстрый старт</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════ CTA + CONTACT ═══════════════════ -->"""
-        html = html.replace(
-            "  <!-- ═══════════════════ CTA + CONTACT ═══════════════════ -->", services_directions_mesh, 1
-        )
 
     # For Cases subpage: link secondary hero button to #cases, in-page CTAs to #contact, and append mesh at bottom of #cases section
     if slug == "cases":
@@ -321,6 +301,17 @@ def main():
         print(f"  [OK] Generated Multi-Entry Hybrid subpage: {slug}/index.html ({len(subpage_html)} bytes)")
 
     print("All subpages successfully synchronized with zero CSS drift.")
+
+    try:
+        import sys
+
+        if ROOT_DIR not in sys.path:
+            sys.path.insert(0, ROOT_DIR)
+        from scripts.sync_docs import run_sync
+
+        run_sync()
+    except Exception as e:
+        print(f"[WARN] Failed to trigger sync_docs: {e}")
 
 
 if __name__ == "__main__":
