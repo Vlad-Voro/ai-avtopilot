@@ -250,7 +250,7 @@ flowchart TD
 | **8. Contact Form** | `section.contact#contact` | Canonical 3 fields: Name (`#contact-name`), Company (`#contact-company`), Contact (`#contact-email`). 152-FZ consent, Honeypot `_honey`, full-width CTA button. In-page smooth scroll anchor. |
 | **9. Footer** | `footer.footer` | Telegram bot `@AiAvtopilotbot`, email `contact@ai-avtopilot.ru`, 24/7 support hours, JSON-LD Schema graph. |
 
-### 9.2. Strict Negative Invariants & Incident Learnings (16 Rules)
+### 9.2. Strict Negative Invariants & Incident Learnings (17 Rules)
 1. ❌ **Zero Phantom Top Banners**: Prohibited to inject `subpage-deep` boxes above Hero; pages must start with Hero immediately after Navigation.
 2. ❌ **Zero ScrollSpy URL Hijacking**: On subpages (`/services/*`), `history.replaceState` must NEVER overwrite URL when scrolling between sections (`isSubpage` guard).
 3. ❌ **Zero H1 Pollution**: Exactly ONE `<h1>` tag located in the Hero title. Prohibited to have 0 or $>1$ H1s.
@@ -267,6 +267,7 @@ flowchart TD
 14. ❌ **Universal Swipe Carousel Nudge**: All horizontally scrollable blocks (`.services__bento`, `.cases__grid`) on mobile/tablet ($\le 1024\text{px}$) must include the GPU nudge observer (`@keyframes sNudge`).
 15. ❌ **Zero Factoid Sheet Clutter (Incident 2026-10-01)**: Prohibited to inject standalone factoid sheet cards into the DOM. Embed direct answer facts into Hero subtitle, FAQ, and Schema.org.
 16. ❌ **Subpage In-Page Form Routing (Incident 2026-10-01)**: Secondary CTAs with `href="#contact"` must smoothly anchor-scroll to the in-page contact form; form layout uses 2 columns on desktop, 1 column on mobile.
+17. ❌ **Zero AI-Slop & Semantic Invariance (Incident 2026-10-01)**: All pages must be verified via `ru_text_humanizer` (64 patterns, 0 Hard Bans, burstiness $\sigma \ge 4.0$, living text $\ge 5/7$) with 100% preservation of verified Yandex Wordstat commercial frequencies and Title (30–85) / Meta Description (70–175) bounds.
 
 ---
 
