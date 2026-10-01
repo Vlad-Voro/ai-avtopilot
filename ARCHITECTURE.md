@@ -12,14 +12,14 @@
 ```mermaid
 flowchart TD
     Client["Client (Browser / Mobile / Tablet)"] -->|HTTPS / TLS 1.3 / Anycast IP 76.76.21.21| Vercel["Vercel Edge Network (Hobby Tier)"]
-    
+
     subgraph EdgeLayer ["1. Edge & Routing Layer (Vercel + Cloudflare DNS)"]
         Vercel -->|1. Static Assets & HTML| VEdge["Vercel Anycast Edge (vercel.json)"]
         Vercel -->|2. POST /submit (Lead Ingestion)| CFW["Cloudflare Worker (ai-avtopilot-bot)"]
         VEdge -->|3. Security Headers + 1y Cache| VSec["HSTS, CSP, Frame Guard, Permissions-Policy"]
         VEdge -->|4. Deployment Isolation| VIgn[".vercelignore (blocks _headers, *.md, tests, bot)"]
     end
-    
+
     subgraph AppLayer ["2. Static Hybrid Multi-Entry SSG"]
         VEdge --> P1["/ (Main Landing)"]
         VEdge --> P2["/services/ (1C / ERP / RPA Services)"]
@@ -29,7 +29,7 @@ flowchart TD
         VEdge --> P6["/faq/ (B2B FAQ: 1C/EDI/152-FZ)"]
         VEdge --> P7["/contact/ (Express Audit Capture)"]
     end
-    
+
     subgraph LeadDelivery ["3. Resilient Ingestion & Notifications"]
         CFW -->|Primary: HTML Telegram API| TGB["Telegram Bot @AiAvtopilotbot"]
         TGB -->|Two-way routing| Admin["Duty Administrator"]
@@ -44,7 +44,8 @@ flowchart TD
 ```
 
 ### 1.1. DNS & Edge Routing
-- **Domain**: `ai-avtopilot.ru` (`.ru` TLD, registrar REG.RU with DNSSEC DS records).
+
+- **Domain**: `ai-avtopilot.ru` (`.ru` TLD, registrar REG.RU).
 - **Vercel Edge + Cloudflare DNS-Only (TSPU DPI Resilience)**:
   - Origin / Edge: Vercel Global Anycast Edge (`76.76.21.21`, zero 24KB stall in Russia).
   - Cloudflare Mode: **DNS only (Grey Cloud)** — serves authoritative DNS with DNSSEC without proxying, completely eliminating TSPU DPI throttling on Russian ISPs.
@@ -68,6 +69,7 @@ flowchart TD
 ## 2. Frontend Architecture & Design System
 
 ### 2.1. Zero-Blocking Delivery & Web Vitals (100/100 Mobile & Desktop)
+
 - **Inlined Styles**: Global CSS embedded directly in `<head>` via `<style id="app-styles">` (~97 KB). Zero render-blocking external CSS.
 - **WOFF2 Font Subsetting**: *Inter* (U+0400-045F Cyrillic, Latin) and *Outfit* preloaded via `<link rel="preload">`, partitioned into local Unicode ranges in `/assets/fonts/` with `font-display: swap`.
 - **Core Web Vitals Thresholds**:
@@ -77,6 +79,7 @@ flowchart TD
   - CLS: **0.000** (strict fixed heights on terminal, chart bars, and card containers).
 
 ### 2.2. Contrast & Palette (WCAG AA Strict)
+
 - Background: `#050507` (Deep Cosmic Black).
 - Text Tier 1 (`--text-1`): `#ffffff` (21:1 contrast).
 - Text Tier 2 (`--text-2`): `#cbd5e1` (13.7:1 contrast on `#050507`).
@@ -85,6 +88,7 @@ flowchart TD
 - Cards (`.scard`, `.case-card`, `.dash-card`): 4px hover elevation, `box-shadow: 0 12px 36px rgba(99, 102, 241, 0.18)`, neon border glow.
 
 ### 2.3. Breakpoints & Accessibility
+
 - Viewport Grid: `1440px` (wide), `1200px` (desktop), `1024px` (tablet landscape), `768px` (tablet portrait), `414px / 375px / 320px` (mobile).
 - Zero horizontal overflow (`overflow-x: clip / hidden` on body and wrapper containers).
 - **Mobile Navigation**:
@@ -110,6 +114,7 @@ index.html (Master Template)
 ```
 
 ### 3.1. SSG Generator (`scripts/sync_pages.py`)
+
 - **Problem**: In static hosting environments without server-side rendering, direct deep navigation to sub-routes could trigger generic server 404s, degrading SEO indexation and UX.
 - **Solution**: Multi-Entry Hybrid SSG:
   - 6 physical directories with dedicated `index.html`.
@@ -118,20 +123,24 @@ index.html (Master Template)
   - Deep content tables (integration protocols, SLAs, verified ROI).
   - PageRank Mesh (`.subpage-links-grid`) ensuring weight circulation without dead ends.
 - **Build Command**:
+  
   ```powershell
   python data/ai-avtopilot/scripts/sync_pages.py
   ```
 
 ### 3.2. Trailing Slash Normalization (Zero 301 Hops)
+
 - All internal links in header, footer, mesh, and JS routing use trailing slashes: `/services/`, `/cases/`, `/calculator/`, `/dashboard/`, `/faq/`, `/contact/`.
 - Configured at Edge level via `vercel.json` (`"trailingSlash": true`), automatically serving subpages with canonical trailing slash (308 redirect) while eliminating multi-hop protocol downgrades.
 
 ### 3.3. SOTA 404 Fallback & Custom Error Handling
+
 - Native Vercel static error handling: automatically serves root `/404.html` on any non-existent route with 404 status.
 - `404.html` branded with design system, catches non-existent URLs and provides immediate navigation back to core landing pages or SPA recovery.
 - `index.html` router on `DOMContentLoaded` reads the stored path, restores clean URL via `history.replaceState`, and smooth scrolls to target with `scroll-margin-top: 80px`.
 
 ### 3.4. Deterministic ScrollSpy (ADR 2026-09-25)
+
 - Replaced flaky `IntersectionObserver` with DOM geometry-based `getActiveSection()` calculating active sections from scroll offset (`window.scrollY + offset`).
 - Synchronously sets `.nav__link.active` on click, clears underline at `#home`, and updates address bar via `history.replaceState`.
 
@@ -140,6 +149,7 @@ index.html (Master Template)
 ## 4. Interactive Engines & Mathematical Models
 
 ### 4.1. ROI Calculator Model
+
 - **Inputs**:
   - Employee count: $E \in [1, 100]$, step 1.
   - Routine hours/week per employee: $H \in [1, 40]$, step 1.
@@ -160,6 +170,7 @@ index.html (Master Template)
   - Pill badges displaying formatted current values and min/max limit ticks.
 
 ### 4.2. Hero Particle Canvas (CWV CPU/Battery Optimization)
+
 - **Adaptive Density**:
   - Desktop ($\ge 768\text{px}$): 40 particles.
   - Mobile ($< 768\text{px}$): 18–20 particles (-75% CPU load, eliminates mobile thermal throttling).
@@ -169,6 +180,7 @@ index.html (Master Template)
   - Resumes instantly when scrolled back into view.
 
 ### 4.3. Live Dashboard Simulator
+
 - Real-time agent status simulation with log streams and metric bars (intervals: 3500ms and 2100ms).
 - Linked to `visibilitychange`: when tab is inactive (`document.hidden === true`), intervals pause to eliminate memory leaks and background CPU cycles.
 
@@ -177,7 +189,9 @@ index.html (Master Template)
 ## 5. Edge Gateway, Cloudflare Worker & Ingestion
 
 ### 5.1. Cloudflare Worker Gateway (`cloudflare-worker/worker.js`)
+
 Deploys on Cloudflare V8 isolates:
+
 - **Endpoint**: `POST https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/submit`.
 - **Origin Whitelist**: Validates `Origin` header. Permitted:
   - `https://ai-avtopilot.ru`
@@ -195,12 +209,14 @@ Deploys on Cloudflare V8 isolates:
   - Regex `^🆔 ID клиента: <code>(\d+)</code>` isolates real client ID, neutralizing injection in user quotes.
 
 ### 5.2. Resilient Lead Failover Cascade
+
 1. **Primary**: POST to Cloudflare Worker $\to$ Telegram bot [@AiAvtopilotbot](https://t.me/AiAvtopilotbot) to duty admin.
 2. **Timeout**: Client-side fetch aborted via `AbortController` after 6000ms.
 3. **Secondary**: Web3Forms API $\to$ FormSubmit `.co` $\to$ inbox `contact@ai-avtopilot.ru`.
 4. **Offline Fallback UI**: On catastrophic network failure, UI shows fallback card with 1-click clipboard payload copy and direct Telegram contact button.
 
 ### 5.3. Local Python Bot (`bot/bot.py`)
+
 - Local development & backup gateway with proxy support (SOCKS5 `127.0.0.1:10808` / HTTP `127.0.0.1:10809`).
 - Bi-directional relay: Admin native Telegram Replies route back to the originating client chat.
 
@@ -209,6 +225,7 @@ Deploys on Cloudflare V8 isolates:
 ## 6. SEO, GEO & AEO (Generative Engine Optimization)
 
 ### 6.1. AI Search Crawlers (Yandex Neuro, ChatGPT, Perplexity)
+
 - **Crawler Access (`robots.txt`)**: Explicitly allows 10 AI engines:
   - `GPTBot`, `OAI-SearchBot`
   - `PerplexityBot`
@@ -220,6 +237,7 @@ Deploys on Cloudflare V8 isolates:
   - `/llms-full.txt`: Full technical protocol spec (1C OData REST API, Diadoc SDK, SBIS API, 152-FZ on-premise deployment).
 
 ### 6.2. Schema.org JSON-LD (@graph)
+
 - `Organization` & `ProfessionalService`:
   - `currenciesAccepted: "RUB"`, `priceRange: "₽₽"`.
   - `paymentAccepted: "Bank transfer, cashless invoice, SBP"`.
@@ -230,23 +248,25 @@ Deploys on Cloudflare V8 isolates:
 - `WebSite`: Search intents and canonical domain.
 
 ### 6.3. Ad Parameter Sanitization (Yandex Clean-Param)
+
 ```txt
 Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&_openstat&from&vk_source&gclid&fbclid /
 ```
+
 Prevents crawler index pollution and duplicate pages across 11 standard Russian ad tracking parameters.
 
 ---
 
 ## 7. Security & Zero-Trust Hardening
 
-| Vector | Implementation | Protection |
-|---|---|---|
-| **OWASP Clickjacking** | Inline Frame Guard in `<head>`: `if (self !== top) top.location = self.location;` with instant `body{display:none}` removal | Prevents malicious iframe embedding |
-| **Content Security Policy** | `default-src 'self'`; strict whitelists for `mc.yandex.ru`, Cloudflare Worker, Web3Forms, local fonts | Mitigates XSS and script injections |
-| **X-Content-Type-Options** | `nosniff` meta tag & edge header | Disables browser MIME-type sniffing |
-| **Referrer Policy** | `strict-origin-when-cross-origin` | Protects URL query privacy on outbound links |
-| **Payload Clamping** | Max 10 KB request body, length validation on inputs | Prevents Telegram 400 DoS attacks |
-| **Secrets Hygiene** | Zero plaintext tokens in repository; secrets managed via Cloudflare Worker environment | Eliminates credential leak vectors |
+| Vector                      | Implementation                                                                                                              | Protection                                   |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| **OWASP Clickjacking**      | Inline Frame Guard in `<head>`: `if (self !== top) top.location = self.location;` with instant `body{display:none}` removal | Prevents malicious iframe embedding          |
+| **Content Security Policy** | `default-src 'self'`; strict whitelists for `mc.yandex.ru`, Cloudflare Worker, Web3Forms, local fonts                       | Mitigates XSS and script injections          |
+| **X-Content-Type-Options**  | `nosniff` meta tag & edge header                                                                                            | Disables browser MIME-type sniffing          |
+| **Referrer Policy**         | `strict-origin-when-cross-origin`                                                                                           | Protects URL query privacy on outbound links |
+| **Payload Clamping**        | Max 10 KB request body, length validation on inputs                                                                         | Prevents Telegram 400 DoS attacks            |
+| **Secrets Hygiene**         | Zero plaintext tokens in repository; secrets managed via Cloudflare Worker environment                                      | Eliminates credential leak vectors           |
 
 ---
 
@@ -267,9 +287,11 @@ node data/ai-avtopilot/tests/resiliency/test_resiliency_jtbd.js
 ```
 
 ### Synthetic Monitoring & CI/CD Gate
+
 - **Daily Cron & Push Verification**: `.github/workflows/healthcheck.yml` executes SEO, Security, Resiliency suites, and live HTTP 200 ping.
 
 ### 4-Tier E2E Architecture (78 tests, 3-worker context pool, ~25s runtime)
+
 - **Tier 1 (Feature Coverage R1–R7, 39 tests)**: Hero layout, section sequence, WCAG AA contrast, bento/card hover, slash routing, slider 7px track/math, fixed CLS heights, visibility lifecycle, passive listeners.
 - **Tier 2 (Boundary & Corner Cases, 28 tests)**: 8 viewports (320px..2560px), slider extremes (Min 1/1/30k, Max 100/40/300k, Mid), rapid input drag (50 iterations), SPA 404 fallback, burger 10x toggle, ESC close, rapid nav clicks.
 - **Tier 3 (Cross-Feature Interactions, 6 tests)**: Scroll during nav click, mobile slider drag without horizontal shift, scroll lock during open menu, hash/pushState transitions.
@@ -280,18 +302,14 @@ node data/ai-avtopilot/tests/resiliency/test_resiliency_jtbd.js
 ## 9. B2B Commercial Model & Positioning
 
 ### 9.1. Core Offer & Landing Triggers
+
 - **Hero Offer**: **"Free 30-minute express audit of 3 business processes"**.
 - **Value Proposition**: Selling **direct payroll reduction, cash gap elimination, and inventory mismatch prevention**, not abstract "AI/neural nets".
-- **Pilot Framework**: 14-day fixed pilot (50,000 – 150,000 RUB) guaranteeing measurable ROI before entering annual B2B contracts.
+- **Pilot Framework**: 14-day fixed pilot.
 
 ### 9.2. Decision Maker Personas (B2B)
+
 1. **Chief Operating Officer (COO)**: Stock accuracy, marketplace overstock/out-of-stock (WB/Ozon), order fulfillment delays.
 2. **Chief Financial Officer / Chief Accountant (CFO)**: Month-end close delays (3–5 days), invoice backlogs in EDI (Diadoc/SBIS), manual reconciliations.
 3. **Chief Information Officer (CIO / CTO)**: Shortage of 1C developers, 1C OData REST API integration, 152-FZ on-premise compliance.
 4. **Business Owner / CEO**: Scaling operational capacity without expanding back-office headcount.
-
-### 9.3. B2B Enterprise Compliance
-- Cashless payment via formal contract-invoice.
-- Electronic Document Interchange (EDI): **Kontur.Diadoc** and **Tensor SBIS**.
-- Mandatory bilateral **NDA** before inspecting sample data or configurations.
-- 24/7 technical support and monitoring SLAs.

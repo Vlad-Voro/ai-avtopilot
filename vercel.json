@@ -4,6 +4,16 @@
   "trailingSlash": true,
   "redirects": [
     {
+      "source": "/automated-reporting",
+      "destination": "/services/automated-reporting/",
+      "permanent": true
+    },
+    {
+      "source": "/automated-reporting/",
+      "destination": "/services/automated-reporting/",
+      "permanent": true
+    },
+    {
       "source": "/:path+/index.html",
       "destination": "/:path+/",
       "permanent": true

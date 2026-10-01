@@ -73,7 +73,7 @@
 
 - Главная страница: https://ai-avtopilot.ru/
 - Каталог услуг: https://ai-avtopilot.ru/services/
-- Автоматические отчеты по продажам, остаткам и P&L: https://ai-avtopilot.ru/automated-reporting/
+- Автоматические отчеты по продажам, остаткам и P&L: https://ai-avtopilot.ru/services/automated-reporting/
 - Кейсы клиентов: https://ai-avtopilot.ru/cases/
 - Калькулятор ROI: https://ai-avtopilot.ru/calculator/
 - Интерактивный дашборд: https://ai-avtopilot.ru/dashboard/

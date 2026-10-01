@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INDEX_PATH = os.path.join(PROJECT_DIR, "index.html")
-OUTPUT_DIR = os.path.join(PROJECT_DIR, "automated-reporting")
+OUTPUT_DIR = os.path.join(PROJECT_DIR, "services", "automated-reporting")
 OUTPUT_PATH = os.path.join(OUTPUT_DIR, "index.html")
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -39,12 +39,12 @@ if desc_tag:
 
 canonical_tag = soup.find("link", attrs={"rel": "canonical"})
 if canonical_tag:
-    canonical_tag["href"] = "https://ai-avtopilot.ru/automated-reporting/"
+    canonical_tag["href"] = "https://ai-avtopilot.ru/services/automated-reporting/"
 
 # OG / Twitter
 for prop, val in [
     ("og:title", "Отчеты по продажам, остаткам и P&L из 1С в Telegram | АвтоПилот"),
-    ("og:url", "https://ai-avtopilot.ru/automated-reporting/"),
+    ("og:url", "https://ai-avtopilot.ru/services/automated-reporting/"),
     (
         "og:description",
         "Автоматический сбор управленческой аналитики из 1С:ERP, УТ, КА в Telegram и Email: "
@@ -68,18 +68,19 @@ if json_ld and json_ld.string:
         data = json.loads(json_ld.string)
         graph = data.get("@graph", [])
 
-        # BreadcrumbList
+        # BreadcrumbList (3-level Silo)
         graph.append(
             {
                 "@type": "BreadcrumbList",
-                "@id": "https://ai-avtopilot.ru/automated-reporting/#breadcrumb",
+                "@id": "https://ai-avtopilot.ru/services/automated-reporting/#breadcrumb",
                 "itemListElement": [
                     {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://ai-avtopilot.ru/"},
+                    {"@type": "ListItem", "position": 2, "name": "Услуги", "item": "https://ai-avtopilot.ru/services/"},
                     {
                         "@type": "ListItem",
-                        "position": 2,
+                        "position": 3,
                         "name": "Автоотчетность и P&L из 1С",
-                        "item": "https://ai-avtopilot.ru/automated-reporting/",
+                        "item": "https://ai-avtopilot.ru/services/automated-reporting/",
                     },
                 ],
             }
@@ -89,7 +90,7 @@ if json_ld and json_ld.string:
         graph.append(
             {
                 "@type": "SoftwareApplication",
-                "@id": "https://ai-avtopilot.ru/automated-reporting/#app",
+                "@id": "https://ai-avtopilot.ru/services/automated-reporting/#app",
                 "name": "АвтоПилот: Управленческая автоотчетность 1С",
                 "operatingSystem": "Windows, Linux (1C:Enterprise 8.3)",
                 "applicationCategory": "BusinessApplication",
@@ -107,7 +108,7 @@ if json_ld and json_ld.string:
         graph.append(
             {
                 "@type": "FAQPage",
-                "@id": "https://ai-avtopilot.ru/automated-reporting/#faq",
+                "@id": "https://ai-avtopilot.ru/services/automated-reporting/#faq",
                 "mainEntity": [
                     {
                         "@type": "Question",
