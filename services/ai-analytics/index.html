@@ -1,0 +1,2925 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Предиктивная аналитика 1С: платежный календарь, неснижаемый остаток и контроль цен | АвтоПилот</title>
+<meta content="Предиктивная ИИ-аналитика для 1С:ERP и УТ: автоматизация платежного календаря, расчет неснижаемого остатка и контроль цен поставщиков. Предотвращение кассовых разрывов за 10 дней." name="description"/>
+<meta content="платежный календарь 1с, управление запасами 1с, контроль цен поставщиков, расчет неснижаемого остатка, прогнозирование кассовых разрывов, ии аналитика для бизнеса, автопилот ии" name="keywords"/>
+<meta content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" name="robots"/>
+<link href="https://ai-avtopilot.ru/services/ai-analytics/" rel="canonical"/>
+<meta content="#08080c" name="theme-color"/>
+<!-- Search Console Verification -->
+<meta content="u42j0jjBKadmyE77f9wlqfy5gkyDONXtaPzcPRZ51R8" name="google-site-verification"/>
+<!-- Open Graph / VK / Facebook -->
+<meta content="ru_RU" property="og:locale"/>
+<meta content="website" property="og:type"/>
+<meta content="https://ai-avtopilot.ru/services/ai-analytics/" property="og:url"/>
+<meta content="АвтоПилот" property="og:site_name"/>
+<meta content="Предиктивная аналитика 1С: платежный календарь, неснижаемый остаток и контроль цен | АвтоПилот" property="og:title"/>
+<meta content="Предиктивная ИИ-аналитика для 1С:ERP и УТ: автоматизация платежного календаря, расчет неснижаемого остатка и контроль цен поставщиков. Предотвращение кассовых разрывов за 10 дней." property="og:description"/>
+<meta content="https://ai-avtopilot.ru/og-image.png" property="og:image"/>
+<meta content="https://ai-avtopilot.ru/og-image.png" property="og:image:secure_url"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="АвтоПилот — ИИ-автоматизация бизнес-процессов" property="og:image:alt"/>
+<!-- Twitter Cards -->
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Предиктивная аналитика 1С: платежный календарь, неснижаемый остаток и контроль цен | АвтоПилот" name="twitter:title"/>
+<meta content="Предиктивная ИИ-аналитика для 1С:ERP и УТ: автоматизация платежного календаря, расчет неснижаемого остатка и контроль цен поставщиков. Предотвращение кассовых разрывов за 10 дней." name="twitter:description"/>
+<meta content="https://ai-avtopilot.ru/og-image.png" name="twitter:image"/>
+<!-- Favicon & Icons -->
+<link href="/icon.svg" rel="icon" type="image/svg+xml"/>
+<link href="/favicon.ico" rel="icon" sizes="any" type="image/x-icon"/>
+<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link crossorigin="anonymous" href="/site.webmanifest" rel="manifest"/>
+<!-- Security Headers & Policies -->
+<meta content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://mc.yandex.com https://yastatic.net https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://ai-avtopilot.ru https://mc.yandex.ru https://mc.yandex.com; connect-src 'self' https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev https://api.web3forms.com https://formsubmit.co https://mc.yandex.ru https://mc.yandex.com wss://mc.yandex.ru wss://mc.yandex.com https://cloudflareinsights.com; frame-src https://mc.yandex.ru https://mc.yandex.com blob:; child-src https://mc.yandex.ru https://mc.yandex.com blob:;" http-equiv="Content-Security-Policy"/>
+<meta content="nosniff" http-equiv="X-Content-Type-Options"/>
+<meta content="strict-origin-when-cross-origin" name="referrer"/>
+<!-- Anti-Clickjacking Frame Guard (OWASP Defense) -->
+<style id="anti-clickjack">body{display:none !important;}</style>
+<script>
+    if (self === top) {
+      var acj = document.getElementById('anti-clickjack');
+      if (acj) acj.parentNode.removeChild(acj);
+    } else {
+      top.location = self.location;
+    }
+  </script>
+<!-- DNS Prefetch for Outbound Endpoints -->
+<link href="https://mc.yandex.ru" rel="dns-prefetch"/>
+<link href="https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev" rel="dns-prefetch"/>
+<!-- Preload Local Core Fonts -->
+<link as="font" crossorigin="" href="/assets/fonts/Inter-400-1.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="/assets/fonts/Inter-400-6.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="/assets/fonts/Outfit-600-14.woff2" rel="preload" type="font/woff2"/>
+<!-- Inlined Styles (Eliminates Render-Blocking CSS & Critical Request Chains) -->
+<style id="app-styles">
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/Inter-400-1.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/Inter-400-6.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/Inter-400-5.woff2') format('woff2');
+  unicode-range: U+20BD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/Inter-400-1.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/Inter-400-6.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/Inter-400-5.woff2') format('woff2');
+  unicode-range: U+20BD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/assets/fonts/Inter-400-1.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/assets/fonts/Inter-400-6.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/assets/fonts/Inter-400-5.woff2') format('woff2');
+  unicode-range: U+20BD;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/JetBrainsMono-400-8.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/JetBrainsMono-400-12.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/JetBrainsMono-400-11.woff2') format('woff2');
+  unicode-range: U+20BD;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/JetBrainsMono-400-8.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/JetBrainsMono-400-12.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/JetBrainsMono-400-11.woff2') format('woff2');
+  unicode-range: U+20BD;
+}
+
+@font-face {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/assets/fonts/Outfit-600-14.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/fonts/Outfit-600-14.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('/assets/fonts/Outfit-600-14.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root{--bg: #050507;--surface: #111118;--surface-2: #1a1a26;--border: rgba(255, 255, 255, .07);--border-glow: rgba(99, 102, 241, .35);--accent-1: #6366f1;--accent-2: #a855f7;--accent-hot: #f97316;--text-1: #f4f4f5;--text-2: #cbd5e1;--text-3: #94a3b8;--green: #22c55e;--yellow: #eab308;--font-head: "Outfit", sans-serif;--font-body: "Inter", sans-serif;--font-mono: "JetBrains Mono", monospace;--radius: 16px;--radius-sm: 8px;--radius-lg: 24px;--shadow-glow: 0 0 60px rgba(99, 102, 241, .15);--transition: .3s cubic-bezier(.4, 0, .2, 1)}
+*,*:before,*:after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:auto;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-x:clip;scroll-padding-top:60px}
+body{background:var(--bg);color:var(--text-1);font-family:var(--font-body);font-size:16px;line-height:1.6;overflow-x:hidden;overflow-x:clip;position:relative;width:100%;max-width:100%}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+ul{list-style:none}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section-header{text-align:center;margin-bottom:24px}
+.section-tag{display:inline-block;font-family:var(--font-mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-1);background:#6366f11a;border:1px solid rgba(99,102,241,.25);padding:5px 14px;border-radius:100px;margin-bottom:10px}
+.section-title{font-family:var(--font-head);font-size:clamp(2rem,5vw,3rem);font-weight:900;line-height:1.1;letter-spacing:-.02em;background:linear-gradient(135deg,var(--text-1) 40%,var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;font-family:var(--font-body);font-size:.95rem;font-weight:600;cursor:pointer;border:none;transition:var(--transition);white-space:nowrap;position:relative;overflow:hidden}
+.btn--primary{background:linear-gradient(135deg,var(--accent-hot),#dc2626);color:#fff;box-shadow:0 4px 24px #f9731659}
+.btn--primary:hover{transform:translateY(-2px);box-shadow:0 8px 40px #f9731680}
+.btn--ghost{background:#6366f114;color:var(--accent-1);border:1px solid rgba(99,102,241,.3)}
+.btn--ghost:hover{border-color:var(--accent-1);color:var(--text-1);background:#6366f12e;transform:translateY(-1px)}
+.btn--nav{background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#ffffff;font-weight:600;border:1px solid rgba(168,85,247,.5);padding:10px 22px;border-radius:var(--radius-sm);box-shadow:0 0 20px rgba(99,102,241,.45);transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s ease,background .2s ease}
+.btn--nav:hover{background:linear-gradient(135deg,#4f46e5,#9333ea);transform:translateY(-2px);box-shadow:0 0 30px rgba(99,102,241,.7),0 4px 16px rgba(168,85,247,.4);color:#ffffff}
+.btn--nav:active{transform:translateY(0) scale(.97);box-shadow:0 0 14px rgba(99,102,241,.4)}
+.btn--white{background:#ffffff1f;color:#fff;border:1px solid rgba(255,255,255,.2)}
+.btn--white:hover{background:#fff3}
+.btn--full{width:100%;justify-content:center}
+.nav{position:fixed;top:0;left:0;right:0;z-index:9999;padding:24px 0;transition:padding .4s cubic-bezier(.16,1,.3,1),background .4s ease;background:#08080cfa;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.1);will-change:transform,opacity}
+.nav.nav--scrolled{padding:14px 0;background:#08080cd9;-webkit-backdrop-filter:blur(24px) saturate(180%);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid rgba(99,102,241,.15);box-shadow:0 10px 30px -10px #00000080}
+.nav__inner{display:flex;align-items:center;gap:20px}
+.nav__logo{font-family:var(--font-head);font-size:1.35rem;font-weight:800;display:flex;align-items:center;gap:12px;margin-right:auto;color:#fff;text-decoration:none;text-shadow:0 0 40px rgba(99,102,241,.6);transition:transform .3s ease}
+.nav__logo:hover{transform:scale(1.02)}
+.nav__logo-icon{color:var(--accent-1);font-size:1.7rem;filter:drop-shadow(0 0 8px var(--accent-1));display:inline-block;animation:logo-float 4s ease-in-out infinite}
+@keyframes logo-float{0%,to{transform:translateY(0)}
+50%{transform:translateY(-3px)}
+}
+.nav__links{display:flex;gap:28px}
+.nav__burger{display:none;flex-direction:column;gap:6px;background:none;border:none;cursor:pointer;padding:4px;z-index:1001}
+.nav__burger span{display:block;width:24px;height:2px;background:var(--text-1);transition:all .3s ease;border-radius:2px}
+.nav__burger.active span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.nav__burger.active span:nth-child(2){opacity:0}
+.nav__burger.active span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+.nav__link{color:#fff;font-size:.95rem;font-weight:600;opacity:.85;transition:var(--transition);text-decoration:none;position:relative;padding:4px 0}
+.nav__link:after{content:"";position:absolute;bottom:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));transition:width .3s ease;border-radius:2px}
+.nav__link:hover{color:var(--text-1)}
+.nav__link:hover:after,.nav__link.active:after{width:100%}
+.nav__link.active{color:var(--text-1);font-weight:600}
+.hero{min-height:auto;padding:104px 0 44px;position:relative;display:flex;align-items:flex-start}
+.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 40%,rgba(99,102,241,.12) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 20% 70%,rgba(168,85,247,.08) 0%,transparent 50%);pointer-events:none}
+.hero__particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;width:100%;height:100%}
+.hero__particles canvas{display:block;width:100%!important;height:100%!important}
+.hero__inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:flex-start;position:relative;z-index:1}
+.hero__badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:.8rem;color:var(--text-2);background:var(--surface);border:1px solid var(--border);padding:8px 16px;border-radius:100px;margin-bottom:16px}
+.hero__badge-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse-green 2s ease-in-out infinite}
+@keyframes pulse-green{0%,to{box-shadow:0 0 #22c55e66}
+50%{box-shadow:0 0 0 8px #22c55e00}
+}
+.hero__title{font-family:var(--font-head);font-size:clamp(2.4rem,6vw,4rem);font-weight:900;line-height:1.1;letter-spacing:-.03em;margin-bottom:20px}
+.hero__title-accent{background:linear-gradient(135deg,var(--accent-1),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero__cursor{color:var(--accent-1);animation:blink 1s step-end infinite}
+@keyframes blink{0%,to{opacity:1}
+50%{opacity:0}
+}
+.hero__sub{color:var(--text-2);font-size:1.1rem;line-height:1.7;margin-bottom:20px;max-width:500px}
+.hero__actions{display:flex;gap:14px;margin-top:24px;margin-bottom:20px;flex-wrap:wrap;align-items:center}
+.hero__kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:20px 16px;text-align:center;min-width:0}
+.kpi-card__num{display:block;font-family:var(--font-head);font-size:1.6rem;font-weight:900;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:4px}
+.kpi-card__label{font-size:.72rem;color:var(--text-3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.05em}
+.hero__terminal-wrap{position:relative}
+.terminal{background:#0c0c12;border:1px solid rgba(99,102,241,.3);border-radius:var(--radius);overflow:hidden;box-shadow:0 0 80px #6366f11f,0 24px 80px #00000080}
+.terminal__header{display:flex;align-items:center;gap:8px;padding:14px 20px;background:#ffffff08;border-bottom:1px solid rgba(255,255,255,.05)}
+.terminal__dot{width:13px;height:13px;border-radius:50%}
+.terminal__dot--red{background:#ff5f57}
+.terminal__dot--yellow{background:#ffbd2e}
+.terminal__dot--green{background:#28c840}
+.terminal__title{font-family:var(--font-mono);font-size:.78rem;color:var(--text-3);margin-left:8px}
+.terminal__body{padding:18px 20px;font-family:var(--font-mono);font-size:.8rem;line-height:1.85;min-height:200px;overflow:hidden}
+.terminal__line{display:flex;gap:8px;margin-bottom:2px}
+.terminal__line--prompt{color:var(--accent-1)}
+.terminal__line--ok{color:var(--green)}
+.terminal__line--warn{color:var(--yellow)}
+.terminal__line--dim{color:var(--text-3)}
+.hero__agent-cards{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
+.agent-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;display:flex;align-items:center;gap:12px;transition:border-color .3s}
+.agent-card:hover{border-color:var(--border-glow)}
+.agent-card__icon{font-size:1.2rem}
+.agent-card__info{flex:1}
+.agent-card__name{display:block;font-size:.85rem;font-weight:500}
+.agent-card__status{font-family:var(--font-mono);font-size:.7rem;padding:2px 8px;border-radius:4px}
+.agent-card__status--live{background:#22c55e26;color:var(--green)}
+.agent-card__status--idle{background:#eab30826;color:var(--yellow)}
+.agent-card__bar{width:80px;height:4px;background:#ffffff12;border-radius:2px;overflow:hidden}
+.agent-card__fill{height:100%;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));border-radius:2px;animation:bar-pulse 3s ease-in-out infinite alternate}
+@keyframes bar-pulse{0%{opacity:.7}
+to{opacity:1}
+}
+.compare{padding:30px 0;background:linear-gradient(180deg,var(--bg) 0%,var(--surface) 50%,var(--bg) 100%)}
+.compare__grid{display:grid;grid-template-columns:1fr auto 1fr;gap:32px;align-items:center}
+.compare__card{padding:40px;border-radius:var(--radius-lg);position:relative}
+.compare__card--pain{background:#ef44440d;border:1px solid rgba(239,68,68,.2)}
+.compare__card--win{background:#6366f10d;border:1px solid rgba(99,102,241,.25);box-shadow:0 0 60px #6366f114}
+.compare__badge{display:inline-block;font-family:var(--font-mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:#ef4444;background:#ef44441a;border:1px solid rgba(239,68,68,.2);padding:4px 12px;border-radius:100px;margin-bottom:20px}
+.compare__badge--win{color:var(--accent-1);background:#6366f11a;border-color:#6366f140}
+.compare__icon{font-size:2.5rem;margin-bottom:24px}
+.compare__list{display:flex;flex-direction:column;gap:14px}
+.compare__list li{padding-left:20px;position:relative;color:var(--text-2);font-size:.95rem}
+.compare__card--pain .compare__list li:before{content:"✗";position:absolute;left:0;color:#ef4444}
+.compare__card--win .compare__list li:before{content:"✓";position:absolute;left:0;color:var(--green)}
+.compare__arrow{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:2.5rem;color:var(--accent-1)}
+.compare__arrow-line{width:2px;height:40px;background:linear-gradient(180deg,transparent,var(--accent-1))}
+.services{padding:15px 0 30px}
+.services__bento{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:auto;gap:16px}
+.scard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px;transition:border-color .3s,transform .3s,box-shadow .3s;display:flex;flex-direction:column}
+.scard:hover{border-color:var(--border-glow);transform:translateY(-4px);box-shadow:0 16px 48px #6366f11a}
+.scard--link{text-decoration:none;color:inherit;cursor:pointer}
+.scard--link:hover .scard__arrow{transform:translateX(4px);color:var(--accent-1)}
+.scard__arrow{display:inline-block;transition:transform .2s ease,color .2s ease;margin-left:6px;color:var(--text-3)}
+.scard--wide{grid-column:span 2}
+.scard--dark{background:#0e0e18}
+.scard--accent{background:linear-gradient(135deg,#6366f133,#a855f733);border-color:#6366f180;box-shadow:0 0 48px #6366f11f}
+.scard__icon{font-size:2rem;margin-bottom:16px}
+.scard__title{font-family:var(--font-head);font-size:1.1rem;font-weight:700;margin-bottom:12px}
+.scard__desc{color:var(--text-2);font-size:.9rem;line-height:1.7;margin-bottom:20px}
+.scard__tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
+.scard__tags span{font-family:var(--font-mono);font-size:.7rem;color:var(--accent-1);background:#6366f11a;border:1px solid rgba(99,102,241,.2);padding:4px 10px;border-radius:6px}
+.services-dots{display:none;min-height:24px}
+.dashboard{padding:15px 0 30px;background:var(--surface)}
+.dashboard__grid{display:grid;grid-template-columns:1fr 380px;gap:16px}
+.dashboard__main,.dashboard__side{display:flex;flex-direction:column;gap:16px}
+.dash-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+.dash-card__header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.dash-card__title{font-size:.85rem;font-weight:500;color:var(--text-2)}
+.dash-card__live{display:flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:.72rem;color:var(--green)}
+.dash-card__count{font-family:var(--font-head);font-size:1.4rem;font-weight:700;color:var(--accent-1)}
+.pulse-dot{width:8px;height:8px;background:var(--green);border-radius:50%;animation:pulse-green 2s ease-in-out infinite}
+.chart{height:160px;display:flex;flex-direction:column;justify-content:flex-end}
+.chart__bars{display:flex;align-items:flex-end;gap:6px;height:140px;padding-bottom:0}
+.chart__bar{flex:1;background:linear-gradient(180deg,var(--accent-1),rgba(99,102,241,.3));border-radius:4px 4px 0 0;min-height:8px;transition:height 1s cubic-bezier(.4,0,.2,1);position:relative}
+.chart__bar--active{background:linear-gradient(180deg,var(--accent-hot),rgba(249,115,22,.4))}
+.chart__labels{display:flex;gap:6px;margin-top:8px}
+.chart__label{flex:1;text-align:center;font-family:var(--font-mono);font-size:.65rem;color:var(--text-3)}
+.dash-metrics{display:flex;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;align-items:stretch;margin-top:14px}
+.dash-metric{flex:1;background:none;border:none;border-radius:0;padding:14px 10px;text-align:center;position:relative;min-width:0}
+.dash-metric + .dash-metric::before{content:'';position:absolute;left:0;top:20%;height:60%;width:1px;background:var(--border)}
+.dash-metric__num{display:block;font-family:var(--font-head);font-size:clamp(1.15rem,2.2vw,1.6rem);font-weight:900;color:var(--text-1);margin-bottom:2px;white-space:nowrap}
+.dash-metric__label{font-size:clamp(.65rem,1.2vw,.75rem);color:var(--text-3);display:block;margin-bottom:4px;white-space:nowrap}
+.dash-metric__delta{font-family:var(--font-mono);font-size:clamp(.65rem,1.1vw,.72rem);white-space:nowrap}
+.dash-metric__delta--up{color:var(--green)}
+.log{display:flex;flex-direction:column;gap:8px;max-height:220px;overflow:hidden}
+.log-item{display:flex;gap:10px;font-family:var(--font-mono);font-size:.72rem;line-height:1.5;animation:log-slide .3s ease-out}
+@keyframes log-slide{0%{opacity:0;transform:translateY(-8px)}
+to{opacity:1}
+}
+.log-item__time{color:var(--text-3);flex-shrink:0}
+.log-item__text{color:var(--text-2)}
+.log-item--success .log-item__text{color:var(--green)}
+.log-item--warn .log-item__text{color:var(--yellow)}
+.agent-list{display:flex;flex-direction:column;gap:8px}
+.agent-list-item{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--surface);border-radius:var(--radius-sm);font-size:.82rem}
+.agent-list-item__dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0}
+.agent-list-item__name{flex:1;color:var(--text-2)}
+.agent-list-item__num{font-family:var(--font-mono);font-size:.7rem;color:var(--accent-1)}
+.dash-card--board{display:flex;flex-direction:column;padding:20px 22px;height:100%}
+.dash-card--board .dash-card__header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
+.board-tabs{display:inline-flex;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:3px;gap:2px}
+.board-tab{font-family:var(--font-body);font-size:.78rem;font-weight:500;color:var(--text-3);background:transparent;border:none;padding:6px 12px;border-radius:7px;cursor:pointer;transition:all .2s ease;display:inline-flex;align-items:center;gap:6px;outline:none}
+.board-tab:hover{color:var(--text-1)}
+.board-tab:focus-visible{outline:2px solid var(--accent-1);outline-offset:1px}
+.board-tab--active,.board-tab[aria-selected="true"]{background:rgba(99,102,241,.2);color:#fff;font-weight:600;border:1px solid rgba(99,102,241,.35)}
+.board-tab__dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0}
+.board-tab__badge{font-family:var(--font-mono);font-size:.68rem;font-weight:700;background:rgba(99,102,241,.25);color:#c7d2fe;padding:1px 6px;border-radius:999px}
+.dash-card__live{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:.72rem;color:var(--green)}
+.pulse-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(34,197,94,.6);animation:pulse-dot 1.8s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.3)}}
+.board-panels{height:236px;position:relative;overflow:hidden}
+.board-panel{height:100%;overflow-y:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.board-panel::-webkit-scrollbar{display:none}
+.board-panel[hidden]{display:none}
+.cases{padding:15px 0 30px}
+.cases__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.case-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;display:flex;flex-direction:column;gap:20px;height:100%;transition:border-color .3s,transform .3s}
+.case-card:hover{border-color:var(--border-glow);transform:translateY(-6px)}
+.carousel-dots{display:none}
+.carousel-dot{width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,.2);border:none;padding:0;cursor:pointer;transition:all .25s ease}
+.carousel-dot.active{width:24px;background:var(--accent-1)}
+.case-card__industry{font-family:var(--font-mono);font-size:.75rem;color:var(--accent-1)}
+.case-card__title{font-family:var(--font-head);font-size:1.1rem;font-weight:700}
+.case-card__desc{color:var(--text-2);font-size:.88rem;line-height:1.7;flex:1}
+.case-card__results{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.case-result{text-align:center}
+.case-result__num{display:block;font-family:var(--font-head);font-size:1.25rem;font-weight:900;color:var(--accent-1);margin-bottom:4px}
+.case-result__label{font-size:.72rem;color:var(--text-3);line-height:1.4}
+.case-card__tags{display:flex;gap:8px;flex-wrap:wrap}
+.case-card__tags span{font-family:var(--font-mono);font-size:.68rem;color:var(--text-3);background:#ffffff0a;border:1px solid var(--border);padding:3px 10px;border-radius:6px}
+.roi{padding:15px 0 30px}
+.roi__card{background:var(--surface);border:1px solid rgba(99,102,241,.2);border-radius:var(--radius-lg);padding:36px;display:grid;grid-template-columns:1fr 1fr;gap:48px;box-shadow:0 0 80px #6366f10f}
+.roi-input-group{margin-bottom:20px}
+.roi-label{display:flex;justify-content:space-between;align-items:center;font-size:.9rem;color:var(--text-2);margin-bottom:10px}
+.roi-value-display{font-family:var(--font-head);font-weight:700;color:var(--accent-1)}
+.roi-slider{width:100%;-webkit-appearance:none;appearance:none;height:4px;background:#6366f133;border-radius:2px;outline:none;cursor:pointer}
+.roi-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));box-shadow:0 0 16px #6366f180;cursor:pointer;transition:transform .2s}
+.roi-slider::-webkit-slider-thumb:hover{transform:scale(1.25)}
+.roi-slider::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));border:none}
+.roi__results{display:flex;flex-direction:column;gap:16px;justify-content:center}
+.roi-result-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:8px}
+.roi-result-card--accent{background:#6366f114;border-color:#6366f14d}
+.roi-result-label{font-size:.82rem;color:var(--text-2)}
+.roi-result-num{font-family:var(--font-head);font-size:1.6rem;font-weight:900;color:var(--text-1);letter-spacing:-.02em}
+.roi-result-card--accent .roi-result-num{color:var(--accent-1)}
+.roi__cta-block{text-align:center;padding:16px 24px}
+.roi__cta-block p{color:var(--text-2);margin-bottom:12px;font-size:.9rem}
+.contact{padding:15px 0 30px}
+.contact__inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;background:var(--surface);border:1px solid rgba(99,102,241,.2);border-radius:var(--radius-lg);padding:40px;box-shadow:var(--shadow-glow)}
+.contact__title{font-family:var(--font-head);font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;line-height:1.15;letter-spacing:-.02em;margin-bottom:16px}
+.contact__desc{color:var(--text-2);line-height:1.7;margin-bottom:24px}
+.contact__benefits{display:flex;flex-direction:column;gap:10px}
+.contact__benefits li{color:var(--text-2);font-size:.95rem}
+.contact__benefits strong{color:var(--green)}
+.contact__form{display:flex;flex-direction:column;gap:16px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:.85rem;color:var(--text-2);display:flex;align-items:center}
+.form-label-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.required-star{color:#818cf8;font-weight:700;font-size:.95rem;line-height:1;margin-left:2px}
+.required-badge{font-family:var(--font-mono);font-size:.7rem;color:#a5b4fc;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.3);padding:2px 7px;border-radius:4px;letter-spacing:.02em}
+.optional-hint{font-family:var(--font-mono);font-size:.7rem;color:var(--text-3);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:2px 7px;border-radius:4px;letter-spacing:.02em}
+.form-field-wrap{position:relative;width:100%}
+.form-field-wrap input{width:100%}
+.form-group input{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 16px;color:var(--text-1);font-family:var(--font-body);font-size:.95rem;outline:none;transition:border-color .2s,box-shadow .2s}
+.form-group input:focus{border-color:var(--accent-1);box-shadow:0 0 0 3px #6366f126}
+.form-group input.is-invalid{border-color:#ef4444!important;box-shadow:0 0 0 3px rgba(239,68,68,.25),0 0 16px rgba(239,68,68,.2)!important}
+.form-tooltip{position:absolute;left:12px;bottom:calc(100% + 8px);z-index:60;display:flex;align-items:center;gap:8px;background:#0c0d16;border:1px solid rgba(245,158,11,.5);border-radius:7px;padding:6px 12px;box-shadow:0 10px 25px -3px rgba(0,0,0,.7),0 0 14px rgba(245,158,11,.15);animation:tooltipFadeIn .28s cubic-bezier(.16,1,.3,1) forwards;will-change:transform,opacity;pointer-events:none;white-space:nowrap}
+.form-tooltip::after{content:'';position:absolute;top:100%;left:22px;border-width:6px;border-style:solid;border-color:#0c0d16 transparent transparent transparent}
+.form-tooltip::before{content:'';position:absolute;top:100%;left:21px;border-width:7px;border-style:solid;border-color:rgba(245,158,11,.5) transparent transparent transparent}
+.form-tooltip__icon{width:17px;height:17px;border-radius:4px;background:#f59e0b;color:#000;font-weight:800;font-size:.78rem;display:flex;align-items:center;justify-content:center;line-height:1;flex-shrink:0}
+.form-tooltip__text{color:#f8fafc;font-size:.82rem;font-family:var(--font-body);font-weight:500}
+@keyframes tooltipFadeIn{0%{opacity:0;transform:translateY(6px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.form-group input::placeholder{color:var(--text-3)}
+.form-privacy{text-align:center;font-size:.75rem;color:var(--text-3)}
+.form-message{margin-top:16px;padding:12px 16px;border-radius:8px;font-size:.9rem;display:none;animation:slideUp .3s ease}
+.form-message--error{display:block;background:#ef44441a;color:#f87171;border:1px solid rgba(239,68,68,.2)}
+.form-message--success{display:block;background:#22c55e1a;color:#4ade80;border:1px solid rgba(34,197,94,.2)}
+@keyframes slideUp{0%{opacity:0;transform:translateY(10px)}
+to{opacity:1;transform:translateY(0)}
+}
+.form-success{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 24px;animation:successPop .6s cubic-bezier(.16,1,.3,1)}
+.form-success__icon{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--green),#16a34a);display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff;margin-bottom:24px;box-shadow:0 0 40px #22c55e4d;animation:iconPulse 2s ease-in-out infinite}
+.form-success__title{font-family:var(--font-head);font-size:1.5rem;font-weight:700;margin-bottom:12px;color:var(--text-1)}
+.form-success__text{color:var(--text-2);font-size:.95rem;line-height:1.6;margin-bottom:20px}
+.form-success__text strong{color:var(--accent-1)}
+.form-success__details{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.form-success__details span{font-family:var(--font-mono);font-size:.8rem;color:var(--text-3);background:var(--surface);border:1px solid var(--border);padding:6px 14px;border-radius:6px}
+@keyframes successPop{0%{opacity:0;transform:scale(.8) translateY(20px)}
+to{opacity:1;transform:scale(1) translateY(0)}
+}
+@keyframes iconPulse{0%,to{box-shadow:0 0 20px #22c55e33}
+50%{box-shadow:0 0 40px #22c55e66}
+}
+.footer{padding:24px 0;border-top:1px solid var(--border)}
+.footer__inner{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.footer__brand p{color:var(--text-3);font-size:.85rem;margin-top:6px;line-height:1.5}
+.footer__links{display:flex;gap:12px 24px;flex-wrap:wrap}
+.footer__links a{color:var(--text-3);font-size:.85rem;transition:color .2s}
+.footer__links a:hover{color:var(--text-1)}
+.footer__copy{color:var(--text-3);font-size:.8rem}
+[data-reveal]{opacity:0;transform:translateY(32px)}
+@media(max-width:1024px){
+.services__bento{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;gap:16px;padding:8px 4px 18px;margin:0 -4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.services__bento::-webkit-scrollbar{display:none}
+.services__bento .scard{flex:0 0 min(320px,78vw);scroll-snap-align:center;scroll-snap-stop:normal;display:flex;flex-direction:column;padding:24px 20px;grid-column:auto}
+.services-dots{display:flex;justify-content:center;gap:8px;margin-top:8px;min-height:24px}
+@keyframes sNudge{0%,100%{transform:translate3d(0,0,0)}35%{transform:translate3d(-24px,0,0)}70%{transform:translate3d(4px,0,0)}}
+.services__bento.is-nudging{animation:sNudge .65s cubic-bezier(.25,1,.5,1) 1;will-change:transform}
+.cases__grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;gap:16px;padding:8px 4px 18px;margin:0 -4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.cases__grid::-webkit-scrollbar{display:none}
+.cases__grid .case-card{flex:0 0 min(330px,80vw);scroll-snap-align:center;scroll-snap-stop:normal;padding:24px 20px}
+.carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:8px}
+.dashboard__grid{grid-template-columns:1fr}
+.roi__card{gap:40px}
+}
+@media(max-width:768px){.nav__burger{display:flex}
+.nav__links{position:fixed;top:0;right:0;width:280px;height:100vh;height:100dvh;background:#08080cfa;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);flex-direction:column;padding:100px 40px;transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1);box-shadow:-10px 0 30px #00000080;border-left:1px solid var(--border);display:flex;visibility:hidden;opacity:0;pointer-events:none}
+.nav__links.active{transform:translateX(0);visibility:visible;opacity:1;pointer-events:auto}
+.btn--nav{display:none}
+.hero{padding:90px 0 30px}
+.hero__inner{grid-template-columns:1fr;gap:32px}
+.hero__terminal-wrap{display:none}
+.hero__actions{margin-top:20px}
+.hero__kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.hero__title{font-size:clamp(2rem,8vw,3rem)}
+.hero__sub{font-size:1rem}
+.compare__grid{grid-template-columns:1fr;gap:24px}
+.compare__arrow{display:none}
+.case-card{padding:24px}
+.case-card__results{grid-template-columns:repeat(3,1fr);gap:8px}
+.roi__card{grid-template-columns:1fr;padding:28px 20px;gap:32px}
+.contact__inner{grid-template-columns:1fr;padding:32px 20px;gap:36px}
+.dashboard__grid{grid-template-columns:1fr}
+.footer__inner{flex-direction:column;text-align:center;align-items:center;gap:14px}
+.footer__links{flex-wrap:wrap;justify-content:center;gap:10px 18px}
+.section-header{margin-bottom:20px}
+}
+@media(max-width:480px){.hero__kpis,.case-card__results{grid-template-columns:1fr}
+.dash-metric{padding:10px 4px}
+.services__bento .scard{flex:0 0 80vw;padding:20px 16px}
+.cases__grid .case-card{flex:0 0 84vw;padding:20px 16px}
+.roi__card{padding:20px 16px}
+.contact__inner{padding:24px 16px}
+.kpi-card{padding:14px 16px}
+.scard{padding:24px}
+.btn{padding:12px 20px;font-size:.88rem}
+.section-title{font-size:1.75rem}
+}
+@media(prefers-reduced-motion:reduce){.services__bento.is-nudging{animation:none!important}}
+.faq{padding:15px 0 30px}
+.faq__grid{display:flex;flex-direction:column;gap:14px;max-width:860px;margin:0 auto}
+.faq-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .25s,box-shadow .25s}
+.faq-item:hover,.faq-item.active{border-color:rgba(99,102,241,.4);box-shadow:0 4px 20px rgba(0,0,0,.2)}
+.faq-item__header{width:100%;display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:none;border:none;color:var(--text-1);font-family:var(--font-head);font-size:1.02rem;font-weight:600;text-align:left;cursor:pointer;gap:16px;transition:color .2s}
+.faq-item__header:hover{color:var(--accent-1)}
+.faq-item__icon{font-size:1.3rem;line-height:1;color:var(--accent-1);transition:transform .3s ease;flex-shrink:0;font-family:monospace}
+.faq-item.active .faq-item__icon{transform:rotate(45deg);color:var(--accent-2)}
+.faq-item__answer{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s cubic-bezier(.16,1,.3,1)}
+.faq-item.active .faq-item__answer{grid-template-rows:1fr}
+.faq-item__inner{overflow:hidden}
+.faq-item__inner p{padding:0 20px 16px;color:var(--text-2);font-size:.95rem;line-height:1.65;margin:0}
+.faq-item__inner strong{color:var(--text-1)}
+.breadcrumbs{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:.8rem;color:var(--text-3);margin-bottom:16px;flex-wrap:wrap}
+.breadcrumbs a{color:var(--accent-1);transition:color .2s}
+.breadcrumbs a:hover{color:#818cf8}
+.breadcrumbs__sep{opacity:.4}
+.subpage-deep{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px 36px;margin-bottom:24px;box-shadow:var(--shadow-glow)}
+.subpage-deep__title{font-family:var(--font-head);font-size:1.5rem;font-weight:700;margin-bottom:14px;color:var(--text-1)}
+.subpage-deep__desc{color:var(--text-2);font-size:1rem;line-height:1.7;margin-bottom:20px}
+.subpage-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.9rem}
+.subpage-table th,.subpage-table td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--border)}
+.subpage-table th{color:var(--accent-1);font-family:var(--font-mono);font-size:.8rem;text-transform:uppercase}
+.subpage-table td{color:var(--text-2)}
+
+
+/* 152-FZ Consent & Honeypot */
+.form-checkbox-group{margin:10px 0 6px 0;text-align:left}
+
+.form-checkbox-label{display:flex;align-items:flex-start;gap:10px;font-size:.8rem;color:#9494a6;cursor:pointer;line-height:1.4}
+
+.form-checkbox-label input[type=checkbox]{width:16px;height:16px;margin-top:2px;accent-color:#6366f1;cursor:pointer;flex-shrink:0}
+
+.form-checkbox-label a,.form-link{color:#6366f1;text-decoration:underline;transition:color .2s}
+
+.form-checkbox-label a:hover,.form-link:hover{color:#818cf8}
+
+.hidden{display:none!important}
+
+.loader{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-radius:50%;border-top-color:#fff;animation:spin .8s linear infinite;vertical-align:middle;margin-right:8px}
+
+@keyframes spin{to{transform:rotate(360deg)}
+}
+
+
+/* Zero CLS Hero Title Animation Box */
+@media(min-width:769px){.hero__title{font-size:clamp(2.1rem,3.2vw,3rem)}
+}
+
+.hero__title-static{display:block}
+
+.hero__title-accent-box{display:block;min-height:2.4em;height:auto;line-height:1.1;position:relative;overflow:visible}
+
+@media(min-width:1025px){.hero__title-accent-box{min-height:2.4em;height:auto;overflow:visible}
+}
+
+
+/* Zero CLS Terminal & Cursor */
+.terminal__body{height:240px}
+
+.hero__cursor{position:static;display:inline-block;vertical-align:baseline;margin-left:4px}
+
+
+/* Responsive Container & Scroll Stabilization (F2) */
+.hero{overflow-x:clip}
+
+@media(max-width:480px){
+  .container{padding:0 16px}
+
+  .roi__card{padding:20px 12px}
+
+  .roi__card > *{min-width:0}
+
+  .form-group input{padding:13px 14px;font-size:0.9rem;text-overflow:ellipsis}
+
+}
+
+
+/* Mobile Navigation UX & 48px Touch Targets (F3) */
+.nav__burger{display:none;width:48px;height:48px;min-width:48px;min-height:48px;padding:0;align-items:center;justify-content:center;flex-direction:column;gap:6px;background:none;border:none;cursor:pointer;z-index:10000}
+
+.nav__backdrop{position:fixed;inset:0;background:rgba(5,5,7,0.75);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);z-index:9998;opacity:0;pointer-events:none;transition:opacity .35s cubic-bezier(.16,1,.3,1)}
+
+.nav__backdrop.active{opacity:1;pointer-events:auto}
+
+@media(max-width:768px){
+  .nav{padding:10px 0;padding-top:max(10px, env(safe-area-inset-top));padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+
+  .nav.nav--scrolled{padding:8px 0;padding-top:max(8px, env(safe-area-inset-top));padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+
+  .nav__burger{display:flex;width:44px;height:44px;min-width:44px;min-height:44px}
+
+  .nav__links{visibility:hidden;opacity:0;pointer-events:none}
+
+  .nav__links.active{visibility:visible;opacity:1;pointer-events:auto}
+
+  .nav__links .nav__link{display:flex;align-items:center;width:100%;min-height:48px;padding:12px 16px;box-sizing:border-box}
+
+  .hero{padding:calc(88px + env(safe-area-inset-top, 0px)) 0 24px;min-height:auto}
+
+}
+
+
+/* Hero Grid Stabilization & Zero CLS (Defect 1) */
+@media(min-width:769px){
+  .hero__inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:stretch}
+  .hero__content{display:flex;flex-direction:column}
+  .hero__kpis{margin-top:auto}
+  .hero__terminal-wrap{display:flex;flex-direction:column}
+  .hero__agent-cards{margin-top:auto}
+  .hero__actions{flex-wrap:nowrap;gap:12px}
+  .hero__actions .btn{padding:12px 20px;font-size:0.92rem;white-space:nowrap}
+}
+
+@media(min-width:1025px){
+  .cases__grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+}
+
+.hero__content,.hero__terminal-wrap{min-width:0}
+
+
+/* Section Header Clearance & Scroll Margin (Defect 2) */
+section[id]{scroll-margin-top:72px}
+
+
+/* ==========================================================================
+   Milestone 2 (F6, F7, F8): WCAG AA Contrast, Typography & Brand Palette
+   ========================================================================== */
+
+/* F6 / F8: Semantic Palette & Accessible Indigo */
+:root {
+  --text-2: #cbd5e1;
+  --text-3: #94a3b8;
+  --accent-1-light: #818cf8;
+  --surface-2: #161622;
+}
+
+
+/* F7: Case Study Metric Result Labels */
+.case-result__label {
+  font-size: 0.82rem !important;
+  line-height: 1.45 !important;
+  font-weight: 500 !important;
+  color: var(--text-3) !important;
+}
+
+
+/* F7 / F8: Case Card Tags with Neon Indigo Tint */
+.case-card__tags span {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-3) !important;
+  background: rgba(99, 102, 241, 0.08) !important;
+  border: 1px solid rgba(99, 102, 241, 0.2) !important;
+  padding: 3px 10px;
+  border-radius: 6px;
+}
+
+
+/* F6: Dashboard Hourly Chart Labels */
+.chart__label {
+  flex: 1;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem !important;
+  color: var(--text-3) !important;
+}
+
+
+/* F6: Dashboard Metric Card Sub-labels */
+.dash-metric__label {
+  font-size: 0.75rem !important;
+  color: var(--text-3) !important;
+  display: block;
+  margin-bottom: 8px;
+}
+
+
+/* F6 / F8: Hero Terminal Headings & Dimmed Output */
+.terminal__title {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-3) !important;
+  margin-left: 8px;
+}
+
+
+.terminal__line--dim {
+  color: var(--text-3) !important;
+}
+
+
+
+/* Readability & Typography Enhancements (The Measure & Micro-Label Scaling) */
+.kpi-card__label {
+  font-size: 0.8rem !important;
+  letter-spacing: 0.06em;
+}
+
+.agent-card__status {
+  font-size: 0.78rem !important;
+}
+
+.scard--wide .scard__desc {
+  max-width: 58ch;
+}
+
+.contact__desc {
+  max-width: 58ch;
+}
+
+@media (max-width: 768px) {
+  .hero__title {
+    line-height: 1.18 !important;
+  }
+
+  .section-title {
+    line-height: 1.18 !important;
+  }
+
+}
+
+
+/* ═══════════════════ FOOTER COMPONENT ═══════════════════ */
+.footer {
+  padding: 40px 0 28px;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+}
+
+
+.footer__inner {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  text-align: left !important;
+  gap: 20px !important;
+  width: 100%;
+}
+
+
+.footer__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+}
+
+
+.footer__top .nav__logo {
+  font-family: var(--font-head);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-1);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+
+.footer__body {
+  width: 100%;
+}
+
+
+.footer__brand p {
+  color: var(--text-3) !important;
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+
+.footer__support {
+  display: inline-block;
+  color: var(--text-3);
+  font-size: 0.8rem;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+
+.footer__links-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  width: 100%;
+}
+
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+
+
+.footer__links a {
+  color: var(--text-3) !important;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+
+.footer__links a:hover {
+  color: var(--text-1) !important;
+}
+
+
+.footer__meta-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  align-items: center;
+}
+
+
+.footer__meta-links a {
+  color: var(--text-3);
+  font-size: 0.82rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+
+.footer__meta-links a:hover {
+  color: var(--text-1);
+}
+
+
+.footer__bottom {
+  width: 100%;
+}
+
+
+.footer__copy {
+  color: var(--text-3) !important;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+
+/* Telegram Bot CTA in Footer */
+.footer__tg-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 6px 14px;
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(99, 102, 241, 0.22);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.25s ease,
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+
+.footer__tg-cta:hover {
+  background: rgba(99, 102, 241, 0.16);
+  border-color: rgba(99, 102, 241, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.25);
+}
+
+
+.footer__tg-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #2AABEE, #229ED9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(34, 158, 217, 0.35);
+  transition: transform 0.25s ease;
+}
+
+
+.footer__tg-cta:hover .footer__tg-icon {
+  transform: scale(1.06);
+}
+
+
+.footer__tg-icon svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+
+.footer__tg-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  text-align: left;
+}
+
+
+.footer__tg-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-1);
+  line-height: 1.2;
+}
+
+
+.footer__tg-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--green);
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  padding: 1px 5px;
+  border-radius: 100px;
+  line-height: 1.2;
+}
+
+
+.footer__tg-dot {
+  position: relative;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse-green 2.4s ease-in-out infinite;
+}
+
+
+.footer__tg-handle {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-3);
+  transition: color 0.2s;
+  line-height: 1.2;
+}
+
+
+.footer__tg-cta:hover .footer__tg-handle {
+  color: var(--accent-1);
+}
+
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 28px 0 24px;
+  }
+
+  .footer__inner {
+    gap: 16px !important;
+    text-align: left !important;
+    align-items: stretch !important;
+  }
+
+  .footer__top {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .footer__top .nav__logo {
+    font-size: 1.05rem;
+  }
+
+  .footer__tg-cta {
+    padding: 5px 9px;
+    gap: 6px;
+  }
+
+  .footer__tg-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .footer__tg-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .footer__tg-title {
+    font-size: 0.78rem;
+    gap: 4px;
+  }
+
+  .footer__tg-badge {
+    font-size: 0.6rem;
+    padding: 0 4px;
+  }
+
+  .footer__tg-handle {
+    font-size: 0.68rem;
+  }
+
+  .footer__links-row {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 14px;
+    gap: 12px;
+  }
+
+  .footer__links {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: start;
+    gap: 10px 24px;
+    width: 100%;
+  }
+
+  .footer__meta-links {
+    gap: 8px 16px;
+    width: 100%;
+  }
+
+}
+
+
+/* ==========================================================================
+   Milestone 2 (F9, F10, F11): Micro-Interactions & Animation System
+   ========================================================================== */
+
+/* F9: Unified Card Hover Lift & Glow (.scard, .case-card, .dash-card) */
+.scard,
+.case-card,
+.dash-card {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+}
+
+
+.scard:hover,
+.case-card:hover,
+.dash-card:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(99, 102, 241, 0.4) !important;
+  box-shadow: 0 12px 36px rgba(99, 102, 241, 0.18) !important;
+}
+
+
+/* F10: Primary CTA Button Shimmer Beam & Tactile Press Response */
+.btn--primary {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.2s ease,
+              background 0.3s ease;
+}
+
+
+.btn--primary::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.32),
+    transparent
+  );
+  transform: rotate(25deg);
+  transition: left 0.75s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+.btn--primary:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 36px rgba(249, 115, 22, 0.55),
+              0 0 20px rgba(249, 115, 22, 0.25) !important;
+}
+
+
+.btn--primary:hover::before {
+  left: 140%;
+}
+
+
+.btn--primary:active {
+  transform: translateY(0) scale(0.97) !important;
+  box-shadow: 0 2px 14px rgba(249, 115, 22, 0.4) !important;
+}
+
+
+/* F11: Soft Aura Pulse Indicators (GPU-composited via transform & opacity) */
+@keyframes pulse-green {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.85;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.92);
+    opacity: 0.85;
+  }
+
+}
+
+
+@keyframes pulse-aura {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  70%, 100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+
+}
+
+
+.hero__badge-dot,
+.pulse-dot,
+.pulse-green,
+.agent-list-item__dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green) !important;
+  animation: pulse-green 2.4s ease-in-out infinite !important;
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+
+.hero__badge-dot::after,
+.pulse-dot::after,
+.pulse-green::after,
+.agent-list-item__dot::after,
+.footer__tg-dot::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse-aura 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  pointer-events: none;
+}
+
+
+.btn--cookie {
+  background: #4f46e5 !important;
+  color: #ffffff !important;
+}
+
+.btn--cookie:hover {
+  background: #4338ca !important;
+}
+
+
+.roi-slider {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 7px !important;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px !important;
+  outline: none;
+  cursor: pointer;
+}
+
+.roi-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  box-shadow: 0 0 16px rgba(99, 102, 241, 0.8);
+  cursor: pointer;
+  transition: transform .2s;
+  border: 2px solid #ffffff;
+}
+
+.roi-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.roi-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 16px rgba(99, 102, 241, 0.8);
+}
+
+
+.roi-slider-limits {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-3);
+  margin-top: 6px;
+}
+
+
+.form-group, .form-group input {
+  scroll-margin-top: 100px !important;
+}
+
+
+section[id] {
+  scroll-margin-top: 72px;
+}
+
+
+.nav__link-mobile {
+  display: none;
+}
+
+@media(max-width: 768px) {
+  .nav__link-mobile {
+    display: block;
+  }
+
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero__cursor {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+
+  .hero__particles {
+    display: none !important;
+  }
+
+  .scard,
+  .case-card,
+  .dash-card,
+  .compare__card,
+  .btn,
+  .btn--primary,
+  .footer__tg-cta {
+    transition: none !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .scard:hover,
+  .case-card:hover,
+  .dash-card:hover,
+  .compare__card:hover,
+  .btn:hover,
+  .btn:active,
+  .btn--primary:hover,
+  .btn--primary:active,
+  .nav__logo:hover,
+  .footer__tg-cta:hover {
+    transform: none !important;
+  }
+
+  .pulse-dot,
+  .pulse-green,
+  .hero__badge-dot,
+  .agent-list-item__dot,
+  .nav__logo-icon,
+  .agent-card__fill,
+  .footer__tg-dot {
+    animation: none !important;
+  }
+
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+}
+
+  .contact{padding:12px 0 24px;}
+
+  .contact__inner{gap:32px;padding:28px 32px;}
+
+  .contact__title{font-size:clamp(1.5rem,3.2vw,2rem);margin-bottom:12px;}
+
+  .contact__desc{margin-bottom:16px;font-size:0.92rem;line-height:1.55;}
+
+  .contact__benefits{gap:8px;}
+
+  .contact__benefits li{font-size:0.88rem;}
+
+  .contact__form{gap:12px;}
+
+  .form-group{gap:4px;}
+
+  .form-group label{font-size:0.8rem;}
+
+  .form-group input{padding:10px 14px;font-size:0.9rem;}
+
+  .form-checkbox-group{margin:2px 0 4px;font-size:0.8rem;}
+
+  .form-privacy{margin-top:4px;}
+
+  @media(max-width:768px){
+    .contact__inner{gap:20px;padding:20px 16px;}
+
+    .nav__links{padding:80px 24px;gap:10px;overflow-y:auto;}
+
+  }
+
+
+  /* Hero Badge Adaptive & Anti-Break Styling */
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .hero__badge-text {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .hero__badge {
+      font-size: 0.78rem;
+      padding: 7px 14px;
+      gap: 7px;
+    }
+
+  }
+
+  @media (max-width: 480px) {
+    .hero__badge {
+      font-size: 0.72rem;
+      padding: 6px 12px;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .hero__badge-word {
+      display: none;
+    }
+
+  }
+
+  @media (max-width: 360px) {
+    .hero__badge {
+      font-size: 0.67rem;
+      padding: 5px 10px;
+      gap: 5px;
+    }
+
+  }
+
+
+  /* Item 4: Compare Cards Hover Animation */
+  .compare__card {
+    transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: default;
+  }
+
+  .compare__card:hover {
+    transform: translateY(-4px);
+  }
+
+  .compare__card--pain:hover {
+    border-color: rgba(239, 68, 68, 0.45);
+    box-shadow: 0 16px 48px rgba(239, 68, 68, 0.14);
+  }
+
+  .compare__card--win:hover {
+    border-color: rgba(99, 102, 241, 0.5);
+    box-shadow: 0 16px 48px rgba(99, 102, 241, 0.22);
+  }
+
+  .compare__card .compare__icon {
+    transition: transform 0.3s ease;
+  }
+
+  .compare__card:hover .compare__icon {
+    transform: scale(1.08);
+  }
+
+
+  /* Item 2: Hero Agent Core Cards Interactive Styling */
+  .agent-card {
+    cursor: pointer;
+    user-select: none;
+    transition: border-color 0.25s, transform 0.25s, background 0.25s, box-shadow 0.25s;
+  }
+
+  .agent-card:hover, .agent-card.agent-card--selected {
+    border-color: rgba(99, 102, 241, 0.5);
+    background: var(--surface-2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15);
+  }
+
+  .agent-card:active {
+    transform: translateY(0);
+  }
+
+  .terminal__dot {
+    cursor: pointer;
+    transition: transform 0.2s, filter 0.2s;
+  }
+
+  .terminal__dot:hover {
+    transform: scale(1.2);
+    filter: brightness(1.2);
+  }
+
+
+  /* Item 3: Compact 2-Column Dashboard & Integrated Board */
+  @media(min-width: 1025px) {
+    .dashboard__grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 16px;
+      align-items: stretch;
+    }
+  }
+
+  .agent-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .agent-list-item {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    min-width: 0;
+  }
+
+  .agent-list-item {
+    transition: border-color 0.25s, transform 0.25s, background 0.25s;
+    cursor: pointer;
+  }
+
+  .agent-list-item:hover {
+    border-color: rgba(99, 102, 241, 0.4);
+    background: var(--surface-2);
+    transform: translateY(-2px);
+  }
+
+  .agent-list-item__name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .agent-list-item__num {
+    white-space: nowrap;
+    font-weight: 600;
+  }
+
+  .dash-metric {
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  }
+
+  .dash-metric:hover {
+    border-color: rgba(99, 102, 241, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  }
+
+  .chart__bar {
+    cursor: pointer;
+    transition: height 1s cubic-bezier(.4,0,.2,1), filter 0.2s, transform 0.2s;
+  }
+
+  .chart__bar:hover {
+    filter: brightness(1.25);
+  }
+
+
+  /* Item 5: Domain Case Styles & WCAG AA Colors */
+  .case-card--retail .case-card__industry { color: #fbbf24; }
+
+  .case-card--edi .case-card__industry { color: #a78bfa; }
+
+  .case-card--service .case-card__industry { color: #22d3ee; }
+
+  .case-card--hr .case-card__industry { color: #c084fc; }
+
+  .case-card--logistics .case-card__industry { color: #34d399; }
+
+  .case-card--fintech .case-card__industry { color: #38bdf8; }
+
+
+  .case-card__badge-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  .case-card__badge-dot--retail { background: #fbbf24; box-shadow: 0 0 8px rgba(251, 191, 36, 0.6); }
+
+  .case-card__badge-dot--edi { background: #a78bfa; box-shadow: 0 0 8px rgba(167, 139, 250, 0.6); }
+
+  .case-card__badge-dot--service { background: #22d3ee; box-shadow: 0 0 8px rgba(34, 211, 238, 0.6); }
+
+  .case-card__badge-dot--hr { background: #c084fc; box-shadow: 0 0 8px rgba(192, 132, 252, 0.6); }
+
+  .case-card__badge-dot--logistics { background: #34d399; box-shadow: 0 0 8px rgba(52, 211, 153, 0.6); }
+
+  .case-card__badge-dot--fintech { background: #38bdf8; box-shadow: 0 0 8px rgba(56, 189, 248, 0.6); }
+
+
+  .case-highlight {
+    color: var(--text-1);
+    font-weight: 500;
+  }
+
+  .case-highlight--retail { border-bottom: 1px dotted rgba(251, 191, 36, 0.4); }
+
+  .case-highlight--edi { border-bottom: 1px dotted rgba(167, 139, 250, 0.4); }
+
+  .case-highlight--service { border-bottom: 1px dotted rgba(34, 211, 238, 0.4); }
+
+  .case-highlight--hr { border-bottom: 1px dotted rgba(192, 132, 252, 0.4); }
+
+  .case-highlight--logistics { border-bottom: 1px dotted rgba(52, 211, 153, 0.4); }
+
+  .case-highlight--fintech { border-bottom: 1px dotted rgba(56, 189, 248, 0.4); }
+
+
+  .case-num--green { color: #34d399 !important; }
+
+  .case-num--gold { color: #fbbf24 !important; }
+
+  .case-num--cyan { color: #22d3ee !important; }
+
+  .case-num--violet { color: #a78bfa !important; }
+
+  .case-num--lilac { color: #c084fc !important; }
+
+  .case-num--sky { color: #38bdf8 !important; }
+
+  </style>
+<!-- Scripts -->
+<script crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.5.0" type="module"></script>
+<!-- Yandex.Metrika counter (Optimized Non-blocking) -->
+<script type="text/javascript">
+    window.ym = window.ym || function(){(window.ym.a = window.ym.a || []).push(arguments)};
+    window.ym.l = 1 * new Date();
+    ym(112978516, "init", {
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+      webvisor: true,
+      ecommerce: "dataLayer"
+    });
+    (function() {
+      var loaded = false;
+      function loadMetrika() {
+        if (loaded) return;
+        loaded = true;
+        var k = document.createElement("script"),
+            a = document.getElementsByTagName("script")[0];
+        k.async = true;
+        k.src = "https://mc.yandex.ru/metrika/tag.js?id=112978516";
+        a.parentNode.insertBefore(k, a);
+      }
+      var evts = ['scroll', 'touchstart', 'mousemove', 'keydown', 'click'];
+      function onInteract() {
+        loadMetrika();
+        evts.forEach(function(e) { window.removeEventListener(e, onInteract, {passive: true}); });
+      }
+      evts.forEach(function(e) { window.addEventListener(e, onInteract, {passive: true, once: true}); });
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(function() { setTimeout(loadMetrika, 3500); });
+      } else {
+        window.addEventListener('load', function() { setTimeout(loadMetrika, 3500); });
+      }
+    })();
+  </script>
+<noscript><div><img alt="Yandex Metrica" src="https://mc.yandex.ru/watch/112978516" style="position:absolute; left:-9999px;"/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+<div class="nav__backdrop" id="nav-backdrop"></div>
+<!-- ═══════════════════ NAVIGATION ═══════════════════ -->
+<header class="nav" id="site-header">
+<nav aria-label="Основная навигация" class="nav__inner container">
+<a class="nav__logo" href="/">
+<span class="nav__logo-icon">⬡</span>
+        АвтоПилот
+      </a>
+<ul class="nav__links" id="nav-links">
+<li><a class="nav__link" href="/calculator/">Калькулятор</a></li>
+<li><a class="nav__link" href="/services/">Услуги</a></li>
+<li><a class="nav__link" href="/cases/">Кейсы</a></li>
+<li><a class="nav__link" href="/faq/">FAQ</a></li>
+<li><a class="nav__link" href="/dashboard/">Дашборд</a></li>
+<li class="nav__link-mobile"><a class="nav__link" href="/contact/">Контакты</a></li>
+</ul>
+<a class="btn btn--nav" href="/contact/">Получить аудит</a>
+<button aria-controls="nav-links" aria-expanded="false" aria-label="Открыть меню" class="nav__burger" id="burger">
+<span></span>
+<span></span>
+<span></span>
+</button>
+</nav>
+</header>
+<main id="main-content">
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero" id="home">
+<div class="hero__particles" id="particles"></div>
+<div class="container hero__inner">
+<div class="hero__content">
+<h1 class="hero__title"><span class="hero__title-static">Предиктивная ИИ-аналитика для 1С: </span><span class="hero__title-accent-box"><span class="hero__title-accent" data-phrases='["умный платежный календарь без кассовых разрывов", "расчет неснижаемого остатка без out-of-stock", "автоматический контроль цен поставщиков", "предиктивное управление запасами в 1С"]' id="typed-text">умный платежный календарь без кассовых разрывов</span><span aria-hidden="true" class="hero__cursor">|</span></span></h1>
+<p class="hero__sub">Непрерывный предиктивный аудит 1С: автоматизируем платежный календарь, предупреждаем кассовые разрывы за 14 дней, рассчитываем нормы запасов и выявляем завышение цен в накладных поставщиков.</p>
+<div class="hero__actions"><a class="btn btn--primary" href="#contact">Запустить предиктивный аудит</a><a class="btn btn--ghost" href="#dashboard">Смотреть демо алертов →</a></div>
+<div class="hero__kpis">
+<div class="kpi-card">
+<span class="kpi-card__num" data-count="14">14 дней</span>
+<span class="kpi-card__label">упреждение кассового разрыва</span>
+</div>
+<div class="kpi-card">
+<span class="kpi-card__num" data-count="32">−32%</span>
+<span class="kpi-card__label">высвобождение капитала на складе</span>
+</div>
+<div class="kpi-card">
+<span class="kpi-card__num" data-count="100">100%</span>
+<span class="kpi-card__label">автоконтроль цен по договорам</span>
+</div>
+</div>
+</div>
+<div class="hero__terminal-wrap">
+<div class="terminal">
+<div class="terminal__header">
+<span class="terminal__dot terminal__dot--red"></span>
+<span class="terminal__dot terminal__dot--yellow"></span>
+<span class="terminal__dot terminal__dot--green"></span>
+<span class="terminal__title">autopilot — agent_core v2.4.1</span>
+</div>
+<div class="terminal__body" id="terminal-body">
+<div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:42:01]</span> <span style="color:var(--accent-1);font-weight:600;">[OData]</span> Подключение к 1С:ERP (200 OK)</div>
+<div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:42:02]</span> <span style="color:var(--accent-2);font-weight:600;">[CashFlow ML]</span> Прогноз ДДС на 30 дней: расчет рисков</div>
+<div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:42:04]</span> <span style="color:var(--green);font-weight:600;">[SafetyStock]</span> Пересчет ROP для 18 000 SKU завершен</div>
+<div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:42:06]</span> <span style="color:var(--accent-hot);font-weight:600;">[PriceShield]</span> Аудит входящих УПД: аномалий не выявлено</div>
+</div>
+</div>
+<div class="hero__agent-cards">
+<div aria-label="Инспектировать агента ФинКонтроль" class="agent-card" data-agent="cashflow" role="button" tabindex="0">
+<div class="agent-card__icon">💸</div>
+<div class="agent-card__info">
+<span class="agent-card__name">Агент: ФинКонтроль (ДДС)</span>
+<span class="agent-card__status agent-card__status--live">Активен</span>
+</div>
+<div class="agent-card__bar"><div class="agent-card__fill" style="width:94%"></div></div>
+</div>
+<div aria-label="Инспектировать агента Склад" class="agent-card" data-agent="warehouse" role="button" tabindex="0">
+<div class="agent-card__icon">📦</div>
+<div class="agent-card__info">
+<span class="agent-card__name">Агент: Склад &amp; ROP</span>
+<span class="agent-card__status agent-card__status--live">Активен</span>
+</div>
+<div class="agent-card__bar"><div class="agent-card__fill" style="width:78%"></div></div>
+</div>
+<div aria-label="Инспектировать агента Аудит Цен" class="agent-card" data-agent="prices" role="button" tabindex="0">
+<div class="agent-card__icon">🛡️</div>
+<div class="agent-card__info">
+<span class="agent-card__name">Агент: Аудит Цен УПД</span>
+<span class="agent-card__status agent-card__status--live">Активен</span>
+</div>
+<div class="agent-card__bar"><div class="agent-card__fill" style="width:88%"></div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ═══════════════════ ROI CALCULATOR ═══════════════════ -->
+<section class="roi" id="calculator">
+<div class="container">
+<div class="section-header">
+<p class="section-tag" data-reveal="">Экономический эффект</p>
+<h2 class="section-title" data-reveal="">Калькулятор окупаемости предиктивной аналитики</h2>
+</div>
+<div class="roi__card" data-reveal="">
+<div class="roi__inputs">
+<div class="roi-input-group">
+<label class="roi-label" for="slider-employees"><span>Месячный оборот компании (млн ₽)</span><span class="roi-value-display" id="display-employees">40 млн ₽</span></label>
+<input aria-label="Месячный оборот компании в миллионах рублей" class="roi-slider" id="slider-employees" max="300" min="10" step="5" type="range" value="40"/>
+<div class="roi-slider-limits"><span>10 млн ₽</span><span>300 млн ₽</span></div>
+</div>
+<div class="roi-input-group">
+<label class="roi-label" for="slider-hours"><span>Объем складских остатков (млн ₽)</span><span class="roi-value-display" id="display-hours">25 млн ₽</span></label>
+<input aria-label="Объем складских остатков в миллионах рублей" class="roi-slider" id="slider-hours" max="150" min="5" step="5" type="range" value="25"/>
+<div class="roi-slider-limits"><span>5 млн ₽</span><span>150 млн ₽</span></div>
+</div>
+<div class="roi-input-group">
+<label class="roi-label" for="slider-salary"><span>Месячный объем входящих закупок (млн ₽)</span><span class="roi-value-display" id="display-salary" style="white-space:nowrap;flex-shrink:0;margin-left:8px;">15 млн ₽</span></label>
+<input aria-label="Месячный объем входящих закупок в миллионах рублей" class="roi-slider" id="slider-salary" max="100" min="3" step="1" type="range" value="15"/>
+<div class="roi-slider-limits"><span>3 млн ₽</span><span>100 млн ₽</span></div>
+</div>
+</div>
+<div class="roi__results">
+<div class="roi-result-card">
+<span class="roi-result-label">Потери от кассовых разрывов и неликвидов / год</span>
+<span class="roi-result-num" id="roi-cost">5 240 000 ₽</span>
+</div>
+<div class="roi-result-card roi-result-card--accent">
+<span class="roi-result-label">Предотвращенные убытки и высвобожденная оборотка</span>
+<span class="roi-result-num" id="roi-save">4 192 000 ₽</span>
+</div>
+<div class="roi-result-card">
+<span class="roi-result-label">Срок окупаемости внедрения пилота</span>
+<span class="roi-result-num" id="roi-hours">1.4 месяца</span>
+</div>
+<div class="roi__cta-block"><p>Хотите устранить потери ликвидности и переплаты поставщикам?</p><a class="btn btn--primary" href="#contact">Заказать предиктивный аудит 1С</a></div>
+</div>
+</div>
+</div>
+</section>
+<!-- ═══════════════════ PROBLEM → SOLUTION ═══════════════════ -->
+<section class="compare" id="compare">
+<div class="container">
+<div class="section-header">
+<p class="section-tag" data-reveal="">До и после автоматизации</p>
+<h2 class="section-title" data-reveal="">Управление рисками предприятия: реактивный хаос vs предиктивный автопилот</h2>
+</div>
+<div class="compare__grid">
+<div class="compare__card compare__card--pain" data-reveal="">
+<div class="compare__badge">Сейчас (Excel + реактивный учет)</div>
+<div class="compare__icon">😰</div>
+<ul class="compare__list">
+<li><strong>О кассовом разрыве узнают накануне платежей:</strong> срочное привлечение овердрафтов по ставке 22%+ годовых.</li>
+<li><strong>Склад забит неликвидами:</strong> миллионы рублей заморожены в товарах группы Z, пока ходовые позиции попадают в Out-of-Stock.</li>
+<li><strong>Скрытый дрейф закупочных цен:</strong> бухгалтерия физически не успевает сверять номенклатурные цены в УПД с условиями договоров (переплата 2–4%).</li>
+<li><strong>Статичный платежный календарь:</strong> даты оплат переносятся вручную наугад без учета реальной платежной дисциплины дебиторов.</li>
+<li><strong>Запоздалая аналитика:</strong> финансовый директор видит кассовые дыры и убытки постфактум при закрытии месяца.</li>
+</ul>
+</div>
+<div class="compare__arrow" data-reveal="">
+<div class="compare__arrow-line"></div>
+<span>→</span>
+</div>
+<div class="compare__card compare__card--win" data-reveal="">
+<div class="compare__badge compare__badge--win">С предиктивной аналитикой АвтоПилот</div>
+<div class="compare__icon">🚀</div>
+<ul class="compare__list">
+<li><strong>Прогноз кассовых разрывов за 14–30 дней:</strong> модель ДДС заранее рассчитывает дефицит ликвидности и предлагает варианты маневрирования.</li>
+<li><strong>Динамический расчет неснижаемого остатка:</strong> пересчет точки заказа (ROP) и страхового запаса на основе вариации спроса и сбоев логистики.</li>
+<li><strong>100% автоконтроль цен поставщиков:</strong> алгоритмическая сверка входящих УПД с договорами и блокировка завышенных цен до проведения.</li>
+<li><strong>Предиктивный скоринг дебиторки:</strong> учет вероятности задержки оплат по каждому контрагенту на базе истории 1С.</li>
+<li><strong>Мгновенные Telegram-алерты:</strong> оповещение руководства об аномалиях ликвидности и рисках за 3 секунды.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- ═══════════════════ SERVICES ═══════════════════ -->
+<section class="services" id="services">
+<div class="container">
+<div class="section-header">
+<p class="section-tag" data-reveal="">Модули предиктивного контура</p>
+<h2 class="section-title" data-reveal="">6 модулей предиктивной аналитики для 1С и ERP</h2>
+</div>
+<div aria-label="Сценарии автоматизации" aria-roledescription="carousel" class="services__bento" data-reveal="" role="region" tabindex="0">
+<div class="scard">
+<div class="scard__icon">💸</div>
+<h3 class="scard__title">Умный платежный календарь (Cash Flow ML)</h3>
+<p class="scard__desc">Непрерывный прогноз остатка на расчетных счетах на 14–30 дней вперед с учетом скоринга вероятности оплаты дебиторки клиентами.</p>
+<div class="scard__tags">
+<span>1С:ERP</span>
+<span>1С:КА</span>
+<span>Платежный календарь</span>
+<span>ДДС</span>
+</div>
+</div>
+<div class="scard">
+<div class="scard__icon">📦</div>
+<h3 class="scard__title">Расчет неснижаемого остатка и ROP</h3>
+<p class="scard__desc">Динамический расчет точки перезаказа (Reorder Point) и страхового запаса с защитой от Out-of-Stock и высвобождением замороженной оборотки.</p>
+<div class="scard__tags">
+<span>1С:УТ 11</span>
+<span>Safety Stock</span>
+<span>Точка заказа</span>
+<span>Склад</span>
+</div>
+</div>
+<div class="scard">
+<div class="scard__icon">🛡️</div>
+<h3 class="scard__title">Контроль цен поставщиков (Price Shield)</h3>
+<p class="scard__desc">Автоматическая сверка номенклатурных цен входящей первички (УПД/счета) со спецификациями договоров и выявление скрытых наценок.</p>
+<div class="scard__tags">
+<span>1С:Бухгалтерия</span>
+<span>Аудит закупок</span>
+<span>УПД</span>
+<span>Спецификации</span>
+</div>
+</div>
+<div class="scard">
+<div class="scard__icon">📊</div>
+<h3 class="scard__title">Управление запасами и ABC/XYZ-анализ</h3>
+<p class="scard__desc">Ежедневный аудит неликвидов, раннее выявление залежалых партий товаров группы Z и автоматические рекомендации по своевременной уценке.</p>
+<div class="scard__tags">
+<span>ABC/XYZ</span>
+<span>Неликвиды</span>
+<span>Оборачиваемость</span>
+</div>
+</div>
+<div class="scard">
+<div class="scard__icon">📈</div>
+<h3 class="scard__title">Прогнозирование спроса и сезонности в 1С</h3>
+<p class="scard__desc">Машинное обучение на истории отгрузок с фильтрацией оптовых выбросов, учетом сезонных пиков и формированием точного плана закупок.</p>
+<div class="scard__tags">
+<span>ML-прогноз</span>
+<span>Сезонность</span>
+<span>План закупок</span>
+</div>
+</div>
+<div class="scard">
+<div class="scard__icon">📱</div>
+<h3 class="scard__title">Система предиктивных Telegram-алертов</h3>
+<p class="scard__desc">Мгновенные push-уведомления финансовому директору и закупщикам при обнаружении риска кассового разрыва или завышения цены в счете.</p>
+<div class="scard__tags">
+<span>Telegram Bot</span>
+<span>Push-алерты</span>
+<span>On-Premise 152-ФЗ</span>
+</div>
+</div>
+</div>
+<div class="carousel-dots services-dots" id="services-dots"></div>
+</div>
+</section>
+<!-- ═══════════════════ CASE STUDIES ═══════════════════ -->
+<section class="cases" id="cases">
+<div class="container">
+<div class="section-header">
+<p class="section-tag" data-reveal="">Результаты клиентов</p>
+<h2 class="section-title" data-reveal="">Кейсы внедрения предиктивной аналитики</h2>
+</div>
+<div class="cases__grid" data-reveal="">
+<div class="case-card case-card--retail">
+<div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--retail"></span>🛒 Федеральный дистрибьютор · 18 000 SKU</div>
+<h3 class="case-card__title">Оптимизация неснижаемого остатка и ликвидация out-of-stock</h3>
+<p class="case-card__desc">Внедрили алгоритм динамического расчета страхового запаса на данных 1С:УТ. Настроили <span class="case-highlight case-highlight--retail">предиктивный автозаказ поставщикам</span> с учетом вариативности спроса.</p>
+<div class="case-card__results">
+<div class="case-result">
+<span class="case-result__num case-num--gold">16.8 млн ₽</span>
+<span class="case-result__label">высвобождено оборотки</span>
+</div>
+<div class="case-result">
+<span class="case-result__num case-num--green">−74%</span>
+<span class="case-result__label">случаев Out-of-Stock</span>
+</div>
+<div class="case-result">
+<span class="case-result__num case-num--cyan">1.8 мес</span>
+<span class="case-result__label">окупаемость пилота</span>
+</div>
+</div>
+<div class="case-card__tags"><span>1С:УТ 11</span><span>Safety Stock</span><span>ROP</span><span>Автозаказ</span></div>
+</div>
+<div class="case-card case-card--fintech">
+<div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--fintech"></span>🏢 Производственно-торговый холдинг · 140 поставщиков</div>
+<h3 class="case-card__title">Автоконтроль цен поставщиков и аудит первичных накладных</h3>
+<p class="case-card__desc">Подключили агента Price Shield к потоку входящих УПД в 1С:ERP. Настроили <span class="case-highlight case-highlight--fintech">автоматическую сверку со спецификациями</span> и блокировку скрытого повышения цен.</p>
+<div class="case-card__results">
+<div class="case-result">
+<span class="case-result__num case-num--green">5.2 млн ₽</span>
+<span class="case-result__label">предотвращено переплат</span>
+</div>
+<div class="case-result">
+<span class="case-result__num case-num--violet">100%</span>
+<span class="case-result__label">проверенной первички</span>
+</div>
+<div class="case-result">
+<span class="case-result__num case-num--gold">320%</span>
+<span class="case-result__label">ROI за 6 месяцев</span>
+</div>
+</div>
+<div class="case-card__tags"><span>1С:ERP</span><span>Аудит цен</span><span>Спецификации</span><span>УПД</span></div>
+</div>
+<div class="case-card case-card--edi">
+<div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--edi"></span>🏪 Сеть оптово-розничных баз · 35 филиалов</div>
+<h3 class="case-card__title">Предиктивный платежный календарь и защита от кассовых разрывов</h3>
+<p class="case-card__desc">Связали базы 1С:КА и банковские выписки. Модель <span class="case-highlight case-highlight--edi">прогнозирует кассовые разрывы</span> на 14 дней вперед с учетом скоринга платежной дисциплины покупателей.</p>
+<div class="case-card__results">
+<div class="case-result">
+<span class="case-result__num case-num--green">0</span>
+<span class="case-result__label">кассовых разрывов за год</span>
+</div>
+<div class="case-result">
+<span class="case-result__num case-num--cyan">96.4%</span>
+<span class="case-result__label">точность прогноза ДДС</span>
+</div>
+<div class="case-result">
+<span class="case-result__num case-num--gold">14 дней</span>
+<span class="case-result__label">запуск первого модуля</span>
+</div>
+</div>
+<div class="case-card__tags"><span>1С:КА 2</span><span>Платежный календарь</span><span>ДДС</span><span>Скоринг</span></div>
+</div>
+</div>
+<div class="carousel-dots" id="carousel-dots"></div>
+</div>
+</section>
+<!-- ═══════════════════ FAQ SECTION ═══════════════════ -->
+<section class="faq" id="faq">
+<div class="container">
+<div class="section-header" data-reveal="">
+<span class="section-tag">Ответы на вопросы</span>
+<h2 class="section-title">Часто задаваемые вопросы по предиктивной аналитике 1С</h2>
+<p class="section-desc" style="color:var(--text-2);margin-top:12px;">Всё о безопасности 152-ФЗ, интеграции с 1С и точности прогнозных алгоритмов</p>
+</div>
+<div class="faq__grid" data-reveal="">
+<div class="faq-item">
+<button aria-expanded="false" class="faq-item__header" type="button">
+<span class="faq-item__question">Нужно ли передавать финансовые данные и базу 1С в сторонние облачные сервисы?</span>
+<span class="faq-item__icon">+</span>
+</button>
+<div class="faq-item__answer">
+<div class="faq-item__inner">
+<p>Нет. Весь предиктивный контур развертывается в закрытом On-Premise контуре вашей компании (на вашем сервере). Базы 1С не публикуются в интернет, сырые данные защищены по 152-ФЗ и соглашению о коммерческой тайне (NDA).</p>
+</div>
+</div>
+</div>
+<div class="faq-item">
+<button aria-expanded="false" class="faq-item__header" type="button">
+<span class="faq-item__question">Как система подключается к 1С и замедляет ли она работу пользователей?</span>
+<span class="faq-item__icon">+</span>
+</button>
+<div class="faq-item__answer">
+<div class="faq-item__inner">
+<p>Подключение выполняется через типовой OData REST API или внешнее расширение (.cfe) в фоновом режиме. Опрос регистров происходит в непиковые интервалы без блокировки таблиц и с нулевым влиянием на скорость работы пользователей.</p>
+</div>
+</div>
+</div>
+<div class="faq-item">
+<button aria-expanded="false" class="faq-item__header" type="button">
+<span class="faq-item__question">Какова точность прогноза кассовых разрывов при нерегулярных оплатах клиентов?</span>
+<span class="faq-item__icon">+</span>
+</button>
+<div class="faq-item__answer">
+<div class="faq-item__inner">
+<p>ML-модель рассчитывает скоринг платежной дисциплины каждого дебитора на основе истории задержек оплат за 12–24 месяца. Точность прогнозирования дефицита ликвидности на горизонте 14 дней превышает 94%.</p>
+</div>
+</div>
+</div>
+<div class="faq-item">
+<button aria-expanded="false" class="faq-item__header" type="button">
+<span class="faq-item__question">Что происходит при обнаружении завышения цен в накладной поставщика?</span>
+<span class="faq-item__icon">+</span>
+</button>
+<div class="faq-item__answer">
+<div class="faq-item__inner">
+<p>Агент сверяет каждую позицию УПД со спецификацией к договору. При обнаружении ценового дрейфа или скрытой наценки документ маркируется алертом, а ответственный закупщик и финансовый контролер получают уведомление в Telegram с указанием суммы переплаты.</p>
+</div>
+</div>
+</div>
+<div class="faq-item">
+<button aria-expanded="false" class="faq-item__header" type="button">
+<span class="faq-item__question">Сколько времени занимает запуск пилотного мониторинга на реальных данных?</span>
+<span class="faq-item__icon">+</span>
+</button>
+<div class="faq-item__answer">
+<div class="faq-item__inner">
+<p>Развертывание первого рабочего модуля (например, умного платежного календаря или расчета страхового запаса) занимает от 10 до 14 рабочих дней под ключ.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ═══════════════════ LIVE DASHBOARD ═══════════════════ -->
+<section class="dashboard" id="dashboard">
+<div class="container">
+<div class="section-header">
+<div class="hero__badge" data-reveal="" style="margin-bottom:14px;">
+<span class="hero__badge-dot"></span>
+<span class="hero__badge-text">Системы активны · Предиктивный мониторинг аномалий 1С</span>
+</div>
+<p class="section-tag" data-reveal="">Центр управления</p>
+<h2 class="section-title" data-reveal="">Интерактивный симулятор предиктивных алертов</h2>
+</div>
+<div class="dashboard__grid" data-reveal="">
+<div class="dashboard__main">
+<div class="dash-card" style="padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-glow);">
+<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:18px;flex-wrap:wrap;gap:12px;">
+<div style="display:flex;align-items:center;gap:10px;">
+<span style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.1rem;box-shadow:0 0 15px rgba(99,102,241,0.5);">🧠</span>
+<div>
+<strong style="color:var(--text-1);display:block;font-size:0.95rem;font-family:var(--font-head);">АвтоПилот · Предиктив-Бот</strong>
+<span style="color:var(--green);font-size:0.75rem;font-family:var(--font-mono);">● мониторинг активен (1С:ERP)</span>
+</div>
+</div>
+<div class="phone-sim-tabs" style="display:flex;gap:8px;">
+<button class="btn btn--ghost sim-tab-btn active" data-sim="cashflow" style="padding:6px 14px;font-size:0.82rem;font-weight:600;" type="button">💸 Платежный календарь</button>
+<button class="btn btn--ghost sim-tab-btn" data-sim="stock" style="padding:6px 14px;font-size:0.82rem;font-weight:600;" type="button">📦 Склад и ROP</button>
+<button class="btn btn--ghost sim-tab-btn" data-sim="prices" style="padding:6px 14px;font-size:0.82rem;font-weight:600;" type="button">🛡️ Аудит цен</button>
+</div>
+</div>
+<div style="background:#08080e;border:1px solid var(--border);border-radius:var(--radius-sm);padding:22px;font-family:var(--font-mono);font-size:0.9rem;line-height:1.7;color:var(--text-1);min-height:230px;">
+<!-- Screen 1: Cash Flow -->
+<div class="sim-screen" id="sim-cashflow">
+<div style="color:var(--accent-1);font-weight:700;margin-bottom:10px;font-size:0.95rem;">⚠️ АЛЕРТ: РИСК КАССОВОГО РАЗРЫВА ЧЕРЕЗ 11 ДНЕЙ</div>
+<div>• <strong>Дата прогнозируемого дефицита:</strong> 18 октября</div>
+<div>• <strong>Расчетный кассовый разрыв:</strong> <span style="color:#ef4444;font-weight:700;">-2 450 000 ₽</span></div>
+<div>• <strong>Причина:</strong> плановый платеж по лизингу + задержка оплаты от ООО «СнабСервис» (скоринг оплаты 42%)</div>
+<div style="margin:10px 0;border-top:1px dashed rgba(255,255,255,0.12);"></div>
+<div style="color:var(--green);font-weight:700;">💡 РЕКОМЕНДАЦИЯ АВТОПИЛОТ:</div>
+<div>1. Сдвинуть выплату по заявке #884 поставщику «МеталлТрейд» на 22 октября (согласована отсрочка).</div>
+<div>2. Отправить автонапоминание дебитору «СнабСервис» по ЭДО. Риск разрыва нейтрализуется.</div>
+</div>
+<!-- Screen 2: Stock -->
+<div class="sim-screen" id="sim-stock" style="display:none;">
+<div style="color:var(--accent-2);font-weight:700;margin-bottom:10px;font-size:0.95rem;">📦 ДИНАМИЧЕСКИЙ SAFETY STOCK &amp; ТОЧКА ЗАКАЗА</div>
+<div>• <strong>Артикул:</strong> SKU-44019 (Кабель силовой ВВГнг-LS 3x2.5)</div>
+<div>• <strong>Текущий остаток:</strong> 14 бухт (Ниже точки заказа ROP: <span style="color:#eab308;font-weight:700;">32 бухты</span>)</div>
+<div>• <strong>Плечо поставки (Lead Time):</strong> 7 рабочих дней (поставщик «КабельПром»)</div>
+<div>• <strong>Прогнозируемый спрос:</strong> 4.5 бухты/сутки (Риск Out-of-Stock через 3 дня)</div>
+<div style="margin:10px 0;border-top:1px dashed rgba(255,255,255,0.12);"></div>
+<div style="color:var(--green);font-weight:700;">✅ ДЕЙСТВИЕ: Сформирован проект автозаказа в 1С:УТ на 50 бухт.</div>
+</div>
+<!-- Screen 3: Prices -->
+<div class="sim-screen" id="sim-prices" style="display:none;">
+<div style="color:var(--accent-hot);font-weight:700;margin-bottom:10px;font-size:0.95rem;">🛡️ ВЫЯВЛЕНА ЦЕНОВАЯ АНОМАЛИЯ В НАКЛАДНОЙ УПД</div>
+<div>• <strong>Документ:</strong> Входящая УПД №491 от ООО «ПромСнаб-М»</div>
+<div>• <strong>Позиция:</strong> «Арматура А500С 12мм» (Количество: 20 т)</div>
+<div>• <strong>Цена в накладной:</strong> <span style="color:#ef4444;font-weight:700;">58 200 ₽/т</span></div>
+<div>• <strong>Цена по спецификации:</strong> <span style="color:var(--green);font-weight:700;">53 200 ₽/т</span> (+9.4% переплата)</div>
+<div>• <strong>Сумма переплаты по строке:</strong> <span style="color:#ef4444;font-weight:700;">100 000 ₽</span></div>
+<div style="margin:10px 0;border-top:1px dashed rgba(255,255,255,0.12);"></div>
+<div style="color:var(--accent-1);font-weight:700;">🛑 ДЕЙСТВИЕ: Проведение УПД в 1С приостановлено, алерт отправлен в Telegram закупщику.</div>
+</div>
+</div>
+</div>
+</div>
+<div class="dashboard__side">
+<div class="dash-card dash-card--board">
+<div class="dash-card__header">
+<span class="dash-card__title">Предиктивные события 1С</span>
+<span class="dash-card__live"><span class="pulse-dot"></span>Live</span>
+</div>
+<div class="board-panels">
+<div class="log" id="analytics-event-log" style="font-family:var(--font-mono);font-size:0.82rem;line-height:1.75;color:var(--text-2);padding:14px;">
+<div><span style="color:var(--text-3);">10:42:01</span> <span style="color:var(--accent-1);font-weight:600;">[OData]</span> Опрос регистра накопления «Заявки на расход ДС»</div>
+<div><span style="color:var(--text-3);">10:42:02</span> <span style="color:var(--accent-2);font-weight:600;">[CashFlow ML]</span> Расчет баланса ДДС на 30 дней, найден разрыв</div>
+<div><span style="color:var(--text-3);">10:42:04</span> <span style="color:var(--green);font-weight:600;">[Safety Stock]</span> Пересчет ROP для 18 000 SKU по вариации спроса</div>
+<div><span style="color:var(--text-3);">10:42:06</span> <span style="color:var(--accent-hot);font-weight:600;">[Price Shield]</span> Сверка УПД №491: заблокирована переплата 100 000 ₽</div>
+<div><span style="color:var(--text-3);">10:42:07</span> <span style="color:var(--text-3);">[Telegram Bot]</span> Алерты доставлены финансовому директору</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ═══════════════════ CTA + CONTACT ═══════════════════ -->
+<section class="contact" id="contact">
+<div class="container">
+<div class="contact__inner" data-reveal="">
+<div class="contact__text">
+<h2 class="contact__title">Заказать бесплатный предиктивный аудит 1С</h2>
+<p class="contact__desc">За 30 минут разберем ваши базы 1С: оценим риск кассовых разрывов в платежном календаре, рассчитаем потенциал высвобождения оборотки на складе и покажем, где бизнес переплачивает поставщикам.</p>
+</div>
+<!--email_off-->
+<form action="https://formsubmit.co/contact@ai-avtopilot.ru" class="contact__form" id="contact-form" method="POST" name="contact" novalidate="">
+<!-- Web3Forms Config: резервный канал при указании валидного ключа -->
+<input id="web3forms-key" name="access_key" type="hidden" value=""/>
+<!-- FormSubmit Config: автоматический надёжный канал без ключей -->
+<input name="_next" type="hidden" value="https://ai-avtopilot.ru/success.html"/>
+<input name="_subject" type="hidden" value="Новая заявка на аудит с сайта ai-avtopilot.ru"/>
+<input name="_template" type="hidden" value="table"/>
+<input name="_captcha" type="hidden" value="false"/>
+<input name="from_name" type="hidden" value="АвтоПилот Лид"/>
+<div class="form-group form-group--required">
+<div class="form-label-row">
+<label for="contact-name">Ваше имя <span aria-label="Обязательное поле" class="required-star" title="Обязательное поле">*</span></label>
+<span class="required-badge">обязательно</span>
+</div>
+<div class="form-field-wrap">
+<input autocomplete="name" id="contact-name" name="name" placeholder="Алексей Иванов" required="" type="text"/>
+</div>
+</div>
+<div class="form-group">
+<div class="form-label-row">
+<label for="contact-company">Компания</label>
+<span class="optional-hint">необязательно</span>
+</div>
+<div class="form-field-wrap">
+<input autocomplete="organization" id="contact-company" name="company" placeholder="ООО «Ромашка»" type="text"/>
+</div>
+</div>
+<div class="form-group form-group--required">
+<div class="form-label-row">
+<label for="contact-email">Телефон или почта / Telegram <span aria-label="Обязательное поле" class="required-star" title="Обязательное поле">*</span></label>
+<span class="required-badge">обязательно</span>
+</div>
+<div class="form-field-wrap">
+<input autocomplete="on" id="contact-email" name="contact" placeholder="+7 (999) 000-00-00 или @username" required="" type="text"/>
+</div>
+</div>
+<!-- Согласие 152-ФЗ -->
+<input name="consent" type="hidden" value="accepted"/>
+<!-- Spam protection Honeypot -->
+<input autocomplete="off" name="_honey" style="display:none;" tabindex="-1" type="text"/>
+<button class="btn btn--primary btn--full" id="form-submit" type="submit">
+            Записаться на аудит
+          </button>
+<p class="form-privacy">Нажимая кнопку, вы подтверждаете согласие на обработку персональных данных в соответствии с <a class="form-link" href="/privacy.html" rel="noopener noreferrer" target="_blank">Политикой конфиденциальности</a> (152-ФЗ)</p>
+</form>
+<!--/email_off-->
+</div>
+</div>
+</section>
+</main>
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="footer">
+<div class="container footer__inner">
+<div class="footer__top">
+<a aria-label="АвтоПилот" class="nav__logo" href="/">⬡ АвтоПилот</a>
+<a aria-label="Напишите нам Онлайн @AiAvtopilotbot" class="footer__tg-cta" href="https://t.me/AiAvtopilotbot" rel="noopener noreferrer" target="_blank">
+<div class="footer__tg-icon">
+<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"></path>
+</svg>
+</div>
+<div class="footer__tg-text">
+<div class="footer__tg-title">
+<span>Напишите нам</span>
+<span class="footer__tg-badge"><span class="footer__tg-dot"></span>Онлайн</span>
+</div>
+<div class="footer__tg-handle">@AiAvtopilotbot</div>
+</div>
+</a>
+</div>
+<div class="footer__body">
+<div class="footer__brand">
+<p>ИИ-автоматизация бизнес-процессов.<br/>г. Москва · Работаем по всей России.<br/><span class="footer__support">Поддержка: 24/7 онлайн</span></p>
+</div>
+</div>
+<div class="footer__links-row">
+<div class="footer__links">
+<a href="/dashboard/">Дашборд</a>
+<a href="/services/">Услуги</a>
+<a href="/cases/">Кейсы</a>
+<a href="/calculator/">Калькулятор</a>
+<a href="/faq/">FAQ</a>
+<a href="/contact/">Контакты</a>
+</div>
+<div class="footer__meta-links">
+<!--email_off--><a class="footer__email" href="mailto:contact@ai-avtopilot.ru">contact@ai-avtopilot.ru</a><!--/email_off-->
+<a class="footer__privacy" href="/privacy.html">Политика конфиденциальности (152-ФЗ)</a>
+</div>
+</div>
+<div class="footer__bottom">
+<div class="footer__copy">
+          © 2025–2026 АвтоПилот. Все права защищены.
+        </div>
+</div>
+</div>
+</footer>
+<!-- Yandex.Metrika Custom Goals Tracking -->
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+      var COUNTER_ID = 112978516;
+      function reach(goalName) {
+        if (typeof ym !== 'undefined') {
+          ym(COUNTER_ID, 'reachGoal', goalName);
+        }
+      }
+
+      // 1. Макро: Заявка на аудит отправлена (JS)
+      var form = document.getElementById('contact-form');
+      if (form) {
+        form.addEventListener('submit', function() {
+          reach('lead_form_submitted');
+        });
+      }
+
+      // 2. Микро: Клик по кнопке аудита (CTA)
+      var ctaSelectors = ['#cta-main', '.btn--nav', '.scard--accent .btn', '.roi__cta-block .btn', 'a[href="#contact"]'];
+      ctaSelectors.forEach(function(sel) {
+        document.querySelectorAll(sel).forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            reach('click_cta_audit');
+          });
+        });
+      });
+
+      // 3. Микро: Взаимодействие с калькулятором ROI
+      var sliders = ['#slider-employees', '#slider-hours', '#slider-salary'];
+      var calcTracked = false;
+      sliders.forEach(function(sel) {
+        var slider = document.querySelector(sel);
+        if (slider) {
+          slider.addEventListener('change', function() {
+            if (!calcTracked) {
+              reach('calc_interacted');
+              calcTracked = true;
+            }
+          });
+        }
+      });
+
+      // 4. Микро: Доскролл до кейсов (Глубокий интерес)
+      var casesSec = document.getElementById('cases');
+      if (casesSec && 'IntersectionObserver' in window) {
+        var casesObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              reach('scroll_cases_deep');
+              casesObserver.disconnect();
+            }
+          });
+        }, { threshold: 0.25 });
+        casesObserver.observe(casesSec);
+      }
+
+      // 5. Микро: Клик по контактам (Email / Telegram)
+      document.querySelectorAll('a[href^="mailto:"], a[href*="t.me"]').forEach(function(el) {
+        el.addEventListener('click', function() {
+          reach('click_contact');
+        });
+      });
+    });
+  </script>
+<!-- Cookie Consent (152-ФЗ) -->
+<div class="cookie-banner" id="cookie-banner" style="display:none;">
+<div class="cookie-banner__inner">
+<span>Мы используем cookies и аналитику для улучшения работы сайта. Подробнее в <a class="cookie-link" href="/privacy.html">Политике конфиденциальности</a>.</span>
+<button aria-label="Понятно, принять условия использования файлов cookie" class="btn btn--cookie" id="cookie-accept">Понятно</button>
+</div>
+</div>
+<style>
+    .cookie-banner {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 40px);
+      max-width: 720px;
+      background: rgba(17, 17, 25, 0.95);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      backdrop-filter: blur(12px);
+      padding: 14px 20px;
+      border-radius: 12px;
+      z-index: 9999;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      color: #c4c4d4;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    .cookie-banner__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .cookie-link {
+      color: #818cf8;
+      text-decoration: underline;
+    }
+    .btn--cookie {
+      background: #4f46e5;
+      color: #ffffff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .btn--cookie:hover {
+      background: #4338ca;
+    }
+  </style>
+<script type="text/javascript">
+    (function() {
+      try {
+        if (!localStorage.getItem('cookie_consent')) {
+          var b = document.getElementById('cookie-banner');
+          if (b) b.style.display = 'block';
+          var btn = document.getElementById('cookie-accept');
+          if (btn) btn.addEventListener('click', function() {
+            localStorage.setItem('cookie_consent', '1');
+            if (b) b.style.display = 'none';
+          });
+        }
+      } catch (e) {}
+    })();
+  </script>
+<!-- Compact Layout Interactive Controls: Dashboard Board Tabs & Cases Carousel -->
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+      // 1. Dashboard Tabbed Board
+      var tabList = document.querySelector('.board-tabs');
+      if (tabList) {
+        var tabs = Array.from(tabList.querySelectorAll('[role="tab"]'));
+        var panels = Array.from(document.querySelectorAll('.board-panel'));
+
+        function activateTab(tab, setFocus) {
+          if (!tab) return;
+          tabs.forEach(function(t) {
+            var isSelected = (t === tab);
+            t.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+            t.setAttribute('tabindex', isSelected ? '0' : '-1');
+            t.classList.toggle('board-tab--active', isSelected);
+          });
+          var targetId = tab.getAttribute('aria-controls');
+          panels.forEach(function(p) {
+            var isTarget = (p.id === targetId);
+            p.hidden = !isTarget;
+            p.classList.toggle('board-panel--active', isTarget);
+          });
+          if (setFocus) tab.focus();
+        }
+
+        tabList.addEventListener('click', function(e) {
+          var tab = e.target.closest('[role="tab"]');
+          if (tab) activateTab(tab, false);
+        });
+
+        tabList.addEventListener('keydown', function(e) {
+          var idx = tabs.indexOf(document.activeElement);
+          if (idx === -1) return;
+          if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            activateTab(tabs[(idx + 1) % tabs.length], true);
+          } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            activateTab(tabs[(idx - 1 + tabs.length) % tabs.length], true);
+          } else if (e.key === 'Home') {
+            e.preventDefault();
+            activateTab(tabs[0], true);
+          } else if (e.key === 'End') {
+            e.preventDefault();
+            activateTab(tabs[tabs.length - 1], true);
+          }
+        });
+      }
+
+      // 2. Cases Horizontal Carousel Dots
+      var casesGrid = document.querySelector('.cases__grid');
+      var dotsWrap = document.getElementById('carousel-dots');
+      if (casesGrid && dotsWrap) {
+        var cards = Array.from(casesGrid.querySelectorAll('.case-card'));
+        if (cards.length > 0) {
+          dotsWrap.innerHTML = '';
+          cards.forEach(function(_, i) {
+            var dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Кейс ' + (i + 1) + ' из ' + cards.length);
+            dot.addEventListener('click', function() {
+              cards[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            });
+            dotsWrap.appendChild(dot);
+          });
+
+          var dots = Array.from(dotsWrap.querySelectorAll('.carousel-dot'));
+          var isTicking = false;
+
+          function updateActiveDot() {
+            var gridRect = casesGrid.getBoundingClientRect();
+            var gridCenter = gridRect.left + gridRect.width / 2;
+            var closestIdx = 0;
+            var minDiff = Infinity;
+
+            cards.forEach(function(card, idx) {
+              var r = card.getBoundingClientRect();
+              var cardCenter = r.left + r.width / 2;
+              var diff = Math.abs(gridCenter - cardCenter);
+              if (diff < minDiff) {
+                minDiff = diff;
+                closestIdx = idx;
+              }
+            });
+
+            dots.forEach(function(d, idx) {
+              d.classList.toggle('active', idx === closestIdx);
+            });
+            isTicking = false;
+          }
+
+          casesGrid.addEventListener('scroll', function() {
+            if (!isTicking) {
+              window.requestAnimationFrame(updateActiveDot);
+              isTicking = true;
+            }
+          }, { passive: true });
+        }
+      }
+
+      // 3. Services Horizontal Carousel Dots & Lightweight Nudge
+      var servicesBento = document.querySelector('.services__bento');
+      var sDotsWrap = document.getElementById('services-dots');
+      if (servicesBento && sDotsWrap) {
+        var sCards = Array.from(servicesBento.querySelectorAll('.scard'));
+        if (sCards.length > 0) {
+          sDotsWrap.innerHTML = '';
+          sCards.forEach(function(_, i) {
+            var dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Сценарий ' + (i + 1) + ' из ' + sCards.length);
+            dot.addEventListener('click', function() {
+              sCards[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            });
+            sDotsWrap.appendChild(dot);
+          });
+
+          var sDots = Array.from(sDotsWrap.querySelectorAll('.carousel-dot'));
+          var sTicking = false;
+
+          function updateServicesDot() {
+            var gridRect = servicesBento.getBoundingClientRect();
+            var gridCenter = gridRect.left + gridRect.width / 2;
+            var closestIdx = 0;
+            var minDiff = Infinity;
+
+            sCards.forEach(function(card, idx) {
+              var r = card.getBoundingClientRect();
+              var cardCenter = r.left + r.width / 2;
+              var diff = Math.abs(gridCenter - cardCenter);
+              if (diff < minDiff) {
+                minDiff = diff;
+                closestIdx = idx;
+              }
+            });
+
+            sDots.forEach(function(d, idx) {
+              d.classList.toggle('active', idx === closestIdx);
+            });
+            sTicking = false;
+          }
+
+          servicesBento.addEventListener('scroll', function() {
+            if (!sTicking) {
+              window.requestAnimationFrame(updateServicesDot);
+              sTicking = true;
+            }
+          }, { passive: true });
+
+          // Keyboard arrow navigation on focus
+          servicesBento.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+              var activeIdx = sDots.findIndex(function(d) { return d.classList.contains('active'); });
+              if (activeIdx === -1) activeIdx = 0;
+              var targetIdx = e.key === 'ArrowRight' ? Math.min(sCards.length - 1, activeIdx + 1) : Math.max(0, activeIdx - 1);
+              sCards[targetIdx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+              e.preventDefault();
+            }
+          });
+
+          // One-shot lightweight GPU nudge to demonstrate horizontal swipeability on mobile
+          if ('IntersectionObserver' in window && window.innerWidth <= 1024) {
+            var nudgeObserver = new IntersectionObserver(function(entries) {
+              entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                  servicesBento.classList.add('is-nudging');
+                  setTimeout(function() {
+                    servicesBento.classList.remove('is-nudging');
+                  }, 700);
+                  nudgeObserver.disconnect();
+                }
+              });
+            }, { threshold: 0.25 });
+            nudgeObserver.observe(servicesBento);
+          }
+        }
+      }
+    });
+  </script>
+<!--email_off-->
+<!-- Schema.org Microdata -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://ai-avtopilot.ru/#organization",
+      "name": "АвтоПилот",
+      "alternateName": "AI Avtopilot",
+      "url": "https://ai-avtopilot.ru/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://ai-avtopilot.ru/icon.svg"
+      },
+      "email": "contact@ai-avtopilot.ru",
+      "description": "Внедрение ИИ-агентов и роботизация бизнес-процессов в 1С, SAP, CRM и ERP для компаний в России.",
+      "sameAs": [
+        "https://t.me/AiAvtopilotbot"
+      ],
+      "slogan": "Ваши процессы работают на автопилоте",
+      "knowsAbout": [
+        "ИИ-агенты",
+        "Роботизация бизнес-процессов (RPA)",
+        "Интеграция 1С OData",
+        "Контур.Диадок SDK",
+        "СБИС API",
+        "Автоматизация ERP и CRM",
+        "152-ФЗ комплаенс"
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "Россия"
+      }
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://ai-avtopilot.ru/#service",
+      "name": "АвтоПилот — Автоматизация бизнес-процессов ИИ",
+      "url": "https://ai-avtopilot.ru/",
+      "image": "https://ai-avtopilot.ru/og-image.png",
+      "priceRange": "₽₽₽",
+      "currenciesAccepted": "RUB",
+      "paymentAccepted": "Безналичный расчет, расчетный счет, банковский перевод, СБП, выставление счета через ЭДО (Диадок / СБИС)",
+      "serviceType": [
+        "Внедрение ИИ-агентов",
+        "Интеграция 1С и SAP",
+        "Цифровой документооборот ЭДО",
+        "Автоматизация ритейла и склада",
+        "Аналитика данных"
+      ],
+      "email": "contact@ai-avtopilot.ru",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Москва",
+        "addressCountry": "RU"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "00:00",
+        "closes": "23:59"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Услуги автоматизации бизнеса",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Интеграция систем (1С, SAP, CRM, ERP, Excel)"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Автоотчётность и цифровой документооборот (ЭДО)"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Автоматизация ритейла и склада"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "ИИ-поддержка клиентов 24/7"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "ИИ-аналитика и прогнозирование спроса"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://ai-avtopilot.ru/#website",
+      "url": "https://ai-avtopilot.ru/",
+      "name": "АвтоПилот — ИИ-автоматизация бизнеса",
+      "publisher": {
+        "@id": "https://ai-avtopilot.ru/#organization"
+      },
+      "inLanguage": "ru-RU"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ai-avtopilot.ru/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Сколько времени занимает запуск первого пилотного проекта?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Развёртывание первого работающего ИИ-агента в вашем контуре занимает ровно 14 календарных дней. Мы подключаемся к 1–3 ключевым процессам, проводим калибровку точности до 99%+ и передаём результат с гарантией окупаемости."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Нужно ли дорабатывать или менять существующую 1С, SAP или CRM?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Нет, менять ничего не требуется. ИИ-агенты подключаются через стандартные протоколы (1C OData REST API, HTTP-сервисы, Webhooks, Диадок SDK). Мы не вмешиваемся в типовую конфигурацию и не нарушаем штатные процессы вашей системы."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как обеспечивается безопасность коммерческих данных и соблюдение 152-ФЗ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Все данные обрабатываются на защищённых серверах в Российской Федерации в строгом соответствии с 152-ФЗ РФ. Перед началом работ подписывается соглашение о неразглашении (NDA). Для предприятий с повышенными требованиями безопасности возможно развёртывание локальных On-Premise моделей внутри закрытого периметра без выхода во внешние сети."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Какова средняя окупаемость (ROI) и экономический эффект?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "В среднем внедрение окупается за 1.5–3 месяца после ввода в эксплуатацию. Средний доказанный ROI составляет 340% годовых за счёт сокращения рутинного ручного труда на 70–80% и ликвидации человеческих ошибок в первичных документах."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Что входит в бесплатный 30-минутный экспресс-аудит?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "В рамках 30-минутного экспресс-аудита наш архитектор анализирует 3 самых трудоёмких процесса вашей компании, рассчитывает индивидуальную матрицу окупаемости (ROI) и готовит пошаговую архитектурную схему внедрения пилотного агента."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://ai-avtopilot.ru/services/ai-analytics/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://ai-avtopilot.ru/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Услуги",
+          "item": "https://ai-avtopilot.ru/services/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Предиктивная ИИ-аналитика 1С",
+          "item": "https://ai-avtopilot.ru/services/ai-analytics/"
+        }
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://ai-avtopilot.ru/services/ai-analytics/#app",
+      "name": "АвтоПилот: Предиктивная ИИ-аналитика 1С",
+      "operatingSystem": "Windows, Linux (1C:Enterprise 8.3 On-Premise)",
+      "applicationCategory": "BusinessApplication",
+      "description": "Предиктивная ИИ-аналитика для 1С:ERP и УТ: автоматизация платежного календаря, расчет неснижаемого остатка и контроль цен поставщиков.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "RUB",
+        "name": "Бесплатный 30-минутный предиктивный аудит 1С"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ai-avtopilot.ru/services/ai-analytics/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Нужно ли передавать финансовые данные и базу 1С в сторонние облачные сервисы?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Нет. Весь предиктивный контур развертывается в закрытом On-Premise контуре вашей компании (на вашем сервере). Базы 1С не публикуются в интернет, сырые данные защищены по 152-ФЗ и соглашению о коммерческой тайне (NDA)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как система подключается к 1С и замедляет ли она работу пользователей?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Подключение выполняется через типовой OData REST API или внешнее расширение (.cfe) в фоновом режиме. Опрос регистров происходит в непиковые интервалы без блокировки таблиц и с нулевым влиянием на скорость работы пользователей."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Какова точность прогноза кассовых разрывов при нерегулярных оплатах клиентов?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ML-модель рассчитывает скоринг платежной дисциплины каждого дебитора на основе истории задержек оплат за 12–24 месяца. Точность прогнозирования дефицита ликвидности на горизонте 14 дней превышает 94%."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Что происходит при обнаружении завышения цен в накладной поставщика?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Агент сверяет каждую позицию УПД со спецификацией к договору. При обнаружении ценового дрейфа или скрытой наценки документ маркируется алертом, а ответственный закупщик и финансовый контролер получают уведомление в Telegram с указанием суммы переплаты."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Сколько времени занимает запуск пилотного мониторинга на реальных данных?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Развертывание первого рабочего модуля (например, умного платежного календаря или расчета страхового запаса) занимает от 10 до 14 рабочих дней под ключ."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!--/email_off-->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Simulator tab switching
+      var tabs = document.querySelectorAll('.sim-tab-btn');
+      var screens = {
+        'cashflow': document.getElementById('sim-cashflow'),
+        'stock': document.getElementById('sim-stock'),
+        'prices': document.getElementById('sim-prices')
+      };
+      
+      tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          var target = tab.getAttribute('data-sim');
+          tabs.forEach(function(t) { t.classList.remove('active'); t.style.borderColor = 'rgba(99,102,241,0.3)'; });
+          tab.classList.add('active');
+          tab.style.borderColor = 'var(--accent-1)';
+          
+          Object.keys(screens).forEach(function(k) {
+            if (screens[k]) {
+              screens[k].style.display = (k === target) ? 'block' : 'none';
+            }
+          });
+        });
+      });
+
+      // Tailored AI Analytics ROI Calculator Logic
+      var sTurnover = document.getElementById('slider-employees');
+      var sStock = document.getElementById('slider-hours');
+      var sPurchases = document.getElementById('slider-salary');
+
+      var dTurnover = document.getElementById('display-employees');
+      var dStock = document.getElementById('display-hours');
+      var dPurchases = document.getElementById('display-salary');
+
+      var rCost = document.getElementById('roi-cost');
+      var rSave = document.getElementById('roi-save');
+      var rHours = document.getElementById('roi-hours');
+
+      function updateAnalyticsCalculator() {
+        if (!sTurnover || !sStock || !sPurchases) return;
+        var turnover = parseFloat(sTurnover.value) || 40; // млн руб
+        var stock = parseFloat(sStock.value) || 25;       // млн руб
+        var purchases = parseFloat(sPurchases.value) || 15; // млн руб
+
+        if (dTurnover) dTurnover.textContent = turnover + ' млн ₽';
+        if (dStock) dStock.textContent = stock + ' млн ₽';
+        if (dPurchases) dPurchases.textContent = purchases + ' млн ₽';
+
+        // Update CSS fill gradients for sliders
+        [sTurnover, sStock, sPurchases].forEach(function(s) {
+          if (!s) return;
+          var min = parseFloat(s.min) || 0;
+          var max = parseFloat(s.max) || 100;
+          var val = parseFloat(s.value) || 0;
+          var pct = ((val - min) / (max - min)) * 100;
+          s.style.setProperty('--fill', pct + '%');
+        });
+
+        // Annual loss from stock freeze & supplier overpayments & cash gap fines
+        var stockLoss = stock * 1000000 * 0.12; // 12% frozen capital carrying cost
+        var purchaseLoss = purchases * 1000000 * 12 * 0.018; // 1.8% price drift
+        var cashGapLoss = turnover * 1000000 * 0.008; // 0.8% emergency overdrafts & penalties
+
+        var totalLoss = stockLoss + purchaseLoss + cashGapLoss;
+        var totalSavings = totalLoss * 0.80; // 80% prevention rate
+        
+        // Payback period in months (assuming pilot cost ~350k)
+        var paybackMonths = Math.max(1.1, Math.min(2.4, (350000 / (totalSavings / 12)))).toFixed(1);
+
+        if (rCost) rCost.textContent = Math.round(totalLoss).toLocaleString('ru-RU') + ' ₽';
+        if (rSave) rSave.textContent = Math.round(totalSavings).toLocaleString('ru-RU') + ' ₽';
+        if (rHours) rHours.textContent = paybackMonths + ' месяца';
+      }
+
+      if (sTurnover && sStock && sPurchases) {
+        sTurnover.addEventListener('input', updateAnalyticsCalculator);
+        sStock.addEventListener('input', updateAnalyticsCalculator);
+        sPurchases.addEventListener('input', updateAnalyticsCalculator);
+        updateAnalyticsCalculator();
+      }
+
+      // Offline / Local file:// Fallback for Typewriter
+      var typedEl = document.getElementById('typed-text');
+      if (typedEl && typedEl.getAttribute('data-phrases')) {
+        try {
+          var phrases = JSON.parse(typedEl.getAttribute('data-phrases'));
+          var pIdx = 0, cIdx = 0, isDeleting = false;
+          function typeLoop() {
+            var curPhrase = phrases[pIdx % phrases.length];
+            if (isDeleting) {
+              typedEl.textContent = curPhrase.substring(0, cIdx - 1);
+              cIdx--;
+              if (cIdx <= 0) {
+                isDeleting = false;
+                pIdx++;
+                setTimeout(typeLoop, 400);
+                return;
+              }
+              setTimeout(typeLoop, 35);
+            } else {
+              typedEl.textContent = curPhrase.substring(0, cIdx + 1);
+              cIdx++;
+              if (cIdx >= curPhrase.length) {
+                isDeleting = true;
+                setTimeout(typeLoop, 2200);
+                return;
+              }
+              setTimeout(typeLoop, 55);
+            }
+          }
+          setTimeout(typeLoop, 1000);
+        } catch(e) {}
+      }
+    });
+    </script>
+</body>
+</html>
