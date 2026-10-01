@@ -325,6 +325,45 @@ runCheck('SEO-21', 'Zero aria-hidden attributes on carousel dots or interactive 
   });
 });
 
+// SEO-22: Chrome Speculation Rules API for 0ms transitions
+runCheck('SEO-22', 'Chrome Speculation Rules API declared across all pages with moderate prerender', () => {
+  PAGES.forEach(p => {
+    const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
+    assert.ok(html.includes('<script type="speculationrules">'), `Missing speculationrules script in ${p.file}`);
+    assert.ok(html.includes('"prerender"'), `Missing prerender rule in ${p.file}`);
+    assert.ok(html.includes('"eagerness": "moderate"'), `Expected moderate eagerness in ${p.file}`);
+  });
+});
+
+// SEO-23: AI & GEO Discovery (llms.txt v2 standard)
+runCheck('SEO-23', 'llms.txt v2 discovery link (rel="describedby") declared in head of all pages', () => {
+  PAGES.forEach(p => {
+    const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
+    assert.ok(
+      html.includes('<link rel="describedby" type="text/markdown" href="/llms.txt" />'),
+      `Missing rel="describedby" link in ${p.file}`
+    );
+  });
+});
+
+// SEO-24: RFC 9116 security.txt
+runCheck('SEO-24', 'RFC 9116 security.txt exists in .well-known with valid Contact and future Expires', () => {
+  const secPath = path.join(ROOT_DIR, '.well-known/security.txt');
+  assert.ok(fs.existsSync(secPath), '.well-known/security.txt must exist');
+  const txt = fs.readFileSync(secPath, 'utf8');
+  assert.ok(txt.includes('Contact: mailto:contact@ai-avtopilot.ru'), 'Missing Contact email');
+  assert.ok(txt.includes('Expires: 2027-'), 'Missing future expiration date');
+  assert.ok(txt.includes('Preferred-Languages: ru, en'), 'Missing Preferred-Languages');
+});
+
+// SEO-25: IndexNow key verification
+runCheck('SEO-25', 'IndexNow 32-character key file exists at root and matches configuration', () => {
+  const keyPath = path.join(ROOT_DIR, 'd8a24f0c9b7e416a9e3d81b7e651c4a0.txt');
+  assert.ok(fs.existsSync(keyPath), 'IndexNow key file must exist at root');
+  const key = fs.readFileSync(keyPath, 'utf8').trim();
+  assert.strictEqual(key, 'd8a24f0c9b7e416a9e3d81b7e651c4a0', 'IndexNow key mismatch');
+});
+
 // SEO-19: Test execution time benchmark
 runCheck('SEO-19', 'Full SEO verification suite completes in under 500ms', () => {
   assert.ok(true);

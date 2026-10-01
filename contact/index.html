@@ -40,6 +40,29 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" crossorigin="anonymous" />
 
+  <!-- AI & GEO Discovery (llms.txt v2 Standard) -->
+  <link rel="describedby" type="text/markdown" href="/llms.txt" />
+
+  <!-- Chrome Speculation Rules API (0ms Instant Page Navigations) -->
+  <script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "source": "list",
+        "urls": [
+          "/services/",
+          "/cases/",
+          "/calculator/",
+          "/dashboard/",
+          "/faq/",
+          "/contact/"
+        ],
+        "eagerness": "moderate"
+      }
+    ]
+  }
+  </script>
+
 
   <!-- Security Headers & Policies -->
   <meta http-equiv="Content-Security-Policy"

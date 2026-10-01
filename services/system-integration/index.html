@@ -38,6 +38,29 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
   <link rel="manifest" href="/site.webmanifest" crossorigin="anonymous" />
 
+  <!-- AI & GEO Discovery (llms.txt v2 Standard) -->
+  <link rel="describedby" type="text/markdown" href="/llms.txt" />
+
+  <!-- Chrome Speculation Rules API (0ms Instant Page Navigations) -->
+  <script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "source": "list",
+        "urls": [
+          "/services/",
+          "/cases/",
+          "/calculator/",
+          "/dashboard/",
+          "/faq/",
+          "/contact/"
+        ],
+        "eagerness": "moderate"
+      }
+    ]
+  }
+  </script>
+
   <!-- Security Headers & Policies -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://mc.yandex.com https://yastatic.net https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://ai-avtopilot.ru https://mc.yandex.ru https://mc.yandex.com; connect-src 'self' https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev https://api.web3forms.com https://formsubmit.co https://mc.yandex.ru https://mc.yandex.com wss://mc.yandex.ru wss://mc.yandex.com https://cloudflareinsights.com; frame-src https://mc.yandex.ru https://mc.yandex.com blob:; child-src https://mc.yandex.ru https://mc.yandex.com blob:;" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
