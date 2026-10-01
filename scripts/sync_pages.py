@@ -26,62 +26,7 @@ SUBPAGES_SPEC = {
         "description": "Реальные кейсы автоматизации бизнеса: логистика, ритейл, B2B-дистрибуция. Экономия 9 200+ рабочих часов, средний ROI 340%, окупаемость за 1.5–3 месяца.",
         "h1": "Кейсы внедрения ИИ-агентов и результаты автоматизации",
         "breadcrumb_name": "Кейсы",
-        "deep_content": """
-      <div class="subpage-deep" data-reveal>
-        <nav class="breadcrumbs" aria-label="Хлебные крошки">
-          <a href="/">Главная</a>
-          <span class="breadcrumbs__sep">/</span>
-          <span>Кейсы</span>
-        </nav>
-        <h1 class="subpage-deep__title">Кейсы внедрения ИИ-агентов: доказанный ROI и метрики</h1>
-        <p class="subpage-deep__desc">
-          В нашем портфолио более 47 успешно завершенных проектов роботизации рутины на предприятиях России. Ниже представлены ключевые кейсы с верифицированными метриками до и после внедрения автономных ИИ-ассистентов.
-        </p>
-
-        <div style="overflow-x:auto;">
-          <table class="subpage-table">
-            <thead>
-              <tr>
-                <th>Отрасль / Профиль</th>
-                <th>Проблема до внедрения</th>
-                <th>Решение АвтоПилот</th>
-                <th>Доказанный результат</th>
-                <th>Срок окупаемости</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Федеральная логистика</strong> (120+ тягачей, 450 контрагентов)</td>
-                <td>Ручной ввод 18 мин на накладную, задержка закрытия месяца 10 дней</td>
-                <td>Локальный агент распознавания OCR + 1С:Бухгалтерия</td>
-                <td>45 сек / документ, экономия 1 850 ч/мес, точность 99.2%</td>
-                <td>1.2 месяца (ROI 380%)</td>
-              </tr>
-              <tr>
-                <td><strong>Розничная сеть (Retail)</strong> (35 точек, 14 000 SKU)</td>
-                <td>Out-of-stock 18%, кассовые разрывы, ручные Excel-сводки</td>
-                <td>Предиктивный ИИ-контроль остатков и автозаказ поставщикам</td>
-                <td>Снижение out-of-stock на 38%, высвобождено 14.5 млн ₽ оборотки</td>
-                <td>2.0 месяца (ROI 320%)</td>
-              </tr>
-              <tr>
-                <td><strong>B2B-дистрибуция оборудования</strong> (чек 650 000 ₽)</td>
-                <td>Ответ менеджера до 4.5 часов, потеря до 30% входящих лидов</td>
-                <td>Омниканальный ИИ-ассистент квалификации в Telegram и CRM</td>
-                <td>Ответ за 40 сек, конверсия в счет +24%, рост выручки +18%</td>
-                <td>1.8 месяца (ROI 350%)</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:24px;">
-          <a href="/calculator/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Рассчитать ROI под ваши параметры →</a>
-          <a href="/services/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Стек интеграции (1С, ЭДО, CRM) →</a>
-          <a href="#contact" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Заказать бесплатный аудит →</a>
-        </div>
-      </div>
-""",
+        "deep_content": "",
     },
     "calculator": {
         "dir": os.path.join(ROOT_DIR, "calculator"),
@@ -89,36 +34,7 @@ SUBPAGES_SPEC = {
         "description": "Интерактивный онлайн калькулятор окупаемости ИИ-агентов. Рассчитайте экономию затрат, высвобождаемые часы сотрудников и срок окупаемости для вашего бизнеса.",
         "h1": "Калькулятор окупаемости ИИ-автоматизации и расчет ROI",
         "breadcrumb_name": "Калькулятор",
-        "deep_content": """
-      <div class="subpage-deep" data-reveal>
-        <nav class="breadcrumbs" aria-label="Хлебные крошки">
-          <a href="/">Главная</a>
-          <span class="breadcrumbs__sep">/</span>
-          <span>Калькулятор ROI</span>
-        </nav>
-        <h1 class="subpage-deep__title">Калькулятор окупаемости ИИ-автоматизации и расчёт ROI</h1>
-        <p class="subpage-deep__desc">
-          Оцените потенциал высвобождения трудовых ресурсов и прямой финансовой выгоды от внедрения ИИ-агентов в рутинные процессы вашей организации.
-        </p>
-
-        <h3 style="color:var(--text-1);margin:24px 0 12px;font-family:var(--font-head);font-size:1.2rem;">Математическая методология расчёта</h3>
-        <p style="color:var(--text-2);font-size:0.95rem;line-height:1.65;margin-bottom:16px;">
-          Формула основана на прямых затратах рабочего времени сотрудников, занятых ручным заполнением 1С, сверкой таблиц, перепечаткой накладных и обработкой типовых обращений:
-        </p>
-        <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 20px;font-family:var(--font-mono);font-size:0.88rem;color:var(--accent-1);margin-bottom:20px;">
-          Годовая экономия (₽) = Сотрудники × Часы_рутины_в_неделю × (Ставка/160) × 52 недели × 80%_автоматизации
-        </div>
-        <p style="color:var(--text-3);font-size:0.85rem;line-height:1.6;">
-          Коэффициент 80% отражает консервативную долю типовых операций, которые полностью делегируются ИИ-агентам без участия человека. Оставшиеся 20% нестандартных исключений направляются на верификацию ведущим специалистам.
-        </p>
-
-        <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:24px;">
-          <a href="/cases/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Реальные кейсы клиентов с ROI 340% →</a>
-          <a href="/faq/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Вопросы и ответы по окупаемости →</a>
-          <a href="#contact" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Получить экспресс-аудит (30 мин) →</a>
-        </div>
-      </div>
-""",
+        "deep_content": "",
     },
     "dashboard": {
         "dir": os.path.join(ROOT_DIR, "dashboard"),
@@ -217,17 +133,39 @@ def generate_subpage(slug: str, spec: dict, master_html: str) -> str:
             print(f"Error updating JSON-LD for {slug}: {e}")
 
     # 6. Ensure exactly 1 H1 exists per page
-    if spec.get("deep_content"):
-        html = re.sub(r'<h1 class="hero__title">(.*?)</h1>', r'<h2 class="hero__title">\1</h2>', html, flags=re.DOTALL)
+    html = re.sub(r'<h1 class="hero__title">(.*?)</h1>', r'<h2 class="hero__title">\1</h2>', html, flags=re.DOTALL)
+
+    if slug == "services":
+        html = html.replace(
+            '<h2 class="section-title" data-reveal>Готовые сценарии автоматизации</h2>',
+            '<h1 class="section-title" data-reveal>Готовые сценарии автоматизации</h1>',
+            1,
+        )
+    elif slug == "cases":
+        html = html.replace(
+            '<h2 class="section-title" data-reveal>Кейсы внедрения</h2>',
+            '<h1 class="section-title" data-reveal>Кейсы внедрения</h1>',
+            1,
+        )
+    elif slug == "calculator":
+        html = html.replace(
+            '<h2 class="section-title" data-reveal>Калькулятор окупаемости</h2>',
+            '<h1 class="section-title" data-reveal>Калькулятор окупаемости</h1>',
+            1,
+        )
+    elif slug == "dashboard":
+        html = html.replace(
+            '<h2 class="section-title" data-reveal>Ваши агенты могут работать прямо сейчас</h2>',
+            '<h1 class="section-title" data-reveal>Ваши агенты могут работать прямо сейчас</h1>',
+            1,
+        )
     elif slug == "faq":
-        html = re.sub(r'<h1 class="hero__title">(.*?)</h1>', r'<h2 class="hero__title">\1</h2>', html, flags=re.DOTALL)
         html = html.replace(
             '<h2 class="section-title">Часто задаваемые вопросы</h2>',
             '<h1 class="section-title">Часто задаваемые вопросы</h1>',
             1,
         )
     elif slug == "contact":
-        html = re.sub(r'<h1 class="hero__title">(.*?)</h1>', r'<h2 class="hero__title">\1</h2>', html, flags=re.DOTALL)
         html = html.replace(
             '<h2 class="contact__title">Первый шаг — бесплатный аудит</h2>',
             '<h1 class="contact__title">Первый шаг — бесплатный аудит</h1>',
@@ -258,7 +196,7 @@ def generate_subpage(slug: str, spec: dict, master_html: str) -> str:
             "  <!-- ═══════════════════ CTA + CONTACT ═══════════════════ -->", services_directions_mesh, 1
         )
 
-    # For Cases subpage: link secondary hero button to #cases and in-page CTAs to #contact
+    # For Cases subpage: link secondary hero button to #cases, in-page CTAs to #contact, and append mesh at bottom of #cases section
     if slug == "cases":
         html = html.replace(
             '<a href="/cases/" class="btn btn--ghost">Смотреть кейсы →</a>',
@@ -266,23 +204,40 @@ def generate_subpage(slug: str, spec: dict, master_html: str) -> str:
             1,
         )
         html = html.replace('href="/contact/" class="btn btn--primary"', 'href="#contact" class="btn btn--primary"')
-
-    # For Dashboard subpage: append cross-linking mesh at the end of the telemetry dashboard section
-    if slug == "dashboard":
-        html = html.replace('href="/contact/" class="btn btn--primary"', 'href="#contact" class="btn btn--primary"')
-        dash_mesh_target = "        </div>\n      </div>\n    </div>\n  </section>\n\n  <!-- ═══════════════════ CTA + CONTACT ═══════════════════ -->"
-        dash_mesh_replacement = """        </div>
-      </div>
+        cases_mesh_target = '      </div>\n      <div class="carousel-dots" id="carousel-dots"></div>\n    </div>\n  </section>\n\n  <!-- ═══════════════════ FAQ SECTION ═══════════════════ -->'
+        cases_mesh_replacement = """      </div>
+      <div class="carousel-dots" id="carousel-dots"></div>
       <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;justify-content:center;">
-        <a href="/services/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Каталог поддерживаемых систем →</a>
-        <a href="/cases/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Кейсы с подтвержденными метриками →</a>
-        <a href="#contact" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Подключить телеметрию для бизнеса →</a>
+        <a href="/calculator/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Рассчитать ROI под ваши параметры →</a>
+        <a href="/services/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Стек интеграции (1С, ЭДО, CRM) →</a>
+        <a href="#contact" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Заказать бесплатный аудит →</a>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════ CTA + CONTACT ═══════════════════ -->"""
-        html = html.replace(dash_mesh_target, dash_mesh_replacement, 1)
+  <!-- ═══════════════════ FAQ SECTION ═══════════════════ -->"""
+        html = html.replace(cases_mesh_target, cases_mesh_replacement, 1)
+
+    # For Calculator subpage: append cross-linking mesh at bottom of calculator section
+    if slug == "calculator":
+        html = html.replace('href="/contact/" class="btn btn--primary"', 'href="#contact" class="btn btn--primary"')
+        calc_mesh_target = "        </div>\n      </div>\n    </div>\n  </section>\n\n  <!-- ═══════════════════ PROBLEM → SOLUTION ═══════════════════ -->"
+        calc_mesh_replacement = """        </div>
+      </div>
+      <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;justify-content:center;">
+        <a href="/cases/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Реальные кейсы клиентов с ROI 340% →</a>
+        <a href="/faq/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Вопросы и ответы по окупаемости →</a>
+        <a href="#contact" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Получить экспресс-аудит (30 мин) →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ PROBLEM → SOLUTION ═══════════════════ -->"""
+        html = html.replace(calc_mesh_target, calc_mesh_replacement, 1)
+
+    # For Dashboard subpage: ensure in-page contact routing (no glued mesh)
+    if slug == "dashboard":
+        html = html.replace('href="/contact/" class="btn btn--primary"', 'href="#contact" class="btn btn--primary"')
 
     # For FAQ subpage: promote FAQ section title to H1 and append PageRank mesh under accordion
     if slug == "faq":

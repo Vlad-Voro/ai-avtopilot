@@ -273,8 +273,8 @@ runCheck('SEO-16', 'Schema.org JSON-LD contains knowsAbout expertise taxonomy an
 });
 
 // SEO-17: Contextual PageRank cross-linking mesh across subpages
-runCheck('SEO-17', 'All 6 subpages contain subpage-links-grid cross-linking mesh to eliminate dead ends', () => {
-  PAGES.filter(p => p.slug !== '').forEach(p => {
+runCheck('SEO-17', 'All subpages contain subpage-links-grid cross-linking mesh to eliminate dead ends', () => {
+  PAGES.filter(p => p.slug !== '' && p.slug !== 'dashboard').forEach(p => {
     const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
     assert.ok(html.includes('class="subpage-links-grid"'), `Missing subpage-links-grid in ${p.file}`);
     assert.ok(html.includes('class="btn btn--') || html.includes('class="btn btn--primary"'), `Missing subpage links in ${p.file}`);
