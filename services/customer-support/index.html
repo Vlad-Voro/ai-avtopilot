@@ -241,8 +241,9 @@ ul{list-style:none}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;font-family:var(--font-body);font-size:.95rem;font-weight:600;cursor:pointer;border:none;transition:var(--transition);white-space:nowrap;position:relative;overflow:hidden}
 .btn--primary{background:linear-gradient(135deg,var(--accent-hot),#dc2626);color:#fff;box-shadow:0 4px 24px #f9731659}
 .btn--primary:hover{transform:translateY(-2px);box-shadow:0 8px 40px #f9731680}
-.btn--ghost{background:#6366f114;color:var(--accent-1);border:1px solid rgba(99,102,241,.3)}
-.btn--ghost:hover{border-color:var(--accent-1);color:var(--text-1);background:#6366f12e;transform:translateY(-1px)}
+.btn--ghost{background:rgba(99,102,241,.12);color:#ffffff;border:1px solid rgba(168,85,247,.45);box-shadow:0 0 20px rgba(99,102,241,.15);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);font-weight:600;transition:all .25s cubic-bezier(.4,0,.2,1)}
+.btn--ghost:hover{border-color:rgba(168,85,247,.8);color:#ffffff;background:rgba(99,102,241,.25);transform:translateY(-2px);box-shadow:0 0 28px rgba(168,85,247,.35),0 4px 12px rgba(0,0,0,.3)}
+.btn--ghost:active{transform:translateY(0) scale(.98)}
 .btn--nav{background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#ffffff;font-weight:600;border:1px solid rgba(168,85,247,.5);padding:10px 22px;border-radius:var(--radius-sm);box-shadow:0 0 20px rgba(99,102,241,.45);transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s ease,background .2s ease}
 .btn--nav:hover{background:linear-gradient(135deg,#4f46e5,#9333ea);transform:translateY(-2px);box-shadow:0 0 30px rgba(99,102,241,.7),0 4px 16px rgba(168,85,247,.4);color:#ffffff}
 .btn--nav:active{transform:translateY(0) scale(.97);box-shadow:0 0 14px rgba(99,102,241,.4)}
@@ -340,6 +341,9 @@ to{opacity:1}
 .scard--link{text-decoration:none;color:inherit;cursor:pointer}
 .scard--link:hover .scard__arrow{transform:translateX(4px);color:var(--accent-1)}
 .scard__arrow{display:inline-block;transition:transform .2s ease,color .2s ease;margin-left:6px;color:var(--text-3)}
+.case-card--link{text-decoration:none;color:inherit;cursor:pointer}
+.case-card--link:hover .case-card__arrow{transform:translateX(4px);color:var(--accent-1)}
+.case-card__arrow{display:inline-block;transition:transform .2s ease,color .2s ease;margin-left:6px;color:var(--text-3)}
 .scard--wide{grid-column:span 2}
 .scard--dark{background:#0e0e18}
 .scard--accent{background:linear-gradient(135deg,#6366f133,#a855f733);border-color:#6366f180;box-shadow:0 0 48px #6366f11f}
@@ -1684,7 +1688,7 @@ section[id] {
         <li><a href="/dashboard/" class="nav__link">Дашборд</a></li>
         <li class="nav__link-mobile"><a href="/contact/" class="nav__link">Контакты</a></li>
       </ul>
-      <a href="/contact/" class="btn btn--nav">Получить аудит</a>
+      <a href="#contact" class="btn btn--nav">Получить аудит</a>
       <button class="nav__burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-links" id="burger">
         <span></span>
         <span></span>
@@ -1720,7 +1724,7 @@ section[id] {
         </h1>
         <p class="hero__sub">Автономный ИИ-оператор для оптовых компаний и сервисных центров. Мгновенная выписка счетов и актов сверки из 1С, проверка статусов доставки и квалификация лидов 24/7 без очередей.</p>
         <div class="hero__actions">
-          <a href="#contact" class="btn btn--primary">Заказать аудит →</a>
+          <a href="#contact" class="btn btn--primary" id="cta-main">Заказать аудит →</a>
           <a href="#calculator" class="btn btn--ghost">Рассчитать ROI</a>
         </div>
         <div class="hero__kpis">
@@ -2221,6 +2225,22 @@ section[id] {
     </div>
   </section>
 
+  <!-- ═══════════════════ PAGERANK CROSS-LINKING MESH ═══════════════════ -->
+  <section class="container" style="padding: 10px 24px 30px;">
+    <div class="subpage-deep" data-reveal="">
+      <h3 style="font-family:var(--font-head); font-size:1.15rem; margin-bottom:14px; color:var(--text-1);">Другие направления автоматизации АвтоПилот</h3>
+      <div class="subpage-links-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">
+        <a href="/services/automated-reporting/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">📊 Автоотчётность</a>
+        <a href="/services/ai-analytics/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🧠 ИИ-аналитика</a>
+        <a href="/services/system-integration/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🔄 Интеграция систем</a>
+        <a href="/services/retail-inventory/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🏪 Ритейл и склад</a>
+        <a href="/services/document-automation/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">📄 Документооборот</a>
+        <a href="/services/customer-support/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">💬 ИИ-поддержка</a>
+        <a href="/services/rapid-pilot/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">⚡ Быстрый старт</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══════════════════ CTA + CONTACT ═══════════════════ -->
   <section class="contact" id="contact">
     <div class="container">
@@ -2272,22 +2292,6 @@ section[id] {
           <p class="form-privacy">Нажимая кнопку, вы подтверждаете согласие на обработку персональных данных в соответствии с <a href="/privacy.html" target="_blank" rel="noopener noreferrer" class="form-link">Политикой конфиденциальности</a> (152-ФЗ)</p>
         </form>
         <!--/email_off-->
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════ PAGERANK CROSS-LINKING MESH ═══════════════════ -->
-  <section class="container" style="padding: 10px 24px 30px;">
-    <div class="subpage-deep" data-reveal="">
-      <h3 style="font-family:var(--font-head); font-size:1.15rem; margin-bottom:14px; color:var(--text-1);">Другие направления автоматизации АвтоПилот</h3>
-      <div class="subpage-links-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">
-        <a href="/services/automated-reporting/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">📊 Автоотчётность</a>
-        <a href="/services/ai-analytics/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🧠 ИИ-аналитика</a>
-        <a href="/services/system-integration/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🔄 Интеграция систем</a>
-        <a href="/services/retail-inventory/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🏪 Ритейл и склад</a>
-        <a href="/services/document-automation/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">📄 Документооборот</a>
-        <a href="/services/customer-support/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">💬 ИИ-поддержка</a>
-        <a href="/services/rapid-pilot/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">⚡ Быстрый старт</a>
       </div>
     </div>
   </section>

@@ -209,7 +209,7 @@ if hero_sec:
             actions.clear()
             actions.append(
                 BeautifulSoup(
-                    '<a href="#contact" class="btn btn--primary">Запустить предиктивный аудит</a>'
+                    '<a href="#contact" class="btn btn--primary" id="cta-main">Запустить предиктивный аудит</a>'
                     '<a href="#dashboard" class="btn btn--ghost">Смотреть демо алертов →</a>',
                     "html.parser",
                 )
@@ -789,9 +789,32 @@ if dash_sec:
             )
         )
 
+# 8.5. Block: Cross-Linking Mesh before #contact
+mesh_html = BeautifulSoup(
+    """
+  <!-- ═══════════════════ PAGERANK CROSS-LINKING MESH ═══════════════════ -->
+  <section class="container" style="padding: 10px 24px 30px;">
+    <div class="subpage-deep" data-reveal="">
+      <h3 style="font-family:var(--font-head); font-size:1.15rem; margin-bottom:14px; color:var(--text-1);">Другие направления автоматизации АвтоПилот</h3>
+      <div class="subpage-links-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">
+        <a href="/services/automated-reporting/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">📊 Автоотчётность</a>
+        <a href="/services/ai-analytics/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🧠 ИИ-аналитика</a>
+        <a href="/services/system-integration/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🔄 Интеграция систем</a>
+        <a href="/services/retail-inventory/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🏪 Ритейл и склад</a>
+        <a href="/services/document-automation/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">📄 Документооборот</a>
+        <a href="/services/customer-support/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">💬 ИИ-поддержка</a>
+        <a href="/services/rapid-pilot/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">⚡ Быстрый старт</a>
+      </div>
+    </div>
+  </section>
+    """,
+    "html.parser",
+)
+
 # 9. Block 8: #contact (Canonical form)
 contact_sec = soup.find("section", id="contact")
 if contact_sec:
+    contact_sec.insert_before(mesh_html)
     h2 = contact_sec.find("h2", class_="contact__title")
     if h2:
         h2.string = "Заказать бесплатный предиктивный аудит 1С"

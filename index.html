@@ -249,8 +249,9 @@ ul{list-style:none}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;font-family:var(--font-body);font-size:.95rem;font-weight:600;cursor:pointer;border:none;transition:var(--transition);white-space:nowrap;position:relative;overflow:hidden}
 .btn--primary{background:linear-gradient(135deg,var(--accent-hot),#dc2626);color:#fff;box-shadow:0 4px 24px #f9731659}
 .btn--primary:hover{transform:translateY(-2px);box-shadow:0 8px 40px #f9731680}
-.btn--ghost{background:#6366f114;color:var(--accent-1);border:1px solid rgba(99,102,241,.3)}
-.btn--ghost:hover{border-color:var(--accent-1);color:var(--text-1);background:#6366f12e;transform:translateY(-1px)}
+.btn--ghost{background:rgba(99,102,241,.12);color:#ffffff;border:1px solid rgba(168,85,247,.45);box-shadow:0 0 20px rgba(99,102,241,.15);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);font-weight:600;transition:all .25s cubic-bezier(.4,0,.2,1)}
+.btn--ghost:hover{border-color:rgba(168,85,247,.8);color:#ffffff;background:rgba(99,102,241,.25);transform:translateY(-2px);box-shadow:0 0 28px rgba(168,85,247,.35),0 4px 12px rgba(0,0,0,.3)}
+.btn--ghost:active{transform:translateY(0) scale(.98)}
 .btn--nav{background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#ffffff;font-weight:600;border:1px solid rgba(168,85,247,.5);padding:10px 22px;border-radius:var(--radius-sm);box-shadow:0 0 20px rgba(99,102,241,.45);transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s ease,background .2s ease}
 .btn--nav:hover{background:linear-gradient(135deg,#4f46e5,#9333ea);transform:translateY(-2px);box-shadow:0 0 30px rgba(99,102,241,.7),0 4px 16px rgba(168,85,247,.4);color:#ffffff}
 .btn--nav:active{transform:translateY(0) scale(.97);box-shadow:0 0 14px rgba(99,102,241,.4)}
@@ -1699,7 +1700,7 @@ section[id] {
         <li><a href="/dashboard/" class="nav__link">Дашборд</a></li>
         <li class="nav__link-mobile"><a href="/contact/" class="nav__link">Контакты</a></li>
       </ul>
-      <a href="/contact/" class="btn btn--nav">Получить аудит</a>
+      <a href="#contact" class="btn btn--nav">Получить аудит</a>
       <button class="nav__burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-links" id="burger">
         <span></span>
         <span></span>
@@ -1726,7 +1727,7 @@ section[id] {
           Забираем ручной перенос данных, сверку документов и рутинные ответы — высвобождая до 80% времени команды.
         </p>
         <div class="hero__actions">
-          <a href="/contact/" class="btn btn--primary" id="cta-main">Запустить автоматизацию</a>
+          <a href="#contact" class="btn btn--primary" id="cta-main">Запустить автоматизацию</a>
           <a href="/cases/" class="btn btn--ghost">Смотреть кейсы →</a>
         </div>
         <div class="hero__kpis">

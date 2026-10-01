@@ -233,8 +233,9 @@ ul{list-style:none}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;font-family:var(--font-body);font-size:.95rem;font-weight:600;cursor:pointer;border:none;transition:var(--transition);white-space:nowrap;position:relative;overflow:hidden}
 .btn--primary{background:linear-gradient(135deg,var(--accent-hot),#dc2626);color:#fff;box-shadow:0 4px 24px #f9731659}
 .btn--primary:hover{transform:translateY(-2px);box-shadow:0 8px 40px #f9731680}
-.btn--ghost{background:#6366f114;color:var(--accent-1);border:1px solid rgba(99,102,241,.3)}
-.btn--ghost:hover{border-color:var(--accent-1);color:var(--text-1);background:#6366f12e;transform:translateY(-1px)}
+.btn--ghost{background:rgba(99,102,241,.12);color:#ffffff;border:1px solid rgba(168,85,247,.45);box-shadow:0 0 20px rgba(99,102,241,.15);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);font-weight:600;transition:all .25s cubic-bezier(.4,0,.2,1)}
+.btn--ghost:hover{border-color:rgba(168,85,247,.8);color:#ffffff;background:rgba(99,102,241,.25);transform:translateY(-2px);box-shadow:0 0 28px rgba(168,85,247,.35),0 4px 12px rgba(0,0,0,.3)}
+.btn--ghost:active{transform:translateY(0) scale(.98)}
 .btn--nav{background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#ffffff;font-weight:600;border:1px solid rgba(168,85,247,.5);padding:10px 22px;border-radius:var(--radius-sm);box-shadow:0 0 20px rgba(99,102,241,.45);transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s ease,background .2s ease}
 .btn--nav:hover{background:linear-gradient(135deg,#4f46e5,#9333ea);transform:translateY(-2px);box-shadow:0 0 30px rgba(99,102,241,.7),0 4px 16px rgba(168,85,247,.4);color:#ffffff}
 .btn--nav:active{transform:translateY(0) scale(.97);box-shadow:0 0 14px rgba(99,102,241,.4)}
@@ -332,6 +333,9 @@ to{opacity:1}
 .scard--link{text-decoration:none;color:inherit;cursor:pointer}
 .scard--link:hover .scard__arrow{transform:translateX(4px);color:var(--accent-1)}
 .scard__arrow{display:inline-block;transition:transform .2s ease,color .2s ease;margin-left:6px;color:var(--text-3)}
+.case-card--link{text-decoration:none;color:inherit;cursor:pointer}
+.case-card--link:hover .case-card__arrow{transform:translateX(4px);color:var(--accent-1)}
+.case-card__arrow{display:inline-block;transition:transform .2s ease,color .2s ease;margin-left:6px;color:var(--text-3)}
 .scard--wide{grid-column:span 2}
 .scard--dark{background:#0e0e18}
 .scard--accent{background:linear-gradient(135deg,#6366f133,#a855f733);border-color:#6366f180;box-shadow:0 0 48px #6366f11f}
@@ -1673,7 +1677,7 @@ section[id] {
 <li><a class="nav__link" href="/dashboard/">Дашборд</a></li>
 <li class="nav__link-mobile"><a class="nav__link" href="/contact/">Контакты</a></li>
 </ul>
-<a class="btn btn--nav" href="/contact/">Получить аудит</a>
+<a class="btn btn--nav" href="#contact">Получить аудит</a>
 <button aria-controls="nav-links" aria-expanded="false" aria-label="Открыть меню" class="nav__burger" id="burger">
 <span></span>
 <span></span>
@@ -1687,9 +1691,9 @@ section[id] {
 <div class="hero__particles" id="particles"></div>
 <div class="container hero__inner">
 <div class="hero__content">
-<h1 class="hero__title"><span class="hero__title-static">Предиктивная аналитика для 1С </span><span class="hero__title-accent-box"><span class="hero__title-accent" data-phrases='["без кассовых разрывов", "с расчетом остатков", "с автоконтролем цен", "в On-Premise контуре"]' id="typed-text">без кассовых разрывов</span><span aria-hidden="true" class="hero__cursor">|</span></span></h1>
+<h1 class="hero__title"><span class="hero__title-static">Предиктивная аналитика для 1С </span><span class="hero__title-accent-box" style="display:inline-block;min-height:1.2em;"><span class="hero__title-accent" data-phrases='["без кассовых разрывов", "с расчетом остатков и ROP", "с автоконтролем цен УПД", "в On-Premise контуре"]' id="typed-text">без кассовых разрывов</span><span aria-hidden="true" class="hero__cursor">|</span></span></h1>
 <p class="hero__sub">Автоматизируем платежный календарь, предупреждаем кассовые разрывы за 14 дней, рассчитываем неснижаемый остаток на складе и выявляем завышение цен в накладных поставщиков.</p>
-<div class="hero__actions"><a class="btn btn--primary" href="#contact">Запустить предиктивный аудит</a><a class="btn btn--ghost" href="#dashboard">Смотреть демо алертов →</a></div>
+<div class="hero__actions"><a class="btn btn--primary" href="#contact" id="cta-main">Запустить предиктивный аудит</a><a class="btn btn--ghost" href="#dashboard">Смотреть демо алертов →</a></div>
 <div class="hero__kpis">
 <div class="kpi-card">
 <span class="kpi-card__num" data-count="14">14 дней</span>
@@ -2143,6 +2147,22 @@ section[id] {
 </div>
 </section>
 <!-- ═══════════════════ CTA + CONTACT ═══════════════════ -->
+
+<!-- ═══════════════════ PAGERANK CROSS-LINKING MESH ═══════════════════ -->
+<section class="container" style="padding: 10px 24px 30px;">
+<div class="subpage-deep" data-reveal="">
+<h3 style="font-family:var(--font-head); font-size:1.15rem; margin-bottom:14px; color:var(--text-1);">Другие направления автоматизации АвтоПилот</h3>
+<div class="subpage-links-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">
+<a class="btn btn--ghost" href="/services/automated-reporting/" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">📊 Автоотчётность</a>
+<a class="btn btn--ghost" href="/services/ai-analytics/" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🧠 ИИ-аналитика</a>
+<a class="btn btn--ghost" href="/services/system-integration/" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🔄 Интеграция систем</a>
+<a class="btn btn--ghost" href="/services/retail-inventory/" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🏪 Ритейл и склад</a>
+<a class="btn btn--ghost" href="/services/document-automation/" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">📄 Документооборот</a>
+<a class="btn btn--ghost" href="/services/customer-support/" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">💬 ИИ-поддержка</a>
+<a class="btn btn--ghost" href="/services/rapid-pilot/" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">⚡ Быстрый старт</a>
+</div>
+</div>
+</section>
 <section class="contact" id="contact">
 <div class="container">
 <div class="contact__inner" data-reveal="">

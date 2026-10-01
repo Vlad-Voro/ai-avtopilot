@@ -246,8 +246,9 @@ ul{list-style:none}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;font-family:var(--font-body);font-size:.95rem;font-weight:600;cursor:pointer;border:none;transition:var(--transition);white-space:nowrap;position:relative;overflow:hidden}
 .btn--primary{background:linear-gradient(135deg,var(--accent-hot),#dc2626);color:#fff;box-shadow:0 4px 24px #f9731659}
 .btn--primary:hover{transform:translateY(-2px);box-shadow:0 8px 40px #f9731680}
-.btn--ghost{background:#6366f114;color:var(--accent-1);border:1px solid rgba(99,102,241,.3)}
-.btn--ghost:hover{border-color:var(--accent-1);color:var(--text-1);background:#6366f12e;transform:translateY(-1px)}
+.btn--ghost{background:rgba(99,102,241,.12);color:#ffffff;border:1px solid rgba(168,85,247,.45);box-shadow:0 0 20px rgba(99,102,241,.15);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);font-weight:600;transition:all .25s cubic-bezier(.4,0,.2,1)}
+.btn--ghost:hover{border-color:rgba(168,85,247,.8);color:#ffffff;background:rgba(99,102,241,.25);transform:translateY(-2px);box-shadow:0 0 28px rgba(168,85,247,.35),0 4px 12px rgba(0,0,0,.3)}
+.btn--ghost:active{transform:translateY(0) scale(.98)}
 .btn--nav{background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#ffffff;font-weight:600;border:1px solid rgba(168,85,247,.5);padding:10px 22px;border-radius:var(--radius-sm);box-shadow:0 0 20px rgba(99,102,241,.45);transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s ease,background .2s ease}
 .btn--nav:hover{background:linear-gradient(135deg,#4f46e5,#9333ea);transform:translateY(-2px);box-shadow:0 0 30px rgba(99,102,241,.7),0 4px 16px rgba(168,85,247,.4);color:#ffffff}
 .btn--nav:active{transform:translateY(0) scale(.97);box-shadow:0 0 14px rgba(99,102,241,.4)}
@@ -1696,7 +1697,7 @@ section[id] {
         <li><a href="/dashboard/" class="nav__link">Дашборд</a></li>
         <li class="nav__link-mobile"><a href="/contact/" class="nav__link">Контакты</a></li>
       </ul>
-      <a href="/contact/" class="btn btn--nav">Получить аудит</a>
+      <a href="#contact" class="btn btn--nav">Получить аудит</a>
       <button class="nav__burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-links" id="burger">
         <span></span>
         <span></span>
@@ -1723,7 +1724,7 @@ section[id] {
           Забираем ручной перенос данных, сверку документов и рутинные ответы — высвобождая до 80% времени команды.
         </p>
         <div class="hero__actions">
-          <a href="/contact/" class="btn btn--primary" id="cta-main">Запустить автоматизацию</a>
+          <a href="#contact" class="btn btn--primary" id="cta-main">Запустить автоматизацию</a>
           <a href="/cases/" class="btn btn--ghost">Смотреть кейсы →</a>
         </div>
         <div class="hero__kpis">
@@ -1897,14 +1898,14 @@ section[id] {
       </div>
       <div class="services__bento" data-reveal tabindex="0" role="region" aria-roledescription="carousel" aria-label="Сценарии автоматизации">
 
-        <div class="scard scard--wide" role="group" aria-roledescription="slide">
+        <a href="/services/system-integration/" class="scard scard--wide scard--link" role="group" aria-roledescription="slide" aria-label="Интеграция систем: подробнее о сценарии внедрения">
           <div class="scard__icon">🔄</div>
-          <h3 class="scard__title">Интеграция систем</h3>
+          <h3 class="scard__title">Интеграция систем <span class="scard__arrow" aria-hidden="true">→</span></h3>
           <p class="scard__desc">Бесшовная синхронизация 1С, CRM (Битрикс24/amoCRM) и учетных баз через API. Автоматический обмен без ручных выгрузок в Excel.</p>
           <div class="scard__tags">
-            <span>1С</span><span>SAP</span><span>Bitrix24</span><span>Excel</span>
+            <span>1С:ERP</span><span>API</span><span>Bitrix24</span><span>OData</span>
           </div>
-        </div>
+        </a>
 
         <a href="/services/automated-reporting/" class="scard scard--link" role="group" aria-roledescription="slide" aria-label="Автоотчётность: подробнее о сценарии внедрения в Telegram">
           <div class="scard__icon">📊</div>
@@ -1915,24 +1916,32 @@ section[id] {
           </div>
         </a>
 
-        <div class="scard" role="group" aria-roledescription="slide">
+        <a href="/services/retail-inventory/" class="scard scard--link" role="group" aria-roledescription="slide" aria-label="Ритейл и склад: подробнее об автоматизации остатков">
           <div class="scard__icon">🏪</div>
-          <h3 class="scard__title">Ритейл и склад</h3>
-          <p class="scard__desc">Автоматизация инвентаризации, заказов поставщикам, ценообразования и кассовых операций.
-          </p>
-        </div>
+          <h3 class="scard__title">Ритейл и склад <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <p class="scard__desc">Автоматизация инвентаризации, заказов поставщикам, ценообразования и кассовых операций без рутины в 1С.</p>
+          <div class="scard__tags">
+            <span>1С:УТ</span><span>WB / Ozon</span><span>ТОРГ-2</span><span>Safety Stock</span>
+          </div>
+        </a>
 
-        <div class="scard" role="group" aria-roledescription="slide">
+        <a href="/services/document-automation/" class="scard scard--link" role="group" aria-roledescription="slide" aria-label="Документооборот: подробнее об авто-вводе первички">
           <div class="scard__icon">📄</div>
-          <h3 class="scard__title">Документооборот</h3>
+          <h3 class="scard__title">Документооборот <span class="scard__arrow" aria-hidden="true">→</span></h3>
           <p class="scard__desc">Автоматическое распознавание первички (УПД, счета-фактуры), сверка реквизитов и маршрутизация в Диадок/СБИС без участия бухгалтера.</p>
-        </div>
+          <div class="scard__tags">
+            <span>OCR</span><span>Диадок</span><span>СБИС</span><span>1С:БП</span>
+          </div>
+        </a>
 
-        <div class="scard" role="group" aria-roledescription="slide">
+        <a href="/services/customer-support/" class="scard scard--link" role="group" aria-roledescription="slide" aria-label="ИИ-поддержка клиентов: подробнее о диспетчере первой линии">
           <div class="scard__icon">💬</div>
-          <h3 class="scard__title">ИИ-поддержка клиентов</h3>
+          <h3 class="scard__title">ИИ-поддержка клиентов <span class="scard__arrow" aria-hidden="true">→</span></h3>
           <p class="scard__desc">Ассистент первой линии с доступом к базе знаний и 1С: квалифицирует лидов, выставляет счета и отвечает за 3 секунды 24/7.</p>
-        </div>
+          <div class="scard__tags">
+            <span>Telegram</span><span>WhatsApp</span><span>Bitrix24</span><span>1С</span>
+          </div>
+        </a>
 
         <a href="/services/ai-analytics/" class="scard scard--dark scard--link" role="group" aria-roledescription="slide" aria-label="ИИ-аналитика: подробнее о предиктивном мониторинге в 1С">
           <div class="scard__icon">🧠</div>
@@ -1943,12 +1952,12 @@ section[id] {
           </div>
         </a>
 
-        <div class="scard scard--accent" role="group" aria-roledescription="slide">
+        <a href="/services/rapid-pilot/" class="scard scard--accent scard--link" role="group" aria-roledescription="slide" aria-label="Быстрый старт: подробнее о пилотном запуске за 14 дней">
           <div class="scard__icon">⚡</div>
-          <h3 class="scard__title">Быстрый старт</h3>
+          <h3 class="scard__title">Быстрый старт <span class="scard__arrow" aria-hidden="true">→</span></h3>
           <p class="scard__desc">Пилотный робот за 14 дней. Видимый результат до подписания основного контракта.</p>
-          <a href="/contact/" class="btn btn--primary">Начать →</a>
-        </div>
+          <span class="btn btn--primary">Начать →</span>
+        </a>
 
       </div>
       <div class="carousel-dots services-dots" id="services-dots"></div>

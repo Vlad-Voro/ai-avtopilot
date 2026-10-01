@@ -233,8 +233,9 @@ ul{list-style:none}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;font-family:var(--font-body);font-size:.95rem;font-weight:600;cursor:pointer;border:none;transition:var(--transition);white-space:nowrap;position:relative;overflow:hidden}
 .btn--primary{background:linear-gradient(135deg,var(--accent-hot),#dc2626);color:#fff;box-shadow:0 4px 24px #f9731659}
 .btn--primary:hover{transform:translateY(-2px);box-shadow:0 8px 40px #f9731680}
-.btn--ghost{background:#6366f114;color:var(--accent-1);border:1px solid rgba(99,102,241,.3)}
-.btn--ghost:hover{border-color:var(--accent-1);color:var(--text-1);background:#6366f12e;transform:translateY(-1px)}
+.btn--ghost{background:rgba(99,102,241,.12);color:#ffffff;border:1px solid rgba(168,85,247,.45);box-shadow:0 0 20px rgba(99,102,241,.15);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);font-weight:600;transition:all .25s cubic-bezier(.4,0,.2,1)}
+.btn--ghost:hover{border-color:rgba(168,85,247,.8);color:#ffffff;background:rgba(99,102,241,.25);transform:translateY(-2px);box-shadow:0 0 28px rgba(168,85,247,.35),0 4px 12px rgba(0,0,0,.3)}
+.btn--ghost:active{transform:translateY(0) scale(.98)}
 .btn--nav{background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#ffffff;font-weight:600;border:1px solid rgba(168,85,247,.5);padding:10px 22px;border-radius:var(--radius-sm);box-shadow:0 0 20px rgba(99,102,241,.45);transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s ease,background .2s ease}
 .btn--nav:hover{background:linear-gradient(135deg,#4f46e5,#9333ea);transform:translateY(-2px);box-shadow:0 0 30px rgba(99,102,241,.7),0 4px 16px rgba(168,85,247,.4);color:#ffffff}
 .btn--nav:active{transform:translateY(0) scale(.97);box-shadow:0 0 14px rgba(99,102,241,.4)}
@@ -1676,7 +1677,7 @@ section[id] {
 <li><a class="nav__link" href="/dashboard/">Дашборд</a></li>
 <li class="nav__link-mobile"><a class="nav__link" href="/contact/">Контакты</a></li>
 </ul>
-<a class="btn btn--nav" href="/contact/">Получить аудит</a>
+<a class="btn btn--nav" href="#contact">Получить аудит</a>
 <button aria-controls="nav-links" aria-expanded="false" aria-label="Открыть меню" class="nav__burger" id="burger">
 <span></span>
 <span></span>
@@ -1693,7 +1694,7 @@ section[id] {
 <h1 class="hero__title"><span class="hero__title-static">Автоматизация инвентаризации и автозаказа </span><span class="hero__title-accent-box"><span class="hero__title-accent" data-phrases='["в 1С:Розница", "в 1С:УТ 11", "для 230 магазинов"]' id="typed-text">в 1С:Розница</span><span aria-hidden="true" class="hero__cursor">|</span></span></h1>
 <p class="hero__sub">Синхронизация остатков между распределительными центрами и точками продаж в реальном времени. Автономное формирование заказов поставщикам без ручных таблиц товароведа.</p>
 <div class="hero__actions">
-<a class="btn btn--primary" href="/contact/" id="cta-main">Запустить автоматизацию</a>
+<a class="btn btn--primary" href="#contact" id="cta-main">Запустить автоматизацию</a>
 <a class="btn btn--ghost" href="/cases/">Смотреть кейсы →</a>
 </div>
 <div class="hero__kpis"><div class="kpi-card"><span class="kpi-card__num">−72%</span><span class="kpi-card__label">ручного труда в учёте</span></div><div class="kpi-card"><span class="kpi-card__num case-num--green">+18%</span><span class="kpi-card__label">оборачиваемость склада</span></div><div class="kpi-card"><span class="kpi-card__num case-num--gold">9 200</span><span class="kpi-card__label">часов сэкономлено/год</span></div></div>

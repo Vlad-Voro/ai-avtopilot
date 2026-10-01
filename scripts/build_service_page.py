@@ -313,7 +313,7 @@ def generate_service_html(data: dict) -> str:
     )
 
     # Load master CSS / head assets from reference template for 100% style parity
-    template_ref = ROOT_DIR / "services" / "ai-analytics" / "index.html"
+    template_ref = ROOT_DIR / "index.html"
     ref_content = template_ref.read_text(encoding="utf-8")
 
     # Extract <style id="app-styles"> ... </style>
@@ -448,7 +448,7 @@ def generate_service_html(data: dict) -> str:
         <li><a href="/dashboard/" class="nav__link">Дашборд</a></li>
         <li class="nav__link-mobile"><a href="/contact/" class="nav__link">Контакты</a></li>
       </ul>
-      <a href="/contact/" class="btn btn--nav">Получить аудит</a>
+      <a href="#contact" class="btn btn--nav">Получить аудит</a>
       <button class="nav__burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-links" id="burger">
         <span></span>
         <span></span>
@@ -484,7 +484,7 @@ def generate_service_html(data: dict) -> str:
         </h1>
         <p class="hero__sub">{hero_sub}</p>
         <div class="hero__actions">
-          <a href="#contact" class="btn btn--primary">Заказать аудит →</a>
+          <a href="#contact" class="btn btn--primary" id="cta-main">Заказать аудит →</a>
           <a href="#calculator" class="btn btn--ghost">Рассчитать ROI</a>
         </div>
         <div class="hero__kpis">
@@ -750,6 +750,22 @@ def generate_service_html(data: dict) -> str:
     </div>
   </section>
 
+  <!-- ═══════════════════ PAGERANK CROSS-LINKING MESH ═══════════════════ -->
+  <section class="container" style="padding: 10px 24px 30px;">
+    <div class="subpage-deep" data-reveal="">
+      <h3 style="font-family:var(--font-head); font-size:1.15rem; margin-bottom:14px; color:var(--text-1);">Другие направления автоматизации АвтоПилот</h3>
+      <div class="subpage-links-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">
+        <a href="/services/automated-reporting/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">📊 Автоотчётность</a>
+        <a href="/services/ai-analytics/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🧠 ИИ-аналитика</a>
+        <a href="/services/system-integration/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🔄 Интеграция систем</a>
+        <a href="/services/retail-inventory/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🏪 Ритейл и склад</a>
+        <a href="/services/document-automation/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">📄 Документооборот</a>
+        <a href="/services/customer-support/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">💬 ИИ-поддержка</a>
+        <a href="/services/rapid-pilot/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">⚡ Быстрый старт</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══════════════════ CTA + CONTACT ═══════════════════ -->
   <section class="contact" id="contact">
     <div class="container">
@@ -801,22 +817,6 @@ def generate_service_html(data: dict) -> str:
           <p class="form-privacy">Нажимая кнопку, вы подтверждаете согласие на обработку персональных данных в соответствии с <a href="/privacy.html" target="_blank" rel="noopener noreferrer" class="form-link">Политикой конфиденциальности</a> (152-ФЗ)</p>
         </form>
         <!--/email_off-->
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════ PAGERANK CROSS-LINKING MESH ═══════════════════ -->
-  <section class="container" style="padding: 10px 24px 30px;">
-    <div class="subpage-deep" data-reveal="">
-      <h3 style="font-family:var(--font-head); font-size:1.15rem; margin-bottom:14px; color:var(--text-1);">Другие направления автоматизации АвтоПилот</h3>
-      <div class="subpage-links-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">
-        <a href="/services/automated-reporting/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">📊 Автоотчётность</a>
-        <a href="/services/ai-analytics/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🧠 ИИ-аналитика</a>
-        <a href="/services/system-integration/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🔄 Интеграция систем</a>
-        <a href="/services/retail-inventory/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🏪 Ритейл и склад</a>
-        <a href="/services/document-automation/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">📄 Документооборот</a>
-        <a href="/services/customer-support/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">💬 ИИ-поддержка</a>
-        <a href="/services/rapid-pilot/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">⚡ Быстрый старт</a>
       </div>
     </div>
   </section>

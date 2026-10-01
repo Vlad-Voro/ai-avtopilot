@@ -78,7 +78,7 @@ SUBPAGES_SPEC = {
         <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:24px;">
           <a href="/calculator/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Рассчитать ROI под ваши параметры →</a>
           <a href="/services/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Стек интеграции (1С, ЭДО, CRM) →</a>
-          <a href="/contact/" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Заказать бесплатный аудит →</a>
+          <a href="#contact" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Заказать бесплатный аудит →</a>
         </div>
       </div>
 """,
@@ -115,7 +115,7 @@ SUBPAGES_SPEC = {
         <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:24px;">
           <a href="/cases/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Реальные кейсы клиентов с ROI 340% →</a>
           <a href="/faq/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Вопросы и ответы по окупаемости →</a>
-          <a href="/contact/" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Получить экспресс-аудит (30 мин) →</a>
+          <a href="#contact" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Получить экспресс-аудит (30 мин) →</a>
         </div>
       </div>
 """,
@@ -234,31 +234,49 @@ def generate_subpage(slug: str, spec: dict, master_html: str) -> str:
             1,
         )
 
-    # For Services subpage: append cross-linking mesh at the end of the services bento section
+    # For Services subpage: append cross-linking mesh before contact section
     if slug == "services":
-        services_mesh_target = (
-            '      <div class="carousel-dots services-dots" id="services-dots"></div>\n    </div>\n  </section>'
-        )
-        services_mesh_replacement = """      <div class="carousel-dots services-dots" id="services-dots"></div>
-        <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;justify-content:center;">
-          <a href="/services/automated-reporting/" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Автоотчетность и P&L из 1С →</a>
-          <a href="/cases/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Смотреть кейсы внедрения →</a>
-          <a href="/calculator/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Рассчитать ROI на калькуляторе →</a>
-          <a href="/faq/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Частые вопросы (FAQ) →</a>
-        </div>
+        html = html.replace('href="/contact/" class="btn btn--primary"', 'href="#contact" class="btn btn--primary"')
+        services_directions_mesh = """  <!-- ═══════════════════ PAGERANK CROSS-LINKING MESH ═══════════════════ -->
+  <section class="container" style="padding: 10px 24px 30px;">
+    <div class="subpage-deep" data-reveal="">
+      <h3 style="font-family:var(--font-head); font-size:1.15rem; margin-bottom:14px; color:var(--text-1);">Другие направления автоматизации АвтоПилот</h3>
+      <div class="subpage-links-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">
+        <a href="/services/automated-reporting/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">📊 Автоотчётность</a>
+        <a href="/services/ai-analytics/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🧠 ИИ-аналитика</a>
+        <a href="/services/system-integration/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🔄 Интеграция систем</a>
+        <a href="/services/retail-inventory/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">🏪 Ритейл и склад</a>
+        <a href="/services/document-automation/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">📄 Документооборот</a>
+        <a href="/services/customer-support/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">💬 ИИ-поддержка</a>
+        <a href="/services/rapid-pilot/" class="btn btn--ghost" style="justify-content:flex-start; font-size:0.85rem; padding:10px 14px;">⚡ Быстрый старт</a>
+      </div>
     </div>
-  </section>"""
-        html = html.replace(services_mesh_target, services_mesh_replacement, 1)
+  </section>
+
+  <!-- ═══════════════════ CTA + CONTACT ═══════════════════ -->"""
+        html = html.replace(
+            "  <!-- ═══════════════════ CTA + CONTACT ═══════════════════ -->", services_directions_mesh, 1
+        )
+
+    # For Cases subpage: link secondary hero button to #cases and in-page CTAs to #contact
+    if slug == "cases":
+        html = html.replace(
+            '<a href="/cases/" class="btn btn--ghost">Смотреть кейсы →</a>',
+            '<a href="#cases" class="btn btn--ghost">Смотреть кейсы ↓</a>',
+            1,
+        )
+        html = html.replace('href="/contact/" class="btn btn--primary"', 'href="#contact" class="btn btn--primary"')
 
     # For Dashboard subpage: append cross-linking mesh at the end of the telemetry dashboard section
     if slug == "dashboard":
+        html = html.replace('href="/contact/" class="btn btn--primary"', 'href="#contact" class="btn btn--primary"')
         dash_mesh_target = "        </div>\n      </div>\n    </div>\n  </section>\n\n  <!-- ═══════════════════ CTA + CONTACT ═══════════════════ -->"
         dash_mesh_replacement = """        </div>
       </div>
       <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;justify-content:center;">
         <a href="/services/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Каталог поддерживаемых систем →</a>
         <a href="/cases/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Кейсы с подтвержденными метриками →</a>
-        <a href="/contact/" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Подключить телеметрию для бизнеса →</a>
+        <a href="#contact" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Подключить телеметрию для бизнеса →</a>
       </div>
     </div>
   </section>
@@ -268,6 +286,7 @@ def generate_subpage(slug: str, spec: dict, master_html: str) -> str:
 
     # For FAQ subpage: promote FAQ section title to H1 and append PageRank mesh under accordion
     if slug == "faq":
+        html = html.replace('href="/contact/" class="btn btn--primary"', 'href="#contact" class="btn btn--primary"')
         html = html.replace(
             '<h2 class="section-title">Часто задаваемые вопросы</h2>',
             '<h1 class="section-title">Часто задаваемые вопросы</h1>',
@@ -277,7 +296,7 @@ def generate_subpage(slug: str, spec: dict, master_html: str) -> str:
         faq_mesh_replacement = """        <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;justify-content:center;">
           <a href="/services/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Технический стек и протоколы →</a>
           <a href="/calculator/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Интерактивный калькулятор экономии →</a>
-          <a href="/contact/" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Записаться на 30-минутный аудит →</a>
+          <a href="#contact" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Записаться на 30-минутный аудит →</a>
         </div>
       </div>
     </div>
