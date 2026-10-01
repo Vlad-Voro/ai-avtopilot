@@ -352,79 +352,67 @@ if services_sec:
         bento.append(
             BeautifulSoup(
                 """
-        <div class="scard" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
-          <div>
-            <div class="scard__icon">📊</div>
-            <h3 class="scard__title">Ежедневная утренняя сводка продаж</h3>
-            <p class="scard__desc">Выручка за вчера, факт выполнения плана в %, средний чек, маржинальность дня и топ менеджеров по отгрузкам к 09:00.</p>
-          </div>
+        <div class="scard">
+          <div class="scard__icon">📊</div>
+          <h3 class="scard__title">Ежедневная утренняя сводка продаж</h3>
+          <p class="scard__desc">Выручка за вчера, факт выполнения плана в %, средний чек, маржинальность дня и топ менеджеров по отгрузкам к 09:00.</p>
           <div class="scard__tags">
-            <span class="tag">1С:УТ 11</span>
-            <span class="tag">1С:КА 2</span>
-            <span class="tag">План/Факт</span>
-            <span class="tag">Telegram</span>
+            <span>1С:УТ 11</span>
+            <span>1С:КА 2</span>
+            <span>План/Факт</span>
+            <span>Telegram</span>
           </div>
         </div>
-        <div class="scard" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
-          <div>
-            <div class="scard__icon">📈</div>
-            <h3 class="scard__title">Управленческий P&amp;L (ОПиУ) в реальном времени</h3>
-            <p class="scard__desc">Расчет чистой прибыли и EBITDA методом начисления (Выручка - Себестоимость ФИФО - OPEX) без ожидания закрытия месяца бухгалтерией.</p>
-          </div>
+        <div class="scard">
+          <div class="scard__icon">📈</div>
+          <h3 class="scard__title">Управленческий P&amp;L (ОПиУ) в реальном времени</h3>
+          <p class="scard__desc">Расчет чистой прибыли и EBITDA методом начисления (Выручка - Себестоимость ФИФО - OPEX) без ожидания закрытия месяца бухгалтерией.</p>
           <div class="scard__tags">
-            <span class="tag">1С:ERP</span>
-            <span class="tag">1С:БП 3.0</span>
-            <span class="tag">EBITDA</span>
-            <span class="tag">Маржинальность</span>
+            <span>1С:ERP</span>
+            <span>1С:БП 3.0</span>
+            <span>EBITDA</span>
+            <span>Маржинальность</span>
           </div>
         </div>
-        <div class="scard" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
-          <div>
-            <div class="scard__icon">📦</div>
-            <h3 class="scard__title">Контроль остатков и неликвидов</h3>
-            <p class="scard__desc">Анализ оборачиваемости товарных позиций, аудит замороженных в запасах миллионов и упреждающие алерты риска Out-of-Stock.</p>
-          </div>
+        <div class="scard">
+          <div class="scard__icon">📦</div>
+          <h3 class="scard__title">Контроль остатков и неликвидов</h3>
+          <p class="scard__desc">Анализ оборачиваемости товарных позиций, аудит замороженных в запасах миллионов и упреждающие алерты риска Out-of-Stock.</p>
           <div class="scard__tags">
-            <span class="tag">Склад</span>
-            <span class="tag">Маркетплейсы</span>
-            <span class="tag">Неликвиды</span>
-            <span class="tag">Резервы</span>
+            <span>Склад</span>
+            <span>Маркетплейсы</span>
+            <span>Неликвиды</span>
+            <span>Резервы</span>
           </div>
         </div>
-        <div class="scard" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
-          <div>
-            <div class="scard__icon">💸</div>
-            <h3 class="scard__title">Прогноз кассовых разрывов и дебиторка</h3>
-            <p class="scard__desc">Интерактивный платежный календарь ДДС на 14 дней вперед, реестр старения дебиторки и автоматические напоминания по должникам.</p>
-          </div>
+        <div class="scard">
+          <div class="scard__icon">💸</div>
+          <h3 class="scard__title">Прогноз кассовых разрывов и дебиторка</h3>
+          <p class="scard__desc">Интерактивный платежный календарь ДДС на 14 дней вперед, реестр старения дебиторки и автоматические напоминания по должникам.</p>
           <div class="scard__tags">
-            <span class="tag">ДДС</span>
-            <span class="tag">Платежный календарь</span>
-            <span class="tag">Дебиторка</span>
+            <span>ДДС</span>
+            <span>Платежный календарь</span>
+            <span>Дебиторка</span>
           </div>
         </div>
-        <div class="scard" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
-          <div>
-            <div class="scard__icon">🔄</div>
-            <h3 class="scard__title">Консолидация нескольких баз (Интеркампани)</h3>
-            <p class="scard__desc">Сведение финансовой аналитики группы компаний из разных юридических лиц с автоматическим исключением межфирменных оборотов.</p>
-          </div>
+        <div class="scard">
+          <div class="scard__icon">🔄</div>
+          <h3 class="scard__title">Консолидация нескольких баз (Интеркампани)</h3>
+          <p class="scard__desc">Сведение финансовой аналитики группы компаний из разных юридических лиц с автоматическим исключением межфирменных оборотов.</p>
           <div class="scard__tags">
-            <span class="tag">Холдинг</span>
-            <span class="tag">Мультибаза</span>
-            <span class="tag">Элиминация</span>
+            <span>Холдинг</span>
+            <span>Мультибаза</span>
+            <span>Элиминация</span>
           </div>
         </div>
-        <div class="scard" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
-          <div>
-            <div class="scard__icon">📱</div>
-            <h3 class="scard__title">Доставка в удобные каналы руководителя</h3>
-            <p class="scard__desc">Закрытый защищенный Telegram-бот с персональным доступом, рассылка PDF/Excel на Email и интерактивный живой веб-дашборд.</p>
-          </div>
+        <div class="scard">
+          <div class="scard__icon">📱</div>
+          <h3 class="scard__title">Доставка в удобные каналы руководителя</h3>
+          <p class="scard__desc">Закрытый защищенный Telegram-бот с персональным доступом, рассылка PDF/Excel на Email и интерактивный живой веб-дашборд.</p>
           <div class="scard__tags">
-            <span class="tag">Telegram API</span>
-            <span class="tag">Email PDF</span>
-            <span class="tag">On-Premise 152-ФЗ</span>
+            <span>Telegram API</span>
+            <span>Email PDF</span>
+            <span>On-Premise 152-ФЗ</span>
           </div>
         </div>
         """,
@@ -432,7 +420,7 @@ if services_sec:
             )
         )
 
-# 6. Block 5: #cases (Canonical case-card, case-card__results and equal heights)
+# 6. Block 5: #cases (Canonical case-card 1:1 with homepage)
 cases_sec = soup.find("section", id="cases")
 if cases_sec:
     h2 = cases_sec.find("h2", class_="section-title")
@@ -444,79 +432,67 @@ if cases_sec:
         grid.append(
             BeautifulSoup(
                 """
-        <div class="case-card case-card--fintech" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
-          <div>
-            <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--fintech"></span>🏪 Оптовый дистрибьютор · 3 базы 1С</div>
-            <h3 class="case-card__title">Консолидация P&amp;L и остатков холдинга в Telegram</h3>
-            <p class="case-card__desc">Связали базы 1С:УТ и 1С:БП через агента. Настроили автоматическое вычитание интеркампани и утреннюю сводку маржи генеральному директору.</p>
-          </div>
-          <div>
-            <div class="case-card__results">
-              <div class="case-result">
-                <span class="case-result__num case-num--cyan">с 18 дн до 2 ч</span>
-                <span class="case-result__label">срок подготовки P&amp;L</span>
-              </div>
-              <div class="case-result">
-                <span class="case-result__num case-num--green">55 ч/мес</span>
-                <span class="case-result__label">высвобождено у CFO</span>
-              </div>
-              <div class="case-result">
-                <span class="case-result__num case-num--gold">18 дней</span>
-                <span class="case-result__label">окупаемость пилота</span>
-              </div>
+        <div class="case-card case-card--fintech">
+          <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--fintech"></span>🏪 Оптовый дистрибьютор · 3 базы 1С</div>
+          <h3 class="case-card__title">Консолидация P&amp;L и остатков холдинга в Telegram</h3>
+          <p class="case-card__desc">Связали базы 1С:УТ и 1С:БП через агента. Настроили <span class="case-highlight case-highlight--fintech">автоматическое вычитание интеркампани</span> и утреннюю сводку маржи генеральному директору.</p>
+          <div class="case-card__results">
+            <div class="case-result">
+              <span class="case-result__num case-num--cyan">2 ч</span>
+              <span class="case-result__label">вместо 18 дней на P&amp;L</span>
             </div>
-            <div class="case-card__tags"><span>1С:УТ</span><span>1С:БП</span><span>Интеркампани</span><span>P&amp;L</span></div>
+            <div class="case-result">
+              <span class="case-result__num case-num--green">55 ч/мес</span>
+              <span class="case-result__label">высвобождено у CFO</span>
+            </div>
+            <div class="case-result">
+              <span class="case-result__num case-num--gold">18 дней</span>
+              <span class="case-result__label">окупаемость пилота</span>
+            </div>
           </div>
+          <div class="case-card__tags"><span>1С:УТ</span><span>1С:БП</span><span>Интеркампани</span><span>P&amp;L</span></div>
         </div>
 
-        <div class="case-card case-card--retail" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
-          <div>
-            <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--retail"></span>🛒 Розничная сеть · 45 магазинов</div>
-            <h3 class="case-card__title">Предиктивный платежный календарь и защита от кассовых разрывов</h3>
-            <p class="case-card__desc">Объединили потоки данных из 1С:Розница и банковских выписок. Запустили предиктивный платежный календарь с алертами неликвидных остатков.</p>
-          </div>
-          <div>
-            <div class="case-card__results">
-              <div class="case-result">
-                <span class="case-result__num case-num--green">0 разрывов</span>
-                <span class="case-result__label">за 6 месяцев работы</span>
-              </div>
-              <div class="case-result">
-                <span class="case-result__num case-num--gold">4.2 млн ₽</span>
-                <span class="case-result__label">выведено из неликвида</span>
-              </div>
-              <div class="case-result">
-                <span class="case-result__num case-num--violet">340%</span>
-                <span class="case-result__label">ROI за 1-й квартал</span>
-              </div>
+        <div class="case-card case-card--retail">
+          <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--retail"></span>🛒 Розничная сеть · 45 магазинов</div>
+          <h3 class="case-card__title">Предиктивный платежный календарь и защита от кассовых разрывов</h3>
+          <p class="case-card__desc">Объединили потоки данных из 1С:Розница и банковских выписок. Запустили <span class="case-highlight case-highlight--retail">предиктивный платежный календарь</span> с алертами неликвидных остатков.</p>
+          <div class="case-card__results">
+            <div class="case-result">
+              <span class="case-result__num case-num--green">0</span>
+              <span class="case-result__label">кассовых разрывов</span>
             </div>
-            <div class="case-card__tags"><span>1С:Розница</span><span>ДДС</span><span>Платежный календарь</span></div>
+            <div class="case-result">
+              <span class="case-result__num case-num--gold">4.2 млн ₽</span>
+              <span class="case-result__label">выведено из неликвида</span>
+            </div>
+            <div class="case-result">
+              <span class="case-result__num case-num--violet">340%</span>
+              <span class="case-result__label">ROI за 1-й квартал</span>
+            </div>
           </div>
+          <div class="case-card__tags"><span>1С:Розница</span><span>ДДС</span><span>Платежный календарь</span></div>
         </div>
 
-        <div class="case-card case-card--edi" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
-          <div>
-            <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--edi"></span>🏭 Производственное предприятие · 1С:ERP</div>
-            <h3 class="case-card__title">Оперативный расчет фактической себестоимости и маржи партий</h3>
-            <p class="case-card__desc">Подключили агента к регистрам выпуска продукции. Руководство видит фактическую маржинальность каждой спецификации до момента отгрузки клиенту.</p>
-          </div>
-          <div>
-            <div class="case-card__results">
-              <div class="case-result">
-                <span class="case-result__num case-num--green">+4.3%</span>
-                <span class="case-result__label">рентабельность сделок</span>
-              </div>
-              <div class="case-result">
-                <span class="case-result__num case-num--cyan">&lt; 1 мин</span>
-                <span class="case-result__label">калькуляция маржи</span>
-              </div>
-              <div class="case-result">
-                <span class="case-result__num case-num--gold">14 дней</span>
-                <span class="case-result__label">запуск без простоя</span>
-              </div>
+        <div class="case-card case-card--edi">
+          <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--edi"></span>🏭 Производственное предприятие · 1С:ERP</div>
+          <h3 class="case-card__title">Оперативный расчет фактической себестоимости и маржи партий</h3>
+          <p class="case-card__desc">Подключили агента к регистрам выпуска продукции. Руководство видит <span class="case-highlight case-highlight--edi">фактическую маржинальность</span> каждой спецификации до момента отгрузки клиенту.</p>
+          <div class="case-card__results">
+            <div class="case-result">
+              <span class="case-result__num case-num--green">+4.3%</span>
+              <span class="case-result__label">рентабельность сделок</span>
             </div>
-            <div class="case-card__tags"><span>1С:ERP</span><span>ФИФО</span><span>Маржинальность</span></div>
+            <div class="case-result">
+              <span class="case-result__num case-num--cyan">&lt; 1 мин</span>
+              <span class="case-result__label">калькуляция маржи</span>
+            </div>
+            <div class="case-result">
+              <span class="case-result__num case-num--gold">14 дней</span>
+              <span class="case-result__label">запуск без простоя</span>
+            </div>
           </div>
+          <div class="case-card__tags"><span>1С:ERP</span><span>ФИФО</span><span>Маржинальность</span></div>
         </div>
         """,
                 "html.parser",
@@ -672,10 +648,6 @@ if dash_sec:
                 <div style="color:var(--text-3);padding-left:14px;font-size:0.85rem;">Плановый платеж «Северсталь» + квартальный НДС</div>
                 <div>3. <strong>Просроченная дебиторка:</strong> 1.2 млн ₽ (&gt;14 дней, ООО «Вектор»)</div>
               </div>
-            </div>
-            
-            <div style="margin-top:16px;">
-              <a href="#contact" class="btn btn--primary btn--full" style="justify-content:center;font-size:0.95rem;width:100%;">Подключить для вашей 1С</a>
             </div>
           </div>
         </div>
