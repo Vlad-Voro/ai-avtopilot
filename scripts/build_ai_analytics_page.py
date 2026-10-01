@@ -759,12 +759,27 @@ if dash_sec:
               <span class="dash-card__live"><span class="pulse-dot"></span>Live</span>
             </div>
             <div class="board-panels">
-              <div class="log" id="analytics-event-log" style="font-family:var(--font-mono);font-size:0.82rem;line-height:1.75;color:var(--text-2);padding:14px;">
-                <div><span style="color:var(--text-3);">10:42:01</span> <span style="color:var(--accent-1);font-weight:600;">[OData]</span> Опрос регистра накопления «Заявки на расход ДС»</div>
-                <div><span style="color:var(--text-3);">10:42:02</span> <span style="color:var(--accent-2);font-weight:600;">[CashFlow ML]</span> Расчет баланса ДДС на 30 дней, найден разрыв</div>
-                <div><span style="color:var(--text-3);">10:42:04</span> <span style="color:var(--green);font-weight:600;">[Safety Stock]</span> Пересчет ROP для 18 000 SKU по вариации спроса</div>
-                <div><span style="color:var(--text-3);">10:42:06</span> <span style="color:var(--accent-hot);font-weight:600;">[Price Shield]</span> Сверка УПД №491: заблокирована переплата 100 000 ₽</div>
-                <div><span style="color:var(--text-3);">10:42:07</span> <span style="color:var(--text-3);">[Telegram Bot]</span> Алерты доставлены финансовому директору</div>
+              <div class="log" id="analytics-event-log">
+                <div class="log-item log-item--default">
+                  <span class="log-item__time">10:42:01</span>
+                  <span class="log-item__text"><strong style="color:var(--accent-1);">[OData]</strong> Опрос регистра «Заявки на расход ДС»</span>
+                </div>
+                <div class="log-item log-item--warn">
+                  <span class="log-item__time">10:42:02</span>
+                  <span class="log-item__text"><strong style="color:var(--accent-2);">[CashFlow ML]</strong> Баланс ДДС на 30 дней: найден разрыв</span>
+                </div>
+                <div class="log-item log-item--success">
+                  <span class="log-item__time">10:42:04</span>
+                  <span class="log-item__text"><strong style="color:var(--green);">[Safety Stock]</strong> Пересчет ROP для 18 000 SKU</span>
+                </div>
+                <div class="log-item log-item--warn">
+                  <span class="log-item__time">10:42:06</span>
+                  <span class="log-item__text"><strong style="color:var(--accent-hot);">[Price Shield]</strong> УПД №491: заблокирована переплата 100 000 ₽</span>
+                </div>
+                <div class="log-item log-item--success">
+                  <span class="log-item__time">10:42:07</span>
+                  <span class="log-item__text"><strong style="color:var(--text-3);">[Telegram Bot]</strong> Алерты доставлены CFO</span>
+                </div>
               </div>
             </div>
           </div>

@@ -499,7 +499,7 @@ to{opacity:1;transform:scale(1) translateY(0)}
 .services__bento .scard{flex:0 0 min(320px,78vw);scroll-snap-align:center;scroll-snap-stop:normal;display:flex;flex-direction:column;padding:24px 20px;grid-column:auto}
 .services-dots{display:flex;justify-content:center;gap:8px;margin-top:8px;min-height:24px}
 @keyframes sNudge{0%,100%{transform:translate3d(0,0,0)}35%{transform:translate3d(-24px,0,0)}70%{transform:translate3d(4px,0,0)}}
-.services__bento.is-nudging{animation:sNudge .65s cubic-bezier(.25,1,.5,1) 1;will-change:transform}
+.services__bento.is-nudging,.cases__grid.is-nudging{animation:sNudge .65s cubic-bezier(.25,1,.5,1) 1;will-change:transform}
 .cases__grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;gap:16px;padding:8px 4px 18px;margin:0 -4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .cases__grid::-webkit-scrollbar{display:none}
 .cases__grid .case-card{flex:0 0 min(330px,80vw);scroll-snap-align:center;scroll-snap-stop:normal;padding:24px 20px}
@@ -540,7 +540,7 @@ to{opacity:1;transform:scale(1) translateY(0)}
 .btn{padding:12px 20px;font-size:.88rem}
 .section-title{font-size:1.75rem}
 }
-@media(prefers-reduced-motion:reduce){.services__bento.is-nudging{animation:none!important}}
+@media(prefers-reduced-motion:reduce){.services__bento.is-nudging,.cases__grid.is-nudging{animation:none!important}}
 .faq{padding:15px 0 30px}
 .faq__grid{display:flex;flex-direction:column;gap:14px;max-width:860px;margin:0 auto}
 .faq-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .25s,box-shadow .25s}
@@ -1931,11 +1931,14 @@ section[id] {
           <p class="scard__desc">Ассистент первой линии с доступом к базе знаний и 1С: квалифицирует лидов, выставляет счета и отвечает за 3 секунды 24/7.</p>
         </div>
 
-        <div class="scard scard--dark" role="group" aria-roledescription="slide">
+        <a href="/services/ai-analytics/" class="scard scard--dark scard--link" role="group" aria-roledescription="slide" aria-label="ИИ-аналитика: подробнее о предиктивном мониторинге в 1С">
           <div class="scard__icon">🧠</div>
-          <h3 class="scard__title">ИИ-аналитика</h3>
+          <h3 class="scard__title">ИИ-аналитика <span class="scard__arrow" aria-hidden="true">→</span></h3>
           <p class="scard__desc">Мониторинг кассовых разрывов, расчет неснижаемого складского остатка и выявление ценовых аномалий поставщиков.</p>
-        </div>
+          <div class="scard__tags">
+            <span>1С:ERP</span><span>ДДС</span><span>Safety Stock</span><span>Аудит цен</span>
+          </div>
+        </a>
 
         <div class="scard scard--accent" role="group" aria-roledescription="slide">
           <div class="scard__icon">⚡</div>
@@ -2672,18 +2675,21 @@ section[id] {
 
           // One-shot lightweight GPU nudge to demonstrate horizontal swipeability on mobile
           if ('IntersectionObserver' in window && window.innerWidth <= 1024) {
-            var nudgeObserver = new IntersectionObserver(function(entries) {
-              entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                  servicesBento.classList.add('is-nudging');
-                  setTimeout(function() {
-                    servicesBento.classList.remove('is-nudging');
-                  }, 700);
-                  nudgeObserver.disconnect();
-                }
-              });
-            }, { threshold: 0.25 });
-            nudgeObserver.observe(servicesBento);
+            var nudgeTargets = document.querySelectorAll('.services__bento, .cases__grid');
+            nudgeTargets.forEach(function(el) {
+              var nudgeObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                  if (entry.isIntersecting) {
+                    el.classList.add('is-nudging');
+                    setTimeout(function() {
+                      el.classList.remove('is-nudging');
+                    }, 700);
+                    nudgeObserver.disconnect();
+                  }
+                });
+              }, { threshold: 0.25 });
+              nudgeObserver.observe(el);
+            });
           }
         }
       }

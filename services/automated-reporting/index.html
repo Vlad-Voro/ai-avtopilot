@@ -486,7 +486,7 @@ to{opacity:1;transform:scale(1) translateY(0)}
 .services__bento .scard{flex:0 0 min(320px,78vw);scroll-snap-align:center;scroll-snap-stop:normal;display:flex;flex-direction:column;padding:24px 20px;grid-column:auto}
 .services-dots{display:flex;justify-content:center;gap:8px;margin-top:8px;min-height:24px}
 @keyframes sNudge{0%,100%{transform:translate3d(0,0,0)}35%{transform:translate3d(-24px,0,0)}70%{transform:translate3d(4px,0,0)}}
-.services__bento.is-nudging{animation:sNudge .65s cubic-bezier(.25,1,.5,1) 1;will-change:transform}
+.services__bento.is-nudging,.cases__grid.is-nudging{animation:sNudge .65s cubic-bezier(.25,1,.5,1) 1;will-change:transform}
 .cases__grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;gap:16px;padding:8px 4px 18px;margin:0 -4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .cases__grid::-webkit-scrollbar{display:none}
 .cases__grid .case-card{flex:0 0 min(330px,80vw);scroll-snap-align:center;scroll-snap-stop:normal;padding:24px 20px}
@@ -527,7 +527,7 @@ to{opacity:1;transform:scale(1) translateY(0)}
 .btn{padding:12px 20px;font-size:.88rem}
 .section-title{font-size:1.75rem}
 }
-@media(prefers-reduced-motion:reduce){.services__bento.is-nudging{animation:none!important}}
+@media(prefers-reduced-motion:reduce){.services__bento.is-nudging,.cases__grid.is-nudging{animation:none!important}}
 .faq{padding:15px 0 30px}
 .faq__grid{display:flex;flex-direction:column;gap:14px;max-width:860px;margin:0 auto}
 .faq-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .25s,box-shadow .25s}
@@ -2126,12 +2126,27 @@ section[id] {
 <span class="dash-card__live"><span class="pulse-dot"></span>Live</span>
 </div>
 <div class="board-panels">
-<div class="log" id="reporting-event-log" style="font-family:var(--font-mono);font-size:0.82rem;line-height:1.75;color:var(--text-2);padding:14px;">
-<div><span style="color:var(--text-3);">08:59:57</span> <span style="color:var(--accent-1);font-weight:600;">[1C:ERP]</span> OData запрос регистров выручки и партий (200 OK)</div>
-<div><span style="color:var(--text-3);">08:59:58</span> <span style="color:var(--accent-2);font-weight:600;">[ETL Agent]</span> Нормализация номенклатуры, расчет маржи по ФИФО</div>
-<div><span style="color:var(--text-3);">08:59:59</span> <span style="color:var(--green);font-weight:600;">[Intercompany]</span> Исключено 14 внутригрупповых сделок на 1.2M ₽</div>
-<div><span style="color:var(--text-3);">09:00:00</span> <span style="color:var(--accent-hot);font-weight:600;">[Telegram Bot]</span> Сводка успешно доставлена Генеральному директору</div>
-<div><span style="color:var(--text-3);">09:00:01</span> <span style="color:var(--text-3);">[152-ФЗ]</span> Сессия закрыта, локальный On-Premise кэш очищен</div>
+<div class="log" id="reporting-event-log">
+<div class="log-item log-item--default">
+<span class="log-item__time">08:59:57</span>
+<span class="log-item__text"><strong style="color:var(--accent-1);">[1C:ERP]</strong> OData опрос регистров выручки и партий (200 OK)</span>
+</div>
+<div class="log-item log-item--default">
+<span class="log-item__time">08:59:58</span>
+<span class="log-item__text"><strong style="color:var(--accent-2);">[ETL Agent]</strong> Нормализация номенклатуры, маржа по ФИФО</span>
+</div>
+<div class="log-item log-item--success">
+<span class="log-item__time">08:59:59</span>
+<span class="log-item__text"><strong style="color:var(--green);">[Intercompany]</strong> Исключено 14 внутригрупповых сделок на 1.2M ₽</span>
+</div>
+<div class="log-item log-item--success">
+<span class="log-item__time">09:00:00</span>
+<span class="log-item__text"><strong style="color:var(--accent-hot);">[Telegram Bot]</strong> Сводка доставлена Генеральному директору</span>
+</div>
+<div class="log-item log-item--default">
+<span class="log-item__time">09:00:01</span>
+<span class="log-item__text"><strong style="color:var(--text-3);">[152-ФЗ]</strong> Локальный On-Premise кэш очищен</span>
+</div>
 </div>
 </div>
 </div>
@@ -2542,18 +2557,21 @@ section[id] {
 
           // One-shot lightweight GPU nudge to demonstrate horizontal swipeability on mobile
           if ('IntersectionObserver' in window && window.innerWidth <= 1024) {
-            var nudgeObserver = new IntersectionObserver(function(entries) {
-              entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                  servicesBento.classList.add('is-nudging');
-                  setTimeout(function() {
-                    servicesBento.classList.remove('is-nudging');
-                  }, 700);
-                  nudgeObserver.disconnect();
-                }
-              });
-            }, { threshold: 0.25 });
-            nudgeObserver.observe(servicesBento);
+            var nudgeTargets = document.querySelectorAll('.services__bento, .cases__grid');
+            nudgeTargets.forEach(function(el) {
+              var nudgeObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                  if (entry.isIntersecting) {
+                    el.classList.add('is-nudging');
+                    setTimeout(function() {
+                      el.classList.remove('is-nudging');
+                    }, 700);
+                    nudgeObserver.disconnect();
+                  }
+                });
+              }, { threshold: 0.25 });
+              nudgeObserver.observe(el);
+            });
           }
         }
       }

@@ -499,7 +499,7 @@ to{opacity:1;transform:scale(1) translateY(0)}
 .services__bento .scard{flex:0 0 min(320px,78vw);scroll-snap-align:center;scroll-snap-stop:normal;display:flex;flex-direction:column;padding:24px 20px;grid-column:auto}
 .services-dots{display:flex;justify-content:center;gap:8px;margin-top:8px;min-height:24px}
 @keyframes sNudge{0%,100%{transform:translate3d(0,0,0)}35%{transform:translate3d(-24px,0,0)}70%{transform:translate3d(4px,0,0)}}
-.services__bento.is-nudging{animation:sNudge .65s cubic-bezier(.25,1,.5,1) 1;will-change:transform}
+.services__bento.is-nudging,.cases__grid.is-nudging{animation:sNudge .65s cubic-bezier(.25,1,.5,1) 1;will-change:transform}
 .cases__grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;gap:16px;padding:8px 4px 18px;margin:0 -4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .cases__grid::-webkit-scrollbar{display:none}
 .cases__grid .case-card{flex:0 0 min(330px,80vw);scroll-snap-align:center;scroll-snap-stop:normal;padding:24px 20px}
@@ -540,7 +540,7 @@ to{opacity:1;transform:scale(1) translateY(0)}
 .btn{padding:12px 20px;font-size:.88rem}
 .section-title{font-size:1.75rem}
 }
-@media(prefers-reduced-motion:reduce){.services__bento.is-nudging{animation:none!important}}
+@media(prefers-reduced-motion:reduce){.services__bento.is-nudging,.cases__grid.is-nudging{animation:none!important}}
 .faq{padding:15px 0 30px}
 .faq__grid{display:flex;flex-direction:column;gap:14px;max-width:860px;margin:0 auto}
 .faq-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .25s,box-shadow .25s}
@@ -1950,8 +1950,7 @@ section[id] {
       </div>
       <div class="carousel-dots services-dots" id="services-dots"></div>
         <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;justify-content:center;">
-          <a href="/services/automated-reporting/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Автоотчетность и P&L из 1С →</a>
-          <a href="/services/ai-analytics/" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Предиктивная ИИ-аналитика 1С →</a>
+          <a href="/services/automated-reporting/" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Автоотчетность и P&L из 1С →</a>
           <a href="/cases/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Смотреть кейсы внедрения →</a>
           <a href="/calculator/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Рассчитать ROI на калькуляторе →</a>
           <a href="/faq/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Частые вопросы (FAQ) →</a>
@@ -2660,18 +2659,21 @@ section[id] {
 
           // One-shot lightweight GPU nudge to demonstrate horizontal swipeability on mobile
           if ('IntersectionObserver' in window && window.innerWidth <= 1024) {
-            var nudgeObserver = new IntersectionObserver(function(entries) {
-              entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                  servicesBento.classList.add('is-nudging');
-                  setTimeout(function() {
-                    servicesBento.classList.remove('is-nudging');
-                  }, 700);
-                  nudgeObserver.disconnect();
-                }
-              });
-            }, { threshold: 0.25 });
-            nudgeObserver.observe(servicesBento);
+            var nudgeTargets = document.querySelectorAll('.services__bento, .cases__grid');
+            nudgeTargets.forEach(function(el) {
+              var nudgeObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                  if (entry.isIntersecting) {
+                    el.classList.add('is-nudging');
+                    setTimeout(function() {
+                      el.classList.remove('is-nudging');
+                    }, 700);
+                    nudgeObserver.disconnect();
+                  }
+                });
+              }, { threshold: 0.25 });
+              nudgeObserver.observe(el);
+            });
           }
         }
       }

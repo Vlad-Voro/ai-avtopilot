@@ -659,12 +659,27 @@ if dash_sec:
               <span class="dash-card__live"><span class="pulse-dot"></span>Live</span>
             </div>
             <div class="board-panels">
-              <div class="log" id="reporting-event-log" style="font-family:var(--font-mono);font-size:0.82rem;line-height:1.75;color:var(--text-2);padding:14px;">
-                <div><span style="color:var(--text-3);">08:59:57</span> <span style="color:var(--accent-1);font-weight:600;">[1C:ERP]</span> OData запрос регистров выручки и партий (200 OK)</div>
-                <div><span style="color:var(--text-3);">08:59:58</span> <span style="color:var(--accent-2);font-weight:600;">[ETL Agent]</span> Нормализация номенклатуры, расчет маржи по ФИФО</div>
-                <div><span style="color:var(--text-3);">08:59:59</span> <span style="color:var(--green);font-weight:600;">[Intercompany]</span> Исключено 14 внутригрупповых сделок на 1.2M ₽</div>
-                <div><span style="color:var(--text-3);">09:00:00</span> <span style="color:var(--accent-hot);font-weight:600;">[Telegram Bot]</span> Сводка успешно доставлена Генеральному директору</div>
-                <div><span style="color:var(--text-3);">09:00:01</span> <span style="color:var(--text-3);">[152-ФЗ]</span> Сессия закрыта, локальный On-Premise кэш очищен</div>
+              <div class="log" id="reporting-event-log">
+                <div class="log-item log-item--default">
+                  <span class="log-item__time">08:59:57</span>
+                  <span class="log-item__text"><strong style="color:var(--accent-1);">[1C:ERP]</strong> OData опрос регистров выручки и партий (200 OK)</span>
+                </div>
+                <div class="log-item log-item--default">
+                  <span class="log-item__time">08:59:58</span>
+                  <span class="log-item__text"><strong style="color:var(--accent-2);">[ETL Agent]</strong> Нормализация номенклатуры, маржа по ФИФО</span>
+                </div>
+                <div class="log-item log-item--success">
+                  <span class="log-item__time">08:59:59</span>
+                  <span class="log-item__text"><strong style="color:var(--green);">[Intercompany]</strong> Исключено 14 внутригрупповых сделок на 1.2M ₽</span>
+                </div>
+                <div class="log-item log-item--success">
+                  <span class="log-item__time">09:00:00</span>
+                  <span class="log-item__text"><strong style="color:var(--accent-hot);">[Telegram Bot]</strong> Сводка доставлена Генеральному директору</span>
+                </div>
+                <div class="log-item log-item--default">
+                  <span class="log-item__time">09:00:01</span>
+                  <span class="log-item__text"><strong style="color:var(--text-3);">[152-ФЗ]</strong> Локальный On-Premise кэш очищен</span>
+                </div>
               </div>
             </div>
           </div>

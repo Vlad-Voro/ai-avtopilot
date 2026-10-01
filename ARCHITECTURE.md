@@ -385,6 +385,9 @@ flowchart TD
 9. ❌ **Zero Typewriter Phrase Wrapping & Hero Jitter**: All phrases in `data-phrases` for `#typed-text` MUST be compact ($\le 26$ characters) to guarantee 1-line display inside `.hero__title-accent-box` with explicit `min-height: 1.2em` / `2.4em`, eliminating multi-line reflow and layout shift (CLS).
 10. ❌ **Zero Calculator Math Divergence**: Sliders `#slider-employees`, `#slider-hours`, `#slider-salary` must adhere strictly to the core mathematical contract ($E \times S \times \frac{H}{160} \times 12$ annual routine cost, $80\%$ savings, $E \times H \times 52$ routine hours) and canonical IDs (`#roi-cost`, `#roi-save`, `#roi-hours`) with valid Russian locale currency formatting.
 11. ❌ **Zero Static SSR Terminal Stubs**: Telemetry terminals, live logs, and KPI badge values must be pre-rendered in SSR HTML to avoid empty layout boxes or FOUC before client JS execution.
+12. ❌ **Zero Navigation Link Hijacking on Subpages**: On standalone subpages (`/services/*`), clicking header/footer absolute routes (`/services/`, `/cases/`, `/calculator/`, `/`, etc.) MUST trigger genuine browser navigation to the target page, never trapping the user in-place or faking the URL without updating content.
+13. ❌ **Zero Log Overflow & Text Clipping**: Telemetry event logs (`#analytics-event-log`, `#reporting-event-log`) must strictly use semantic `.log-item` (`font-size: 0.72rem`, `gap: 10px`) with `.log-item__time` and `.log-item__text` to guarantee zero horizontal text cutoff across all device widths.
+14. ❌ **Universal Swipe Carousel Nudge**: All horizontally scrollable blocks (`.services__bento`, `.cases__grid`) on mobile/tablet ($\le 1024\text{px}$) must be registered in the shared GPU nudge observer (`@keyframes sNudge`) to visually demonstrate horizontal swipeability on initial viewport entry.
 
 ### 10.4. Single-Prompt Generation Protocol (`/plan`)
 
