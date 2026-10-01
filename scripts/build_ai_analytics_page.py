@@ -190,7 +190,7 @@ if hero_sec:
             h1.append(
                 BeautifulSoup(
                     f'<span class="hero__title-static">Предиктивная аналитика для 1С </span>'
-                    f'<span class="hero__title-accent-box" style="display:inline-block;min-height:1.2em;">'
+                    f'<span class="hero__title-accent-box">'
                     f'<span class="hero__title-accent" id="typed-text" data-phrases=\'{phrases_json}\'>без кассовых разрывов</span>'
                     f'<span aria-hidden="true" class="hero__cursor">|</span></span>',
                     "html.parser",
