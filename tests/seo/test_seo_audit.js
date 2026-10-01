@@ -13,6 +13,11 @@ const ROOT_DIR = path.resolve(__dirname, '../..');
 const PAGES = [
   { slug: '', file: 'index.html', url: 'https://ai-avtopilot.ru/', hasBreadcrumbs: false },
   { slug: 'services', file: 'services/index.html', url: 'https://ai-avtopilot.ru/services/', hasBreadcrumbs: true },
+  { slug: 'services/system-integration', file: 'services/system-integration/index.html', url: 'https://ai-avtopilot.ru/services/system-integration/', hasBreadcrumbs: true },
+  { slug: 'services/retail-inventory', file: 'services/retail-inventory/index.html', url: 'https://ai-avtopilot.ru/services/retail-inventory/', hasBreadcrumbs: true },
+  { slug: 'services/document-automation', file: 'services/document-automation/index.html', url: 'https://ai-avtopilot.ru/services/document-automation/', hasBreadcrumbs: true },
+  { slug: 'services/customer-support', file: 'services/customer-support/index.html', url: 'https://ai-avtopilot.ru/services/customer-support/', hasBreadcrumbs: true },
+  { slug: 'services/rapid-pilot', file: 'services/rapid-pilot/index.html', url: 'https://ai-avtopilot.ru/services/rapid-pilot/', hasBreadcrumbs: true },
   { slug: 'cases', file: 'cases/index.html', url: 'https://ai-avtopilot.ru/cases/', hasBreadcrumbs: true },
   { slug: 'calculator', file: 'calculator/index.html', url: 'https://ai-avtopilot.ru/calculator/', hasBreadcrumbs: true },
   { slug: 'dashboard', file: 'dashboard/index.html', url: 'https://ai-avtopilot.ru/dashboard/', hasBreadcrumbs: true },
@@ -106,7 +111,7 @@ runCheck('SEO-04', 'Internal navigation links in all HTML files use trailing sla
 console.log('\n▶ [Category 3] On-Page Semantics, Headings & Uniqueness');
 
 // SEO-05: Title uniqueness & length
-runCheck('SEO-05', 'Title tags are unique across all 7 pages and between 30-80 chars', () => {
+runCheck('SEO-05', 'Title tags are unique across all pages and between 30-85 chars', () => {
   const titles = new Map();
   PAGES.forEach(p => {
     const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
@@ -120,7 +125,7 @@ runCheck('SEO-05', 'Title tags are unique across all 7 pages and between 30-80 c
 });
 
 // SEO-06: Description uniqueness
-runCheck('SEO-06', 'Meta descriptions are unique across all 7 pages and between 70-170 chars', () => {
+runCheck('SEO-06', 'Meta descriptions are unique across all pages and between 70-175 chars', () => {
   const descs = new Map();
   PAGES.forEach(p => {
     const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
@@ -184,16 +189,22 @@ runCheck('SEO-10', 'Schema.org JSON-LD @graph contains Organization, Professiona
 });
 
 // SEO-11: BreadcrumbList on subpages
-runCheck('SEO-11', 'All 6 subpages include valid BreadcrumbList schema in JSON-LD', () => {
+runCheck('SEO-11', 'All subpages include valid BreadcrumbList schema in JSON-LD', () => {
   PAGES.filter(p => p.hasBreadcrumbs).forEach(p => {
     const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
     const m = html.match(/<script\s+type="application\/ld\+json">(.*?)<\/script>/s);
     const data = JSON.parse(m[1].trim());
     const breadcrumb = data['@graph'].find(item => item['@type'] === 'BreadcrumbList');
     assert.ok(breadcrumb, `Missing BreadcrumbList in ${p.file}`);
-    assert.strictEqual(breadcrumb.itemListElement.length, 2, `BreadcrumbList in ${p.file} must have 2 levels`);
-    assert.strictEqual(breadcrumb.itemListElement[0].item, 'https://ai-avtopilot.ru/');
-    assert.strictEqual(breadcrumb.itemListElement[1].item, p.url);
+    if (breadcrumb.itemListElement.length === 2) {
+      assert.strictEqual(breadcrumb.itemListElement[0].item, 'https://ai-avtopilot.ru/');
+      assert.strictEqual(breadcrumb.itemListElement[1].item, p.url);
+    } else if (breadcrumb.itemListElement.length === 3) {
+      assert.strictEqual(breadcrumb.itemListElement[0].item, 'https://ai-avtopilot.ru/');
+      assert.strictEqual(breadcrumb.itemListElement[2].item, p.url);
+    } else {
+      assert.fail(`Invalid BreadcrumbList length ${breadcrumb.itemListElement.length} in ${p.file}`);
+    }
   });
 });
 

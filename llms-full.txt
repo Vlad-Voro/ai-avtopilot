@@ -146,6 +146,13 @@ $$\text{Годовая экономия (₽)} = N_{\text{сотрудников
 
 - **Главная страница**: https://ai-avtopilot.ru/
 - **Каталог услуг**: https://ai-avtopilot.ru/services/
+- **Автоотчётность и P&L из 1С**: https://ai-avtopilot.ru/services/automated-reporting/
+- **Предиктивная ИИ-аналитика 1С**: https://ai-avtopilot.ru/services/ai-analytics/
+- **Интеграция 1С, CRM и ERP**: https://ai-avtopilot.ru/services/system-integration/
+- **Автоматизация склада и ритейла**: https://ai-avtopilot.ru/services/retail-inventory/
+- **Автоматический ввод первички**: https://ai-avtopilot.ru/services/document-automation/
+- **ИИ-поддержка клиентов 24/7**: https://ai-avtopilot.ru/services/customer-support/
+- **Быстрый старт ИИ-агентов за 14 дней**: https://ai-avtopilot.ru/services/rapid-pilot/
 - **Кейсы клиентов**: https://ai-avtopilot.ru/cases/
 - **Калькулятор окупаемости ROI**: https://ai-avtopilot.ru/calculator/
 - **Интерактивный дашборд**: https://ai-avtopilot.ru/dashboard/

@@ -39,6 +39,7 @@ const runOnlyFast = args.includes('--fast');
 const runOnlyE2e = args.includes('--e2e');
 
 const SUITE_PATHS = [
+  './e2e/test_services_cluster_e2e.js',
   './tier4_real_world_scenarios/test_user_journeys.js',
   './tier2_boundary_corner/test_rapid_clicks_navigation.js',
   './tier2_boundary_corner/test_burger_rapid_toggle.js',

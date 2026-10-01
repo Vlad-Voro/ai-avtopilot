@@ -3,7 +3,7 @@
 > **Status**: Production Hardened | **Updated**: 2026-10-01  
 > **Live URL**: [https://ai-avtopilot.ru/](https://ai-avtopilot.ru/) | **Repo**: `Vlad-Voro/ai-avtopilot` (`main` - Private)  
 > **Local Root**: `d:\AI\data\ai-avtopilot`  
-> **Verification**: 131 / 131 PASS (83 E2E + 21 SEO + 13 Security + 14 Resiliency & Journey, 0 regressions)
+> **Verification**: 137 / 137 PASS (84 E2E + 21 SEO + 13 Security + 19 Resiliency & Journey, 0 regressions)
 
 ---
 
