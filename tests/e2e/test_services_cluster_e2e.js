@@ -7,7 +7,7 @@
 const { createSuite, assert } = require('../helpers/test_framework');
 
 const suite = createSuite('E2E: Service Cluster Landing Pages Verification', {
-  tier: 1,
+  tier: 3,
   milestone: 'M4',
   feature: 'ServicesCluster'
 });
@@ -21,34 +21,28 @@ const CLUSTER_SERVICES = [
 ];
 
 suite.test('E2E-1: Bento cards on homepage navigate to all 5 service landing pages', async ({ page, baseUrl }) => {
+  await page.goto(`${baseUrl}/`);
   for (const svc of CLUSTER_SERVICES) {
-    await page.goto(`${baseUrl}/`);
     const cardLink = page.locator(`a[href="/services/${svc.slug}/"]`).first();
     await assert.ok(await cardLink.count() > 0, `Homepage must contain bento card link for /services/${svc.slug}/`);
-    
-    // Navigate
-    const href = await cardLink.getAttribute('href');
-    await page.goto(`${baseUrl}${href}`);
-    
-    // Check page load & H1
+  }
+  for (const svc of CLUSTER_SERVICES) {
+    await page.goto(`${baseUrl}/services/${svc.slug}/`);
     const h1Text = await page.locator('h1').textContent();
     assert.ok(h1Text.length > 0, `Page /services/${svc.slug}/ must have non-empty <h1>`);
-    
-    // Check canonical
     const canonical = await page.locator('link[rel="canonical"]').getAttribute('href');
     assert.strictEqual(canonical, `https://ai-avtopilot.ru/services/${svc.slug}/`);
   }
 });
 
 suite.test('E2E-2: Bento cards on /services/ hub navigate to all 5 service landing pages', async ({ page, baseUrl }) => {
+  await page.goto(`${baseUrl}/services/`);
   for (const svc of CLUSTER_SERVICES) {
-    await page.goto(`${baseUrl}/services/`);
     const cardLink = page.locator(`a[href="/services/${svc.slug}/"]`).first();
     await assert.ok(await cardLink.count() > 0, `/services/ hub must contain bento card link for /services/${svc.slug}/`);
-    
-    const href = await cardLink.getAttribute('href');
-    await page.goto(`${baseUrl}${href}`);
-    
+  }
+  for (const svc of CLUSTER_SERVICES) {
+    await page.goto(`${baseUrl}/services/${svc.slug}/`);
     const h1Count = await page.locator('h1').count();
     assert.strictEqual(h1Count, 1, `Expected exactly 1 <h1> on /services/${svc.slug}/`);
   }
@@ -63,9 +57,9 @@ suite.test('E2E-3: Service cluster pages have zero horizontal overflow on mobile
   ];
 
   for (const svc of CLUSTER_SERVICES) {
+    await page.goto(`${baseUrl}/services/${svc.slug}/`);
     for (const vp of viewports) {
       await page.setViewportSize(vp);
-      await page.goto(`${baseUrl}/services/${svc.slug}/`);
       
       const hasOverflow = await page.evaluate(() => {
         return document.documentElement.scrollWidth > window.innerWidth;

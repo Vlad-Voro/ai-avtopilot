@@ -15,12 +15,14 @@
 
 const path = require('path');
 const os = require('os');
-// Phase 1 suites — stdlib only, no npm deps required
+// Tier 1 in-memory unit suites — <= 20ms, pure business logic
+const { runRoiUnitSuite } = require('./unit/test_roi_calculator');
+// Tier 2 suites — stdlib / static audit only, no browser deps
 const { runSeoSuite } = require('./seo/test_seo_audit');
 const { runSecuritySuite } = require('./security/test_security_audit');
 const { runSslAuditSuite } = require('./security/test_ssl_tls_audit');
 const { runResiliencySuite } = require('./resiliency/test_resiliency_jtbd');
-// Phase 2 (playwright + server) — loaded lazily below, only when E2E runs
+// Tier 3 (playwright + server) — loaded lazily below, only when E2E runs
 
 // ANSI Colors
 const C = {
@@ -36,7 +38,9 @@ const C = {
 
 const args = process.argv.slice(2);
 const runOnlyFast = args.includes('--fast');
-const runOnlyE2e = args.includes('--e2e');
+const runOnlyE2e = args.includes('--e2e') || args.includes('--tier=3');
+const runOnlyTier1 = args.includes('--tier=1');
+const runOnlyTier2 = args.includes('--tier=2');
 
 const SUITE_PATHS = [
   './e2e/test_services_cluster_e2e.js',
@@ -63,13 +67,32 @@ async function main() {
   let totalFailing = 0;
 
   console.log(`\n${C.bold}${C.cyan}╔════════════════════════════════════════════════════════════════════════╗${C.reset}`);
-  console.log(`${C.bold}${C.cyan}║       AI AVTOPILOT - UNIFIED HIGH-PERFORMANCE TEST SUITE RUNNER        ║${C.reset}`);
+  console.log(`${C.bold}${C.cyan}║       AI AVTOPILOT - SOTA 3-TIER PYRAMID TEST SUITE RUNNER             ║${C.reset}`);
   console.log(`${C.bold}${C.cyan}╚════════════════════════════════════════════════════════════════════════╝${C.reset}\n`);
 
-  // PHASE 1: Fast In-Process Suites
-  if (!runOnlyE2e) {
-    const p1Start = Date.now();
-    console.log(`${C.bold}${C.blue}▶ PHASE 1: Fast In-Process Audit Suites (SEO + Security + Resiliency)${C.reset}\n`);
+  // TIER 1: In-Memory Unit Suites (<= 20ms)
+  if (!runOnlyE2e && !runOnlyTier2) {
+    const t1Start = Date.now();
+    console.log(`${C.bold}${C.blue}▶ TIER 1: In-Memory Unit Suites (Pure Business Logic, <= 20ms)${C.reset}\n`);
+
+    const roiRes = runRoiUnitSuite();
+    totalTests += roiRes.totalChecks;
+    totalPassing += roiRes.passedChecks;
+    totalFailing += roiRes.failedChecks;
+
+    const t1Duration = ((Date.now() - t1Start) / 1000).toFixed(3);
+    console.log(`\n${C.green}✔ Tier 1 completed in ${t1Duration}s (${roiRes.totalChecks} checks)${C.reset}\n`);
+
+    if (runOnlyTier1) {
+      printSummary(totalTests, totalPassing, totalFailing, globalStart);
+      process.exit(totalFailing === 0 ? 0 : 1);
+    }
+  }
+
+  // TIER 2: Fast Static Audit & Integration Suites (SEO + Security + Resiliency)
+  if (!runOnlyE2e && !runOnlyTier1) {
+    const t2Start = Date.now();
+    console.log(`${C.bold}${C.blue}▶ TIER 2: Static Audit & Integration Suites (SEO + Security + Resiliency)${C.reset}\n`);
 
     const seoRes = runSeoSuite();
     totalTests += seoRes.totalChecks;
@@ -91,18 +114,18 @@ async function main() {
     totalPassing += resRes.passedChecks;
     totalFailing += resRes.failedChecks;
 
-    const p1Duration = ((Date.now() - p1Start) / 1000).toFixed(2);
-    console.log(`${C.green}✔ Phase 1 completed in ${p1Duration}s (${totalTests} checks)${C.reset}\n`);
+    const t2Duration = ((Date.now() - t2Start) / 1000).toFixed(2);
+    console.log(`${C.green}✔ Tier 2 completed in ${t2Duration}s (${totalTests - (runOnlyTier2 ? 0 : 11)} checks)${C.reset}\n`);
 
-    if (runOnlyFast) {
+    if (runOnlyFast || runOnlyTier2) {
       printSummary(totalTests, totalPassing, totalFailing, globalStart);
       process.exit(totalFailing === 0 ? 0 : 1);
     }
   }
 
-  // PHASE 2: Browser E2E Suites
+  // TIER 3: Browser E2E Suites
   const p2Start = Date.now();
-  console.log(`${C.bold}${C.blue}▶ PHASE 2: Playwright Browser E2E Suites (Headless Edge)${C.reset}\n`);
+  console.log(`${C.bold}${C.blue}▶ TIER 3: Playwright Browser E2E Suites (Headless Edge)${C.reset}\n`);
 
   // Lazy-load heavy deps: only executed when E2E actually runs (not --fast)
   const { chromium } = require('playwright');
@@ -180,8 +203,8 @@ async function main() {
     await server.stop().catch(() => {});
   }
 
-  const p2Duration = ((Date.now() - p2Start) / 1000).toFixed(2);
-  console.log(`\n${C.green}✔ Phase 2 completed in ${p2Duration}s (83 browser tests)${C.reset}\n`);
+  const t3Duration = ((Date.now() - p2Start) / 1000).toFixed(2);
+  console.log(`\n${C.green}✔ Tier 3 completed in ${t3Duration}s (83 browser tests)${C.reset}\n`);
 
   printSummary(totalTests, totalPassing, totalFailing, globalStart);
   process.exit(totalFailing === 0 ? 0 : 1);
