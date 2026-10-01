@@ -667,25 +667,9 @@ def generate_service_html(data: dict) -> str:
               <span class="dash-card__title">Нагрузка на интеграционную шину / Агенты</span>
               <span class="dash-card__live" title="Данные в реальном времени"><span class="pulse-dot"></span>Live</span>
             </div>
-            <div class="chart">
-              <div class="chart__bars" id="chart-bars">
-                <div class="chart__bar" style="height:45%"></div>
-                <div class="chart__bar" style="height:68%"></div>
-                <div class="chart__bar" style="height:82%"></div>
-                <div class="chart__bar chart__bar--active" style="height:94%"></div>
-                <div class="chart__bar" style="height:76%"></div>
-                <div class="chart__bar" style="height:88%"></div>
-                <div class="chart__bar" style="height:92%"></div>
-              </div>
-              <div class="chart__labels" id="chart-labels">
-                <span class="chart__label">Пн</span>
-                <span class="chart__label">Вт</span>
-                <span class="chart__label">Ср</span>
-                <span class="chart__label">Чт</span>
-                <span class="chart__label">Пт</span>
-                <span class="chart__label">Сб</span>
-                <span class="chart__label">Вс</span>
-              </div>
+            <div class="chart" id="dash-chart">
+              <div class="chart__bars" id="chart-bars"></div>
+              <div class="chart__labels" id="chart-labels"></div>
             </div>
           </div>
           <div class="dash-metrics">
@@ -901,6 +885,25 @@ def generate_service_html(data: dict) -> str:
       }});
     }});
   </script>
+
+  <!-- Back to Top Button with Dynamic Circular Progress Indicator -->
+  <button type="button" class="back-to-top" id="back-to-top" aria-label="Вернуться наверх" title="Вернуться наверх" tabindex="-1" aria-hidden="true">
+    <svg class="back-to-top__progress" width="48" height="48" viewBox="0 0 48 48" aria-hidden="true">
+      <defs>
+        <linearGradient id="backToTopGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#6366f1" />
+          <stop offset="100%" stop-color="#a855f7" />
+        </linearGradient>
+      </defs>
+      <circle class="back-to-top__track" cx="24" cy="24" r="20" fill="none" stroke="rgba(255, 255, 255, 0.08)" stroke-width="2.5" />
+      <circle class="back-to-top__bar" cx="24" cy="24" r="20" fill="none" stroke="url(#backToTopGrad)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="125.66" stroke-dashoffset="125.66" />
+    </svg>
+    <span class="back-to-top__icon" aria-hidden="true">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19V5M5 12l7-7 7 7"/>
+      </svg>
+    </span>
+  </button>
 
   <!-- Cookie Consent (152-ФЗ) -->
   <div class="cookie-banner" id="cookie-banner" style="display:none;">

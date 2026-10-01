@@ -421,22 +421,29 @@ to{opacity:1}
 .case-card__tags{display:flex;gap:8px;flex-wrap:wrap}
 .case-card__tags span{font-family:var(--font-mono);font-size:.68rem;color:var(--text-3);background:#ffffff0a;border:1px solid var(--border);padding:3px 10px;border-radius:6px}
 .roi{padding:15px 0 30px}
-.roi__card{background:var(--surface);border:1px solid rgba(99,102,241,.2);border-radius:var(--radius-lg);padding:36px;display:grid;grid-template-columns:1fr 1fr;gap:48px;box-shadow:0 0 80px #6366f10f}
-.roi-input-group{margin-bottom:20px}
-.roi-label{display:flex;justify-content:space-between;align-items:center;font-size:.9rem;color:var(--text-2);margin-bottom:10px}
-.roi-value-display{font-family:var(--font-head);font-weight:700;color:var(--accent-1)}
-.roi-slider{width:100%;-webkit-appearance:none;appearance:none;height:4px;background:#6366f133;border-radius:2px;outline:none;cursor:pointer}
-.roi-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));box-shadow:0 0 16px #6366f180;cursor:pointer;transition:transform .2s}
-.roi-slider::-webkit-slider-thumb:hover{transform:scale(1.25)}
-.roi-slider::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));border:none}
+.roi__card{background:var(--surface);border:1px solid rgba(99,102,241,.2);border-radius:var(--radius-lg);padding:32px 36px 22px;display:grid;grid-template-columns:1fr 1fr;gap:48px;box-shadow:0 0 80px #6366f10f}
+@media(min-width:901px){
+.roi__inputs{display:flex;flex-direction:column;justify-content:space-between;height:100%}
+.roi-input-group{margin-bottom:0;padding:14px 18px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:var(--radius);transition:border-color .2s ease}
+.roi-input-group:hover{border-color:rgba(99,102,241,.25)}
+}
+@media(max-width:900px){
+.roi-input-group{margin-bottom:16px;padding:12px 14px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:var(--radius)}
+}
+.roi-label{display:flex;justify-content:space-between;align-items:center;font-size:1rem;font-weight:600;color:var(--text-1);margin-bottom:12px}
+.roi-value-display{font-family:var(--font-head);font-size:1.3rem;font-weight:800;color:#818cf8;background:rgba(99,102,241,.12);padding:2px 10px;border-radius:6px;border:1px solid rgba(99,102,241,.2)}
+.roi-slider{width:100%;-webkit-appearance:none;appearance:none;height:8px;background:rgba(255,255,255,.12);border-radius:999px;outline:none;cursor:pointer;margin:6px 0}
+.roi-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));box-shadow:0 0 16px rgba(99,102,241,.9);cursor:pointer;transition:transform .2s;border:2px solid #ffffff}
+.roi-slider::-webkit-slider-thumb:hover{transform:scale(1.15)}
+.roi-slider::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));border:2px solid #ffffff;box-shadow:0 0 16px rgba(99,102,241,.9)}
 .roi__results{display:flex;flex-direction:column;gap:16px;justify-content:center}
 .roi-result-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:8px}
 .roi-result-card--accent{background:#6366f114;border-color:#6366f14d}
 .roi-result-label{font-size:.82rem;color:var(--text-2)}
 .roi-result-num{font-family:var(--font-head);font-size:1.6rem;font-weight:900;color:var(--text-1);letter-spacing:-.02em}
 .roi-result-card--accent .roi-result-num{color:var(--accent-1)}
-.roi__cta-block{text-align:center;padding:16px 24px}
-.roi__cta-block p{color:var(--text-2);margin-bottom:12px;font-size:.9rem}
+.roi__cta-block{text-align:center;padding:8px 16px 0;margin-top:0}
+.roi__cta-block p{color:var(--text-2);margin-bottom:8px;font-size:.88rem}
 .contact{padding:15px 0 30px}
 .contact__inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;background:var(--surface);border:1px solid rgba(99,102,241,.2);border-radius:var(--radius-lg);padding:40px;box-shadow:var(--shadow-glow)}
 .contact__title{font-family:var(--font-head);font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;line-height:1.15;letter-spacing:-.02em;margin-bottom:16px}
@@ -590,9 +597,11 @@ to{opacity:1;transform:scale(1) translateY(0)}
 
 .hero__title-static{display:block}
 
-.hero__title-accent-box{display:block;min-height:1.25em;height:auto;line-height:1.15;position:relative;overflow:visible;word-break:normal;overflow-wrap:break-word}
+.hero__title-accent-box{display:block;min-height:2.5em;height:auto;line-height:1.15;position:relative;overflow:visible;word-break:normal;overflow-wrap:break-word}
 
-@media(min-width:1025px){.hero__title-accent-box{min-height:1.25em;height:auto;overflow:visible}
+@media(min-width:1025px){.hero__title-accent-box{min-height:2.5em;height:auto;overflow:visible}
+}
+@media(max-width:480px){.hero__title-accent-box{min-height:3.5em;height:auto;overflow:visible}
 }
 
 
@@ -1232,21 +1241,22 @@ section[id]{scroll-margin-top:72px}
   width: 100%;
   -webkit-appearance: none;
   appearance: none;
-  height: 7px !important;
-  background: rgba(255, 255, 255, 0.1);
+  height: 8px !important;
+  background: rgba(255, 255, 255, 0.12) !important;
   border-radius: 999px !important;
   outline: none;
   cursor: pointer;
+  margin: 6px 0 !important;
 }
 
 .roi-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 22px;
-  height: 22px;
+  width: 24px !important;
+  height: 24px !important;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-  box-shadow: 0 0 16px rgba(99, 102, 241, 0.8);
+  box-shadow: 0 0 16px rgba(99, 102, 241, 0.9);
   cursor: pointer;
   transition: transform .2s;
   border: 2px solid #ffffff;
@@ -1257,12 +1267,12 @@ section[id]{scroll-margin-top:72px}
 }
 
 .roi-slider::-moz-range-thumb {
-  width: 22px;
-  height: 22px;
+  width: 24px !important;
+  height: 24px !important;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
   border: 2px solid #ffffff;
-  box-shadow: 0 0 16px rgba(99, 102, 241, 0.8);
+  box-shadow: 0 0 16px rgba(99, 102, 241, 0.9);
 }
 
 
@@ -1270,9 +1280,9 @@ section[id]{scroll-margin-top:72px}
   display: flex;
   justify-content: space-between;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.8rem !important;
   color: var(--text-3);
-  margin-top: 6px;
+  margin-top: 8px !important;
 }
 
 
@@ -1628,6 +1638,181 @@ section[id] {
 
   .case-num--sky { color: #38bdf8 !important; }
 
+  /* ═══════════════════ SOTA DYNAMIC BACK-TO-TOP BUTTON ═══════════════════ */
+  .back-to-top {
+    position: fixed;
+    bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+    right: calc(28px + env(safe-area-inset-right, 0px));
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(13, 13, 20, 0.85);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 16px rgba(99, 102, 241, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 900;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(16px) scale(0.9);
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+    padding: 0;
+    outline: none;
+    color: var(--text-1);
+    touch-action: manipulation;
+  }
+
+  .back-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+
+  .back-to-top:hover {
+    transform: translateY(-3px) scale(1.05);
+    border-color: rgba(99, 102, 241, 0.6);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 24px rgba(99, 102, 241, 0.35);
+    color: #ffffff;
+  }
+
+  .back-to-top:active {
+    transform: translateY(0) scale(0.96);
+  }
+
+  .back-to-top:focus-visible {
+    outline: 2px solid var(--accent-1);
+    outline-offset: 3px;
+  }
+
+  .back-to-top__progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+    pointer-events: none;
+  }
+
+  .back-to-top__bar {
+    transition: stroke-dashoffset 0.12s linear;
+  }
+
+  .back-to-top__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+
+  .back-to-top:hover .back-to-top__icon {
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .back-to-top {
+      bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+      right: calc(20px + env(safe-area-inset-right, 0px));
+      width: 44px;
+      height: 44px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .back-to-top,
+    .back-to-top__icon,
+    .back-to-top__bar {
+      transition: none !important;
+    }
+    .back-to-top:hover {
+      transform: none !important;
+    }
+    .back-to-top:hover .back-to-top__icon {
+      transform: none !important;
+    }
+  }
+
+  /* ═══════════════════ SOTA RESPONSIVE TELEMETRY & DASHBOARD GUARDS ═══════════════════ */
+  .dashboard__main,
+  .dashboard__side {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .dash-card {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden;
+  }
+
+  .chart {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden;
+  }
+
+  .chart__bars,
+  .chart__labels {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden;
+    gap: 4px;
+  }
+
+  .chart__label {
+    min-width: 0 !important;
+    font-size: clamp(0.55rem, 1.8vw, 0.72rem) !important;
+  }
+
+  .dash-metrics {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden;
+  }
+
+  .dash-metric {
+    min-width: 0 !important;
+  }
+
+  @media (max-width: 768px) {
+    .dash-card {
+      padding: 18px 14px !important;
+    }
+    .chart__bars,
+    .chart__labels {
+      gap: 3px !important;
+    }
+    .dash-metric {
+      padding: 10px 4px !important;
+    }
+    .dash-metric__label {
+      white-space: normal !important;
+      line-height: 1.25 !important;
+      font-size: clamp(0.62rem, 2.2vw, 0.75rem) !important;
+      word-break: break-word !important;
+    }
+    .dash-metric__num {
+      font-size: clamp(1.1rem, 3.8vw, 1.45rem) !important;
+    }
+    .dash-metric__delta {
+      font-size: clamp(0.6rem, 2vw, 0.72rem) !important;
+    }
+  }
+
   </style>
 <!-- Scripts -->
 <script crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.5.0" type="module"></script>
@@ -1977,7 +2162,12 @@ section[id] {
 </div>
 <div aria-labelledby="tab-agents" class="board-panel" hidden="" id="panel-agents" role="tabpanel">
 <div class="agent-list" id="agent-list">
-<!-- JS fills this -->
+<div class="agent-list-item" role="button" tabindex="0" title="Агент: Отчёты: 100% готовность"><span class="agent-list-item__dot"></span><span class="agent-list-item__name">Агент: Отчёты</span><span class="agent-list-item__num">142 задач</span></div>
+<div class="agent-list-item" role="button" tabindex="0" title="Агент: Склад: 100% готовность"><span class="agent-list-item__dot"></span><span class="agent-list-item__name">Агент: Склад</span><span class="agent-list-item__num">89 задач</span></div>
+<div class="agent-list-item" role="button" tabindex="0" title="Агент: ЭДО: 100% готовность"><span class="agent-list-item__dot"></span><span class="agent-list-item__name">Агент: ЭДО</span><span class="agent-list-item__num">203 задач</span></div>
+<div class="agent-list-item" role="button" tabindex="0" title="Агент: CRM: 100% готовность"><span class="agent-list-item__dot"></span><span class="agent-list-item__name">Агент: CRM</span><span class="agent-list-item__num">56 задач</span></div>
+<div class="agent-list-item" role="button" tabindex="0" title="Агент: Цены: 100% готовность"><span class="agent-list-item__dot"></span><span class="agent-list-item__name">Агент: Цены</span><span class="agent-list-item__num">341 задач</span></div>
+<div class="agent-list-item" role="button" tabindex="0" title="Агент: HR: 100% готовность"><span class="agent-list-item__dot"></span><span class="agent-list-item__name">Агент: HR</span><span class="agent-list-item__num">28 задач</span></div>
 </div>
 </div>
 </div>
@@ -2272,6 +2462,24 @@ section[id] {
       });
     });
   </script>
+<!-- Back to Top Button with Dynamic Circular Progress Indicator -->
+<button aria-hidden="true" aria-label="Вернуться наверх" class="back-to-top" id="back-to-top" tabindex="-1" title="Вернуться наверх" type="button">
+<svg aria-hidden="true" class="back-to-top__progress" height="48" viewbox="0 0 48 48" width="48">
+<defs>
+<lineargradient id="backToTopGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#6366f1"></stop>
+<stop offset="100%" stop-color="#a855f7"></stop>
+</lineargradient>
+</defs>
+<circle class="back-to-top__track" cx="24" cy="24" fill="none" r="20" stroke="rgba(255, 255, 255, 0.08)" stroke-width="2.5"></circle>
+<circle class="back-to-top__bar" cx="24" cy="24" fill="none" r="20" stroke="url(#backToTopGrad)" stroke-dasharray="125.66" stroke-dashoffset="125.66" stroke-linecap="round" stroke-width="2.5"></circle>
+</svg>
+<span aria-hidden="true" class="back-to-top__icon">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="18">
+<path d="M12 19V5M5 12l7-7 7 7"></path>
+</svg>
+</span>
+</button>
 <!-- Cookie Consent (152-ФЗ) -->
 <div class="cookie-banner" id="cookie-banner" style="display:none;">
 <div class="cookie-banner__inner">

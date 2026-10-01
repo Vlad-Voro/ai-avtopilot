@@ -325,8 +325,9 @@
 
 /* Zero CLS Hero Title Animation Box */
 .hero__title-static{display:block}
-.hero__title-accent-box{display:block;min-height:2.4em;height:auto;line-height:1.1;position:relative;overflow:visible}
-@media(min-width:1025px){.hero__title-accent-box{min-height:2.4em;height:auto;overflow:visible}}
+.hero__title-accent-box{display:block;min-height:2.5em;height:auto;line-height:1.15;position:relative;overflow:visible;word-break:normal;overflow-wrap:break-word}
+@media(min-width:1025px){.hero__title-accent-box{min-height:2.5em;height:auto;overflow:visible}}
+@media(max-width:480px){.hero__title-accent-box{min-height:3.5em;height:auto;overflow:visible}}
 
 /* Zero CLS Terminal & Cursor */
 .terminal__body{height:240px}
@@ -829,20 +830,21 @@ section[id]{scroll-margin-top:72px}
   width: 100%;
   -webkit-appearance: none;
   appearance: none;
-  height: 7px !important;
-  background: rgba(255, 255, 255, 0.1);
+  height: 8px !important;
+  background: rgba(255, 255, 255, 0.12) !important;
   border-radius: 999px !important;
   outline: none;
   cursor: pointer;
+  margin: 6px 0 !important;
 }
 .roi-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 22px;
-  height: 22px;
+  width: 24px !important;
+  height: 24px !important;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-  box-shadow: 0 0 16px rgba(99, 102, 241, 0.8);
+  box-shadow: 0 0 16px rgba(99, 102, 241, 0.9);
   cursor: pointer;
   transition: transform .2s;
   border: 2px solid #ffffff;
@@ -851,21 +853,21 @@ section[id]{scroll-margin-top:72px}
   transform: scale(1.15);
 }
 .roi-slider::-moz-range-thumb {
-  width: 22px;
-  height: 22px;
+  width: 24px !important;
+  height: 24px !important;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
   border: 2px solid #ffffff;
-  box-shadow: 0 0 16px rgba(99, 102, 241, 0.8);
+  box-shadow: 0 0 16px rgba(99, 102, 241, 0.9);
 }
 
 .roi-slider-limits {
   display: flex;
   justify-content: space-between;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.8rem !important;
   color: var(--text-3);
-  margin-top: 6px;
+  margin-top: 8px !important;
 }
 
 .form-group, .form-group input {
@@ -936,4 +938,180 @@ section[id] {
     transition: none !important;
   }
 }
+
+/* ═══════════════════ SOTA DYNAMIC BACK-TO-TOP BUTTON ═══════════════════ */
+.back-to-top {
+  position: fixed;
+  bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+  right: calc(28px + env(safe-area-inset-right, 0px));
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(13, 13, 20, 0.85);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 16px rgba(99, 102, 241, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(16px) scale(0.9);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
+  padding: 0;
+  outline: none;
+  color: var(--text-1);
+  touch-action: manipulation;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.back-to-top:hover {
+  transform: translateY(-3px) scale(1.05);
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 24px rgba(99, 102, 241, 0.35);
+  color: #ffffff;
+}
+
+.back-to-top:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.back-to-top:focus-visible {
+  outline: 2px solid var(--accent-1);
+  outline-offset: 3px;
+}
+
+.back-to-top__progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  pointer-events: none;
+}
+
+.back-to-top__bar {
+  transition: stroke-dashoffset 0.12s linear;
+}
+
+.back-to-top__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.back-to-top:hover .back-to-top__icon {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .back-to-top {
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    right: calc(20px + env(safe-area-inset-right, 0px));
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top,
+  .back-to-top__icon,
+  .back-to-top__bar {
+    transition: none !important;
+  }
+  .back-to-top:hover {
+    transform: none !important;
+  }
+  .back-to-top:hover .back-to-top__icon {
+    transform: none !important;
+  }
+}
+
+/* ═══════════════════ SOTA RESPONSIVE TELEMETRY & DASHBOARD GUARDS ═══════════════════ */
+.dashboard__main,
+.dashboard__side {
+  min-width: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.dash-card {
+  min-width: 0 !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden;
+}
+
+.chart {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: hidden;
+}
+
+.chart__bars,
+.chart__labels {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: hidden;
+  gap: 4px;
+}
+
+.chart__label {
+  min-width: 0 !important;
+  font-size: clamp(0.55rem, 1.8vw, 0.72rem) !important;
+}
+
+.dash-metrics {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden;
+}
+
+.dash-metric {
+  min-width: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .dash-card {
+    padding: 18px 14px !important;
+  }
+  .chart__bars,
+  .chart__labels {
+    gap: 3px !important;
+  }
+  .dash-metric {
+    padding: 10px 4px !important;
+  }
+  .dash-metric__label {
+    white-space: normal !important;
+    line-height: 1.25 !important;
+    font-size: clamp(0.62rem, 2.2vw, 0.75rem) !important;
+    word-break: break-word !important;
+  }
+  .dash-metric__num {
+    font-size: clamp(1.1rem, 3.8vw, 1.45rem) !important;
+  }
+  .dash-metric__delta {
+    font-size: clamp(0.6rem, 2vw, 0.72rem) !important;
+  }
+}
+
 
