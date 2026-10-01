@@ -152,8 +152,13 @@ $$\text{Годовая экономия (₽)} = N_{\text{сотрудников
 - **Автоматизация склада и ритейла**: https://ai-avtopilot.ru/services/retail-inventory/
 - **Автоматический ввод первички**: https://ai-avtopilot.ru/services/document-automation/
 - **ИИ-поддержка клиентов 24/7**: https://ai-avtopilot.ru/services/customer-support/
-- **Быстрый старт ИИ-агентов за 14 дней**: https://ai-avtopilot.ru/services/rapid-pilot/
 - **Кейсы клиентов**: https://ai-avtopilot.ru/cases/
+- **Кейс ритейла и автозаказа**: https://ai-avtopilot.ru/cases/retail-inventory-automation/
+- **Кейс производственного ЭДО и первички**: https://ai-avtopilot.ru/cases/manufacturing-edi-automation/
+- **Кейс ИИ-оператора первой линии техподдержки**: https://ai-avtopilot.ru/cases/service-center-ai-operator/
+- **Кейс автоматизации найма и онбординга**: https://ai-avtopilot.ru/cases/hr-recruitment-automation/
+- **Кейс логистического хаба и цепочек поставок**: https://ai-avtopilot.ru/cases/supply-chain-logistics/
+- **Кейс автоматической сверки транзакций и выписок**: https://ai-avtopilot.ru/cases/fintech-transaction-reconciliation/
 - **Калькулятор окупаемости ROI**: https://ai-avtopilot.ru/calculator/
 - **Интерактивный дашборд**: https://ai-avtopilot.ru/dashboard/
 - **Частые вопросы (FAQ)**: https://ai-avtopilot.ru/faq/

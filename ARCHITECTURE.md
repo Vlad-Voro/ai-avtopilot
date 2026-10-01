@@ -214,7 +214,7 @@ node data/ai-avtopilot/tests/resiliency/test_resiliency_jtbd.js # 19 Resiliency,
 
 ## 9. Canonical Specification for Service Landing Pages (`/services/<slug>/`)
 
-> **Standard**: Every service subpage in `/services/` is an autonomous standalone landing page mirroring the visual excellence, typography, interactive fidelity, and strict SEO compliance of `index.html`.
+> **Standard**: Every service subpage in `/services/` is an autonomous standalone landing page mirroring the visual excellence, typography, interactive fidelity, and strict SEO compliance of `index.html`. For demand capture taxonomy and root hub topics, refer to [content_strategy_implementation_plan.md](file:///d:/AI/tmp/content_strategy_implementation_plan.md).
 
 ```mermaid
 flowchart TD
@@ -272,7 +272,7 @@ flowchart TD
 
 ## 10. Canonical Specification for Case Study Landing Pages (`/cases/<slug>/`)
 
-> **Standard**: Every dedicated case study subpage in `/cases/` is an autonomous standalone landing page highlighting hard ROI metrics, real 1C/ERP architectural workflows, and 152-FZ on-premise security.
+> **Standard**: Every dedicated case study subpage in `/cases/` is an autonomous standalone landing page highlighting hard ROI metrics, real 1C/ERP architectural workflows, and 152-FZ on-premise security. For the 22-case semantic registry and Wordstat queries, refer to [content_strategy_implementation_plan.md](file:///d:/AI/tmp/content_strategy_implementation_plan.md).
 
 ```mermaid
 flowchart TD

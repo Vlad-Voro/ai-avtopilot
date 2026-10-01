@@ -83,6 +83,11 @@
 - Быстрый старт ИИ-агентов за 14 дней: https://ai-avtopilot.ru/services/rapid-pilot/
 - Кейсы клиентов: https://ai-avtopilot.ru/cases/
 - Кейс автоматизации розничной сети (230 точек, 1С:Розница): https://ai-avtopilot.ru/cases/retail-inventory-automation/
+- Кейс производственного ЭДО и первички (1С:ERP, SAP): https://ai-avtopilot.ru/cases/manufacturing-edi-automation/
+- Кейс ИИ-оператора первой линии техподдержки (40k клиентов, 1С:УНФ): https://ai-avtopilot.ru/cases/service-center-ai-operator/
+- Кейс автоматизации найма и онбординга (1С:ЗУП, HH API): https://ai-avtopilot.ru/cases/hr-recruitment-automation/
+- Кейс управления цепочками поставок и логистики (1С:TMS, ГЛОНАСС): https://ai-avtopilot.ru/cases/supply-chain-logistics/
+- Кейс автоматической сверки транзакций и выписок (DirectBank, 1С:БП): https://ai-avtopilot.ru/cases/fintech-transaction-reconciliation/
 - Калькулятор ROI: https://ai-avtopilot.ru/calculator/
 - Интерактивный дашборд: https://ai-avtopilot.ru/dashboard/
 - Запись на бесплатный аудит: https://ai-avtopilot.ru/contact/

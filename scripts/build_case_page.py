@@ -26,6 +26,16 @@ INDEX_PATH = os.path.join(PROJECT_DIR, "index.html")
 CASES_DATA_PATH = os.path.join(PROJECT_DIR, "data", "cases_data.json")
 
 
+SLUG_TO_CARD_CLASS = {
+    "retail-inventory-automation": "case-card--retail",
+    "manufacturing-edi-automation": "case-card--edi",
+    "service-center-ai-operator": "case-card--service",
+    "hr-recruitment-automation": "case-card--hr",
+    "supply-chain-logistics": "case-card--logistics",
+    "fintech-transaction-reconciliation": "case-card--fintech",
+}
+
+
 def build_case_page(case_key: str) -> str:
     with open(CASES_DATA_PATH, "r", encoding="utf-8") as f:
         all_cases = json.load(f)
@@ -320,9 +330,8 @@ def build_case_page(case_key: str) -> str:
         # Remove the current case card from "Другие кейсы" grid so only sibling cases show
         cases_grid = cases_sec.find("div", class_="cases__grid")
         if cases_grid:
-            current_card = (
-                cases_grid.find(class_=f"case-card--retail") if slug == "retail-inventory-automation" else None
-            )
+            card_class = SLUG_TO_CARD_CLASS.get(slug)
+            current_card = cases_grid.find(class_=card_class) if card_class else None
             if current_card:
                 current_card.decompose()
 
