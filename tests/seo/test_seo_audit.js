@@ -272,27 +272,23 @@ runCheck('SEO-16', 'Schema.org JSON-LD contains knowsAbout expertise taxonomy an
   });
 });
 
-// SEO-17: Contextual PageRank cross-linking mesh across subpages
-runCheck('SEO-17', 'Subpages (cases, calculator, faq, contact) contain subpage-links-grid cross-linking mesh to eliminate dead ends', () => {
-  PAGES.filter(p => p.slug !== '' && p.slug !== 'dashboard' && !p.slug.startsWith('services')).forEach(p => {
+// SEO-17: Zero phantom mesh blocks across all pages & valid in-page audit CTA routing
+runCheck('SEO-17', 'Zero phantom blocks (subpage-links-grid, contact-b2b, factoid sheet) across all pages and valid in-page audit CTA routing', () => {
+  PAGES.forEach(p => {
     const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
-    assert.ok(html.includes('class="subpage-links-grid"'), `Missing subpage-links-grid in ${p.file}`);
-    assert.ok(html.includes('class="btn btn--') || html.includes('class="btn btn--primary"'), `Missing subpage links in ${p.file}`);
+    // Ensure no phantom blocks exist in DOM markup (outside style tags)
+    const bodyOnly = html.replace(/<style[\s\S]*?<\/style>/gi, '');
+    assert.ok(!bodyOnly.includes('class="subpage-links-grid"'), `Found forbidden subpage-links-grid in ${p.file}`);
+    assert.ok(!bodyOnly.includes('class="contact-b2b"'), `Found forbidden contact-b2b in ${p.file}`);
+    assert.ok(!bodyOnly.includes('subpage-deep'), `Found forbidden subpage-deep factoid in ${p.file}`);
   });
 });
 
-// SEO-18: B2B Commercial Trust Signals (EDO, NDA, Cashless)
-runCheck('SEO-18', 'B2B commercial trust terms (Диадок / СБИС, ЭДО, безналичный расчет, счет-договор, NDA) present', () => {
-  const contactHtml = fs.readFileSync(path.join(ROOT_DIR, 'contact/index.html'), 'utf8');
-  const contactLower = contactHtml.toLowerCase();
-  assert.ok(contactLower.includes('диадок'), 'Missing Диадок in /contact/');
-  assert.ok(contactLower.includes('сбис'), 'Missing СБИС in /contact/');
-  assert.ok(contactLower.includes('эдо'), 'Missing ЭДО in /contact/');
-  assert.ok(contactHtml.includes('NDA'), 'Missing NDA in /contact/');
-  assert.ok(contactLower.includes('безналичный расчет'), 'Missing безналичный расчет in /contact/');
-
+// SEO-18: B2B Commercial Trust Signals (EDO, Diadoc, 152-FZ)
+runCheck('SEO-18', 'B2B commercial trust terms (Диадок, ЭДО, 152-ФЗ) present in canonical content and schema', () => {
   const indexHtml = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8');
   assert.ok(indexHtml.includes('Диадок') || indexHtml.includes('ЭДО'), 'Missing EDO terms in index.html');
+  assert.ok(indexHtml.includes('152-ФЗ'), 'Missing 152-FZ compliance in index.html');
 });
 
 // SEO-20: OfferCatalog and Zero Missing Alt Tags

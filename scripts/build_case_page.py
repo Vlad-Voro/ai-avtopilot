@@ -200,6 +200,11 @@ def build_case_page(case_key: str) -> str:
         roi_sub = roi_sec.find("p", class_="section-subtitle")
         if roi_sub:
             roi_sub.string = data["roi"]["subtitle"]
+        roi_cta = roi_sec.find("div", class_="roi__cta-block")
+        if roi_cta:
+            btn = roi_cta.find("a")
+            if btn:
+                btn["href"] = "#contact"
 
     # 4. Update Compare Section
     comp_sec = soup.find("section", id="compare")

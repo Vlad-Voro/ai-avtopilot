@@ -279,8 +279,9 @@ ul{list-style:none}
 .hero:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 40%,rgba(99,102,241,.12) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 20% 70%,rgba(168,85,247,.08) 0%,transparent 50%);pointer-events:none}
 .hero__particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;width:100%;height:100%}
 .hero__particles canvas{display:block;width:100%!important;height:100%!important}
-.hero__inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:flex-start;position:relative;z-index:1}
-.hero__badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:.8rem;color:var(--text-2);background:var(--surface);border:1px solid var(--border);padding:8px 16px;border-radius:100px;margin-bottom:16px}
+.hero__inner{display:grid;grid-template-columns:1.14fr .86fr;gap:48px;align-items:flex-start;position:relative;z-index:1}
+.hero__badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:.8rem;color:var(--text-2);background:var(--surface);border:1px solid var(--border);padding:8px 16px;border-radius:100px;margin-bottom:16px;max-width:100%;box-sizing:border-box}
+.hero__badge-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .hero__badge-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse-green 2s ease-in-out infinite}
 @keyframes pulse-green{0%,to{box-shadow:0 0 #22c55e66}
 50%{box-shadow:0 0 0 8px #22c55e00}
@@ -526,7 +527,7 @@ to{opacity:1;transform:scale(1) translateY(0)}
 .hero__terminal-wrap{display:none}
 .hero__actions{margin-top:20px}
 .hero__kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.hero__title{font-size:clamp(1.55rem,5.2vw,2.2rem)}
+.hero__title{font-size:clamp(1.8rem,6.2vw,2.35rem)}
 .hero__sub{font-size:1rem}
 .compare__grid{grid-template-columns:1fr;gap:24px}
 .compare__arrow{display:none}
@@ -597,12 +598,12 @@ to{opacity:1;transform:scale(1) translateY(0)}
 
 
 /* Zero CLS Hero Title Animation Box */
-@media(min-width:769px){.hero__title{font-size:clamp(2.1rem,3.2vw,3rem)}
+@media(min-width:769px){.hero__title{font-size:clamp(1.75rem,2.35vw,2.45rem);line-height:1.15;letter-spacing:-.025em}
 }
 
 .hero__title-static{display:block}
 
-.hero__title-accent-box{display:block;min-height:1.25em;height:auto;line-height:1.1;position:relative;overflow:visible;white-space:nowrap}
+.hero__title-accent-box{display:block;min-height:1.25em;height:auto;line-height:1.15;position:relative;overflow:visible;word-break:normal;overflow-wrap:break-word}
 
 @media(min-width:1025px){.hero__title-accent-box{min-height:1.25em;height:auto;overflow:visible}
 }
@@ -611,7 +612,7 @@ to{opacity:1;transform:scale(1) translateY(0)}
 /* Zero CLS Terminal & Cursor */
 .terminal__body{height:240px}
 
-.hero__cursor{position:static;display:inline-block;vertical-align:baseline;margin-left:4px}
+.hero__cursor{position:static;display:inline-block;vertical-align:baseline;margin-left:4px;white-space:nowrap}
 
 
 /* Responsive Container & Scroll Stabilization (F2) */
@@ -1728,8 +1729,8 @@ section[id] {
           </span>
         </h2>
         <p class="hero__sub">
-          Внедряем автономных ИИ-агентов в 1С:ERP, CRM и ЭДО за 14 дней.<br />
-          Забираем ручной перенос данных, сверку документов и рутинные ответы — высвобождая до 80% времени команды.
+          Внедряем ИИ-агентов в 1С:ERP, CRM и ЭДО за 14 дней.<br />
+          Устраняем ручной ввод и сверку первички, высвобождая до 80% времени команды.
         </p>
         <div class="hero__actions">
           <a href="#contact" class="btn btn--primary" id="cta-main">Запустить автоматизацию</a>

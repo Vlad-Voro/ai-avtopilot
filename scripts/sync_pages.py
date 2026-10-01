@@ -176,7 +176,7 @@ def generate_subpage(slug: str, spec: dict, master_html: str) -> str:
     if slug == "services":
         html = html.replace('href="/contact/" class="btn btn--primary"', 'href="#contact" class="btn btn--primary"')
 
-    # For Cases subpage: link secondary hero button to #cases, in-page CTAs to #contact, and append mesh at bottom of #cases section
+    # For Cases subpage: link secondary hero button to #cases, in-page CTAs to #contact
     if slug == "cases":
         html = html.replace(
             '<a href="/cases/" class="btn btn--ghost">Смотреть кейсы →</a>',
@@ -184,42 +184,16 @@ def generate_subpage(slug: str, spec: dict, master_html: str) -> str:
             1,
         )
         html = html.replace('href="/contact/" class="btn btn--primary"', 'href="#contact" class="btn btn--primary"')
-        cases_mesh_target = '      </div>\n      <div class="carousel-dots" id="carousel-dots"></div>\n    </div>\n  </section>\n\n  <!-- ═══════════════════ FAQ SECTION ═══════════════════ -->'
-        cases_mesh_replacement = """      </div>
-      <div class="carousel-dots" id="carousel-dots"></div>
-      <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;justify-content:center;">
-        <a href="/calculator/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Рассчитать ROI под ваши параметры →</a>
-        <a href="/services/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Стек интеграции (1С, ЭДО, CRM) →</a>
-        <a href="#contact" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Заказать бесплатный аудит →</a>
-      </div>
-    </div>
-  </section>
 
-  <!-- ═══════════════════ FAQ SECTION ═══════════════════ -->"""
-        html = html.replace(cases_mesh_target, cases_mesh_replacement, 1)
-
-    # For Calculator subpage: append cross-linking mesh at bottom of calculator section
+    # For Calculator subpage: ensure in-page contact routing
     if slug == "calculator":
         html = html.replace('href="/contact/" class="btn btn--primary"', 'href="#contact" class="btn btn--primary"')
-        calc_mesh_target = "        </div>\n      </div>\n    </div>\n  </section>\n\n  <!-- ═══════════════════ PROBLEM → SOLUTION ═══════════════════ -->"
-        calc_mesh_replacement = """        </div>
-      </div>
-      <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;justify-content:center;">
-        <a href="/cases/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Реальные кейсы клиентов с ROI 340% →</a>
-        <a href="/faq/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Вопросы и ответы по окупаемости →</a>
-        <a href="#contact" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Получить экспресс-аудит (30 мин) →</a>
-      </div>
-    </div>
-  </section>
 
-  <!-- ═══════════════════ PROBLEM → SOLUTION ═══════════════════ -->"""
-        html = html.replace(calc_mesh_target, calc_mesh_replacement, 1)
-
-    # For Dashboard subpage: ensure in-page contact routing (no glued mesh)
+    # For Dashboard subpage: ensure in-page contact routing
     if slug == "dashboard":
         html = html.replace('href="/contact/" class="btn btn--primary"', 'href="#contact" class="btn btn--primary"')
 
-    # For FAQ subpage: promote FAQ section title to H1 and append PageRank mesh under accordion
+    # For FAQ subpage: promote FAQ section title to H1
     if slug == "faq":
         html = html.replace('href="/contact/" class="btn btn--primary"', 'href="#contact" class="btn btn--primary"')
         html = html.replace(
@@ -227,53 +201,14 @@ def generate_subpage(slug: str, spec: dict, master_html: str) -> str:
             '<h1 class="section-title">Часто задаваемые вопросы</h1>',
             1,
         )
-        faq_mesh_target = "      </div>\n    </div>\n  </section>\n\n  <!-- ═══════════════════ LIVE DASHBOARD ═══════════════════ -->"
-        faq_mesh_replacement = """        <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;justify-content:center;">
-          <a href="/services/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Технический стек и протоколы →</a>
-          <a href="/calculator/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Интерактивный калькулятор экономии →</a>
-          <a href="#contact" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Записаться на 30-минутный аудит →</a>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ═══════════════════ LIVE DASHBOARD ═══════════════════ -->"""
-        html = html.replace(faq_mesh_target, faq_mesh_replacement, 1)
-
-    # For Contact subpage: promote Contact title to H1 and append B2B trust mesh & subpage links at the bottom
+    # For Contact subpage: promote Contact title to H1
     if slug == "contact":
         html = html.replace(
             '<h2 class="contact__title">Первый шаг — бесплатный аудит</h2>',
             '<h1 class="contact__title">Первый шаг — бесплатный аудит</h1>',
             1,
         )
-        contact_mesh_target = "    </div>\n  </section>\n  </main>"
-        contact_mesh_replacement = """      <div class="contact-b2b" style="margin-top:36px;border-top:1px solid var(--border);padding-top:24px;">
-        <h3 style="color:var(--text-1);margin-bottom:16px;font-family:var(--font-head);font-size:1.15rem;">Корпоративные стандарты работы и гарантии (B2B)</h3>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:16px;margin-bottom:24px;">
-          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;">
-            <strong style="color:var(--accent-1);display:block;margin-bottom:6px;">ЭДО (Диадок / СБИС)</strong>
-            <span style="color:var(--text-2);font-size:0.85rem;line-height:1.5;display:block;">Мгновенный обмен юридически значимыми документами и закрывающими актами без бумаги.</span>
-          </div>
-          <div style="background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.3);border-radius:var(--radius-sm);padding:16px;">
-            <strong style="color:var(--green);display:block;margin-bottom:6px;">Безналичный расчет</strong>
-            <span style="color:var(--text-2);font-size:0.85rem;line-height:1.5;display:block;">Официальный счет-договор для юридических лиц и ИП с фиксацией SLA и измеримых KPI.</span>
-          </div>
-          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;">
-            <strong style="color:var(--text-1);display:block;margin-bottom:6px;">NDA и безопасность</strong>
-            <span style="color:var(--text-2);font-size:0.85rem;line-height:1.5;display:block;">Строгое соглашение о неразглашении перед стартом. Обработка данных строго по 152-ФЗ РФ.</span>
-          </div>
-        </div>
-        <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:20px;">
-          <a href="/cases/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Смотреть подтвержденные кейсы →</a>
-          <a href="/calculator/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Рассчитать окупаемость →</a>
-          <a href="/faq/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Частые вопросы (FAQ) →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-  </main>"""
-        html = html.replace(contact_mesh_target, contact_mesh_replacement, 1)
 
     # 7. Insert deep_content at the beginning of <main id="main-content"> (if present)
     main_tag = '<main id="main-content">'

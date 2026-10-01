@@ -511,19 +511,6 @@ def generate_service_html(data: dict) -> str:
     </div>
   </section>
 
-  <!-- ═══════════════════ DIRECT ANSWER / FACTOID BLOCK ═══════════════════ -->
-  <section class="container" style="padding: 20px 24px;">
-    <div class="subpage-deep" data-reveal="">
-      <h2 class="subpage-deep__title">{da["title"]}</h2>
-      <p class="subpage-deep__desc">{da["desc"]}</p>
-      <p style="color:var(--text-1); font-size:1.05rem; line-height:1.7; margin-bottom:16px;"><strong>Суть решения:</strong> {da["summary"]}</p>
-      <table class="subpage-table">
-        <tbody>
-{da_params_html}
-        </tbody>
-      </table>
-    </div>
-  </section>
 
   <!-- ═══════════════════ ROI CALCULATOR ═══════════════════ -->
   <section class="roi" id="calculator">
