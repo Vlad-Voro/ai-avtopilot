@@ -381,12 +381,16 @@ flowchart TD
 5. ❌ **Zero Duplicate CTA Buttons**: Prohibited to duplicate audit buttons inside demo widgets or intermediate cards.
 6. ❌ **Zero Extra Form Fields**: Prohibited to introduce unstyled `<select>` elements, radio buttons, or non-standard inputs into the canonical lead capture form.
 7. ❌ **Zero Incomplete Sliders**: Prohibited to output static or broken calculator sliders without reactive JS bindings and gradient `--fill` updates.
+8. ❌ **Zero Duplicate Event Listeners & Script Collision**: Never re-attach inline script listeners for components already wired in the master bundle `index-Bx30wa4i.js` (Hero typewriter `#typed-text`, FAQ accordion `.faq-item__header`, ROI sliders, Nav burger, Modals). Duplicate listeners cause instant cancellation / double-toggle bugs (e.g. FAQ opening and immediately closing on click).
+9. ❌ **Zero Typewriter Phrase Wrapping & Hero Jitter**: All phrases in `data-phrases` for `#typed-text` MUST be compact ($\le 26$ characters) to guarantee 1-line display inside `.hero__title-accent-box` with explicit `min-height: 1.2em` / `2.4em`, eliminating multi-line reflow and layout shift (CLS).
+10. ❌ **Zero Calculator Math Divergence**: Sliders `#slider-employees`, `#slider-hours`, `#slider-salary` must adhere strictly to the core mathematical contract ($E \times S \times \frac{H}{160} \times 12$ annual routine cost, $80\%$ savings, $E \times H \times 52$ routine hours) and canonical IDs (`#roi-cost`, `#roi-save`, `#roi-hours`) with valid Russian locale currency formatting.
+11. ❌ **Zero Static SSR Terminal Stubs**: Telemetry terminals, live logs, and KPI badge values must be pre-rendered in SSR HTML to avoid empty layout boxes or FOUC before client JS execution.
 
 ### 10.4. Single-Prompt Generation Protocol (`/plan`)
 
 When generating or scaling a new service page via a single `/plan` prompt:
 1. **Copywriting Phase**: Draft hardcore B2B copy with concrete enterprise integrations (1C OData, Diadoc SDK, SBIS, P&L, DDS, 14-day pilot, SLAs).
 2. **Template Synthesis**: Use [`scripts/build_reporting_page.py`](file:///d:/AI/data/ai-avtopilot/scripts/build_reporting_page.py) as reference engine to clone master styles, layout, and scripts without CSS drift.
-3. **Interactive Calibrations**: Adapt typewriter `data-phrases` and ROI calculator formula & slider bounds.
+3. **Interactive Calibrations**: Adapt typewriter `data-phrases` ($\le 26$ chars) and standard ROI calculator labels while leveraging master bundle events.
 4. **Bento Interlinking**: Update `index.html` and `services/index.html` with `.scard.scard--link` pointing to `/services/<new-slug>/`.
 5. **Validation Gate**: Run `node tests/run_all.js` (all 131 tests MUST pass 100% green before push).
