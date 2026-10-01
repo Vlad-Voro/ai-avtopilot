@@ -332,6 +332,9 @@ to{opacity:1}
 .scard--link{text-decoration:none;color:inherit;cursor:pointer}
 .scard--link:hover .scard__arrow{transform:translateX(4px);color:var(--accent-1)}
 .scard__arrow{display:inline-block;transition:transform .2s ease,color .2s ease;margin-left:6px;color:var(--text-3)}
+.case-card--link{text-decoration:none;color:inherit;cursor:pointer}
+.case-card--link:hover .case-card__arrow{transform:translateX(4px);color:var(--accent-1)}
+.case-card__arrow{display:inline-block;transition:transform .2s ease,color .2s ease;margin-left:6px;color:var(--text-3)}
 .scard--wide{grid-column:span 2}
 .scard--dark{background:#0e0e18}
 .scard--accent{background:linear-gradient(135deg,#6366f133,#a855f733);border-color:#6366f180;box-shadow:0 0 48px #6366f11f}
@@ -1834,143 +1837,7 @@ section[id] {
 </div>
 </section>
 <!-- ═══════════════════ CASE STUDIES ═══════════════════ -->
-<section class="cases" id="cases">
-<div class="container">
-<div class="section-header">
-<p class="section-tag" data-reveal="">Результаты клиентов</p>
-<h2 class="section-title" data-reveal="">Кейсы внедрения</h2>
-</div>
-<div class="cases__grid" data-reveal="">
-<div class="case-card case-card--retail">
-<div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--retail"></span>🏪 Сеть магазинов · 230 точек</div>
-<h3 class="case-card__title">Автоматизация инвентаризации и заказов</h3>
-<p class="case-card__desc">Внедрили агентов для <span class="case-highlight case-highlight--retail">синхронизации остатков</span> между складами и точками продаж,
-            автоматической генерации заявок поставщикам при снижении ТМЦ ниже порога.</p>
-<div class="case-card__results">
-<div class="case-result">
-<span class="case-result__num">−72%</span>
-<span class="case-result__label">ручного труда в учёте</span>
-</div>
-<div class="case-result">
-<span class="case-result__num case-num--green">+18%</span>
-<span class="case-result__label">оборачиваемость склада</span>
-</div>
-<div class="case-result">
-<span class="case-result__num case-num--gold">9 200</span>
-<span class="case-result__label">часов сэкономлено/год</span>
-</div>
-</div>
-<div class="case-card__tags"><span>1С:Розница</span><span>RPA</span><span>ИИ-агент</span></div>
-</div>
-<div class="case-card case-card--edi">
-<div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--edi"></span>🏭 Производство · Средний бизнес</div>
-<h3 class="case-card__title">Полностью цифровой документооборот</h3>
-<p class="case-card__desc">Переход с бумажных актов и накладных на <span class="case-highlight case-highlight--edi">автоматический ЭДО</span>. Роботы создают,
-            проверяют, подписывают и архивируют документы без участия бухгалтера.</p>
-<div class="case-card__results">
-<div class="case-result">
-<span class="case-result__num">−90%</span>
-<span class="case-result__label">бумажного документооборота</span>
-</div>
-<div class="case-result">
-<span class="case-result__num case-num--cyan">5 мин</span>
-<span class="case-result__label">вместо 3 дней на отчёт</span>
-</div>
-<div class="case-result">
-<span class="case-result__num case-num--violet">≥ 400%</span>
-<span class="case-result__label">ROI за первый год</span>
-</div>
-</div>
-<div class="case-card__tags"><span>ЭДО</span><span>SAP</span><span>Автоматизация</span></div>
-</div>
-<div class="case-card case-card--service">
-<div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--service"></span>📞 Сервисный центр · 40 000 клиентов/мес</div>
-<h3 class="case-card__title">ИИ-оператор поддержки 24/7</h3>
-<p class="case-card__desc">Заменили первую линию поддержки <span class="case-highlight case-highlight--service">ИИ-агентом</span>, который понимает запросы, обращается к
-            базе знаний и решает типовые вопросы без передачи оператору.</p>
-<div class="case-card__results">
-<div class="case-result">
-<span class="case-result__num case-num--green">80%</span>
-<span class="case-result__label">запросов закрыто ИИ</span>
-</div>
-<div class="case-result">
-<span class="case-result__num case-num--cyan">&lt; 3s</span>
-<span class="case-result__label">время ответа</span>
-</div>
-<div class="case-result">
-<span class="case-result__num">−60%</span>
-<span class="case-result__label">нагрузка на команду</span>
-</div>
-</div>
-<div class="case-card__tags"><span>LLM</span><span>Чатбот</span><span>CRM</span></div>
-</div>
-<div class="case-card case-card--hr">
-<div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--hr"></span>👥 HR-департамент · Крупный ритейл</div>
-<h3 class="case-card__title">Автоматизация найма и онбординга</h3>
-<p class="case-card__desc">Внедрение ИИ-агента для <span class="case-highlight case-highlight--hr">скрининга 5000+ резюме</span> в месяц, автоматического назначения
-            собеседований и подготовки документов.</p>
-<div class="case-card__results">
-<div class="case-result">
-<span class="case-result__num">−85%</span>
-<span class="case-result__label">времени на отбор</span>
-</div>
-<div class="case-result">
-<span class="case-result__num case-num--green">+40%</span>
-<span class="case-result__label">скорость найма</span>
-</div>
-<div class="case-result">
-<span class="case-result__num case-num--lilac">0</span>
-<span class="case-result__label">пропущенных резюме</span>
-</div>
-</div>
-<div class="case-card__tags"><span>NLP</span><span>HR-Tech</span><span>Automation</span></div>
-</div>
-<div class="case-card case-card--logistics">
-<div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--logistics"></span>🚛 Логистический хаб · Cargo Express</div>
-<h3 class="case-card__title">Управление цепочками поставок</h3>
-<p class="case-card__desc">Агенты мониторят статус грузов в <span class="case-highlight case-highlight--logistics">реальном времени</span>, формируют таможенные декларации
-            и уведомляют клиентов о задержках.</p>
-<div class="case-card__results">
-<div class="case-result">
-<span class="case-result__num">−30%</span>
-<span class="case-result__label">затрат на логистику</span>
-</div>
-<div class="case-result">
-<span class="case-result__num case-num--green">100%</span>
-<span class="case-result__label">точность документов</span>
-</div>
-<div class="case-result">
-<span class="case-result__num case-num--cyan">&lt; 1 мин</span>
-<span class="case-result__label">уведомление о задержке рейса</span>
-</div>
-</div>
-<div class="case-card__tags"><span>Logistics</span><span>ИИ-агенты</span><span>API</span></div>
-</div>
-<div class="case-card case-card--fintech">
-<div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--fintech"></span>💳 Финтех-стартап · b2b платежи</div>
-<h3 class="case-card__title">Автоматическая сверка транзакций</h3>
-<p class="case-card__desc">Роботизация сверки <span class="case-highlight case-highlight--fintech">тысяч транзакций</span> между банками и CRM. Агенты находят расхождения
-            и мгновенно формируют отчеты.</p>
-<div class="case-card__results">
-<div class="case-result">
-<span class="case-result__num">−95%</span>
-<span class="case-result__label">ошибок в расчетах</span>
-</div>
-<div class="case-result">
-<span class="case-result__num case-num--gold">10s</span>
-<span class="case-result__label">вместо 4 часов</span>
-</div>
-<div class="case-result">
-<span class="case-result__num case-num--sky">100%</span>
-<span class="case-result__label">соответствие 152-ФЗ и ЦБ</span>
-</div>
-</div>
-<div class="case-card__tags"><span>Fintech</span><span>SQL</span><span>Analytics</span></div>
-</div>
-</div>
-<div class="carousel-dots" id="carousel-dots"></div>
-</div>
-</section>
+
 <!-- ═══════════════════ FAQ SECTION ═══════════════════ -->
 <section class="faq" id="faq">
 <div class="container">
@@ -2110,7 +1977,123 @@ section[id] {
 </div>
 </section>
 <!-- ═══════════════════ CTA + CONTACT ═══════════════════ -->
-<section class="contact" id="contact">
+<section class="cases" id="cases">
+<div class="container">
+<div class="section-header">
+<p class="section-tag" data-reveal="">Смежные проекты</p>
+<h2 class="section-title" data-reveal="">Другие кейсы</h2>
+</div>
+<div class="cases__grid" data-reveal="">
+
+<div class="case-card case-card--edi">
+<div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--edi"></span>🏭 Производство · Средний бизнес</div>
+<h3 class="case-card__title">Полностью цифровой документооборот</h3>
+<p class="case-card__desc">Переход с бумажных актов и накладных на <span class="case-highlight case-highlight--edi">автоматический ЭДО</span>. Роботы создают,
+            проверяют, подписывают и архивируют документы без участия бухгалтера.</p>
+<div class="case-card__results">
+<div class="case-result">
+<span class="case-result__num">−90%</span>
+<span class="case-result__label">бумажного документооборота</span>
+</div>
+<div class="case-result">
+<span class="case-result__num case-num--cyan">5 мин</span>
+<span class="case-result__label">вместо 3 дней на отчёт</span>
+</div>
+<div class="case-result">
+<span class="case-result__num case-num--violet">≥ 400%</span>
+<span class="case-result__label">ROI за первый год</span>
+</div>
+</div>
+<div class="case-card__tags"><span>ЭДО</span><span>SAP</span><span>Автоматизация</span></div>
+</div>
+<div class="case-card case-card--service">
+<div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--service"></span>📞 Сервисный центр · 40 000 клиентов/мес</div>
+<h3 class="case-card__title">ИИ-оператор поддержки 24/7</h3>
+<p class="case-card__desc">Заменили первую линию поддержки <span class="case-highlight case-highlight--service">ИИ-агентом</span>, который понимает запросы, обращается к
+            базе знаний и решает типовые вопросы без передачи оператору.</p>
+<div class="case-card__results">
+<div class="case-result">
+<span class="case-result__num case-num--green">80%</span>
+<span class="case-result__label">запросов закрыто ИИ</span>
+</div>
+<div class="case-result">
+<span class="case-result__num case-num--cyan">&lt; 3s</span>
+<span class="case-result__label">время ответа</span>
+</div>
+<div class="case-result">
+<span class="case-result__num">−60%</span>
+<span class="case-result__label">нагрузка на команду</span>
+</div>
+</div>
+<div class="case-card__tags"><span>LLM</span><span>Чатбот</span><span>CRM</span></div>
+</div>
+<div class="case-card case-card--hr">
+<div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--hr"></span>👥 HR-департамент · Крупный ритейл</div>
+<h3 class="case-card__title">Автоматизация найма и онбординга</h3>
+<p class="case-card__desc">Внедрение ИИ-агента для <span class="case-highlight case-highlight--hr">скрининга 5000+ резюме</span> в месяц, автоматического назначения
+            собеседований и подготовки документов.</p>
+<div class="case-card__results">
+<div class="case-result">
+<span class="case-result__num">−85%</span>
+<span class="case-result__label">времени на отбор</span>
+</div>
+<div class="case-result">
+<span class="case-result__num case-num--green">+40%</span>
+<span class="case-result__label">скорость найма</span>
+</div>
+<div class="case-result">
+<span class="case-result__num case-num--lilac">0</span>
+<span class="case-result__label">пропущенных резюме</span>
+</div>
+</div>
+<div class="case-card__tags"><span>NLP</span><span>HR-Tech</span><span>Automation</span></div>
+</div>
+<div class="case-card case-card--logistics">
+<div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--logistics"></span>🚛 Логистический хаб · Cargo Express</div>
+<h3 class="case-card__title">Управление цепочками поставок</h3>
+<p class="case-card__desc">Агенты мониторят статус грузов в <span class="case-highlight case-highlight--logistics">реальном времени</span>, формируют таможенные декларации
+            и уведомляют клиентов о задержках.</p>
+<div class="case-card__results">
+<div class="case-result">
+<span class="case-result__num">−30%</span>
+<span class="case-result__label">затрат на логистику</span>
+</div>
+<div class="case-result">
+<span class="case-result__num case-num--green">100%</span>
+<span class="case-result__label">точность документов</span>
+</div>
+<div class="case-result">
+<span class="case-result__num case-num--cyan">&lt; 1 мин</span>
+<span class="case-result__label">уведомление о задержке рейса</span>
+</div>
+</div>
+<div class="case-card__tags"><span>Logistics</span><span>ИИ-агенты</span><span>API</span></div>
+</div>
+<div class="case-card case-card--fintech">
+<div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--fintech"></span>💳 Финтех-стартап · b2b платежи</div>
+<h3 class="case-card__title">Автоматическая сверка транзакций</h3>
+<p class="case-card__desc">Роботизация сверки <span class="case-highlight case-highlight--fintech">тысяч транзакций</span> между банками и CRM. Агенты находят расхождения
+            и мгновенно формируют отчеты.</p>
+<div class="case-card__results">
+<div class="case-result">
+<span class="case-result__num">−95%</span>
+<span class="case-result__label">ошибок в расчетах</span>
+</div>
+<div class="case-result">
+<span class="case-result__num case-num--gold">10s</span>
+<span class="case-result__label">вместо 4 часов</span>
+</div>
+<div class="case-result">
+<span class="case-result__num case-num--sky">100%</span>
+<span class="case-result__label">соответствие 152-ФЗ и ЦБ</span>
+</div>
+</div>
+<div class="case-card__tags"><span>Fintech</span><span>SQL</span><span>Analytics</span></div>
+</div>
+</div>
+<div class="carousel-dots" id="carousel-dots"></div>
+</div>
+</section><section class="contact" id="contact">
 <div class="container">
 <div class="contact__inner" data-reveal="">
 <div class="contact__text">

@@ -397,3 +397,49 @@ When generating or scaling a new service page via a single `/plan` prompt:
 3. **Interactive Calibrations**: Adapt typewriter `data-phrases` ($\le 26$ chars) and standard ROI calculator labels while leveraging master bundle events.
 4. **Bento Interlinking**: Update `index.html` and `services/index.html` with `.scard.scard--link` pointing to `/services/<new-slug>/`.
 5. **Validation Gate**: Run `node tests/run_all.js` (all 131 tests MUST pass 100% green before push).
+
+---
+
+## 11. Canonical Specification & Generation Manifest for Case Study Landing Pages (`/cases/<slug>/`)
+
+> **Golden Standard (Эталон)**: Every dedicated case study subpage in the `/cases/` cluster must be built as an autonomous, high-converting standalone landing page highlighting hard ROI metrics, real 1C/ERP architectural workflows, and 152-FZ on-premise security.
+
+```mermaid
+flowchart TD
+    Index["/ (Homepage)"] -->|Case Card .case-card--link| CasePage["/cases/<slug>/ (Dedicated Case Page)"]
+    Hub["/cases/ (Hub)"] -->|Mesh / Case Link| CasePage
+    
+    subgraph CaseStructure ["Canonical Case Study Conversion Flow (/cases/<slug>/)"]
+        C1["1. Navigation (header.nav)"]
+        C2["2. Hero (H1 + 3 Hard KPI Cards + CTAs)"]
+        C3["3. ROI Calculator (Industry Pre-calibrated Sliders)"]
+        C4["4. Compare (Problem 'Было' vs Autopilot 'Стало')"]
+        C5["5. Solutions / Bento Architecture (.scard modules)"]
+        C6["6. FAQ Accordion (152-FZ, 1C CFE extensions, SLA)"]
+        C7["7. Live Telemetry & Log Simulator (#dashboard)"]
+        C8["8. Other Case Studies (#cases 'Другие кейсы' at bottom)"]
+        C9["9. Contact Form (Canonical 3-field layout)"]
+        C10["10. Footer (JSON-LD + 24/7 support)"]
+        
+        C1 --> C2 --> C3 --> C4 --> C5 --> C6 --> C7 --> C8 --> C9 --> C10
+    end
+```
+
+### 11.1. Key Structural & Layout Rules for Case Pages
+
+1. **Location & Routing**: `cases/<slug>/index.html` (e.g. `cases/retail-inventory-automation/index.html`). Canonical URL: `https://ai-avtopilot.ru/cases/<slug>/`.
+2. **Homepage & Hub Case Card Linking**:
+   - On `index.html` and `cases/index.html`, case cards can be wrapped as accessible link blocks:
+     `<a href="/cases/<slug>/" class="case-card case-card--<theme> case-card--link" role="group" aria-roledescription="slide" aria-label="<Заголовок>: подробнее...">`
+   - Hover elevates the card with `-6px` translation and moves arrow `<span class="case-card__arrow">→</span>` by `4px`.
+3. **Bottom Placement of "Другие кейсы"**:
+   - On dedicated case pages, the `#cases` section is repositioned to the bottom (immediately above `#contact`) and renamed to **"Другие кейсы"** (tag: *«Смежные проекты»*), showing sibling cases and excluding the active case itself.
+4. **Microdata & Schema.org**:
+   - `TechArticle` with headline, description, author, publisher, `datePublished`, `dateModified`, and `image`.
+   - `BreadcrumbList` (3 levels: Главная $\to$ Кейсы $\to$ Название кейса).
+   - `FAQPage` matching accordion questions 1:1.
+5. **Generation Engine**:
+   - Declarative content database: `data/cases_data.json`
+   - Pre-checked semantic registry: `data/cases_semantics.json`
+   - Parameterized builder: `python scripts/build_case_page.py --case <slug>` (or `--all`)
+

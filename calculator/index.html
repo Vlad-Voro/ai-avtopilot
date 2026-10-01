@@ -345,6 +345,9 @@ to{opacity:1}
 .scard--link{text-decoration:none;color:inherit;cursor:pointer}
 .scard--link:hover .scard__arrow{transform:translateX(4px);color:var(--accent-1)}
 .scard__arrow{display:inline-block;transition:transform .2s ease,color .2s ease;margin-left:6px;color:var(--text-3)}
+.case-card--link{text-decoration:none;color:inherit;cursor:pointer}
+.case-card--link:hover .case-card__arrow{transform:translateX(4px);color:var(--accent-1)}
+.case-card__arrow{display:inline-block;transition:transform .2s ease,color .2s ease;margin-left:6px;color:var(--text-3)}
 .scard--wide{grid-column:span 2}
 .scard--dark{background:#0e0e18}
 .scard--accent{background:linear-gradient(135deg,#6366f133,#a855f733);border-color:#6366f180;box-shadow:0 0 48px #6366f11f}
@@ -1994,9 +1997,9 @@ section[id] {
       </div>
       <div class="cases__grid" data-reveal>
 
-        <div class="case-card case-card--retail">
+        <a href="/cases/retail-inventory-automation/" class="case-card case-card--retail case-card--link" role="group" aria-roledescription="slide" aria-label="Автоматизация инвентаризации и заказов: подробнее о кейсе внедрения">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--retail"></span>🏪 Сеть магазинов · 230 точек</div>
-          <h3 class="case-card__title">Автоматизация инвентаризации и заказов</h3>
+          <h3 class="case-card__title">Автоматизация инвентаризации и заказов <span class="case-card__arrow" aria-hidden="true">→</span></h3>
           <p class="case-card__desc">Внедрили агентов для <span class="case-highlight case-highlight--retail">синхронизации остатков</span> между складами и точками продаж,
             автоматической генерации заявок поставщикам при снижении ТМЦ ниже порога.</p>
           <div class="case-card__results">
@@ -2014,7 +2017,7 @@ section[id] {
             </div>
           </div>
           <div class="case-card__tags"><span>1С:Розница</span><span>RPA</span><span>ИИ-агент</span></div>
-        </div>
+        </a>
 
         <div class="case-card case-card--edi">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--edi"></span>🏭 Производство · Средний бизнес</div>

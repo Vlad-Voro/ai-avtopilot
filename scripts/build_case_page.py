@@ -302,6 +302,30 @@ def build_case_page(case_key: str) -> str:
         if dash_title:
             dash_title.string = data["dashboard"]["title"]
 
+    # 8. Reposition Cases Section to Bottom & Rename to "Другие кейсы"
+    cases_sec = soup.find("section", id="cases")
+    contact_sec = soup.find("section", id="contact")
+    if cases_sec and contact_sec:
+        # Move section.cases right before section.contact
+        contact_sec.insert_before(cases_sec)
+
+        # Update Section Header
+        case_tag = cases_sec.find("p", class_="section-tag")
+        if case_tag:
+            case_tag.string = "Смежные проекты"
+        case_title = cases_sec.find("h2", class_="section-title")
+        if case_title:
+            case_title.string = "Другие кейсы"
+
+        # Remove the current case card from "Другие кейсы" grid so only sibling cases show
+        cases_grid = cases_sec.find("div", class_="cases__grid")
+        if cases_grid:
+            current_card = (
+                cases_grid.find(class_=f"case-card--retail") if slug == "retail-inventory-automation" else None
+            )
+            if current_card:
+                current_card.decompose()
+
     # Write output
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(str(soup))
