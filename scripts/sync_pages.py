@@ -18,70 +18,7 @@ SUBPAGES_SPEC = {
         "description": "Профессиональные услуги роботизации процессов (RPA + LLM): интеграция ИИ с 1С:ERP, УТ, Бухгалтерия, цифровой документооборот ЭДО, склад и саппорт 24/7.",
         "h1": "Услуги внедрения ИИ-агентов и роботизации процессов",
         "breadcrumb_name": "Услуги",
-        "deep_content": """
-      <div class="subpage-deep" data-reveal>
-        <nav class="breadcrumbs" aria-label="Хлебные крошки">
-          <a href="/">Главная</a>
-          <span class="breadcrumbs__sep">/</span>
-          <span>Услуги</span>
-        </nav>
-        <h1 class="subpage-deep__title">Услуги внедрения ИИ-агентов и автоматизации процессов</h1>
-        <p class="subpage-deep__desc">
-          «АвтоПилот» проектирует и развёртывает автономных ИИ-агентов, которые интегрируются в корпоративный контур без изменения архитектуры существующих систем. Мы автоматизируем до 80% учетных и транзакционных операций бухгалтерии, логистики, снабжения, продаж и клиентского сервиса.
-        </p>
-
-        <h3 style="color:var(--text-1);margin:24px 0 12px;font-family:var(--font-head);font-size:1.2rem;">Стек интеграционных протоколов и поддерживаемые платформы</h3>
-        <div style="overflow-x:auto;">
-          <table class="subpage-table">
-            <thead>
-              <tr>
-                <th>Платформа / Система</th>
-                <th>Метод интеграции</th>
-                <th>Автоматизируемые задачи</th>
-                <th>Скорость обработки</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>1С:ERP / УТ / Бухгалтерия</strong></td>
-                <td>1C OData REST API, HTTP-сервисы, COM</td>
-                <td>Распознавание первички (УПД, счета), сверка взаиморасчетов, P&L отчёты</td>
-                <td>45 сек / документ</td>
-              </tr>
-              <tr>
-                <td><strong>ЭДО (Диадок / СБИС)</strong></td>
-                <td>Контур.Диадок SDK, Тензор API</td>
-                <td>Юридический аудит договоров, автоподписание актов, маршрутизация</td>
-                <td>30 сек / договор</td>
-              </tr>
-              <tr>
-                <td><strong>Маркетплейсы (WB, Ozon, Я.Маркет)</strong></td>
-                <td>Seller Open API, WMS Webhooks</td>
-                <td>Мониторинг цен конкурентов, автопереоценка, контроль страховых остатков</td>
-                <td>В режиме 24/7</td>
-              </tr>
-              <tr>
-                <td><strong>CRM (Битрикс24, amoCRM)</strong></td>
-                <td>REST Webhooks, Open Channels</td>
-                <td>Квалификация лидов BANT/SPIN, формирование КП, автоответы 24/7</td>
-                <td>&lt; 40 секунд</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3 style="color:var(--text-1);margin:28px 0 12px;font-family:var(--font-head);font-size:1.2rem;">Регламент пилотного запуска за 14 дней</h3>
-        <p style="color:var(--text-2);font-size:0.95rem;line-height:1.65;">
-          Каждый проект начинается с фиксированного 14-дневного пилота. Мы берем 1–3 ключевых участка учета, подключаем модель к вашим данным через защищенный шлюз и калибруем точность до 99%+. Вы оплачиваете основной контракт только после подтверждения измеримого экономического эффекта.
-        </p>
-
-        <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:24px;">
-          <a href="/cases/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Смотреть кейсы внедрения →</a>
-          <a href="/calculator/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Рассчитать ROI на калькуляторе →</a>
-          <a href="/faq/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Частые вопросы (FAQ) →</a>
-        </div>
-      </div>
-""",
+        "deep_content": "",
     },
     "cases": {
         "dir": os.path.join(ROOT_DIR, "cases"),
@@ -189,39 +126,7 @@ SUBPAGES_SPEC = {
         "description": "Демонстрация интерфейса мониторинга ИИ-агентов: телеметрия в реальном времени, скорость обработки, процент автономных решений, журнал событий 1С и ЭДО.",
         "h1": "Интерактивный дашборд мониторинга и метрик ИИ-агентов",
         "breadcrumb_name": "Дашборд",
-        "deep_content": """
-      <div class="subpage-deep" data-reveal>
-        <nav class="breadcrumbs" aria-label="Хлебные крошки">
-          <a href="/">Главная</a>
-          <span class="breadcrumbs__sep">/</span>
-          <span>Дашборд</span>
-        </nav>
-        <h1 class="subpage-deep__title">Интерактивный дашборд и метрики эффективности агентов</h1>
-        <p class="subpage-deep__desc">
-          Каждое корпоративное внедрение «АвтоПилот» оснащается системой сквозной телеметрии. Руководитель видит объём обработанных задач, скорость выполнения каждого агента и экономический эффект за смену в режиме реального времени.
-        </p>
-
-        <h3 style="color:var(--text-1);margin:24px 0 12px;font-family:var(--font-head);font-size:1.2rem;">Ключевые параметры мониторинга</h3>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:16px;margin:20px 0;">
-          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:18px;">
-            <strong style="color:var(--accent-1);display:block;font-size:1.3rem;font-family:var(--font-head);">99.4%</strong>
-            <span style="color:var(--text-3);font-size:0.8rem;">Автономность без участия человека</span>
-          </div>
-          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:18px;">
-            <strong style="color:var(--green);display:block;font-size:1.3rem;font-family:var(--font-head);">&lt; 45 сек</strong>
-            <span style="color:var(--text-3);font-size:0.8rem;">Среднее время операции в 1С/ЭДО</span>
-          </div>
-          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:18px;">
-            <strong style="color:var(--text-1);display:block;font-size:1.3rem;font-family:var(--font-head);">99.9%</strong>
-            <span style="color:var(--text-3);font-size:0.8rem;">Гарантированный SLA доступности</span>
-          </div>
-        <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:24px;">
-          <a href="/services/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Каталог поддерживаемых систем →</a>
-          <a href="/cases/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Кейсы с подтвержденными метриками →</a>
-          <a href="/contact/" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Подключить телеметрию для бизнеса →</a>
-        </div>
-      </div>
-""",
+        "deep_content": "",
     },
     "faq": {
         "dir": os.path.join(ROOT_DIR, "faq"),
@@ -311,8 +216,55 @@ def generate_subpage(slug: str, spec: dict, master_html: str) -> str:
         except Exception as e:
             print(f"Error updating JSON-LD for {slug}: {e}")
 
-    # 6. Transform <h1 class="hero__title"> to <h2 class="hero__title"> on subpages so exactly 1 H1 exists
-    html = re.sub(r'<h1 class="hero__title">(.*?)</h1>', r'<h2 class="hero__title">\1</h2>', html, flags=re.DOTALL)
+    # 6. Ensure exactly 1 H1 exists per page
+    if spec.get("deep_content"):
+        html = re.sub(r'<h1 class="hero__title">(.*?)</h1>', r'<h2 class="hero__title">\1</h2>', html, flags=re.DOTALL)
+    elif slug == "faq":
+        html = re.sub(r'<h1 class="hero__title">(.*?)</h1>', r'<h2 class="hero__title">\1</h2>', html, flags=re.DOTALL)
+        html = html.replace(
+            '<h2 class="section-title">Часто задаваемые вопросы</h2>',
+            '<h1 class="section-title">Часто задаваемые вопросы</h1>',
+            1,
+        )
+    elif slug == "contact":
+        html = re.sub(r'<h1 class="hero__title">(.*?)</h1>', r'<h2 class="hero__title">\1</h2>', html, flags=re.DOTALL)
+        html = html.replace(
+            '<h2 class="contact__title">Первый шаг — бесплатный аудит</h2>',
+            '<h1 class="contact__title">Первый шаг — бесплатный аудит</h1>',
+            1,
+        )
+
+    # For Services subpage: append cross-linking mesh at the end of the services bento section
+    if slug == "services":
+        services_mesh_target = (
+            '      <div class="carousel-dots services-dots" id="services-dots"></div>\n    </div>\n  </section>'
+        )
+        services_mesh_replacement = """      <div class="carousel-dots services-dots" id="services-dots"></div>
+        <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;justify-content:center;">
+          <a href="/services/automated-reporting/" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Автоотчетность и P&L из 1С →</a>
+          <a href="/cases/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Смотреть кейсы внедрения →</a>
+          <a href="/calculator/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Рассчитать ROI на калькуляторе →</a>
+          <a href="/faq/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Частые вопросы (FAQ) →</a>
+        </div>
+    </div>
+  </section>"""
+        html = html.replace(services_mesh_target, services_mesh_replacement, 1)
+
+    # For Dashboard subpage: append cross-linking mesh at the end of the telemetry dashboard section
+    if slug == "dashboard":
+        dash_mesh_target = "        </div>\n      </div>\n    </div>\n  </section>\n\n  <!-- ═══════════════════ CTA + CONTACT ═══════════════════ -->"
+        dash_mesh_replacement = """        </div>
+      </div>
+      <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;justify-content:center;">
+        <a href="/services/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Каталог поддерживаемых систем →</a>
+        <a href="/cases/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Кейсы с подтвержденными метриками →</a>
+        <a href="/contact/" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Подключить телеметрию для бизнеса →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CTA + CONTACT ═══════════════════ -->"""
+        html = html.replace(dash_mesh_target, dash_mesh_replacement, 1)
 
     # For FAQ subpage: promote FAQ section title to H1 and append PageRank mesh under accordion
     if slug == "faq":

@@ -340,8 +340,11 @@ to{opacity:1}
 .compare__arrow-line{width:2px;height:40px;background:linear-gradient(180deg,transparent,var(--accent-1))}
 .services{padding:15px 0 30px}
 .services__bento{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:auto;gap:16px}
-.scard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px;transition:border-color .3s,transform .3s,box-shadow .3s}
+.scard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px;transition:border-color .3s,transform .3s,box-shadow .3s;display:flex;flex-direction:column}
 .scard:hover{border-color:var(--border-glow);transform:translateY(-4px);box-shadow:0 16px 48px #6366f11a}
+.scard--link{text-decoration:none;color:inherit;cursor:pointer}
+.scard--link:hover .scard__arrow{transform:translateX(4px);color:var(--accent-1)}
+.scard__arrow{display:inline-block;transition:transform .2s ease,color .2s ease;margin-left:6px;color:var(--text-3)}
 .scard--wide{grid-column:span 2}
 .scard--dark{background:#0e0e18}
 .scard--accent{background:linear-gradient(135deg,#6366f133,#a855f733);border-color:#6366f180;box-shadow:0 0 48px #6366f11f}
@@ -1700,53 +1703,18 @@ section[id] {
   </header>
 
   <main id="main-content">
-  <div class="container" style="padding-top:100px;">
-
-      <div class="subpage-deep" data-reveal>
-        <nav class="breadcrumbs" aria-label="Хлебные крошки">
-          <a href="/">Главная</a>
-          <span class="breadcrumbs__sep">/</span>
-          <span>Дашборд</span>
-        </nav>
-        <h1 class="subpage-deep__title">Интерактивный дашборд и метрики эффективности агентов</h1>
-        <p class="subpage-deep__desc">
-          Каждое корпоративное внедрение «АвтоПилот» оснащается системой сквозной телеметрии. Руководитель видит объём обработанных задач, скорость выполнения каждого агента и экономический эффект за смену в режиме реального времени.
-        </p>
-
-        <h3 style="color:var(--text-1);margin:24px 0 12px;font-family:var(--font-head);font-size:1.2rem;">Ключевые параметры мониторинга</h3>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:16px;margin:20px 0;">
-          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:18px;">
-            <strong style="color:var(--accent-1);display:block;font-size:1.3rem;font-family:var(--font-head);">99.4%</strong>
-            <span style="color:var(--text-3);font-size:0.8rem;">Автономность без участия человека</span>
-          </div>
-          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:18px;">
-            <strong style="color:var(--green);display:block;font-size:1.3rem;font-family:var(--font-head);">&lt; 45 сек</strong>
-            <span style="color:var(--text-3);font-size:0.8rem;">Среднее время операции в 1С/ЭДО</span>
-          </div>
-          <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:18px;">
-            <strong style="color:var(--text-1);display:block;font-size:1.3rem;font-family:var(--font-head);">99.9%</strong>
-            <span style="color:var(--text-3);font-size:0.8rem;">Гарантированный SLA доступности</span>
-          </div>
-        <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:24px;">
-          <a href="/services/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Каталог поддерживаемых систем →</a>
-          <a href="/cases/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Кейсы с подтвержденными метриками →</a>
-          <a href="/contact/" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Подключить телеметрию для бизнеса →</a>
-        </div>
-      </div>
-
-  </div>
 
   <!-- ═══════════════════ HERO ═══════════════════ -->
   <section class="hero" id="home">
     <div class="hero__particles" id="particles"></div>
     <div class="container hero__inner">
       <div class="hero__content">
-        <h2 class="hero__title">
+        <h1 class="hero__title">
           <span class="hero__title-static">Ваши процессы </span>
           <span class="hero__title-accent-box">
             <span class="hero__title-accent" id="typed-text">работают на автопилоте</span><span class="hero__cursor" aria-hidden="true">|</span>
           </span>
-        </h2>
+        </h1>
         <p class="hero__sub">
           Внедряем автономных ИИ-агентов в 1С:ERP, CRM и ЭДО за 14 дней.<br />
           Забираем ручной перенос данных, сверку документов и рутинные ответы — высвобождая до 80% времени команды.
@@ -1935,11 +1903,14 @@ section[id] {
           </div>
         </div>
 
-        <div class="scard" role="group" aria-roledescription="slide">
+        <a href="/services/automated-reporting/" class="scard scard--link" role="group" aria-roledescription="slide" aria-label="Автоотчётность: подробнее о сценарии внедрения в Telegram">
           <div class="scard__icon">📊</div>
-          <h3 class="scard__title">Автоотчётность</h3>
-          <p class="scard__desc">Сводные отчеты по продажам, остаткам и P&L формируются автоматически. Доставка руководителю в Telegram или на почту каждое утро в 8:00.</p>
-        </div>
+          <h3 class="scard__title">Автоотчётность <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <p class="scard__desc">Сводные отчеты по продажам, остаткам и P&L формируются автоматически. Доставка руководителю в Telegram или на почту каждое утро в 09:00.</p>
+          <div class="scard__tags">
+            <span>1С:ERP</span><span>Telegram</span><span>P&L</span><span>ДДС</span>
+          </div>
+        </a>
 
         <div class="scard" role="group" aria-roledescription="slide">
           <div class="scard__icon">🏪</div>
@@ -2265,6 +2236,11 @@ section[id] {
             </div>
           </div>
         </div>
+      </div>
+      <div class="subpage-links-grid" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;justify-content:center;">
+        <a href="/services/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Каталог поддерживаемых систем →</a>
+        <a href="/cases/" class="btn btn--ghost" style="padding:10px 18px;font-size:0.88rem;">Кейсы с подтвержденными метриками →</a>
+        <a href="/contact/" class="btn btn--primary" style="padding:10px 18px;font-size:0.88rem;">Подключить телеметрию для бизнеса →</a>
       </div>
     </div>
   </section>
