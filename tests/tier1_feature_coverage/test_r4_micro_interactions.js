@@ -150,4 +150,50 @@ suite.test('R4.6: Prefers-reduced-motion media query is respected in stylesheet'
   );
 });
 
+suite.test('R4.7: SOTA dynamic back-to-top button renders progress ring, reveals on scroll, and smoothly scrolls to top', async ({ page }) => {
+  const btt = page.locator('#back-to-top');
+  assert.ok(await btt.count() > 0, '#back-to-top element must exist in DOM');
+
+  // Verify initial state at scroll = 0
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.waitForTimeout(100);
+  const initialHidden = await btt.evaluate(el => ({
+    visible: el.classList.contains('is-visible'),
+    tabindex: el.getAttribute('tabindex'),
+    ariaHidden: el.getAttribute('aria-hidden'),
+    ariaLabel: el.getAttribute('aria-label')
+  }));
+  assert.strictEqual(initialHidden.visible, false, 'Back-to-top should be hidden at top of page');
+  assert.strictEqual(initialHidden.tabindex, '-1', 'tabindex should be -1 when hidden');
+  assert.strictEqual(initialHidden.ariaHidden, 'true', 'aria-hidden should be true when hidden');
+  assert.ok(initialHidden.ariaLabel && initialHidden.ariaLabel.length > 0, 'Must have descriptive aria-label');
+
+  // Scroll down > 350px
+  await page.evaluate(() => window.scrollTo(0, 1000));
+  await page.waitForFunction(() => {
+    const el = document.getElementById('back-to-top');
+    return el && el.classList.contains('is-visible');
+  });
+
+  const scrolledState = await btt.evaluate(el => {
+    const bar = el.querySelector('.back-to-top__bar');
+    return {
+      visible: el.classList.contains('is-visible'),
+      tabindex: el.getAttribute('tabindex'),
+      ariaHidden: el.getAttribute('aria-hidden'),
+      offset: bar ? parseFloat(bar.style.strokeDashoffset) : null
+    };
+  });
+  assert.strictEqual(scrolledState.visible, true, 'Back-to-top should be visible after scroll');
+  assert.strictEqual(scrolledState.tabindex, '0', 'tabindex should be 0 when visible');
+  assert.strictEqual(scrolledState.ariaHidden, 'false', 'aria-hidden should be false when visible');
+  assert.ok(scrolledState.offset !== null && scrolledState.offset < 125, 'Progress ring offset should reflect scroll position');
+
+  // Click back to top
+  await btt.click();
+  await page.waitForFunction(() => (window.pageYOffset || window.scrollY) <= 50, { timeout: 2500 });
+  const finalY = await page.evaluate(() => window.pageYOffset || window.scrollY);
+  assert.ok(finalY <= 50, `Page must scroll back to top upon clicking back-to-top, got ${finalY}`);
+});
+
 module.exports = suite;
