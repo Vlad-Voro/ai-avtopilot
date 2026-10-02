@@ -707,9 +707,9 @@ if dash_sec:
                 </div>
               </div>
               <div class="phone-sim-tabs" style="display:flex;gap:8px;">
-                <button type="button" class="btn btn--ghost sim-tab-btn active" data-sim="cashflow" style="padding:6px 14px;font-size:0.82rem;font-weight:600;">💸 Платежный календарь</button>
-                <button type="button" class="btn btn--ghost sim-tab-btn" data-sim="stock" style="padding:6px 14px;font-size:0.82rem;font-weight:600;">📦 Склад и ROP</button>
-                <button type="button" class="btn btn--ghost sim-tab-btn" data-sim="prices" style="padding:6px 14px;font-size:0.82rem;font-weight:600;">🛡️ Аудит цен</button>
+                <button type="button" class="btn btn--ghost sim-tab-btn active" data-sim="cashflow" style="min-height:44px;padding:10px 16px;font-size:0.82rem;font-weight:600;display:inline-flex;align-items:center;">💸 Платежный календарь</button>
+                <button type="button" class="btn btn--ghost sim-tab-btn" data-sim="stock" style="min-height:44px;padding:10px 16px;font-size:0.82rem;font-weight:600;display:inline-flex;align-items:center;">📦 Склад и ROP</button>
+                <button type="button" class="btn btn--ghost sim-tab-btn" data-sim="prices" style="min-height:44px;padding:10px 16px;font-size:0.82rem;font-weight:600;display:inline-flex;align-items:center;">🛡️ Аудит цен</button>
               </div>
             </div>
             

@@ -606,9 +606,9 @@ if dash_sec:
                 </div>
               </div>
               <div class="phone-sim-tabs" style="display:flex;gap:8px;">
-                <button type="button" class="btn btn--ghost sim-tab-btn active" data-sim="sales" style="padding:6px 14px;font-size:0.82rem;font-weight:600;">📊 Продажи</button>
-                <button type="button" class="btn btn--ghost sim-tab-btn" data-sim="pnl" style="padding:6px 14px;font-size:0.82rem;font-weight:600;">📈 P&amp;L (ОПиУ)</button>
-                <button type="button" class="btn btn--ghost sim-tab-btn" data-sim="risks" style="padding:6px 14px;font-size:0.82rem;font-weight:600;">⚠️ Риски</button>
+                <button type="button" class="btn btn--ghost sim-tab-btn active" data-sim="sales" style="min-height:44px;padding:10px 16px;font-size:0.82rem;font-weight:600;display:inline-flex;align-items:center;">📊 Продажи</button>
+                <button type="button" class="btn btn--ghost sim-tab-btn" data-sim="pnl" style="min-height:44px;padding:10px 16px;font-size:0.82rem;font-weight:600;display:inline-flex;align-items:center;">📈 P&amp;L (ОПиУ)</button>
+                <button type="button" class="btn btn--ghost sim-tab-btn" data-sim="risks" style="min-height:44px;padding:10px 16px;font-size:0.82rem;font-weight:600;display:inline-flex;align-items:center;">⚠️ Риски</button>
               </div>
             </div>
             
