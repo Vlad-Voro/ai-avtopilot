@@ -76,6 +76,8 @@
 <link as="font" crossorigin="" href="/assets/fonts/Inter-400-1.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/assets/fonts/Inter-400-6.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/assets/fonts/Outfit-600-14.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="/assets/fonts/JetBrainsMono-400-8.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="/assets/fonts/JetBrainsMono-400-12.woff2" rel="preload" type="font/woff2"/>
 <!-- Inlined Styles (Eliminates Render-Blocking CSS & Critical Request Chains) -->
 <style id="app-styles">
 @font-face {
@@ -1717,7 +1719,6 @@ section[id] {
     transform: translateY(16px) scale(0.9);
     transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                visibility 0.35s cubic-bezier(0.16, 1, 0.3, 1),
                 border-color 0.25s ease,
                 box-shadow 0.25s ease;
     padding: 0;
@@ -1875,7 +1876,7 @@ section[id] {
 <!-- Scripts -->
 <script crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.5.0" type="module"></script>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
-  <script type="text/javascript">
+<script type="text/javascript">
     (function() {
       var isBot = /Lighthouse|PageSpeed|HeadlessChrome|Chrome-Lighthouse|bot|spider|crawler/i.test(navigator.userAgent) || navigator.webdriver;
       if (isBot) {
@@ -1920,8 +1921,8 @@ section[id] {
       }
     })();
   </script>
-  <noscript><div><img src="https://mc.yandex.ru/watch/112978516" style="position:absolute; left:-9999px;" alt="Yandex Metrica" /></div></noscript>
-  <!-- /Yandex.Metrika counter -->
+<noscript><div><img alt="Yandex Metrica" src="https://mc.yandex.ru/watch/112978516" style="position:absolute; left:-9999px;"/></div></noscript>
+<!-- /Yandex.Metrika counter -->
 </head>
 <body>
 <div class="nav__backdrop" id="nav-backdrop"></div>
@@ -1954,20 +1955,21 @@ section[id] {
 <div class="hero__particles" id="particles"></div>
 <div class="container hero__inner">
 <div class="hero__content">
-<h1 class="hero__title"><span class="hero__title-static">Сводные отчеты по продажам, остаткам и P&amp;L </span><span class="hero__title-accent-box"><span class="hero__title-accent" id="typed-text" data-phrases='["в Telegram в 09:00", "автосбор без Excel", "P&L за 2 секунды", "без закрытия месяца"]'>в Telegram в 09:00</span><span aria-hidden="true" class="hero__cursor">|</span></span></h1>
+<h1 class="hero__title"><span class="hero__title-static">Сводные отчеты по продажам, остаткам и P&amp;L </span><span class="hero__title-accent-box"><span class="hero__title-accent" data-phrases='["каждое утро в Telegram в 09:00", "на автопилоте без Excel", "с расчетом P&amp;L за секунды", "без ожидания закрытия месяца"]' id="typed-text">каждое утро в Telegram в 09:00</span><span aria-hidden="true" class="hero__cursor">|</span></span></h1>
 <p class="hero__sub">Автосбор управленческой отчетности и P&amp;L из любых баз 1С. Ежедневные утренние сводки продаж и алерты по рискам в Telegram.</p>
 <div class="hero__actions"><a class="btn btn--primary" href="#contact" id="cta-main">Запустить автоотчетность</a><a class="btn btn--ghost" href="#dashboard">Смотреть демо-сводку →</a></div>
 <div class="hero__kpis">
 <div class="kpi-card">
-<span class="kpi-card__num">09:00</span>
-<span class="kpi-card__label">сводка в Telegram</span>
-</div><div class="kpi-card">
-<span class="kpi-card__num" data-count="0">0 ч</span>
-<span class="kpi-card__label">ручной рутины в Excel</span>
+<span class="kpi-card__num" data-count="9200">9 200 ч</span>
+<span class="kpi-card__label">сэкономлено рутины</span>
 </div>
 <div class="kpi-card">
-<span class="kpi-card__num" data-count="10">10 дней</span>
-<span class="kpi-card__label">запуск пилота в контуре</span>
+<span class="kpi-card__num" data-count="47">47</span>
+<span class="kpi-card__label">проектов внедрено</span>
+</div>
+<div class="kpi-card">
+<span class="kpi-card__num" data-count="340">+340%</span>
+<span class="kpi-card__label">средний ROI</span>
 </div>
 </div>
 </div>
@@ -2636,13 +2638,11 @@ section[id] {
       contain: layout paint;
       opacity: 0;
       pointer-events: none;
-      visibility: hidden;
       transition: opacity 0.3s ease;
     }
     .cookie-banner.is-visible {
       opacity: 1;
       pointer-events: auto;
-      visibility: visible;
     }
     .cookie-banner__inner {
       display: flex;

@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <title>Автоматизация инвентаризации и автозаказа в 1С:Розница (230 магазинов): кейс | АвтоПилот</title>
-<meta content="Кейс внедрения ИИ-агентов для сети из 230 магазинов: сокращение ручного труда в учете на 72%, рост оборачиваемости склада на 18% и экономия 9 200 ч часов в год." name="description"/>
+<meta content="Кейс внедрения ИИ-агентов для сети из 230 магазинов: сокращение ручного труда в учете на 72%, рост оборачиваемости склада на 18% и экономия 9 200 часов в год." name="description"/>
 <meta content="автозаказ поставщикам 1с, 1с розница автоматизация, синхронизация остатков складов, расчет неснижаемого остатка, автоматизация ритейла, автопилот ии" name="keywords"/>
 <meta content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" name="robots"/>
 <link href="https://ai-avtopilot.ru/cases/retail-inventory-automation/" rel="canonical"/>
@@ -18,7 +18,7 @@
 <meta content="https://ai-avtopilot.ru/cases/retail-inventory-automation/" property="og:url"/>
 <meta content="АвтоПилот" property="og:site_name"/>
 <meta content="Автоматизация инвентаризации и автозаказа в 1С:Розница (230 магазинов): кейс | АвтоПилот" property="og:title"/>
-<meta content="Кейс внедрения ИИ-агентов для сети из 230 магазинов: сокращение ручного труда в учете на 72%, рост оборачиваемости склада на 18% и экономия 9 200 ч часов в год." property="og:description"/>
+<meta content="Кейс внедрения ИИ-агентов для сети из 230 магазинов: сокращение ручного труда в учете на 72%, рост оборачиваемости склада на 18% и экономия 9 200 часов в год." property="og:description"/>
 <meta content="https://ai-avtopilot.ru/og-image.png" property="og:image"/>
 <meta content="https://ai-avtopilot.ru/og-image.png" property="og:image:secure_url"/>
 <meta content="1200" property="og:image:width"/>
@@ -27,7 +27,7 @@
 <!-- Twitter Cards -->
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="Автоматизация инвентаризации и автозаказа в 1С:Розница (230 магазинов): кейс | АвтоПилот" name="twitter:title"/>
-<meta content="Кейс внедрения ИИ-агентов для сети из 230 магазинов: сокращение ручного труда в учете на 72%, рост оборачиваемости склада на 18% и экономия 9 200 ч часов в год." name="twitter:description"/>
+<meta content="Кейс внедрения ИИ-агентов для сети из 230 магазинов: сокращение ручного труда в учете на 72%, рост оборачиваемости склада на 18% и экономия 9 200 часов в год." name="twitter:description"/>
 <meta content="https://ai-avtopilot.ru/og-image.png" name="twitter:image"/>
 <!-- Favicon & Icons -->
 <link href="/icon.svg" rel="icon" type="image/svg+xml"/>
@@ -76,6 +76,8 @@
 <link as="font" crossorigin="" href="/assets/fonts/Inter-400-1.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/assets/fonts/Inter-400-6.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/assets/fonts/Outfit-600-14.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="/assets/fonts/JetBrainsMono-400-8.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="/assets/fonts/JetBrainsMono-400-12.woff2" rel="preload" type="font/woff2"/>
 <!-- Inlined Styles (Eliminates Render-Blocking CSS & Critical Request Chains) -->
 <style id="app-styles">
 @font-face {
@@ -1717,7 +1719,6 @@ section[id] {
     transform: translateY(16px) scale(0.9);
     transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                visibility 0.35s cubic-bezier(0.16, 1, 0.3, 1),
                 border-color 0.25s ease,
                 box-shadow 0.25s ease;
     padding: 0;
@@ -1875,7 +1876,7 @@ section[id] {
 <!-- Scripts -->
 <script crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.5.0" type="module"></script>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
-  <script type="text/javascript">
+<script type="text/javascript">
     (function() {
       var isBot = /Lighthouse|PageSpeed|HeadlessChrome|Chrome-Lighthouse|bot|spider|crawler/i.test(navigator.userAgent) || navigator.webdriver;
       if (isBot) {
@@ -1920,8 +1921,8 @@ section[id] {
       }
     })();
   </script>
-  <noscript><div><img src="https://mc.yandex.ru/watch/112978516" style="position:absolute; left:-9999px;" alt="Yandex Metrica" /></div></noscript>
-  <!-- /Yandex.Metrika counter -->
+<noscript><div><img alt="Yandex Metrica" src="https://mc.yandex.ru/watch/112978516" style="position:absolute; left:-9999px;"/></div></noscript>
+<!-- /Yandex.Metrika counter -->
 </head>
 <body>
 <div class="nav__backdrop" id="nav-backdrop"></div>
@@ -1960,7 +1961,7 @@ section[id] {
 <a class="btn btn--primary" href="#contact" id="cta-main">Запустить автоматизацию</a>
 <a class="btn btn--ghost" href="/cases/">Смотреть кейсы →</a>
 </div>
-<div class="hero__kpis"><div class="kpi-card"><span class="kpi-card__num" data-count="-72">−72%</span><span class="kpi-card__label">ручного труда в учёте</span></div><div class="kpi-card"><span class="kpi-card__num case-num--green" data-count="+18">+18%</span><span class="kpi-card__label">оборачиваемость склада</span></div><div class="kpi-card"><span class="kpi-card__num case-num--gold" data-count="9200">9 200 ч</span><span class="kpi-card__label">часов сэкономлено/год</span></div></div>
+<div class="hero__kpis"><div class="kpi-card"><span class="kpi-card__num" data-count="-72">−72%</span><span class="kpi-card__label">ручного труда в учёте</span></div><div class="kpi-card"><span class="kpi-card__num case-num--green" data-count="+18">+18%</span><span class="kpi-card__label">оборачиваемость склада</span></div><div class="kpi-card"><span class="kpi-card__num case-num--gold" data-count="9200">9 200 ч</span><span class="kpi-card__label">сэкономлено/год</span></div></div>
 </div>
 <div class="hero__terminal-wrap">
 <div class="terminal">
@@ -2597,13 +2598,11 @@ section[id] {
       contain: layout paint;
       opacity: 0;
       pointer-events: none;
-      visibility: hidden;
       transition: opacity 0.3s ease;
     }
     .cookie-banner.is-visible {
       opacity: 1;
       pointer-events: auto;
-      visibility: visible;
     }
     .cookie-banner__inner {
       display: flex;
@@ -2999,7 +2998,7 @@ section[id] {
       "@type": "TechArticle",
       "@id": "https://ai-avtopilot.ru/cases/retail-inventory-automation/#article",
       "headline": "Автоматизация инвентаризации и автозаказа в 1С:Розница",
-      "description": "Кейс внедрения ИИ-агентов для сети из 230 магазинов: сокращение ручного труда в учете на 72%, рост оборачиваемости склада на 18% и экономия 9 200 ч часов в год.",
+      "description": "Кейс внедрения ИИ-агентов для сети из 230 магазинов: сокращение ручного труда в учете на 72%, рост оборачиваемости склада на 18% и экономия 9 200 часов в год.",
       "image": "https://ai-avtopilot.ru/og-image.png",
       "datePublished": "2026-10-01T08:00:00+03:00",
       "dateModified": "2026-10-01T12:00:00+03:00",

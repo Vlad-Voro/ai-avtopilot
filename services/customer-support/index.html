@@ -85,6 +85,8 @@
   <link rel="preload" href="/assets/fonts/Inter-400-1.woff2" as="font" type="font/woff2" crossorigin="" />
   <link rel="preload" href="/assets/fonts/Inter-400-6.woff2" as="font" type="font/woff2" crossorigin="" />
   <link rel="preload" href="/assets/fonts/Outfit-600-14.woff2" as="font" type="font/woff2" crossorigin="" />
+  <link rel="preload" href="/assets/fonts/JetBrainsMono-400-8.woff2" as="font" type="font/woff2" crossorigin="" />
+  <link rel="preload" href="/assets/fonts/JetBrainsMono-400-12.woff2" as="font" type="font/woff2" crossorigin="" />
 
   <!-- Inlined Styles -->
 <style id="app-styles">
@@ -1727,7 +1729,6 @@ section[id] {
     transform: translateY(16px) scale(0.9);
     transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                visibility 0.35s cubic-bezier(0.16, 1, 0.3, 1),
                 border-color 0.25s ease,
                 box-shadow 0.25s ease;
     padding: 0;
@@ -1984,7 +1985,7 @@ section[id] {
         <h1 class="hero__title">
           <span class="hero__title-static">ИИ-поддержка клиентов для B2B: </span>
           <span class="hero__title-accent-box">
-            <span class="hero__title-accent" id="typed-text" data-phrases='["ответ за 1.4 сек", "связка с 1С и CRM", "автовыписка счетов", "без ночной смены"]'>ответ за 1.4 сек</span>
+            <span class="hero__title-accent" data-phrases='["ответ за 1.4 секунды", "интеграция с 1С и CRM", "автовыставление счетов", "без найма ночной смены"]' id="typed-text">ответ за 1.4 секунды</span>
             <span class="hero__cursor" aria-hidden="true">|</span>
           </span>
         </h1>
@@ -2237,7 +2238,7 @@ section[id] {
               <span class="case-result__label">запросов закрыто ИИ</span>
             </div>
             <div class="case-result">
-              <span class="case-result__num case-num--cyan">< 3 сек</span>
+              <span class="case-result__num case-num--cyan">< 3s</span>
               <span class="case-result__label">время ответа</span>
             </div>
             <div class="case-result">

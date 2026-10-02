@@ -90,6 +90,8 @@
   <link rel="preload" href="/assets/fonts/Inter-400-1.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/assets/fonts/Inter-400-6.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/assets/fonts/Outfit-600-14.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/JetBrainsMono-400-8.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/JetBrainsMono-400-12.woff2" as="font" type="font/woff2" crossorigin />
 
   <!-- Inlined Styles (Eliminates Render-Blocking CSS & Critical Request Chains) -->
   <style id="app-styles">
@@ -1732,7 +1734,6 @@ section[id] {
     transform: translateY(16px) scale(0.9);
     transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                visibility 0.35s cubic-bezier(0.16, 1, 0.3, 1),
                 border-color 0.25s ease,
                 box-shadow 0.25s ease;
     padding: 0;
@@ -2777,13 +2778,11 @@ section[id] {
       contain: layout paint;
       opacity: 0;
       pointer-events: none;
-      visibility: hidden;
       transition: opacity 0.3s ease;
     }
     .cookie-banner.is-visible {
       opacity: 1;
       pointer-events: auto;
-      visibility: visible;
     }
     .cookie-banner__inner {
       display: flex;
