@@ -68,7 +68,11 @@ flowchart TD
   6. `/cases/fintech-transaction-reconciliation/` — B2B Fintech: DirectBank 1C reconciliation, 50,000 ops in 8.4 sec, 99.2% accuracy.
   7. `/cases/sales-speech-analytics/` — B2B Sales & Distribution (35 managers): 100% call audit in 30 sec, -85% QA cost, +22% conversion, amoCRM/Bitrix24.
 - **System & Legal Pages (3 URLs)**: `/privacy.html` (152-FZ compliant), `/404.html` (clean route fallback), `/success.html`.
-- **AI Agent Discovery**: `/llms.txt`, `/llms-full.txt` (structured markdown indexation for LLM crawlers).
+- **Machine Discovery & Compliance Assets**:
+  - `/llms.txt`, `/llms-full.txt` (structured markdown indexation for LLMs and autonomous agents).
+  - `/.well-known/security.txt` (RFC 9116 security contact standards).
+  - `/d8a24f0c9b7e416a9e3d81b7e651c4a0.txt` (IndexNow instant indexing protocol token).
+  - `/yandex_cd29b4304b5e16c6.html` (Yandex Webmaster ownership verification).
 
 ### 1.2. Generative Search Semantic Requirements (Yandex «Нейро», Perplexity, AI Overviews)
 - **Direct Answer Synthesis**: Factual, structured summaries embedded in Hero subtitles, FAQ accordions, and JSON-LD Schema.org graphs answering commercial intents instantly (exact stack, timelines, pricing model, compliance).
@@ -117,13 +121,14 @@ sequenceDiagram
 3. **152-FZ Airgap Claims**: Validate On-Premise / local boundary commitments in copy per [ARCHITECTURE.md §7](file:///d:/AI/data/ai-avtopilot/ARCHITECTURE.md#7-security--zero-trust-hardening).
 4. **De-slopped Realism**: Elimination of AI platitudes; hard units only (секунды, рубли, штуки, проценты) adhering to `ru_text_humanizer` (0/64 patterns).
 5. **On-Site Conversion Flow**: Organic integration of `#contact` anchor and interactive sliders without external bot qualification.
+6. **Metric Units & Signs Integrity (ADR 2026-10-02)**: Mandatory preservation of measurement units (`%`, `₽`, `ч`, `сек`, `млн ₽`) and signs (`+18%`, `−72%`, `9 200 ч`, `1 сек`) across all KPI blocks and case results.
 
 ### 2.3. Site-Wide Proofreading & SEO Frequency Invariant
 > **Canonical Site-Wide Proofreading Invariant**: Continuous proofreading and desloping of all pages across [ai-avtopilot.ru](https://ai-avtopilot.ru/) must be executed strictly via the [`ru_text_humanizer`](file:///d:/AI/.agents/skills/ru_text_humanizer/SKILL.md) skill **with zero semantic degradation and mandatory preservation of verified SEO frequency (Yandex Wordstat) on every single page**.
 - **0 Slop Markers (64-Pattern Taxonomy)**: Total elimination of all 20 Hard Bans («не просто X, а Y», «стоит отметить», buzzwords «бесшовный», «комплексный», demonstrative pointer weeds «данный»).
 - **Morphological Data Protection**: Strict distinction between the demonstrative weed «данный/данная» (banned) and the technical noun «данные (data)» (databases, data transfer, 152-FZ compliance).
 - **SEO Frequency & Density Locks**: Full preservation of primary search queries and LSI tails in `<title>` (30–85 chars), `<meta name="description">` (70–175 chars), `<h1>`, Direct Answer blocks, FAQ accordions, and Schema.org graphs.
-- **Engineering Invariants**: Typewriter phrase length constrained to $\le 26$ characters (CLS = 0.000, zero multi-line wrap jitter), preserving 153/153 tests without regression.
+- **Engineering Invariants**: Typewriter phrase length constrained to $\le 19$ characters (`min-height: 1.25em` mobile, CLS = 0.000, zero multi-line wrap jitter), preserving 153/153 tests without regression.
 
 ---
 
@@ -135,12 +140,13 @@ sequenceDiagram
 - ✅ **Scenario Landing Cluster**: 8 production service landing pages deployed and verified.
 - ✅ **Applied Case Study Cluster**: 7 real-world B2B case studies deployed with hard ROI metrics and 3-level Schema.org graphs.
 - ✅ **Site-Wide Desloping & SEO Hardening**: All 25 URLs proofread via `ru_text_humanizer` (0 slop markers, 100% Wordstat keyword retention).
-- ✅ **Verification Suite**: 153/153 tests passing (83 browser + 70 unit/E2E/SEO/Security).
+- ✅ **Verification Suite**: 153/153 tests passing (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E).
 
 ### 3.2. Future Expansion Roadmap
-- **Sprint 4 (Long-Tail Semantic Expansion)**:
+- **Sprint 4 (Long-Tail Semantic Expansion & Registry Completion)**:
+  - Profile the 5 remaining case studies in `data/cases_semantics.json` (`manufacturing-edi-automation`, `service-center-ai-operator`, `hr-recruitment-automation`, `supply-chain-logistics`, `fintech-transaction-reconciliation`).
   - Mine secondary zero-search accounting & procurement queries from Klerk/Infostart for additional niche case studies.
   - Expand combinatorial programmatic matrix nodes (specific 1C configurations $\times$ industry verticals).
 - **Sprint 5 (CRO & Analytics Feedback Loop)**:
-  - Monitor Yandex Metrika goals (`lead_form_submitted`, `click_cta_audit`) and heatmaps.
+  - Monitor Yandex Metrika goals (`lead_form_submitted`, `click_cta_audit`) and Webvisor 2.0 heatmaps.
   - A/B test ROI calculator slider initial defaults and mobile lead capture conversion rates.
