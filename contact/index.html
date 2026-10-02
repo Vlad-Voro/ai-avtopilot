@@ -2964,25 +2964,6 @@ section[id] {
               e.preventDefault();
             }
           });
-
-          // One-shot lightweight GPU nudge to demonstrate horizontal swipeability on mobile
-          if ('IntersectionObserver' in window && window.innerWidth <= 1024) {
-            var nudgeTargets = document.querySelectorAll('.services__bento, .cases__grid');
-            nudgeTargets.forEach(function(el) {
-              var nudgeObserver = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                  if (entry.isIntersecting) {
-                    el.classList.add('is-nudging');
-                    setTimeout(function() {
-                      el.classList.remove('is-nudging');
-                    }, 1050);
-                    nudgeObserver.disconnect();
-                  }
-                });
-              }, { threshold: 0.25 });
-              nudgeObserver.observe(el);
-            });
-          }
         }
       }
     });
