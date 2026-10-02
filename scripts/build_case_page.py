@@ -33,6 +33,7 @@ SLUG_TO_CARD_CLASS = {
     "hr-recruitment-automation": "case-card--hr",
     "supply-chain-logistics": "case-card--logistics",
     "fintech-transaction-reconciliation": "case-card--fintech",
+    "sales-speech-analytics": "case-card--speech",
 }
 
 
@@ -183,7 +184,11 @@ def build_case_page(case_key: str) -> str:
             kpis_div.clear()
             for kpi in data["hero"]["kpis"]:
                 kcard = soup.new_tag("div", attrs={"class": "kpi-card"})
-                num_span = soup.new_tag("span", attrs={"class": f"kpi-card__num {kpi['class']}".strip()})
+                num_attrs = {"class": f"kpi-card__num {kpi['class']}".strip()}
+                m = re.search(r"[-−+]?[\d\s.,]+", kpi["num"])
+                if m:
+                    num_attrs["data-count"] = m.group(0).replace(" ", "").replace(",", ".").replace("−", "-")
+                num_span = soup.new_tag("span", attrs=num_attrs)
                 num_span.string = kpi["num"]
                 label_span = soup.new_tag("span", attrs={"class": "kpi-card__label"})
                 label_span.string = kpi["label"]

@@ -541,8 +541,8 @@ to{opacity:1;transform:scale(1) translateY(0)}
 .services__bento::-webkit-scrollbar{display:none}
 .services__bento .scard{flex:0 0 min(320px,78vw);scroll-snap-align:center;scroll-snap-stop:normal;display:flex;flex-direction:column;padding:24px 20px;grid-column:auto}
 .services-dots{display:flex;justify-content:center;gap:8px;margin-top:8px;min-height:24px}
-@keyframes sNudge{0%,100%{transform:translate3d(0,0,0)}35%{transform:translate3d(-24px,0,0)}70%{transform:translate3d(4px,0,0)}}
-.services__bento.is-nudging,.cases__grid.is-nudging{animation:sNudge .65s cubic-bezier(.25,1,.5,1) 1;will-change:transform}
+@keyframes sNudge{0%,100%{transform:translate3d(0,0,0)}38%{transform:translate3d(-24px,0,0)}72%{transform:translate3d(4px,0,0)}}
+.services__bento.is-nudging,.cases__grid.is-nudging{animation:sNudge 1s cubic-bezier(.25,1,.4,1) 1;will-change:transform}
 .cases__grid{display:flex;align-items:stretch;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;gap:16px;padding:8px 4px 18px;margin:0 -4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .cases__grid::-webkit-scrollbar{display:none}
 .cases__grid .case-card{flex:0 0 min(330px,80vw);scroll-snap-align:center;scroll-snap-stop:normal;padding:24px 20px}
@@ -635,11 +635,11 @@ to{opacity:1;transform:scale(1) translateY(0)}
 
 .hero__title-static{display:block}
 
-.hero__title-accent-box{display:block;min-height:2.5em;height:auto;line-height:1.15;position:relative;overflow:visible;word-break:normal;overflow-wrap:break-word}
+.hero__title-accent-box{display:block;min-height:1.25em;height:auto;line-height:1.15;position:relative;overflow:visible;word-break:normal;overflow-wrap:break-word}
 
-@media(min-width:1025px){.hero__title-accent-box{min-height:2.5em;height:auto;overflow:visible}
+@media(min-width:1025px){.hero__title-accent-box{min-height:1.25em;height:auto;overflow:visible}
 }
-@media(max-width:480px){.hero__title-accent-box{min-height:3.5em;height:auto;overflow:visible}
+@media(max-width:480px){.hero__title-accent-box{min-height:2.35em;height:auto;overflow:visible}
 }
 
 
@@ -2945,7 +2945,7 @@ section[id] {
                     el.classList.add('is-nudging');
                     setTimeout(function() {
                       el.classList.remove('is-nudging');
-                    }, 700);
+                    }, 1050);
                     nudgeObserver.disconnect();
                   }
                 });

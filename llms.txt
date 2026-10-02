@@ -88,6 +88,7 @@
 - Кейс автоматизации найма и онбординга (1С:ЗУП, HH API): https://ai-avtopilot.ru/cases/hr-recruitment-automation/
 - Кейс управления цепочками поставок и логистики (1С:TMS, ГЛОНАСС): https://ai-avtopilot.ru/cases/supply-chain-logistics/
 - Кейс автоматической сверки транзакций и выписок (DirectBank, 1С:БП): https://ai-avtopilot.ru/cases/fintech-transaction-reconciliation/
+- Кейс речевой аналитики и контроля качества звонков (amoCRM, Битрикс24, АТС): https://ai-avtopilot.ru/cases/sales-speech-analytics/
 - Калькулятор ROI: https://ai-avtopilot.ru/calculator/
 - Интерактивный дашборд: https://ai-avtopilot.ru/dashboard/
 - Запись на бесплатный аудит: https://ai-avtopilot.ru/contact/

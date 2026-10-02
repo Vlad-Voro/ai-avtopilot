@@ -102,6 +102,12 @@ URL_SPEC = [
         "priority": "0.9",
     },
     {
+        "url": "https://ai-avtopilot.ru/cases/sales-speech-analytics/",
+        "file": "cases/sales-speech-analytics/index.html",
+        "changefreq": "weekly",
+        "priority": "0.9",
+    },
+    {
         "url": "https://ai-avtopilot.ru/calculator/",
         "file": "calculator/index.html",
         "changefreq": "weekly",

@@ -12,6 +12,7 @@ import argparse
 import html
 import json
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -193,15 +194,18 @@ def generate_service_html(data: dict) -> str:
     schema_json_str = json.dumps(schema_graph, ensure_ascii=False, indent=2)
 
     # HTML Snippets for KPIs
-    kpi_html = "\n".join(
-        [
+    kpi_snippets = []
+    for k in kpis:
+        val_str = str(k["val"])
+        m = re.search(r"[-−+]?[\d\s.,]+", val_str)
+        cnt_attr = f' data-count="{m.group(0).replace(" ", "").replace(",", ".").replace("−", "-")}"' if m else ""
+        kpi_snippets.append(
             f"""            <div class="kpi-card">
-              <span class="kpi-card__num">{k["val"]}</span>
+              <span class="kpi-card__num"{cnt_attr}>{val_str}</span>
               <span class="kpi-card__label">{k["label"]}</span>
             </div>"""
-            for k in kpis
-        ]
-    )
+        )
+    kpi_html = "\n".join(kpi_snippets)
 
     # HTML Snippets for Agent Cards
     agent_cards_html = "\n".join(
