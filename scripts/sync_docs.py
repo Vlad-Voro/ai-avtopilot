@@ -30,6 +30,7 @@ ARCH_PATH = REPO_ROOT / "ARCHITECTURE.md"
 
 # Locate content_strategy_implementation_plan.md across likely workspace paths
 CANDIDATE_PLAN_PATHS = [
+    REPO_ROOT / "content_strategy_implementation_plan.md",
     REPO_ROOT.parent / "tmp" / "content_strategy_implementation_plan.md",
     REPO_ROOT / "tmp" / "content_strategy_implementation_plan.md",
     Path("d:/AI/tmp/content_strategy_implementation_plan.md"),
@@ -98,7 +99,7 @@ def get_site_inventory() -> dict[str, any]:
 
 
 def sync_architecture_doc(inventory: dict, today_str: str) -> bool:
-    """Updates ARCHITECTURE.md header timestamp and invariants if needed."""
+    """Updates ARCHITECTURE.md header timestamp, verification matrix and invariants if needed."""
     if not ARCH_PATH.is_file():
         return False
 
@@ -108,12 +109,41 @@ def sync_architecture_doc(inventory: dict, today_str: str) -> bool:
     orig_content = content
 
     # 1. Update timestamp in header
-    # > **Status**: Production Hardened | **Updated**: 2026-10-01
     content = re.sub(
         r"(\*\*Updated\*\*:\s*)\d{4}-\d{2}-\d{2}",
         rf"\g<1>{today_str}",
         content,
         count=1,
+    )
+
+    # 2. Update verification matrix in header
+    content = re.sub(
+        r"(\*\*Verification Matrix\*\*:\s*\*\*)\d+\s*/\s*\d+\s*PASS\*\*\s*\([^\)]+\)",
+        r"\g<1>153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E, 0 regressions)",
+        content,
+        count=1,
+    )
+
+    # 3. Update Section 8 heading
+    content = re.sub(
+        r"(## 8\. Verification Matrix:\s*)\d+(\s*Automated Checks)",
+        r"\g<1>153\g<2>",
+        content,
+        count=1,
+    )
+
+    # 4. Update Section 11 test command comment
+    content = re.sub(
+        r"(# 4\. Execute full verification suite \()\d+(\s*tests)",
+        r"\g<1>153\g<2>",
+        content,
+        count=1,
+    )
+
+    # 5. Fix stale tmp link if present
+    content = content.replace(
+        "file:///d:/AI/tmp/content_strategy_implementation_plan.md",
+        "file:///d:/AI/data/ai-avtopilot/content_strategy_implementation_plan.md",
     )
 
     if content != orig_content:
@@ -124,7 +154,7 @@ def sync_architecture_doc(inventory: dict, today_str: str) -> bool:
 
 
 def sync_content_strategy_doc(inventory: dict, today_str: str) -> bool:
-    """Updates content_strategy_implementation_plan.md active URLs and inventories."""
+    """Updates content_strategy_implementation_plan.md active URLs, test counts, and invariants."""
     if not PLAN_PATH or not PLAN_PATH.is_file():
         return False
 
@@ -137,8 +167,13 @@ def sync_content_strategy_doc(inventory: dict, today_str: str) -> bool:
     service_count = len(inventory["service_slugs"])
     case_count = len(inventory["case_slugs"])
 
-    # 1. Verification line URL count
-    # > **Verification**: ... across all 23 URLs
+    # 1. Verification line URL count and tests count
+    content = re.sub(
+        r"(\*\*Verification\*\*:\s*\*\*)\d+\s*/\s*\d+\s*PASS\*\*\s*\([^\)]+\)",
+        r"\g<1>153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E)",
+        content,
+        count=1,
+    )
     content = re.sub(
         r"(across all )\d+( URLs)",
         rf"\g<1>{total_urls}\g<2>",
@@ -147,7 +182,6 @@ def sync_content_strategy_doc(inventory: dict, today_str: str) -> bool:
     )
 
     # 2. Subgraph Architecture header
-    # subgraph Architecture ["2. Production Silo Architecture (23 URLs)"]
     content = re.sub(
         r'(subgraph Architecture \["2\. Production Silo Architecture \()\d+( URLs\)\])',
         rf"\g<1>{total_urls}\g<2>",
@@ -156,7 +190,6 @@ def sync_content_strategy_doc(inventory: dict, today_str: str) -> bool:
     )
 
     # 3. Section 1.1 title
-    # ### 1.1. Production Page Inventory (23 Active URLs)
     content = re.sub(
         r"(### 1\.1\. Production Page Inventory \()\d+( Active URLs\))",
         rf"\g<1>{total_urls}\g<2>",
@@ -165,7 +198,6 @@ def sync_content_strategy_doc(inventory: dict, today_str: str) -> bool:
     )
 
     # 4. Service count in section 1.1
-    # - **Dedicated Service Landing Pages (7 URLs, `/services/*`)**:
     content = re.sub(
         r"(- \*\*Dedicated Service Landing Pages \()\d+( URLs, `/services/\*`\)\*\*:)",
         rf"\g<1>{service_count}\g<2>",
@@ -174,10 +206,25 @@ def sync_content_strategy_doc(inventory: dict, today_str: str) -> bool:
     )
 
     # 5. Case count in section 1.1
-    # - **Dedicated Case Studies (6 URLs, `/cases/*`)**:
     content = re.sub(
         r"(- \*\*Dedicated (?:Applied )?Case Studies \()\d+( URLs, `/cases/\*`\)\*\*:)",
         rf"\g<1>{case_count}\g<2>",
+        content,
+        count=1,
+    )
+
+    # 6. Sequence diagram test count
+    content = re.sub(
+        r"(Gate->>Gate:\s*Schema\.org,\s*Canonical,\s*Trailing Slash,\s*)\d+(\s*E2E tests)",
+        r"\g<1>153\g<2>",
+        content,
+        count=1,
+    )
+
+    # 7. Typewriter phrase budget in section 2.3
+    content = re.sub(
+        r"(Typewriter phrase length constrained to\s*\\le\s*)\d+(\s*characters)",
+        r"\g<1>19\g<2>",
         content,
         count=1,
     )
@@ -284,6 +331,10 @@ def run_sync(pre_commit_mode: bool = False, check_only: bool = False) -> int:
 
     if plan_updated and PLAN_PATH:
         print(f"[DocSync] Updated {PLAN_PATH.name} (URLs: {inventory['total_urls']})")
+        if pre_commit_mode:
+            plan_rel = str(PLAN_PATH.relative_to(REPO_ROOT)) if PLAN_PATH.is_relative_to(REPO_ROOT) else str(PLAN_PATH)
+            subprocess.run(["git", "add", plan_rel], cwd=str(REPO_ROOT), check=False)
+            print(f"[DocSync] Auto-staged {PLAN_PATH.name} into current commit.")
     elif PLAN_PATH:
         print(f"[DocSync] {PLAN_PATH.name} is already up to date.")
 

@@ -3,7 +3,7 @@
 > **Status**: Production Deployed | **Target**: [ai-avtopilot.ru](https://ai-avtopilot.ru/) | **Geo**: Russian Federation (Nationwide B2B)  
 > **Conversion Model**: Direct On-Site (ROI Calculator + `#contact` Audit Form; zero external bot qualification)  
 > **Search Targets**: Yandex (Web + «Нейро»), Google RU (AI Overviews), Perplexity, Professional communities (Klerk, Infostart)  
-> **Verification**: **153 / 153 PASS** (83 browser + 70 unit/E2E/SEO/Security) | **AI Slop**: **0 Markers** across all 25 URLs
+> **Verification**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E) | **AI Slop**: **0 Markers** across all 25 URLs
 
 ---
 
@@ -108,7 +108,7 @@ sequenceDiagram
     A3-->>A2: Reject / Revisions (Max 2 cycles on factual/math errors)
     A3->>A4: Validated Technical Spec
     A4->>Gate: De-slopped Russian Copy (0/64 patterns)
-    Gate->>Gate: Schema.org, Canonical, Trailing Slash, 137 E2E tests
+    Gate->>Gate: Schema.org, Canonical, Trailing Slash, 153 E2E tests
 ```
 
 ### 2.2. Mandatory Critic Checklist (Agent 3 Invariants)

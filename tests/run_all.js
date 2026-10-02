@@ -3,14 +3,15 @@
 /**
  * AI Avtopilot Landing Page - Master Test Suite Orchestrator
  *
- * Runs all 122 automated tests with maximum performance and zero flakiness:
- *   Phase 1 (In-Process Fast): SEO (20) + Security (14) + Resiliency (5) [< 0.35s]
- *   Phase 2 (Browser E2E): 14 Suites (78) + Lead Form Delivery (5) [~ 6-8s]
+ * Runs all 153 automated tests with maximum performance and zero flakiness:
+ *   Tier 1 (In-Memory Unit): ROI Calculation, boundaries & formatters (11 checks) [< 20ms]
+ *   Tier 2 (Static & Integration): SEO (25) + Security (14) + SSL/TLS (10) + Resiliency (5) [< 1.4s]
+ *   Tier 3 (Browser E2E): 14 Playwright Suites (83) + Lead Form Delivery (5) [~ 6-8s]
  *
  * Usage:
- *   node tests/run_all.js           # Run full suite (122 tests)
- *   node tests/run_all.js --fast    # Run only in-process tests (39 checks, < 0.35s)
- *   node tests/run_all.js --e2e     # Run only browser E2E tests (83 checks)
+ *   node tests/run_all.js           # Run full suite (153 tests)
+ *   node tests/run_all.js --fast    # Run fast in-process tests (65 checks: T1 + T2, < 1.4s)
+ *   node tests/run_all.js --e2e     # Run browser E2E tests (88 checks: Tier 3)
  */
 
 const path = require('path');

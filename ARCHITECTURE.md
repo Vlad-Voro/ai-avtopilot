@@ -3,7 +3,7 @@
 > **Status**: Production Hardened | **Updated**: 2026-10-02  
 > **Live URL**: [https://ai-avtopilot.ru/](https://ai-avtopilot.ru/) | **Repo**: `Vlad-Voro/ai-avtopilot` (`main` - Private)  
 > **Local Root**: `d:\AI\data\ai-avtopilot`  
-> **Verification Matrix**: **137 / 137 PASS** (84 E2E + 21 SEO + 13 Security + 19 Resiliency & Journeys, 0 regressions)
+> **Verification Matrix**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E, 0 regressions)
 
 ---
 
@@ -47,6 +47,8 @@ flowchart TD
   - A `@` $\to$ `76.76.21.21` (Vercel Global Anycast Edge; zero 24KB DPI stall in Russia).
   - CNAME `www` $\to$ `cname.vercel-dns.com` (canonical 301 redirect to apex).
   - Cloudflare Mode: **DNS only (Grey Cloud)** + **DNSSEC** (DS 2371). Bypasses Russian TSPU DPI throttling on Cloudflare proxies.
+- **Cold Disaster Recovery Backup (ADR 2026-09-28)**:
+  - Beget origin hosting (RU IP `185.50.25.55`) retained as cold disaster recovery (DR) fallback via automated FTPS deployment (`deploy.yml`).
 - **Webmaster Ownership**:
   - Google Search Console: DNS TXT `google-site-verification=u42j0jjBKadmyE77f9wlqfy5gkyDONXtaPzcPRZ51R8` + meta tag.
   - Yandex Webmaster: HTML verification file `/yandex_cd29b4304b5e16c6.html` (HTTP 200, cleanUrls bypassed for verification).
@@ -135,6 +137,13 @@ index.html (Master Template)
 - Simulated telemetry streams (intervals: 3500ms and 2100ms).
 - Pauses execution during inactive browser tabs via `visibilitychange` (`document.hidden === true`), eliminating background CPU and memory leaks.
 
+### 4.4. KPI Counter Animation Engine & Metric Units Architecture (ADR 2026-10-02)
+- **Lifecycle & Precision**: Numbers interpolate smoothly via `requestAnimationFrame` over 1200ms with ease-out quad timing upon crossing `IntersectionObserver` viewport threshold (`threshold: 0.15`).
+- **Metric Units Integrity Contract**:
+  - The numeral parser strictly isolates pure numeric stems while preserving prefix signs (`+`, `−`), decimal separators (`.`, `,`), and metric suffixes (`%`, `₽`, `ч`, `сек`, `млн ₽`).
+  - Example transforms: `+18%` interpolates $0 \to 18$ while rendering `+18%`; `9 200 ч` interpolates $0 \to 9200$ formatted as `9 200 ч`; `80.4%` preserves single decimal precision.
+  - Zero raw integer stripping: never renders naked integers where business units or decimal precisions are defined.
+
 ---
 
 ## 5. Ingestion Gateway, Edge Security & Anti-Bot Defense
@@ -176,6 +185,12 @@ index.html (Master Template)
 - `BreadcrumbList`: Structural 3-tier hierarchy across all subpages.
 - `TechArticle`: Deep metadata for dedicated case study pages.
 
+### 6.3. Advanced Discovery, Instant Nav & Machine Discovery Protocols
+- **Chrome Speculation Rules API**: Embedded `<script type="speculationrules">` across all HTML pages for instant subpage transitions with moderate prerender rules.
+- **LLMs.txt v2 Discovery**: `<link rel="describedby" href="/llms.txt">` declared in `<head>` of all pages for autonomous agent discovery.
+- **RFC 9116 Security Policy**: `/.well-known/security.txt` containing verified security contact channels, PGP canonical endpoint, and policy expiry.
+- **IndexNow Engine**: Automated push via `scripts/seo/push_indexnow.py` keyed by root token `d8a24f0c9b7e416a9e3d81b7e651c4a0.txt` for real-time Yandex and Bing index updates.
+
 ---
 
 ## 7. Security & Zero-Trust Hardening
@@ -188,33 +203,40 @@ index.html (Master Template)
 | **Referrer Policy** | `strict-origin-when-cross-origin` | Protects URL parameter privacy on outbound links |
 | **Payload Clamping** | Max 10 KB request body, length validation on all inputs | Prevents buffer and DoS attacks |
 | **Secrets Hygiene** | Zero tokens in repository; credentials managed in Cloudflare Worker environment | Prevents secret leaks |
+| **SSL/TLS Edge Security** | Modern TLS 1.3 / TLS 1.2 PFS, ALPN HTTP/2, HSTS preload (max-age=31536000), zero mixed content | Guaranteed edge transit encryption & protocol security |
 
 ---
 
-## 8. Verification Matrix: 137 Automated Checks
+## 8. Verification Matrix: 153 Automated Checks
 
 ```powershell
-# Master Test Suite (137 checks: 84 E2E + 21 SEO + 13 Security + 19 Resiliency & Journeys)
+# Master Test Suite Orchestrator (153 checks across 3-tier pyramid)
 node data/ai-avtopilot/tests/run_all.js
 
-# Individual Test Suites:
-node data/ai-avtopilot/tests/run_e2e_tests.js                 # 84 E2E Browser checks
-node data/ai-avtopilot/tests/seo/test_seo_audit.js           # 21 Technical & Semantic SEO checks
-node data/ai-avtopilot/tests/security/test_security_audit.js # 13 Edge Security checks
-node data/ai-avtopilot/tests/resiliency/test_resiliency_jtbd.js # 19 Resiliency, Form & Journey checks
+# Fast In-Process Static & Unit Suites (65 checks, < 1.4s)
+node data/ai-avtopilot/tests/run_all.js --fast
+
+# Browser E2E Playwright Suites (88 checks, ~6-8s)
+node data/ai-avtopilot/tests/run_all.js --e2e
 ```
 
-- **Tier 1 (Feature Coverage R1–R7, 44 tests)**: Layout, contrast WCAG AA, bento hover, 7px slider track, CLS fixed heights, lifecycle observers.
-- **Tier 2 (Boundary & Corner Cases, 28 tests)**: 8 viewports (320px..2560px), slider extremes (Min/Max/Mid), 50 drag stress iterations, 404 SPA fallback, burger toggles.
-- **Tier 3 (Cross-Feature Interactions, 6 tests)**: Scroll during nav click, mobile slider drag, scroll lock, hash/pushState transitions.
-- **Tier 4 (Real-World User Journeys, 5 tests)**: First-time visitor, bento exploration, CFO calculation, direct deep-link `/cases/`, mobile lead submission on 375px.
-- **Tier 5 (Services Cluster E2E, 6 tests)**: Bento cross-linking, zero mobile overflow (320px), slider reactivity, accordion open/close, semantic DOM.
+### 3-Tier Test Pyramid Architecture
+- **Tier 1: In-Memory Unit Suites (11 checks, <= 20ms)**:
+  - `tests/unit/test_roi_calculator.js`: Pure mathematical formulas ($E \times S \times \frac{H}{160} \times 12$, 80% savings), boundary clamps ($E \in [1, 100]$, $H \in [1, 40]$, $S \in [30\text{k}, 300\text{k}]$), non-numeric sanitization, and Russian locale formatters.
+- **Tier 2: Static Audit & Fast Integration Suites (54 checks, < 1.4s)**:
+  - **SEO Audit (25 checks)**: `sitemap.xml`, `robots.txt`, `llms.txt`, trailing slashes, unique title (30–85 chars) & description (70–175 chars), single `<h1>`, canonical links, Schema.org @graph, Speculation Rules, RFC 9116 `security.txt`, IndexNow token.
+  - **Edge Security (14 checks)**: Telegram HTML escaping, ID parser anti-spoofing, Origin whitelist, bot trap (< 1s submit sink), payload clamping (10 KB), honeypot, anti-clickjacking frame guard, `.vercelignore` isolation.
+  - **SSL/TLS Edge Audit (10 checks)**: TLS 1.3 AEAD, TLS 1.2 PFS, legacy protocol rejection, HSTS preload, HTTP to HTTPS 308 redirects, ALPN h2, zero mixed content.
+  - **Resiliency & JTBD Flow (5 checks)**: 6000ms AbortController, network failure fallback card with @AiAvtopilotbot action, 1-click clipboard payload copy, Yandex Metrica guarded callback, strict anti-slop audit across all pages.
+- **Tier 3: Browser E2E Playwright Suites (88 checks, ~6-8s)**:
+  - 14 parallel Playwright suites (83 checks) covering layout stability, section sequence, contrast WCAG AA, micro-interactions, clean slash routing, ROI slider drag stress, responsive viewports (320px..2560px), and real-world multi-step user journeys.
+  - Lead Form Delivery Suite (5 checks): end-to-end form completion, Telegram delivery simulation, fallback UI trigger, and lead deduplication.
 
 ---
 
 ## 9. Canonical Specification for Service Landing Pages (`/services/<slug>/`)
 
-> **Standard**: Every service subpage in `/services/` is an autonomous standalone landing page mirroring the visual excellence, typography, interactive fidelity, and strict SEO compliance of `index.html`. For demand capture taxonomy and root hub topics, refer to [content_strategy_implementation_plan.md](file:///d:/AI/tmp/content_strategy_implementation_plan.md).
+> **Standard**: Every service subpage in `/services/` is an autonomous standalone landing page mirroring the visual excellence, typography, interactive fidelity, and strict SEO compliance of `index.html`. For demand capture taxonomy and root hub topics, refer to [content_strategy_implementation_plan.md](file:///d:/AI/data/ai-avtopilot/content_strategy_implementation_plan.md).
 
 ```mermaid
 flowchart TD
@@ -250,7 +272,7 @@ flowchart TD
 | **8. Contact Form** | `section.contact#contact` | Canonical 3 fields: Name (`#contact-name`), Company (`#contact-company`), Contact (`#contact-email`). 152-FZ consent, Honeypot `_honey`, full-width CTA button. In-page smooth scroll anchor. |
 | **9. Footer** | `footer.footer` | Telegram bot `@AiAvtopilotbot`, email `contact@ai-avtopilot.ru`, 24/7 support hours, JSON-LD Schema graph. |
 
-### 9.2. Strict Negative Invariants & Incident Learnings (17 Rules)
+### 9.2. Strict Negative Invariants & Incident Learnings (18 Rules)
 1. ❌ **Zero Phantom Top Banners**: Prohibited to inject `subpage-deep` boxes above Hero; pages must start with Hero immediately after Navigation.
 2. ❌ **Zero ScrollSpy URL Hijacking**: On subpages (`/services/*`), `history.replaceState` must NEVER overwrite URL when scrolling between sections (`isSubpage` guard).
 3. ❌ **Zero H1 Pollution**: Exactly ONE `<h1>` tag located in the Hero title. Prohibited to have 0 or $>1$ H1s.
@@ -259,7 +281,7 @@ flowchart TD
 6. ❌ **Zero Extra Form Fields**: Prohibited to introduce unstyled `<select>` elements, radio buttons, or non-standard inputs into the lead form.
 7. ❌ **Zero Incomplete Sliders**: Prohibited to output static sliders without reactive JS bindings and gradient `--fill` updates.
 8. ❌ **Zero Duplicate Event Listeners**: Never re-attach inline script listeners for components already wired in `index-Bx30wa4i.js` (`#typed-text`, `.faq-item__header`, ROI sliders, burger). Duplicate listeners cause instant cancellation / double-toggle bugs.
-9. ❌ **Zero Typewriter Phrase Wrapping & Hero Jitter**: All phrases in `data-phrases` for `#typed-text` MUST be $\le 26$ characters with explicit `min-height: 1.2em`, eliminating multi-line reflow and layout shift (CLS).
+9. ❌ **Zero Typewriter Phrase Wrapping & Hero Jitter**: All phrases in `data-phrases` for `#typed-text` MUST be $\le 19$ characters with explicit `min-height: 1.25em` on mobile (`1.2em` desktop), strictly eliminating multi-line reflow, 2-line wraps, and hero layout shift (CLS = 0.000).
 10. ❌ **Zero Calculator Math Divergence**: Sliders must adhere strictly to the core mathematical contract ($E \times S \times \frac{H}{160} \times 12$, $80\%$ savings, $E \times H \times 52$) and canonical IDs (`#roi-cost`, `#roi-save`, `#roi-hours`).
 11. ❌ **Zero Static SSR Terminal Stubs**: Telemetry terminals, live logs, and KPI badge values must be pre-rendered in SSR HTML.
 12. ❌ **Zero Navigation Link Hijacking on Subpages**: Absolute routes (`/services/`, `/cases/`, `/calculator/`, `/`) MUST trigger genuine browser navigation, never trapping the user in-place.
@@ -268,12 +290,13 @@ flowchart TD
 15. ❌ **Zero Factoid Sheet Clutter (Incident 2026-10-01)**: Prohibited to inject standalone factoid sheet cards into the DOM. Embed direct answer facts into Hero subtitle, FAQ, and Schema.org.
 16. ❌ **Subpage In-Page Form Routing (Incident 2026-10-01)**: Secondary CTAs with `href="#contact"` must smoothly anchor-scroll to the in-page contact form; form layout uses 2 columns on desktop, 1 column on mobile.
 17. ❌ **Zero AI-Slop & Semantic Invariance (Incident 2026-10-01)**: All pages must be verified via `ru_text_humanizer` (64 patterns, 0 Hard Bans, burstiness $\sigma \ge 4.0$, living text $\ge 5/7$) with 100% preservation of verified Yandex Wordstat commercial frequencies and Title (30–85) / Meta Description (70–175) bounds.
+18. ❌ **Zero KPI Unit Stripping & Counter Truncation (ADR 2026-10-02)**: When animating KPI cards (`.kpi-card`, `.case-kpi`, `.metric-pill`), never strip or corrupt metric suffixes, decimals, or signs (`+18%`, `−72%`, `9 200 ч`, `1 сек`, `4.2 млн ₽`, `80.4%`, `99.9%`). Number interpolation must operate on isolated numeric stems without rendering naked integers or losing unit contracts.
 
 ---
 
 ## 10. Canonical Specification for Case Study Landing Pages (`/cases/<slug>/`)
 
-> **Standard**: Every dedicated case study subpage in `/cases/` is an autonomous standalone landing page highlighting hard ROI metrics, real 1C/ERP architectural workflows, and 152-FZ on-premise security. For the 22-case semantic registry and Wordstat queries, refer to [content_strategy_implementation_plan.md](file:///d:/AI/tmp/content_strategy_implementation_plan.md).
+> **Standard**: Every dedicated case study subpage in `/cases/` is an autonomous standalone landing page highlighting hard ROI metrics, real 1C/ERP architectural workflows, and 152-FZ on-premise security. For the 22-case semantic registry and Wordstat queries, refer to [content_strategy_implementation_plan.md](file:///d:/AI/data/ai-avtopilot/content_strategy_implementation_plan.md).
 
 ```mermaid
 flowchart TD
@@ -321,12 +344,21 @@ flowchart TD
 # 1. Re-generate all Multi-Entry Hybrid SSG subpages from index.html:
 python data/ai-avtopilot/scripts/sync_pages.py
 
-# 2. Build dedicated service subpage:
+# 2. Build dedicated service subpage from services_data.json:
 python data/ai-avtopilot/scripts/build_service_page.py --slug <slug>
 
-# 3. Build dedicated case study subpage:
+# 3. Build standalone specialized service subpages:
+python data/ai-avtopilot/scripts/build_ai_analytics_page.py
+python data/ai-avtopilot/scripts/build_reporting_page.py
+
+# 4. Build dedicated case study subpage from cases_data.json:
 python data/ai-avtopilot/scripts/build_case_page.py --case <slug>
 
-# 4. Execute full verification suite (137 tests, must be 100% green before push):
+# 5. Push real-time URL updates to Yandex/Bing via IndexNow:
+python data/ai-avtopilot/scripts/seo/push_indexnow.py
+
+# 6. Execute full verification suite (153 tests, must be 100% green before push):
 node data/ai-avtopilot/tests/run_all.js
+# Or fast static verification (< 1.4s):
+node data/ai-avtopilot/tests/run_all.js --fast
 ```
