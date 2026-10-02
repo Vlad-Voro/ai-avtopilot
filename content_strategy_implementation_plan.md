@@ -3,7 +3,7 @@
 > **Status**: Production Deployed | **Target**: [ai-avtopilot.ru](https://ai-avtopilot.ru/) | **Geo**: Russian Federation (Nationwide B2B)  
 > **Conversion Model**: Direct On-Site (ROI Calculator + `#contact` Audit Form; zero external bot qualification)  
 > **Search Targets**: Yandex (Web + «Нейро»), Google RU (AI Overviews), Perplexity, Professional communities (Klerk, Infostart)  
-> **Verification**: **137 / 137 PASS** (84 E2E + 21 SEO + 13 Security + 19 Resiliency) | **AI Slop**: **0 Markers** across all 23 URLs
+> **Verification**: **153 / 153 PASS** (83 browser + 70 unit/E2E/SEO/Security) | **AI Slop**: **0 Markers** across all 25 URLs
 
 ---
 
@@ -18,18 +18,18 @@ flowchart TD
         Val -- "Validated Pool" --> Brief["Validated Semantics Matrix"]
     end
 
-    subgraph Architecture ["2. Production Silo Architecture (23 URLs)"]
+    subgraph Architecture ["2. Production Silo Architecture (25 URLs)"]
         Root["/ (Main Landing Page)"]
         Hubs["6 Hub & Tool Pages (/services/, /cases/, /calculator/, /dashboard/, /faq/, /contact/)"]
-        T1["7 Production Service Landing Pages (/services/*)"]
-        T3["6 Applied Production Case Studies (/cases/*)"]
+        T1["8 Production Service Landing Pages (/services/*)"]
+        T3["7 Applied Production Case Studies (/cases/*)"]
     end
 
     subgraph Pipeline ["3. Production & Quality Gate"]
         Arch["Agent 1: Intent & Brief"] --> Writer["Agent 2: 1C & Ops Specialist"]
         Writer --> Critic["Agent 3: Adversarial Reviewer"]
         Critic --> Humanizer["Agent 4: ru_text_humanizer (64 patterns)"]
-        Humanizer --> Gate["Deterministic SEO/Schema Gate (137 tests)"]
+        Humanizer --> Gate["Deterministic SEO/Schema Gate (153 tests)"]
     end
 
     subgraph Conversion ["4. On-Site Conversion & Telemetry"]
@@ -41,7 +41,7 @@ flowchart TD
     Brief --> Architecture --> Pipeline --> Conversion
 ```
 
-### 1.1. Production Page Inventory (23 Active URLs)
+### 1.1. Production Page Inventory (25 Active URLs)
 - **Root Main Landing (`/`)**: High-converting core page with dynamic typewriter, ROI engine, 6-module bento grid, live telemetry dashboard, and direct audit capture.
 - **Hub & Tool Subpages (6 URLs)**:
   - `/services/` — Complete catalogue of enterprise automation scenarios.
@@ -50,7 +50,7 @@ flowchart TD
   - `/dashboard/` — Live telemetry simulator and autonomous agent monitor.
   - `/faq/` — B2B knowledge base (1C integration, 14-day SLA, 152-FZ on-premise security).
   - `/contact/` — Express audit registration and direct contact channels.
-- **Dedicated Service Landing Pages (7 URLs, `/services/*`)**:
+- **Dedicated Service Landing Pages (8 URLs, `/services/*`)**:
   1. `/services/system-integration/` — 1C ERP, CRM (Bitrix24 / amoCRM), OData REST API & Event Bus.
   2. `/services/retail-inventory/` — 1C:Розница, 1C:УТ, Safety Stock, ROP, Wildberries & Ozon balance sync.
   3. `/services/document-automation/` — OCR + On-Premise LLM invoice / UPD extraction, Diadoc & SBIS routing.
@@ -58,13 +58,15 @@ flowchart TD
   5. `/services/rapid-pilot/` — 14-Day Fixed MVP Sprint with guaranteed commercial ROI.
   6. `/services/automated-reporting/` — Autonomous P&L, Cash Flow, and operational summaries in Telegram/Email.
   7. `/services/ai-analytics/` — Predictive cash flow calendar, stock depletion & price anomaly detection.
-- **Dedicated Applied Case Studies (6 URLs, `/cases/*`)**:
+  8. `/services/speech-analytics/` — 100% call audit in 30 sec, Whisper on-premise, 18-parameter checklist, amoCRM/Bitrix24 webhooks.
+- **Dedicated Applied Case Studies (7 URLs, `/cases/*`)**:
   1. `/cases/retail-inventory-automation/` — Retail network (230 stores): -72% manual accounting, +18% turnover, 9,200 hrs/yr saved.
   2. `/cases/manufacturing-edi-automation/` — Manufacturing plant: -90% paper EDI, period close in 5 min vs 3 days, $\ge 400\%$ ROI.
   3. `/cases/service-center-ai-operator/` — Service center (40k clients/mo): 80.4% autonomous resolution, 3 ₽ per contact, 1C:UNF.
   4. `/cases/hr-recruitment-automation/` — Retail & Logistics mass hiring (50+ stores): screening 5,000+ CVs/mo, -85% screening time, 1C:ZUP.
   5. `/cases/supply-chain-logistics/` — Logistics hub: GLONASS/GPS telemetry, ETA prediction, EPL generation in 30 sec, -30% transport costs.
   6. `/cases/fintech-transaction-reconciliation/` — B2B Fintech: DirectBank 1C reconciliation, 50,000 ops in 8.4 sec, 99.2% accuracy.
+  7. `/cases/sales-speech-analytics/` — B2B Sales & Distribution (35 managers): 100% call audit in 30 sec, -85% QA cost, +22% conversion, amoCRM/Bitrix24.
 - **System & Legal Pages (3 URLs)**: `/privacy.html` (152-FZ compliant), `/404.html` (clean route fallback), `/success.html`.
 - **AI Agent Discovery**: `/llms.txt`, `/llms-full.txt` (structured markdown indexation for LLM crawlers).
 
@@ -121,7 +123,7 @@ sequenceDiagram
 - **0 Slop Markers (64-Pattern Taxonomy)**: Total elimination of all 20 Hard Bans («не просто X, а Y», «стоит отметить», buzzwords «бесшовный», «комплексный», demonstrative pointer weeds «данный»).
 - **Morphological Data Protection**: Strict distinction between the demonstrative weed «данный/данная» (banned) and the technical noun «данные (data)» (databases, data transfer, 152-FZ compliance).
 - **SEO Frequency & Density Locks**: Full preservation of primary search queries and LSI tails in `<title>` (30–85 chars), `<meta name="description">` (70–175 chars), `<h1>`, Direct Answer blocks, FAQ accordions, and Schema.org graphs.
-- **Engineering Invariants**: Typewriter phrase length constrained to $\le 26$ characters (CLS = 0.000, zero multi-line wrap jitter), preserving 137/137 tests without regression.
+- **Engineering Invariants**: Typewriter phrase length constrained to $\le 26$ characters (CLS = 0.000, zero multi-line wrap jitter), preserving 153/153 tests without regression.
 
 ---
 
@@ -130,10 +132,10 @@ sequenceDiagram
 ### 3.1. Completed Milestones (Current Baseline)
 - ✅ **Core Infrastructure & Design System**: Inlined zero-blocking CSS (~97KB), local WOFF2 font subsetting, WCAG AA strict contrast, responsive down to 320px.
 - ✅ **Multi-Entry Hybrid SSG Engine**: Synchronization across all 6 hubs/tools via `sync_pages.py`.
-- ✅ **Scenario Landing Cluster**: 7 production service landing pages deployed and verified.
-- ✅ **Applied Case Study Cluster**: 6 real-world B2B case studies deployed with hard ROI metrics and 3-level Schema.org graphs.
-- ✅ **Site-Wide Desloping & SEO Hardening**: All 23 URLs proofread via `ru_text_humanizer` (0 slop markers, 100% Wordstat keyword retention).
-- ✅ **Verification Suite**: 137/137 tests passing (E2E, SEO, Security, Resiliency).
+- ✅ **Scenario Landing Cluster**: 8 production service landing pages deployed and verified.
+- ✅ **Applied Case Study Cluster**: 7 real-world B2B case studies deployed with hard ROI metrics and 3-level Schema.org graphs.
+- ✅ **Site-Wide Desloping & SEO Hardening**: All 25 URLs proofread via `ru_text_humanizer` (0 slop markers, 100% Wordstat keyword retention).
+- ✅ **Verification Suite**: 153/153 tests passing (83 browser + 70 unit/E2E/SEO/Security).
 
 ### 3.2. Future Expansion Roadmap
 - **Sprint 4 (Long-Tail Semantic Expansion)**:

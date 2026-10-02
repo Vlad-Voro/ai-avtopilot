@@ -17,6 +17,7 @@ const PAGES = [
   { slug: 'services/retail-inventory', file: 'services/retail-inventory/index.html', url: 'https://ai-avtopilot.ru/services/retail-inventory/', hasBreadcrumbs: true },
   { slug: 'services/document-automation', file: 'services/document-automation/index.html', url: 'https://ai-avtopilot.ru/services/document-automation/', hasBreadcrumbs: true },
   { slug: 'services/customer-support', file: 'services/customer-support/index.html', url: 'https://ai-avtopilot.ru/services/customer-support/', hasBreadcrumbs: true },
+  { slug: 'services/speech-analytics', file: 'services/speech-analytics/index.html', url: 'https://ai-avtopilot.ru/services/speech-analytics/', hasBreadcrumbs: true },
   { slug: 'services/rapid-pilot', file: 'services/rapid-pilot/index.html', url: 'https://ai-avtopilot.ru/services/rapid-pilot/', hasBreadcrumbs: true },
   { slug: 'cases', file: 'cases/index.html', url: 'https://ai-avtopilot.ru/cases/', hasBreadcrumbs: true },
   { slug: 'calculator', file: 'calculator/index.html', url: 'https://ai-avtopilot.ru/calculator/', hasBreadcrumbs: true },

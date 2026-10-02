@@ -59,6 +59,12 @@ URL_SPEC = [
         "priority": "0.9",
     },
     {
+        "url": "https://ai-avtopilot.ru/services/speech-analytics/",
+        "file": "services/speech-analytics/index.html",
+        "changefreq": "weekly",
+        "priority": "0.9",
+    },
+    {
         "url": "https://ai-avtopilot.ru/services/rapid-pilot/",
         "file": "services/rapid-pilot/index.html",
         "changefreq": "weekly",
