@@ -51,6 +51,10 @@
         {
           "key": "Cross-Origin-Opener-Policy",
           "value": "same-origin"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://mc.yandex.com https://yastatic.net https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://ai-avtopilot.ru https://mc.yandex.ru https://mc.yandex.com; connect-src 'self' https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev https://api.web3forms.com https://formsubmit.co https://mc.yandex.ru https://mc.yandex.com wss://mc.yandex.ru wss://mc.yandex.com https://cloudflareinsights.com; frame-src https://mc.yandex.ru https://mc.yandex.com blob:; child-src https://mc.yandex.ru https://mc.yandex.com blob:;"
         }
       ]
     },

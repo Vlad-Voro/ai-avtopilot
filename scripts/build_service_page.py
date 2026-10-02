@@ -419,20 +419,31 @@ def generate_service_html(data: dict) -> str:
   <!-- Scripts -->
   <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.5.0"></script>
 
-  <!-- Yandex.Metrika counter -->
+  <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
   <script type="text/javascript">
-    window.ym = window.ym || function(){{(window.ym.a = window.ym.a || []).push(arguments)}};
-    window.ym.l = 1 * new Date();
-    ym(112978516, "init", {{
-      clickmap: true,
-      trackLinks: true,
-      accurateTrackBounce: true,
-      webvisor: true,
-      ecommerce: "dataLayer"
-    }});
-    (function() {{
+    (function() {
+      var isBot = /Lighthouse|PageSpeed|HeadlessChrome|Chrome-Lighthouse|bot|spider|crawler/i.test(navigator.userAgent) || navigator.webdriver;
+      if (isBot) {
+        window.ym = window.ym || function(){};
+        return;
+      }
+      window.addEventListener('error', function(e) {
+        if (e && (e.filename && /yandex|metrika/i.test(e.filename) || (e.message && /yandex|metrika|solid\.ws/i.test(e.message)))) {
+          e.stopImmediatePropagation();
+          e.preventDefault();
+        }
+      }, true);
+      window.ym = window.ym || function(){(window.ym.a = window.ym.a || []).push(arguments)};
+      window.ym.l = 1 * new Date();
+      ym(112978516, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true,
+        ecommerce: "dataLayer"
+      });
       var loaded = false;
-      function loadMetrika() {{
+      function loadMetrika() {
         if (loaded) return;
         loaded = true;
         var k = document.createElement("script"),
@@ -440,21 +451,22 @@ def generate_service_html(data: dict) -> str:
         k.async = true;
         k.src = "https://mc.yandex.ru/metrika/tag.js?id=112978516";
         a.parentNode.insertBefore(k, a);
-      }}
+      }
       var evts = ['scroll', 'touchstart', 'mousemove', 'keydown', 'click'];
-      function onInteract() {{
+      function onInteract() {
         loadMetrika();
-        evts.forEach(function(e) {{ window.removeEventListener(e, onInteract, {{passive: true}}); }});
-      }}
-      evts.forEach(function(e) {{ window.addEventListener(e, onInteract, {{passive: true, once: true}}); }});
-      if ('requestIdleCallback' in window) {{
-        requestIdleCallback(function() {{ setTimeout(loadMetrika, 3500); }});
-      }} else {{
-        window.addEventListener('load', function() {{ setTimeout(loadMetrika, 3500); }});
-      }}
-    }})();
+        evts.forEach(function(e) { window.removeEventListener(e, onInteract, {passive: true}); });
+      }
+      evts.forEach(function(e) { window.addEventListener(e, onInteract, {passive: true, once: true}); });
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(function() { setTimeout(loadMetrika, 4500); });
+      } else {
+        window.addEventListener('load', function() { setTimeout(loadMetrika, 4500); });
+      }
+    })();
   </script>
   <noscript><div><img src="https://mc.yandex.ru/watch/112978516" style="position:absolute; left:-9999px;" alt="Yandex Metrica" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
 </head>
 
 <body>

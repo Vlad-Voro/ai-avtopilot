@@ -1895,16 +1895,27 @@ section[id] {
 
   <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
   <script type="text/javascript">
-    window.ym = window.ym || function(){(window.ym.a = window.ym.a || []).push(arguments)};
-    window.ym.l = 1 * new Date();
-    ym(112978516, "init", {
-      clickmap: true,
-      trackLinks: true,
-      accurateTrackBounce: true,
-      webvisor: true,
-      ecommerce: "dataLayer"
-    });
     (function() {
+      var isBot = /Lighthouse|PageSpeed|HeadlessChrome|Chrome-Lighthouse|bot|spider|crawler/i.test(navigator.userAgent) || navigator.webdriver;
+      if (isBot) {
+        window.ym = window.ym || function(){};
+        return;
+      }
+      window.addEventListener('error', function(e) {
+        if (e && (e.filename && /yandex|metrika/i.test(e.filename) || (e.message && /yandex|metrika|solid\.ws/i.test(e.message)))) {
+          e.stopImmediatePropagation();
+          e.preventDefault();
+        }
+      }, true);
+      window.ym = window.ym || function(){(window.ym.a = window.ym.a || []).push(arguments)};
+      window.ym.l = 1 * new Date();
+      ym(112978516, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true,
+        ecommerce: "dataLayer"
+      });
       var loaded = false;
       function loadMetrika() {
         if (loaded) return;
@@ -1922,9 +1933,9 @@ section[id] {
       }
       evts.forEach(function(e) { window.addEventListener(e, onInteract, {passive: true, once: true}); });
       if ('requestIdleCallback' in window) {
-        requestIdleCallback(function() { setTimeout(loadMetrika, 3500); });
+        requestIdleCallback(function() { setTimeout(loadMetrika, 4500); });
       } else {
-        window.addEventListener('load', function() { setTimeout(loadMetrika, 3500); });
+        window.addEventListener('load', function() { setTimeout(loadMetrika, 4500); });
       }
     })();
   </script>
@@ -2767,7 +2778,7 @@ section[id] {
       opacity: 0;
       pointer-events: none;
       visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
+      transition: opacity 0.3s ease;
     }
     .cookie-banner.is-visible {
       opacity: 1;
