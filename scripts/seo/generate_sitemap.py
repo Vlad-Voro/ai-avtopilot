@@ -70,6 +70,18 @@ URL_SPEC = [
         "changefreq": "weekly",
         "priority": "0.9",
     },
+    {
+        "url": "https://ai-avtopilot.ru/services/specifications-kp/",
+        "file": "services/specifications-kp/index.html",
+        "changefreq": "weekly",
+        "priority": "0.9",
+    },
+    {
+        "url": "https://ai-avtopilot.ru/services/price-monitoring/",
+        "file": "services/price-monitoring/index.html",
+        "changefreq": "weekly",
+        "priority": "0.9",
+    },
     {"url": "https://ai-avtopilot.ru/cases/", "file": "cases/index.html", "changefreq": "weekly", "priority": "0.8"},
     {
         "url": "https://ai-avtopilot.ru/cases/retail-inventory-automation/",

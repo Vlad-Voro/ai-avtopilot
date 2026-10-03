@@ -69,9 +69,8 @@ flowchart TD
 
 ### 2.1. Web Vitals & Zero-Blocking Engine
 - **Inlined CSS**: Master stylesheet embedded directly in `<head>` via `<style id="app-styles">` (~97 KB). Zero render-blocking external stylesheets.
-- **Font Subsetting**: Local WOFF2 fonts (*Inter* Cyrillic/Latin, *Outfit* headings) preloaded via `<link rel="preload">` in `/assets/fonts/` with `font-display: swap`.
+- **Font Subsetting & Local WOFF2 Isolation**: Zero external Google Fonts CDN dependencies across all 27 pages (including `/success.html` and `/404.html`). Local WOFF2 fonts (*Inter* Cyrillic/Latin, *Outfit* headings, *JetBrains Mono*) preloaded via `<link rel="preload">` in `/assets/fonts/` with `font-display: optional / swap` (0 CLS, immune to Russian TSPU DPI blocking).
 - **CWV Targets**: FCP 0.3s–0.5s | LCP 0.5s–0.6s | TBT 0 ms | CLS 0.000 (fixed dimensions on terminals, sliders, and bento cards).
-
 ### 2.2. Strict Palette & Contrast (WCAG AA Compliant)
 - Background: `#050507` (Deep Cosmic Black).
 - Text Tier 1 (`--text-1`): `#ffffff` (21:1 contrast).
@@ -93,7 +92,7 @@ flowchart TD
 index.html (Master Template) & Data Catalogs
    │
    ├── [sync_pages.py] ──────────> 6 Hub & Tool Pages (/services/, /cases/, etc.)
-   ├── [build_service_page.py] ──> 6 Service Landing Pages (/services/<slug>/) + #other-services
+   ├── [build_service_page.py] ──> 8 Standard Service Landing Pages (/services/<slug>/) + #other-services
    ├── [build_ai_analytics_page] ─> /services/ai-analytics/ + #other-services
    ├── [build_reporting_page] ────> /services/automated-reporting/ + #other-services
    └── [build_case_page.py] ─────> 7 Applied Case Studies (/cases/<slug>/) with #cases below #contact
@@ -215,25 +214,27 @@ index.html (Master Template) & Data Catalogs
 ## 8. Verification Matrix: 153 Automated Checks
 
 ```powershell
-# Master Test Suite Orchestrator (153 checks across 3-tier pyramid)
-node data/ai-avtopilot/tests/run_all.js
-
-# Fast In-Process Static & Unit Suites (65 checks, < 1.4s)
+# Fast In-Process Static, Security & Unit Suites (67 checks, < 1.4s)
 node data/ai-avtopilot/tests/run_all.js --fast
+
+# Responsive Layout & Viewport Matrix (486 checks across 27 pages x 18 devices, ~4s)
+node data/ai-avtopilot/tests/audit/audit_runner.js
 
 # Browser E2E Playwright Suites (88 checks, ~6-8s)
 node data/ai-avtopilot/tests/run_all.js --e2e
 ```
 
-### 3-Tier Test Pyramid Architecture
+### Verification Pyramid Architecture
 - **Tier 1: In-Memory Unit Suites (11 checks, <= 20ms)**:
   - `tests/unit/test_roi_calculator.js`: Pure mathematical formulas ($E \times S \times \frac{H}{160} \times 12$, 80% savings), boundary clamps ($E \in [1, 100]$, $H \in [1, 40]$, $S \in [30\text{k}, 300\text{k}]$), non-numeric sanitization, and Russian locale formatters.
-- **Tier 2: Static Audit & Fast Integration Suites (54 checks, < 1.4s)**:
-  - **SEO Audit (25 checks)**: `sitemap.xml`, `robots.txt`, `llms.txt`, trailing slashes, unique title (30–85 chars) & description (70–175 chars), single `<h1>`, canonical links, Schema.org @graph, Speculation Rules, RFC 9116 `security.txt`, IndexNow token.
+- **Tier 2: Static Audit & Fast Integration Suites (56 checks, < 1.4s)**:
+  - **SEO Audit (26 checks)**: `sitemap.xml` (25 canonical URLs), `robots.txt`, `llms.txt`, trailing slashes, unique title ($\le 77$ chars) & description ($\le 152$ chars), single `<h1>`, canonical links, Schema.org @graph (OfferCatalog / TechArticle), Speculation Rules, RFC 9116 `security.txt`, IndexNow token.
   - **Edge Security (14 checks)**: Telegram HTML escaping, ID parser anti-spoofing, Origin whitelist, bot trap (< 1s submit sink), payload clamping (10 KB), honeypot, anti-clickjacking frame guard, `.vercelignore` isolation.
   - **SSL/TLS Edge Audit (10 checks)**: TLS 1.3 AEAD, TLS 1.2 PFS, legacy protocol rejection, HSTS preload, HTTP to HTTPS 308 redirects, ALPN h2, zero mixed content.
-  - **Resiliency & JTBD Flow (5 checks)**: 6000ms AbortController, network failure fallback card with @AiAvtopilotbot action, 1-click clipboard payload copy, Yandex Metrica guarded callback, strict anti-slop audit across all pages.
-- **Tier 3: Browser E2E Playwright Suites (88 checks, ~6-8s)**:
+  - **Resiliency & JTBD Flow (6 checks)**: 6000ms AbortController, network failure fallback card with @AiAvtopilotbot action, 1-click clipboard payload copy, Yandex Metrica guarded callback, strict anti-slop audit across all pages.
+- **Tier 3: Responsive Layout & Viewport Matrix (486 checks, ~4s)**:
+  - `tests/audit/audit_runner.js`: Exhaustive DOM evaluation across all 27 pages and 18 canonical viewport profiles (from 280px Galaxy Fold cover up to 1920px Full HD). Enforces `scrollWidth === clientWidth` (zero horizontal overflow), touch target accessibility ($\ge 48\text{px}$), and responsive typography.
+- **Tier 4: Browser E2E Playwright Suites (88 checks, ~6-8s)**:
   - 14 parallel Playwright suites (83 checks) covering layout stability, section sequence, contrast WCAG AA, micro-interactions, clean slash routing, ROI slider drag stress, responsive viewports (320px..2560px), and real-world multi-step user journeys.
   - Lead Form Delivery Suite (5 checks): end-to-end form completion, Telegram delivery simulation, fallback UI trigger, and lead deduplication.
 
@@ -343,8 +344,8 @@ flowchart TD
 
 ### 10.2. Canonical Specification for Service Landing Pages (`/services/<slug>/`) & Internal Linking Mesh
 - **Conversion Flow**: `Hero` $\to$ `ROI Calculator` $\to$ `Compare` $\to$ `Bento Modules` $\to$ `Cases` $\to$ `FAQ` $\to$ `Dashboard` $\to$ `Contact Form (#contact)` $\to$ `Other Scenarios (#other-services)` $\to$ `Footer`.
-- **Strongly Connected Silo Mesh ($K_8$ Graph)**: Every dedicated service page features `#other-services` (`.services.other-services`) placed strictly below the `#contact` lead form, cross-linking to all 7 other services in the cluster (56 directed internal links, 0 self-links, 0 redirect hops with strict trailing slashes).
-- **Bento Grid Architecture**: 7 sibling cards in `.services__bento.other-services__bento`. Desktop: balanced 3-column grid (cards 1 and 7 span 2 columns: 2+1, 1+1+1, 1+2). Mobile: horizontal scroll-snap carousel with isolated dots `#other-services-dots` and zero `aria-hidden`.
+- **Strongly Connected Silo Mesh ($K_{10}$ Graph)**: Every dedicated service page features `#other-services` (`.services.other-services`) placed strictly below the `#contact` lead form, cross-linking to all 9 other services in the cluster (90 directed internal links, 0 self-links, 0 redirect hops with strict trailing slashes).
+- **Bento Grid Architecture**: 9 sibling cards in `.services__bento.other-services__bento`. Desktop: 4x2 responsive card slider with scroll-snap and next/prev controls. Mobile: horizontal scroll-snap carousel with isolated dots `#other-services-dots` and zero `aria-hidden`.
 - **Data Catalog & Shared Component**: Managed via `data/services_catalog.json` and rendered programmatically by `scripts/other_services_block.py`.
 
 ---
@@ -355,7 +356,7 @@ flowchart TD
 # 1. Re-generate all Multi-Entry Hybrid SSG subpages from index.html:
 python data/ai-avtopilot/scripts/sync_pages.py
 
-# 2. Build dedicated service subpages (or all 6 standard services):
+# 2. Build dedicated service subpages (or all 8 standard services):
 python data/ai-avtopilot/scripts/build_service_page.py --all
 # Or single service:
 python data/ai-avtopilot/scripts/build_service_page.py --service system-integration
@@ -372,9 +373,9 @@ python data/ai-avtopilot/scripts/build_case_page.py --case retail-inventory-auto
 # 5. Push real-time URL updates to Yandex/Bing via IndexNow:
 python data/ai-avtopilot/scripts/seo/push_indexnow.py
 
-# 6. Execute full verification suite (155 tests, must be 100% green before push):
-node data/ai-avtopilot/tests/run_all.js
-# Or fast static verification (< 1.4s):
-node data/ai-avtopilot/tests/run_all.js --fast
+# 6. Execute full verification suite (641 tests across 27 pages & 18 devices):
+node data/ai-avtopilot/tests/run_all.js --fast       # Fast Suite: 67/67 (Unit, SEO, Security, SSL, Resiliency)
+node data/ai-avtopilot/tests/audit/audit_runner.js # Responsive Layout Matrix: 486/486 (27 pages x 18 devices)
+node data/ai-avtopilot/tests/run_all.js --e2e        # Browser E2E: 88/88 (Playwright)
 ```
 

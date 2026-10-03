@@ -18,10 +18,10 @@ flowchart TD
         Val -- "Validated Pool" --> Brief["Validated Semantics Matrix"]
     end
 
-    subgraph Architecture ["2. Production Silo Architecture (25 URLs)"]
+    subgraph Architecture ["2. Production Silo Architecture (27 URLs)"]
         Root["/ (Main Landing Page)"]
         Hubs["6 Hub & Tool Pages (/services/, /cases/, /calculator/, /dashboard/, /faq/, /contact/)"]
-        T1["8 Production Service Landing Pages (/services/*)"]
+        T1["10 Production Service Landing Pages (/services/*)"]
         T3["7 Applied Production Case Studies (/cases/*)"]
     end
 
@@ -29,7 +29,7 @@ flowchart TD
         Arch["Agent 1: Intent & Brief"] --> Writer["Agent 2: 1C & Ops Specialist"]
         Writer --> Critic["Agent 3: Adversarial Reviewer"]
         Critic --> Humanizer["Agent 4: ru_text_humanizer (64 patterns)"]
-        Humanizer --> Gate["Deterministic SEO/Schema Gate (153 tests)"]
+        Humanizer --> Gate["Deterministic SEO/Schema Gate (641 tests)"]
     end
 
     subgraph Conversion ["4. On-Site Conversion & Telemetry"]
@@ -59,6 +59,8 @@ flowchart TD
   6. `/services/automated-reporting/` — Autonomous P&L, Cash Flow, and operational summaries in Telegram/Email.
   7. `/services/ai-analytics/` — Predictive cash flow calendar, stock depletion & price anomaly detection.
   8. `/services/speech-analytics/` — 100% call audit in 30 sec, Whisper on-premise, 18-parameter checklist, amoCRM/Bitrix24 webhooks.
+  9. `/services/specifications-kp/` — Automated technical specification parsing, RFP matching, 1C:ERP price calculation.
+  10. `/services/price-monitoring/` — Real-time supplier price scraping, anti-dumping checks, dynamic repricing in 1C.
 - **Dedicated Applied Case Studies (7 URLs, `/cases/*`)**:
   1. `/cases/retail-inventory-automation/` — Retail network (230 stores): -72% manual accounting, +18% turnover, 9,200 hrs/yr saved.
   2. `/cases/manufacturing-edi-automation/` — Manufacturing plant: -90% paper EDI, period close in 5 min vs 3 days, $\ge 400\%$ ROI.
@@ -79,7 +81,7 @@ flowchart TD
 - **Technical & DOM Alignment**: Zero CLS (0.000), fixed-dimension elements, and negative invariants strictly governed by [ARCHITECTURE.md §6 & §9.2](file:///d:/AI/data/ai-avtopilot/ARCHITECTURE.md).
 
 ### 1.3. SOTA SEO Internal Linking Mesh & Funnel Repositioning
-- **Complete Silo Mesh ($K_8$ Graph)**: Every dedicated service landing page (`/services/*`) features the «Другие сценарии» (`#other-services`) block located strictly below the `#contact` lead form. It links to all 7 other services in the cluster (56 directed internal links, zero self-links, 0 redirect hops with strict trailing slashes).
+- **Complete Silo Mesh ($K_{10}$ Graph)**: Every dedicated service landing page (`/services/*`) features the «Другие сценарии» (`#other-services`) block located strictly below the `#contact` lead form. It links to all 9 other services in the cluster (90 directed internal links, zero self-links, 0 redirect hops with strict trailing slashes). Desktop features a 4x2 8-card slider with scroll-snap.
 - **Exit-Intent Conversion Hierarchy**:
   - Services: primary conversion point (`#contact`) precedes sibling scenario exploration (`#other-services`), eliminating Hick's Law bounce.
   - Cases: primary conversion point (`#contact`) precedes related case studies (`#cases` «Другие кейсы»).
@@ -120,7 +122,7 @@ sequenceDiagram
     A3-->>A2: Reject / Revisions (Max 2 cycles on factual/math errors)
     A3->>A4: Validated Technical Spec
     A4->>Gate: De-slopped Russian Copy (0/64 patterns)
-    Gate->>Gate: Schema.org, Canonical, Trailing Slash, 153 E2E tests
+    Gate->>Gate: Schema.org, Canonical, Trailing Slash, 641 tests
 ```
 
 ### 2.2. Mandatory Critic Checklist (Agent 3 Invariants)
@@ -135,21 +137,21 @@ sequenceDiagram
 > **Canonical Site-Wide Proofreading Invariant**: Continuous proofreading and desloping of all pages across [ai-avtopilot.ru](https://ai-avtopilot.ru/) must be executed strictly via the [`ru_text_humanizer`](file:///d:/AI/.agents/skills/ru_text_humanizer/SKILL.md) skill **with zero semantic degradation and mandatory preservation of verified SEO frequency (Yandex Wordstat) on every single page**.
 - **0 Slop Markers (64-Pattern Taxonomy)**: Total elimination of all 20 Hard Bans («не просто X, а Y», «стоит отметить», buzzwords «бесшовный», «комплексный», demonstrative pointer weeds «данный»).
 - **Morphological Data Protection**: Strict distinction between the demonstrative weed «данный/данная» (banned) and the technical noun «данные (data)» (databases, data transfer, 152-FZ compliance).
-- **SEO Frequency & Density Locks**: Full preservation of primary search queries and LSI tails in `<title>` (30–85 chars), `<meta name="description">` (70–175 chars), `<h1>`, Direct Answer blocks, FAQ accordions, and Schema.org graphs.
-- **Engineering Invariants**: Typewriter phrase length constrained to $\le 19$ characters (`min-height: 1.25em` mobile, CLS = 0.000, zero multi-line wrap jitter), preserving 153/153 tests without regression.
+- **SEO Frequency & Density Locks**: Full preservation of primary search queries and LSI tails in `<title>` ($\le 77$ chars), `<meta name="description">` ($\le 152$ chars), `<h1>`, Direct Answer blocks, FAQ accordions, and Schema.org graphs.
+- **Engineering Invariants**: Typewriter phrase length constrained to $\le 19$ characters (`min-height: 1.25em` mobile, CLS = 0.000, zero multi-line wrap jitter), preserving 641/641 tests without regression.
 
 ---
 
 ## 3. Production Status & Execution Roadmap
 
 ### 3.1. Completed Milestones (Current Baseline)
-- ✅ **Core Infrastructure & Design System**: Inlined zero-blocking CSS (~97KB), local WOFF2 font subsetting, WCAG AA strict contrast, responsive down to 320px.
+- ✅ **Core Infrastructure & Design System**: Inlined zero-blocking CSS (~97KB), local WOFF2 font subsetting and complete isolation (Google Fonts CDN eliminated on `/success.html` and `/404.html`), WCAG AA strict contrast, responsive down to 320px.
 - ✅ **Multi-Entry Hybrid SSG Engine**: Synchronization across all 6 hubs/tools via `sync_pages.py`.
-- ✅ **Scenario Landing Cluster**: 8 production service landing pages deployed and verified.
-- ✅ **Applied Case Study Cluster**: 7 real-world B2B case studies deployed with hard ROI metrics and 3-level Schema.org graphs.
-- ✅ **Site-Wide Desloping & SEO Hardening**: All 25 URLs proofread via `ru_text_humanizer` (0 slop markers, 100% Wordstat keyword retention).
-- ✅ **SOTA SEO Internal Linking & Subpage Repositioning**: Strongly connected $K_8$ mesh across all 8 service silos, sibling discovery moved below `#contact` across services and cases, dedicated dots/carousel isolation (`#other-services-dots`), 0 circular self-links.
-- ✅ **Verification Suite**: 155/155 tests passing (Tier 1: 11 Unit + Tier 2: 56 Static + Tier 3: 88 Browser E2E).
+- ✅ **Scenario Landing Cluster**: 10 production service landing pages deployed, verified, and indexed in `sitemap.xml`.
+- ✅ **Applied Case Study Cluster**: 7 real-world B2B case studies deployed with hard ROI metrics, calibrated SERP snippets (Title $\le 77$c, Description $\le 152$c), and 3-level Schema.org graphs.
+- ✅ **Site-Wide Desloping & SEO Hardening**: All 27 URLs proofread via `ru_text_humanizer` (0 slop markers, 100% Wordstat keyword retention).
+- ✅ **SOTA SEO Internal Linking & Subpage Repositioning**: Strongly connected $K_{10}$ mesh across all 10 service silos, sibling discovery moved below `#contact` across services and cases, 4x2 desktop slider grid with scroll-snap, dedicated dots/carousel isolation (`#other-services-dots`), 0 circular self-links.
+- ✅ **Verification Suite & Layout Matrix**: 641/641 tests passing (Fast Suite: 67/67 Unit/Static/Security + Layout Matrix: 486/486 across 27 pages and 18 devices + Browser E2E: 88/88).
 
 
 ### 3.2. Future Expansion Roadmap

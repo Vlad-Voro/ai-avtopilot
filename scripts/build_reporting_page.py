@@ -353,6 +353,10 @@ if services_sec:
         h2.string = "6 модулей автоматической управленческой отчетности"
     bento = services_sec.find("div", class_="services__bento")
     if bento:
+        classes = bento.get("class", [])
+        if "services__bento--static" not in classes:
+            classes.append("services__bento--static")
+            bento["class"] = classes
         bento.clear()
         bento.append(
             BeautifulSoup(
@@ -433,6 +437,10 @@ if cases_sec:
         h2.string = "Кейсы внедрения управленческой автоотчетности"
     grid = cases_sec.find("div", class_="cases__grid")
     if grid:
+        classes = grid.get("class", [])
+        if "cases__grid--static" not in classes:
+            classes.append("cases__grid--static")
+            grid["class"] = classes
         grid.clear()
         grid.append(
             BeautifulSoup(

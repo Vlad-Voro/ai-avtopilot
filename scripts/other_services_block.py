@@ -71,64 +71,30 @@ def render_other_services_section(current_slug: str, catalog: list = None) -> st
       <div class="services__bento other-services__bento" data-reveal="" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Другие сценарии автоматизации">
 {cards_html}
       </div>
-      <div class="carousel-dots other-services-dots" id="other-services-dots"></div>
+      <div class="slider-controls">
+        <button type="button" class="slider-arrow slider-arrow--prev" id="other-services-prev" aria-label="Предыдущие сценарии" title="Предыдущие сценарии">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="carousel-dots other-services-dots" id="other-services-dots"></div>
+        <button type="button" class="slider-arrow slider-arrow--next" id="other-services-next" aria-label="Следующие сценарии" title="Следующие сценарии">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
     </div>
   </section>"""
 
 
 def get_other_services_carousel_js() -> str:
     return """
-      // 4. Other Services Horizontal Carousel Dots
-      var otherBento = document.querySelector('.other-services__bento');
-      var oDotsWrap = document.getElementById('other-services-dots');
-      if (otherBento && oDotsWrap) {
-        var oCards = Array.from(otherBento.querySelectorAll('.scard'));
-        if (oCards.length > 0) {
-          oDotsWrap.innerHTML = '';
-          oCards.forEach(function(_, i) {
-            var dot = document.createElement('button');
-            dot.type = 'button';
-            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-            dot.setAttribute('aria-label', 'Сценарий ' + (i + 1) + ' из ' + oCards.length);
-            dot.addEventListener('click', function() {
-              oCards[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-            });
-            oDotsWrap.appendChild(dot);
-          });
-
-          var oDots = Array.from(oDotsWrap.querySelectorAll('.carousel-dot'));
-          var oTicking = false;
-
-          function updateOtherServicesDot() {
-            var gridRect = otherBento.getBoundingClientRect();
-            var gridCenter = gridRect.left + gridRect.width / 2;
-            var closestIdx = 0;
-            var minDiff = Infinity;
-
-            oCards.forEach(function(card, idx) {
-              var r = card.getBoundingClientRect();
-              var cardCenter = r.left + r.width / 2;
-              var diff = Math.abs(gridCenter - cardCenter);
-              if (diff < minDiff) {
-                minDiff = diff;
-                closestIdx = idx;
-              }
-            });
-
-            oDots.forEach(function(d, idx) {
-              d.classList.toggle('active', idx === closestIdx);
-            });
-            oTicking = false;
-          }
-
-          otherBento.addEventListener('scroll', function() {
-            if (!oTicking) {
-              window.requestAnimationFrame(updateOtherServicesDot);
-              oTicking = true;
-            }
-          }, { passive: true });
-        }
-      }
+      // 4. Other Services Universal Adaptive Slider (2 slides on desktop, arrows enabled)
+      initAdaptiveSlider({
+        container: document.querySelector('.other-services__bento'),
+        dotsWrap: document.getElementById('other-services-dots'),
+        prevBtn: document.getElementById('other-services-prev'),
+        nextBtn: document.getElementById('other-services-next'),
+        itemSelector: '.scard',
+        labelPrefix: 'Сценарий'
+      });
 """
 
 

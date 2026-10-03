@@ -225,6 +225,8 @@ const ALL_PAGES = [
   { path: '/services/customer-support/', name: 'Услуга: Поддержка клиентов', category: 'service' },
   { path: '/services/speech-analytics/', name: 'Услуга: Речевая аналитика', category: 'service' },
   { path: '/services/rapid-pilot/', name: 'Услуга: Быстрый пилот 14 дней', category: 'service' },
+  { path: '/services/specifications-kp/', name: 'Услуга: Спецификации и КП', category: 'service' },
+  { path: '/services/price-monitoring/', name: 'Услуга: Мониторинг цен', category: 'service' },
 
   // Deep Case Studies
   { path: '/cases/retail-inventory-automation/', name: 'Кейс: Ритейл и остатки', category: 'case' },
@@ -237,7 +239,8 @@ const ALL_PAGES = [
 
   // Utility
   { path: '/privacy.html', name: 'Политика конфиденциальности', category: 'utility' },
-  { path: '/404.html', name: 'Страница 404', category: 'utility' }
+  { path: '/404.html', name: 'Страница 404', category: 'utility' },
+  { path: '/success.html', name: 'Успешная отправка заявки', category: 'utility' }
 ];
 
 module.exports = {

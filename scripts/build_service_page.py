@@ -663,7 +663,7 @@ def generate_service_html(data: dict) -> str:
         <p class="section-tag" data-reveal="">{bento_tag}</p>
         <h2 class="section-title" data-reveal="">{bento_title}</h2>
       </div>
-      <div class="services__bento" data-reveal="" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Сценарии автоматизации">
+      <div class="services__bento services__bento--static" data-reveal="" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Сценарии автоматизации">
 {bento_cards_html}
       </div>
       <div class="carousel-dots services-dots" id="services-dots"></div>
@@ -677,7 +677,7 @@ def generate_service_html(data: dict) -> str:
         <p class="section-tag" data-reveal="">Результаты клиентов</p>
         <h2 class="section-title" data-reveal="">Доказанные кейсы внедрения</h2>
       </div>
-      <div class="cases__grid" data-reveal="">
+      <div class="cases__grid cases__grid--static" data-reveal="">
 {cases_html}
       </div>
       <div class="carousel-dots" id="carousel-dots"></div>
@@ -1178,6 +1178,160 @@ def generate_service_html(data: dict) -> str:
             }}
           }}, {{ passive: true }});
         }}
+      }}
+
+      // Universal Adaptive Slider Controller
+      function initAdaptiveSlider(cfg) {{
+        var container = cfg.container;
+        var dotsWrap = cfg.dotsWrap;
+        var prevBtn = cfg.prevBtn;
+        var nextBtn = cfg.nextBtn;
+        var itemSelector = cfg.itemSelector;
+        var labelPrefix = cfg.labelPrefix || 'Слайд';
+
+        if (!container || !dotsWrap) return;
+        var cards = Array.from(container.querySelectorAll(itemSelector));
+        if (cards.length === 0) return;
+
+        var isTicking = false;
+        var currentSlide = 0;
+        var totalSlides = 1;
+        var isDesktop = window.innerWidth >= 1025;
+
+        function calcTotalSlides() {{
+          isDesktop = window.innerWidth >= 1025;
+          if (isDesktop) {{
+            return Math.max(1, Math.ceil(cards.length / 8));
+          }} else {{
+            return cards.length;
+          }}
+        }}
+
+        function updateDots() {{
+          totalSlides = calcTotalSlides();
+          dotsWrap.innerHTML = '';
+
+          for (var i = 0; i < totalSlides; i++) {{
+            var dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'carousel-dot' + (i === currentSlide ? ' active' : '');
+            dot.setAttribute('aria-label', labelPrefix + ' ' + (i + 1) + ' из ' + totalSlides);
+            (function(idx) {{
+              dot.addEventListener('click', function() {{
+                goToSlide(idx);
+              }});
+            }})(i);
+            dotsWrap.appendChild(dot);
+          }}
+          updateArrows();
+        }}
+
+        function updateArrows() {{
+          if (!prevBtn || !nextBtn) return;
+          if (totalSlides <= 1) {{
+            prevBtn.setAttribute('hidden', '');
+            nextBtn.setAttribute('hidden', '');
+            prevBtn.disabled = true;
+            nextBtn.disabled = true;
+          }} else {{
+            prevBtn.removeAttribute('hidden');
+            nextBtn.removeAttribute('hidden');
+            prevBtn.disabled = (currentSlide <= 0);
+            nextBtn.disabled = (currentSlide >= totalSlides - 1);
+            prevBtn.setAttribute('aria-disabled', currentSlide <= 0 ? 'true' : 'false');
+            nextBtn.setAttribute('aria-disabled', currentSlide >= totalSlides - 1 ? 'true' : 'false');
+          }}
+        }}
+
+        function goToSlide(idx) {{
+          idx = Math.max(0, Math.min(totalSlides - 1, idx));
+          currentSlide = idx;
+          if (isDesktop) {{
+            var maxScroll = container.scrollWidth - container.clientWidth;
+            var targetScroll = totalSlides > 1 ? (idx / (totalSlides - 1)) * maxScroll : 0;
+            container.scrollTo({{ left: targetScroll, behavior: 'smooth' }});
+          }} else {{
+            if (cards[idx]) {{
+              cards[idx].scrollIntoView({{ behavior: 'smooth', inline: 'center', block: 'nearest' }});
+            }}
+          }}
+          setActiveDot(idx);
+          updateArrows();
+        }}
+
+        function setActiveDot(idx) {{
+          currentSlide = idx;
+          var dots = Array.from(dotsWrap.querySelectorAll('.carousel-dot'));
+          dots.forEach(function(d, i) {{
+            d.classList.toggle('active', i === idx);
+          }});
+        }}
+
+        function onScroll() {{
+          if (isDesktop) {{
+            var maxScroll = container.scrollWidth - container.clientWidth;
+            if (maxScroll <= 0) {{
+              setActiveDot(0);
+            }} else {{
+              var progress = container.scrollLeft / maxScroll;
+              var slideIdx = Math.round(progress * (totalSlides - 1));
+              setActiveDot(slideIdx);
+            }}
+          }} else {{
+            var gridRect = container.getBoundingClientRect();
+            var gridCenter = gridRect.left + gridRect.width / 2;
+            var closestIdx = 0;
+            var minDiff = Infinity;
+            cards.forEach(function(card, idx) {{
+              var r = card.getBoundingClientRect();
+              var cardCenter = r.left + r.width / 2;
+              var diff = Math.abs(gridCenter - cardCenter);
+              if (diff < minDiff) {{
+                minDiff = diff;
+                closestIdx = idx;
+              }}
+            }});
+            setActiveDot(closestIdx);
+          }}
+          updateArrows();
+          isTicking = false;
+        }}
+
+        container.addEventListener('scroll', function() {{
+          if (!isTicking) {{
+            window.requestAnimationFrame(onScroll);
+            isTicking = true;
+          }}
+        }}, {{ passive: true }});
+
+        if (prevBtn) {{
+          prevBtn.addEventListener('click', function() {{
+            goToSlide(currentSlide - 1);
+          }});
+        }}
+        if (nextBtn) {{
+          nextBtn.addEventListener('click', function() {{
+            goToSlide(currentSlide + 1);
+          }});
+        }}
+
+        var resizeTimer;
+        window.addEventListener('resize', function() {{
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function() {{
+            var wasDesktop = isDesktop;
+            var newIsDesktop = window.innerWidth >= 1025;
+            if (wasDesktop !== newIsDesktop) {{
+              currentSlide = 0;
+              updateDots();
+              goToSlide(0);
+            }} else {{
+              updateDots();
+            }}
+          }}, 150);
+        }});
+
+        updateDots();
       }}
 {other_services_js}
     }});

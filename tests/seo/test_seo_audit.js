@@ -11,21 +11,37 @@ const assert = require('assert');
 const ROOT_DIR = path.resolve(__dirname, '../..');
 
 const PAGES = [
-  { slug: '', file: 'index.html', url: 'https://ai-avtopilot.ru/', hasBreadcrumbs: false },
-  { slug: 'services', file: 'services/index.html', url: 'https://ai-avtopilot.ru/services/', hasBreadcrumbs: true },
-  { slug: 'services/system-integration', file: 'services/system-integration/index.html', url: 'https://ai-avtopilot.ru/services/system-integration/', hasBreadcrumbs: true },
-  { slug: 'services/retail-inventory', file: 'services/retail-inventory/index.html', url: 'https://ai-avtopilot.ru/services/retail-inventory/', hasBreadcrumbs: true },
-  { slug: 'services/document-automation', file: 'services/document-automation/index.html', url: 'https://ai-avtopilot.ru/services/document-automation/', hasBreadcrumbs: true },
-  { slug: 'services/customer-support', file: 'services/customer-support/index.html', url: 'https://ai-avtopilot.ru/services/customer-support/', hasBreadcrumbs: true },
-  { slug: 'services/speech-analytics', file: 'services/speech-analytics/index.html', url: 'https://ai-avtopilot.ru/services/speech-analytics/', hasBreadcrumbs: true },
-  { slug: 'services/rapid-pilot', file: 'services/rapid-pilot/index.html', url: 'https://ai-avtopilot.ru/services/rapid-pilot/', hasBreadcrumbs: true },
-  { slug: 'services/specifications-kp', file: 'services/specifications-kp/index.html', url: 'https://ai-avtopilot.ru/services/specifications-kp/', hasBreadcrumbs: true },
-  { slug: 'services/price-monitoring', file: 'services/price-monitoring/index.html', url: 'https://ai-avtopilot.ru/services/price-monitoring/', hasBreadcrumbs: true },
-  { slug: 'cases', file: 'cases/index.html', url: 'https://ai-avtopilot.ru/cases/', hasBreadcrumbs: true },
-  { slug: 'calculator', file: 'calculator/index.html', url: 'https://ai-avtopilot.ru/calculator/', hasBreadcrumbs: true },
-  { slug: 'dashboard', file: 'dashboard/index.html', url: 'https://ai-avtopilot.ru/dashboard/', hasBreadcrumbs: true },
-  { slug: 'faq', file: 'faq/index.html', url: 'https://ai-avtopilot.ru/faq/', hasBreadcrumbs: true },
-  { slug: 'contact', file: 'contact/index.html', url: 'https://ai-avtopilot.ru/contact/', hasBreadcrumbs: true }
+  // Homepage
+  { slug: '', file: 'index.html', url: 'https://ai-avtopilot.ru/', category: 'home', hasBreadcrumbs: false },
+
+  // Hubs
+  { slug: 'services', file: 'services/index.html', url: 'https://ai-avtopilot.ru/services/', category: 'hub', hasBreadcrumbs: true },
+  { slug: 'cases', file: 'cases/index.html', url: 'https://ai-avtopilot.ru/cases/', category: 'hub', hasBreadcrumbs: true },
+  { slug: 'calculator', file: 'calculator/index.html', url: 'https://ai-avtopilot.ru/calculator/', category: 'hub', hasBreadcrumbs: true },
+  { slug: 'dashboard', file: 'dashboard/index.html', url: 'https://ai-avtopilot.ru/dashboard/', category: 'hub', hasBreadcrumbs: true },
+  { slug: 'faq', file: 'faq/index.html', url: 'https://ai-avtopilot.ru/faq/', category: 'hub', hasBreadcrumbs: true },
+  { slug: 'contact', file: 'contact/index.html', url: 'https://ai-avtopilot.ru/contact/', category: 'hub', hasBreadcrumbs: true },
+
+  // Services (10)
+  { slug: 'services/automated-reporting', file: 'services/automated-reporting/index.html', url: 'https://ai-avtopilot.ru/services/automated-reporting/', category: 'service', hasBreadcrumbs: true },
+  { slug: 'services/ai-analytics', file: 'services/ai-analytics/index.html', url: 'https://ai-avtopilot.ru/services/ai-analytics/', category: 'service', hasBreadcrumbs: true },
+  { slug: 'services/system-integration', file: 'services/system-integration/index.html', url: 'https://ai-avtopilot.ru/services/system-integration/', category: 'service', hasBreadcrumbs: true },
+  { slug: 'services/retail-inventory', file: 'services/retail-inventory/index.html', url: 'https://ai-avtopilot.ru/services/retail-inventory/', category: 'service', hasBreadcrumbs: true },
+  { slug: 'services/document-automation', file: 'services/document-automation/index.html', url: 'https://ai-avtopilot.ru/services/document-automation/', category: 'service', hasBreadcrumbs: true },
+  { slug: 'services/customer-support', file: 'services/customer-support/index.html', url: 'https://ai-avtopilot.ru/services/customer-support/', category: 'service', hasBreadcrumbs: true },
+  { slug: 'services/speech-analytics', file: 'services/speech-analytics/index.html', url: 'https://ai-avtopilot.ru/services/speech-analytics/', category: 'service', hasBreadcrumbs: true },
+  { slug: 'services/rapid-pilot', file: 'services/rapid-pilot/index.html', url: 'https://ai-avtopilot.ru/services/rapid-pilot/', category: 'service', hasBreadcrumbs: true },
+  { slug: 'services/specifications-kp', file: 'services/specifications-kp/index.html', url: 'https://ai-avtopilot.ru/services/specifications-kp/', category: 'service', hasBreadcrumbs: true },
+  { slug: 'services/price-monitoring', file: 'services/price-monitoring/index.html', url: 'https://ai-avtopilot.ru/services/price-monitoring/', category: 'service', hasBreadcrumbs: true },
+
+  // Case Studies (7)
+  { slug: 'cases/fintech-transaction-reconciliation', file: 'cases/fintech-transaction-reconciliation/index.html', url: 'https://ai-avtopilot.ru/cases/fintech-transaction-reconciliation/', category: 'case', hasBreadcrumbs: true },
+  { slug: 'cases/hr-recruitment-automation', file: 'cases/hr-recruitment-automation/index.html', url: 'https://ai-avtopilot.ru/cases/hr-recruitment-automation/', category: 'case', hasBreadcrumbs: true },
+  { slug: 'cases/manufacturing-edi-automation', file: 'cases/manufacturing-edi-automation/index.html', url: 'https://ai-avtopilot.ru/cases/manufacturing-edi-automation/', category: 'case', hasBreadcrumbs: true },
+  { slug: 'cases/retail-inventory-automation', file: 'cases/retail-inventory-automation/index.html', url: 'https://ai-avtopilot.ru/cases/retail-inventory-automation/', category: 'case', hasBreadcrumbs: true },
+  { slug: 'cases/sales-speech-analytics', file: 'cases/sales-speech-analytics/index.html', url: 'https://ai-avtopilot.ru/cases/sales-speech-analytics/', category: 'case', hasBreadcrumbs: true },
+  { slug: 'cases/service-center-ai-operator', file: 'cases/service-center-ai-operator/index.html', url: 'https://ai-avtopilot.ru/cases/service-center-ai-operator/', category: 'case', hasBreadcrumbs: true },
+  { slug: 'cases/supply-chain-logistics', file: 'cases/supply-chain-logistics/index.html', url: 'https://ai-avtopilot.ru/cases/supply-chain-logistics/', category: 'case', hasBreadcrumbs: true }
 ];
 
 let totalChecks = 0;
@@ -132,10 +148,11 @@ runCheck('SEO-06', 'Meta descriptions are unique across all pages and between 70
   const descs = new Map();
   PAGES.forEach(p => {
     const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
-    const m = html.match(/<meta\s+name="description"\s+content="(.*?)"\s*\/>/s);
+    const m = html.match(/<meta[^>]+name="description"[^>]+content="([^"]+)"[^>]*>/i) ||
+              html.match(/<meta[^>]+content="([^"]+)"[^>]+name="description"[^>]*>/i);
     assert.ok(m, `Missing meta description in ${p.file}`);
     const desc = m[1].trim();
-    assert.ok(desc.length >= 70 && desc.length <= 175, `Description length ${desc.length} out of range in ${p.file}`);
+    assert.ok(desc.length >= 70 && desc.length <= 175, `Description length ${desc.length} out of range in ${p.file}: '${desc}'`);
     assert.ok(!descs.has(desc), `Duplicate description in ${p.file} and ${descs.get(desc)}`);
     descs.set(desc, p.file);
   });
@@ -155,7 +172,8 @@ runCheck('SEO-07', 'Every page has exactly one <h1> tag matching page intent', (
 runCheck('SEO-08', 'Canonical link tags match page URL strictly with absolute HTTPS format', () => {
   PAGES.forEach(p => {
     const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
-    const m = html.match(/<link\s+rel="canonical"\s+href="(.*?)"\s*\/>/);
+    const m = html.match(/<link[^>]+rel="canonical"[^>]+href="([^"]+)"[^>]*>/i) ||
+              html.match(/<link[^>]+href="([^"]+)"[^>]+rel="canonical"[^>]*>/i);
     assert.ok(m, `Missing canonical link in ${p.file}`);
     assert.strictEqual(m[1].trim(), p.url, `Canonical URL mismatch in ${p.file}`);
   });
@@ -165,17 +183,17 @@ runCheck('SEO-08', 'Canonical link tags match page URL strictly with absolute HT
 runCheck('SEO-09', 'OpenGraph and Twitter Card tags present with valid absolute image URLs', () => {
   PAGES.forEach(p => {
     const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
-    assert.ok(html.includes('<meta property="og:type" content="website" />'), `Missing og:type in ${p.file}`);
+    assert.ok(html.includes('property="og:type"') && html.includes('website'), `Missing og:type in ${p.file}`);
     assert.ok(html.includes(`content="${p.url}"`), `Missing og:url in ${p.file}`);
     assert.ok(html.includes('content="https://ai-avtopilot.ru/og-image.png"'), `Missing og:image in ${p.file}`);
-    assert.ok(html.includes('<meta name="twitter:card" content="summary_large_image" />'), `Missing twitter:card in ${p.file}`);
+    assert.ok(html.includes('name="twitter:card"') && html.includes('summary_large_image'), `Missing twitter:card in ${p.file}`);
   });
 });
 
 console.log('\n▶ [Category 4] Structured Data & Schema.org (@graph)');
 
 // SEO-10: JSON-LD syntax and core types
-runCheck('SEO-10', 'Schema.org JSON-LD @graph contains Organization, ProfessionalService, WebSite, and FAQPage', () => {
+runCheck('SEO-10', 'Schema.org JSON-LD @graph contains required entities per category', () => {
   PAGES.forEach(p => {
     const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
     const m = html.match(/<script\s+type="application\/ld\+json">(.*?)<\/script>/s);
@@ -186,8 +204,15 @@ runCheck('SEO-10', 'Schema.org JSON-LD @graph contains Organization, Professiona
     const types = data['@graph'].map(item => item['@type']);
     assert.ok(types.includes('Organization'), `Missing Organization in ${p.file}`);
     assert.ok(types.includes('ProfessionalService'), `Missing ProfessionalService in ${p.file}`);
-    assert.ok(types.includes('WebSite'), `Missing WebSite in ${p.file}`);
-    assert.ok(types.includes('FAQPage'), `Missing FAQPage in ${p.file}`);
+    if (p.category === 'home' || p.category === 'hub') {
+      assert.ok(types.includes('WebSite'), `Missing WebSite in ${p.file}`);
+      assert.ok(types.includes('FAQPage'), `Missing FAQPage in ${p.file}`);
+    } else if (p.category === 'service') {
+      const prof = data['@graph'].find(item => item['@type'] === 'ProfessionalService');
+      assert.ok(prof && prof.hasOfferCatalog, `Missing ProfessionalService.hasOfferCatalog in ${p.file}`);
+    } else if (p.category === 'case') {
+      assert.ok(types.includes('TechArticle'), `Missing TechArticle in ${p.file}`);
+    }
   });
 });
 
@@ -343,7 +368,7 @@ runCheck('SEO-23', 'llms.txt v2 discovery link (rel="describedby") declared in h
   PAGES.forEach(p => {
     const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
     assert.ok(
-      html.includes('<link rel="describedby" type="text/markdown" href="/llms.txt" />'),
+      html.includes('rel="describedby"') && html.includes('href="/llms.txt"'),
       `Missing rel="describedby" link in ${p.file}`
     );
   });

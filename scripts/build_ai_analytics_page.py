@@ -43,8 +43,8 @@ if title_tag:
 desc_tag = soup.find("meta", attrs={"name": "description"})
 if desc_tag:
     desc_tag["content"] = (
-        "Предиктивная ИИ-аналитика для 1С:ERP и УТ: автоматизация платежного календаря, "
-        "расчет неснижаемого остатка и контроль цен поставщиков. Предотвращение кассовых разрывов за 10 дней."
+        "Предиктивная аналитика для 1С:ERP и УТ: платежный календарь, "
+        "расчет неснижаемого остатка и контроль цен. Предотвращение кассовых разрывов за 10 дней."
     )
 
 kw_tag = soup.find("meta", attrs={"name": "keywords"})
@@ -64,14 +64,14 @@ for prop, val in [
     ("og:url", "https://ai-avtopilot.ru/services/ai-analytics/"),
     (
         "og:description",
-        "Предиктивная ИИ-аналитика для 1С:ERP и УТ: автоматизация платежного календаря, "
-        "расчет неснижаемого остатка и контроль цен поставщиков. Предотвращение кассовых разрывов за 10 дней.",
+        "Предиктивная аналитика для 1С:ERP и УТ: платежный календарь, "
+        "расчет неснижаемого остатка и контроль цен. Предотвращение кассовых разрывов за 10 дней.",
     ),
     ("twitter:title", "Предиктивная аналитика 1С: платежный календарь, остатки и контроль цен | АвтоПилот"),
     (
         "twitter:description",
-        "Предиктивная ИИ-аналитика для 1С:ERP и УТ: автоматизация платежного календаря, "
-        "расчет неснижаемого остатка и контроль цен поставщиков. Предотвращение кассовых разрывов за 10 дней.",
+        "Предиктивная аналитика для 1С:ERP и УТ: платежный календарь, "
+        "расчет неснижаемого остатка и контроль цен. Предотвращение кассовых разрывов за 10 дней.",
     ),
 ]:
     meta = soup.find("meta", attrs={"property": prop}) or soup.find("meta", attrs={"name": prop})
@@ -455,6 +455,10 @@ if services_sec:
         h2.string = "6 модулей предиктивной аналитики для 1С и ERP"
     bento = services_sec.find("div", class_="services__bento")
     if bento:
+        classes = bento.get("class", [])
+        if "services__bento--static" not in classes:
+            classes.append("services__bento--static")
+            bento["class"] = classes
         bento.clear()
         bento.append(
             BeautifulSoup(
@@ -535,6 +539,10 @@ if cases_sec:
         h2.string = "Кейсы внедрения предиктивной аналитики"
     grid = cases_sec.find("div", class_="cases__grid")
     if grid:
+        classes = grid.get("class", [])
+        if "cases__grid--static" not in classes:
+            classes.append("cases__grid--static")
+            grid["class"] = classes
         grid.clear()
         grid.append(
             BeautifulSoup(

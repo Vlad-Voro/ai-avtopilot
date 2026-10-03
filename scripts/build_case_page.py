@@ -259,6 +259,10 @@ def build_case_page(case_key: str) -> str:
 
         bento = svc_sec.find("div", class_="services__bento")
         if bento:
+            classes = bento.get("class", [])
+            if "services__bento--static" not in classes:
+                classes.append("services__bento--static")
+                bento["class"] = classes
             bento.clear()
             for item in data["services"]["items"]:
                 scard = soup.new_tag("div", attrs={"class": "scard", "role": "group", "aria-roledescription": "slide"})
