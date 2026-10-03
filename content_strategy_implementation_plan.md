@@ -3,7 +3,7 @@
 > **Status**: Production Deployed | **Target**: [ai-avtopilot.ru](https://ai-avtopilot.ru/) | **Geo**: Russian Federation (Nationwide B2B)  
 > **Conversion Model**: Direct On-Site (ROI Calculator + `#contact` Audit Form; zero external bot qualification)  
 > **Search Targets**: Yandex (Web + «Нейро»), Google RU (AI Overviews), Perplexity, Professional communities (Klerk, Infostart)  
-> **Verification**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E) | **AI Slop**: **0 Markers** across all 25 URLs
+> **Verification**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E) | **AI Slop**: **0 Markers** across all 27 URLs
 
 ---
 
@@ -41,7 +41,7 @@ flowchart TD
     Brief --> Architecture --> Pipeline --> Conversion
 ```
 
-### 1.1. Production Page Inventory (25 Active URLs)
+### 1.1. Production Page Inventory (27 Active URLs)
 - **Root Main Landing (`/`)**: High-converting core page with dynamic typewriter, ROI engine, 6-module bento grid, live telemetry dashboard, and direct audit capture.
 - **Hub & Tool Subpages (6 URLs)**:
   - `/services/` — Complete catalogue of enterprise automation scenarios.
@@ -50,7 +50,7 @@ flowchart TD
   - `/dashboard/` — Live telemetry simulator and autonomous agent monitor.
   - `/faq/` — B2B knowledge base (1C integration, 14-day SLA, 152-FZ on-premise security).
   - `/contact/` — Express audit registration and direct contact channels.
-- **Dedicated Service Landing Pages (8 URLs, `/services/*`)**:
+- **Dedicated Service Landing Pages (10 URLs, `/services/*`)**:
   1. `/services/system-integration/` — 1C ERP, CRM (Bitrix24 / amoCRM), OData REST API & Event Bus.
   2. `/services/retail-inventory/` — 1C:Розница, 1C:УТ, Safety Stock, ROP, Wildberries & Ozon balance sync.
   3. `/services/document-automation/` — OCR + On-Premise LLM invoice / UPD extraction, Diadoc & SBIS routing.

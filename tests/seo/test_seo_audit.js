@@ -19,6 +19,8 @@ const PAGES = [
   { slug: 'services/customer-support', file: 'services/customer-support/index.html', url: 'https://ai-avtopilot.ru/services/customer-support/', hasBreadcrumbs: true },
   { slug: 'services/speech-analytics', file: 'services/speech-analytics/index.html', url: 'https://ai-avtopilot.ru/services/speech-analytics/', hasBreadcrumbs: true },
   { slug: 'services/rapid-pilot', file: 'services/rapid-pilot/index.html', url: 'https://ai-avtopilot.ru/services/rapid-pilot/', hasBreadcrumbs: true },
+  { slug: 'services/specifications-kp', file: 'services/specifications-kp/index.html', url: 'https://ai-avtopilot.ru/services/specifications-kp/', hasBreadcrumbs: true },
+  { slug: 'services/price-monitoring', file: 'services/price-monitoring/index.html', url: 'https://ai-avtopilot.ru/services/price-monitoring/', hasBreadcrumbs: true },
   { slug: 'cases', file: 'cases/index.html', url: 'https://ai-avtopilot.ru/cases/', hasBreadcrumbs: true },
   { slug: 'calculator', file: 'calculator/index.html', url: 'https://ai-avtopilot.ru/calculator/', hasBreadcrumbs: true },
   { slug: 'dashboard', file: 'dashboard/index.html', url: 'https://ai-avtopilot.ru/dashboard/', hasBreadcrumbs: true },
@@ -365,7 +367,7 @@ runCheck('SEO-25', 'IndexNow 32-character key file exists at root and matches co
   assert.strictEqual(key, 'd8a24f0c9b7e416a9e3d81b7e651c4a0', 'IndexNow key mismatch');
 });
 
-// SEO-26: Internal Linking & Conversion Funnel (#contact before #other-services on all 8 services)
+// SEO-26: Internal Linking & Conversion Funnel (#contact before #other-services on all 10 services)
 const ALL_SERVICE_PAGES = [
   'services/system-integration',
   'services/retail-inventory',
@@ -374,10 +376,12 @@ const ALL_SERVICE_PAGES = [
   'services/ai-analytics',
   'services/automated-reporting',
   'services/speech-analytics',
-  'services/rapid-pilot'
+  'services/rapid-pilot',
+  'services/specifications-kp',
+  'services/price-monitoring'
 ];
 
-runCheck('SEO-26', 'All 8 service landing pages contain #other-services positioned strictly below #contact with 7 sibling links and 0 self-links', () => {
+runCheck('SEO-26', 'All 10 service landing pages contain #other-services positioned strictly below #contact with 9 sibling links and 0 self-links', () => {
   ALL_SERVICE_PAGES.forEach(slug => {
     const filePath = path.join(ROOT_DIR, slug, 'index.html');
     assert.ok(fs.existsSync(filePath), `Service page ${slug} must exist`);
@@ -393,10 +397,10 @@ runCheck('SEO-26', 'All 8 service landing pages contain #other-services position
     // Check H2
     assert.ok(html.includes('Другие сценарии автоматизации'), `Missing section title in #other-services for ${slug}`);
 
-    // Check sibling links (exactly 7, zero self-links, trailing slashes)
+    // Check sibling links (exactly 9, zero self-links, trailing slashes)
     const otherSection = html.slice(otherServicesIdx, html.indexOf('</section>', otherServicesIdx));
     const linkMatches = [...otherSection.matchAll(/href="(\/services\/[^"]+\/)"/g)].map(m => m[1]);
-    assert.strictEqual(linkMatches.length, 7, `Expected exactly 7 sibling links in ${slug}, found ${linkMatches.length}`);
+    assert.strictEqual(linkMatches.length, 9, `Expected exactly 9 sibling links in ${slug}, found ${linkMatches.length}`);
 
     const selfLink = `/${slug}/`;
     assert.ok(!linkMatches.includes(selfLink), `Self-link detected in ${slug}: ${selfLink}`);

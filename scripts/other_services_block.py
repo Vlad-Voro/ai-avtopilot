@@ -26,15 +26,15 @@ def render_other_services_cards(current_slug: str, catalog: list = None) -> str:
         catalog = load_services_catalog()
 
     siblings = [s for s in catalog if s["slug"] != current_slug]
-    if len(siblings) != 7:
-        raise ValueError(f"Expected 7 sibling services for slug '{current_slug}', got {len(siblings)}")
+    expected_siblings = len(catalog) - 1
+    if len(siblings) != expected_siblings:
+        raise ValueError(
+            f"Expected {expected_siblings} sibling services for slug '{current_slug}', got {len(siblings)}"
+        )
 
     cards_html = []
     for i, s in enumerate(siblings):
         classes = ["scard", "scard--link"]
-        # Balanced 3-column Bento grid: 1st and 7th cards span 2 columns (2+1=3, 1+1+1=3, 1+2=3)
-        if i == 0 or i == 6:
-            classes.append("scard--wide")
         if s.get("class_extra"):
             for extra in s["class_extra"].split():
                 if extra not in classes:

@@ -17,7 +17,9 @@ const CLUSTER_SERVICES = [
   { slug: 'retail-inventory', titleKeyword: 'склад' },
   { slug: 'document-automation', titleKeyword: 'первичк' },
   { slug: 'customer-support', titleKeyword: 'поддержк' },
-  { slug: 'rapid-pilot', titleKeyword: 'Быстрый старт' }
+  { slug: 'rapid-pilot', titleKeyword: 'Быстрый старт' },
+  { slug: 'specifications-kp', titleKeyword: 'Спецификации' },
+  { slug: 'price-monitoring', titleKeyword: 'Мониторинг' }
 ];
 
 suite.test('E2E-1: Bento cards on homepage navigate to all 5 service landing pages', async ({ page, baseUrl }) => {
