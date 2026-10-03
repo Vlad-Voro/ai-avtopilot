@@ -2247,7 +2247,63 @@ section[id] {
 </div>
 </section>
 <!-- ═══════════════════ CTA + CONTACT ═══════════════════ -->
-<section class="cases" id="cases">
+<section class="contact" id="contact">
+<div class="container">
+<div class="contact__inner" data-reveal="">
+<div class="contact__text">
+<h2 class="contact__title">Первый шаг — бесплатный аудит</h2>
+<p class="contact__desc">За 30 минут разберем ваши процессы, покажем узкие места в текущем учете и рассчитаем потенциал экономии для вашей компании.</p>
+</div>
+<!--email_off-->
+<form action="https://formsubmit.co/contact@ai-avtopilot.ru" class="contact__form" id="contact-form" method="POST" name="contact" novalidate="">
+<!-- Web3Forms Config: резервный канал при указании валидного ключа -->
+<input id="web3forms-key" name="access_key" type="hidden" value=""/>
+<!-- FormSubmit Config: автоматический надёжный канал без ключей -->
+<input name="_next" type="hidden" value="https://ai-avtopilot.ru/success.html"/>
+<input name="_subject" type="hidden" value="Новая заявка на аудит с сайта ai-avtopilot.ru"/>
+<input name="_template" type="hidden" value="table"/>
+<input name="_captcha" type="hidden" value="false"/>
+<input name="from_name" type="hidden" value="АвтоПилот Лид"/>
+<div class="form-group form-group--required">
+<div class="form-label-row">
+<label for="contact-name">Ваше имя <span aria-label="Обязательное поле" class="required-star" title="Обязательное поле">*</span></label>
+<span class="required-badge">обязательно</span>
+</div>
+<div class="form-field-wrap">
+<input autocomplete="name" id="contact-name" name="name" placeholder="Алексей Иванов" required="" type="text"/>
+</div>
+</div>
+<div class="form-group">
+<div class="form-label-row">
+<label for="contact-company">Компания</label>
+<span class="optional-hint">необязательно</span>
+</div>
+<div class="form-field-wrap">
+<input autocomplete="organization" id="contact-company" name="company" placeholder="ООО «Ромашка»" type="text"/>
+</div>
+</div>
+<div class="form-group form-group--required">
+<div class="form-label-row">
+<label for="contact-email">Телефон или почта / Telegram <span aria-label="Обязательное поле" class="required-star" title="Обязательное поле">*</span></label>
+<span class="required-badge">обязательно</span>
+</div>
+<div class="form-field-wrap">
+<input autocomplete="on" id="contact-email" name="contact" placeholder="+7 (999) 000-00-00 или @username" required="" type="text"/>
+</div>
+</div>
+<!-- Согласие 152-ФЗ -->
+<input name="consent" type="hidden" value="accepted"/>
+<!-- Spam protection Honeypot -->
+<input autocomplete="off" name="_honey" style="display:none;" tabindex="-1" type="text"/>
+<button class="btn btn--primary btn--full" id="form-submit" type="submit">
+            Записаться на аудит
+          </button>
+<p class="form-privacy">Нажимая кнопку, вы подтверждаете согласие на обработку персональных данных в соответствии с <a class="form-link" href="/privacy.html" rel="noopener noreferrer" target="_blank">Политикой конфиденциальности</a> (152-ФЗ)</p>
+</form>
+<!--/email_off-->
+</div>
+</div>
+</section><section class="cases" id="cases">
 <div class="container">
 <div class="section-header">
 <p class="section-tag" data-reveal="">Смежные проекты</p>
@@ -2382,62 +2438,6 @@ section[id] {
 </a>
 </div>
 <div class="carousel-dots" id="carousel-dots"></div>
-</div>
-</section><section class="contact" id="contact">
-<div class="container">
-<div class="contact__inner" data-reveal="">
-<div class="contact__text">
-<h2 class="contact__title">Первый шаг — бесплатный аудит</h2>
-<p class="contact__desc">За 30 минут разберем ваши процессы, покажем узкие места в текущем учете и рассчитаем потенциал экономии для вашей компании.</p>
-</div>
-<!--email_off-->
-<form action="https://formsubmit.co/contact@ai-avtopilot.ru" class="contact__form" id="contact-form" method="POST" name="contact" novalidate="">
-<!-- Web3Forms Config: резервный канал при указании валидного ключа -->
-<input id="web3forms-key" name="access_key" type="hidden" value=""/>
-<!-- FormSubmit Config: автоматический надёжный канал без ключей -->
-<input name="_next" type="hidden" value="https://ai-avtopilot.ru/success.html"/>
-<input name="_subject" type="hidden" value="Новая заявка на аудит с сайта ai-avtopilot.ru"/>
-<input name="_template" type="hidden" value="table"/>
-<input name="_captcha" type="hidden" value="false"/>
-<input name="from_name" type="hidden" value="АвтоПилот Лид"/>
-<div class="form-group form-group--required">
-<div class="form-label-row">
-<label for="contact-name">Ваше имя <span aria-label="Обязательное поле" class="required-star" title="Обязательное поле">*</span></label>
-<span class="required-badge">обязательно</span>
-</div>
-<div class="form-field-wrap">
-<input autocomplete="name" id="contact-name" name="name" placeholder="Алексей Иванов" required="" type="text"/>
-</div>
-</div>
-<div class="form-group">
-<div class="form-label-row">
-<label for="contact-company">Компания</label>
-<span class="optional-hint">необязательно</span>
-</div>
-<div class="form-field-wrap">
-<input autocomplete="organization" id="contact-company" name="company" placeholder="ООО «Ромашка»" type="text"/>
-</div>
-</div>
-<div class="form-group form-group--required">
-<div class="form-label-row">
-<label for="contact-email">Телефон или почта / Telegram <span aria-label="Обязательное поле" class="required-star" title="Обязательное поле">*</span></label>
-<span class="required-badge">обязательно</span>
-</div>
-<div class="form-field-wrap">
-<input autocomplete="on" id="contact-email" name="contact" placeholder="+7 (999) 000-00-00 или @username" required="" type="text"/>
-</div>
-</div>
-<!-- Согласие 152-ФЗ -->
-<input name="consent" type="hidden" value="accepted"/>
-<!-- Spam protection Honeypot -->
-<input autocomplete="off" name="_honey" style="display:none;" tabindex="-1" type="text"/>
-<button class="btn btn--primary btn--full" id="form-submit" type="submit">
-            Записаться на аудит
-          </button>
-<p class="form-privacy">Нажимая кнопку, вы подтверждаете согласие на обработку персональных данных в соответствии с <a class="form-link" href="/privacy.html" rel="noopener noreferrer" target="_blank">Политикой конфиденциальности</a> (152-ФЗ)</p>
-</form>
-<!--/email_off-->
-</div>
 </div>
 </section>
 </main>

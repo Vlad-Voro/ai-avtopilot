@@ -15,9 +15,15 @@ Fully aligns with the canonical 9-block subpage architecture (ARCHITECTURE.md Se
 import json
 import os
 import re
+import sys
 from bs4 import BeautifulSoup
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
+if SCRIPTS_DIR not in sys.path:
+    sys.path.insert(0, SCRIPTS_DIR)
+from other_services_block import render_other_services_section, get_other_services_carousel_js
+
 INDEX_PATH = os.path.join(PROJECT_DIR, "index.html")
 OUTPUT_DIR = os.path.join(PROJECT_DIR, "services", "ai-analytics")
 OUTPUT_PATH = os.path.join(OUTPUT_DIR, "index.html")
@@ -802,41 +808,49 @@ if contact_sec:
             "рассчитаем потенциал высвобождения оборотки на складе и покажем, где бизнес переплачивает поставщикам."
         )
 
+# 9.5 Add Other Services internal linking block below contact
+contact_sec = soup.find("section", id="contact")
+if contact_sec:
+    other_section_soup = BeautifulSoup(render_other_services_section("ai-analytics"), "html.parser")
+    contact_sec.insert_after(other_section_soup)
+
 # 10. Add Simulator & FAQ delegated scripts at the end of body
 body = soup.find("body")
 if body:
     sim_script = BeautifulSoup(
-        """
+        f"""
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {{
       // 1. Simulator tab switching
       var tabs = document.querySelectorAll('.sim-tab-btn');
-      var screens = {
+      var screens = {{
         'cashflow': document.getElementById('sim-cashflow'),
         'stock': document.getElementById('sim-stock'),
         'prices': document.getElementById('sim-prices')
-      };
+      }};
       
-      tabs.forEach(function(tab) {
-        tab.addEventListener('click', function() {
+      tabs.forEach(function(tab) {{
+        tab.addEventListener('click', function() {{
           var target = tab.getAttribute('data-sim');
-          tabs.forEach(function(t) { t.classList.remove('active'); t.style.borderColor = 'rgba(99,102,241,0.3)'; });
+          tabs.forEach(function(t) {{ t.classList.remove('active'); t.style.borderColor = 'rgba(99,102,241,0.3)'; }});
           tab.classList.add('active');
           tab.style.borderColor = 'var(--accent-1)';
           
-          Object.keys(screens).forEach(function(k) {
-            if (screens[k]) {
+          Object.keys(screens).forEach(function(k) {{
+            if (screens[k]) {{
               screens[k].style.display = (k === target) ? 'block' : 'none';
-            }
-          });
-        });
-      });
-    });
+            }}
+          }});
+        }});
+      }});
+{get_other_services_carousel_js()}
+    }});
     </script>
     """,
         "html.parser",
     )
     body.append(sim_script)
+
 
 final_html = str(soup)
 

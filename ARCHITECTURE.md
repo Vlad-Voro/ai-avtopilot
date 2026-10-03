@@ -1,9 +1,10 @@
 # Architectural Reference & Production Blueprint: ai-avtopilot.ru
 
-> **Status**: Production Hardened | **Updated**: 2026-10-02  
+> **Status**: Production Hardened | **Updated**: 2026-10-03  
 > **Live URL**: [https://ai-avtopilot.ru/](https://ai-avtopilot.ru/) | **Repo**: `Vlad-Voro/ai-avtopilot` (`main` - Private)  
 > **Local Root**: `d:\AI\data\ai-avtopilot`  
 > **Verification Matrix**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E, 0 regressions)
+
 
 ---
 
@@ -89,20 +90,24 @@ flowchart TD
 ## 3. Multi-Entry Hybrid SSG & Navigation Engine
 
 ```text
-index.html (Master Template)
+index.html (Master Template) & Data Catalogs
    │
-   ├── [sync_pages.py] ──> /services/index.html   (H1, Breadcrumbs, Canonical, Schema, Bento Mesh)
-   ├── [sync_pages.py] ──> /cases/index.html      (H1, Breadcrumbs, Canonical, Schema, Case Mesh)
-   ├── [sync_pages.py] ──> /calculator/index.html (H1, Breadcrumbs, Canonical, Schema, ROI Sliders)
-   ├── [sync_pages.py] ──> /dashboard/index.html  (H1, Breadcrumbs, Canonical, Schema, Live Demo)
-   ├── [sync_pages.py] ──> /faq/index.html        (H1, Breadcrumbs, Canonical, Schema, FAQPage)
-   └── [sync_pages.py] ──> /contact/index.html    (H1, Breadcrumbs, Canonical, Schema, Lead Form)
+   ├── [sync_pages.py] ──────────> 6 Hub & Tool Pages (/services/, /cases/, etc.)
+   ├── [build_service_page.py] ──> 6 Service Landing Pages (/services/<slug>/) + #other-services
+   ├── [build_ai_analytics_page] ─> /services/ai-analytics/ + #other-services
+   ├── [build_reporting_page] ────> /services/automated-reporting/ + #other-services
+   └── [build_case_page.py] ─────> 7 Applied Case Studies (/cases/<slug>/) with #cases below #contact
 ```
 
 - **SSG Synchronization**:
   ```powershell
   python data/ai-avtopilot/scripts/sync_pages.py
+  python data/ai-avtopilot/scripts/build_service_page.py --all
+  python data/ai-avtopilot/scripts/build_ai_analytics_page.py
+  python data/ai-avtopilot/scripts/build_reporting_page.py
+  python data/ai-avtopilot/scripts/build_case_page.py --all
   ```
+
 - **SOTA 404 Fallback**: Root `/404.html` caught natively by Vercel; preserves original request path, executes client-side `history.replaceState`, and restores target state without broken redirects.
 - **Deterministic ScrollSpy & Subpage Isolation (ADR 2026-10-01)**:
   - Active section calculated deterministically via DOM geometry (`getActiveSection()`) based on scroll offset (`window.scrollY + offset`).
@@ -311,8 +316,8 @@ flowchart TD
         C5["5. Solutions / Bento Architecture (.scard modules)"]
         C6["6. FAQ Accordion (152-FZ, 1C CFE extensions, SLA)"]
         C7["7. Live Telemetry & Log Simulator (#dashboard)"]
-        C8["8. Other Case Studies (#cases 'Другие кейсы' at bottom)"]
-        C9["9. Contact Form (Canonical 3-field layout)"]
+        C8["8. Contact Form (Canonical 3-field layout #contact)"]
+        C9["9. Other Case Studies (#cases 'Другие кейсы' below lead form)"]
         C10["10. Footer (JSON-LD + 24/7 support)"]
         
         C1 --> C2 --> C3 --> C4 --> C5 --> C6 --> C7 --> C8 --> C9 --> C10
@@ -326,7 +331,7 @@ flowchart TD
      `<a href="/cases/<slug>/" class="case-card case-card--<theme> case-card--link" role="group" aria-roledescription="slide" aria-label="<Заголовок>: подробнее...">`
    - Hover elevates card by `-6px` and translates arrow `<span class="case-card__arrow">→</span>` by `4px`.
 3. **Bottom Placement of "Другие кейсы"**:
-   - On dedicated case pages, the `#cases` section is repositioned to the bottom (immediately above `#contact`) and renamed to **"Другие кейсы"** (tag: *«Смежные проекты»*), showing sibling cases and excluding the active case itself.
+   - On dedicated case pages, the `#cases` section is repositioned to the bottom (strictly below `#contact`) and renamed to **"Другие кейсы"** (tag: *«Смежные проекты»*), showing sibling cases and excluding the active case itself.
 4. **Microdata & Schema.org**:
    - `TechArticle` with headline, description, author, publisher, `datePublished`, `dateModified`, and `image`.
    - `BreadcrumbList` (3 levels: Главная $\to$ Кейсы $\to$ Название кейса).
@@ -336,6 +341,12 @@ flowchart TD
    - Semantic registry: `data/cases_semantics.json`
    - Parameterized builder: `python scripts/build_case_page.py --case <slug>` (or `--all`)
 
+### 10.2. Canonical Specification for Service Landing Pages (`/services/<slug>/`) & Internal Linking Mesh
+- **Conversion Flow**: `Hero` $\to$ `ROI Calculator` $\to$ `Compare` $\to$ `Bento Modules` $\to$ `Cases` $\to$ `FAQ` $\to$ `Dashboard` $\to$ `Contact Form (#contact)` $\to$ `Other Scenarios (#other-services)` $\to$ `Footer`.
+- **Strongly Connected Silo Mesh ($K_8$ Graph)**: Every dedicated service page features `#other-services` (`.services.other-services`) placed strictly below the `#contact` lead form, cross-linking to all 7 other services in the cluster (56 directed internal links, 0 self-links, 0 redirect hops with strict trailing slashes).
+- **Bento Grid Architecture**: 7 sibling cards in `.services__bento.other-services__bento`. Desktop: balanced 3-column grid (cards 1 and 7 span 2 columns: 2+1, 1+1+1, 1+2). Mobile: horizontal scroll-snap carousel with isolated dots `#other-services-dots` and zero `aria-hidden`.
+- **Data Catalog & Shared Component**: Managed via `data/services_catalog.json` and rendered programmatically by `scripts/other_services_block.py`.
+
 ---
 
 ## 11. Generation Protocol & Build CLI Commands
@@ -344,21 +355,26 @@ flowchart TD
 # 1. Re-generate all Multi-Entry Hybrid SSG subpages from index.html:
 python data/ai-avtopilot/scripts/sync_pages.py
 
-# 2. Build dedicated service subpage from services_data.json:
-python data/ai-avtopilot/scripts/build_service_page.py --slug <slug>
+# 2. Build dedicated service subpages (or all 6 standard services):
+python data/ai-avtopilot/scripts/build_service_page.py --all
+# Or single service:
+python data/ai-avtopilot/scripts/build_service_page.py --service system-integration
 
 # 3. Build standalone specialized service subpages:
 python data/ai-avtopilot/scripts/build_ai_analytics_page.py
 python data/ai-avtopilot/scripts/build_reporting_page.py
 
-# 4. Build dedicated case study subpage from cases_data.json:
-python data/ai-avtopilot/scripts/build_case_page.py --case <slug>
+# 4. Build all dedicated case study subpages (or single case):
+python data/ai-avtopilot/scripts/build_case_page.py --all
+# Or single case:
+python data/ai-avtopilot/scripts/build_case_page.py --case retail-inventory-automation
 
 # 5. Push real-time URL updates to Yandex/Bing via IndexNow:
 python data/ai-avtopilot/scripts/seo/push_indexnow.py
 
-# 6. Execute full verification suite (153 tests, must be 100% green before push):
+# 6. Execute full verification suite (155 tests, must be 100% green before push):
 node data/ai-avtopilot/tests/run_all.js
 # Or fast static verification (< 1.4s):
 node data/ai-avtopilot/tests/run_all.js --fast
 ```
+

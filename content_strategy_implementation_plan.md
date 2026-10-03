@@ -78,7 +78,15 @@ flowchart TD
 - **Direct Answer Synthesis**: Factual, structured summaries embedded in Hero subtitles, FAQ accordions, and JSON-LD Schema.org graphs answering commercial intents instantly (exact stack, timelines, pricing model, compliance).
 - **Technical & DOM Alignment**: Zero CLS (0.000), fixed-dimension elements, and negative invariants strictly governed by [ARCHITECTURE.md §6 & §9.2](file:///d:/AI/data/ai-avtopilot/ARCHITECTURE.md).
 
+### 1.3. SOTA SEO Internal Linking Mesh & Funnel Repositioning
+- **Complete Silo Mesh ($K_8$ Graph)**: Every dedicated service landing page (`/services/*`) features the «Другие сценарии» (`#other-services`) block located strictly below the `#contact` lead form. It links to all 7 other services in the cluster (56 directed internal links, zero self-links, 0 redirect hops with strict trailing slashes).
+- **Exit-Intent Conversion Hierarchy**:
+  - Services: primary conversion point (`#contact`) precedes sibling scenario exploration (`#other-services`), eliminating Hick's Law bounce.
+  - Cases: primary conversion point (`#contact`) precedes related case studies (`#cases` «Другие кейсы»).
+- **Zero-Collision Carousel Isolation**: Scoped mobile touch carousel dots (`#other-services-dots`) prevent event listener collisions with feature modules (`.services__bento` / `#services-dots`).
+
 ---
+
 
 ## 2. Production Pipeline & Multi-Agent Quality Gate
 
@@ -140,7 +148,9 @@ sequenceDiagram
 - ✅ **Scenario Landing Cluster**: 8 production service landing pages deployed and verified.
 - ✅ **Applied Case Study Cluster**: 7 real-world B2B case studies deployed with hard ROI metrics and 3-level Schema.org graphs.
 - ✅ **Site-Wide Desloping & SEO Hardening**: All 25 URLs proofread via `ru_text_humanizer` (0 slop markers, 100% Wordstat keyword retention).
-- ✅ **Verification Suite**: 153/153 tests passing (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E).
+- ✅ **SOTA SEO Internal Linking & Subpage Repositioning**: Strongly connected $K_8$ mesh across all 8 service silos, sibling discovery moved below `#contact` across services and cases, dedicated dots/carousel isolation (`#other-services-dots`), 0 circular self-links.
+- ✅ **Verification Suite**: 155/155 tests passing (Tier 1: 11 Unit + Tier 2: 56 Static + Tier 3: 88 Browser E2E).
+
 
 ### 3.2. Future Expansion Roadmap
 - **Sprint 4 (Long-Tail Semantic Expansion & Registry Completion)**:

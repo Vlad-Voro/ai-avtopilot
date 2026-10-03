@@ -365,8 +365,80 @@ runCheck('SEO-25', 'IndexNow 32-character key file exists at root and matches co
   assert.strictEqual(key, 'd8a24f0c9b7e416a9e3d81b7e651c4a0', 'IndexNow key mismatch');
 });
 
+// SEO-26: Internal Linking & Conversion Funnel (#contact before #other-services on all 8 services)
+const ALL_SERVICE_PAGES = [
+  'services/system-integration',
+  'services/retail-inventory',
+  'services/document-automation',
+  'services/customer-support',
+  'services/ai-analytics',
+  'services/automated-reporting',
+  'services/speech-analytics',
+  'services/rapid-pilot'
+];
+
+runCheck('SEO-26', 'All 8 service landing pages contain #other-services positioned strictly below #contact with 7 sibling links and 0 self-links', () => {
+  ALL_SERVICE_PAGES.forEach(slug => {
+    const filePath = path.join(ROOT_DIR, slug, 'index.html');
+    assert.ok(fs.existsSync(filePath), `Service page ${slug} must exist`);
+    const html = fs.readFileSync(filePath, 'utf8');
+
+    const contactIdx = html.indexOf('id="contact"');
+    const otherServicesIdx = html.indexOf('id="other-services"');
+
+    assert.ok(contactIdx !== -1, `#contact missing in ${slug}`);
+    assert.ok(otherServicesIdx !== -1, `#other-services missing in ${slug}`);
+    assert.ok(contactIdx < otherServicesIdx, `#contact must appear before #other-services in ${slug}`);
+
+    // Check H2
+    assert.ok(html.includes('Другие сценарии автоматизации'), `Missing section title in #other-services for ${slug}`);
+
+    // Check sibling links (exactly 7, zero self-links, trailing slashes)
+    const otherSection = html.slice(otherServicesIdx, html.indexOf('</section>', otherServicesIdx));
+    const linkMatches = [...otherSection.matchAll(/href="(\/services\/[^"]+\/)"/g)].map(m => m[1]);
+    assert.strictEqual(linkMatches.length, 7, `Expected exactly 7 sibling links in ${slug}, found ${linkMatches.length}`);
+
+    const selfLink = `/${slug}/`;
+    assert.ok(!linkMatches.includes(selfLink), `Self-link detected in ${slug}: ${selfLink}`);
+
+    linkMatches.forEach(href => {
+      assert.ok(href.startsWith('/services/') && href.endsWith('/'), `Invalid link format: ${href}`);
+    });
+  });
+});
+
+// SEO-27: Case Study Conversion Funnel (#contact before #cases on all 7 case pages)
+const ALL_CASE_PAGES = [
+  'cases/retail-inventory-automation',
+  'cases/manufacturing-edi-automation',
+  'cases/service-center-ai-operator',
+  'cases/hr-recruitment-automation',
+  'cases/supply-chain-logistics',
+  'cases/fintech-transaction-reconciliation',
+  'cases/sales-speech-analytics'
+];
+
+runCheck('SEO-27', 'All 7 case study landing pages contain #cases (Другие кейсы) positioned strictly below #contact', () => {
+  ALL_CASE_PAGES.forEach(slug => {
+    const filePath = path.join(ROOT_DIR, slug, 'index.html');
+    assert.ok(fs.existsSync(filePath), `Case page ${slug} must exist`);
+    const html = fs.readFileSync(filePath, 'utf8');
+
+    const contactIdx = html.indexOf('id="contact"');
+    const casesIdx = html.indexOf('id="cases"');
+
+    assert.ok(contactIdx !== -1, `#contact missing in ${slug}`);
+    assert.ok(casesIdx !== -1, `#cases missing in ${slug}`);
+    assert.ok(contactIdx < casesIdx, `#contact must appear before #cases in ${slug}`);
+
+    // Check H2
+    assert.ok(html.includes('Другие кейсы'), `Missing 'Другие кейсы' title in ${slug}`);
+  });
+});
+
 // SEO-19: Test execution time benchmark
 runCheck('SEO-19', 'Full SEO verification suite completes in under 500ms', () => {
+
   assert.ok(true);
 });
 

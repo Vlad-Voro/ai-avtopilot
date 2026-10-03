@@ -326,8 +326,8 @@ def build_case_page(case_key: str) -> str:
     cases_sec = soup.find("section", id="cases")
     contact_sec = soup.find("section", id="contact")
     if cases_sec and contact_sec:
-        # Move section.cases right before section.contact
-        contact_sec.insert_before(cases_sec)
+        # Move section.cases below section.contact (SOTA SEO & Conversion priority)
+        contact_sec.insert_after(cases_sec)
 
         # Update Section Header
         case_tag = cases_sec.find("p", class_="section-tag")

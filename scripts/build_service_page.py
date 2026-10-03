@@ -25,6 +25,11 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 DATA_PATH = ROOT_DIR / "data" / "services_data.json"
 OUTPUT_BASE = ROOT_DIR / "services"
 
+SCRIPTS_DIR = Path(__file__).resolve().parent
+if str(SCRIPTS_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS_DIR))
+from other_services_block import render_other_services_section, get_other_services_carousel_js
+
 
 def format_rub(val: int) -> str:
     return f"{val:,}".replace(",", " ")
@@ -52,8 +57,11 @@ def generate_service_html(data: dict) -> str:
     terminal_logs = data["dashboard_terminal"]
     agent_cards = data.get("agent_cards", [])
     faq_items = data["faq"]
+    other_services_html = render_other_services_section(slug)
+    other_services_js = get_other_services_carousel_js()
 
     # Calculator math
+
     default_emp = calc["default_emp"]
     default_hours = calc["default_hours"]
     default_salary = calc["default_salary"]
@@ -817,7 +825,10 @@ def generate_service_html(data: dict) -> str:
     </div>
   </section>
 
+{other_services_html}
+
   </main>
+
 
   <!-- ═══════════════════ FOOTER ═══════════════════ -->
   <footer class="footer">
@@ -1168,8 +1179,10 @@ def generate_service_html(data: dict) -> str:
           }}, {{ passive: true }});
         }}
       }}
+{other_services_js}
     }});
   </script>
+
 
   <!-- Schema.org Microdata JSON-LD -->
   <!--email_off-->
