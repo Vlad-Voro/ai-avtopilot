@@ -81,7 +81,9 @@ flowchart TD
 - **Technical & DOM Alignment**: Zero CLS (0.000), fixed-dimension elements, and negative invariants strictly governed by [ARCHITECTURE.md §6 & §9.2](file:///d:/AI/data/ai-avtopilot/ARCHITECTURE.md).
 
 ### 1.3. SOTA SEO Internal Linking Mesh & Funnel Repositioning
-- **Complete Silo Mesh ($K_{10}$ Graph)**: Every dedicated service landing page (`/services/*`) features the «Другие сценарии» (`#other-services`) block located strictly below the `#contact` lead form. It links to all 9 other services in the cluster (90 directed internal links, zero self-links, 0 redirect hops with strict trailing slashes). Desktop features a 4x2 8-card slider with scroll-snap.
+- **Complete Silo Mesh ($K_{10}$ Graph)**: Every dedicated service landing page (`/services/*`) features the «Другие сценарии» (`#other-services`) block located strictly below the `#contact` lead form. It links to all 9 other services in the cluster (90 directed internal links, zero self-links, 0 redirect hops with strict trailing slashes). Desktop features a 4x2 8-card slider with scroll-snap and next/prev controls.
+- **Desktop 3x3 Grid for Unlinked Modules**: On subpages, feature/architecture modules without outbound links (`.services__bento--static`, `.cases__grid--static`) render as a 3-column CSS grid (`repeat(3, minmax(0, 1fr))`), eliminating dead space from an empty 4th column. Desktop touchbars/controls are suppressed (`display: none !important`), while mobile/tablet swipe carousels and dots remain 100% functional.
+- **Calibrated Desktop Slider Controls**: Sliders feature `.slider-controls` with violet-glow `.slider-arrow` buttons and dynamically computed slides (`totalSlides = Math.ceil(cards.length / 8)` for 4x2 grid): exactly 2 slides for services (10 items) and 1 slide for cases (7 items, arrows auto-hidden via `hidden`).
 - **Exit-Intent Conversion Hierarchy**:
   - Services: primary conversion point (`#contact`) precedes sibling scenario exploration (`#other-services`), eliminating Hick's Law bounce.
   - Cases: primary conversion point (`#contact`) precedes related case studies (`#cases` «Другие кейсы»).
@@ -151,6 +153,7 @@ sequenceDiagram
 - ✅ **Applied Case Study Cluster**: 7 real-world B2B case studies deployed with hard ROI metrics, calibrated SERP snippets (Title $\le 77$c, Description $\le 152$c), and 3-level Schema.org graphs.
 - ✅ **Site-Wide Desloping & SEO Hardening**: All 27 URLs proofread via `ru_text_humanizer` (0 slop markers, 100% Wordstat keyword retention).
 - ✅ **SOTA SEO Internal Linking & Subpage Repositioning**: Strongly connected $K_{10}$ mesh across all 10 service silos, sibling discovery moved below `#contact` across services and cases, 4x2 desktop slider grid with scroll-snap, dedicated dots/carousel isolation (`#other-services-dots`), 0 circular self-links.
+- ✅ **Desktop 3x3 Grid & Calibrated Slider Navigation**: Restored 3-column static grid on unlinked modules (`.services__bento--static`, `.cases__grid--static`) to eliminate empty 4th column gaps on subpages; added desktop navigation arrows (`.slider-arrow`) with calibrated slide counts (2 slides for 10 services, 1 slide for 7 cases); preserved 100% mobile/tablet swipe & touchbar UX.
 - ✅ **Verification Suite & Layout Matrix**: 641/641 tests passing (Fast Suite: 67/67 Unit/Static/Security + Layout Matrix: 486/486 across 27 pages and 18 devices + Browser E2E: 88/88).
 
 

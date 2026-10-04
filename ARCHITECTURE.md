@@ -271,14 +271,14 @@ flowchart TD
 | **1. Nav** | `header.nav#site-header` | Logo link to `/`, navigation links to `/calculator/`, `/services/`, `/cases/`, `/faq/`, `/dashboard/`, `/contact/`, burger ($\ge 48\text{px}$). |
 | **2. Hero** | `section.hero#home` | **Exactly ONE `<h1>`**: `<h1 class="hero__title"><span class="hero__title-static">...</span><span class="hero__title-accent-box"><span class="hero__title-accent" data-phrases='["...", "..."]' id="typed-text">...</span><span class="hero__cursor" aria-hidden="true">\|</span></span></h1>`. Particle canvas, KPI counter cards, Primary CTA (`href="#contact"`), Accent Secondary CTA (`href="#dashboard"`). |
 | **3. ROI Calculator** | `section.roi#calculator` | Reactive JS sliders updating `--fill` gradient, formatted numerical labels, zero `NaN`, 80% savings math. |
-| **4. Bento Grid** | `section.services#services` | Bento feature modules (`.scard`, `.scard--wide`, `.scard--dark`, `.scard--accent`), tags, hover elevation. PageRank mesh (`.subpage-links-grid`) at section bottom. |
+| **4. Bento Grid** | `section.services#services` | Bento feature modules (`.scard`, `.scard--wide`, `.scard--dark`, `.scard--accent`), tags, hover elevation. Dynamic 4x2 linked slider on homepage/hubs; 3-column static grid (`.services__bento--static`, `.services__bento:not(:has(.scard--link))`) for 6-module architecture blocks on subpages. PageRank mesh (`.subpage-links-grid`) at section bottom. |
 | **5. Case Studies** | `section.cases#cases` | Direct children inside `.case-card` (no intermediate wrappers), `.case-highlight`, metric pills (`2 ч`, `0`, `4.2 млн ₽`, `340%`). |
 | **6. FAQ** | `section.faq#faq` | Semantic accordion `<button class="faq-item__header" aria-expanded="false" type="button">`, B2B answers (1C, 152-FZ, SLA, NDA). |
 | **7. Interactive Demo** | `section.dashboard#dashboard` | Live terminal and agent telemetry. Zero duplicate CTA buttons inside dashboard widget. |
 | **8. Contact Form** | `section.contact#contact` | Canonical 3 fields: Name (`#contact-name`), Company (`#contact-company`), Contact (`#contact-email`). 152-FZ consent, Honeypot `_honey`, full-width CTA button. In-page smooth scroll anchor. |
 | **9. Footer** | `footer.footer` | Telegram bot `@AiAvtopilotbot`, email `contact@ai-avtopilot.ru`, 24/7 support hours, JSON-LD Schema graph. |
 
-### 9.2. Strict Negative Invariants & Incident Learnings (18 Rules)
+### 9.2. Strict Negative Invariants & Incident Learnings (19 Rules)
 1. ❌ **Zero Phantom Top Banners**: Prohibited to inject `subpage-deep` boxes above Hero; pages must start with Hero immediately after Navigation.
 2. ❌ **Zero ScrollSpy URL Hijacking**: On subpages (`/services/*`), `history.replaceState` must NEVER overwrite URL when scrolling between sections (`isSubpage` guard).
 3. ❌ **Zero H1 Pollution**: Exactly ONE `<h1>` tag located in the Hero title. Prohibited to have 0 or $>1$ H1s.
@@ -297,6 +297,10 @@ flowchart TD
 16. ❌ **Subpage In-Page Form Routing (Incident 2026-10-01)**: Secondary CTAs with `href="#contact"` must smoothly anchor-scroll to the in-page contact form; form layout uses 2 columns on desktop, 1 column on mobile.
 17. ❌ **Zero AI-Slop & Semantic Invariance (Incident 2026-10-01)**: All pages must be verified via `ru_text_humanizer` (64 patterns, 0 Hard Bans, burstiness $\sigma \ge 4.0$, living text $\ge 5/7$) with 100% preservation of verified Yandex Wordstat commercial frequencies and Title (30–85) / Meta Description (70–175) bounds.
 18. ❌ **Zero KPI Unit Stripping & Counter Truncation (ADR 2026-10-02)**: When animating KPI cards (`.kpi-card`, `.case-kpi`, `.metric-pill`), never strip or corrupt metric suffixes, decimals, or signs (`+18%`, `−72%`, `9 200 ч`, `1 сек`, `4.2 млн ₽`, `80.4%`, `99.9%`). Number interpolation must operate on isolated numeric stems without rendering naked integers or losing unit contracts.
+19. ❌ **Desktop 3x3 Static Grids & Adaptive Slider Controls (Incident 2026-10-03)**:
+    - **Unlinked Architecture/Module Grids**: On desktop ($\ge 1025\text{px}$), all unlinked module blocks (`.services__bento--static`, `.cases__grid--static`, or unlinked `:not(:has(.scard--link))` / `:not(:has(.case-card--link))`) MUST render as a balanced 3-column grid (`repeat(3, minmax(0, 1fr))`), completely eliminating empty 4th column dead space. Desktop touchbars/controls are suppressed (`display: none !important`).
+    - **Unified Slider Controls & Calibration**: Desktop multi-card linked carousels feature `.slider-controls` with violet-glow `.slider-arrow` buttons and dynamically computed slides (`totalSlides = Math.ceil(cards.length / 8)` for 4x2 grid): exactly 2 slides for services (10 items) and 1 slide for cases (7 items, arrows auto-hidden via `hidden`).
+    - **Mobile/Tablet Swipe Invariance**: Mobile & tablet ($\le 1024\text{px}$) full swipe gestures, horizontal scroll-snap, and 1-dot-per-card touchbars (`#services-dots`, `#carousel-dots`, `#other-services-dots`) must remain 100% active and visible.
 
 ---
 
@@ -345,7 +349,14 @@ flowchart TD
 ### 10.2. Canonical Specification for Service Landing Pages (`/services/<slug>/`) & Internal Linking Mesh
 - **Conversion Flow**: `Hero` $\to$ `ROI Calculator` $\to$ `Compare` $\to$ `Bento Modules` $\to$ `Cases` $\to$ `FAQ` $\to$ `Dashboard` $\to$ `Contact Form (#contact)` $\to$ `Other Scenarios (#other-services)` $\to$ `Footer`.
 - **Strongly Connected Silo Mesh ($K_{10}$ Graph)**: Every dedicated service page features `#other-services` (`.services.other-services`) placed strictly below the `#contact` lead form, cross-linking to all 9 other services in the cluster (90 directed internal links, 0 self-links, 0 redirect hops with strict trailing slashes).
-- **Bento Grid Architecture**: 9 sibling cards in `.services__bento.other-services__bento`. Desktop: 4x2 responsive card slider with scroll-snap and next/prev controls. Mobile: horizontal scroll-snap carousel with isolated dots `#other-services-dots` and zero `aria-hidden`.
+- **Bento Grid & Module Architecture**:
+  - *Feature Architecture Modules* (`#services .services__bento`): 6 unlinked domain capability modules rendered via `.services__bento--static`. Desktop: 3x3 balanced CSS grid (`repeat(3, minmax(0, 1fr))`) without empty slots; desktop touchbars suppressed (`display: none !important`). Mobile/tablet: horizontal scroll-snap with 6 active touchbar dots.
+  - *Client Cases Block* (`#cases .cases__grid`): 3 unlinked case cards rendered via `.cases__grid--static`. Desktop: 3 columns.
+  - *Other Scenarios Mesh* (`#other-services .services__bento`): 9 sibling cards. Desktop: 4x2 responsive card slider with scroll-snap, `.slider-controls` navigation arrows, and calibrated slide count (`Math.ceil(9 / 8) = 2` slides). Mobile: horizontal scroll-snap carousel with isolated dots `#other-services-dots` and zero `aria-hidden`.
+- **Universal Adaptive Slider Controller (`initAdaptiveSlider`)**:
+  - Dynamically calculates slides: `totalSlides = Math.ceil(cards.length / 8)` on desktop ($\ge 1025\text{px}$) vs 1-dot-per-card on mobile/tablet.
+  - Synchronizes arrow button states: hides arrows (`[hidden]`) when `totalSlides <= 1` (e.g. 7 cases), disables `prevBtn` on first slide and `nextBtn` on last slide, and binds smooth-scroll navigation.
+  - Handles debounced window resize without state desynchronization.
 - **Data Catalog & Shared Component**: Managed via `data/services_catalog.json` and rendered programmatically by `scripts/other_services_block.py`.
 
 ---
