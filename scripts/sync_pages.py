@@ -240,9 +240,18 @@ def main():
     try:
         import sys
 
+        scripts_dir = os.path.dirname(os.path.abspath(__file__))
+        if scripts_dir not in sys.path:
+            sys.path.insert(0, scripts_dir)
         if ROOT_DIR not in sys.path:
             sys.path.insert(0, ROOT_DIR)
-        from scripts.sync_docs import run_sync
+
+        try:
+            from scripts.sync_docs import run_sync
+        except ImportError:
+            import sync_docs
+
+            run_sync = sync_docs.run_sync
 
         run_sync()
     except Exception as e:
