@@ -180,6 +180,8 @@ $$\text{Годовая экономия (₽)} = N_{\text{сотрудников
 - **Кейс логистического хаба и цепочек поставок**: https://ai-avtopilot.ru/cases/supply-chain-logistics/
 - **Кейс автоматической сверки транзакций и выписок**: https://ai-avtopilot.ru/cases/fintech-transaction-reconciliation/
 - **Кейс речевой аналитики и контроля звонков**: https://ai-avtopilot.ru/cases/sales-speech-analytics/
+- **Кейс автоматизации тендерного отдела**: https://ai-avtopilot.ru/cases/tender-procurement-automation/
+- **Кейс учета претензий и дебиторки**: https://ai-avtopilot.ru/cases/claims-dispute-automation/
 - **Калькулятор окупаемости ROI**: https://ai-avtopilot.ru/calculator/
 - **Интерактивный дашборд**: https://ai-avtopilot.ru/dashboard/
 - **Частые вопросы (FAQ)**: https://ai-avtopilot.ru/faq/

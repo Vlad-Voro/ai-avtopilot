@@ -41,7 +41,9 @@ const PAGES = [
   { slug: 'cases/retail-inventory-automation', file: 'cases/retail-inventory-automation/index.html', url: 'https://ai-avtopilot.ru/cases/retail-inventory-automation/', category: 'case', hasBreadcrumbs: true },
   { slug: 'cases/sales-speech-analytics', file: 'cases/sales-speech-analytics/index.html', url: 'https://ai-avtopilot.ru/cases/sales-speech-analytics/', category: 'case', hasBreadcrumbs: true },
   { slug: 'cases/service-center-ai-operator', file: 'cases/service-center-ai-operator/index.html', url: 'https://ai-avtopilot.ru/cases/service-center-ai-operator/', category: 'case', hasBreadcrumbs: true },
-  { slug: 'cases/supply-chain-logistics', file: 'cases/supply-chain-logistics/index.html', url: 'https://ai-avtopilot.ru/cases/supply-chain-logistics/', category: 'case', hasBreadcrumbs: true }
+  { slug: 'cases/supply-chain-logistics', file: 'cases/supply-chain-logistics/index.html', url: 'https://ai-avtopilot.ru/cases/supply-chain-logistics/', category: 'case', hasBreadcrumbs: true },
+  { slug: 'cases/tender-procurement-automation', file: 'cases/tender-procurement-automation/index.html', url: 'https://ai-avtopilot.ru/cases/tender-procurement-automation/', category: 'case', hasBreadcrumbs: true },
+  { slug: 'cases/claims-dispute-automation', file: 'cases/claims-dispute-automation/index.html', url: 'https://ai-avtopilot.ru/cases/claims-dispute-automation/', category: 'case', hasBreadcrumbs: true }
 ];
 
 let totalChecks = 0;
@@ -444,10 +446,12 @@ const ALL_CASE_PAGES = [
   'cases/hr-recruitment-automation',
   'cases/supply-chain-logistics',
   'cases/fintech-transaction-reconciliation',
-  'cases/sales-speech-analytics'
+  'cases/sales-speech-analytics',
+  'cases/tender-procurement-automation',
+  'cases/claims-dispute-automation'
 ];
 
-runCheck('SEO-27', 'All 7 case study landing pages contain #cases (Другие кейсы) positioned strictly below #contact', () => {
+runCheck('SEO-27', 'All 9 case study landing pages contain #cases (Другие кейсы) positioned strictly below #contact', () => {
   ALL_CASE_PAGES.forEach(slug => {
     const filePath = path.join(ROOT_DIR, slug, 'index.html');
     assert.ok(fs.existsSync(filePath), `Case page ${slug} must exist`);

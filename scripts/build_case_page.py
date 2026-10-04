@@ -34,6 +34,8 @@ SLUG_TO_CARD_CLASS = {
     "supply-chain-logistics": "case-card--logistics",
     "fintech-transaction-reconciliation": "case-card--fintech",
     "sales-speech-analytics": "case-card--speech",
+    "tender-procurement-automation": "case-card--tender",
+    "claims-dispute-automation": "case-card--claims",
 }
 
 
