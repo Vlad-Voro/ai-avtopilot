@@ -247,6 +247,8 @@ export default {
         const rawName = String(data.name || "").trim().slice(0, 100);
         const rawCompany = String(data.company || "").trim().slice(0, 100);
         const rawContact = String(data.contact || "").trim().slice(0, 150);
+        const rawMessage = String(data.message || "").trim().slice(0, 1000);
+        const isExpress = data.source === "express_modal";
 
         if (rawContact.length < 3) {
           return new Response(JSON.stringify({ success: false, error: "Укажите корректный контакт" }), {
@@ -255,16 +257,26 @@ export default {
           });
         }
 
-        const name = escapeHtml(rawName || "Не указано");
+        const name = escapeHtml(rawName || (isExpress ? "Гость сайта" : "Не указано"));
         const company = escapeHtml(rawCompany || "Не указано");
         const contact = escapeHtml(rawContact);
+        const message = escapeHtml(rawMessage);
 
-        const msg =
-          "🔥 <b>Новая заявка на аудит с сайта ai-avtopilot.ru!</b>\n\n" +
-          `👤 <b>Имя:</b> ${name}\n` +
-          `🏢 <b>Компания:</b> ${company}\n` +
-          `📱 <b>Контакт:</b> ${contact}\n` +
-          `⏰ <b>Время:</b> ${getMskTime()}`;
+        const headerTitle = isExpress
+          ? "⚡ <b>Экспресс-сообщение из виджета ai-avtopilot.ru!</b>\n\n"
+          : "🔥 <b>Новая заявка на аудит с сайта ai-avtopilot.ru!</b>\n\n";
+
+        let msg = headerTitle + `📱 <b>Контакт:</b> ${contact}\n`;
+        if (rawName && rawName !== "Гость сайта" && rawName !== "Не указано") {
+          msg += `👤 <b>Имя:</b> ${name}\n`;
+        }
+        if (rawCompany && rawCompany !== "Не указано") {
+          msg += `🏢 <b>Компания:</b> ${company}\n`;
+        }
+        if (rawMessage) {
+          msg += `💬 <b>Сообщение:</b>\n${message}\n`;
+        }
+        msg += `⏰ <b>Время:</b> ${getMskTime()}`;
 
         const sendRes = await sendTelegramMessage(botToken, adminChatId, msg);
 
