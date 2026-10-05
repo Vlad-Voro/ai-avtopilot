@@ -43,7 +43,8 @@ const PAGES = [
   { slug: 'cases/service-center-ai-operator', file: 'cases/service-center-ai-operator/index.html', url: 'https://ai-avtopilot.ru/cases/service-center-ai-operator/', category: 'case', hasBreadcrumbs: true },
   { slug: 'cases/supply-chain-logistics', file: 'cases/supply-chain-logistics/index.html', url: 'https://ai-avtopilot.ru/cases/supply-chain-logistics/', category: 'case', hasBreadcrumbs: true },
   { slug: 'cases/tender-procurement-automation', file: 'cases/tender-procurement-automation/index.html', url: 'https://ai-avtopilot.ru/cases/tender-procurement-automation/', category: 'case', hasBreadcrumbs: true },
-  { slug: 'cases/claims-dispute-automation', file: 'cases/claims-dispute-automation/index.html', url: 'https://ai-avtopilot.ru/cases/claims-dispute-automation/', category: 'case', hasBreadcrumbs: true }
+  { slug: 'cases/claims-dispute-automation', file: 'cases/claims-dispute-automation/index.html', url: 'https://ai-avtopilot.ru/cases/claims-dispute-automation/', category: 'case', hasBreadcrumbs: true },
+  { slug: 'cases/reviews-reputation-automation', file: 'cases/reviews-reputation-automation/index.html', url: 'https://ai-avtopilot.ru/cases/reviews-reputation-automation/', category: 'case', hasBreadcrumbs: true }
 ];
 
 let totalChecks = 0;
@@ -448,10 +449,11 @@ const ALL_CASE_PAGES = [
   'cases/fintech-transaction-reconciliation',
   'cases/sales-speech-analytics',
   'cases/tender-procurement-automation',
-  'cases/claims-dispute-automation'
+  'cases/claims-dispute-automation',
+  'cases/reviews-reputation-automation'
 ];
 
-runCheck('SEO-27', 'All 9 case study landing pages contain #cases (Другие кейсы) positioned strictly below #contact', () => {
+runCheck('SEO-27', 'All 10 case study landing pages contain #cases (Другие кейсы) positioned strictly below #contact', () => {
   ALL_CASE_PAGES.forEach(slug => {
     const filePath = path.join(ROOT_DIR, slug, 'index.html');
     assert.ok(fs.existsSync(filePath), `Case page ${slug} must exist`);

@@ -36,6 +36,7 @@ SLUG_TO_CARD_CLASS = {
     "sales-speech-analytics": "case-card--speech",
     "tender-procurement-automation": "case-card--tender",
     "claims-dispute-automation": "case-card--claims",
+    "reviews-reputation-automation": "case-card--reviews",
 }
 
 

@@ -1,6 +1,6 @@
 # Architectural Reference & Production Blueprint: ai-avtopilot.ru
 
-> **Status**: Production Hardened | **Updated**: 2026-10-04  
+> **Status**: Production Hardened | **Updated**: 2026-10-05  
 > **Live URL**: [https://ai-avtopilot.ru/](https://ai-avtopilot.ru/) | **Repo**: `Vlad-Voro/ai-avtopilot` (`main` - Private)  
 > **Local Root**: `d:\AI\data\ai-avtopilot`  
 > **Verification Matrix**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E, 0 regressions)

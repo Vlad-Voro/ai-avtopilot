@@ -3,7 +3,7 @@
 > **Status**: Production Deployed | **Target**: [ai-avtopilot.ru](https://ai-avtopilot.ru/) | **Geo**: Russian Federation (Nationwide B2B)  
 > **Conversion Model**: Direct On-Site (ROI Calculator + `#contact` Audit Form; zero external bot qualification)  
 > **Search Targets**: Yandex (Web + «Нейро»), Google RU (AI Overviews), Perplexity, Professional communities (Klerk, Infostart)  
-> **Verification**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E) | **AI Slop**: **0 Markers** across all 29 URLs
+> **Verification**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E) | **AI Slop**: **0 Markers** across all 30 URLs
 
 ---
 
@@ -41,7 +41,7 @@ flowchart TD
     Brief --> Architecture --> Pipeline --> Conversion
 ```
 
-### 1.1. Production Page Inventory (29 Active URLs)
+### 1.1. Production Page Inventory (30 Active URLs)
 - **Root Main Landing (`/`)**: High-converting core page with dynamic typewriter, ROI engine, 6-module bento grid, live telemetry dashboard, and direct audit capture.
 - **Hub & Tool Subpages (6 URLs)**:
   - `/services/` — Complete catalogue of enterprise automation scenarios.
@@ -61,7 +61,7 @@ flowchart TD
   8. `/services/speech-analytics/` — 100% call audit in 30 sec, Whisper on-premise, 18-parameter checklist, amoCRM/Bitrix24 webhooks.
   9. `/services/specifications-kp/` — Automated technical specification parsing, RFP matching, 1C:ERP price calculation.
   10. `/services/price-monitoring/` — Real-time supplier price scraping, anti-dumping checks, dynamic repricing in 1C.
-- **Dedicated Applied Case Studies (9 URLs, `/cases/*`)**:
+- **Dedicated Applied Case Studies (10 URLs, `/cases/*`)**:
   1. `/cases/retail-inventory-automation/` — Retail network (230 stores): -72% manual accounting, +18% turnover, 9,200 hrs/yr saved.
   2. `/cases/manufacturing-edi-automation/` — Manufacturing plant: -90% paper EDI, period close in 5 min vs 3 days, $\ge 400\%$ ROI.
   3. `/cases/service-center-ai-operator/` — Service center (40k clients/mo): 80.4% autonomous resolution, 3 ₽ per contact, 1C:UNF.
