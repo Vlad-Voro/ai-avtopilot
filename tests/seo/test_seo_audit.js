@@ -558,6 +558,38 @@ runCheck('SEM-01', 'Cluster semantic HTML (0 nested <a>, 1 <h1>, honeypot field)
   });
 });
 
+// SEM-02: Zero inline JavaScript syntax errors across all production HTML pages
+runCheck('SEM-02', 'Zero inline JavaScript syntax errors across all production HTML pages', () => {
+  const htmlFiles = [];
+  function scan(dir) {
+    fs.readdirSync(dir, { withFileTypes: true }).forEach(ent => {
+      if (ent.name.startsWith('.') || ent.name === 'node_modules' || ent.name === 'tmp' || ent.name === 'tests') return;
+      const full = path.join(dir, ent.name);
+      if (ent.isDirectory()) scan(full);
+      else if (ent.name.endsWith('.html')) htmlFiles.push(full);
+    });
+  }
+  scan(ROOT_DIR);
+
+  htmlFiles.forEach(file => {
+    const html = fs.readFileSync(file, 'utf8');
+    const regex = /<script\b[^>]*>([\s\S]*?)<\/script>/gi;
+    let match;
+    let idx = 0;
+    while ((match = regex.exec(html)) !== null) {
+      idx++;
+      const fullTag = match[0];
+      const code = match[1];
+      if (fullTag.includes('type="application/ld+json"') || fullTag.includes('type="speculationrules"') || !code.trim()) continue;
+      try {
+        new Function(code);
+      } catch (err) {
+        assert.fail(`JS Syntax Error in ${path.relative(ROOT_DIR, file)} (script #${idx}): ${err.message}`);
+      }
+    }
+  });
+});
+
 // SEO-19: Test execution time benchmark
 runCheck('SEO-19', 'Full SEO verification suite completes in under 500ms', () => {
 

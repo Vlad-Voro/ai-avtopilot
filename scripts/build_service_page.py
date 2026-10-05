@@ -1225,7 +1225,7 @@ def generate_service_html(data: dict) -> str:
             successCard.style.display = 'block';
             reach('express_modal_submitted');
           }} else {{
-            var fallbackNote = 'Заявка:\nКонтакт: ' + contactVal + '\nЗадача: ' + messageVal;
+            var fallbackNote = 'Заявка:\\nКонтакт: ' + contactVal + '\\nЗадача: ' + messageVal;
             if (navigator.clipboard && navigator.clipboard.writeText) {{
               navigator.clipboard.writeText(fallbackNote);
             }}
