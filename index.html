@@ -3475,47 +3475,70 @@ section[id] {
 
           var delivered = false;
 
-          // Primary: Cloudflare Worker
-          try {
-            var res = await fetch('https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/submit', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(payload)
-            });
-            if (res.ok) {
-              var data = await res.json();
-              if (data && (data.success === true || data.success === 'true')) {
-                delivered = true;
+          // Dispatch in parallel: Telegram via Worker + Email via FormSubmit
+          var tgPromise = (async function() {
+            try {
+              var res = await fetch('https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              if (res.ok) {
+                var data = await res.json();
+                if (data && (data.success === true || data.success === 'true')) {
+                  return true;
+                }
               }
-            }
-          } catch (_cfErr) {}
-
-          if (!delivered) {
+            } catch (_cfErr) {}
             try {
               var r2 = await fetch('/submit', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
               });
-              if (r2.ok) delivered = true;
-            } catch (_relErr) {}
-          }
+              return r2.ok;
+            } catch (_relErr) {
+              return false;
+            }
+          })();
 
-          // Fallback: FormSubmit
-          if (!delivered) {
+          var emailPromise = (async function() {
             try {
-              var r3 = await fetch('https://formsubmit.co/ajax/contact@ai-avtopilot.ru', {
+              var r = await fetch('https://formsubmit.co/ajax/mr.vladimir.voronin@ya.ru', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                 body: JSON.stringify({
-                  _subject: 'Экспресс-сообщение из виджета ai-avtopilot.ru',
+                  _subject: '⚡ Экспресс-сообщение из виджета ai-avtopilot.ru',
+                  _cc: 'contact@ai-avtopilot.ru',
                   contact: contactVal,
-                  message: messageVal
+                  message: messageVal,
+                  _template: 'table'
                 })
               });
-              if (r3.ok) delivered = true;
+              if (r.ok) {
+                var d = await r.json();
+                if (d && (d.success === true || d.success === 'true')) return true;
+              }
             } catch (_fsErr) {}
-          }
+            try {
+              var r2 = await fetch('https://formsubmit.co/ajax/contact@ai-avtopilot.ru', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                  _subject: '⚡ Экспресс-сообщение из виджета ai-avtopilot.ru',
+                  contact: contactVal,
+                  message: messageVal,
+                  _template: 'table'
+                })
+              });
+              return r2.ok;
+            } catch (_fsErr2) {
+              return false;
+            }
+          })();
+
+          var results = await Promise.allSettled([tgPromise, emailPromise]);
+          delivered = results.some(function(r) { return r.status === 'fulfilled' && r.value === true; });
 
           submitBtn.disabled = false;
           submitBtn.innerHTML = originalBtnText;
