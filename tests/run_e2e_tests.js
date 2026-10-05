@@ -57,29 +57,12 @@ Options:
   }
 }
 
-// Suite registry
+// Suite registry (4 high-cohesion warm domain suites)
 const SUITE_PATHS = [
-  // Tier 1: Feature Coverage (R1 to R7)
-  './tier1_feature_coverage/test_r1_layout.js',
-  './tier1_feature_coverage/test_r2_section_order.js',
-  './tier1_feature_coverage/test_r3_contrast.js',
-  './tier1_feature_coverage/test_r4_micro_interactions.js',
-  './tier1_feature_coverage/test_r5_routing.js',
-  './tier1_feature_coverage/test_r6_roi_sliders.js',
-  './tier1_feature_coverage/test_r7_performance.js',
-
-  // Tier 2: Boundary & Corner Cases
-  './tier2_boundary_corner/test_responsive_viewports.js',
-  './tier2_boundary_corner/test_slider_boundaries.js',
-  './tier2_boundary_corner/test_rapid_clicks_navigation.js',
-  './tier2_boundary_corner/test_invalid_routes_fallback.js',
-  './tier2_boundary_corner/test_burger_rapid_toggle.js',
-
-  // Tier 3: Cross-Feature Interactions
-  './tier3_cross_feature/test_cross_interactions.js',
-
-  // Tier 4: Real-World Workload Scenarios
-  './tier4_real_world_scenarios/test_user_journeys.js'
+  './e2e/suite_homepage_interactions.js',
+  './e2e/suite_navigation_flows.js',
+  './e2e/suite_calculator_and_leads.js',
+  './e2e/suite_cluster_and_journeys.js'
 ];
 
 async function main() {

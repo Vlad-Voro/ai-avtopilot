@@ -1,8 +1,8 @@
-# B2B Content Strategy & Demand Capture Engine: ai-avtopilot.ru (v3 Production)
+# B2B Content Strategy & Demand Capture Engine: ai-avtopilot.ru
 
 > **Status**: Production Deployed | **Target**: [ai-avtopilot.ru](https://ai-avtopilot.ru/) | **Geo**: Russian Federation (Nationwide B2B)  
-> **Conversion Model**: Direct On-Site (ROI Calculator + `#contact` Audit Form; zero external bot qualification)  
-> **Search Targets**: Yandex (Web + «Нейро»), Google RU (AI Overviews), Perplexity, Professional communities (Klerk, Infostart)  
+> **Inventory**: 32 Production URLs (1 Root, 6 Hubs, 12 Services, 10 Cases, 3 Utility)  
+> **Search Targets**: Yandex (Web + «Нейро»), Google RU (AI Overviews), Perplexity, Klerk.ru, Infostart.ru  
 > **Verification**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E) | **AI Slop**: **0 Markers** across all 32 URLs
 
 ---
@@ -18,152 +18,137 @@ flowchart TD
         Val -- "Validated Pool" --> Brief["Validated Semantics Matrix"]
     end
 
-    subgraph Architecture ["2. Production Silo Architecture (27 URLs)"]
+    subgraph Architecture ["2. Production Silo Architecture (32 URLs)"]
         Root["/ (Main Landing Page)"]
-        Hubs["6 Hub & Tool Pages (/services/, /cases/, /calculator/, /dashboard/, /faq/, /contact/)"]
-        T1["10 Production Service Landing Pages (/services/*)"]
-        T3["7 Applied Production Case Studies (/cases/*)"]
+        Hubs["6 Hub Pages (/services/, /cases/, /calculator/, /dashboard/, /faq/, /contact/)"]
+        T1["12 Dedicated Service Pages (/services/*)"]
+        T3["10 Applied Case Studies (/cases/*)"]
+        Util["3 Utility Pages (/privacy.html, /404.html, /success.html)"]
     end
 
-    subgraph Pipeline ["3. Production & Quality Gate"]
-        Arch["Agent 1: Intent & Brief"] --> Writer["Agent 2: 1C & Ops Specialist"]
+    subgraph Pipeline ["3. Multi-Agent Synthesis Gate"]
+        Miner["Agent 0: Semantics Miner"] --> Arch["Agent 1: Architect"]
+        Arch --> Writer["Agent 2: 1C & Ops Writer"]
         Writer --> Critic["Agent 3: Adversarial Reviewer"]
-        Critic --> Humanizer["Agent 4: ru_text_humanizer (64 patterns)"]
-        Humanizer --> Gate["Deterministic SEO/Schema Gate (641 tests)"]
+        Critic --> Humanizer["Agent 4: ru_text_humanizer (0/64)"]
+        Humanizer --> Gate["Deterministic Verification Gate (163 tests)"]
     end
 
-    subgraph Conversion ["4. On-Site Conversion & Telemetry"]
-        Calc["Interactive ROI Calculator (80% Math Engine)"]
-        Form["Lead Capture Form (#contact + 152-FZ)"]
+    subgraph Conversion ["4. Conversion & Edge"]
+        Calc["ROI Calculator Engine"]
+        Form["Lead Capture (#contact + 152-FZ)"]
         Edge["Vercel Anycast Edge + Cloudflare Grey Cloud"]
     end
 
     Brief --> Architecture --> Pipeline --> Conversion
 ```
 
-### 1.1. Production Page Inventory (32 Active URLs)
-- **Root Main Landing (`/`)**: High-converting core page with dynamic typewriter, ROI engine, 6-module bento grid, live telemetry dashboard, and direct audit capture.
-- **Hub & Tool Subpages (6 URLs)**:
-  - `/services/` — Complete catalogue of enterprise automation scenarios.
-  - `/cases/` — Real-world business implementation results and ROI proofs.
-  - `/calculator/` — Interactive B2B routine savings and payback estimator.
-  - `/dashboard/` — Live telemetry simulator and autonomous agent monitor.
-  - `/faq/` — B2B knowledge base (1C integration, 14-day SLA, 152-FZ on-premise security).
-  - `/contact/` — Express audit registration and direct contact channels.
-- **Dedicated Service Landing Pages (12 URLs, `/services/*`)**:
-  1. `/services/system-integration/` — 1C ERP, CRM (Bitrix24 / amoCRM), OData REST API & Event Bus.
-  2. `/services/retail-inventory/` — 1C:Розница, 1C:УТ, Safety Stock, ROP, Wildberries & Ozon balance sync.
-  3. `/services/document-automation/` — OCR + On-Premise LLM invoice / UPD extraction, Diadoc & SBIS routing.
-  4. `/services/customer-support/` — 24/7 First-Line B2B Dispatcher, 1C:UNF & CRM integration.
-  5. `/services/rapid-pilot/` — 14-Day Fixed MVP Sprint with guaranteed commercial ROI.
-  6. `/services/automated-reporting/` — Autonomous P&L, Cash Flow, and operational summaries in Telegram/Email.
-  7. `/services/ai-analytics/` — Predictive cash flow calendar, stock depletion & price anomaly detection.
-  8. `/services/speech-analytics/` — 100% call audit in 30 sec, Whisper on-premise, 18-parameter checklist, amoCRM/Bitrix24 webhooks.
-  9. `/services/specifications-kp/` — Automated technical specification parsing, RFP matching, 1C:ERP price calculation.
-  10. `/services/price-monitoring/` — Real-time supplier price scraping, anti-dumping checks, dynamic repricing in 1C.
-  11. `/services/debt-control/` — 1C:ERP / 1C:UT soft-collection, payment schedule monitoring, auto-claims.
-  12. `/services/reviews-reputation/` — Yandex Maps / 2GIS review monitoring, 1C customer matching, 24/7 rating defense.
-- **Dedicated Applied Case Studies (10 URLs, `/cases/*`)**:
-  1. `/cases/retail-inventory-automation/` — Retail network (230 stores): -72% manual accounting, +18% turnover, 9,200 hrs/yr saved.
-  2. `/cases/manufacturing-edi-automation/` — Manufacturing plant: -90% paper EDI, period close in 5 min vs 3 days, $\ge 400\%$ ROI.
-  3. `/cases/service-center-ai-operator/` — Service center (40k clients/mo): 80.4% autonomous resolution, 3 ₽ per contact, 1C:UNF.
-  4. `/cases/hr-recruitment-automation/` — Retail & Logistics mass hiring (50+ stores): screening 5,000+ CVs/mo, -85% screening time, 1C:ZUP.
-  5. `/cases/supply-chain-logistics/` — Logistics hub: GLONASS/GPS telemetry, ETA prediction, EPL generation in 30 sec, -30% transport costs.
-  6. `/cases/fintech-transaction-reconciliation/` — B2B Fintech: DirectBank 1C reconciliation, 50,000 ops in 8.4 sec, 99.2% accuracy.
-  7. `/cases/sales-speech-analytics/` — B2B Sales & Distribution (35 managers): 100% call audit in 30 sec, -85% QA cost, +22% conversion, amoCRM/Bitrix24.
-- **System & Legal Pages (3 URLs)**: `/privacy.html` (152-FZ compliant), `/404.html` (clean route fallback), `/success.html`.
-- **Machine Discovery & Compliance Assets**:
-  - `/llms.txt`, `/llms-full.txt` (structured markdown indexation for LLMs and autonomous agents).
-  - `/.well-known/security.txt` (RFC 9116 security contact standards).
-  - `/d8a24f0c9b7e416a9e3d81b7e651c4a0.txt` (IndexNow instant indexing protocol token).
-  - `/yandex_cd29b4304b5e16c6.html` (Yandex Webmaster ownership verification).
+### 1.1. Production Page Inventory (32 URLs)
 
-### 1.2. Generative Search Semantic Requirements (Yandex «Нейро», Perplexity, AI Overviews)
-- **Direct Answer Synthesis**: Factual, structured summaries embedded in Hero subtitles, FAQ accordions, and JSON-LD Schema.org graphs answering commercial intents instantly (exact stack, timelines, pricing model, compliance).
-- **Technical & DOM Alignment**: Zero CLS (0.000), fixed-dimension elements, and negative invariants strictly governed by [ARCHITECTURE.md §6 & §9.2](file:///d:/AI/data/ai-avtopilot/ARCHITECTURE.md).
+| Route / Slug | Page Type | Core B2B Scope & Value Proposition | Key Metric / KPI |
+| :--- | :--- | :--- | :--- |
+| `/` | Root Landing | Core landing with ROI calculator, bento grid, live telemetry, and direct audit capture. | 80% routine savings |
+| `/services/` | Hub | Complete catalog of enterprise automation scenarios and 1C integrations. | 12 scenarios |
+| `/cases/` | Hub | Enterprise case studies with verified metrics and 1C architecture workflows. | 10 case studies |
+| `/calculator/` | Tool Hub | Interactive B2B routine savings and payback estimator. | Real-time ROI |
+| `/dashboard/` | Tool Hub | Live agent telemetry simulator and event stream monitor. | 0 ms TBT |
+| `/faq/` | Hub | Knowledge base: 1C integration, 14-day SLA, on-premise 152-FZ airgap. | Accordion DOM 1:1 |
+| `/contact/` | Hub | Express audit registration and direct communication channels. | 3-field form |
+| `/services/system-integration/` | Service | 1C:ERP, CRM (Bitrix24/amoCRM), OData REST API and Event Bus integration. | 0 manual Excel syncs |
+| `/services/retail-inventory/` | Service | 1C:Розница, 1C:УТ, Safety Stock, ROP, Wildberries/Ozon balance sync. | +18% turnover |
+| `/services/document-automation/` | Service | OCR + On-Premise LLM invoice/UPD parsing, Diadoc and SBIS routing. | 5 min period close |
+| `/services/customer-support/` | Service | 24/7 First-Line B2B Dispatcher, 1C:UNF & CRM integration. | 3 ₽ per contact |
+| `/services/rapid-pilot/` | Service | 14-day fixed MVP sprint with guaranteed commercial ROI. | 14-day delivery |
+| `/services/automated-reporting/` | Service | Autonomous P&L, Cash Flow, and operational summaries in Telegram/Email. | 09:00 AM dispatch |
+| `/services/ai-analytics/` | Service | Predictive cash flow calendar, stock depletion, and price anomaly detection. | Proactive alerts |
+| `/services/speech-analytics/` | Service | 100% call audit in 30 sec, Whisper on-premise, 18-parameter checklist. | 30s audit latency |
+| `/services/specifications-kp/` | Service | Automated technical specification parsing, RFP matching, 1C:ERP pricing. | 3x faster bidding |
+| `/services/price-monitoring/` | Service | Real-time supplier price scraping, anti-dumping checks, dynamic repricing in 1C. | Real-time margins |
+| `/services/debt-control/` | Service | 1C:ERP/1C:UT soft-collection, payment schedule monitoring, auto-claims. | -40% overdue debt |
+| `/services/reviews-reputation/` | Service | Yandex Maps/2GIS review monitoring, 1C customer matching, rating defense. | 4.9★ rating shield |
+| `/cases/retail-inventory-automation/` | Case | Retail network (230 stores): -72% manual accounting, 9,200 hrs/yr saved. | −72% labor, +18% turnover |
+| `/cases/manufacturing-edi-automation/` | Case | Manufacturing plant: -90% paper EDI, period close in 5 min vs 3 days. | $\ge 400\%$ ROI |
+| `/cases/service-center-ai-operator/` | Case | Service center (40k clients/mo): 80.4% autonomous resolution. | 80.4% automated, 3 ₽/lead |
+| `/cases/hr-recruitment-automation/` | Case | Retail & logistics mass hiring (50+ stores): screening 5,000+ CVs/mo. | −85% screening time |
+| `/cases/supply-chain-logistics/` | Case | Logistics hub: GLONASS/GPS telemetry, ETA prediction, EPL generation in 30s. | −30% transport costs |
+| `/cases/fintech-transaction-reconciliation/` | Case | B2B Fintech: DirectBank 1C reconciliation, 50,000 ops in 8.4 sec. | 99.2% accuracy |
+| `/cases/sales-speech-analytics/` | Case | B2B Sales (35 managers): 100% call audit in 30s, amoCRM/Bitrix24 webhooks. | +22% conversion |
+| `/cases/claims-dispute-automation/` | Case | B2B Distribution: claim processing time slashed from 4 days to 40 min. | −75% claim latency |
+| `/cases/reviews-reputation-automation/` | Case | Multi-location clinic: 24/7 Yandex/2GIS monitoring and incident escalation. | 4.9★ rating retained |
+| `/cases/tender-procurement-automation/` | Case | Industrial supply: automated RFP analysis and 1C:ERP margin calculation. | 3x tender volume |
+| `/privacy.html` | Utility | 152-FZ compliant personal data processing policy. | Legal compliance |
+| `/404.html` | Utility | Clean route fallback preserving original requested path. | Client state recovery |
+| `/success.html` | Utility | Conversion confirmation page with direct Telegram contact action. | Post-submit UX |
 
-### 1.3. SOTA SEO Internal Linking Mesh & Funnel Repositioning
-- **Complete Silo Mesh ($K_{12}$ Graph)**: Every dedicated service landing page (`/services/*`) features the «Другие сценарии» (`#other-services`) block located strictly below the `#contact` lead form. It links to all 11 other services in the cluster (132 directed internal links, zero self-links, 0 redirect hops with strict trailing slashes). Desktop features a 4x2 8-card slider with scroll-snap and next/prev controls.
-- **Desktop 3x3 Grid & 3-Case Invariant**: On subpages, feature modules (`.services__bento--static`) and client case blocks (`.cases__grid--static`) render as a balanced 3-column CSS grid (`repeat(3, minmax(0, 1fr))`). Every service landing page MUST include exactly 3 applied case cards, completely eliminating dead space from an empty 3rd column. Desktop touchbars/controls are suppressed (`display: none !important`), while mobile/tablet swipe carousels and dots remain 100% functional.
-- **Calibrated Desktop Slider Controls**: Sliders feature `.slider-controls` with violet-glow `.slider-arrow` buttons and dynamically computed slides (`totalSlides = Math.ceil(cards.length / 8)` for 4x2 grid): exactly 2 slides for services (12 items) and 1 slide for cases (10 items, arrows auto-hidden via `hidden`).
-- **Exit-Intent Conversion Hierarchy**:
-  - Services: primary conversion point (`#contact`) precedes sibling scenario exploration (`#other-services`), eliminating Hick's Law bounce.
-  - Cases: primary conversion point (`#contact`) precedes related case studies (`#cases` «Другие кейсы»).
-- **Zero-Collision Carousel Isolation**: Scoped mobile touch carousel dots (`#other-services-dots`) prevent event listener collisions with feature modules (`.services__bento` / `#services-dots`).
+### 1.2. Internal Linking Mesh & Hierarchy
+- **Service Silo Mesh ($K_{12}$)**: Each of the 12 service pages cross-links to all 11 sibling services in `#other-services` placed strictly below `#contact` (132 directed internal links, 0 self-links, 0 redirect hops).
+- **Strict 3-Case Invariant**: Every service page displays exactly 3 applied case cards in `#cases` (`.cases__grid--static`). Eliminates empty slots in 3-column desktop layout.
+- **Case Silo Mesh ($K_{10}$)**: Each of the 10 case pages cross-links to all 9 sibling cases in `#cases` strictly below `#contact` (90 directed internal links, 0 self-links).
 
 ---
 
+## 2. Multi-Agent Production Pipeline & Quality Gate
 
-## 2. Production Pipeline & Multi-Agent Quality Gate
-
-### 2.0. Step 0: Semantic Parsing, Zero-Frequency Gate & Re-Query Loop
-1. **Demand Mining**: Collect raw and exact Wordstat RF frequencies, Yandex search suggestions, and operational pain points from Klerk.ru and Infostart.ru.
-2. **Zero-Frequency Pruning Gate**: Hard filter enforcing `"!query" > 0` exact frequency. Queries with zero confirmed monthly volume are strictly excluded from `<title>`, `<meta description>`, `<h1>`/`<h2>` tags, and focus clusters.
-3. **Autonomous Re-Query Loop**: If post-filter cluster density falls below the viability threshold, automatically expand seed keywords with professional accounting/procurement synonyms and operational slang, re-submitting them to the frequency validation loop.
-4. **Handoff to Production**: Only verified non-zero semantic clusters proceed to Agent 1 (Architect) for technical brief compilation.
-
-### 2.1. Multi-Agent Synthesis Protocol
 ```mermaid
 sequenceDiagram
     autonumber
-    participant S0 as Agent 0: Semantics Miner & Validator
-    participant A1 as Agent 1: Architect (Brief & Intent)
-    participant A2 as Agent 2: Writer (1C & Operations)
-    participant A3 as Agent 3: Critic (Adversarial Review)
-    participant A4 as Agent 4: Humanizer (ru_text_humanizer)
-    participant Gate as Deterministic SEO/Schema Gate
+    participant S0 as Agent 0: Semantics Miner
+    participant A1 as Agent 1: Architect
+    participant A2 as Agent 2: 1C & Ops Writer
+    participant A3 as Agent 3: Adversarial Reviewer
+    participant A4 as Agent 4: ru_text_humanizer
+    participant Gate as Deterministic Verification Gate
 
     loop Semantic Validation & Re-query
-        S0->>S0: Parse queries (Wordstat + Klerk/Infostart)
-        S0->>S0: Check exact frequency ("!запрос" > 0) & prune zero-volume
-        opt Insufficient valid keywords
-            S0->>S0: Re-query loop: expand LSI synonyms & operational slang
+        S0->>S0: Mine queries (Wordstat + Klerk/Infostart)
+        S0->>S0: Hard filter: "!запрос" > 0 exact frequency
+        opt Cluster density below threshold
+            S0->>S0: Re-query loop: expand professional synonyms & operational slang
         end
     end
     S0->>A1: Validated Non-Zero Semantic Cluster
-    A1->>A2: Technical Brief (Validated LSI, 1C data model, ROI formula)
-    A2->>A3: Draft Article/Case (DOM layout, numbers, architecture)
-    A3-->>A2: Reject / Revisions (Max 2 cycles on factual/math errors)
-    A3->>A4: Validated Technical Spec
-    A4->>Gate: De-slopped Russian Copy (0/64 patterns)
-    Gate->>Gate: Schema.org, Canonical, Trailing Slash, 641 tests
+    A1->>A2: Technical Brief (LSI keywords, 1C objects, ROI parameters)
+    A2->>A3: Draft Article / Case (DOM layout, formulas, numbers)
+    A3-->>A2: Reject / Revision (Max 2 cycles on math/factual errors)
+    A3->>A4: Approved Technical Specification
+    A4->>Gate: De-slopped Copy (0/64 patterns, preserved Wordstat queries)
+    Gate->>Gate: Execute 155 Pyramid Tests + Schema.org + Trailing Slash
 ```
 
-### 2.2. Mandatory Critic Checklist (Agent 3 Invariants)
-1. **1C Data Model Legitimacy**: Validate real 1C objects (регистры накопления/сведений, документы, справочники, OData/REST endpoints).
-2. **Formula Integrity**: Verify strict compliance with the canonical ROI mathematical contract in [ARCHITECTURE.md §4.1](file:///d:/AI/data/ai-avtopilot/ARCHITECTURE.md#41-roi-calculator-exact-specifications) (80% routine efficiency, non-speculative hours/salary).
-3. **152-FZ Airgap Claims**: Validate On-Premise / local boundary commitments in copy per [ARCHITECTURE.md §7](file:///d:/AI/data/ai-avtopilot/ARCHITECTURE.md#7-security--zero-trust-hardening).
-4. **De-slopped Realism**: Elimination of AI platitudes; hard units only (секунды, рубли, штуки, проценты) adhering to `ru_text_humanizer` (0/64 patterns).
-5. **On-Site Conversion Flow**: Organic integration of `#contact` anchor and interactive sliders without external bot qualification.
-6. **Metric Units, Decimals & Rating Integrity (ADR 2026-10-02 & ADR 2026-10-05)**: Mandatory preservation of measurement units (`%`, `₽`, `ч`, `сек`, `млн ₽`, `★`, `шт`) and signs (`+18%`, `−72%`, `9 200 ч`, `30 сек`, `0%`) across all KPI blocks and case results. Rating metrics must strictly display with Russian decimal comma notation (e.g. `4,9★` or `4,9`, never truncated integer `4`). Zero tolerance for client-side script truncation or unit stripping: all frontend animation parsers must preserve units, prefixes, suffixes, and fractional values without naive integer casting.
+### 2.1. Mandatory Critic Checklist (Agent 3 Invariants)
+1. **1C Data Model Legitimacy**: Validate real 1C objects (регистры сведений/накопления, документы, справочники, OData endpoints).
+2. **Formula Integrity**: Validate canonical ROI math ($E \times S \times \frac{H}{160} \times 12$, 80% savings, $E \times H \times 52$).
+3. **152-FZ Airgap Claims**: Validate On-Premise / local boundary commitments in copy.
+4. **De-slopped Realism**: Eliminate AI platitudes; enforce hard units (секунды, рубли, штуки, проценты) via `ru_text_humanizer` (0/64 patterns).
+5. **On-Site Conversion**: Ensure organic integration of `#contact` anchor and interactive sliders without external bot redirects.
+6. **Metric Units & Decimal Integrity**: Preserve measurement units (`%`, `₽`, `ч`, `сек`, `млн ₽`, `★`, `шт`) and signs (`+18%`, `−72%`, `9 200 ч`). Use Russian decimal comma notation (`4,9★`, not integer `4`).
+7. **Mobile Card Equal-Height Invariant**: Verify height uniformity across horizontal swipe card blocks (`.scard`, `.case-card`) under mobile viewports ($\le 480\text{px}$). Enforce stretch flexbox rules, `flex: 1 1 auto` on descriptions, `margin-top: auto` on tags/CTAs, and balanced copy length.
+8. **Canonical Dual-CTA Footer & Express Modal**: Ensure all newly generated pages include `.footer__dual-cta` (Telegram channel + Email express audit modal trigger) and `<dialog id="express-contact-modal">`. Standalone legacy footers are strictly rejected.
 
-### 2.3. Site-Wide Proofreading & SEO Frequency Invariant
-> **Canonical Site-Wide Proofreading Invariant**: Continuous proofreading and desloping of all pages across [ai-avtopilot.ru](https://ai-avtopilot.ru/) must be executed strictly via the [`ru_text_humanizer`](file:///d:/AI/.agents/skills/ru_text_humanizer/SKILL.md) skill **with zero semantic degradation and mandatory preservation of verified SEO frequency (Yandex Wordstat) on every single page**.
-- **0 Slop Markers (64-Pattern Taxonomy)**: Total elimination of all 20 Hard Bans («не просто X, а Y», «стоит отметить», buzzwords «бесшовный», «комплексный», demonstrative pointer weeds «данный»).
-- **Morphological Data Protection**: Strict distinction between the demonstrative weed «данный/данная» (banned) and the technical noun «данные (data)» (databases, data transfer, 152-FZ compliance).
-- **SEO Frequency & Density Locks**: Full preservation of primary search queries and LSI tails in `<title>` ($\le 77$ chars), `<meta name="description">` ($\le 152$ chars), `<h1>`, Direct Answer blocks, FAQ accordions, and Schema.org graphs.
-- **Engineering Invariants**: Typewriter phrase length constrained to $\le 19$ characters (`min-height: 1.25em` mobile, CLS = 0.000, zero multi-line wrap jitter), preserving 641/641 tests without regression.
+
+### 2.2. Site-Wide Proofreading & SEO Frequency Invariants
+- **0 Slop Markers (64-Pattern Taxonomy)**: Zero tolerance for all 20 Hard Bans («не просто X, а Y», «стоит отметить», buzzwords «бесшовный», «комплексный», demonstrative pointer weeds «данный»).
+- **Morphological Data Protection**: Maintain strict distinction between demonstrative weed «данный/данная» (banned) and technical noun «данные (data)» (databases, 152-FZ data transfer).
+- **SEO Frequency & Density Locks**: Full preservation of primary search queries and LSI tails in `<title>` ($\le 77$c), `<meta name="description">` ($\le 152$c), `<h1>`, Direct Answer blocks, FAQ, and Schema.org.
+- **Typewriter Constraints**: Phrase length constrained to $\le 19$ characters (`min-height: 1.25em` mobile, CLS = 0.000).
 
 ---
 
 ## 3. Production Status & Execution Roadmap
 
 ### 3.1. Completed Milestones (Current Baseline)
-- ✅ **Core Infrastructure & Design System**: Inlined zero-blocking CSS (~97KB), local WOFF2 font subsetting and complete isolation (Google Fonts CDN eliminated on `/success.html` and `/404.html`), WCAG AA strict contrast, responsive down to 320px.
-- ✅ **Multi-Entry Hybrid SSG Engine**: Synchronization across all 6 hubs/tools via `sync_pages.py`.
-- ✅ **Scenario Landing Cluster**: 10 production service landing pages deployed, verified, and indexed in `sitemap.xml`.
-- ✅ **Applied Case Study Cluster**: 7 real-world B2B case studies deployed with hard ROI metrics, calibrated SERP snippets (Title $\le 77$c, Description $\le 152$c), and 3-level Schema.org graphs.
-- ✅ **Site-Wide Desloping & SEO Hardening**: All 27 URLs proofread via `ru_text_humanizer` (0 slop markers, 100% Wordstat keyword retention).
-- ✅ **SOTA SEO Internal Linking & Subpage Repositioning**: Strongly connected $K_{10}$ mesh across all 10 service silos, sibling discovery moved below `#contact` across services and cases, 4x2 desktop slider grid with scroll-snap, dedicated dots/carousel isolation (`#other-services-dots`), 0 circular self-links.
-- ✅ **Desktop 3x3 Grid & Calibrated Slider Navigation**: Restored 3-column static grid on unlinked modules (`.services__bento--static`, `.cases__grid--static`) to eliminate empty 4th column gaps on subpages; added desktop navigation arrows (`.slider-arrow`) with calibrated slide counts (2 slides for 10 services, 1 slide for 7 cases); preserved 100% mobile/tablet swipe & touchbar UX.
-- ✅ **Verification Suite & Layout Matrix**: 641/641 tests passing (Fast Suite: 67/67 Unit/Static/Security + Layout Matrix: 486/486 across 27 pages and 18 devices + Browser E2E: 88/88).
-
+- ✅ **Core Infrastructure & Design System**: Inlined CSS (~97 KB), local WOFF2 font subsetting, WCAG AA contrast, responsive down to 320px.
+- ✅ **Multi-Entry Hybrid SSG Engine**: Synchronization across 6 hubs and tools via `sync_pages.py`.
+- ✅ **Dedicated Service Silos**: 12 production service landing pages deployed, verified, and indexed.
+- ✅ **Applied Case Study Cluster**: 10 real-world B2B case studies deployed with verified ROI metrics and 3-level Schema.org graphs.
+- ✅ **Site-Wide Desloping**: All 32 URLs proofread via `ru_text_humanizer` (0 slop markers, 100% Wordstat keyword retention).
+- ✅ **Linking Mesh & Navigation**: $K_{12}$ mesh across 12 services (132 links), $K_{10}$ mesh across 10 cases (90 links), strict 3-case invariant on service pages.
+- ✅ **Verification Suite**: 163/163 tests passing in `tests/run_all.js` + 486 layout checks in `audit_runner.js`.
 
 ### 3.2. Future Expansion Roadmap
-- **Sprint 4 (Long-Tail Semantic Expansion & Registry Completion)**:
-  - Profile the 5 remaining case studies in `data/cases_semantics.json` (`manufacturing-edi-automation`, `service-center-ai-operator`, `hr-recruitment-automation`, `supply-chain-logistics`, `fintech-transaction-reconciliation`).
-  - Mine secondary zero-search accounting & procurement queries from Klerk/Infostart for additional niche case studies.
-  - Expand combinatorial programmatic matrix nodes (specific 1C configurations $\times$ industry verticals).
+- **Sprint 4 (Combinatorial Matrix & Long-Tail Registry)**:
+  - Expand programmatic matrix nodes: specific 1C configurations $\times$ industry verticals (e.g. 1C:УНФ для сервиса, 1C:ERP для пищевого производства).
+  - Mine niche accounting & procurement queries from Klerk.ru / Infostart.ru for supplemental case workflows.
 - **Sprint 5 (CRO & Analytics Feedback Loop)**:
   - Monitor Yandex Metrika goals (`lead_form_submitted`, `click_cta_audit`) and Webvisor 2.0 heatmaps.
   - A/B test ROI calculator slider initial defaults and mobile lead capture conversion rates.

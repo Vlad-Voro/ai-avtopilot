@@ -555,17 +555,17 @@ to{opacity:1;transform:scale(1) translateY(0)}
 .footer__copy{color:var(--text-3);font-size:.8rem}
 [data-reveal]{opacity:0;transform:translateY(32px)}
 @media(max-width:1024px){
-.services__bento{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;gap:16px;padding:8px 4px 18px;margin:0 -4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.services__bento::-webkit-scrollbar{display:none}
-.services__bento .scard{flex:0 0 min(320px,78vw);scroll-snap-align:center;scroll-snap-stop:normal;display:flex;flex-direction:column;padding:24px 20px;grid-column:auto}
-.services-dots{display:flex;justify-content:center;gap:4px;margin-top:8px;min-height:44px;max-width:100%;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 8px;box-sizing:border-box}
-.services-dots::-webkit-scrollbar{display:none}
-@media(max-width:380px){.services-dots{justify-content:flex-start}}
+.services__bento,.other-services__bento,.cases__grid{display:flex;align-items:stretch !important;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;gap:16px;padding:8px 4px 18px;margin:0 -4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.services__bento::-webkit-scrollbar,.other-services__bento::-webkit-scrollbar,.cases__grid::-webkit-scrollbar{display:none}
+.services__bento .scard,.other-services__bento .scard{flex:0 0 min(320px,78vw);scroll-snap-align:center;scroll-snap-stop:normal;display:flex !important;flex-direction:column !important;align-self:stretch !important;height:auto !important;padding:24px 20px;grid-column:auto}
+.cases__grid .case-card{flex:0 0 min(330px,80vw);scroll-snap-align:center;scroll-snap-stop:normal;display:flex !important;flex-direction:column !important;align-self:stretch !important;height:auto !important;padding:24px 20px}
+.scard__desc,.case-card__desc{flex:1 1 auto !important}
+.scard__tags,.case-card__results,.scard--accent .btn{margin-top:auto !important}
+.services-dots,.other-services-dots{display:flex;justify-content:center;gap:4px;margin-top:8px;min-height:44px;max-width:100%;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 8px;box-sizing:border-box}
+.services-dots::-webkit-scrollbar,.other-services-dots::-webkit-scrollbar{display:none}
+@media(max-width:380px){.services-dots,.other-services-dots{justify-content:flex-start}}
 @keyframes sNudge{0%,100%{transform:translate3d(0,0,0)}38%{transform:translate3d(-24px,0,0)}72%{transform:translate3d(4px,0,0)}}
 .services__bento.is-nudging,.cases__grid.is-nudging{animation:sNudge 1s cubic-bezier(.25,1,.4,1) 1;will-change:transform}
-.cases__grid{display:flex;align-items:stretch;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;gap:16px;padding:8px 4px 18px;margin:0 -4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.cases__grid::-webkit-scrollbar{display:none}
-.cases__grid .case-card{flex:0 0 min(330px,80vw);scroll-snap-align:center;scroll-snap-stop:normal;padding:24px 20px}
 .carousel-dots{display:flex;justify-content:center;gap:4px;margin-top:8px;max-width:100%;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 8px;box-sizing:border-box}
 .carousel-dots::-webkit-scrollbar{display:none}
 @media(max-width:380px){.carousel-dots{justify-content:flex-start}}
@@ -601,7 +601,7 @@ input,select,textarea{font-size:16px !important}
 }
 @media(max-width:480px){.hero__kpis,.case-card__results{grid-template-columns:1fr}
 .dash-metric{padding:10px 4px}
-.services__bento .scard{flex:0 0 80vw;padding:20px 16px}
+.services__bento .scard,.other-services__bento .scard{flex:0 0 80vw;padding:20px 16px}
 .cases__grid .case-card{flex:0 0 84vw;padding:20px 16px}
 .roi__card{padding:20px 16px}
 .contact__inner{padding:24px 16px}
@@ -3052,20 +3052,38 @@ section[id] {
     <div class="container footer__inner">
       <div class="footer__top">
         <a href="/" class="nav__logo" aria-label="АвтоПилот">⬡ АвтоПилот</a>
-        <a href="https://t.me/AiAvtopilotbot" target="_blank" rel="noopener noreferrer" class="footer__tg-cta" aria-label="Напишите нам Онлайн @AiAvtopilotbot">
-          <div class="footer__tg-icon">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
-            </svg>
-          </div>
-          <div class="footer__tg-text">
-            <div class="footer__tg-title">
-              <span>Напишите нам</span>
-              <span class="footer__tg-badge"><span class="footer__tg-dot"></span>Онлайн</span>
-            </div>
-            <div class="footer__tg-handle">@AiAvtopilotbot</div>
-          </div>
-        </a>
+        <div class="footer__dual-cta" role="group" aria-label="Связаться с нами">
+          <a href="https://t.me/AiAvtopilotbot" target="_blank" rel="noopener noreferrer" class="footer__dual-btn footer__dual-btn--tg footer__tg-cta" aria-label="Написать в Telegram Онлайн @AiAvtopilotbot">
+            <span class="footer__dual-icon footer__dual-icon--tg footer__tg-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+              </svg>
+            </span>
+            <span class="footer__dual-text footer__tg-text">
+              <span class="footer__dual-head">
+                <span class="footer__dual-label">Telegram</span>
+                <span class="footer__dual-status footer__tg-badge"><span class="footer__tg-dot"></span>Онлайн</span>
+              </span>
+              <span class="footer__dual-sub footer__tg-handle">@AiAvtopilotbot</span>
+            </span>
+          </a>
+          <span class="footer__dual-sep" aria-hidden="true"></span>
+          <button type="button" class="footer__dual-btn footer__dual-btn--email" id="open-express-modal" aria-haspopup="dialog" aria-expanded="false" aria-controls="express-contact-modal" aria-label="Написать на Email в 2 клика">
+            <span class="footer__dual-icon footer__dual-icon--email">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </span>
+            <span class="footer__dual-text">
+              <span class="footer__dual-head">
+                <span class="footer__dual-label">Email</span>
+                <span class="footer__dual-badge-hint">Экспресс</span>
+              </span>
+              <span class="footer__dual-sub">contact@ai-avtopilot.ru</span>
+            </span>
+          </button>
+        </div>
       </div>
       <div class="footer__body">
         <div class="footer__brand">
@@ -3093,6 +3111,386 @@ section[id] {
       </div>
     </div>
   </footer>
+
+  <!-- ═══════════════════ SOTA EXPRESS CONTACT MODAL ═══════════════════ -->
+  <dialog id="express-contact-modal" class="express-modal" aria-labelledby="modal-title" aria-modal="true">
+    <div class="express-modal__card">
+      <div class="express-modal__header">
+        <div class="express-modal__header-left">
+          <h3 id="modal-title" class="express-modal__title">Связаться с АвтоПилот</h3>
+          <div class="express-modal__online-indicator">
+            <span class="footer__tg-dot"></span> Отвечаем в течение 5–15 минут
+          </div>
+        </div>
+        <button type="button" class="express-modal__close" id="close-express-modal" aria-label="Закрыть модальное окно">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Tabs -->
+      <div class="express-modal__tabs" role="tablist" aria-label="Каналы связи">
+        <button type="button" role="tab" class="express-modal__tab express-modal__tab--active" id="tab-email-btn" aria-selected="true" aria-controls="panel-email" tabindex="0">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <span>Написать на почту</span>
+        </button>
+        <button type="button" role="tab" class="express-modal__tab" id="tab-tg-btn" aria-selected="false" aria-controls="panel-tg" tabindex="-1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+          <span>Telegram бот</span>
+        </button>
+      </div>
+
+      <!-- Panel: Email -->
+      <div id="panel-email" class="express-modal__panel express-modal__panel--active" role="tabpanel" aria-labelledby="tab-email-btn">
+        <form id="express-email-form" class="express-modal__form" novalidate>
+          <input type="text" name="_honey" class="honeypot-input" style="display:none!important;" tabindex="-1" autocomplete="off" />
+          <div class="express-form-group">
+            <label for="express-contact" class="express-form-label">
+              Ваш Email или Telegram / телефон <span class="required-star">*</span>
+            </label>
+            <input type="text" id="express-contact" name="contact" class="express-form-input" placeholder="name@company.ru или @username" required />
+            <div class="express-form-error" id="express-contact-error"></div>
+          </div>
+          <div class="express-form-group">
+            <label for="express-message" class="express-form-label">
+              Ваш вопрос или задача <span class="required-star">*</span>
+            </label>
+            <textarea id="express-message" name="message" class="express-form-textarea" rows="3" placeholder="Кратко опишите задачу (например, интеграция 1С с CRM или автоматизация отчетов)..." required></textarea>
+            <div class="express-form-error" id="express-message-error"></div>
+          </div>
+          
+          <div class="express-form-footer">
+            <button type="submit" id="express-submit-btn" class="btn btn--primary express-submit-btn">
+              <span>Отправить сообщение</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+            <p class="express-form-consent">
+              Нажимая кнопку, вы соглашаетесь с <a href="/privacy.html" target="_blank" rel="noopener">Политикой конфиденциальности (152-ФЗ)</a>.
+            </p>
+          </div>
+        </form>
+
+        <!-- Direct copy row -->
+        <div class="express-modal__direct-email">
+          <span class="express-modal__direct-text">Или скопируйте наш прямой email:</span>
+          <button type="button" class="btn-copy-email" id="modal-copy-email-btn" aria-label="Скопировать contact@ai-avtopilot.ru">
+            <span class="copy-email-address">contact@ai-avtopilot.ru</span>
+            <span class="copy-email-badge" id="modal-copy-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span class="copy-label">Скопировать</span>
+            </span>
+          </button>
+        </div>
+
+        <!-- Result Card (Hidden by default) -->
+        <div id="express-success-card" class="express-modal__success" style="display:none;" aria-live="polite">
+          <div class="express-success__icon">✓</div>
+          <h4 class="express-success__title">Сообщение отправлено!</h4>
+          <p class="express-success__desc">Спасибо! Мы уже получили ваш запрос и ответим в течение 15 минут.</p>
+          <button type="button" class="btn btn--ghost" id="express-reset-btn" style="margin-top:12px;font-size:0.85rem;">Отправить еще одно</button>
+        </div>
+      </div>
+
+      <!-- Panel: Telegram -->
+      <div id="panel-tg" class="express-modal__panel" role="tabpanel" aria-labelledby="tab-tg-btn" hidden>
+        <div class="express-tg-content">
+          <div class="express-tg-badge-status">
+            <span class="footer__tg-dot"></span> ИИ-ассистент онлайн 24/7
+          </div>
+          <h4 class="express-tg-title">Чат с ботом @AiAvtopilotbot</h4>
+          <p class="express-tg-desc">Мгновенный расчет окупаемости, примеры внедрений и прямая связь с инженером без ожидания.</p>
+          <a href="https://t.me/AiAvtopilotbot" target="_blank" rel="noopener noreferrer" class="btn btn--primary express-tg-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+            <span>Открыть @AiAvtopilotbot</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </dialog>
+
+  <!-- Express Contact Modal Controller -->
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+      var modal = document.getElementById('express-contact-modal');
+      var openBtn = document.getElementById('open-express-modal');
+      var closeBtn = document.getElementById('close-express-modal');
+      var tabEmail = document.getElementById('tab-email-btn');
+      var tabTg = document.getElementById('tab-tg-btn');
+      var panelEmail = document.getElementById('panel-email');
+      var panelTg = document.getElementById('panel-tg');
+      var emailForm = document.getElementById('express-email-form');
+      var submitBtn = document.getElementById('express-submit-btn');
+      var successCard = document.getElementById('express-success-card');
+      var resetBtn = document.getElementById('express-reset-btn');
+      var copyEmailBtn = document.getElementById('modal-copy-email-btn');
+      var copyBadge = document.getElementById('modal-copy-badge');
+
+      if (!modal || !openBtn) return;
+
+      function reach(goal) {
+        if (typeof ym !== 'undefined') {
+          ym(112978516, 'reachGoal', goal);
+        }
+      }
+
+      function switchTab(target) {
+        var isEmail = target === 'email';
+        tabEmail.classList.toggle('express-modal__tab--active', isEmail);
+        tabEmail.setAttribute('aria-selected', isEmail ? 'true' : 'false');
+        tabEmail.setAttribute('tabindex', isEmail ? '0' : '-1');
+        panelEmail.hidden = !isEmail;
+
+        tabTg.classList.toggle('express-modal__tab--active', !isEmail);
+        tabTg.setAttribute('aria-selected', !isEmail ? 'true' : 'false');
+        tabTg.setAttribute('tabindex', !isEmail ? '0' : '-1');
+        panelTg.hidden = isEmail;
+
+        if (isEmail) {
+          var input = document.getElementById('express-contact');
+          if (input) setTimeout(function() { input.focus(); }, 60);
+        }
+      }
+
+      function openModal(defaultTab) {
+        switchTab(defaultTab || 'email');
+        if (typeof modal.showModal === 'function') {
+          modal.showModal();
+        } else {
+          modal.setAttribute('open', '');
+        }
+        openBtn.setAttribute('aria-expanded', 'true');
+        reach('express_modal_opened');
+      }
+
+      function closeModal() {
+        if (typeof modal.close === 'function') {
+          modal.close();
+        } else {
+          modal.removeAttribute('open');
+        }
+        openBtn.setAttribute('aria-expanded', 'false');
+        openBtn.focus();
+      }
+
+      openBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        openModal('email');
+      });
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+      }
+
+      modal.addEventListener('click', function(e) {
+        var rect = modal.getBoundingClientRect();
+        var isInDialog = (
+          rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+          rect.left <= e.clientX && e.clientX <= rect.left + rect.width
+        );
+        if (!isInDialog) {
+          closeModal();
+        }
+      });
+
+      tabEmail.addEventListener('click', function() { switchTab('email'); });
+      tabTg.addEventListener('click', function() { switchTab('tg'); });
+
+      // Keyboard navigation between tabs
+      [tabEmail, tabTg].forEach(function(tab) {
+        tab.addEventListener('keydown', function(e) {
+          if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+            e.preventDefault();
+            var targetTab = (tab === tabEmail) ? 'tg' : 'email';
+            switchTab(targetTab);
+            var nextBtn = (targetTab === 'tg') ? tabTg : tabEmail;
+            nextBtn.focus();
+          }
+        });
+      });
+
+      // Clear validation state on typing
+      var contactInp = document.getElementById('express-contact');
+      var msgInp = document.getElementById('express-message');
+      [contactInp, msgInp].forEach(function(inp) {
+        if (!inp) return;
+        inp.addEventListener('input', function() {
+          this.classList.remove('is-invalid');
+          var errEl = document.getElementById(this.id + '-error');
+          if (errEl) errEl.classList.remove('is-visible');
+        });
+      });
+
+      // Form submission
+      if (emailForm) {
+        emailForm.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          var contactVal = (contactInp.value || '').trim();
+          var messageVal = (msgInp.value || '').trim();
+          var hasError = false;
+
+          if (contactVal.length < 3) {
+            contactInp.classList.add('is-invalid');
+            var cErr = document.getElementById('express-contact-error');
+            if (cErr) {
+              cErr.textContent = 'Укажите ваш email, телефон или Telegram';
+              cErr.classList.add('is-visible');
+            }
+            hasError = true;
+          }
+
+          if (messageVal.length < 2) {
+            msgInp.classList.add('is-invalid');
+            var mErr = document.getElementById('express-message-error');
+            if (mErr) {
+              mErr.textContent = 'Опишите кратко вашу задачу';
+              mErr.classList.add('is-visible');
+            }
+            hasError = true;
+          }
+
+          if (hasError) return;
+
+          var honey = emailForm.querySelector('input[name="_honey"]');
+          if (honey && honey.value) return; // Silent drop bot
+
+          submitBtn.disabled = true;
+          var originalBtnText = submitBtn.innerHTML;
+          submitBtn.innerHTML = '<span>Отправка...</span>';
+
+          var payload = {
+            contact: contactVal,
+            message: messageVal,
+            source: 'express_modal',
+            _ts: Date.now()
+          };
+
+          var delivered = false;
+
+          // Dispatch in parallel: Telegram via Worker + Email via FormSubmit
+          var tgPromise = (async function() {
+            try {
+              var res = await fetch('https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              if (res.ok) {
+                var data = await res.json();
+                if (data && (data.success === true || data.success === 'true')) {
+                  return true;
+                }
+              }
+            } catch (_cfErr) {}
+            try {
+              var r2 = await fetch('/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              return r2.ok;
+            } catch (_relErr) {
+              return false;
+            }
+          })();
+
+          var emailPromise = (async function() {
+            try {
+              var r = await fetch('https://formsubmit.co/ajax/mr.vladimir.voronin@ya.ru', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                  _subject: '⚡ Экспресс-сообщение из виджета ai-avtopilot.ru',
+                  _cc: 'contact@ai-avtopilot.ru',
+                  contact: contactVal,
+                  message: messageVal,
+                  _template: 'table'
+                })
+              });
+              if (r.ok) {
+                var d = await r.json();
+                if (d && (d.success === true || d.success === 'true')) return true;
+              }
+            } catch (_fsErr) {}
+            try {
+              var r2 = await fetch('https://formsubmit.co/ajax/contact@ai-avtopilot.ru', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                  _subject: '⚡ Экспресс-сообщение из виджета ai-avtopilot.ru',
+                  contact: contactVal,
+                  message: messageVal,
+                  _template: 'table'
+                })
+              });
+              return r2.ok;
+            } catch (_fsErr2) {
+              return false;
+            }
+          })();
+
+          var results = await Promise.allSettled([tgPromise, emailPromise]);
+          delivered = results.some(function(r) { return r.status === 'fulfilled' && r.value === true; });
+
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnText;
+
+          if (delivered) {
+            emailForm.style.display = 'none';
+            successCard.style.display = 'block';
+            reach('express_modal_submitted');
+          } else {
+            var fallbackNote = 'Заявка:
+Контакт: ' + contactVal + '
+Задача: ' + messageVal;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(fallbackNote);
+            }
+            alert('Сбой сети. Мы скопировали ваше сообщение в буфер обмена — отправьте его нам на contact@ai-avtopilot.ru или в Telegram @AiAvtopilotbot');
+            window.location.href = 'mailto:contact@ai-avtopilot.ru?subject=' + encodeURIComponent('Экспресс-заявка с сайта') + '&body=' + encodeURIComponent(fallbackNote);
+          }
+        });
+      }
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+          emailForm.reset();
+          emailForm.style.display = 'block';
+          successCard.style.display = 'none';
+        });
+      }
+
+      // Copy email in 1 click
+      if (copyEmailBtn) {
+        copyEmailBtn.addEventListener('click', function() {
+          var email = 'contact@ai-avtopilot.ru';
+          var copySuccess = function() {
+            if (copyBadge) {
+              copyBadge.classList.add('is-copied');
+              var label = copyBadge.querySelector('.copy-label');
+              if (label) label.textContent = 'Скопировано! ✓';
+              setTimeout(function() {
+                copyBadge.classList.remove('is-copied');
+                if (label) label.textContent = 'Скопировать';
+              }, 2500);
+            }
+            reach('copy_direct_email');
+          };
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(email).then(copySuccess).catch(function() {
+              prompt('Скопируйте email:', email);
+            });
+          } else {
+            prompt('Скопируйте email:', email);
+          }
+        });
+      }
+    });
+  </script>
+
 
   <!-- Yandex.Metrika Custom Goals Tracking -->
   <script type="text/javascript">

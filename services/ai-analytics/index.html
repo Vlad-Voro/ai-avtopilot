@@ -545,17 +545,17 @@ to{opacity:1;transform:scale(1) translateY(0)}
 .footer__copy{color:var(--text-3);font-size:.8rem}
 [data-reveal]{opacity:0;transform:translateY(32px)}
 @media(max-width:1024px){
-.services__bento{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;gap:16px;padding:8px 4px 18px;margin:0 -4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.services__bento::-webkit-scrollbar{display:none}
-.services__bento .scard{flex:0 0 min(320px,78vw);scroll-snap-align:center;scroll-snap-stop:normal;display:flex;flex-direction:column;padding:24px 20px;grid-column:auto}
-.services-dots{display:flex;justify-content:center;gap:4px;margin-top:8px;min-height:44px;max-width:100%;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 8px;box-sizing:border-box}
-.services-dots::-webkit-scrollbar{display:none}
-@media(max-width:380px){.services-dots{justify-content:flex-start}}
+.services__bento,.other-services__bento,.cases__grid{display:flex;align-items:stretch !important;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;gap:16px;padding:8px 4px 18px;margin:0 -4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.services__bento::-webkit-scrollbar,.other-services__bento::-webkit-scrollbar,.cases__grid::-webkit-scrollbar{display:none}
+.services__bento .scard,.other-services__bento .scard{flex:0 0 min(320px,78vw);scroll-snap-align:center;scroll-snap-stop:normal;display:flex !important;flex-direction:column !important;align-self:stretch !important;height:auto !important;padding:24px 20px;grid-column:auto}
+.cases__grid .case-card{flex:0 0 min(330px,80vw);scroll-snap-align:center;scroll-snap-stop:normal;display:flex !important;flex-direction:column !important;align-self:stretch !important;height:auto !important;padding:24px 20px}
+.scard__desc,.case-card__desc{flex:1 1 auto !important}
+.scard__tags,.case-card__results,.scard--accent .btn{margin-top:auto !important}
+.services-dots,.other-services-dots{display:flex;justify-content:center;gap:4px;margin-top:8px;min-height:44px;max-width:100%;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 8px;box-sizing:border-box}
+.services-dots::-webkit-scrollbar,.other-services-dots::-webkit-scrollbar{display:none}
+@media(max-width:380px){.services-dots,.other-services-dots{justify-content:flex-start}}
 @keyframes sNudge{0%,100%{transform:translate3d(0,0,0)}38%{transform:translate3d(-24px,0,0)}72%{transform:translate3d(4px,0,0)}}
 .services__bento.is-nudging,.cases__grid.is-nudging{animation:sNudge 1s cubic-bezier(.25,1,.4,1) 1;will-change:transform}
-.cases__grid{display:flex;align-items:stretch;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;gap:16px;padding:8px 4px 18px;margin:0 -4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.cases__grid::-webkit-scrollbar{display:none}
-.cases__grid .case-card{flex:0 0 min(330px,80vw);scroll-snap-align:center;scroll-snap-stop:normal;padding:24px 20px}
 .carousel-dots{display:flex;justify-content:center;gap:4px;margin-top:8px;max-width:100%;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 8px;box-sizing:border-box}
 .carousel-dots::-webkit-scrollbar{display:none}
 @media(max-width:380px){.carousel-dots{justify-content:flex-start}}
@@ -591,7 +591,7 @@ input,select,textarea{font-size:16px !important}
 }
 @media(max-width:480px){.hero__kpis,.case-card__results{grid-template-columns:1fr}
 .dash-metric{padding:10px 4px}
-.services__bento .scard{flex:0 0 80vw;padding:20px 16px}
+.services__bento .scard,.other-services__bento .scard{flex:0 0 80vw;padding:20px 16px}
 .cases__grid .case-card{flex:0 0 84vw;padding:20px 16px}
 .roi__card{padding:20px 16px}
 .contact__inner{padding:24px 16px}
@@ -2974,7 +2974,7 @@ section[id] {
 <a aria-label="Спецификации и КП: подробнее об автоматическом расчете" class="scard scard--link" href="/services/specifications-kp/">
 <div class="scard__icon">📑</div>
 <h3 class="scard__title">Спецификации и КП <span aria-hidden="true" class="scard__arrow">→</span></h3>
-<p class="scard__desc">Авторазбор разношерстных Excel/PDF-заявок клиентов, сопоставление со справочником 1С и расчет коммерческого предложения с маржой за 30 секунд.</p>
+<p class="scard__desc">Авторазбор заявок клиентов (Excel/PDF), сопоставление со справочником 1С и расчет КП с маржой за 30 секунд.</p>
 <div class="scard__tags">
 <span>1С:УТ</span><span>1С:ERP</span><span>Excel/PDF</span><span>Расчет КП</span>
 </div>

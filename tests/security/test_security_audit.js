@@ -14,6 +14,7 @@
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
+const { getContrastRatio } = require('../helpers/contrast');
 
 // ANSI Colors
 const C = {
@@ -252,6 +253,39 @@ async function runSecuritySuite() {
     requiredPatterns.forEach(pattern => {
       assert.ok(content.includes(pattern), `.vercelignore must contain pattern: ${pattern}`);
     });
+  });
+
+  console.log(`\n${C.bold}▶ [Category 3] WCAG AA Palette Contrast Audit (Promoted from Tier 3)${C.reset}`);
+
+  // Test 10: R3-01 - CSS Variable --text-3 contrast
+  await test('R3-01: CSS Variable --text-3 satisfies WCAG AA contrast (>= 4.5:1) against dark backgrounds', async () => {
+    const html = fs.readFileSync(path.resolve(__dirname, '../../index.html'), 'utf8');
+    const text3Match = html.match(/--text-3:\s*([^;]+);/);
+    const bgMatch = html.match(/--bg:\s*([^;]+);/);
+    const surfaceMatch = html.match(/--surface:\s*([^;]+);/);
+
+    const text3 = text3Match ? text3Match[1].trim() : '#a1a1aa';
+    const bg = bgMatch ? bgMatch[1].trim() : '#050507';
+    const surface = surfaceMatch ? surfaceMatch[1].trim() : '#111118';
+
+    const contrastBg = getContrastRatio(text3, bg);
+    const contrastSurface = getContrastRatio(text3, surface);
+
+    assert.ok(contrastBg >= 4.5, `--text-3 (${text3}) contrast against --bg (${bg}) is ${contrastBg.toFixed(2)}:1`);
+    assert.ok(contrastSurface >= 4.5, `--text-3 (${text3}) contrast against --surface (${surface}) is ${contrastSurface.toFixed(2)}:1`);
+  });
+
+  // Test 11: R3-02 - CSS Variable --text-2 contrast
+  await test('R3-02: CSS Variable --text-2 satisfies WCAG AA contrast (>= 4.5:1) against dark backgrounds', async () => {
+    const html = fs.readFileSync(path.resolve(__dirname, '../../index.html'), 'utf8');
+    const text2Match = html.match(/--text-2:\s*([^;]+);/);
+    const bgMatch = html.match(/--bg:\s*([^;]+);/);
+
+    const text2 = text2Match ? text2Match[1].trim() : '#d4d4d8';
+    const bg = bgMatch ? bgMatch[1].trim() : '#050507';
+
+    const contrast = getContrastRatio(text2, bg);
+    assert.ok(contrast >= 4.5, `--text-2 (${text2}) contrast against --bg (${bg}) is ${contrast.toFixed(2)}:1`);
   });
 
   console.log(`\n${C.bold}========================================================================${C.reset}`);

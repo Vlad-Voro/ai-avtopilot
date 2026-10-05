@@ -475,6 +475,89 @@ runCheck('SEO-27', 'All 10 case study landing pages contain #cases (Другие
   });
 });
 
+console.log('\n▶ [Category 7] DOM Architecture & Conversion Sequence (Promoted from Tier 3)');
+
+// R2-01: DOM sections follow canonical conversion sequence
+runCheck('R2-01', 'DOM sections follow canonical conversion sequence', () => {
+  const html = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8');
+  const sectionMatches = Array.from(html.matchAll(/<section[^>]*id="([^"]+)"/g)).map(m => m[1]);
+  const expectedSequence = ['home', 'calculator', 'compare', 'services', 'cases', 'faq', 'dashboard', 'contact'];
+
+  for (const expected of expectedSequence) {
+    assert.ok(sectionMatches.includes(expected), `Section with id='${expected}' was not found in index.html`);
+  }
+
+  const filteredIds = sectionMatches.filter(id => expectedSequence.includes(id));
+  assert.deepStrictEqual(filteredIds, expectedSequence, `Section order mismatch: [${filteredIds.join(' -> ')}]`);
+});
+
+// R2-02: Calculator follows Hero and Dashboard precedes Contact
+runCheck('R2-02', 'Calculator is positioned immediately after Hero and Dashboard precedes Contact', () => {
+  const html = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8');
+  const heroIdx = html.indexOf('id="home"');
+  const calcIdx = html.indexOf('id="calculator"');
+  const compIdx = html.indexOf('id="compare"');
+  const dashIdx = html.indexOf('id="dashboard"');
+  const contIdx = html.indexOf('id="contact"');
+
+  assert.ok(heroIdx !== -1 && calcIdx !== -1 && dashIdx !== -1 && contIdx !== -1, 'Required sections missing in index.html');
+  assert.ok(calcIdx > heroIdx, 'Calculator must appear after Hero');
+  if (compIdx !== -1) {
+    assert.ok(calcIdx < compIdx, 'Calculator must appear before Compare');
+  }
+  assert.ok(dashIdx < contIdx, 'Dashboard must precede Contact');
+});
+
+// R2-03: Header navigation includes links for key conversion stages
+runCheck('R2-03', 'Header navigation includes links for key conversion stages', () => {
+  const html = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8');
+  const navMatch = html.match(/<nav[^>]*>([\s\S]*?)<\/nav>/);
+  assert.ok(navMatch, 'Navigation tag not found in index.html');
+  const navHtml = navMatch[1];
+
+  ['services', 'cases', 'calculator', 'contact'].forEach(stage => {
+    assert.ok(navHtml.includes(stage), `Header nav missing target: ${stage}`);
+  });
+});
+
+// R2-04: Semantic structure uses main, sections, and unique section IDs
+runCheck('R2-04', 'Semantic structure uses main, sections, and unique section IDs', () => {
+  const html = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8');
+  assert.ok(html.includes('<main') && html.includes('</main>'), 'Page must contain <main> landmark');
+  const sectionIds = Array.from(html.matchAll(/<section[^>]*id="([^"]+)"/g)).map(m => m[1]);
+  assert.ok(sectionIds.length >= 7, `Expected at least 7 sections, found ${sectionIds.length}`);
+  const uniqueIds = new Set(sectionIds);
+  assert.strictEqual(uniqueIds.size, sectionIds.length, 'All section IDs must be unique');
+});
+
+// R2-05: Footer navigation contains valid links matching site sections
+runCheck('R2-05', 'Footer navigation contains valid links matching site sections', () => {
+  const html = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8');
+  const footerMatch = html.match(/<footer[^>]*>([\s\S]*?)<\/footer>/);
+  assert.ok(footerMatch, 'Footer not found in index.html');
+  const footerHtml = footerMatch[1];
+  assert.ok(footerHtml.includes('services') || footerHtml.includes('cases'), 'Footer must contain internal links');
+});
+
+// SEM-01: Cluster semantic HTML (0 nested <a>, exactly 1 <h1>, honeypot) across all service pages (promoted from E2E-6)
+runCheck('SEM-01', 'Cluster semantic HTML (0 nested <a>, 1 <h1>, honeypot field) across all service pages', () => {
+  ALL_SERVICE_PAGES.forEach(slug => {
+    const filePath = path.join(ROOT_DIR, slug, 'index.html');
+    assert.ok(fs.existsSync(filePath), `Service page ${slug} must exist`);
+    const html = fs.readFileSync(filePath, 'utf8');
+
+    // 0 nested links (opening <a> inside another unclosed <a>)
+    assert.ok(!html.match(/<a\b[^>]*>(?:(?!<\/a>)[\s\S])*?<a\b/i), `Found nested <a> tags in ${slug}`);
+
+    // Exactly 1 h1
+    const h1Matches = html.match(/<h1\b/gi) || [];
+    assert.strictEqual(h1Matches.length, 1, `Expected exactly 1 <h1> in ${slug}, found ${h1Matches.length}`);
+
+    // Honeypot field
+    assert.ok(html.includes('name="_honey"'), `Missing honeypot input in ${slug}`);
+  });
+});
+
 // SEO-19: Test execution time benchmark
 runCheck('SEO-19', 'Full SEO verification suite completes in under 500ms', () => {
 
