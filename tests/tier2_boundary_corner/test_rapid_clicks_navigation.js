@@ -55,7 +55,7 @@ suite.test('Rapid Navigation: Repeated rapid clicks on CTA button do not open du
 
   const cta = page.locator('#cta-main, .btn--primary').first();
   for (let i = 0; i < 5; i++) {
-    await cta.click({ noWaitAfter: true }).catch(() => {});
+    await cta.click({ noWaitAfter: true, force: true }).catch(() => {});
     await page.evaluate(() => new Promise(r => requestAnimationFrame(r)));
   }
 

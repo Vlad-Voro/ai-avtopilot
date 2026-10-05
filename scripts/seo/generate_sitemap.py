@@ -82,6 +82,18 @@ URL_SPEC = [
         "changefreq": "weekly",
         "priority": "0.9",
     },
+    {
+        "url": "https://ai-avtopilot.ru/services/debt-control/",
+        "file": "services/debt-control/index.html",
+        "changefreq": "weekly",
+        "priority": "0.9",
+    },
+    {
+        "url": "https://ai-avtopilot.ru/services/reviews-reputation/",
+        "file": "services/reviews-reputation/index.html",
+        "changefreq": "weekly",
+        "priority": "0.9",
+    },
     {"url": "https://ai-avtopilot.ru/cases/", "file": "cases/index.html", "changefreq": "weekly", "priority": "0.8"},
     {
         "url": "https://ai-avtopilot.ru/cases/retail-inventory-automation/",
@@ -122,6 +134,24 @@ URL_SPEC = [
     {
         "url": "https://ai-avtopilot.ru/cases/sales-speech-analytics/",
         "file": "cases/sales-speech-analytics/index.html",
+        "changefreq": "weekly",
+        "priority": "0.9",
+    },
+    {
+        "url": "https://ai-avtopilot.ru/cases/tender-procurement-automation/",
+        "file": "cases/tender-procurement-automation/index.html",
+        "changefreq": "weekly",
+        "priority": "0.9",
+    },
+    {
+        "url": "https://ai-avtopilot.ru/cases/claims-dispute-automation/",
+        "file": "cases/claims-dispute-automation/index.html",
+        "changefreq": "weekly",
+        "priority": "0.9",
+    },
+    {
+        "url": "https://ai-avtopilot.ru/cases/reviews-reputation-automation/",
+        "file": "cases/reviews-reputation-automation/index.html",
         "changefreq": "weekly",
         "priority": "0.9",
     },

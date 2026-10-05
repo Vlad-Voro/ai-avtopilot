@@ -159,7 +159,7 @@ async function main() {
       ...standardSuites
     ];
 
-    const CONCURRENCY = 4;
+    const CONCURRENCY = Math.min(os.cpus().length, 8);
     console.log(`${C.dim}Running ${queuedSuites.length} Playwright suites (concurrency=${CONCURRENCY})...${C.reset}\n`);
 
     let suiteIndex = 0;

@@ -33,6 +33,8 @@ const PAGES = [
   { slug: 'services/rapid-pilot', file: 'services/rapid-pilot/index.html', url: 'https://ai-avtopilot.ru/services/rapid-pilot/', category: 'service', hasBreadcrumbs: true },
   { slug: 'services/specifications-kp', file: 'services/specifications-kp/index.html', url: 'https://ai-avtopilot.ru/services/specifications-kp/', category: 'service', hasBreadcrumbs: true },
   { slug: 'services/price-monitoring', file: 'services/price-monitoring/index.html', url: 'https://ai-avtopilot.ru/services/price-monitoring/', category: 'service', hasBreadcrumbs: true },
+  { slug: 'services/debt-control', file: 'services/debt-control/index.html', url: 'https://ai-avtopilot.ru/services/debt-control/', category: 'service', hasBreadcrumbs: true },
+  { slug: 'services/reviews-reputation', file: 'services/reviews-reputation/index.html', url: 'https://ai-avtopilot.ru/services/reviews-reputation/', category: 'service', hasBreadcrumbs: true },
 
   // Case Studies (7)
   { slug: 'cases/fintech-transaction-reconciliation', file: 'cases/fintech-transaction-reconciliation/index.html', url: 'https://ai-avtopilot.ru/cases/fintech-transaction-reconciliation/', category: 'case', hasBreadcrumbs: true },
@@ -406,10 +408,12 @@ const ALL_SERVICE_PAGES = [
   'services/speech-analytics',
   'services/rapid-pilot',
   'services/specifications-kp',
-  'services/price-monitoring'
+  'services/price-monitoring',
+  'services/debt-control',
+  'services/reviews-reputation'
 ];
 
-runCheck('SEO-26', 'All 10 service landing pages contain #other-services positioned strictly below #contact with 9 sibling links and 0 self-links', () => {
+runCheck('SEO-26', 'All 12 service landing pages contain #other-services positioned strictly below #contact with 11 sibling links and 0 self-links', () => {
   ALL_SERVICE_PAGES.forEach(slug => {
     const filePath = path.join(ROOT_DIR, slug, 'index.html');
     assert.ok(fs.existsSync(filePath), `Service page ${slug} must exist`);
@@ -425,10 +429,10 @@ runCheck('SEO-26', 'All 10 service landing pages contain #other-services positio
     // Check H2
     assert.ok(html.includes('Другие сценарии автоматизации'), `Missing section title in #other-services for ${slug}`);
 
-    // Check sibling links (exactly 9, zero self-links, trailing slashes)
+    // Check sibling links (exactly 11, zero self-links, trailing slashes)
     const otherSection = html.slice(otherServicesIdx, html.indexOf('</section>', otherServicesIdx));
     const linkMatches = [...otherSection.matchAll(/href="(\/services\/[^"]+\/)"/g)].map(m => m[1]);
-    assert.strictEqual(linkMatches.length, 9, `Expected exactly 9 sibling links in ${slug}, found ${linkMatches.length}`);
+    assert.strictEqual(linkMatches.length, 11, `Expected exactly 11 sibling links in ${slug}, found ${linkMatches.length}`);
 
     const selfLink = `/${slug}/`;
     assert.ok(!linkMatches.includes(selfLink), `Self-link detected in ${slug}: ${selfLink}`);
