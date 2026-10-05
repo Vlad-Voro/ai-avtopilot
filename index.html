@@ -477,10 +477,10 @@ to{opacity:1}
 .case-card__industry{font-family:var(--font-mono);font-size:.75rem;color:var(--accent-1)}
 .case-card__title{font-family:var(--font-head);font-size:1.1rem;font-weight:700}
 .case-card__desc{color:var(--text-2);font-size:.88rem;line-height:1.7;flex:1}
-.case-card__results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.case-result{text-align:center;min-width:0}
-.case-result__num{display:block;font-family:var(--font-head);font-size:clamp(0.95rem,1.2vw,1.25rem);font-weight:900;color:var(--accent-1);margin-bottom:4px;white-space:nowrap}
-.case-result__label{font-size:.72rem;color:var(--text-3);line-height:1.4}
+.case-card__results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.case-result{text-align:center;min-width:0;overflow-wrap:break-word;hyphens:auto}
+.case-result__num{display:block;font-family:var(--font-head);font-size:clamp(1.05rem,1.15vw,1.25rem);font-weight:900;color:var(--accent-1);line-height:1.15;letter-spacing:-.02em;margin-bottom:4px;white-space:nowrap}
+.case-result__label{font-size:.82rem;color:var(--text-3);line-height:1.4;font-weight:500}
 .case-card__tags{display:flex;gap:8px;flex-wrap:wrap}
 .case-card__tags span{font-family:var(--font-mono);font-size:.68rem;color:var(--text-3);background:#ffffff0a;border:1px solid var(--border);padding:3px 10px;border-radius:6px}
 .roi{padding:15px 0 30px}
@@ -606,6 +606,11 @@ input,select,textarea{font-size:16px !important}
 .footer__inner{flex-direction:column;text-align:center;align-items:center;gap:14px}
 .footer__links{flex-wrap:wrap;justify-content:center;gap:10px 18px}
 .section-header{margin-bottom:20px}
+}
+@media(max-width:600px){
+.case-card__results{grid-template-columns:1fr !important;gap:14px !important;margin:6px 0 !important}
+.case-result__num{font-size:clamp(1.6rem,5.5vw,1.85rem) !important;line-height:1.15 !important;margin-bottom:4px !important}
+.case-result__label{font-size:0.88rem !important;line-height:1.35 !important;color:var(--text-2) !important}
 }
 @media(max-width:480px){.hero__kpis,.case-card__results{grid-template-columns:1fr}
 .dash-metric{padding:10px 4px}
@@ -758,10 +763,10 @@ section[id]{scroll-margin-top:72px}
 
 /* F7: Case Study Metric Result Labels */
 .case-result__label {
-  font-size: 0.82rem !important;
-  line-height: 1.45 !important;
-  font-weight: 500 !important;
-  color: var(--text-3) !important;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--text-3);
 }
 
 
