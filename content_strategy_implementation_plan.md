@@ -133,7 +133,7 @@ sequenceDiagram
 3. **152-FZ Airgap Claims**: Validate On-Premise / local boundary commitments in copy per [ARCHITECTURE.md §7](file:///d:/AI/data/ai-avtopilot/ARCHITECTURE.md#7-security--zero-trust-hardening).
 4. **De-slopped Realism**: Elimination of AI platitudes; hard units only (секунды, рубли, штуки, проценты) adhering to `ru_text_humanizer` (0/64 patterns).
 5. **On-Site Conversion Flow**: Organic integration of `#contact` anchor and interactive sliders without external bot qualification.
-6. **Metric Units & Signs Integrity (ADR 2026-10-02)**: Mandatory preservation of measurement units (`%`, `₽`, `ч`, `сек`, `млн ₽`) and signs (`+18%`, `−72%`, `9 200 ч`, `1 сек`) across all KPI blocks and case results.
+6. **Metric Units, Decimals & Rating Integrity (ADR 2026-10-02 & ADR 2026-10-05)**: Mandatory preservation of measurement units (`%`, `₽`, `ч`, `сек`, `млн ₽`, `★`, `шт`) and signs (`+18%`, `−72%`, `9 200 ч`, `30 сек`, `0%`) across all KPI blocks and case results. Rating metrics must strictly display with Russian decimal comma notation (e.g. `4,9★` or `4,9`, never truncated integer `4`). Zero tolerance for client-side script truncation or unit stripping: all frontend animation parsers must preserve units, prefixes, suffixes, and fractional values without naive integer casting.
 
 ### 2.3. Site-Wide Proofreading & SEO Frequency Invariant
 > **Canonical Site-Wide Proofreading Invariant**: Continuous proofreading and desloping of all pages across [ai-avtopilot.ru](https://ai-avtopilot.ru/) must be executed strictly via the [`ru_text_humanizer`](file:///d:/AI/.agents/skills/ru_text_humanizer/SKILL.md) skill **with zero semantic degradation and mandatory preservation of verified SEO frequency (Yandex Wordstat) on every single page**.

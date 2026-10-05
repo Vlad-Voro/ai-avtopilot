@@ -952,95 +952,139 @@ section[id]{scroll-margin-top:72px}
 }
 
 
-/* Telegram Bot CTA in Footer */
-.footer__tg-cta {
+/* Telegram Bot & Email Dual Contact Hub in Footer */
+.footer__dual-cta {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  margin: 0;
-  padding: 6px 14px;
   background: rgba(99, 102, 241, 0.08);
   border: 1px solid rgba(99, 102, 241, 0.22);
-  border-radius: 10px;
-  text-decoration: none;
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-              background 0.25s ease,
-              border-color 0.25s ease,
-              box-shadow 0.25s ease;
+  border-radius: 12px;
+  padding: 4px 6px;
+  gap: 4px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-
-.footer__tg-cta:hover {
-  background: rgba(99, 102, 241, 0.16);
-  border-color: rgba(99, 102, 241, 0.5);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.25);
+.footer__dual-cta:hover {
+  border-color: rgba(99, 102, 241, 0.45);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.2);
 }
 
-
-.footer__tg-icon {
-  width: 28px;
-  height: 28px;
+.footer__dual-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
   border-radius: 8px;
-  background: linear-gradient(135deg, #2AABEE, #229ED9);
+  background: transparent;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  color: inherit;
+  font-family: inherit;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.footer__dual-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-1px);
+}
+
+.footer__dual-btn:focus-visible {
+  outline: 2px solid var(--accent-1);
+  outline-offset: 1px;
+}
+
+.footer__dual-sep {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.12);
+  flex-shrink: 0;
+}
+
+.footer__dual-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ffffff;
   flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.footer__dual-btn:hover .footer__dual-icon {
+  transform: scale(1.08);
+}
+
+.footer__dual-icon--tg {
+  background: linear-gradient(135deg, #2AABEE, #229ED9);
+  color: #ffffff;
   box-shadow: 0 2px 8px rgba(34, 158, 217, 0.35);
-  transition: transform 0.25s ease;
 }
 
-
-.footer__tg-cta:hover .footer__tg-icon {
-  transform: scale(1.06);
+.footer__dual-icon--email {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.35);
 }
 
-
-.footer__tg-icon svg {
-  width: 16px;
-  height: 16px;
-  display: block;
-}
-
-
-.footer__tg-text {
+.footer__dual-text {
   display: flex;
   flex-direction: column;
-  gap: 1px;
   text-align: left;
-}
-
-
-.footer__tg-title {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-1);
   line-height: 1.2;
 }
 
+.footer__dual-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 
-.footer__tg-badge {
+.footer__dual-label {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.footer__dual-status {
   display: inline-flex;
   align-items: center;
   gap: 3px;
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   font-weight: 500;
   color: var(--green);
   background: rgba(34, 197, 94, 0.12);
   border: 1px solid rgba(34, 197, 94, 0.25);
   padding: 1px 5px;
   border-radius: 100px;
-  line-height: 1.2;
 }
 
+.footer__dual-badge-hint {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  color: #818cf8;
+  background: rgba(99, 102, 241, 0.14);
+  border: 1px solid rgba(99, 102, 241, 0.28);
+  padding: 1px 5px;
+  border-radius: 100px;
+}
 
+.footer__dual-sub {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-3);
+  transition: color 0.2s;
+}
+
+.footer__dual-btn:hover .footer__dual-sub {
+  color: var(--text-1);
+}
+
+/* Telegram Pulsing Green Dot */
 .footer__tg-dot {
   position: relative;
   width: 5px;
@@ -1050,18 +1094,392 @@ section[id]{scroll-margin-top:72px}
   animation: pulse-green 2.4s ease-in-out infinite;
 }
 
-
-.footer__tg-handle {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-3);
-  transition: color 0.2s;
-  line-height: 1.2;
+/* Express Contact Modal (<dialog>) */
+.express-modal {
+  border: none;
+  padding: 0;
+  background: transparent;
+  max-width: min(480px, calc(100vw - 32px));
+  width: 100%;
+  margin: auto;
+  border-radius: 16px;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(99, 102, 241, 0.2);
+  z-index: 10000;
+  overflow: visible;
+  color: var(--text-1);
 }
 
+.express-modal::backdrop {
+  background: rgba(8, 8, 14, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
 
-.footer__tg-cta:hover .footer__tg-handle {
+.express-modal[open] {
+  animation: modal-scale-in 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modal-scale-in {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.express-modal__card {
+  background: #0d0f18;
+  border: 1px solid rgba(99, 102, 241, 0.28);
+  border-radius: 16px;
+  padding: 24px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.express-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.express-modal__title {
+  font-family: var(--font-head);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: #ffffff;
+}
+
+.express-modal__online-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  color: var(--text-2);
+  font-family: var(--font-mono);
+}
+
+.express-modal__close {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--text-2);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.express-modal__close:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  transform: rotate(90deg);
+}
+
+.express-modal__tabs {
+  display: flex;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 18px;
+}
+
+.express-modal__tab {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  color: var(--text-2);
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: var(--font-body);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.express-modal__tab:hover {
+  color: #ffffff;
+}
+
+.express-modal__tab--active {
+  background: rgba(99, 102, 241, 0.2);
+  color: #ffffff;
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  font-weight: 600;
+}
+
+.express-modal__panel {
+  display: block;
+}
+
+.express-modal__panel[hidden] {
+  display: none !important;
+}
+
+.express-form-group {
+  margin-bottom: 14px;
+  text-align: left;
+}
+
+.express-form-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-2);
+  margin-bottom: 6px;
+}
+
+.express-form-input,
+.express-form-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.express-form-input:focus,
+.express-form-textarea:focus {
+  outline: none;
+  border-color: var(--accent-1);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.express-form-input.is-invalid,
+.express-form-textarea.is-invalid {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.25);
+}
+
+.express-form-error {
+  display: none;
+  color: #ef4444;
+  font-size: 0.75rem;
+  margin-top: 4px;
+}
+
+.express-form-error.is-visible {
+  display: block;
+}
+
+.express-submit-btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 18px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.express-form-consent {
+  font-size: 0.72rem;
+  color: var(--text-3);
+  margin: 10px 0 0;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.express-form-consent a {
   color: var(--accent-1);
+  text-decoration: underline;
+}
+
+.express-modal__direct-email {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  text-align: left;
+}
+
+.express-modal__direct-text {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-3);
+  margin-bottom: 6px;
+}
+
+.btn-copy-email {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--text-1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.btn-copy-email:hover {
+  background: rgba(99, 102, 241, 0.08);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.copy-email-address {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-1);
+}
+
+.copy-email-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  color: var(--accent-1);
+  background: rgba(99, 102, 241, 0.15);
+  padding: 2px 7px;
+  border-radius: 6px;
+}
+
+.copy-email-badge.is-copied {
+  color: var(--green);
+  background: rgba(34, 197, 94, 0.15);
+}
+
+.express-modal__success {
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.express-success__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  color: var(--green);
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+}
+
+.express-success__title {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: #ffffff;
+}
+
+.express-success__desc {
+  font-size: 0.85rem;
+  color: var(--text-2);
+  margin: 0 0 14px;
+  line-height: 1.45;
+}
+
+.express-tg-content {
+  text-align: center;
+  padding: 12px 6px;
+}
+
+.express-tg-badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--green);
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  padding: 3px 8px;
+  border-radius: 100px;
+  margin-bottom: 12px;
+}
+
+.express-tg-title {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: #ffffff;
+}
+
+.express-tg-desc {
+  font-size: 0.85rem;
+  color: var(--text-2);
+  line-height: 1.45;
+  margin: 0 0 18px;
+}
+
+.express-tg-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 11px 18px;
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 580px) {
+  .footer__dual-cta {
+    width: 100%;
+    max-width: 100%;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+  .footer__dual-btn {
+    flex: 1;
+    padding: 4px 6px;
+    gap: 6px;
+  }
+  .footer__dual-sub {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer__dual-cta {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    padding: 6px;
+  }
+  .footer__dual-sep {
+    width: 100%;
+    height: 1px;
+  }
+  .footer__dual-btn {
+    width: 100%;
+    flex: none;
+    justify-content: flex-start;
+    padding: 6px 10px;
+  }
+  .footer__dual-sub {
+    display: block;
+  }
 }
 
 
@@ -1888,7 +2306,7 @@ section[id] {
 
   </style>
 <!-- Scripts -->
-<script crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.5.0" type="module"></script>
+<script crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.0" type="module"></script>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
 <script type="text/javascript">
     (function() {
@@ -2537,20 +2955,38 @@ section[id] {
 <div class="container footer__inner">
 <div class="footer__top">
 <a aria-label="АвтоПилот" class="nav__logo" href="/">⬡ АвтоПилот</a>
-<a aria-label="Напишите нам Онлайн @AiAvtopilotbot" class="footer__tg-cta" href="https://t.me/AiAvtopilotbot" rel="noopener noreferrer" target="_blank">
-<div class="footer__tg-icon">
-<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20">
+<div aria-label="Связаться с нами" class="footer__dual-cta" role="group">
+<a aria-label="Написать в Telegram Онлайн @AiAvtopilotbot" class="footer__dual-btn footer__dual-btn--tg footer__tg-cta" href="https://t.me/AiAvtopilotbot" rel="noopener noreferrer" target="_blank">
+<span class="footer__dual-icon footer__dual-icon--tg footer__tg-icon">
+<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18">
 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"></path>
 </svg>
-</div>
-<div class="footer__tg-text">
-<div class="footer__tg-title">
-<span>Напишите нам</span>
-<span class="footer__tg-badge"><span class="footer__tg-dot"></span>Онлайн</span>
-</div>
-<div class="footer__tg-handle">@AiAvtopilotbot</div>
-</div>
+</span>
+<span class="footer__dual-text footer__tg-text">
+<span class="footer__dual-head">
+<span class="footer__dual-label">Telegram</span>
+<span class="footer__dual-status footer__tg-badge"><span class="footer__tg-dot"></span>Онлайн</span>
+</span>
+<span class="footer__dual-sub footer__tg-handle">@AiAvtopilotbot</span>
+</span>
 </a>
+<span aria-hidden="true" class="footer__dual-sep"></span>
+<button aria-controls="express-contact-modal" aria-expanded="false" aria-haspopup="dialog" aria-label="Написать на Email в 2 клика" class="footer__dual-btn footer__dual-btn--email" id="open-express-modal" type="button">
+<span class="footer__dual-icon footer__dual-icon--email">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18">
+<rect height="16" rx="2" width="20" x="2" y="4"></rect>
+<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+</svg>
+</span>
+<span class="footer__dual-text">
+<span class="footer__dual-head">
+<span class="footer__dual-label">Email</span>
+<span class="footer__dual-badge-hint">Экспресс</span>
+</span>
+<span class="footer__dual-sub">contact@ai-avtopilot.ru</span>
+</span>
+</button>
+</div>
 </div>
 <div class="footer__body">
 <div class="footer__brand">
@@ -2578,6 +3014,374 @@ section[id] {
 </div>
 </div>
 </footer>
+<!-- ═══════════════════ SOTA EXPRESS CONTACT MODAL ═══════════════════ -->
+<dialog aria-labelledby="modal-title" aria-modal="true" class="express-modal" id="express-contact-modal">
+<div class="express-modal__card">
+<div class="express-modal__header">
+<div class="express-modal__header-left">
+<h3 class="express-modal__title" id="modal-title">Связаться с АвтоПилот</h3>
+<div class="express-modal__online-indicator">
+<span class="footer__tg-dot"></span> Отвечаем в течение 5–15 минут
+          </div>
+</div>
+<button aria-label="Закрыть модальное окно" class="express-modal__close" id="close-express-modal" type="button">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20">
+<line x1="18" x2="6" y1="6" y2="18"></line>
+<line x1="6" x2="18" y1="6" y2="18"></line>
+</svg>
+</button>
+</div>
+<!-- Modal Tabs -->
+<div aria-label="Каналы связи" class="express-modal__tabs" role="tablist">
+<button aria-controls="panel-email" aria-selected="true" class="express-modal__tab express-modal__tab--active" id="tab-email-btn" role="tab" tabindex="0" type="button">
+<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16"><rect height="16" rx="2" width="20" x="2" y="4"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+<span>Написать на почту</span>
+</button>
+<button aria-controls="panel-tg" aria-selected="false" class="express-modal__tab" id="tab-tg-btn" role="tab" tabindex="-1" type="button">
+<svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"></path></svg>
+<span>Telegram бот</span>
+</button>
+</div>
+<!-- Panel: Email -->
+<div aria-labelledby="tab-email-btn" class="express-modal__panel express-modal__panel--active" id="panel-email" role="tabpanel">
+<form class="express-modal__form" id="express-email-form" novalidate="">
+<input autocomplete="off" class="honeypot-input" name="_honey" style="display:none!important;" tabindex="-1" type="text"/>
+<div class="express-form-group">
+<label class="express-form-label" for="express-contact">
+              Ваш Email или Telegram / телефон <span class="required-star">*</span>
+</label>
+<input class="express-form-input" id="express-contact" name="contact" placeholder="name@company.ru или @username" required="" type="text"/>
+<div class="express-form-error" id="express-contact-error"></div>
+</div>
+<div class="express-form-group">
+<label class="express-form-label" for="express-message">
+              Ваш вопрос или задача <span class="required-star">*</span>
+</label>
+<textarea class="express-form-textarea" id="express-message" name="message" placeholder="Кратко опишите задачу (например, интеграция 1С с CRM или автоматизация отчетов)..." required="" rows="3"></textarea>
+<div class="express-form-error" id="express-message-error"></div>
+</div>
+<div class="express-form-footer">
+<button class="btn btn--primary express-submit-btn" id="express-submit-btn" type="submit">
+<span>Отправить сообщение</span>
+<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16"><line x1="22" x2="11" y1="2" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+</button>
+<p class="express-form-consent">
+              Нажимая кнопку, вы соглашаетесь с <a href="/privacy.html" rel="noopener" target="_blank">Политикой конфиденциальности (152-ФЗ)</a>.
+            </p>
+</div>
+</form>
+<!-- Direct copy row -->
+<div class="express-modal__direct-email">
+<span class="express-modal__direct-text">Или скопируйте наш прямой email:</span>
+<button aria-label="Скопировать contact@ai-avtopilot.ru" class="btn-copy-email" id="modal-copy-email-btn" type="button">
+<span class="copy-email-address">contact@ai-avtopilot.ru</span>
+<span class="copy-email-badge" id="modal-copy-badge">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14"><rect height="13" rx="2" ry="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+<span class="copy-label">Скопировать</span>
+</span>
+</button>
+</div>
+<!-- Result Card (Hidden by default) -->
+<div aria-live="polite" class="express-modal__success" id="express-success-card" style="display:none;">
+<div class="express-success__icon">✓</div>
+<h4 class="express-success__title">Сообщение отправлено!</h4>
+<p class="express-success__desc">Спасибо! Мы уже получили ваш запрос и ответим в течение 15 минут.</p>
+<button class="btn btn--ghost" id="express-reset-btn" style="margin-top:12px;font-size:0.85rem;" type="button">Отправить еще одно</button>
+</div>
+</div>
+<!-- Panel: Telegram -->
+<div aria-labelledby="tab-tg-btn" class="express-modal__panel" hidden="" id="panel-tg" role="tabpanel">
+<div class="express-tg-content">
+<div class="express-tg-badge-status">
+<span class="footer__tg-dot"></span> ИИ-ассистент онлайн 24/7
+          </div>
+<h4 class="express-tg-title">Чат с ботом @AiAvtopilotbot</h4>
+<p class="express-tg-desc">Мгновенный расчет окупаемости, примеры внедрений и прямая связь с инженером без ожидания.</p>
+<a class="btn btn--primary express-tg-btn" href="https://t.me/AiAvtopilotbot" rel="noopener noreferrer" target="_blank">
+<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"></path></svg>
+<span>Открыть @AiAvtopilotbot</span>
+</a>
+</div>
+</div>
+</div>
+</dialog>
+<!-- Express Contact Modal Controller -->
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+      var modal = document.getElementById('express-contact-modal');
+      var openBtn = document.getElementById('open-express-modal');
+      var closeBtn = document.getElementById('close-express-modal');
+      var tabEmail = document.getElementById('tab-email-btn');
+      var tabTg = document.getElementById('tab-tg-btn');
+      var panelEmail = document.getElementById('panel-email');
+      var panelTg = document.getElementById('panel-tg');
+      var emailForm = document.getElementById('express-email-form');
+      var submitBtn = document.getElementById('express-submit-btn');
+      var successCard = document.getElementById('express-success-card');
+      var resetBtn = document.getElementById('express-reset-btn');
+      var copyEmailBtn = document.getElementById('modal-copy-email-btn');
+      var copyBadge = document.getElementById('modal-copy-badge');
+
+      if (!modal || !openBtn) return;
+
+      function reach(goal) {
+        if (typeof ym !== 'undefined') {
+          ym(112978516, 'reachGoal', goal);
+        }
+      }
+
+      function switchTab(target) {
+        var isEmail = target === 'email';
+        tabEmail.classList.toggle('express-modal__tab--active', isEmail);
+        tabEmail.setAttribute('aria-selected', isEmail ? 'true' : 'false');
+        tabEmail.setAttribute('tabindex', isEmail ? '0' : '-1');
+        panelEmail.hidden = !isEmail;
+
+        tabTg.classList.toggle('express-modal__tab--active', !isEmail);
+        tabTg.setAttribute('aria-selected', !isEmail ? 'true' : 'false');
+        tabTg.setAttribute('tabindex', !isEmail ? '0' : '-1');
+        panelTg.hidden = isEmail;
+
+        if (isEmail) {
+          var input = document.getElementById('express-contact');
+          if (input) setTimeout(function() { input.focus(); }, 60);
+        }
+      }
+
+      function openModal(defaultTab) {
+        switchTab(defaultTab || 'email');
+        if (typeof modal.showModal === 'function') {
+          modal.showModal();
+        } else {
+          modal.setAttribute('open', '');
+        }
+        openBtn.setAttribute('aria-expanded', 'true');
+        reach('express_modal_opened');
+      }
+
+      function closeModal() {
+        if (typeof modal.close === 'function') {
+          modal.close();
+        } else {
+          modal.removeAttribute('open');
+        }
+        openBtn.setAttribute('aria-expanded', 'false');
+        openBtn.focus();
+      }
+
+      openBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        openModal('email');
+      });
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+      }
+
+      modal.addEventListener('click', function(e) {
+        var rect = modal.getBoundingClientRect();
+        var isInDialog = (
+          rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+          rect.left <= e.clientX && e.clientX <= rect.left + rect.width
+        );
+        if (!isInDialog) {
+          closeModal();
+        }
+      });
+
+      tabEmail.addEventListener('click', function() { switchTab('email'); });
+      tabTg.addEventListener('click', function() { switchTab('tg'); });
+
+      // Keyboard navigation between tabs
+      [tabEmail, tabTg].forEach(function(tab) {
+        tab.addEventListener('keydown', function(e) {
+          if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+            e.preventDefault();
+            var targetTab = (tab === tabEmail) ? 'tg' : 'email';
+            switchTab(targetTab);
+            var nextBtn = (targetTab === 'tg') ? tabTg : tabEmail;
+            nextBtn.focus();
+          }
+        });
+      });
+
+      // Clear validation state on typing
+      var contactInp = document.getElementById('express-contact');
+      var msgInp = document.getElementById('express-message');
+      [contactInp, msgInp].forEach(function(inp) {
+        if (!inp) return;
+        inp.addEventListener('input', function() {
+          this.classList.remove('is-invalid');
+          var errEl = document.getElementById(this.id + '-error');
+          if (errEl) errEl.classList.remove('is-visible');
+        });
+      });
+
+      // Form submission
+      if (emailForm) {
+        emailForm.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          var contactVal = (contactInp.value || '').trim();
+          var messageVal = (msgInp.value || '').trim();
+          var hasError = false;
+
+          if (contactVal.length < 3) {
+            contactInp.classList.add('is-invalid');
+            var cErr = document.getElementById('express-contact-error');
+            if (cErr) {
+              cErr.textContent = 'Укажите ваш email, телефон или Telegram';
+              cErr.classList.add('is-visible');
+            }
+            hasError = true;
+          }
+
+          if (messageVal.length < 2) {
+            msgInp.classList.add('is-invalid');
+            var mErr = document.getElementById('express-message-error');
+            if (mErr) {
+              mErr.textContent = 'Опишите кратко вашу задачу';
+              mErr.classList.add('is-visible');
+            }
+            hasError = true;
+          }
+
+          if (hasError) return;
+
+          var honey = emailForm.querySelector('input[name="_honey"]');
+          if (honey && honey.value) return; // Silent drop bot
+
+          submitBtn.disabled = true;
+          var originalBtnText = submitBtn.innerHTML;
+          submitBtn.innerHTML = '<span>Отправка...</span>';
+
+          var payload = {
+            contact: contactVal,
+            message: messageVal,
+            source: 'express_modal',
+            _ts: Date.now()
+          };
+
+          var delivered = false;
+
+          // Dispatch in parallel: Telegram via Worker + Email via FormSubmit
+          var tgPromise = (async function() {
+            try {
+              var res = await fetch('https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              if (res.ok) {
+                var data = await res.json();
+                if (data && (data.success === true || data.success === 'true')) {
+                  return true;
+                }
+              }
+            } catch (_cfErr) {}
+            try {
+              var r2 = await fetch('/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              return r2.ok;
+            } catch (_relErr) {
+              return false;
+            }
+          })();
+
+          var emailPromise = (async function() {
+            try {
+              var r = await fetch('https://formsubmit.co/ajax/mr.vladimir.voronin@ya.ru', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                  _subject: '⚡ Экспресс-сообщение из виджета ai-avtopilot.ru',
+                  _cc: 'contact@ai-avtopilot.ru',
+                  contact: contactVal,
+                  message: messageVal,
+                  _template: 'table'
+                })
+              });
+              if (r.ok) {
+                var d = await r.json();
+                if (d && (d.success === true || d.success === 'true')) return true;
+              }
+            } catch (_fsErr) {}
+            try {
+              var r2 = await fetch('https://formsubmit.co/ajax/contact@ai-avtopilot.ru', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                  _subject: '⚡ Экспресс-сообщение из виджета ai-avtopilot.ru',
+                  contact: contactVal,
+                  message: messageVal,
+                  _template: 'table'
+                })
+              });
+              return r2.ok;
+            } catch (_fsErr2) {
+              return false;
+            }
+          })();
+
+          var results = await Promise.allSettled([tgPromise, emailPromise]);
+          delivered = results.some(function(r) { return r.status === 'fulfilled' && r.value === true; });
+
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnText;
+
+          if (delivered) {
+            emailForm.style.display = 'none';
+            successCard.style.display = 'block';
+            reach('express_modal_submitted');
+          } else {
+            var fallbackNote = 'Заявка:\nКонтакт: ' + contactVal + '\nЗадача: ' + messageVal;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(fallbackNote);
+            }
+            alert('Сбой сети. Мы скопировали ваше сообщение в буфер обмена — отправьте его нам на contact@ai-avtopilot.ru или в Telegram @AiAvtopilotbot');
+            window.location.href = 'mailto:contact@ai-avtopilot.ru?subject=' + encodeURIComponent('Экспресс-заявка с сайта') + '&body=' + encodeURIComponent(fallbackNote);
+          }
+        });
+      }
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+          emailForm.reset();
+          emailForm.style.display = 'block';
+          successCard.style.display = 'none';
+        });
+      }
+
+      // Copy email in 1 click
+      if (copyEmailBtn) {
+        copyEmailBtn.addEventListener('click', function() {
+          var email = 'contact@ai-avtopilot.ru';
+          var copySuccess = function() {
+            if (copyBadge) {
+              copyBadge.classList.add('is-copied');
+              var label = copyBadge.querySelector('.copy-label');
+              if (label) label.textContent = 'Скопировано! ✓';
+              setTimeout(function() {
+                copyBadge.classList.remove('is-copied');
+                if (label) label.textContent = 'Скопировать';
+              }, 2500);
+            }
+            reach('copy_direct_email');
+          };
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(email).then(copySuccess).catch(function() {
+              prompt('Скопируйте email:', email);
+            });
+          } else {
+            prompt('Скопируйте email:', email);
+          }
+        });
+      }
+    });
+  </script>
 <!-- Yandex.Metrika Custom Goals Tracking -->
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
