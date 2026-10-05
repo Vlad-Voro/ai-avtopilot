@@ -44,18 +44,21 @@ const runOnlyTier1 = args.includes('--tier=1');
 const runOnlyTier2 = args.includes('--tier=2');
 
 const SUITE_PATHS = [
-  './e2e/test_services_cluster_e2e.js',
+  './e2e/test_services_cluster_overflow.js',
   './tier4_real_world_scenarios/test_user_journeys.js',
-  './tier2_boundary_corner/test_rapid_clicks_navigation.js',
-  './tier2_boundary_corner/test_burger_rapid_toggle.js',
+  './tier4_real_world_scenarios/test_user_journeys_extended.js',
+  './e2e/test_services_cluster_nav.js',
+  './e2e/test_services_cluster_reactivity.js',
   './tier3_cross_feature/test_cross_interactions.js',
   './tier1_feature_coverage/test_r1_layout.js',
-  './tier2_boundary_corner/test_invalid_routes_fallback.js',
-  './tier1_feature_coverage/test_r5_routing.js',
-  './tier1_feature_coverage/test_r6_roi_sliders.js',
-  './tier2_boundary_corner/test_slider_boundaries.js',
+  './tier2_boundary_corner/test_burger_rapid_toggle.js',
+  './tier2_boundary_corner/test_rapid_clicks_navigation.js',
   './tier2_boundary_corner/test_responsive_viewports.js',
   './tier1_feature_coverage/test_r4_micro_interactions.js',
+  './tier1_feature_coverage/test_r6_roi_sliders.js',
+  './tier1_feature_coverage/test_r5_routing.js',
+  './tier2_boundary_corner/test_invalid_routes_fallback.js',
+  './tier2_boundary_corner/test_slider_boundaries.js',
   './tier1_feature_coverage/test_r7_performance.js',
   './tier1_feature_coverage/test_r3_contrast.js',
   './tier1_feature_coverage/test_r2_section_order.js'
@@ -159,7 +162,7 @@ async function main() {
       ...standardSuites
     ];
 
-    const CONCURRENCY = Math.min(os.cpus().length, 8);
+    const CONCURRENCY = Math.max(1, Math.min(os.cpus().length, process.env.CI ? 4 : 10));
     console.log(`${C.dim}Running ${queuedSuites.length} Playwright suites (concurrency=${CONCURRENCY})...${C.reset}\n`);
 
     let suiteIndex = 0;

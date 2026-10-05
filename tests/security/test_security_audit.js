@@ -49,18 +49,19 @@ async function runSecuritySuite() {
 
   // Mock Telegram API network calls for instant offline deterministic test execution
   const originalFetch = globalThis.fetch;
-  globalThis.fetch = async (url, options) => {
-    if (typeof url === 'string' && url.includes('api.telegram.org')) {
-      return new Response(
-        JSON.stringify({
-          ok: true,
-          result: { username: 'AiAvtopilotbot', url: 'https://ai-avtopilot-bot.workers.dev/webhook', pending_update_count: 0 }
-        }),
-        { status: 200, headers: { 'Content-Type': 'application/json' } }
-      );
-    }
-    return originalFetch(url, options);
-  };
+  try {
+    globalThis.fetch = async (url, options) => {
+      if (typeof url === 'string' && url.includes('api.telegram.org')) {
+        return new Response(
+          JSON.stringify({
+            ok: true,
+            result: { username: 'AiAvtopilotbot', url: 'https://ai-avtopilot-bot.workers.dev/webhook', pending_update_count: 0 }
+          }),
+          { status: 200, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
+      return originalFetch(url, options);
+    };
 
   // Load worker module dynamically via data URL
   const workerPath = path.resolve(__dirname, '../../cloudflare-worker/worker.js');
@@ -263,6 +264,9 @@ async function runSecuritySuite() {
   if (failed === 0) {
     console.log(`\n${C.bold}${C.green}ALL SECURITY CHECKS PASSED! HARDENING CONFIRMED WITH ZERO REGRESSIONS.${C.reset}\n`);
   }
+} finally {
+  globalThis.fetch = originalFetch;
+}
 
   return { totalChecks: passed + failed, passedChecks: passed, failedChecks: failed };
 }

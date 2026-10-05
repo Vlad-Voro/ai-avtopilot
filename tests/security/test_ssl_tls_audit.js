@@ -100,123 +100,125 @@ async function runSslAuditSuite() {
   }
 
   if (isOnline) {
-    // SSL-01: Leaf certificate validity & lifetime
-    await test('SSL-01: Certificate validity and expiration threshold (> 14 days)', async () => {
-      const socket = await connectTls({ host: HOSTNAME, port: 443, servername: HOSTNAME });
-      const cert = socket.getPeerCertificate();
-      socket.end();
+    await Promise.all([
+      // SSL-01: Leaf certificate validity & lifetime
+      test('SSL-01: Certificate validity and expiration threshold (> 14 days)', async () => {
+        const socket = await connectTls({ host: HOSTNAME, port: 443, servername: HOSTNAME });
+        const cert = socket.getPeerCertificate();
+        socket.end();
 
-      assert.ok(cert && cert.valid_to, 'Peer certificate must be present');
-      const validTo = new Date(cert.valid_to);
-      const now = new Date();
-      const daysRemaining = (validTo - now) / (1000 * 60 * 60 * 24);
+        assert.ok(cert && cert.valid_to, 'Peer certificate must be present');
+        const validTo = new Date(cert.valid_to);
+        const now = new Date();
+        const daysRemaining = (validTo - now) / (1000 * 60 * 60 * 24);
 
-      assert.ok(daysRemaining > 14, `Certificate expiring too soon: ${daysRemaining.toFixed(1)} days left`);
-      assert.ok(cert.issuer && (cert.issuer.O || cert.issuer.CN), 'Issuer must be defined');
-    });
+        assert.ok(daysRemaining > 14, `Certificate expiring too soon: ${daysRemaining.toFixed(1)} days left`);
+        assert.ok(cert.issuer && (cert.issuer.O || cert.issuer.CN), 'Issuer must be defined');
+      }),
 
-    // SSL-02: Certificate SAN coverage
-    await test('SSL-02: Certificate SAN covers target host', async () => {
-      const socket = await connectTls({ host: HOSTNAME, port: 443, servername: HOSTNAME });
-      const cert = socket.getPeerCertificate();
-      socket.end();
+      // SSL-02: Certificate SAN coverage
+      test('SSL-02: Certificate SAN covers target host', async () => {
+        const socket = await connectTls({ host: HOSTNAME, port: 443, servername: HOSTNAME });
+        const cert = socket.getPeerCertificate();
+        socket.end();
 
-      const altNames = cert.subjectaltname || '';
-      assert.ok(altNames.includes(HOSTNAME), `SAN must include ${HOSTNAME}, got: ${altNames}`);
-    });
+        const altNames = cert.subjectaltname || '';
+        assert.ok(altNames.includes(HOSTNAME), `SAN must include ${HOSTNAME}, got: ${altNames}`);
+      }),
 
-    // SSL-03: Modern TLS 1.3 protocol negotiation
-    await test('SSL-03: Modern TLS 1.3 protocol support & AEAD cipher', async () => {
-      const socket = await connectTls({
-        host: HOSTNAME,
-        port: 443,
-        servername: HOSTNAME,
-        minVersion: 'TLSv1.3',
-        maxVersion: 'TLSv1.3'
-      });
-      const proto = socket.getProtocol();
-      const cipher = socket.getCipher();
-      socket.end();
-
-      assert.strictEqual(proto, 'TLSv1.3', `Protocol must be TLSv1.3, got ${proto}`);
-      assert.ok(cipher && cipher.name, 'Cipher must be defined in TLS 1.3');
-    });
-
-    // SSL-04: TLS 1.2 backwards compatibility with secure PFS cipher
-    await test('SSL-04: TLS 1.2 support with Perfect Forward Secrecy (PFS)', async () => {
-      const socket = await connectTls({
-        host: HOSTNAME,
-        port: 443,
-        servername: HOSTNAME,
-        minVersion: 'TLSv1.2',
-        maxVersion: 'TLSv1.2'
-      });
-      const proto = socket.getProtocol();
-      const cipher = socket.getCipher();
-      socket.end();
-
-      assert.strictEqual(proto, 'TLSv1.2', `Protocol must be TLSv1.2, got ${proto}`);
-      assert.ok(cipher && cipher.name.startsWith('ECDHE-'), `Cipher must use ECDHE (PFS), got: ${cipher.name}`);
-    });
-
-    // SSL-05: Insecure legacy protocols rejection (TLS 1.0 & TLS 1.1)
-    await test('SSL-05: Insecure legacy protocols (TLS 1.0 & TLS 1.1) rejected', async () => {
-      let rejected = false;
-      try {
+      // SSL-03: Modern TLS 1.3 protocol negotiation
+      test('SSL-03: Modern TLS 1.3 protocol support & AEAD cipher', async () => {
         const socket = await connectTls({
           host: HOSTNAME,
           port: 443,
           servername: HOSTNAME,
-          minVersion: 'TLSv1',
-          maxVersion: 'TLSv1'
+          minVersion: 'TLSv1.3',
+          maxVersion: 'TLSv1.3'
         });
+        const proto = socket.getProtocol();
+        const cipher = socket.getCipher();
         socket.end();
-      } catch (err) {
-        rejected = true;
-      }
-      assert.ok(rejected, 'Server must reject legacy TLS 1.0 connection');
-    });
 
-    // SSL-06: Strict-Transport-Security (HSTS) compliance
-    await test('SSL-06: HSTS header is active with >= 1yr max-age, includeSubDomains, preload', async () => {
-      const resp = await fetchHttp(`https://${HOSTNAME}/`);
-      const hsts = resp.headers['strict-transport-security'];
+        assert.strictEqual(proto, 'TLSv1.3', `Protocol must be TLSv1.3, got ${proto}`);
+        assert.ok(cipher && cipher.name, 'Cipher must be defined in TLS 1.3');
+      }),
 
-      assert.ok(hsts, 'Strict-Transport-Security header must be present');
-      assert.ok(hsts.includes('max-age=') && !hsts.includes('max-age=0'), 'HSTS max-age must be configured');
-      const maxAgeMatch = hsts.match(/max-age=(\d+)/);
-      assert.ok(maxAgeMatch && parseInt(maxAgeMatch[1], 10) >= 31536000, 'HSTS max-age must be >= 1 year (31536000s)');
-      assert.ok(hsts.includes('includeSubDomains'), 'HSTS must include includeSubDomains');
-      assert.ok(hsts.includes('preload'), 'HSTS must specify preload directive');
-    });
+      // SSL-04: TLS 1.2 backwards compatibility with secure PFS cipher
+      test('SSL-04: TLS 1.2 support with Perfect Forward Secrecy (PFS)', async () => {
+        const socket = await connectTls({
+          host: HOSTNAME,
+          port: 443,
+          servername: HOSTNAME,
+          minVersion: 'TLSv1.2',
+          maxVersion: 'TLSv1.2'
+        });
+        const proto = socket.getProtocol();
+        const cipher = socket.getCipher();
+        socket.end();
 
-    // SSL-07: HTTP -> HTTPS canonical redirect on apex
-    await test('SSL-07: Plain HTTP redirects to HTTPS on apex domain (308/301)', async () => {
-      const resp = await fetchHttp(`http://${HOSTNAME}/`);
-      assert.ok([301, 308].includes(resp.statusCode), `Expected 301 or 308 redirect, got ${resp.statusCode}`);
-      assert.ok(resp.headers.location && resp.headers.location.startsWith('https://'), `Redirect location must be HTTPS, got ${resp.headers.location}`);
-    });
+        assert.strictEqual(proto, 'TLSv1.2', `Protocol must be TLSv1.2, got ${proto}`);
+        assert.ok(cipher && cipher.name.startsWith('ECDHE-'), `Cipher must use ECDHE (PFS), got: ${cipher.name}`);
+      }),
 
-    // SSL-08: HTTP/HTTPS canonicalization on www subdomain
-    await test('SSL-08: www subdomain redirects to canonical apex domain', async () => {
-      const resp = await fetchHttp(`http://${WWW_HOSTNAME}/`);
-      assert.ok([301, 307, 308].includes(resp.statusCode), `Expected redirect for www, got ${resp.statusCode}`);
-      assert.ok(resp.headers.location && resp.headers.location.includes(HOSTNAME), `Redirect must point to canonical domain, got ${resp.headers.location}`);
-    });
+      // SSL-05: Insecure legacy protocols rejection (TLS 1.0 & TLS 1.1)
+      test('SSL-05: Insecure legacy protocols (TLS 1.0 & TLS 1.1) rejected', async () => {
+        let rejected = false;
+        try {
+          const socket = await connectTls({
+            host: HOSTNAME,
+            port: 443,
+            servername: HOSTNAME,
+            minVersion: 'TLSv1',
+            maxVersion: 'TLSv1'
+          });
+          socket.end();
+        } catch (err) {
+          rejected = true;
+        }
+        assert.ok(rejected, 'Server must reject legacy TLS 1.0 connection');
+      }),
 
-    // SSL-09: ALPN negotiation (HTTP/2 preferred)
-    await test('SSL-09: ALPN negotiates HTTP/2 (h2)', async () => {
-      const socket = await connectTls({
-        host: HOSTNAME,
-        port: 443,
-        servername: HOSTNAME,
-        ALPNProtocols: ['h2', 'http/1.1']
-      });
-      const alpn = socket.alpnProtocol;
-      socket.end();
+      // SSL-06: Strict-Transport-Security (HSTS) compliance
+      test('SSL-06: HSTS header is active with >= 1yr max-age, includeSubDomains, preload', async () => {
+        const resp = await fetchHttp(`https://${HOSTNAME}/`);
+        const hsts = resp.headers['strict-transport-security'];
 
-      assert.strictEqual(alpn, 'h2', `ALPN should negotiate h2, got: ${alpn}`);
-    });
+        assert.ok(hsts, 'Strict-Transport-Security header must be present');
+        assert.ok(hsts.includes('max-age=') && !hsts.includes('max-age=0'), 'HSTS max-age must be configured');
+        const maxAgeMatch = hsts.match(/max-age=(\d+)/);
+        assert.ok(maxAgeMatch && parseInt(maxAgeMatch[1], 10) >= 31536000, 'HSTS max-age must be >= 1 year (31536000s)');
+        assert.ok(hsts.includes('includeSubDomains'), 'HSTS must include includeSubDomains');
+        assert.ok(hsts.includes('preload'), 'HSTS must specify preload directive');
+      }),
+
+      // SSL-07: HTTP -> HTTPS canonical redirect on apex
+      test('SSL-07: Plain HTTP redirects to HTTPS on apex domain (308/301)', async () => {
+        const resp = await fetchHttp(`http://${HOSTNAME}/`);
+        assert.ok([301, 308].includes(resp.statusCode), `Expected 301 or 308 redirect, got ${resp.statusCode}`);
+        assert.ok(resp.headers.location && resp.headers.location.startsWith('https://'), `Redirect location must be HTTPS, got ${resp.headers.location}`);
+      }),
+
+      // SSL-08: HTTP/HTTPS canonicalization on www subdomain
+      test('SSL-08: www subdomain redirects to canonical apex domain', async () => {
+        const resp = await fetchHttp(`http://${WWW_HOSTNAME}/`);
+        assert.ok([301, 307, 308].includes(resp.statusCode), `Expected redirect for www, got ${resp.statusCode}`);
+        assert.ok(resp.headers.location && resp.headers.location.includes(HOSTNAME), `Redirect must point to canonical domain, got ${resp.headers.location}`);
+      }),
+
+      // SSL-09: ALPN negotiation (HTTP/2 preferred)
+      test('SSL-09: ALPN negotiates HTTP/2 (h2)', async () => {
+        const socket = await connectTls({
+          host: HOSTNAME,
+          port: 443,
+          servername: HOSTNAME,
+          ALPNProtocols: ['h2', 'http/1.1']
+        });
+        const alpn = socket.alpnProtocol;
+        socket.end();
+
+        assert.strictEqual(alpn, 'h2', `ALPN should negotiate h2, got: ${alpn}`);
+      })
+    ]);
   }
 
   // SSL-10: Zero mixed content across all static HTML pages (Offline deterministic)

@@ -61,6 +61,8 @@ flowchart TD
   8. `/services/speech-analytics/` — 100% call audit in 30 sec, Whisper on-premise, 18-parameter checklist, amoCRM/Bitrix24 webhooks.
   9. `/services/specifications-kp/` — Automated technical specification parsing, RFP matching, 1C:ERP price calculation.
   10. `/services/price-monitoring/` — Real-time supplier price scraping, anti-dumping checks, dynamic repricing in 1C.
+  11. `/services/debt-control/` — 1C:ERP / 1C:UT soft-collection, payment schedule monitoring, auto-claims.
+  12. `/services/reviews-reputation/` — Yandex Maps / 2GIS review monitoring, 1C customer matching, 24/7 rating defense.
 - **Dedicated Applied Case Studies (10 URLs, `/cases/*`)**:
   1. `/cases/retail-inventory-automation/` — Retail network (230 stores): -72% manual accounting, +18% turnover, 9,200 hrs/yr saved.
   2. `/cases/manufacturing-edi-automation/` — Manufacturing plant: -90% paper EDI, period close in 5 min vs 3 days, $\ge 400\%$ ROI.
@@ -81,9 +83,9 @@ flowchart TD
 - **Technical & DOM Alignment**: Zero CLS (0.000), fixed-dimension elements, and negative invariants strictly governed by [ARCHITECTURE.md §6 & §9.2](file:///d:/AI/data/ai-avtopilot/ARCHITECTURE.md).
 
 ### 1.3. SOTA SEO Internal Linking Mesh & Funnel Repositioning
-- **Complete Silo Mesh ($K_{10}$ Graph)**: Every dedicated service landing page (`/services/*`) features the «Другие сценарии» (`#other-services`) block located strictly below the `#contact` lead form. It links to all 9 other services in the cluster (90 directed internal links, zero self-links, 0 redirect hops with strict trailing slashes). Desktop features a 4x2 8-card slider with scroll-snap and next/prev controls.
-- **Desktop 3x3 Grid for Unlinked Modules**: On subpages, feature/architecture modules without outbound links (`.services__bento--static`, `.cases__grid--static`) render as a 3-column CSS grid (`repeat(3, minmax(0, 1fr))`), eliminating dead space from an empty 4th column. Desktop touchbars/controls are suppressed (`display: none !important`), while mobile/tablet swipe carousels and dots remain 100% functional.
-- **Calibrated Desktop Slider Controls**: Sliders feature `.slider-controls` with violet-glow `.slider-arrow` buttons and dynamically computed slides (`totalSlides = Math.ceil(cards.length / 8)` for 4x2 grid): exactly 2 slides for services (10 items) and 1 slide for cases (7 items, arrows auto-hidden via `hidden`).
+- **Complete Silo Mesh ($K_{12}$ Graph)**: Every dedicated service landing page (`/services/*`) features the «Другие сценарии» (`#other-services`) block located strictly below the `#contact` lead form. It links to all 11 other services in the cluster (132 directed internal links, zero self-links, 0 redirect hops with strict trailing slashes). Desktop features a 4x2 8-card slider with scroll-snap and next/prev controls.
+- **Desktop 3x3 Grid & 3-Case Invariant**: On subpages, feature modules (`.services__bento--static`) and client case blocks (`.cases__grid--static`) render as a balanced 3-column CSS grid (`repeat(3, minmax(0, 1fr))`). Every service landing page MUST include exactly 3 applied case cards, completely eliminating dead space from an empty 3rd column. Desktop touchbars/controls are suppressed (`display: none !important`), while mobile/tablet swipe carousels and dots remain 100% functional.
+- **Calibrated Desktop Slider Controls**: Sliders feature `.slider-controls` with violet-glow `.slider-arrow` buttons and dynamically computed slides (`totalSlides = Math.ceil(cards.length / 8)` for 4x2 grid): exactly 2 slides for services (12 items) and 1 slide for cases (10 items, arrows auto-hidden via `hidden`).
 - **Exit-Intent Conversion Hierarchy**:
   - Services: primary conversion point (`#contact`) precedes sibling scenario exploration (`#other-services`), eliminating Hick's Law bounce.
   - Cases: primary conversion point (`#contact`) precedes related case studies (`#cases` «Другие кейсы»).
