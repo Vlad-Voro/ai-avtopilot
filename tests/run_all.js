@@ -23,6 +23,7 @@ const { runSeoSuite } = require('./seo/test_seo_audit');
 const { runSecuritySuite } = require('./security/test_security_audit');
 const { runSslAuditSuite } = require('./security/test_ssl_tls_audit');
 const { runResiliencySuite } = require('./resiliency/test_resiliency_jtbd');
+const { runFaviconSuite } = require('./unit/test_favicon_invariants');
 // Tier 3 (playwright + server) — loaded lazily below, only when E2E runs
 
 // ANSI Colors
@@ -103,6 +104,11 @@ async function main() {
     totalTests += resRes.totalChecks;
     totalPassing += resRes.passedChecks;
     totalFailing += resRes.failedChecks;
+
+    const favRes = runFaviconSuite();
+    totalTests += favRes.totalChecks;
+    totalPassing += favRes.passedChecks;
+    totalFailing += favRes.failedChecks;
 
     const t2Duration = ((Date.now() - t2Start) / 1000).toFixed(2);
     console.log(`${C.green}✔ Tier 2 completed in ${t2Duration}s (${totalTests - (runOnlyTier2 ? 0 : 11)} checks)${C.reset}\n`);
