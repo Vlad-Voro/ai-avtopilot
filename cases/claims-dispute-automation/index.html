@@ -348,8 +348,8 @@ ul{list-style:none}
 to{opacity:1}
 }
 .compare{padding:30px 0;background:linear-gradient(180deg,var(--bg) 0%,var(--surface) 50%,var(--bg) 100%)}
-.compare__grid{display:grid;grid-template-columns:1fr auto 1fr;gap:32px;align-items:center}
-.compare__card{padding:40px;border-radius:var(--radius-lg);position:relative}
+.compare__grid{display:grid;grid-template-columns:1fr auto 1fr;gap:32px;align-items:stretch}
+.compare__card{padding:40px;border-radius:var(--radius-lg);position:relative;height:100%;box-sizing:border-box}
 .compare__card--pain{background:#ef44440d;border:1px solid rgba(239,68,68,.2)}
 .compare__card--win{background:#6366f10d;border:1px solid rgba(99,102,241,.25);box-shadow:0 0 60px #6366f114}
 .compare__badge{display:inline-block;font-family:var(--font-mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:#ef4444;background:#ef44441a;border:1px solid rgba(239,68,68,.2);padding:4px 12px;border-radius:100px;margin-bottom:20px}
@@ -359,9 +359,8 @@ to{opacity:1}
 .compare__list li{padding-left:20px;position:relative;color:var(--text-2);font-size:.95rem}
 .compare__card--pain .compare__list li:before{content:"✗";position:absolute;left:0;color:#ef4444}
 .compare__card--win .compare__list li:before{content:"✓";position:absolute;left:0;color:var(--green)}
-.compare__arrow{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:2.5rem;color:var(--accent-1)}
-.compare__arrow-line{width:2px;height:40px;background:linear-gradient(180deg,transparent,var(--accent-1))}
-.services{padding:15px 0 30px}
+.compare__arrow{display:flex;flex-direction:column;align-items:center;justify-content:center;align-self:center;gap:8px;font-size:2.5rem;color:var(--accent-1)}
+.compare__arrow-line{width:2px;height:40px;background:linear-gradient(180deg,transparent,var(--accent-1))}.services{padding:15px 0 30px}
 .services__bento, .other-services__bento{display:grid;grid-template-rows:repeat(2,minmax(280px,auto));grid-auto-flow:column;grid-auto-columns:calc((100% - 3 * 16px) / 4);gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0;padding:8px 2px 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .services__bento::-webkit-scrollbar, .other-services__bento::-webkit-scrollbar{display:none}
 .services__bento .scard, .other-services__bento .scard{scroll-snap-align:start;height:100%}
@@ -581,7 +580,7 @@ input,select,textarea{font-size:16px !important}
 .hero__sub{font-size:1rem}
 .compare__grid{grid-template-columns:1fr;gap:24px}
 .compare__arrow{display:none}
-.compare__card{padding:24px 18px;min-width:0}
+.compare__card{padding:24px 18px;min-width:0;height:auto}
 .compare__list li{overflow-wrap:break-word;word-break:break-word}
 .case-card{padding:24px}
 .case-card__results{grid-template-columns:repeat(3,1fr);gap:8px}

@@ -1,6 +1,6 @@
 # Architectural Reference & Production Blueprint: ai-avtopilot.ru
 
-> **Status**: Production Hardened | **Updated**: 2026-10-06  
+> **Status**: Production Hardened | **Updated**: 2026-10-07  
 > **Live URL**: [https://ai-avtopilot.ru/](https://ai-avtopilot.ru/) | **Repo**: `Vlad-Voro/ai-avtopilot` (`main` - Private)  
 > **Local Root**: `d:\AI\data\ai-avtopilot` | **Inventory**: 32 Production URLs (1 Root, 6 Hubs, 12 Services, 10 Cases, 3 Utility)  
 > **Verification Matrix**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E, 0 regressions) + 486 Layout Matrix
@@ -237,7 +237,7 @@ node data/ai-avtopilot/tests/run_all.js
 | **9. Mesh** | `section.other-services` | **$K_{12}$ Silo Mesh**: 11 sibling service cards strictly below `#contact`. Desktop: 4x2 slider (2 slides). |
 | **10. Footer** | `footer.footer` | B2B contacts, Telegram bot, 24/7 support hours, Schema.org graph. |
 
-### 9.2. Strict Negative Invariants (19 Rules)
+### 9.2. Strict Negative Invariants (22 Rules)
 1. ❌ **Zero Phantom Top Banners**: Never inject `subpage-deep` boxes above Hero; page starts with Hero immediately after Navigation.
 2. ❌ **Zero ScrollSpy URL Hijacking**: On subpages (`/services/*`, `/cases/*`), `history.replaceState` must NEVER overwrite clean URL during scroll.
 3. ❌ **Zero H1 Pollution**: Exactly ONE `<h1>` per page located in Hero title. Prohibited: 0 or $>1$ H1.
@@ -259,6 +259,7 @@ node data/ai-avtopilot/tests/run_all.js
 19. ❌ **Desktop 3x3 Static Grids & Strict 3-Case Invariant**: Unlinked module blocks must render as 3-column grid (`repeat(3, minmax(0, 1fr))`). Every service page MUST feature exactly 3 applied case cards.
 20. ❌ **Zero Asymmetric Mobile Cards (Equal-Height Invariant)**: In mobile/tablet horizontal swipe containers (`.services__bento`, `.other-services__bento`, `.cases__grid` under `@media(max-width: 1024px)`), containers must enforce `align-items: stretch !important` and card items (`.scard`, `.case-card`) must have `align-self: stretch !important`, `height: auto !important`, `display: flex !important`, `flex-direction: column !important`. Description blocks must have `flex: 1 1 auto !important`, and trailing tags/results/CTAs must have `margin-top: auto !important`. Sibling card descriptions and tag counts must remain balanced to prevent height disparity.
 21. ❌ **Zero Solo Telegram Footers (Canonical Dual-CTA Footer Invariant)**: Every production page (`/`, hubs, `/services/*`, `/cases/*`) must strictly render the canonical dual conversion footer (`.footer__dual-cta` containing both Telegram button and `#open-express-modal` Email express audit trigger, backed by `<dialog id="express-contact-modal">` and modal controller script). Standalone legacy `.footer__tg-cta` is strictly prohibited.
+22. ❌ **Zero Asymmetric Comparison Cards (Equal-Height & Alignment Invariant)**: In the `#compare` before/after block across all 29 production pages (`/`, 6 hubs, 12 services, 10 cases), `.compare__grid` MUST declare `align-items: stretch` (prohibited: `align-items: center` which vertically centers shorter cards and creates mismatched top/bottom bounds). Both cards (`.compare__card`) MUST specify `height: 100%` and `box-sizing: border-box` on desktop, and `height: auto` on mobile. Central arrow (`.compare__arrow`) MUST declare `align-self: center` and `justify-content: center` to ensure it remains perfectly centered between cards of equal height. Enforced by `test_compare_card_invariants.js` and E2E suites `R1.7` / `E2E-7`.
 
 
 ---

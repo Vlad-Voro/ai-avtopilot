@@ -82,6 +82,30 @@ suite.test('E2E-5: FAQ accordion opens and closes smoothly without collisions', 
   await sanitizePage(page, baseUrl);
 });
 
+suite.test('E2E-7: Compare cards on /services/automated-reporting/ have equal heights and top alignment on desktop (1200px)', async ({ page, baseUrl }) => {
+  await page.setViewportSize({ width: 1200, height: 800 });
+  await page.goto(`${baseUrl}/services/automated-reporting/`);
+  const metrics = await page.evaluate(() => {
+    const pain = document.querySelector('.compare__card--pain');
+    const win = document.querySelector('.compare__card--win');
+    if (!pain || !win) return null;
+    const pRect = pain.getBoundingClientRect();
+    const wRect = win.getBoundingClientRect();
+    return {
+      heightDiff: Math.abs(pRect.height - wRect.height),
+      topDiff: Math.abs(pRect.top - wRect.top),
+      bottomDiff: Math.abs(pRect.bottom - wRect.bottom),
+      pHeight: pRect.height,
+      wHeight: wRect.height
+    };
+  });
+  assert.ok(metrics, 'Compare cards not found on /services/automated-reporting/');
+  assert.ok(metrics.heightDiff <= 1.5, `Compare cards height mismatch: pain=${metrics.pHeight}px, win=${metrics.wHeight}px`);
+  assert.ok(metrics.topDiff <= 1.5, `Compare cards top mismatch: diff=${metrics.topDiff}px`);
+  await page.goto(`${baseUrl}/`);
+  await sanitizePage(page, baseUrl);
+});
+
 suite.test('E2E-3: Service cluster pages have zero horizontal overflow on mobile viewports (320px, 375px)', async ({ page, baseUrl }) => {
   const viewports = [
     { width: 320, height: 600 },

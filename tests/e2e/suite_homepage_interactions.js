@@ -87,6 +87,28 @@ suite.test('R1.4: Mobile burger button has adequate touch target (>= 48px or saf
   await sanitizePage(page);
 });
 
+suite.test('R1.7: Compare cards (.compare__card) have equal heights and top alignment on desktop (1200px)', async ({ page }) => {
+  await page.setViewportSize({ width: 1200, height: 800 });
+  const metrics = await page.evaluate(() => {
+    const pain = document.querySelector('.compare__card--pain');
+    const win = document.querySelector('.compare__card--win');
+    if (!pain || !win) return null;
+    const pRect = pain.getBoundingClientRect();
+    const wRect = win.getBoundingClientRect();
+    return {
+      heightDiff: Math.abs(pRect.height - wRect.height),
+      topDiff: Math.abs(pRect.top - wRect.top),
+      bottomDiff: Math.abs(pRect.bottom - wRect.bottom),
+      pHeight: pRect.height,
+      wHeight: wRect.height
+    };
+  });
+  assert.ok(metrics, 'Compare cards not found on homepage');
+  assert.ok(metrics.heightDiff <= 1.5, `Compare cards height mismatch: pain=${metrics.pHeight}px, win=${metrics.wHeight}px`);
+  assert.ok(metrics.topDiff <= 1.5, `Compare cards top mismatch: diff=${metrics.topDiff}px`);
+  await sanitizePage(page);
+});
+
 // Micro-interactions checks (R4)
 suite.test('R4.1: Bento service cards (.scard) have hover elevation and glow styling', async ({ page }) => {
   const card = page.locator('.scard').first();
