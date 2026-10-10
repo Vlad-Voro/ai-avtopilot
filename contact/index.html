@@ -2375,7 +2375,7 @@ section[id] {
   <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
   <script type="text/javascript">
     (function() {
-      var isBot = /Lighthouse|PageSpeed|HeadlessChrome|Chrome-Lighthouse|bot|spider|crawler/i.test(navigator.userAgent) || navigator.webdriver;
+      var isBot = /Lighthouse|PageSpeed|HeadlessChrome|Chrome-Lighthouse|Google-InspectionTool|bot|spider|crawler/i.test(navigator.userAgent) || navigator.webdriver;
       if (isBot) {
         window.ym = window.ym || function(){};
         return;
@@ -2411,11 +2411,6 @@ section[id] {
         evts.forEach(function(e) { window.removeEventListener(e, onInteract, {passive: true}); });
       }
       evts.forEach(function(e) { window.addEventListener(e, onInteract, {passive: true, once: true}); });
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(function() { setTimeout(loadMetrika, 4500); });
-      } else {
-        window.addEventListener('load', function() { setTimeout(loadMetrika, 4500); });
-      }
     })();
   </script>
   <noscript><div><img src="https://mc.yandex.ru/watch/112978516" style="position:absolute; left:-9999px;" alt="Yandex Metrica" /></div></noscript>
