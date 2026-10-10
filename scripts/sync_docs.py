@@ -25,11 +25,16 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
-# Locate ARCHITECTURE.md
-ARCH_PATH = REPO_ROOT / "ARCHITECTURE.md"
+# Locate architectural spec (Spec_ai_avtopilot.md with ARCHITECTURE.md fallback)
+ARCH_PATH = (
+    REPO_ROOT / "Spec_ai_avtopilot.md"
+    if (REPO_ROOT / "Spec_ai_avtopilot.md").exists()
+    else REPO_ROOT / "ARCHITECTURE.md"
+)
 
-# Locate content_strategy_implementation_plan.md across likely workspace paths
+# Locate content strategy spec across likely workspace paths
 CANDIDATE_PLAN_PATHS = [
+    REPO_ROOT / "Spec_content_ai_avtopilot.md",
     REPO_ROOT / "content_strategy_implementation_plan.md",
     REPO_ROOT.parent / "tmp" / "content_strategy_implementation_plan.md",
     REPO_ROOT / "tmp" / "content_strategy_implementation_plan.md",
@@ -308,7 +313,7 @@ def run_sync(pre_commit_mode: bool = False, check_only: bool = False) -> int:
         if PLAN_PATH and PLAN_PATH.is_file():
             with open(PLAN_PATH, "r", encoding="utf-8") as f:
                 c = f.read()
-            if f"({inventory['total_urls']} Active URLs)" not in c:
+            if not any(f"({inventory['total_urls']} {s}" in c for s in ["Active URLs)", "Production URLs)", "URLs)"]):
                 plan_drift = True
 
         if arch_drift or plan_drift:
@@ -324,8 +329,8 @@ def run_sync(pre_commit_mode: bool = False, check_only: bool = False) -> int:
     if arch_updated:
         print(f"[DocSync] Updated {ARCH_PATH.name} (Date: {today_str}, URLs: {inventory['total_urls']})")
         if pre_commit_mode:
-            subprocess.run(["git", "add", "ARCHITECTURE.md"], cwd=str(REPO_ROOT), check=False)
-            print("[DocSync] Auto-staged ARCHITECTURE.md into current commit.")
+            subprocess.run(["git", "add", ARCH_PATH.name], cwd=str(REPO_ROOT), check=False)
+            print(f"[DocSync] Auto-staged {ARCH_PATH.name} into current commit.")
     else:
         print(f"[DocSync] {ARCH_PATH.name} is already up to date.")
 

@@ -67,6 +67,18 @@ async function runExpressModalSuite(options = {}) {
     }
 
     const page = await browser.newPage();
+    await page.route(/.*(formsubmit\.co|api\.web3forms\.com).*/, async route => {
+      const req = route.request();
+      if (req.isNavigationRequest()) {
+        await route.fulfill({ status: 302, headers: { Location: '/success.html' } });
+      } else {
+        await route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify({ success: true, message: 'Test mock: email suppressed' })
+        });
+      }
+    });
     await page.goto(`${baseUrl}/`);
 
     // TEST 1: Dual contact pill exists with both Telegram and Email buttons

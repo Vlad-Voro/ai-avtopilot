@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Builds the services/ai-analytics/index.html production landing page for ai-avtopilot.ru.
 
-Fully aligns with the canonical 9-block subpage architecture (ARCHITECTURE.md Section 10):
+Fully aligns with the canonical 9-block subpage architecture (Spec_ai_avtopilot.md Section 10):
 - Zero AI-slop anti-fluff standard
 - 1:1 design system integration (canonical CSS classes, no CSS drift)
 - Verified Yandex Wordstat commercial semantics (платежный календарь, неснижаемый остаток, контроль цен)
@@ -206,8 +206,8 @@ if hero_sec:
         sub = hero_inner.find("p", class_="hero__sub")
         if sub:
             sub.string = (
-                "Предиктивный платежный календарь для 1С: упреждение кассовых разрывов за 14 дней, "
-                "расчет остатков и контроль цен поставщиков."
+                "Автоматизация финансовой аналитики и платежного календаря 1С: "
+                "упреждение кассовых разрывов за 14 дней, оптимизация остатков и контроль цен."
             )
 
         actions = hero_inner.find("div", class_="hero__actions")

@@ -162,6 +162,42 @@ export default {
       );
     }
 
+    // ── 1b. Telegram Bot API Reverse Proxy: /bot* ───────────────────────────
+    if (url.pathname.startsWith("/bot")) {
+      const targetUrl = new URL("https://api.telegram.org" + url.pathname + url.search);
+      const forwardHeaders = new Headers(request.headers);
+      forwardHeaders.set("Host", "api.telegram.org");
+      forwardHeaders.delete("CF-Connecting-IP");
+      forwardHeaders.delete("CF-Ray");
+      forwardHeaders.delete("CF-IPCountry");
+
+      const proxyReq = new Request(targetUrl, {
+        method: request.method,
+        headers: forwardHeaders,
+        body: ["GET", "HEAD"].includes(request.method) ? undefined : request.body,
+        redirect: "follow",
+      });
+
+      try {
+        const response = await fetch(proxyReq);
+        const respHeaders = new Headers(response.headers);
+        for (const [k, v] of Object.entries(corsHeaders)) {
+          respHeaders.set(k, v);
+        }
+        return new Response(response.body, {
+          status: response.status,
+          statusText: response.statusText,
+          headers: respHeaders,
+        });
+      } catch (proxyErr) {
+        console.error("Telegram proxy fetch failed:", proxyErr);
+        return new Response(JSON.stringify({ ok: false, error: proxyErr.message }), {
+          status: 502,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        });
+      }
+    }
+
     // ── 2. Health & Status: GET /status or GET / (Sanitized & DoS-Protected) ─────────────────
     if (url.pathname === "/status" || url.pathname === "/") {
       const authHeader = request.headers.get("Authorization") || "";

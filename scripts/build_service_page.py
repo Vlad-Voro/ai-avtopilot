@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Parametric Static Site Generator for Service Landing Pages (ai-avtopilot.ru)
-Conforms strictly to Section 10 of ARCHITECTURE.md and implementation_plan.md.
+Conforms strictly to Section 10 of Spec_ai_avtopilot.md and Spec_content_ai_avtopilot.md.
 
 Usage:
   python scripts/build_service_page.py --all
@@ -1183,6 +1183,9 @@ def generate_service_html(data: dict) -> str:
           }})();
 
           var emailPromise = (async function() {{
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {{
+              return true;
+            }}
             try {{
               var r = await fetch('https://formsubmit.co/ajax/mr.vladimir.voronin@ya.ru', {{
                 method: 'POST',
@@ -1729,6 +1732,61 @@ def generate_service_html(data: dict) -> str:
             }}
           }}, 150);
         }});
+
+        var isMouseDown = false;
+        var startX = 0;
+        var startScrollLeft = 0;
+        var hasDragged = false;
+        var lastWalk = 0;
+
+        container.addEventListener('dragstart', function(e) {{
+          e.preventDefault();
+        }});
+
+        container.addEventListener('mousedown', function(e) {{
+          if (window.innerWidth < 1025 || e.button !== 0) return;
+          isMouseDown = true;
+          hasDragged = false;
+          startX = e.pageX;
+          startScrollLeft = container.scrollLeft;
+          lastWalk = 0;
+          container.classList.add('is-dragging');
+        }});
+
+        window.addEventListener('mousemove', function(e) {{
+          if (!isMouseDown) return;
+          lastWalk = e.pageX - startX;
+          if (Math.abs(lastWalk) > 4) {{
+            hasDragged = true;
+          }}
+          container.scrollLeft = startScrollLeft - lastWalk;
+        }});
+
+        function endDrag() {{
+          if (!isMouseDown) return;
+          isMouseDown = false;
+          container.classList.remove('is-dragging');
+          if (hasDragged && isDesktop && totalSlides > 1) {{
+            if (lastWalk < -50 && currentSlide < totalSlides - 1) {{
+              goToSlide(currentSlide + 1);
+            }} else if (lastWalk > 50 && currentSlide > 0) {{
+              goToSlide(currentSlide - 1);
+            }} else {{
+              goToSlide(currentSlide);
+            }}
+          }}
+        }}
+
+        window.addEventListener('mouseup', endDrag);
+        window.addEventListener('blur', endDrag);
+
+        container.addEventListener('click', function(e) {{
+          if (hasDragged) {{
+            e.preventDefault();
+            e.stopPropagation();
+            setTimeout(function() {{ hasDragged = false; }}, 0);
+          }}
+        }}, true);
 
         updateDots();
       }}

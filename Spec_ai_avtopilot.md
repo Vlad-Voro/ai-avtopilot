@@ -1,6 +1,6 @@
-# Architectural Reference & Production Blueprint: ai-avtopilot.ru
+# Architectural Specification & Production Blueprint: ai-avtopilot.ru (Spec_ai_avtopilot.md)
 
-> **Status**: Production Hardened | **Updated**: 2026-10-07  
+> **Status**: Production Hardened | **Updated**: 2026-10-10  
 > **Live URL**: [https://ai-avtopilot.ru/](https://ai-avtopilot.ru/) | **Repo**: `Vlad-Voro/ai-avtopilot` (`main` - Private)  
 > **Local Root**: `d:\AI\data\ai-avtopilot` | **Inventory**: 32 Production URLs (1 Root, 6 Hubs, 12 Services, 10 Cases, 3 Utility)  
 > **Verification Matrix**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E, 0 regressions) + 486 Layout Matrix
@@ -251,7 +251,7 @@ node data/ai-avtopilot/tests/run_all.js
 11. ❌ **Zero Static SSR Terminal Stubs**: Telemetry terminals, live logs, and KPI badge values must be pre-rendered in SSR HTML.
 12. ❌ **Zero Navigation Link Hijacking**: Subpage navigation links MUST trigger genuine browser navigation.
 13. ❌ **Zero Log Overflow**: Telemetry logs must strictly use `.log-item` (`font-size: 0.72rem`, `gap: 10px`) with `.log-item__time` and `.log-item__text`.
-14. ❌ **Universal Swipe Carousel Nudge**: All scrollable blocks on mobile/tablet ($\le 1024\text{px}$) must include GPU nudge observer (`@keyframes sNudge`).
+14. ❌ **Universal Swipe Carousel Nudge & LMB Drag-to-Scroll**: All scrollable blocks on mobile and desktop (`.services__bento`, `.cases__grid`, `.other-services__bento`) must include GPU nudge observer (`@keyframes sNudge`, guarded by overflow check `scrollWidth > clientWidth` and `prefers-reduced-motion`) and desktop Left Mouse Button (LMB) drag-to-scroll navigation with click capture guard.
 15. ❌ **Zero Factoid Sheet Clutter**: Prohibited to inject standalone factoid sheet cards into the DOM. Embed facts in Hero, FAQ, and Schema.org.
 16. ❌ **Subpage In-Page Form Routing**: Secondary CTAs (`href="#contact"`) must smoothly scroll to in-page form.
 17. ❌ **Zero AI-Slop & Semantic Invariance**: All pages must pass `ru_text_humanizer` (0/64 patterns, Title 30–85c, Meta Description 70–175c).

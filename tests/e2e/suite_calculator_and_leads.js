@@ -203,13 +203,25 @@ suite.test('FORM-03: Auto-clearing error tooltip on input typing', async ({ page
 });
 
 suite.test('FORM-04: End-to-end lead delivery sends payload and displays success card', async ({ page }) => {
-  // Mock worker endpoint
+  // Mock worker endpoint with confirmed success
   await page.route('**/submit**', async route => {
     await route.fulfill({
       status: 200,
       contentType: 'application/json',
-      body: JSON.stringify({ ok: true, lead_id: 12345 })
+      body: JSON.stringify({ success: true, ok: true, lead_id: 12345 })
     });
+  });
+  await page.route(/.*(formsubmit\.co|api\.web3forms\.com).*/, async route => {
+    const req = route.request();
+    if (req.isNavigationRequest()) {
+      await route.fulfill({ status: 302, headers: { Location: '/success.html' } });
+    } else {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ success: true, message: 'Test mock: Form submitted' })
+      });
+    }
   });
 
   const form = page.locator('#contact-form');
@@ -232,13 +244,16 @@ suite.test('FORM-05: Network failure / timeout cascades to fallback card', async
   await page.route('**/submit**', async route => {
     await route.abort('failed');
   });
+  await page.route(/.*(formsubmit\.co|api\.web3forms\.com).*/, async route => {
+    await route.abort('failed');
+  });
 
   const form = page.locator('#contact-form');
   if (await form.count() > 0) {
     await page.locator('#contact-name').fill('Петр Ошибкин');
     await page.locator('#contact-email').fill('+7 (999) 888-99-00');
     await page.locator('#form-submit').click();
-    await page.waitForSelector('.error-card, .fallback-card, .is-invalid', { timeout: 3000 }).catch(() => {});
+    await page.waitForSelector('.error-card, .fallback-card, .is-invalid, .form-fallback-card, .form-message--error', { timeout: 3000 }).catch(() => {});
     assert.ok(true, 'Fallback card or error state activated');
   }
   await page.unroute('**/submit**').catch(() => {});

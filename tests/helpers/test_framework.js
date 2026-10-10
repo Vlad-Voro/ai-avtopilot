@@ -60,7 +60,21 @@ class TestSuite {
           if (context.page) {
             try {
               await context.page.setViewportSize({ width: 1440, height: 900 });
-              context.page.setDefaultTimeout(6000);
+              if (!context.page._formSubmitRouted) {
+                context.page._formSubmitRouted = true;
+                await context.page.route(/.*(formsubmit\.co|api\.web3forms\.com).*/, async route => {
+                  const req = route.request();
+                  if (req.isNavigationRequest()) {
+                    await route.fulfill({ status: 302, headers: { Location: '/success.html' } });
+                  } else {
+                    await route.fulfill({
+                      status: 200,
+                      contentType: 'application/json',
+                      body: JSON.stringify({ success: true, message: 'Test mock: Email suppressed during test' })
+                    });
+                  }
+                });
+              }
               await context.page.addInitScript(() => {
                 try {
                   const style = document.createElement('style');

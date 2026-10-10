@@ -2,7 +2,7 @@
 """Parameterized Case Page Builder for ai-avtopilot.ru.
 
 Builds high-converting /cases/<slug>/index.html pages strictly adhering to the
-8-block canonical architecture from ARCHITECTURE.md (Section 10):
+8-block canonical architecture from Spec_ai_avtopilot.md (Section 10):
 - Zero AI-slop anti-fluff standard (verified via ru_text_humanizer)
 - 1:1 design system integration (canonical CSS classes, zero CSS drift)
 - Pre-checked Yandex Wordstat commercial semantics
