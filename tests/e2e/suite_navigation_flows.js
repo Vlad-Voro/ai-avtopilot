@@ -71,11 +71,15 @@ suite.test('R5.4: GitHub Pages 404 SPA fallback redirect file exists and is conf
   await sanitizePage(page);
 });
 
-suite.test('R5.5: ScrollSpy updates browser address bar with replaceState during scroll', async ({ page }) => {
+suite.test('R5.5: ScrollSpy updates active nav state while preserving clean URL during scroll', async ({ page }) => {
   await page.evaluate(() => window.scrollTo(0, 1200));
-  await page.waitForFunction(() => window.scrollY > 500);
+  await page.waitForFunction(() => document.querySelector('.nav__link.active') !== null);
   const currentUrl = await page.evaluate(() => window.location.href);
   assert.ok(currentUrl.length > 0, 'ScrollSpy should preserve valid window location');
+  const pathname = await page.evaluate(() => window.location.pathname);
+  assert.strictEqual(pathname, '/', 'Passive scroll must preserve clean root URL without replaceState spam');
+  const activeLink = await page.evaluate(() => document.querySelector('.nav__link.active')?.getAttribute('href'));
+  assert.ok(activeLink && (activeLink.includes('calculator') || activeLink.includes('services')), 'ScrollSpy updates active nav link highlight');
   await sanitizePage(page);
 });
 

@@ -430,7 +430,7 @@ def generate_service_html(data: dict) -> str:
 {master_styles}
 
   <!-- Scripts -->
-  <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.0"></script>
+  <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.1"></script>
 
   <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
   <script type="text/javascript">
