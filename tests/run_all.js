@@ -44,6 +44,7 @@ const runOnlyFast = args.includes('--fast');
 const runOnlyE2e = args.includes('--e2e') || args.includes('--tier=3');
 const runOnlyTier1 = args.includes('--tier=1');
 const runOnlyTier2 = args.includes('--tier=2');
+const runOnlyProdProbe = args.includes('--prod-probe') || args.includes('--prod');
 
 const SUITE_PATHS = [
   './e2e/suite_homepage_interactions.js',
@@ -61,6 +62,12 @@ async function main() {
   console.log(`\n${C.bold}${C.cyan}╔════════════════════════════════════════════════════════════════════════╗${C.reset}`);
   console.log(`${C.bold}${C.cyan}║       AI AVTOPILOT - SOTA 3-TIER PYRAMID TEST SUITE RUNNER             ║${C.reset}`);
   console.log(`${C.bold}${C.cyan}╚════════════════════════════════════════════════════════════════════════╝${C.reset}\n`);
+
+  if (runOnlyProdProbe) {
+    const { runProdProbeSuite } = require('./e2e/test_prod_form_probe');
+    const res = await runProdProbeSuite();
+    process.exit(res.failedChecks === 0 ? 0 : 1);
+  }
 
   // TIER 1: In-Memory Unit Suites (<= 20ms)
   if (!runOnlyE2e && !runOnlyTier2) {

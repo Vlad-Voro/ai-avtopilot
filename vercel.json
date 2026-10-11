@@ -24,6 +24,24 @@
       "permanent": true
     }
   ],
+  "rewrites": [
+    {
+      "source": "/api/lead",
+      "destination": "https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/submit"
+    },
+    {
+      "source": "/submit",
+      "destination": "https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/submit"
+    },
+    {
+      "source": "/submit/",
+      "destination": "https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/submit"
+    },
+    {
+      "source": "/status",
+      "destination": "https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/status"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
