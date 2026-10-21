@@ -475,6 +475,37 @@ runCheck('SEO-27', 'All 10 case study landing pages contain #cases (Другие
   });
 });
 
+// SEO-28: Zero duplicate FAQPage nodes across all pages and valid Service schema on service pages
+runCheck('SEO-28', 'Zero duplicate FAQPage nodes across all pages and valid Service schema on service pages', () => {
+  PAGES.forEach(p => {
+    const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
+    const m = html.match(/<script\s+type="application\/ld\+json">([\s\S]*?)<\/script>/s);
+    assert.ok(m, `Missing JSON-LD script in ${p.file}`);
+    const data = JSON.parse(m[1].trim());
+    const graph = data['@graph'] || [];
+
+    // 1. Zero duplicate FAQPage nodes
+    const faqNodes = graph.filter(item => item['@type'] === 'FAQPage');
+    assert.ok(faqNodes.length <= 1, `Found ${faqNodes.length} FAQPage nodes in ${p.file} (duplicate FAQ detected)`);
+    if (p.category === 'case' || p.category === 'service') {
+      const rootFaq = faqNodes.find(item => item['@id'] === 'https://ai-avtopilot.ru/#faq');
+      assert.strictEqual(rootFaq, undefined, `Forbidden root FAQPage node found in ${p.file}`);
+    }
+
+    // 2. Service schema validation for service pages
+    if (p.category === 'service') {
+      const swApp = graph.find(item => item['@type'] === 'SoftwareApplication');
+      assert.strictEqual(swApp, undefined, `Forbidden SoftwareApplication found on service page ${p.file}`);
+
+      const service = graph.find(item => item['@type'] === 'Service');
+      assert.ok(service, `Missing Service schema entity in ${p.file}`);
+      assert.strictEqual(service.operatingSystem, undefined, `Forbidden operatingSystem on Service in ${p.file}`);
+      assert.strictEqual(service.applicationCategory, undefined, `Forbidden applicationCategory on Service in ${p.file}`);
+      assert.ok(service.provider && service.provider['@id'] === 'https://ai-avtopilot.ru/#organization', `Missing or invalid provider in Service schema in ${p.file}`);
+    }
+  });
+});
+
 console.log('\n▶ [Category 7] DOM Architecture & Conversion Sequence (Promoted from Tier 3)');
 
 // R2-01: DOM sections follow canonical conversion sequence

@@ -58,6 +58,31 @@ def build_case_page(case_key: str) -> str:
 
     soup = BeautifulSoup(html_content, "html.parser")
 
+    # External Stylesheet support
+    css_path = os.path.join(PROJECT_DIR, "assets", "css", "styles.min.css")
+    if os.path.exists(css_path):
+        import hashlib
+
+        with open(css_path, "rb") as cf:
+            raw_css = cf.read().replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+            css_hash = hashlib.md5(raw_css).hexdigest()[:8]
+    else:
+        css_hash = "03f2d5b5"
+
+    app_style = soup.find("style", attrs={"id": "app-styles"})
+    if app_style:
+        new_link = soup.new_tag("link", rel="stylesheet", href=f"/assets/css/styles.min.css?v={css_hash}")
+        app_style.replace_with(new_link)
+    else:
+        css_link = soup.find("link", href=re.compile(r"/assets/css/styles\.min\.css"))
+        if css_link:
+            css_link["href"] = f"/assets/css/styles.min.css?v={css_hash}"
+        else:
+            head = soup.find("head")
+            if head:
+                new_link = soup.new_tag("link", rel="stylesheet", href=f"/assets/css/styles.min.css?v={css_hash}")
+                head.append(new_link)
+
     # 1. Update Head metadata
     title_tag = soup.find("title")
     if title_tag:
@@ -92,7 +117,7 @@ def build_case_page(case_key: str) -> str:
     if json_ld and json_ld.string:
         try:
             ld_data = json.loads(json_ld.string)
-            graph = ld_data.get("@graph", [])
+            graph = [item for item in ld_data.get("@graph", []) if item.get("@id") != "https://ai-avtopilot.ru/#faq"]
 
             # TechArticle
             graph.append(

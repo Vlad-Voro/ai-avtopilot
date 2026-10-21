@@ -62,7 +62,7 @@ function runCompareCardInvariantsSuite() {
       const content = fs.readFileSync(f, 'utf-8');
       const rel = path.relative(ROOT_DIR, f);
       assert(
-        content.includes('.compare__grid{display:grid;grid-template-columns:1fr auto 1fr;gap:32px;align-items:stretch}'),
+        /\.compare__grid\s*\{[^}]*align-items:\s*stretch/.test(content),
         `Missing align-items:stretch in ${rel}`
       );
     }
@@ -73,7 +73,7 @@ function runCompareCardInvariantsSuite() {
       const content = fs.readFileSync(f, 'utf-8');
       const rel = path.relative(ROOT_DIR, f);
       assert(
-        content.includes('.compare__card{padding:40px;border-radius:var(--radius-lg);position:relative;height:100%;box-sizing:border-box}'),
+        /\.compare__card\s*\{[^}]*height:\s*100%/.test(content),
         `Missing height:100% in ${rel}`
       );
     }
@@ -84,7 +84,7 @@ function runCompareCardInvariantsSuite() {
       const content = fs.readFileSync(f, 'utf-8');
       const rel = path.relative(ROOT_DIR, f);
       assert(
-        content.includes('.compare__arrow{display:flex;flex-direction:column;align-items:center;justify-content:center;align-self:center;'),
+        /\.compare__arrow\s*\{[^}]*align-self:\s*center/.test(content),
         `Missing align-self:center in ${rel}`
       );
     }
@@ -95,7 +95,7 @@ function runCompareCardInvariantsSuite() {
       const content = fs.readFileSync(f, 'utf-8');
       const rel = path.relative(ROOT_DIR, f);
       assert(
-        content.includes('.compare__card{padding:24px 18px;min-width:0;height:auto}'),
+        /\.compare__card\s*\{[^}]*height:\s*auto/.test(content),
         `Missing mobile height:auto in ${rel}`
       );
     }

@@ -1,6 +1,6 @@
 # Architectural Specification & Production Blueprint: ai-avtopilot.ru (Spec_ai_avtopilot.md)
 
-> **Status**: Production Hardened | **Updated**: 2026-10-11  
+> **Status**: Production Hardened | **Updated**: 2026-10-21  
 > **Live URL**: [https://ai-avtopilot.ru/](https://ai-avtopilot.ru/) | **Repo**: `Vlad-Voro/ai-avtopilot` (`main` - Private)  
 > **Local Root**: `d:\AI\data\ai-avtopilot` | **Inventory**: 32 Production URLs (1 Root, 6 Hubs, 12 Services, 10 Cases, 3 Utility)  
 > **Verification Matrix**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E, 0 regressions) + 486 Layout Matrix
@@ -198,13 +198,16 @@ index.html (Master Template) & Data Catalogs
 ## 8. Verification Matrix: 153 Automated Checks
 
 ```powershell
-# Fast In-Process Static, Security & Unit Suites (75 checks, < 1.0s)
+# Fast In-Process Static, Security & Unit Suites (78 checks, < 1.4s)
 node data/ai-avtopilot/tests/run_all.js --fast
 
 # Responsive Layout & Viewport Matrix (486 checks across 27 pages x 18 devices, ~4s)
 node data/ai-avtopilot/tests/audit/audit_runner.js
 
-# Full Test Pyramid Execution (163 checks, ~17s)
+# Browser E2E Suites (82 checks, ~18s)
+node data/ai-avtopilot/tests/run_all.js --e2e
+
+# Full Test Pyramid Execution (160 checks, ~24s)
 node data/ai-avtopilot/tests/run_all.js
 ```
 
@@ -213,8 +216,8 @@ node data/ai-avtopilot/tests/run_all.js
 | Tier | Scope | Checks | Latency | Key Invariants Verified |
 | :--- | :--- | :--- | :--- | :--- |
 | **Tier 1** | In-Memory Unit | 11 | $\le 20\text{ms}$ | ROI formula ($E \times S \times \frac{H}{160} \times 12$), boundary clamps, sanitization, Russian locale formatting. |
-| **Tier 2** | Static & Integration | 64 | $< 1.0\text{s}$ | **SEO (33)**: `sitemap.xml`, trailing slashes, title $\le 77$c, description $\le 152$c, 1 H1, Schema.org @graph, DOM sequence.<br>**Security (16)**: TG HTML escaping, ID parser, 10 KB clamp, honeypot, frame guard, WCAG AA palette contrast.<br>**SSL/TLS (10)**: TLS 1.3 AEAD, TLS 1.2 PFS, HSTS, 308 redirects, ALPN h2.<br>**Resiliency (5)**: 6000ms abort, fallback card, Metrica callback, anti-slop audit. |
-| **Tier 3** | Browser E2E | 88 | $\sim 6\text{--}8\text{s}$ | 14 Playwright suites (83 checks): touch, routing, burger menu, viewports (320px–2560px), WCAG AA contrast.<br>Lead Form Delivery (5 checks): form completion, telegram simulation, fallback card. |
+| **Tier 2** | Static & Integration | 67 | $< 1.4\text{s}$ | **SEO (34)**: `sitemap.xml`, trailing slashes, title $\le 85$c, description $\le 175$c, 1 H1, Schema.org @graph, DOM sequence.<br>**Security (16)**: TG HTML escaping, ID parser, 10 KB clamp, honeypot, frame guard, WCAG AA palette contrast.<br>**SSL/TLS (1)**: Edge TLS & zero mixed content.<br>**Resiliency (5)**: 6000ms abort, fallback card, Metrica callback, anti-slop audit.<br>**Invariants (11)**: Favicons (6), Compare Cards equal heights across 29 HTML pages (5). |
+| **Tier 3** | Browser E2E | 82 | $\sim 18\text{s}$ | **Core E2E (69)**: touch, routing, burger menu, viewports (320px–2560px), WCAG AA contrast, lead delivery, formula reactivity.<br>**Express Modal (7)**: dual pill, dialog open/close, tab switch, 1-click email copy.<br>**Slider & Drag (6)**: desktop LMB drag-to-scroll, grab cursor, vertical control centering, sNudge animation. |
 | **Tier 4** | Layout Matrix | 486 | $\sim 4\text{s}$ | DOM geometry across 18 canonical viewport profiles: zero horizontal overflow, $\ge 48\text{px}$ touch targets. |
 
 ---
@@ -295,7 +298,8 @@ python data/ai-avtopilot/scripts/build_case_page.py --all
 python data/ai-avtopilot/scripts/seo/push_indexnow.py
 
 # 5. Run full verification suite:
-node data/ai-avtopilot/tests/run_all.js --fast       # 67 fast checks (< 1.4s)
+node data/ai-avtopilot/tests/run_all.js --fast       # 78 fast checks (< 1.4s)
 node data/ai-avtopilot/tests/audit/audit_runner.js # 486 layout checks (~4s)
-node data/ai-avtopilot/tests/run_all.js --e2e        # 88 browser E2E checks (~6-8s)
+node data/ai-avtopilot/tests/run_all.js --e2e        # 82 browser E2E checks (~18s)
+node data/ai-avtopilot/tests/run_all.js              # 160 full checks (~24s)
 ```

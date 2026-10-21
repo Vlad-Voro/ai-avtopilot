@@ -176,7 +176,7 @@ async function runProdProbeSuite() {
       const openBtn = await page.$('#open-express-modal');
       assert.ok(openBtn !== null, '#open-express-modal must exist');
       await openBtn.click();
-      await page.waitForTimeout(300);
+      await page.waitForSelector('#express-contact', { state: 'visible' });
 
       const contactInp = await page.$('#express-contact');
       const msgInp = await page.$('#express-message');

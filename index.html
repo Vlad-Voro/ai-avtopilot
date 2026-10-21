@@ -92,12 +92,9 @@
   <link rel="dns-prefetch" href="https://mc.yandex.ru" />
   <link rel="dns-prefetch" href="https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev" />
 
-  <!-- Preload Local Core Fonts -->
+  <!-- Preload Local Core Fonts (High-Impact Above-The-Fold) -->
   <link rel="preload" href="/assets/fonts/Inter-400-1.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/assets/fonts/Inter-400-6.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/assets/fonts/Outfit-600-14.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/assets/fonts/JetBrainsMono-400-8.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/assets/fonts/JetBrainsMono-400-12.woff2" as="font" type="font/woff2" crossorigin />
 
   <!-- Inlined Styles (Eliminates Render-Blocking CSS & Critical Request Chains) -->
   <style id="app-styles">
@@ -2370,8 +2367,7 @@ section[id] {
 
   </style>
 
-  <!-- Scripts -->
-  <script type="module" crossorigin src="/assets/index-Bx30wa4i.js?v=2.6.1"></script>
+
 
   
 
@@ -3922,6 +3918,7 @@ section[id] {
           totalSlides = calcTotalSlides();
           dotsWrap.innerHTML = '';
 
+          var frag = document.createDocumentFragment();
           for (var i = 0; i < totalSlides; i++) {
             var dot = document.createElement('button');
             dot.type = 'button';
@@ -3932,8 +3929,9 @@ section[id] {
                 goToSlide(idx);
               });
             })(i);
-            dotsWrap.appendChild(dot);
+            frag.appendChild(dot);
           }
+          dotsWrap.appendChild(frag);
           updateArrows();
         }
 
@@ -4298,6 +4296,9 @@ section[id] {
   }
   </script>
   <!--/email_off-->
+
+  <!-- Deferred Scripts (Eliminates Critical Request Chains) -->
+  <script type="module" crossorigin src="/assets/index-Bx30wa4i.js?v=2.6.1"></script>
 </body>
 
 </html>

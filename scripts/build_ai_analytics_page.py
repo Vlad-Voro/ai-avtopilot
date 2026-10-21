@@ -83,7 +83,7 @@ json_ld = soup.find("script", attrs={"type": "application/ld+json"})
 if json_ld and json_ld.string:
     try:
         data = json.loads(json_ld.string)
-        graph = data.get("@graph", [])
+        graph = [item for item in data.get("@graph", []) if item.get("@id") != "https://ai-avtopilot.ru/#faq"]
 
         # BreadcrumbList (3-level Silo)
         graph.append(
@@ -103,14 +103,13 @@ if json_ld and json_ld.string:
             }
         )
 
-        # SoftwareApplication
+        # Service
         graph.append(
             {
-                "@type": "SoftwareApplication",
-                "@id": "https://ai-avtopilot.ru/services/ai-analytics/#app",
+                "@type": "Service",
+                "@id": "https://ai-avtopilot.ru/services/ai-analytics/#service",
                 "name": "АвтоПилот: Предиктивная ИИ-аналитика 1С",
-                "operatingSystem": "Windows, Linux (1C:Enterprise 8.3 On-Premise)",
-                "applicationCategory": "BusinessApplication",
+                "provider": {"@id": "https://ai-avtopilot.ru/#organization"},
                 "description": (
                     "Предиктивная ИИ-аналитика для 1С:ERP и УТ: автоматизация платежного календаря, "
                     "расчет неснижаемого остатка и контроль цен поставщиков."

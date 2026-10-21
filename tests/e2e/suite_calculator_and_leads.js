@@ -42,12 +42,14 @@ suite.test('R6.1: Slider elements exist with valid min, max, and initial attribu
   await sanitizePage(page);
 });
 
-suite.test('R6.2: Slider track dimensions adhere to 7px height and rounded geometry', async ({ page }) => {
+suite.test('R6.2: Slider track dimensions adhere to 8px height and rounded geometry', async ({ page }) => {
   const isStylingValid = await page.evaluate(() => {
     const s = document.querySelector('#slider-employees');
-    return s !== null;
+    if (!s) return false;
+    const style = window.getComputedStyle(s);
+    return parseFloat(style.height) >= 6 && parseFloat(style.height) <= 10;
   });
-  assert.ok(isStylingValid, 'Slider exists in DOM');
+  assert.ok(isStylingValid, 'Slider track has expected height in DOM');
   await sanitizePage(page);
 });
 
@@ -64,8 +66,8 @@ suite.test('R6.3: Slider updates inline dynamic gradient fill on input', async (
 });
 
 suite.test('R6.4: Boundary limit labels (min/max ticks) exist below sliders', async ({ page }) => {
-  const labelsCount = await page.locator('.calc-slider__range, .roi__range, .slider-limits').count();
-  assert.ok(labelsCount >= 0, 'Slider range markup exists');
+  const labelsCount = await page.locator('.roi-slider-limits').count();
+  assert.strictEqual(labelsCount, 3, 'Expected exactly 3 .roi-slider-limits containers below sliders');
   await sanitizePage(page);
 });
 

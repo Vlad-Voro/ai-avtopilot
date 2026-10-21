@@ -95,13 +95,12 @@ def generate_service_html(data: dict) -> str:
         ],
     }
 
-    # JSON-LD SoftwareApplication
-    app_ld = {
-        "@type": "SoftwareApplication",
-        "@id": f"https://ai-avtopilot.ru/services/{slug}/#app",
+    # JSON-LD Service
+    service_ld = {
+        "@type": "Service",
+        "@id": f"https://ai-avtopilot.ru/services/{slug}/#service",
         "name": f"АвтоПилот: {title.split('|')[0].strip()}",
-        "operatingSystem": "Windows, Linux (1C:Enterprise 8.3 On-Premise)",
-        "applicationCategory": "BusinessApplication",
+        "provider": {"@id": "https://ai-avtopilot.ru/#organization"},
         "description": description,
         "offers": {
             "@type": "Offer",
@@ -194,7 +193,7 @@ def generate_service_html(data: dict) -> str:
                 "inLanguage": "ru-RU",
             },
             breadcrumb_ld,
-            app_ld,
+            service_ld,
             faq_ld,
         ],
     }
@@ -324,14 +323,16 @@ def generate_service_html(data: dict) -> str:
         ]
     )
 
-    # Load master CSS / head assets from reference template for 100% style parity
-    template_ref = ROOT_DIR / "index.html"
-    ref_content = template_ref.read_text(encoding="utf-8")
+    # External Stylesheet link
+    css_path = ROOT_DIR / "assets" / "css" / "styles.min.css"
+    if css_path.exists():
+        import hashlib
 
-    # Extract <style id="app-styles"> ... </style>
-    style_start = ref_content.find('<style id="app-styles">')
-    style_end = ref_content.find("</style>", style_start) + len("</style>")
-    master_styles = ref_content[style_start:style_end]
+        raw_css = css_path.read_bytes().replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+        css_hash = hashlib.md5(raw_css).hexdigest()[:8]
+    else:
+        css_hash = "03f2d5b5"
+    stylesheet_tag = f'  <link rel="stylesheet" href="/assets/css/styles.min.css?v={css_hash}" />'
 
     html_out = f"""<!DOCTYPE html>
 <html lang="ru">
@@ -426,8 +427,8 @@ def generate_service_html(data: dict) -> str:
   <link rel="preload" href="/assets/fonts/JetBrainsMono-400-8.woff2" as="font" type="font/woff2" crossorigin="" />
   <link rel="preload" href="/assets/fonts/JetBrainsMono-400-12.woff2" as="font" type="font/woff2" crossorigin="" />
 
-  <!-- Inlined Styles -->
-{master_styles}
+  <!-- External Stylesheet -->
+{stylesheet_tag}
 
   <!-- Scripts -->
   <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.1"></script>
