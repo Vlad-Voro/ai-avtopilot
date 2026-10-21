@@ -51,21 +51,24 @@ jobs:
         env:
           TG_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TG_ADMIN_ID: ${{ secrets.TELEGRAM_ADMIN_ID }}
+          RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          COMMIT_SHA: ${{ github.sha }}
         run: |
           if [ -n "$TG_BOT_TOKEN" ] && [ -n "$TG_ADMIN_ID" ]; then
-            MSG="🚨 *Ai-Avtopilot: Сбой синтетической верификации!*
-
-• *Workflow*: \`${{ github.workflow }}\`
-• *Job*: \`${{ github.job }}\`
-• *Событие*: \`${{ github.event_name }}\`
-• *Коммит*: [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
-• *Ссылка на лог*: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-
-⚠️ Требуется проверка упавших тестов или сетевого шлюза."
-            curl -s -X POST "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
-              -d chat_id="${TG_ADMIN_ID}" \
-              -d parse_mode="Markdown" \
-              -d text="$MSG" > /dev/null || true
+            python3 -c '
+          import urllib.request, json, os
+          token = os.environ.get("TG_BOT_TOKEN")
+          chat_id = os.environ.get("TG_ADMIN_ID")
+          run_url = os.environ.get("RUN_URL")
+          sha = os.environ.get("COMMIT_SHA", "")[:7]
+          msg = f"🚨 *Ai-Avtopilot: Сбой синтетической верификации!*\n\n• *Коммит*: {sha}\n• *Лог*: {run_url}\n\n⚠️ Проверьте результаты тестов в GitHub Actions."
+          data = json.dumps({"chat_id": chat_id, "text": msg, "parse_mode": "Markdown"}).encode("utf-8")
+          try:
+              req = urllib.request.Request(f"https://api.telegram.org/bot{token}/sendMessage", data=data, headers={"Content-Type": "application/json"})
+              urllib.request.urlopen(req)
+          except Exception as e:
+              print("Telegram alert error:", e)
+          '
           else
             echo "Notice: Telegram credentials not configured in repository secrets."
           fi
