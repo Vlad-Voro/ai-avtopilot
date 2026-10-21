@@ -53,6 +53,16 @@ function runCompareCardInvariantsSuite() {
     return content.includes('compare__grid');
   });
 
+  const stylesPath = path.join(ROOT_DIR, 'assets', 'css', 'styles.min.css');
+  const sharedStyles = fs.existsSync(stylesPath) ? fs.readFileSync(stylesPath, 'utf-8') : '';
+
+  function getEffectiveCss(htmlContent) {
+    if (htmlContent.includes('styles.min.css')) {
+      return htmlContent + '\n' + sharedStyles;
+    }
+    return htmlContent;
+  }
+
   check(`All compare pages found (expected 29, got ${compareFiles.length})`, () => {
     assert.strictEqual(compareFiles.length, 29);
   });
@@ -60,9 +70,10 @@ function runCompareCardInvariantsSuite() {
   check('All 29 compare pages declare .compare__grid with align-items:stretch', () => {
     for (const f of compareFiles) {
       const content = fs.readFileSync(f, 'utf-8');
+      const effectiveContent = getEffectiveCss(content);
       const rel = path.relative(ROOT_DIR, f);
       assert(
-        /\.compare__grid\s*\{[^}]*align-items:\s*stretch/.test(content),
+        /\.compare__grid\s*\{[^}]*align-items:\s*stretch/.test(effectiveContent),
         `Missing align-items:stretch in ${rel}`
       );
     }
@@ -71,9 +82,10 @@ function runCompareCardInvariantsSuite() {
   check('All 29 compare pages declare .compare__card with height:100%', () => {
     for (const f of compareFiles) {
       const content = fs.readFileSync(f, 'utf-8');
+      const effectiveContent = getEffectiveCss(content);
       const rel = path.relative(ROOT_DIR, f);
       assert(
-        /\.compare__card\s*\{[^}]*height:\s*100%/.test(content),
+        /\.compare__card\s*\{[^}]*height:\s*100%/.test(effectiveContent),
         `Missing height:100% in ${rel}`
       );
     }
@@ -82,9 +94,10 @@ function runCompareCardInvariantsSuite() {
   check('All 29 compare pages declare .compare__arrow with align-self:center', () => {
     for (const f of compareFiles) {
       const content = fs.readFileSync(f, 'utf-8');
+      const effectiveContent = getEffectiveCss(content);
       const rel = path.relative(ROOT_DIR, f);
       assert(
-        /\.compare__arrow\s*\{[^}]*align-self:\s*center/.test(content),
+        /\.compare__arrow\s*\{[^}]*align-self:\s*center/.test(effectiveContent),
         `Missing align-self:center in ${rel}`
       );
     }
@@ -93,9 +106,10 @@ function runCompareCardInvariantsSuite() {
   check('All 29 compare pages declare mobile .compare__card with height:auto', () => {
     for (const f of compareFiles) {
       const content = fs.readFileSync(f, 'utf-8');
+      const effectiveContent = getEffectiveCss(content);
       const rel = path.relative(ROOT_DIR, f);
       assert(
-        /\.compare__card\s*\{[^}]*height:\s*auto/.test(content),
+        /\.compare__card\s*\{[^}]*height:\s*auto/.test(effectiveContent),
         `Missing mobile height:auto in ${rel}`
       );
     }

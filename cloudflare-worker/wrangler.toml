@@ -8,3 +8,7 @@ routes = [
   { pattern = "www.ai-avtopilot.ru/submit", zone_name = "ai-avtopilot.ru" },
   { pattern = "ai-avtopilot.ru/status", zone_name = "ai-avtopilot.ru" }
 ]
+
+# Daily synthetic site healthcheck (06:00 UTC / 09:00 MSK)
+[triggers]
+crons = ["0 6 * * *"]

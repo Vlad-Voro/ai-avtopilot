@@ -117,6 +117,65 @@ async function sendTelegramMessage(token, chatId, text, parseMode = "HTML", repl
   return res;
 }
 
+async function performDailyHealthCheck(env, manual = false) {
+  const botToken = env.BOT_TOKEN;
+  const adminChatId = parseInt(env.ADMIN_CHAT_ID || "0", 10);
+  if (!botToken || !adminChatId) {
+    return { ok: false, error: "Missing bot credentials in environment" };
+  }
+
+  const start = Date.now();
+  let status = 0;
+  let size = 0;
+  let errorMsg = null;
+
+  try {
+    const res = await fetch("https://ai-avtopilot.ru/", {
+      headers: { "User-Agent": "Mozilla/5.0 (AiAvtopilotHealthCheckBot/2.0)" },
+      cf: { cacheTtl: 0 }
+    });
+    status = res.status;
+    const text = await res.text();
+    size = text.length;
+
+    if (status !== 200) {
+      errorMsg = `Неверный HTTP статус: ${status}`;
+    } else if (size < 50000) {
+      errorMsg = `Размер HTML аномально мал (${size} байт, норма > 50 КБ)`;
+    } else if (!text.includes("АвтоПилот") && !text.includes("ai-avtopilot")) {
+      errorMsg = "Тело ответа не содержит ключевых маркеров сайта";
+    }
+  } catch (err) {
+    errorMsg = err.message || "Сетевая ошибка при проверке сайта";
+  }
+
+  const latency = Date.now() - start;
+  const mskTime = getMskTime();
+
+  if (errorMsg) {
+    const alertMsg =
+      `🚨 <b>ВНИМАНИЕ: Сбой доступности ai-avtopilot.ru!</b>\n\n` +
+      `❌ <b>Причина:</b> ${escapeHtml(errorMsg)}\n` +
+      `⏱️ <b>Время отклика:</b> ${latency}ms\n` +
+      `⏰ <b>Время фиксации:</b> ${mskTime}\n` +
+      `🌐 <b>URL:</b> https://ai-avtopilot.ru/\n\n` +
+      `⚠️ <i>Требуется оперативная проверка хостинга / DNS!</i>`;
+    await sendTelegramMessage(botToken, adminChatId, alertMsg);
+    return { ok: false, error: errorMsg, latency, mskTime };
+  } else {
+    const reportMsg =
+      `🟢 <b>Суточный мониторинг ai-avtopilot.ru</b>\n\n` +
+      `🌐 <b>Сайт:</b> https://ai-avtopilot.ru/ (HTTP 200 OK)\n` +
+      `⏱️ <b>Время отклика:</b> ${latency}ms\n` +
+      `📦 <b>Размер HTML:</b> ${(size / 1024).toFixed(1)} КБ\n` +
+      `🛡️ <b>Шлюз заявок:</b> Активен 24/7\n` +
+      `⏰ <b>Время проверки:</b> ${mskTime}\n\n` +
+      `✅ Все системы работают в штатном режиме.`;
+    await sendTelegramMessage(botToken, adminChatId, reportMsg);
+    return { ok: true, latency, size, mskTime };
+  }
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -227,6 +286,15 @@ export default {
         ),
         { headers: { "Content-Type": "application/json; charset=utf-8", ...corsHeaders } }
       );
+    }
+
+    // ── 2b. Synthetic Health Probe: GET /healthcheck ────────────────────────
+    if (url.pathname === "/healthcheck" && request.method === "GET") {
+      const result = await performDailyHealthCheck(env, true);
+      return new Response(JSON.stringify(result, null, 2), {
+        status: result.ok ? 200 : 503,
+        headers: { "Content-Type": "application/json; charset=utf-8", ...corsHeaders },
+      });
     }
 
     // ── 3. Lead Submission: POST /submit or POST /api/lead ──────────────────
@@ -409,10 +477,21 @@ export default {
               "🤖 Бот <b>АвтоПилот</b> (<code>@AiAvtopilotbot</code>) защищён и активен в облаке 24/7.\n\n" +
               "🟢 <b>Статус:</b> Защищённый Cloudflare Worker\n" +
               "🛡️ <b>Вебхук:</b> Защищён Secret Token\n" +
-              "🌐 <b>Сайт:</b> <a href=\"https://ai-avtopilot.ru\">ai-avtopilot.ru</a>\n\n" +
-              "⚡ <b>Как отвечать клиентам:</b>\n" +
-              "Используйте стандартный <b>Reply</b> на любое уведомление с заявкой.";
+              "🌐 <b>Сайт:</b> <a href=\"https://ai-avtopilot.ru\">ai-avtopilot.ru</a>\n" +
+              "⏰ <b>Суточный мониторинг:</b> 06:00 UTC (09:00 МСК)\n\n" +
+              "⚡ <b>Команды:</b>\n" +
+              "/health — проверить доступность сайта прямо сейчас\n" +
+              "/status — информация о шлюзе\n" +
+              "/test — тест связки\n\n" +
+              "💡 <b>Ответ клиентам:</b> Используйте стандартный <b>Reply</b> на любое уведомление.";
             await sendTelegramMessage(botToken, adminChatId, adminPanel);
+          } else if (rawText === "/health" || rawText === "/ping") {
+            await sendTelegramMessage(
+              botToken,
+              adminChatId,
+              "⏳ Запускаю синтетическую проверку https://ai-avtopilot.ru/..."
+            );
+            await performDailyHealthCheck(env, true);
           } else if (rawText === "/test") {
             await sendTelegramMessage(
               botToken,
@@ -481,5 +560,9 @@ export default {
     }
 
     return new Response("Not Found", { status: 404 });
+  },
+
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(performDailyHealthCheck(env, false));
   },
 };

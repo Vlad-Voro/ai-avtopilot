@@ -45,3 +45,27 @@ jobs:
             echo "Error: Page download was truncated ($SIZE bytes)!"
             exit 1
           fi
+
+      - name: Alert Telegram on Failure
+        if: failure()
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_ADMIN_ID: ${{ secrets.TELEGRAM_ADMIN_ID }}
+        run: |
+          if [ -n "$TG_BOT_TOKEN" ] && [ -n "$TG_ADMIN_ID" ]; then
+            MSG="🚨 *Ai-Avtopilot: Сбой синтетической верификации!*
+
+• *Workflow*: \`${{ github.workflow }}\`
+• *Job*: \`${{ github.job }}\`
+• *Событие*: \`${{ github.event_name }}\`
+• *Коммит*: [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
+• *Ссылка на лог*: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+⚠️ Требуется проверка упавших тестов или сетевого шлюза."
+            curl -s -X POST "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
+              -d chat_id="${TG_ADMIN_ID}" \
+              -d parse_mode="Markdown" \
+              -d text="$MSG" > /dev/null || true
+          else
+            echo "Notice: Telegram credentials not configured in repository secrets."
+          fi
