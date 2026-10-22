@@ -4,14 +4,8 @@
   "trailingSlash": true,
   "redirects": [
     {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.ai-avtopilot.ru"
-        }
-      ],
-      "destination": "https://ai-avtopilot.ru/:path*",
+      "source": "/(.*)",
+      "destination": "https://ai-avtopilot.ru/$1",
       "permanent": true
     },
     {
