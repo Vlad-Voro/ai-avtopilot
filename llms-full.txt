@@ -192,6 +192,7 @@ $$\text{Годовая экономия (₽)} = N_{\text{сотрудников
 - **Кейс автоматизации тендерного отдела**: https://ai-avtopilot.ru/cases/tender-procurement-automation/
 - **Кейс учета претензий и дебиторки**: https://ai-avtopilot.ru/cases/claims-dispute-automation/
 - **Кейс автоответов на отзывы нейросетью**: https://ai-avtopilot.ru/cases/reviews-reputation-automation/
+- **Кейс подбора автозапчастей по VIN (СТО)**: https://ai-avtopilot.ru/cases/auto-dealer-parts-automation/
 - **Калькулятор окупаемости ROI**: https://ai-avtopilot.ru/calculator/
 - **Интерактивный дашборд**: https://ai-avtopilot.ru/dashboard/
 - **Частые вопросы (FAQ)**: https://ai-avtopilot.ru/faq/

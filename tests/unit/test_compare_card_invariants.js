@@ -63,11 +63,11 @@ function runCompareCardInvariantsSuite() {
     return htmlContent;
   }
 
-  check(`All compare pages found (expected 36, got ${compareFiles.length})`, () => {
-    assert.strictEqual(compareFiles.length, 36);
+  check(`All compare pages found (expected 37, got ${compareFiles.length})`, () => {
+    assert.strictEqual(compareFiles.length, 37);
   });
 
-  check('All 36 compare pages declare .compare__grid with align-items:stretch', () => {
+  check('All 37 compare pages declare .compare__grid with align-items:stretch', () => {
     for (const f of compareFiles) {
       const content = fs.readFileSync(f, 'utf-8');
       const effectiveContent = getEffectiveCss(content);
@@ -79,7 +79,7 @@ function runCompareCardInvariantsSuite() {
     }
   });
 
-  check('All 36 compare pages declare .compare__card with height:100%', () => {
+  check('All 37 compare pages declare .compare__card with height:100%', () => {
     for (const f of compareFiles) {
       const content = fs.readFileSync(f, 'utf-8');
       const effectiveContent = getEffectiveCss(content);
@@ -91,7 +91,7 @@ function runCompareCardInvariantsSuite() {
     }
   });
 
-  check('All 36 compare pages declare .compare__arrow with align-self:center', () => {
+  check('All 37 compare pages declare .compare__arrow with align-self:center', () => {
     for (const f of compareFiles) {
       const content = fs.readFileSync(f, 'utf-8');
       const effectiveContent = getEffectiveCss(content);
@@ -103,7 +103,7 @@ function runCompareCardInvariantsSuite() {
     }
   });
 
-  check('All 36 compare pages declare mobile .compare__card with height:auto', () => {
+  check('All 37 compare pages declare mobile .compare__card with height:auto', () => {
     for (const f of compareFiles) {
       const content = fs.readFileSync(f, 'utf-8');
       const effectiveContent = getEffectiveCss(content);

@@ -1,9 +1,9 @@
 # B2B Content Strategy & Demand Capture Specification: ai-avtopilot.ru (Spec_content_ai_avtopilot.md)
 
 > **Status**: Production Deployed | **Target**: [ai-avtopilot.ru](https://ai-avtopilot.ru/) | **Geo**: Russian Federation (Nationwide B2B)  
-> **Inventory**: 39 Production URLs (1 Root, 6 Hubs, 19 Services, 10 Cases, 3 Utility)  
+> **Inventory**: 40 Production URLs (1 Root, 6 Hubs, 19 Services, 11 Cases, 3 Utility)  
 > **Search Targets**: Yandex (Web + «Нейро»), Google RU (AI Overviews), Perplexity, Klerk.ru, Infostart.ru  
-> **Verification**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E) | **AI Slop**: **0 Markers** across all 39 URLs
+> **Verification**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E) | **AI Slop**: **0 Markers** across all 40 URLs
 
 ---
 
@@ -18,11 +18,11 @@ flowchart TD
         Val -- "Validated Pool" --> Brief["Validated Semantics Matrix"]
     end
 
-    subgraph Architecture ["2. Production Silo Architecture (39 URLs)"]
+    subgraph Architecture ["2. Production Silo Architecture (40 URLs)"]
         Root["/ (Main Landing Page)"]
         Hubs["6 Hub Pages (/services/, /cases/, /calculator/, /dashboard/, /faq/, /contact/)"]
         T1["19 Dedicated Service Pages (/services/*)"]
-        T3["10 Applied Case Studies (/cases/*)"]
+        T3["11 Applied Case Studies (/cases/*)"]
         Util["3 Utility Pages (/privacy.html, /404.html, /success.html)"]
     end
 
@@ -43,7 +43,7 @@ flowchart TD
     Brief --> Architecture --> Pipeline --> Conversion
 ```
 
-### 1.1. Production Page Inventory (39 URLs)
+### 1.1. Production Page Inventory (40 URLs)
 
 | Route / Slug | Page Type | Core B2B Scope & Value Proposition | Key Metric / KPI |
 | :--- | :--- | :--- | :--- |
@@ -83,6 +83,7 @@ flowchart TD
 | `/cases/claims-dispute-automation/` | Case | B2B Distribution: claim processing time slashed from 4 days to 40 min. | −75% claim latency |
 | `/cases/reviews-reputation-automation/` | Case | Multi-location clinic: 24/7 Yandex/2GIS monitoring and incident escalation. | 4.9★ rating retained |
 | `/cases/tender-procurement-automation/` | Case | Industrial supply: automated RFP analysis and 1C:ERP margin calculation. | 3x tender volume |
+| `/cases/auto-dealer-parts-automation/` | Case | Auto repair network (45 stations): VIN parts lookup in 40s, 0.4% error rate. | 40s VIN lookup, +18% margin |
 | `/privacy.html` | Utility | 152-FZ compliant personal data processing policy. | Legal compliance |
 | `/404.html` | Utility | Clean route fallback preserving original requested path. | Client state recovery |
 | `/success.html` | Utility | Conversion confirmation page with direct Telegram contact action. | Post-submit UX |
@@ -90,7 +91,7 @@ flowchart TD
 ### 1.2. Internal Linking Mesh & Hierarchy
 - **Service Silo Mesh ($K_{19}$)**: Each of the 19 service pages cross-links to all 18 sibling services in `#other-services` placed strictly below `#contact` (342 directed internal links, 0 self-links, 0 redirect hops).
 - **Strict 3-Case Invariant**: Every service page displays exactly 3 applied case cards in `#cases` (`.cases__grid--static`). Eliminates empty slots in 3-column desktop layout.
-- **Case Silo Mesh ($K_{10}$)**: Each of the 10 case pages cross-links to all 9 sibling cases in `#cases` strictly below `#contact` (90 directed internal links, 0 self-links).
+- **Case Silo Mesh ($K_{11}$)**: Each of the 11 case pages cross-links to all 10 sibling cases in `#cases` strictly below `#contact` (110 directed internal links, 0 self-links).
 
 ---
 

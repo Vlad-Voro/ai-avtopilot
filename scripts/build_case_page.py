@@ -37,6 +37,7 @@ SLUG_TO_CARD_CLASS = {
     "tender-procurement-automation": "case-card--tender",
     "claims-dispute-automation": "case-card--claims",
     "reviews-reputation-automation": "case-card--reviews",
+    "auto-dealer-parts-automation": "case-card--dealer",
 }
 
 

@@ -75,16 +75,11 @@
 <!-- DNS Prefetch for Outbound Endpoints -->
 <link href="https://mc.yandex.ru" rel="dns-prefetch"/>
 <link href="https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev" rel="dns-prefetch"/>
-<!-- Preload Local Core Fonts -->
+<!-- Preload Local Core Fonts (High-Impact Above-The-Fold) -->
 <link as="font" crossorigin="" href="/assets/fonts/Inter-400-1.woff2" rel="preload" type="font/woff2"/>
-<link as="font" crossorigin="" href="/assets/fonts/Inter-400-6.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/assets/fonts/Outfit-600-14.woff2" rel="preload" type="font/woff2"/>
-<link as="font" crossorigin="" href="/assets/fonts/JetBrainsMono-400-8.woff2" rel="preload" type="font/woff2"/>
-<link as="font" crossorigin="" href="/assets/fonts/JetBrainsMono-400-12.woff2" rel="preload" type="font/woff2"/>
 <!-- Inlined Styles (Eliminates Render-Blocking CSS & Critical Request Chains) -->
-<link rel="stylesheet" href="/assets/css/styles.min.css?v=03f2d5b5" />
-<!-- Scripts -->
-<script crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.1" type="module"></script>
+<link href="/assets/css/styles.min.css?v=03f2d5b5" rel="stylesheet"/>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
 <script type="text/javascript">
     (function() {
@@ -708,6 +703,26 @@
 </div>
 </div>
 <div class="case-card__tags"><span>Яндекс Карты</span><span>2ГИС</span><span>Tone-of-Voice</span><span>SERM</span></div>
+</a>
+<a aria-label="Подбор запчастей по VIN и автозаказ-наряды: подробнее о кейсе внедрения" class="case-card case-card--dealer case-card--link" href="/cases/auto-dealer-parts-automation/">
+<div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--dealer"></span>🚗 Сеть автосервисов · 45 станций ТО</div>
+<h3 class="case-card__title">Подбор автозапчастей по VIN <span aria-hidden="true" class="case-card__arrow">→</span></h3>
+<p class="case-card__desc">Автоматическая расшифровка VIN, <span class="case-highlight case-highlight--dealer">мультипроценка по API 6 дистрибьюторов</span>, автосоздание заказ-нарядов в 1С:Альфа-Авто и снижение возвратов до 0,4%.</p>
+<div class="case-card__results">
+<div class="case-result">
+<span class="case-result__num case-num--green">40 сек</span>
+<span class="case-result__label">расчет заказ-наряда</span>
+</div>
+<div class="case-result">
+<span class="case-result__num case-num--green">0,4%</span>
+<span class="case-result__label">ошибок подбора</span>
+</div>
+<div class="case-result">
+<span class="case-result__num case-num--gold">+18%</span>
+<span class="case-result__label">маржа на деталях</span>
+</div>
+</div>
+<div class="case-card__tags"><span>1С:Альфа-Авто</span><span>TecDoc API</span><span>АвтоДилер</span><span>Каталог VIN</span></div>
 </a>
 </div>
 <div class="slider-controls">
@@ -1420,6 +1435,7 @@
           totalSlides = calcTotalSlides();
           dotsWrap.innerHTML = '';
 
+          var frag = document.createDocumentFragment();
           for (var i = 0; i < totalSlides; i++) {
             var dot = document.createElement('button');
             dot.type = 'button';
@@ -1430,8 +1446,9 @@
                 goToSlide(idx);
               });
             })(i);
-            dotsWrap.appendChild(dot);
+            frag.appendChild(dot);
           }
+          dotsWrap.appendChild(frag);
           updateArrows();
         }
 
@@ -1631,8 +1648,7 @@
   </script>
 <!--email_off-->
 <!-- Schema.org Microdata -->
-<script type="application/ld+json">
-{
+<script type="application/ld+json">{
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -1848,8 +1864,9 @@
       ]
     }
   ]
-}
-</script>
+}</script>
 <!--/email_off-->
+<!-- Deferred Scripts (Eliminates Critical Request Chains) -->
+<script crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.1" type="module"></script>
 </body>
 </html>

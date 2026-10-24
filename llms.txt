@@ -105,6 +105,7 @@
 - Кейс автоматизации тендерного отдела (44-ФЗ / 223-ФЗ, 1С:ERP): https://ai-avtopilot.ru/cases/tender-procurement-automation/
 - Кейс учета претензий и дебиторки (ТОРГ-2, ст. 395 ГК РФ, 1С:ERP): https://ai-avtopilot.ru/cases/claims-dispute-automation/
 - Кейс автоответов на отзывы нейросетью (SERM / ORM, 2ГИС, Яндекс Карты): https://ai-avtopilot.ru/cases/reviews-reputation-automation/
+- Кейс подбора автозапчастей по VIN (45 СТО, 1С:Альфа-Авто): https://ai-avtopilot.ru/cases/auto-dealer-parts-automation/
 - Калькулятор ROI: https://ai-avtopilot.ru/calculator/
 - Интерактивный дашборд: https://ai-avtopilot.ru/dashboard/
 - Запись на бесплатный аудит: https://ai-avtopilot.ru/contact/

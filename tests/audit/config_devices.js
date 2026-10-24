@@ -238,6 +238,7 @@ const ALL_PAGES = [
   { path: '/cases/supply-chain-logistics/', name: 'Кейс: Логистика и цепи', category: 'case' },
   { path: '/cases/fintech-transaction-reconciliation/', name: 'Кейс: Финтех сверка', category: 'case' },
   { path: '/cases/sales-speech-analytics/', name: 'Кейс: Продажи и аудио', category: 'case' },
+  { path: '/cases/auto-dealer-parts-automation/', name: 'Кейс: СТО и подбор по VIN', category: 'case' },
 
   // Utility
   { path: '/privacy.html', name: 'Политика конфиденциальности', category: 'utility' },
