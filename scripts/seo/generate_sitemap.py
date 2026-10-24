@@ -136,6 +136,12 @@ URL_SPEC = [
         "changefreq": "weekly",
         "priority": "0.9",
     },
+    {
+        "url": "https://ai-avtopilot.ru/services/construction-estimate-audit/",
+        "file": "services/construction-estimate-audit/index.html",
+        "changefreq": "weekly",
+        "priority": "0.9",
+    },
     {"url": "https://ai-avtopilot.ru/cases/", "file": "cases/index.html", "changefreq": "weekly", "priority": "0.8"},
     {
         "url": "https://ai-avtopilot.ru/cases/retail-inventory-automation/",

@@ -229,6 +229,7 @@ const ALL_PAGES = [
   { path: '/services/price-monitoring/', name: 'Услуга: Мониторинг цен', category: 'service' },
   { path: '/services/debt-control/', name: 'Услуга: Контроль дебиторки', category: 'service' },
   { path: '/services/reviews-reputation/', name: 'Услуга: Управление отзывами', category: 'service' },
+  { path: '/services/construction-estimate-audit/', name: 'Услуга: Аудит смет и КС-2', category: 'service' },
 
   // Deep Case Studies
   { path: '/cases/retail-inventory-automation/', name: 'Кейс: Ритейл и остатки', category: 'case' },

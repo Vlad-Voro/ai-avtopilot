@@ -3,7 +3,7 @@
 > **Status**: Production Deployed | **Target**: [ai-avtopilot.ru](https://ai-avtopilot.ru/) | **Geo**: Russian Federation (Nationwide B2B)  
 > **Inventory**: 40 Production URLs (1 Root, 6 Hubs, 19 Services, 11 Cases, 3 Utility)  
 > **Search Targets**: Yandex (Web + «Нейро»), Google RU (AI Overviews), Perplexity, Klerk.ru, Infostart.ru  
-> **Verification**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E) | **AI Slop**: **0 Markers** across all 40 URLs
+> **Verification**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E) | **AI Slop**: **0 Markers** across all 41 URLs
 
 ---
 
@@ -73,6 +73,7 @@ flowchart TD
 | `/services/knowledge-base-rag/` | Service | Corporate RAG knowledge base, 152-FZ on-premise LLM, 1C/PDF citation. | 2s query SLA, 100% on-premise |
 | `/services/b2b-outbound/` | Service | Autonomous AI SDR, cold outreach in Email & TG, lead scoring, CRM handover. | 100 touches/day, 12% reply rate |
 | `/services/customer-retention/` | Service | Predictive RFM cohort analysis in 1C, churn prevention, LTV reactivation. | +25% repeat sales, −40% churn |
+| `/services/construction-estimate-audit/` | Service | Automated estimate audit, KS-2/KS-3 verification, Grand-Smeta & 1C:ERP USO. | 3m audit, −12% overpricing |
 | `/cases/retail-inventory-automation/` | Case | Retail network (230 stores): -72% manual accounting, 9,200 hrs/yr saved. | −72% labor, +18% turnover |
 | `/cases/manufacturing-edi-automation/` | Case | Manufacturing plant: -90% paper EDI, period close in 5 min vs 3 days. | $\ge 400\%$ ROI |
 | `/cases/service-center-ai-operator/` | Case | Service center (40k clients/mo): 80.4% autonomous resolution. | 80.4% automated, 3 ₽/lead |
@@ -89,7 +90,7 @@ flowchart TD
 | `/success.html` | Utility | Conversion confirmation page with direct Telegram contact action. | Post-submit UX |
 
 ### 1.2. Internal Linking Mesh & Hierarchy
-- **Service Silo Mesh ($K_{19}$)**: Each of the 19 service pages cross-links to all 18 sibling services in `#other-services` placed strictly below `#contact` (342 directed internal links, 0 self-links, 0 redirect hops).
+- **Service Silo Mesh ($K_{20}$)**: Each of the 20 service pages cross-links to all 19 sibling services in `#other-services` placed strictly below `#contact` (380 directed internal links, 0 self-links, 0 redirect hops).
 - **Strict 3-Case Invariant**: Every service page displays exactly 3 applied case cards in `#cases` (`.cases__grid--static`). Eliminates empty slots in 3-column desktop layout.
 - **Case Silo Mesh ($K_{11}$)**: Each of the 11 case pages cross-links to all 10 sibling cases in `#cases` strictly below `#contact` (110 directed internal links, 0 self-links).
 

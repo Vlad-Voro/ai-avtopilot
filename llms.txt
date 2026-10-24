@@ -93,6 +93,7 @@
 - Корпоративная AI-база знаний и RAG-поиск: https://ai-avtopilot.ru/services/knowledge-base-rag/
 - AI SDR и B2B-аутрич: https://ai-avtopilot.ru/services/b2b-outbound/
 - Retention-маркетинг и реактивация LTV: https://ai-avtopilot.ru/services/customer-retention/
+- AI-аудит смет и строительный контроль: https://ai-avtopilot.ru/services/construction-estimate-audit/
 - Быстрый старт ИИ-агентов за 14 дней: https://ai-avtopilot.ru/services/rapid-pilot/
 - Кейсы клиентов: https://ai-avtopilot.ru/cases/
 - Кейс автоматизации розничной сети (230 точек, 1С:Розница): https://ai-avtopilot.ru/cases/retail-inventory-automation/
