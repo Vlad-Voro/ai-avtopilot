@@ -69,7 +69,7 @@
 
   <!-- Security Headers & Policies -->
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://mc.yandex.com https://yastatic.net https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://ai-avtopilot.ru https://mc.yandex.ru https://mc.yandex.com; connect-src 'self' https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev https://api.web3forms.com https://formsubmit.co https://mc.yandex.ru https://mc.yandex.com wss://mc.yandex.ru wss://mc.yandex.com https://cloudflareinsights.com; frame-src https://mc.yandex.ru https://mc.yandex.com blob:; child-src https://mc.yandex.ru https://mc.yandex.com blob:;" />
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://mc.yandex.com https://yastatic.net https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://ai-avtopilot.ru https://mc.yandex.ru https://mc.yandex.com; connect-src 'self' https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev https://api.web3forms.com https://mc.yandex.ru https://mc.yandex.com wss://mc.yandex.ru wss://mc.yandex.com https://cloudflareinsights.com; frame-src https://mc.yandex.ru https://mc.yandex.com blob:; child-src https://mc.yandex.ru https://mc.yandex.com blob:;" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
@@ -2987,6 +2987,27 @@ section[id] {
           <div class="case-card__tags"><span>Яндекс Карты</span><span>2ГИС</span><span>Tone-of-Voice</span><span>SERM</span></div>
         </a>
 
+        <a href="/cases/auto-dealer-parts-automation/" class="case-card case-card--dealer case-card--link" aria-label="Подбор запчастей по VIN и автозаказ-наряды: подробнее о кейсе внедрения">
+          <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--dealer"></span>🚗 Сеть автосервисов · 45 станций ТО</div>
+          <h3 class="case-card__title">Подбор автозапчастей по VIN <span class="case-card__arrow" aria-hidden="true">→</span></h3>
+          <p class="case-card__desc">Автоматическая расшифровка VIN, <span class="case-highlight case-highlight--dealer">мультипроценка по API 6 дистрибьюторов</span>, автосоздание заказ-нарядов в 1С:Альфа-Авто и снижение возвратов до 0,4%.</p>
+          <div class="case-card__results">
+            <div class="case-result">
+              <span class="case-result__num case-num--green">40 сек</span>
+              <span class="case-result__label">расчет заказ-наряда</span>
+            </div>
+            <div class="case-result">
+              <span class="case-result__num case-num--green">0,4%</span>
+              <span class="case-result__label">ошибок подбора</span>
+            </div>
+            <div class="case-result">
+              <span class="case-result__num case-num--gold">+18%</span>
+              <span class="case-result__label">маржа на деталях</span>
+            </div>
+          </div>
+          <div class="case-card__tags"><span>1С:Альфа-Авто</span><span>TecDoc API</span><span>АвтоДилер</span><span>Каталог VIN</span></div>
+        </a>
+
 
 
       </div>
@@ -3160,15 +3181,9 @@ section[id] {
           <p class="contact__desc">За 30 минут разберем ваши процессы, покажем узкие места в текущем учете и рассчитаем потенциал экономии для вашей компании.</p>
         </div>
         <!--email_off-->
-        <form class="contact__form" id="contact-form" name="contact" method="POST" action="https://formsubmit.co/contact@ai-avtopilot.ru" novalidate>
-          <!-- Web3Forms Config: резервный канал при указании валидного ключа -->
-          <input type="hidden" name="access_key" value="" id="web3forms-key" />
-          <!-- FormSubmit Config: автоматический надёжный канал без ключей -->
+        <form class="contact__form" id="contact-form" name="contact" method="POST" action="/api/lead" novalidate>
           <input type="hidden" name="_next" value="https://ai-avtopilot.ru/success.html" />
           <input type="hidden" name="_subject" value="Новая заявка на аудит с сайта ai-avtopilot.ru" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="from_name" value="АвтоПилот Лид" />
           <div class="form-group form-group--required">
             <div class="form-label-row">
               <label for="contact-name">Ваше имя <span class="required-star" aria-label="Обязательное поле" title="Обязательное поле">*</span></label>
@@ -3200,13 +3215,19 @@ section[id] {
           <!-- Согласие 152-ФЗ -->
           <input type="hidden" name="consent" value="accepted" />
 
-          <!-- Spam protection Honeypot -->
-          <input type="text" name="_honey" style="display:none;" tabindex="-1" autocomplete="off" />
+          <!-- Multi-Layer Anti-Bot Honeypot -->
+          <input type="text" name="_honey" class="honeypot-input" style="display:none!important;" tabindex="-1" autocomplete="off" />
+          <input type="hidden" name="_ts" id="lead-ts" value="" />
 
           <button type="submit" class="btn btn--primary btn--full" id="form-submit">
             Записаться на аудит
           </button>
           <p class="form-privacy">Нажимая кнопку, вы подтверждаете согласие на обработку персональных данных в соответствии с <a href="/privacy.html" target="_blank" rel="noopener noreferrer" class="form-link">Политикой конфиденциальности</a> (152-ФЗ)</p>
+          <noscript>
+            <div class="noscript-lead-fallback" style="margin-top:12px;padding:10px 14px;background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.3);border-radius:8px;font-size:0.85rem;color:var(--text-2,#94a3b8);text-align:center;">
+              Для мгновенной связи без JavaScript напишите нам в Telegram: <a href="https://t.me/AiAvtopilotbot" target="_blank" rel="noopener" style="color:var(--accent-1,#6366f1);font-weight:600;text-decoration:underline;">@AiAvtopilotbot</a> или на <a href="mailto:contact@ai-avtopilot.ru" style="color:var(--accent-1,#6366f1);text-decoration:underline;">contact@ai-avtopilot.ru</a>
+            </div>
+          </noscript>
         </form>
         <!--/email_off-->
       </div>
@@ -3567,52 +3588,24 @@ section[id] {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
               });
-              return r2.ok;
-            } catch (_relErr) {
-              return false;
-            }
-          })();
-
-          var emailPromise = (async function() {
-            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-              return true;
-            }
-            try {
-              var r = await fetch('https://formsubmit.co/ajax/mr.vladimir.voronin@ya.ru', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                body: JSON.stringify({
-                  _subject: '⚡ Экспресс-сообщение из виджета ai-avtopilot.ru',
-                  _cc: 'contact@ai-avtopilot.ru',
-                  contact: contactVal,
-                  message: messageVal,
-                  _template: 'table'
-                })
-              });
-              if (r.ok) {
-                var d = await r.json();
-                if (d && (d.success === true || d.success === 'true')) return true;
+              if (r2.ok) {
+                var d2 = await r2.json();
+                if (d2 && (d2.success === true || d2.success === 'true')) return true;
               }
-            } catch (_fsErr) {}
+            } catch (_relErr) {}
             try {
-              var r2 = await fetch('https://formsubmit.co/ajax/contact@ai-avtopilot.ru', {
+              var r3 = await fetch('/api/fallback-lead', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                body: JSON.stringify({
-                  _subject: '⚡ Экспресс-сообщение из виджета ai-avtopilot.ru',
-                  contact: contactVal,
-                  message: messageVal,
-                  _template: 'table'
-                })
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
               });
-              return r2.ok;
-            } catch (_fsErr2) {
+              return r3.ok;
+            } catch (_fbErr) {
               return false;
             }
           })();
 
-          var results = await Promise.allSettled([tgPromise, emailPromise]);
-          delivered = results.some(function(r) { return r.status === 'fulfilled' && r.value === true; });
+          var delivered = await tgPromise;
 
           submitBtn.disabled = false;
           submitBtn.innerHTML = originalBtnText;

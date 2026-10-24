@@ -28,11 +28,12 @@ flowchart TD
         VEdge --> P5["3 Utility Pages (/privacy.html, /404.html, /success.html)"]
     end
 
-    subgraph Ingestion ["3. Ingestion & Notifications"]
-        CFW -->|Primary: HTML Telegram API| TGB["Telegram Bot @AiAvtopilotbot"]
+    subgraph Ingestion ["3. Multi-Cloud Ingestion & Notifications"]
+        CFW["Cloudflare Worker /submit"] -->|Tier 1 Primary: HTML Telegram API| TGB["Telegram Bot @AiAvtopilotbot"]
         TGB --> Admin["Duty Administrator"]
-        CFW -.->|Fallback on network error| W3F["Web3Forms + FormSubmit.co"]
-        W3F -.-> Mail["contact@ai-avtopilot.ru"]
+        CFW -.->|Tier 2 Failover: Vercel Edge| VFE["/api/fallback-lead (Vercel Serverless)"]
+        VFE -.-> Admin
+        CFW -.->|Tier 3 Failover: Client Guard| CLI["1-Click Clipboard + @AiAvtopilotbot"]
     end
 
     subgraph Monitoring ["4. Synthetic Monitoring"]
@@ -152,11 +153,12 @@ index.html (Master Template) & Data Catalogs
   - **Prohibited `&#039;`**: Triggers Telegram 400 Bad Request error.
 - **Anti-Hijacking Parser**: Regex `^🆔 ID клиента: <code>(\d+)</code>` isolates client ID, preventing prompt injection in user quotes.
 
-### 5.2. Lead Failover Cascade
-1. **Primary**: Worker $\to$ Telegram Bot [@AiAvtopilotbot](https://t.me/AiAvtopilotbot) to duty administrator.
-2. **Timeout**: Fetch aborted via `AbortController` after 6000ms.
-3. **Secondary**: Web3Forms API $\to$ FormSubmit.co $\to$ `contact@ai-avtopilot.ru`.
-4. **Offline Fallback UI**: Displays fallback card with 1-click clipboard payload copy and direct Telegram contact link.
+### 5.2. Multi-Cloud Lead Failover Cascade
+1. **Tier 1 (Primary Gateway)**: Cloudflare Worker `/submit` (`/api/lead`) with dual parser (JSON + `urlencoded`), bot timing verification, sliding-window rate limit (5 req/10m), and HTML 303 Redirect to `/success.html`.
+2. **Tier 2 (Multi-Cloud Failover)**: Vercel Serverless Function `/api/fallback-lead` running independently on Vercel Edge infrastructure, guaranteeing zero-loss if Cloudflare suffers an edge outage.
+3. **Tier 3 (Offline / Network Stall Guard)**: Resilient fallback card with 1-click clipboard payload copy and direct Telegram contact link (`@AiAvtopilotbot`) (`RES-02`, `RES-03`).
+4. **Tier 4 (NoScript Accessibility)**: In-page `<noscript>` container with instant Telegram and mailto direct contact buttons.
+5. **Zero Naked Form Endpoints**: Complete elimination of public third-party endpoints and hardcoded emails across all 41 HTML pages and client bundles.
 
 ---
 
@@ -189,6 +191,9 @@ index.html (Master Template) & Data Catalogs
 | **XSS & Injection** | Strict CSP: `default-src 'self'`; whitelisted analytics and fonts | Mitigates unauthorized script execution. |
 | **MIME Sniffing** | `X-Content-Type-Options: nosniff` header | Prevents browser MIME confusion attacks. |
 | **Outbound Leakage** | `Referrer-Policy: strict-origin-when-cross-origin` | Protects query tokens on outbound links. |
+| **Form Scraping & Spam Injection** | Masked `action="/api/lead"`, zero third-party endpoints, honeypot & timing trap ($\ge 1.0$s) | Neutralizes automated direct-to-endpoint bot submissions. |
+| **Non-JS Lead Drop** | Worker dual parser (`application/x-www-form-urlencoded`) + 303 Redirect to `/success.html` | 100% lead capture resilience without client-side JavaScript. |
+| **Gateway Single Point of Failure** | Tier 2 Vercel Serverless Function `/api/fallback-lead` running independently | Eliminates edge dependency, ensuring failover lead capture. |
 | **Payload Flooding** | 10 KB body clamp and input length validations | Neutralizes buffer overflow and DoS vectors. |
 | **Secret Leaks** | Zero credentials in repo; Cloudflare environment secrets | Eliminates API credential exposure. |
 | **Transit Sniffing** | TLS 1.3 / TLS 1.2 PFS, HSTS preload (1 year), zero mixed content | Guaranteed edge transit encryption. |

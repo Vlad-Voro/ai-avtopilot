@@ -65,7 +65,7 @@
   </script>
 
   <!-- Security Headers & Policies -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://mc.yandex.com https://yastatic.net https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://ai-avtopilot.ru https://mc.yandex.ru https://mc.yandex.com; connect-src 'self' https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev https://api.web3forms.com https://formsubmit.co https://mc.yandex.ru https://mc.yandex.com wss://mc.yandex.ru wss://mc.yandex.com https://cloudflareinsights.com; frame-src https://mc.yandex.ru https://mc.yandex.com blob:; child-src https://mc.yandex.ru https://mc.yandex.com blob:;" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://mc.yandex.com https://yastatic.net https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://ai-avtopilot.ru https://mc.yandex.ru https://mc.yandex.com; connect-src 'self' https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev https://api.web3forms.com https://mc.yandex.ru https://mc.yandex.com wss://mc.yandex.ru wss://mc.yandex.com https://cloudflareinsights.com; frame-src https://mc.yandex.ru https://mc.yandex.com blob:; child-src https://mc.yandex.ru https://mc.yandex.com blob:;" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
@@ -91,7 +91,7 @@
   <link rel="preload" href="/assets/fonts/JetBrainsMono-400-8.woff2" as="font" type="font/woff2" crossorigin="" />
   <link rel="preload" href="/assets/fonts/JetBrainsMono-400-12.woff2" as="font" type="font/woff2" crossorigin="" />
 
-  <!-- External Stylesheet -->
+  <!-- Extenal Stylesheet -->
   <link rel="stylesheet" href="/assets/css/styles.min.css?v=03f2d5b5" />
 
   <!-- Scripts -->
@@ -669,13 +669,9 @@
           <p class="contact__desc">За 30 минут разберем ваши процессы, покажем узкие места в текущем учете и рассчитаем потенциал экономии для вашей компании.</p>
         </div>
         <!--email_off-->
-        <form class="contact__form" id="contact-form" name="contact" method="POST" action="https://formsubmit.co/contact@ai-avtopilot.ru" novalidate="">
-          <input type="hidden" name="access_key" value="" id="web3forms-key" />
+        <form class="contact__form" id="contact-form" name="contact" method="POST" action="/api/lead" novalidate="">
           <input type="hidden" name="_next" value="https://ai-avtopilot.ru/success.html" />
           <input type="hidden" name="_subject" value="Новая заявка на аудит с сайта ai-avtopilot.ru (price-monitoring)" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="from_name" value="АвтоПилот Лид" />
           <div class="form-group form-group--required">
             <div class="form-label-row">
               <label for="contact-name">Ваше имя <span class="required-star" aria-label="Обязательное поле" title="Обязательное поле">*</span></label>
@@ -704,11 +700,17 @@
             </div>
           </div>
           <input type="hidden" name="consent" value="accepted" />
-          <input type="text" name="_honey" style="display:none;" tabindex="-1" autocomplete="off" />
+          <input type="text" name="_honey" class="honeypot-input" style="display:none!important;" tabindex="-1" autocomplete="off" />
+          <input type="hidden" name="_ts" id="lead-ts" value="" />
           <button type="submit" class="btn btn--primary btn--full" id="form-submit">
             Записаться на аудит
           </button>
           <p class="form-privacy">Нажимая кнопку, вы подтверждаете согласие на обработку персональных данных в соответствии с <a href="/privacy.html" target="_blank" rel="noopener noreferrer" class="form-link">Политикой конфиденциальности</a> (152-ФЗ)</p>
+          <noscript>
+            <div class="noscript-lead-fallback" style="margin-top:12px;padding:10px 14px;background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.3);border-radius:8px;font-size:0.85rem;color:var(--text-2,#94a3b8);text-align:center;">
+              Для мгновенной связи без JavaScript напишите нам в Telegram: <a href="https://t.me/AiAvtopilotbot" target="_blank" rel="noopener" style="color:var(--accent-1,#6366f1);font-weight:600;text-decoration:underline;">@AiAvtopilotbot</a> или на <a href="mailto:contact@ai-avtopilot.ru" style="color:var(--accent-1,#6366f1);text-decoration:underline;">contact@ai-avtopilot.ru</a>
+            </div>
+          </noscript>
         </form>
         <!--/email_off-->
       </div>
@@ -992,7 +994,7 @@
             <label for="express-contact" class="express-form-label">
               Ваш Email или Telegram / телефон <span class="required-star">*</span>
             </label>
-            <input type="text" id="express-contact" name="contact" class="express-form-input" placeholder="name@company.ru или @username" required />
+            <input type="text" id="express-contact" name="contact" class="express-form-input" placeholder="name@company.ru или @usename" required />
             <div class="express-form-error" id="express-contact-error"></div>
           </div>
           <div class="express-form-group">
@@ -1242,52 +1244,24 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
               });
-              return r2.ok;
-            } catch (_relErr) {
-              return false;
-            }
-          })();
-
-          var emailPromise = (async function() {
-            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-              return true;
-            }
-            try {
-              var r = await fetch('https://formsubmit.co/ajax/mr.vladimir.voronin@ya.ru', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                body: JSON.stringify({
-                  _subject: '⚡ Экспресс-сообщение из виджета ai-avtopilot.ru',
-                  _cc: 'contact@ai-avtopilot.ru',
-                  contact: contactVal,
-                  message: messageVal,
-                  _template: 'table'
-                })
-              });
-              if (r.ok) {
-                var d = await r.json();
-                if (d && (d.success === true || d.success === 'true')) return true;
+              if (r2.ok) {
+                var d2 = await r2.json();
+                if (d2 && (d2.success === true || d2.success === 'true')) return true;
               }
-            } catch (_fsErr) {}
+            } catch (_relErr) {}
             try {
-              var r2 = await fetch('https://formsubmit.co/ajax/contact@ai-avtopilot.ru', {
+              var r3 = await fetch('/api/fallback-lead', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                body: JSON.stringify({
-                  _subject: '⚡ Экспресс-сообщение из виджета ai-avtopilot.ru',
-                  contact: contactVal,
-                  message: messageVal,
-                  _template: 'table'
-                })
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
               });
-              return r2.ok;
-            } catch (_fsErr2) {
+              return r3.ok;
+            } catch (_fbErr) {
               return false;
             }
           })();
 
-          var results = await Promise.allSettled([tgPromise, emailPromise]);
-          delivered = results.some(function(r) { return r.status === 'fulfilled' && r.value === true; });
+          var delivered = await tgPromise;
 
           submitBtn.disabled = false;
           submitBtn.innerHTML = originalBtnText;

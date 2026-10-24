@@ -300,7 +300,15 @@ export default {
     // ── 3. Lead Submission: POST /submit or POST /api/lead ──────────────────
     if ((url.pathname === "/submit" || url.pathname === "/api/lead") && request.method === "POST") {
       // Strict Origin check: reject unauthorized external/empty origins on form submission
-      if (!requestOrigin || !ALLOWED_ORIGINS.has(requestOrigin)) {
+      let originToTest = requestOrigin;
+      const referer = request.headers.get("Referer") || "";
+      if (!originToTest && referer) {
+        try {
+          originToTest = new URL(referer).origin;
+        } catch (_) {}
+      }
+
+      if (!originToTest || !ALLOWED_ORIGINS.has(originToTest)) {
         return new Response(JSON.stringify({ success: false, error: "Origin not allowed" }), {
           status: 403,
           headers: { "Content-Type": "application/json", ...corsHeaders },
@@ -328,10 +336,28 @@ export default {
           });
         }
 
-        const data = bodyText ? JSON.parse(bodyText) : {};
+        const contentType = request.headers.get("Content-Type") || "";
+        const acceptHeader = request.headers.get("Accept") || "";
+        const isHtmlNavigation = acceptHeader.includes("text/html") || contentType.includes("application/x-www-form-urlencoded");
+
+        let data = {};
+        if (contentType.includes("application/x-www-form-urlencoded")) {
+          const params = new URLSearchParams(bodyText);
+          data = Object.fromEntries(params.entries());
+        } else {
+          try {
+            data = bodyText ? JSON.parse(bodyText) : {};
+          } catch (_parseErr) {
+            const params = new URLSearchParams(bodyText);
+            data = Object.fromEntries(params.entries());
+          }
+        }
 
         // Anti-Bot Server-Side Honeypot
         if (data._honey || data.botcheck) {
+          if (isHtmlNavigation) {
+            return Response.redirect("https://ai-avtopilot.ru/success.html", 303);
+          }
           return new Response(JSON.stringify({ success: true, status: "ok" }), {
             headers: { "Content-Type": "application/json", ...corsHeaders },
           });
@@ -341,6 +367,9 @@ export default {
         if (data._ts) {
           const elapsed = Date.now() - Number(data._ts);
           if (elapsed < 1000 || Number(data._ts) > Date.now() + 60000) {
+            if (isHtmlNavigation) {
+              return Response.redirect("https://ai-avtopilot.ru/success.html", 303);
+            }
             return new Response(JSON.stringify({ success: true, status: "ok" }), {
               headers: { "Content-Type": "application/json", ...corsHeaders },
             });
@@ -392,11 +421,18 @@ export default {
           );
         }
 
+        if (isHtmlNavigation) {
+          return Response.redirect("https://ai-avtopilot.ru/success.html", 303);
+        }
+
         return new Response(
           JSON.stringify({ success: true, status: "delivered_to_telegram" }),
           { headers: { "Content-Type": "application/json", ...corsHeaders } }
         );
       } catch (err) {
+        if (typeof isHtmlNavigation !== "undefined" && isHtmlNavigation) {
+          return Response.redirect("https://ai-avtopilot.ru/success.html", 303);
+        }
         return new Response(JSON.stringify({ success: false, error: err.message }), {
           status: 400,
           headers: { "Content-Type": "application/json", ...corsHeaders },

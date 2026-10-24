@@ -59,7 +59,7 @@
   }
   </script>
 <!-- Security Headers & Policies -->
-<meta content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://mc.yandex.com https://yastatic.net https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://ai-avtopilot.ru https://mc.yandex.ru https://mc.yandex.com; connect-src 'self' https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev https://api.web3forms.com https://formsubmit.co https://mc.yandex.ru https://mc.yandex.com wss://mc.yandex.ru wss://mc.yandex.com https://cloudflareinsights.com; frame-src https://mc.yandex.ru https://mc.yandex.com blob:; child-src https://mc.yandex.ru https://mc.yandex.com blob:;" http-equiv="Content-Security-Policy"/>
+<meta content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://mc.yandex.com https://yastatic.net https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://ai-avtopilot.ru https://mc.yandex.ru https://mc.yandex.com; connect-src 'self' https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev https://api.web3forms.com https://mc.yandex.ru https://mc.yandex.com wss://mc.yandex.ru wss://mc.yandex.com https://cloudflareinsights.com; frame-src https://mc.yandex.ru https://mc.yandex.com blob:; child-src https://mc.yandex.ru https://mc.yandex.com blob:;" http-equiv="Content-Security-Policy"/>
 <meta content="nosniff" http-equiv="X-Content-Type-Options"/>
 <meta content="strict-origin-when-cross-origin" name="referrer"/>
 <!-- Anti-Clickjacking Frame Guard (OWASP Defense) -->
@@ -463,15 +463,9 @@
 <p class="contact__desc">За 30 минут разберем ваши процессы, покажем узкие места в текущем учете и рассчитаем потенциал экономии для вашей компании.</p>
 </div>
 <!--email_off-->
-<form action="https://formsubmit.co/contact@ai-avtopilot.ru" class="contact__form" id="contact-form" method="POST" name="contact" novalidate="">
-<!-- Web3Forms Config: резервный канал при указании валидного ключа -->
-<input id="web3forms-key" name="access_key" type="hidden" value=""/>
-<!-- FormSubmit Config: автоматический надёжный канал без ключей -->
+<form action="/api/lead" class="contact__form" id="contact-form" method="POST" name="contact" novalidate="">
 <input name="_next" type="hidden" value="https://ai-avtopilot.ru/success.html"/>
 <input name="_subject" type="hidden" value="Новая заявка на аудит с сайта ai-avtopilot.ru"/>
-<input name="_template" type="hidden" value="table"/>
-<input name="_captcha" type="hidden" value="false"/>
-<input name="from_name" type="hidden" value="АвтоПилот Лид"/>
 <div class="form-group form-group--required">
 <div class="form-label-row">
 <label for="contact-name">Ваше имя <span aria-label="Обязательное поле" class="required-star" title="Обязательное поле">*</span></label>
@@ -501,12 +495,18 @@
 </div>
 <!-- Согласие 152-ФЗ -->
 <input name="consent" type="hidden" value="accepted"/>
-<!-- Spam protection Honeypot -->
-<input autocomplete="off" name="_honey" style="display:none;" tabindex="-1" type="text"/>
+<!-- Multi-Layer Anti-Bot Honeypot -->
+<input autocomplete="off" class="honeypot-input" name="_honey" style="display:none!important;" tabindex="-1" type="text"/>
+<input id="lead-ts" name="_ts" type="hidden" value=""/>
 <button class="btn btn--primary btn--full" id="form-submit" type="submit">
             Записаться на аудит
           </button>
 <p class="form-privacy">Нажимая кнопку, вы подтверждаете согласие на обработку персональных данных в соответствии с <a class="form-link" href="/privacy.html" rel="noopener noreferrer" target="_blank">Политикой конфиденциальности</a> (152-ФЗ)</p>
+<noscript>
+<div class="noscript-lead-fallback" style="margin-top:12px;padding:10px 14px;background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.3);border-radius:8px;font-size:0.85rem;color:var(--text-2,#94a3b8);text-align:center;">
+              Для мгновенной связи без JavaScript напишите нам в Telegram: <a href="https://t.me/AiAvtopilotbot" rel="noopener" style="color:var(--accent-1,#6366f1);font-weight:600;text-decoration:underline;" target="_blank">@AiAvtopilotbot</a> или на <a href="mailto:contact@ai-avtopilot.ru" style="color:var(--accent-1,#6366f1);text-decoration:underline;">contact@ai-avtopilot.ru</a>
+</div>
+</noscript>
 </form>
 <!--/email_off-->
 </div>
@@ -1082,52 +1082,24 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
               });
-              return r2.ok;
-            } catch (_relErr) {
-              return false;
-            }
-          })();
-
-          var emailPromise = (async function() {
-            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-              return true;
-            }
-            try {
-              var r = await fetch('https://formsubmit.co/ajax/mr.vladimir.voronin@ya.ru', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                body: JSON.stringify({
-                  _subject: '⚡ Экспресс-сообщение из виджета ai-avtopilot.ru',
-                  _cc: 'contact@ai-avtopilot.ru',
-                  contact: contactVal,
-                  message: messageVal,
-                  _template: 'table'
-                })
-              });
-              if (r.ok) {
-                var d = await r.json();
-                if (d && (d.success === true || d.success === 'true')) return true;
+              if (r2.ok) {
+                var d2 = await r2.json();
+                if (d2 && (d2.success === true || d2.success === 'true')) return true;
               }
-            } catch (_fsErr) {}
+            } catch (_relErr) {}
             try {
-              var r2 = await fetch('https://formsubmit.co/ajax/contact@ai-avtopilot.ru', {
+              var r3 = await fetch('/api/fallback-lead', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                body: JSON.stringify({
-                  _subject: '⚡ Экспресс-сообщение из виджета ai-avtopilot.ru',
-                  contact: contactVal,
-                  message: messageVal,
-                  _template: 'table'
-                })
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
               });
-              return r2.ok;
-            } catch (_fsErr2) {
+              return r3.ok;
+            } catch (_fbErr) {
               return false;
             }
           })();
 
-          var results = await Promise.allSettled([tgPromise, emailPromise]);
-          delivered = results.some(function(r) { return r.status === 'fulfilled' && r.value === true; });
+          var delivered = await tgPromise;
 
           submitBtn.disabled = false;
           submitBtn.innerHTML = originalBtnText;

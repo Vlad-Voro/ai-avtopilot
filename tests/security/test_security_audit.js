@@ -197,6 +197,27 @@ async function runSecuritySuite() {
     assert.strictEqual(res.status, 400, 'Short contact must return 400');
   });
 
+  await test('SEC-05c: Native application/x-www-form-urlencoded form submission redirects 303 to /success.html', async () => {
+    const formData = new URLSearchParams({
+      name: 'Real User',
+      company: 'OOO Test',
+      contact: '+79991234567',
+      _ts: String(Date.now() - 5000)
+    }).toString();
+    const req = new Request('https://ai-avtopilot.ru/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Origin': 'https://ai-avtopilot.ru',
+        'Accept': 'text/html,application/xhtml+xml'
+      },
+      body: formData
+    });
+    const res = await worker.fetch(req, mockEnv);
+    assert.strictEqual(res.status, 303, 'Native form submission must return HTTP 303 redirect');
+    assert.strictEqual(res.headers.get('Location'), 'https://ai-avtopilot.ru/success.html', 'Must redirect to success.html');
+  });
+
   // Test 6: SEC-06 - Authorization Bearer Support
   await test('SEC-06: /set-webhook accepts Authorization: Bearer <key> header securely', async () => {
     const unauthReq = new Request('https://ai-avtopilot.ru/set-webhook', { method: 'GET' });
@@ -252,6 +273,18 @@ async function runSecuritySuite() {
     const requiredPatterns = ['_headers', '*.md', 'tests/', 'bot/', 'cloudflare-worker/', 'scripts/'];
     requiredPatterns.forEach(pattern => {
       assert.ok(content.includes(pattern), `.vercelignore must contain pattern: ${pattern}`);
+    });
+  });
+
+  // Test 10: SEC-10 - Zero Naked FormSubmit Endpoints & Anti-Spam Form Hardening
+  await test('SEC-10: Zero naked FormSubmit endpoints, no _captcha=false, and valid /api/lead action across HTML files', async () => {
+    const files = ['index.html', 'services/index.html', 'cases/index.html', 'calculator/index.html', 'dashboard/index.html', 'faq/index.html', 'contact/index.html'];
+    files.forEach(f => {
+      const html = fs.readFileSync(path.resolve(__dirname, '../../', f), 'utf8');
+      assert.ok(!html.includes('https://formsubmit.co/'), `Found naked FormSubmit endpoint in ${f}`);
+      assert.ok(!html.includes('_captcha'), `Found _captcha flag in ${f}`);
+      assert.ok(html.includes('action="/api/lead"'), `Form in ${f} must target /api/lead`);
+      assert.ok(html.includes('name="_honey"'), `Form in ${f} must include honeypot`);
     });
   });
 
