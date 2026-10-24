@@ -91,8 +91,8 @@
   <link rel="preload" href="/assets/fonts/JetBrainsMono-400-8.woff2" as="font" type="font/woff2" crossorigin="" />
   <link rel="preload" href="/assets/fonts/JetBrainsMono-400-12.woff2" as="font" type="font/woff2" crossorigin="" />
 
-  <!-- Inlined Styles -->
-<link rel="stylesheet" href="/assets/css/styles.min.css?v=03f2d5b5" />
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="/assets/css/styles.min.css?v=03f2d5b5" />
 
   <!-- Scripts -->
   <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.1"></script>
@@ -799,6 +799,14 @@
           <p class="scard__desc">Автоматический сбор и генерация ответов на отзывы на Яндекс.Картах и 2ГИС с сопоставлением клиентов в 1С и защитой рейтинга 24/7.</p>
           <div class="scard__tags">
             <span>Яндекс Бизнес</span><span>2ГИС</span><span>1С:ERP</span><span>ORM</span>
+          </div>
+        </a>
+        <a href="/services/marketing-automation/" class="scard scard--link" aria-label="Автоматизация маркетинга: подробнее об автономных ИИ-агентах и сквозной аналитике">
+          <div class="scard__icon">🎯</div>
+          <h3 class="scard__title">Автоматизация маркетинга <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <p class="scard__desc">Автономные ИИ-агенты для квалификации лидов за 3 секунды, триггерных воронок в CRM, сквозной окупаемости и создания контента.</p>
+          <div class="scard__tags">
+            <span>amoCRM</span><span>Битрикс24</span><span>ИИ-агенты</span><span>Telegram</span>
           </div>
         </a>
         <a href="/services/rapid-pilot/" class="scard scard--link scard--accent" aria-label="Быстрый старт: подробнее о пилотном запуске за 14 дней">
@@ -2159,15 +2167,15 @@
       "@type": "Service",
       "@id": "https://ai-avtopilot.ru/services/speech-analytics/#service",
       "name": "АвтоПилот: Речевая аналитика и контроль звонков: ИИ-аудит для CRM и АТС",
+      "provider": {
+        "@id": "https://ai-avtopilot.ru/#organization"
+      },
       "description": "Сквозная речевая аналитика 100% звонков отдела продаж. Интеграция с АТС (Манго, Телфин, UIS) и CRM (amoCRM, Битрикс24) по вебхуку. Оценка по 18 пунктам за 30 сек.",
       "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "RUB",
         "name": "Бесплатный 30-минутный экспресс-аудит (speech-analytics)"
-      },
-      "provider": {
-        "@id": "https://ai-avtopilot.ru/#organization"
       }
     },
     {
@@ -2218,7 +2226,7 @@
     }
   ]
 }
-</script>
+  </script>
   <!--/email_off-->
 </body>
 </html>

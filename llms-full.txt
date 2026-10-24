@@ -171,6 +171,7 @@ $$\text{Годовая экономия (₽)} = N_{\text{сотрудников
 - **Речевая аналитика и контроль звонков**: https://ai-avtopilot.ru/services/speech-analytics/
 - **Авторазбор спецификаций и расчет КП**: https://ai-avtopilot.ru/services/specifications-kp/
 - **Мониторинг цен и репрайсинг**: https://ai-avtopilot.ru/services/price-monitoring/
+- **Автоматизация маркетинга ИИ-агентами**: https://ai-avtopilot.ru/services/marketing-automation/
 - **Быстрый пилотный запуск за 14 дней**: https://ai-avtopilot.ru/services/rapid-pilot/
 - **Кейсы клиентов**: https://ai-avtopilot.ru/cases/
 - **Кейс ритейла и автозаказа**: https://ai-avtopilot.ru/cases/retail-inventory-automation/

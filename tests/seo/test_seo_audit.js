@@ -35,6 +35,7 @@ const PAGES = [
   { slug: 'services/price-monitoring', file: 'services/price-monitoring/index.html', url: 'https://ai-avtopilot.ru/services/price-monitoring/', category: 'service', hasBreadcrumbs: true },
   { slug: 'services/debt-control', file: 'services/debt-control/index.html', url: 'https://ai-avtopilot.ru/services/debt-control/', category: 'service', hasBreadcrumbs: true },
   { slug: 'services/reviews-reputation', file: 'services/reviews-reputation/index.html', url: 'https://ai-avtopilot.ru/services/reviews-reputation/', category: 'service', hasBreadcrumbs: true },
+  { slug: 'services/marketing-automation', file: 'services/marketing-automation/index.html', url: 'https://ai-avtopilot.ru/services/marketing-automation/', category: 'service', hasBreadcrumbs: true },
 
   // Case Studies (7)
   { slug: 'cases/fintech-transaction-reconciliation', file: 'cases/fintech-transaction-reconciliation/index.html', url: 'https://ai-avtopilot.ru/cases/fintech-transaction-reconciliation/', category: 'case', hasBreadcrumbs: true },
@@ -410,10 +411,11 @@ const ALL_SERVICE_PAGES = [
   'services/specifications-kp',
   'services/price-monitoring',
   'services/debt-control',
-  'services/reviews-reputation'
+  'services/reviews-reputation',
+  'services/marketing-automation'
 ];
 
-runCheck('SEO-26', 'All 12 service landing pages contain #other-services positioned strictly below #contact with 11 sibling links and 0 self-links', () => {
+runCheck('SEO-26', 'All 13 service landing pages contain #other-services positioned strictly below #contact with 12 sibling links and 0 self-links', () => {
   ALL_SERVICE_PAGES.forEach(slug => {
     const filePath = path.join(ROOT_DIR, slug, 'index.html');
     assert.ok(fs.existsSync(filePath), `Service page ${slug} must exist`);
@@ -432,7 +434,7 @@ runCheck('SEO-26', 'All 12 service landing pages contain #other-services positio
     // Check sibling links (exactly 11, zero self-links, trailing slashes)
     const otherSection = html.slice(otherServicesIdx, html.indexOf('</section>', otherServicesIdx));
     const linkMatches = [...otherSection.matchAll(/href="(\/services\/[^"]+\/)"/g)].map(m => m[1]);
-    assert.strictEqual(linkMatches.length, 11, `Expected exactly 11 sibling links in ${slug}, found ${linkMatches.length}`);
+    assert.strictEqual(linkMatches.length, 12, `Expected exactly 12 sibling links in ${slug}, found ${linkMatches.length}`);
 
     const selfLink = `/${slug}/`;
     assert.ok(!linkMatches.includes(selfLink), `Self-link detected in ${slug}: ${selfLink}`);

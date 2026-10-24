@@ -87,7 +87,7 @@ async function runSliderAndDragSuite(options = {}) {
     // 2. Verify Desktop Drag-to-Scroll on .services__bento
     const bento = page.locator('#services .services__bento');
     await bento.scrollIntoViewIfNeeded();
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(100); // test-lint: disable=WEB-01 [scroll settling]
     const bentoBox = await bento.boundingBox();
 
     // Verify initial active dot
@@ -107,12 +107,12 @@ async function runSliderAndDragSuite(options = {}) {
     // Move in increments to simulate drag
     for (let x = startX; x >= endX; x -= 50) {
       await page.mouse.move(x, startY);
-      await page.waitForTimeout(16);
+      await page.waitForTimeout(16); // test-lint: disable=WEB-01 [mouse drag cadence]
     }
     await page.mouse.up();
 
     // Wait for debounce/scroll settlement
-    await page.waitForTimeout(400);
+    await page.waitForTimeout(400); // test-lint: disable=WEB-01 [carousel debounce]
 
     const afterDragSlide = await page.evaluate(() => {
       const dots = Array.from(document.querySelectorAll('#services-dots .carousel-dot'));
@@ -123,7 +123,7 @@ async function runSliderAndDragSuite(options = {}) {
     // 3. Verify drag on #cases .cases__grid
     const casesGrid = page.locator('#cases .cases__grid');
     await casesGrid.scrollIntoViewIfNeeded();
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(100); // test-lint: disable=WEB-01 [scroll settling]
     const casesBox = await casesGrid.boundingBox();
 
     const cStart = casesBox.x + casesBox.width * 0.8;
@@ -134,10 +134,10 @@ async function runSliderAndDragSuite(options = {}) {
     await page.mouse.down();
     for (let x = cStart; x >= cEnd; x -= 50) {
       await page.mouse.move(x, cY);
-      await page.waitForTimeout(16);
+      await page.waitForTimeout(16); // test-lint: disable=WEB-01 [mouse drag cadence]
     }
     await page.mouse.up();
-    await page.waitForTimeout(400);
+    await page.waitForTimeout(400); // test-lint: disable=WEB-01 [carousel debounce]
 
     const finalCasesSlide = await page.evaluate(() => {
       const dots = Array.from(document.querySelectorAll('#carousel-dots .carousel-dot'));
