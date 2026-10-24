@@ -2,7 +2,7 @@
 
 > **Status**: Production Hardened | **Updated**: 2026-10-24  
 > **Live URL**: [https://ai-avtopilot.ru/](https://ai-avtopilot.ru/) | **Repo**: `Vlad-Voro/ai-avtopilot` (`main` - Private)  
-> **Local Root**: `d:\AI\data\ai-avtopilot` | **Inventory**: 32 Production URLs (1 Root, 6 Hubs, 12 Services, 10 Cases, 3 Utility)  
+> **Local Root**: `d:\AI\data\ai-avtopilot` | **Inventory**: 39 Production URLs (1 Root, 6 Hubs, 19 Services, 10 Cases, 3 Utility)  
 > **Verification Matrix**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E, 0 regressions) + 486 Layout Matrix
 
 ---
@@ -20,10 +20,10 @@ flowchart TD
         VEdge -->|Deployment Isolation| VIgn[".vercelignore (blocks _headers, *.md, tests, bot)"]
     end
 
-    subgraph AppLayer ["2. Multi-Entry Hybrid SSG (32 URLs)"]
+    subgraph AppLayer ["2. Multi-Entry Hybrid SSG (39 URLs)"]
         VEdge --> P1["/ (Main Landing)"]
         VEdge --> P2["6 Hub Pages (/services/, /cases/, /calculator/, /dashboard/, /faq/, /contact/)"]
-        VEdge --> P3["12 Dedicated Service Pages (/services/<slug>/)"]
+        VEdge --> P3["19 Dedicated Service Pages (/services/<slug>/)"]
         VEdge --> P4["10 Dedicated Case Pages (/cases/<slug>/)"]
         VEdge --> P5["3 Utility Pages (/privacy.html, /404.html, /success.html)"]
     end
@@ -92,7 +92,7 @@ flowchart TD
 ```text
 index.html (Master Template) & Data Catalogs
    ├── [sync_pages.py] ──────────> 6 Hub & Tool Pages (/services/, /cases/, /calculator/, etc.)
-   ├── [build_service_page.py] ──> 12 Dedicated Service Pages (/services/<slug>/)
+   ├── [build_service_page.py] ──> 15 Dedicated Service Pages (/services/<slug>/)
    └── [build_case_page.py] ─────> 10 Dedicated Case Pages (/cases/<slug>/)
 ```
 

@@ -1,0 +1,2280 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Корпоративная AI-база знаний и RAG-поиск: ответы сотрудникам за 2 сек | АвтоПилот</title>
+  <meta name="description" content="Локальная AI-база знаний и RAG-поиск для компании: индексация регламентов, инструкций, 1С и PDF. Ответ за 2 секунды с точной цитатой по 152-ФЗ On-Premise." />
+  <meta name="keywords" content="корпоративная база знаний, rag нейросеть, чат бот по базе знаний, ai ассистент для сотрудников, on-premise llm, локальная база знаний 152 фз" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href="https://ai-avtopilot.ru/services/knowledge-base-rag/" />
+  <meta name="theme-color" content="#08080c" />
+
+  <!-- Search Console Verification -->
+  <meta name="google-site-verification" content="u42j0jjBKadmyE77f9wlqfy5gkyDONXtaPzcPRZ51R8" />
+
+  <!-- Open Graph / VK / Facebook -->
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ai-avtopilot.ru/services/knowledge-base-rag/" />
+  <meta property="og:site_name" content="АвтоПилот" />
+  <meta property="og:title" content="Корпоративная AI-база знаний и RAG-поиск: ответы сотрудникам за 2 сек | АвтоПилот" />
+  <meta property="og:description" content="Локальная AI-база знаний и RAG-поиск для компании: индексация регламентов, инструкций, 1С и PDF. Ответ за 2 секунды с точной цитатой по 152-ФЗ On-Premise." />
+  <meta property="og:image" content="https://ai-avtopilot.ru/og-image.png" />
+  <meta property="og:image:secure_url" content="https://ai-avtopilot.ru/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="АвтоПилот — ИИ-автоматизация бизнес-процессов" />
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Корпоративная AI-база знаний и RAG-поиск: ответы сотрудникам за 2 сек | АвтоПилот" />
+  <meta name="twitter:description" content="Локальная AI-база знаний и RAG-поиск для компании: индексация регламентов, инструкций, 1С и PDF. Ответ за 2 секунды с точной цитатой по 152-ФЗ On-Premise." />
+  <meta name="twitter:image" content="https://ai-avtopilot.ru/og-image.png" />
+
+  <!-- Favicon & Icons -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="icon" type="image/svg+xml" href="/icon.svg" sizes="any" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" crossorigin="anonymous" />
+
+  <!-- AI & GEO Discovery (llms.txt v2 Standard) -->
+  <link rel="describedby" type="text/markdown" href="/llms.txt" />
+
+  <!-- Chrome Speculation Rules API (0ms Instant Page Navigations) -->
+  <script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "source": "list",
+        "urls": [
+          "/services/",
+          "/cases/",
+          "/calculator/",
+          "/dashboard/",
+          "/faq/",
+          "/contact/"
+        ],
+        "eagerness": "moderate"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Security Headers & Policies -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://mc.yandex.com https://yastatic.net https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://ai-avtopilot.ru https://mc.yandex.ru https://mc.yandex.com; connect-src 'self' https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev https://api.web3forms.com https://formsubmit.co https://mc.yandex.ru https://mc.yandex.com wss://mc.yandex.ru wss://mc.yandex.com https://cloudflareinsights.com; frame-src https://mc.yandex.ru https://mc.yandex.com blob:; child-src https://mc.yandex.ru https://mc.yandex.com blob:;" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- Anti-Clickjacking Frame Guard (OWASP Defense) -->
+  <style id="anti-clickjack">body{display:none !important;}</style>
+  <script>
+    if (self === top) {
+      var acj = document.getElementById('anti-clickjack');
+      if (acj) acj.parentNode.removeChild(acj);
+    } else {
+      top.location = self.location;
+    }
+  </script>
+
+  <!-- DNS Prefetch for Outbound Endpoints -->
+  <link rel="dns-prefetch" href="https://mc.yandex.ru" />
+  <link rel="dns-prefetch" href="https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev" />
+
+  <!-- Preload Local Core Fonts -->
+  <link rel="preload" href="/assets/fonts/Inter-400-1.woff2" as="font" type="font/woff2" crossorigin="" />
+  <link rel="preload" href="/assets/fonts/Inter-400-6.woff2" as="font" type="font/woff2" crossorigin="" />
+  <link rel="preload" href="/assets/fonts/Outfit-600-14.woff2" as="font" type="font/woff2" crossorigin="" />
+  <link rel="preload" href="/assets/fonts/JetBrainsMono-400-8.woff2" as="font" type="font/woff2" crossorigin="" />
+  <link rel="preload" href="/assets/fonts/JetBrainsMono-400-12.woff2" as="font" type="font/woff2" crossorigin="" />
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="/assets/css/styles.min.css?v=03f2d5b5" />
+
+  <!-- Scripts -->
+  <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.1"></script>
+
+  <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
+  <script type="text/javascript">
+    (function() {
+      var isBot = /Lighthouse|PageSpeed|HeadlessChrome|Chrome-Lighthouse|bot|spider|crawler/i.test(navigator.userAgent) || navigator.webdriver;
+      if (isBot) {
+        window.ym = window.ym || function(){};
+        return;
+      }
+      window.addEventListener('error', function(e) {
+        if (e && (e.filename && /yandex|metrika/i.test(e.filename) || (e.message && /yandex|metrika|solid\.ws/i.test(e.message)))) {
+          e.stopImmediatePropagation();
+          e.preventDefault();
+        }
+      }, true);
+      window.ym = window.ym || function(){(window.ym.a = window.ym.a || []).push(arguments)};
+      window.ym.l = 1 * new Date();
+      ym(112978516, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true,
+        ecommerce: "dataLayer"
+      });
+      var loaded = false;
+      function loadMetrika() {
+        if (loaded) return;
+        loaded = true;
+        var k = document.createElement("script"),
+            a = document.getElementsByTagName("script")[0];
+        k.async = true;
+        k.src = "https://mc.yandex.ru/metrika/tag.js?id=112978516";
+        a.parentNode.insertBefore(k, a);
+      }
+      var evts = ['scroll', 'touchstart', 'mousemove', 'keydown', 'click'];
+      function onInteract() {
+        loadMetrika();
+        evts.forEach(function(e) { window.removeEventListener(e, onInteract, {passive: true}); });
+      }
+      evts.forEach(function(e) { window.addEventListener(e, onInteract, {passive: true, once: true}); });
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(function() { setTimeout(loadMetrika, 4500); });
+      } else {
+        window.addEventListener('load', function() { setTimeout(loadMetrika, 4500); });
+      }
+    })();
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/112978516" style="position:absolute; left:-9999px;" alt="Yandex Metrica" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
+</head>
+
+<body>
+  <div class="nav__backdrop" id="nav-backdrop"></div>
+
+  <!-- ═══════════════════ NAVIGATION ═══════════════════ -->
+  <header class="nav" id="site-header">
+    <nav class="nav__inner container" aria-label="Основная навигация">
+      <a href="/" class="nav__logo">
+        <span class="nav__logo-icon">⬡</span>
+        АвтоПилот
+      </a>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="/calculator/" class="nav__link">Калькулятор</a></li>
+        <li><a href="/services/" class="nav__link">Услуги</a></li>
+        <li><a href="/cases/" class="nav__link">Кейсы</a></li>
+        <li><a href="/faq/" class="nav__link">FAQ</a></li>
+        <li><a href="/dashboard/" class="nav__link">Дашборд</a></li>
+        <li class="nav__link-mobile"><a href="/contact/" class="nav__link">Контакты</a></li>
+      </ul>
+      <a href="#contact" class="btn btn--nav">Получить аудит</a>
+      <button class="nav__burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-links" id="burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <section class="hero" id="home">
+    <div class="hero__particles" id="particles"></div>
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+          <a href="/">Главная</a>
+          <span class="breadcrumbs__sep">/</span>
+          <a href="/services/">Услуги</a>
+          <span class="breadcrumbs__sep">/</span>
+          <span>Корпоративная AI-база знаний</span>
+        </nav>
+        <div class="hero__badge" data-reveal="" title="RAG-контур активен · Локальные открытые веса без передачи во внешние облака" style="margin-bottom:14px;">
+          <span class="hero__badge-dot"></span>
+          <span class="hero__badge-text">RAG-контур активен · Локальные открытые веса без передачи во внешние облака</span>
+        </div>
+        <h1 class="hero__title">
+          <span class="hero__title-static">Корпоративная AI-база знаний: </span>
+          <span class="hero__title-accent-box">
+            <span class="hero__title-accent" data-phrases='["ответ за 2 секунды", "контур On-Premise", "строго по 152-ФЗ", "с цитированием ПДФ"]' id="typed-text">ответ за 2 секунды</span>
+            <span class="hero__cursor" aria-hidden="true">|</span>
+          </span>
+        </h1>
+        <p class="hero__sub">Автономный корпоративный ассистент мгновенно индексирует регламенты, техническую документацию, базы 1С и архивы документов. Обеспечивает точные ответы сотрудникам и клиентам с указанием первоисточника в закрытом контуре безопасности.</p>
+        <div class="hero__actions">
+          <a href="#contact" class="btn btn--primary" id="cta-main">Заказать аудит →</a>
+          <a href="#calculator" class="btn btn--ghost">Рассчитать ROI</a>
+        </div>
+        <div class="hero__kpis">
+            <div class="kpi-card">
+              <span class="kpi-card__num" data-count="2">2 сек</span>
+              <span class="kpi-card__label">Скорость поиска ответа</span>
+            </div>
+            <div class="kpi-card">
+              <span class="kpi-card__num" data-count="-75">−75%</span>
+              <span class="kpi-card__label">Срок адаптации новичков</span>
+            </div>
+            <div class="kpi-card">
+              <span class="kpi-card__num" data-count="100">100%</span>
+              <span class="kpi-card__label">Защита данных (152-ФЗ)</span>
+            </div>
+        </div>
+      </div>
+
+      <div class="hero__terminal-wrap">
+        <div class="terminal">
+          <div class="terminal__header">
+            <span class="terminal__dot terminal__dot--red"></span>
+            <span class="terminal__dot terminal__dot--yellow"></span>
+            <span class="terminal__dot terminal__dot--green"></span>
+            <span class="terminal__title">autopilot — agent_core v2.4.1</span>
+          </div>
+          <div class="terminal__body" id="terminal-body">
+            <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:15:02]</span> <span style="color:var(--blue);font-weight:600;">[RAG-INDEX]</span> Индексация: Добавлен регламент &#x27;Технические условия монтажа 2026.pdf&#x27; (142 стр.)</div>
+            <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:15:20]</span> <span style="color:var(--purple);font-weight:600;">[VECTOR-DB]</span> Векторизация завершена: 480 чанков загружены в локальный Qdrant</div>
+            <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:16:05]</span> <span style="color:var(--green);font-weight:600;">[QUERY-TG]</span> Запрос инженера: &#x27;Допустимый зазор при установке муфты 120 мм?&#x27;</div>
+            <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:16:07]</span> <span style="color:var(--yellow);font-weight:600;">[RAG-CORE]</span> Ответ сформирован (1,8 сек): 0,35–0,42 мм (Раздел 4.2, стр. 38) [Совпадение 98%]</div>
+          </div>
+        </div>
+        <div class="hero__agent-cards">
+          <div class="agent-card" role="button" tabindex="0" aria-label="Инспектировать агента Document Ingestion Agent">
+            <div class="agent-card__icon">📑</div>
+            <div class="agent-card__info">
+              <span class="agent-card__name">Document Ingestion Agent</span>
+              <span class="agent-card__status agent-card__status--live">Парсинг и OCR документов</span>
+            </div>
+            <div class="agent-card__bar"><div class="agent-card__fill" style="width:96"></div></div>
+          </div>
+          <div class="agent-card" role="button" tabindex="0" aria-label="Инспектировать агента RAG Semantic Retriever">
+            <div class="agent-card__icon">🔍</div>
+            <div class="agent-card__info">
+              <span class="agent-card__name">RAG Semantic Retriever</span>
+              <span class="agent-card__status agent-card__status--live">Векторный поиск Qdrant</span>
+            </div>
+            <div class="agent-card__bar"><div class="agent-card__fill" style="width:92"></div></div>
+          </div>
+          <div class="agent-card" role="button" tabindex="0" aria-label="Инспектировать агента On-Premise Guard Agent">
+            <div class="agent-card__icon">🔒</div>
+            <div class="agent-card__info">
+              <span class="agent-card__name">On-Premise Guard Agent</span>
+              <span class="agent-card__status agent-card__status--live">Контроль доступа 152-ФЗ</span>
+            </div>
+            <div class="agent-card__bar"><div class="agent-card__fill" style="width:88"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════ ROI CALCULATOR ═══════════════════ -->
+  <section class="roi" id="calculator">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag" data-reveal="">Экономический эффект</p>
+        <h2 class="section-title" data-reveal="">Калькулятор окупаемости внедрения</h2>
+      </div>
+      <div class="roi__card" data-reveal="">
+        <div class="roi__inputs">
+          <div class="roi-input-group">
+            <label class="roi-label" for="slider-employees">
+              <span>Численность офисных специалистов и менеджеров:</span>
+              <span class="roi-value-display" id="display-employees">20</span>
+            </label>
+            <input type="range" class="roi-slider" id="slider-employees" min="1" max="15" step="1" value="20" aria-label="Количество сотрудников" />
+            <div class="roi-slider-limits">
+              <span>1 специалист</span>
+              <span>15 специалистов</span>
+            </div>
+          </div>
+          <div class="roi-input-group">
+            <label class="roi-label" for="slider-hours">
+              <span>Часов поиска информации и консультаций в неделю на сотрудника:</span>
+              <span class="roi-value-display" id="display-hours">6</span>
+            </label>
+            <input type="range" class="roi-slider" id="slider-hours" min="1" max="40" step="1" value="6" aria-label="Часов в неделю на рутину" />
+            <div class="roi-slider-limits">
+              <span>1 час</span>
+              <span>40 часов</span>
+            </div>
+          </div>
+          <div class="roi-input-group">
+            <label class="roi-label" for="slider-salary">
+              <span>Средняя зарплата сотрудника (net):</span>
+              <span class="roi-value-display" id="display-salary" style="white-space:nowrap;flex-shrink:0;margin-left:8px;">95 000</span>
+            </label>
+            <input type="range" class="roi-slider" id="slider-salary" min="40000" max="250000" step="5000" value="95000" aria-label="Средняя зарплата специалиста в рублях" />
+            <div class="roi-slider-limits">
+              <span>40 000 ₽</span>
+              <span>250 000 ₽</span>
+            </div>
+          </div>
+        </div>
+        <div class="roi__results">
+          <div class="roi-result-card">
+            <span class="roi-result-label">Стоимость рутины в год</span>
+            <span class="roi-result-num" id="roi-cost">855 000 ₽</span>
+          </div>
+          <div class="roi-result-card roi-result-card--accent">
+            <span class="roi-result-label">Экономия с АвтоПилотом (80%)</span>
+            <span class="roi-result-num" id="roi-save">684 000 ₽</span>
+          </div>
+          <div class="roi-result-card">
+            <span class="roi-result-label">Освободится человеко-часов в год</span>
+            <span class="roi-result-num" id="roi-hours">4 992 часов</span>
+          </div>
+          <div class="roi__cta-block">
+            <p>Хотите получить персональный расчет для вашего предприятия?</p>
+            <a href="#contact" class="btn btn--primary">Заказать аудит процессов 1С</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ PROBLEM → SOLUTION ═══════════════════ -->
+  <section class="compare" id="compare">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag" data-reveal="">До и после автоматизации</p>
+        <h2 class="section-title" data-reveal="">Традиционный поиск по регламентам vs AI-база знаний АвтоПилот</h2>
+      </div>
+      <div class="compare__grid">
+        <div class="compare__card compare__card--pain" data-reveal="">
+          <div class="compare__badge">Традиционные папки и регламенты</div>
+          <div class="compare__icon">😰</div>
+          <ul class="compare__list">
+            <li>Сотрудники тратят до 1,5 часов в день на поиск нужного ГОСТа, регламента или прайса.</li>
+            <li>Новички задают десятки однотипных вопросов наставникам, отвлекая старших специалистов.</li>
+            <li>Менеджеры консультируют клиентов по памяти, допуская ошибки в артикулах и гарантиях.</li>
+            <li>Регламенты устаревают в разных папках; сотрудники пользуются неактуальными версиями.</li>
+            <li>Использование публичных нейросетей сотрудниками ведет к утечке коммерческой тайны.</li>
+          </ul>
+        </div>
+        <div class="compare__arrow" data-reveal="">
+          <div class="compare__arrow-line"></div>
+          <span>→</span>
+        </div>
+        <div class="compare__card compare__card--win" data-reveal="">
+          <div class="compare__badge compare__badge--win">С AI-базой знаний АвтоПилот</div>
+          <div class="compare__icon">🚀</div>
+          <ul class="compare__list">
+            <li>Точный ответ на естественном языке за 2 секунды с прямой ссылкой на абзац первоисточника.</li>
+            <li>Автономный онбординг-бот отвечает новичкам 24/7 и проводит интерактивную проверку знаний.</li>
+            <li>ИИ-суфлер в окне CRM/1С мгновенно подсказывает верные формулировки во время диалога.</li>
+            <li>Автоматическая версионность: агент индексирует обновления и предупреждает об изменениях.</li>
+            <li>Строгий On-Premise контур исключает утечку персональных данных и интеллектуальной собственности.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ BENTO SERVICES ═══════════════════ -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag" data-reveal="">Модули базы знаний</p>
+        <h2 class="section-title" data-reveal="">Модули корпоративной AI-базы знаний</h2>
+      </div>
+      <div class="services__bento services__bento--static" data-reveal="" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Сценарии автоматизации">
+        <div class="scard">
+          <div class="scard__icon">📑</div>
+          <h3 class="scard__title">Умный парсер и индексатор любых форматов</h3>
+          <p class="scard__desc">Автоматический сбор и семантическая обработка файлов PDF, DOCX, XLSX, сканов с OCR, страниц Confluence, баз Notion и текстовых выгрузок 1С.</p>
+          <div class="scard__tags">
+            <span>PDF & Сканы</span><span>DOCX/XLSX</span><span>OCR Tesseract</span><span>Парсер</span>
+          </div>
+        </div>
+        <div class="scard">
+          <div class="scard__icon">🔍</div>
+          <h3 class="scard__title">Семантический поиск с цитированием</h3>
+          <p class="scard__desc">Гибридный поиск (векторный + BM25) с выдачей точной цитаты, номера страницы и ссылки на регламент. Исключение галлюцинаций строгим промпт-каркасом.</p>
+          <div class="scard__tags">
+            <span>Векторный поиск</span><span>Zero Hallucination</span><span>Qdrant/pgvector</span><span>Цитаты</span>
+          </div>
+        </div>
+        <div class="scard">
+          <div class="scard__icon">🔒</div>
+          <h3 class="scard__title">On-Premise контур и соответствие 152-ФЗ</h3>
+          <p class="scard__desc">Развертывание на собственных GPU/CPU серверах заказчика в изолированной сети. Ни один байт коммерческой тайны и персональных данных не покидает компанию.</p>
+          <div class="scard__tags">
+            <span>152-ФЗ</span><span>On-Premise</span><span>Air-gap</span><span>Коммерческая тайна</span>
+          </div>
+        </div>
+        <div class="scard">
+          <div class="scard__icon">💼</div>
+          <h3 class="scard__title">Copilot сотрудника в 1С и CRM</h3>
+          <p class="scard__desc">Интерактивный виджет в интерфейсе 1С:ERP, 1С:УНФ или Битрикс24. Суфлирование ответов, подсказка технических характеристик и условий договоров прямо во время звонка.</p>
+          <div class="scard__tags">
+            <span>Виджет 1С</span><span>Битрикс24/amoCRM</span><span>ИИ-суфлер</span><span>Подсказки</span>
+          </div>
+        </div>
+        <div class="scard">
+          <div class="scard__icon">🎓</div>
+          <h3 class="scard__title">Интерактивный онбординг и проверка знаний</h3>
+          <p class="scard__desc">Автоматизированное обучение стажеров: пошаговые сценарии изучения регламентов, генерация проверочных тестов по материалам компании и отчетность для HR.</p>
+          <div class="scard__tags">
+            <span>Онбординг HR</span><span>Аттестация</span><span>Тестирование</span><span>Telegram</span>
+          </div>
+        </div>
+        <div class="scard">
+          <div class="scard__icon">📊</div>
+          <h3 class="scard__title">Аналитика белых пятен базы знаний</h3>
+          <p class="scard__desc">Дашборд частых запросов сотрудников и фиксация вопросов, на которые в документации нет ответа. Формирование рекомендаций авторам регламентов по доработке.</p>
+          <div class="scard__tags">
+            <span>Аналитика пробелов</span><span>Метрики поиска</span><span>Дашборд</span><span>Улучшение базы</span>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-dots services-dots" id="services-dots"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CASE STUDIES ═══════════════════ -->
+  <section class="cases" id="cases">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag" data-reveal="">Результаты клиентов</p>
+        <h2 class="section-title" data-reveal="">Доказанные кейсы внедрения</h2>
+      </div>
+      <div class="cases__grid cases__grid--static" data-reveal="">
+        <div class="case-card case-card--retail">
+          <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--retail"></span>Федеральный сервисный центр (40 000 обращений в месяц)</div>
+          <h3 class="case-card__title">Автономный диспетчер первой линии с базой знаний ремонта</h3>
+          <p class="case-card__desc">Внедрение ИИ-оператора с мгновенным доступом к 800+ регламентам диагностики и ремонта оборудования для первичной квалификации заявок.</p>
+          <div class="case-card__results">
+            <div class="case-result">
+              <span class="case-result__num">80,4%</span>
+              <span class="case-result__label">авто-решение</span>
+            </div>
+            <div class="case-result">
+              <span class="case-result__num ">24/7</span>
+              <span class="case-result__label">доступность</span>
+            </div>
+            <div class="case-result">
+              <span class="case-result__num ">3 ₽</span>
+              <span class="case-result__label">цена контакта</span>
+            </div>
+          </div>
+          <div class="case-card__tags"><span>База знаний</span><span>Диспетчер</span><span>Сервисный центр</span></div>
+        </div>
+        <div class="case-card case-card--finance">
+          <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--finance"></span>Производственный приборостроительный завод</div>
+          <h3 class="case-card__title">Архив ТУ, паспортов изделий и электронный документооборот</h3>
+          <p class="case-card__desc">Оцифровка 50 000 страниц технической документации с возможностью мгновенного поиска чертежей и сертификатов по запросу инженеров.</p>
+          <div class="case-card__results">
+            <div class="case-result">
+              <span class="case-result__num">5 мин</span>
+              <span class="case-result__label">закрытие периода</span>
+            </div>
+            <div class="case-result">
+              <span class="case-result__num ">−90%</span>
+              <span class="case-result__label">бумажный архив</span>
+            </div>
+            <div class="case-result">
+              <span class="case-result__num ">≥400%</span>
+              <span class="case-result__label">окупаемость</span>
+            </div>
+          </div>
+          <div class="case-card__tags"><span>Технический архив</span><span>OCR</span><span>1С:ERP</span></div>
+        </div>
+        <div class="case-card case-card--production">
+          <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--production"></span>B2B дистрибуция (отдел продаж 35 менеджеров)</div>
+          <h3 class="case-card__title">Речевой аудит и суфлер менеджера со стандартами продаж</h3>
+          <p class="case-card__desc">Интеграция RAG-поиска в телефонию: автоматическая подсказка ответов на сложные технические возражения клиентов прямо во время диалога.</p>
+          <div class="case-card__results">
+            <div class="case-result">
+              <span class="case-result__num">30 сек</span>
+              <span class="case-result__label">аудит диалога</span>
+            </div>
+            <div class="case-result">
+              <span class="case-result__num ">+22%</span>
+              <span class="case-result__label">конверсия</span>
+            </div>
+            <div class="case-result">
+              <span class="case-result__num ">100%</span>
+              <span class="case-result__label">соблюдение ТУ</span>
+            </div>
+          </div>
+          <div class="case-card__tags"><span>ИИ-суфлер</span><span>amoCRM</span><span>Регламенты</span></div>
+        </div>
+      </div>
+      <div class="carousel-dots" id="carousel-dots"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FAQ SECTION ═══════════════════ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-header" data-reveal="">
+        <span class="section-tag">Ответы на вопросы</span>
+        <h2 class="section-title">Часто задаваемые вопросы</h2>
+        <p class="section-desc" style="color:var(--text-2);margin-top:12px;">Всё о безопасности 152-ФЗ, интеграции с 1С и регламенте пилотного запуска</p>
+      </div>
+      <div class="faq__grid" data-reveal="">
+        <div class="faq-item">
+          <button type="button" class="faq-item__header" aria-expanded="false">
+            <span class="faq-item__question">Какое оборудование требуется для локального развертывания On-Premise?</span>
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__inner">
+              <p>Для компании до 100 активных пользователей достаточно сервера с 1–2 графическими ускорителями потребительского или серверного класса (от 24 ГБ VRAM) либо современного CPU-сервера с 64 ГБ RAM при использовании квантованных открытых моделей.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-item__header" aria-expanded="false">
+            <span class="faq-item__question">Как гарантируется, что нейросеть не выдумает несуществующий регламент?</span>
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__inner">
+              <p>В RAG-контуре используется строгий промпт-каркас (Grounding Constraint): модель формирует ответ исключительно на основе предоставленных фрагментов векторного поиска. Если информации в базе нет, агент прямо сообщает об этом и фиксирует пробел в аналитическом дашборде.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-item__header" aria-expanded="false">
+            <span class="faq-item__question">Как разграничиваются права доступа сотрудников к разным документам?</span>
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__inner">
+              <p>Векторная база поддерживает ролевую модель доступа (RBAC). При выполнении поиска агент учитывает доменные группы пользователя (Active Directory / LDAP / 1C) и исключает документы, к которым у сотрудника нет официального допуска.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-item__header" aria-expanded="false">
+            <span class="faq-item__question">С какими корпоративными хранилищами возможна автоматическая синхронизация?</span>
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__inner">
+              <p>Коннекторы поддерживают синхронизацию с сетевыми дисками Windows/SMB, серверами Nextcloud, базами Confluence, Notion, почтовыми серверами и регистрами прикрепленных файлов в 1С:ERP и 1С:Документооборот.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-item__header" aria-expanded="false">
+            <span class="faq-item__question">Как часто обновляется индекс при изменении документов?</span>
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__inner">
+              <p>Индексатор отслеживает события файловой системы (File System Watcher) или изменения в базах данных и переиндексирует измененные страницы документа в течение 60 секунд без остановки работы системы.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ LIVE DASHBOARD ═══════════════════ -->
+  <section class="dashboard" id="dashboard">
+    <div class="container">
+      <div class="section-header">
+        <div class="hero__badge" data-reveal="" title="RAG-контур активен · Локальные открытые веса без передачи во внешние облака" style="margin-bottom:14px;">
+          <span class="hero__badge-dot"></span>
+          <span class="hero__badge-text">RAG-контур активен · Локальные открытые веса без передачи во внешние облака</span>
+        </div>
+        <p class="section-tag" data-reveal="">Центр управления</p>
+        <h2 class="section-title" data-reveal="">Интерактивный симулятор телеметрии</h2>
+      </div>
+      <div class="dashboard__grid" data-reveal="">
+        <div class="dashboard__main">
+          <div class="dash-card">
+            <div class="dash-card__header">
+              <span class="dash-card__title">Нагрузка на интеграционную шину / Агенты</span>
+              <span class="dash-card__live" title="Данные в реальном времени"><span class="pulse-dot"></span>Live</span>
+            </div>
+            <div class="chart" id="dash-chart">
+              <div class="chart__bars" id="chart-bars"></div>
+              <div class="chart__labels" id="chart-labels"></div>
+            </div>
+          </div>
+          <div class="dash-metrics">
+            <div class="dash-metric">
+              <span class="dash-metric__num" id="dm1">840</span>
+              <span class="dash-metric__label">задач/час</span>
+              <span class="dash-metric__delta dash-metric__delta--up">↑ 12%</span>
+            </div>
+            <div class="dash-metric">
+              <span class="dash-metric__num" id="dm2">0.3s</span>
+              <span class="dash-metric__label">ср. время задачи</span>
+              <span class="dash-metric__delta dash-metric__delta--up">↓ 40%</span>
+            </div>
+            <div class="dash-metric">
+              <span class="dash-metric__num" id="dm3">99.8%</span>
+              <span class="dash-metric__label">точность</span>
+              <span class="dash-metric__delta dash-metric__delta--up">↑ 2%</span>
+            </div>
+          </div>
+        </div>
+        <div class="dashboard__side">
+          <div class="dash-card dash-card--board">
+            <div class="dash-card__header">
+              <div role="tablist" aria-label="Информационная панель" class="board-tabs">
+                <button type="button" role="tab" aria-selected="true" aria-controls="panel-log" id="tab-log" class="board-tab board-tab--active">
+                  <span class="board-tab__dot"></span>Лог событий
+                </button>
+                <button type="button" role="tab" aria-selected="false" aria-controls="panel-agents" id="tab-agents" class="board-tab" tabindex="-1">
+                  Агенты онлайн <span class="board-tab__badge" id="agent-count">48</span>
+                </button>
+              </div>
+              <span class="dash-card__live" title="Данные в реальном времени"><span class="pulse-dot"></span>Live</span>
+            </div>
+            <div class="board-panels">
+              <div role="tabpanel" id="panel-log" aria-labelledby="tab-log" class="board-panel board-panel--active">
+                <div class="log" id="event-log">
+              <div class="log-item log-item--default">
+                <span class="log-item__time">10:15:02</span>
+                <span class="log-item__text"><strong style="color:var(--blue);">[RAG-INDEX]</strong> Индексация: Добавлен регламент &#x27;Технические условия монтажа 2026.pdf&#x27; (142 стр.)</span>
+              </div>
+              <div class="log-item log-item--default">
+                <span class="log-item__time">10:15:20</span>
+                <span class="log-item__text"><strong style="color:var(--purple);">[VECTOR-DB]</strong> Векторизация завершена: 480 чанков загружены в локальный Qdrant</span>
+              </div>
+              <div class="log-item log-item--default">
+                <span class="log-item__time">10:16:05</span>
+                <span class="log-item__text"><strong style="color:var(--green);">[QUERY-TG]</strong> Запрос инженера: &#x27;Допустимый зазор при установке муфты 120 мм?&#x27;</span>
+              </div>
+              <div class="log-item log-item--default">
+                <span class="log-item__time">10:16:07</span>
+                <span class="log-item__text"><strong style="color:var(--yellow);">[RAG-CORE]</strong> Ответ сформирован (1,8 сек): 0,35–0,42 мм (Раздел 4.2, стр. 38) [Совпадение 98%]</span>
+              </div>
+                </div>
+              </div>
+              <div role="tabpanel" id="panel-agents" aria-labelledby="tab-agents" class="board-panel" hidden>
+                <div class="agent-list" id="agent-list">
+                  <!-- JS fills this -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CTA + CONTACT ═══════════════════ -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact__inner" data-reveal="">
+        <div class="contact__text">
+          <h2 class="contact__title">Первый шаг — бесплатный экспресс-аудит</h2>
+          <p class="contact__desc">За 30 минут разберем ваши процессы, покажем узкие места в текущем учете и рассчитаем потенциал экономии для вашей компании.</p>
+        </div>
+        <!--email_off-->
+        <form class="contact__form" id="contact-form" name="contact" method="POST" action="https://formsubmit.co/contact@ai-avtopilot.ru" novalidate="">
+          <input type="hidden" name="access_key" value="" id="web3forms-key" />
+          <input type="hidden" name="_next" value="https://ai-avtopilot.ru/success.html" />
+          <input type="hidden" name="_subject" value="Новая заявка на аудит с сайта ai-avtopilot.ru (knowledge-base-rag)" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="from_name" value="АвтоПилот Лид" />
+          <div class="form-group form-group--required">
+            <div class="form-label-row">
+              <label for="contact-name">Ваше имя <span class="required-star" aria-label="Обязательное поле" title="Обязательное поле">*</span></label>
+              <span class="required-badge">обязательно</span>
+            </div>
+            <div class="form-field-wrap">
+              <input type="text" id="contact-name" name="name" placeholder="Алексей Иванов" required="" autocomplete="name" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label-row">
+              <label for="contact-company">Компания</label>
+              <span class="optional-hint">необязательно</span>
+            </div>
+            <div class="form-field-wrap">
+              <input type="text" id="contact-company" name="company" placeholder="ООО «Ромашка»" autocomplete="organization" />
+            </div>
+          </div>
+          <div class="form-group form-group--required">
+            <div class="form-label-row">
+              <label for="contact-email">Телефон или почта / Telegram <span class="required-star" aria-label="Обязательное поле" title="Обязательное поле">*</span></label>
+              <span class="required-badge">обязательно</span>
+            </div>
+            <div class="form-field-wrap">
+              <input type="text" id="contact-email" name="contact" placeholder="+7 (999) 000-00-00 или @username" required="" autocomplete="on" />
+            </div>
+          </div>
+          <input type="hidden" name="consent" value="accepted" />
+          <input type="text" name="_honey" style="display:none;" tabindex="-1" autocomplete="off" />
+          <button type="submit" class="btn btn--primary btn--full" id="form-submit">
+            Записаться на аудит
+          </button>
+          <p class="form-privacy">Нажимая кнопку, вы подтверждаете согласие на обработку персональных данных в соответствии с <a href="/privacy.html" target="_blank" rel="noopener noreferrer" class="form-link">Политикой конфиденциальности</a> (152-ФЗ)</p>
+        </form>
+        <!--/email_off-->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ OTHER SERVICES ═══════════════════ -->
+  <section class="services other-services" id="other-services">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag" data-reveal="">Смежные решения</p>
+        <h2 class="section-title" data-reveal="">Другие сценарии автоматизации</h2>
+      </div>
+      <div class="services__bento other-services__bento" data-reveal="" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Другие сценарии автоматизации">
+        <a href="/services/system-integration/" class="scard scard--link" aria-label="Интеграция систем: подробнее о сценарии внедрения">
+          <div class="scard__icon">🔄</div>
+          <h3 class="scard__title">Интеграция систем <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <p class="scard__desc">Прямая синхронизация 1С, CRM (Битрикс24/amoCRM) и учетных баз через API. Автоматический обмен без ручных выгрузок в Excel.</p>
+          <div class="scard__tags">
+            <span>1С:ERP</span><span>API</span><span>Bitrix24</span><span>OData</span>
+          </div>
+        </a>
+        <a href="/services/automated-reporting/" class="scard scard--link" aria-label="Автоотчётность: подробнее о сценарии внедрения в Telegram">
+          <div class="scard__icon">📊</div>
+          <h3 class="scard__title">Автоотчётность <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <p class="scard__desc">Сводные отчеты по продажам, остаткам и P&L формируются автоматически. Доставка руководителю в Telegram или на почту каждое утро в 09:00.</p>
+          <div class="scard__tags">
+            <span>1С:ERP</span><span>Telegram</span><span>P&L</span><span>ДДС</span>
+          </div>
+        </a>
+        <a href="/services/retail-inventory/" class="scard scard--link" aria-label="Ритейл и склад: подробнее об автоматизации остатков">
+          <div class="scard__icon">🏪</div>
+          <h3 class="scard__title">Ритейл и склад <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <p class="scard__desc">Автоматизация инвентаризации, заказов поставщикам, ценообразования и кассовых операций без рутины в 1С.</p>
+          <div class="scard__tags">
+            <span>1С:УТ</span><span>WB / Ozon</span><span>ТОРГ-2</span><span>Safety Stock</span>
+          </div>
+        </a>
+        <a href="/services/document-automation/" class="scard scard--link" aria-label="Документооборот: подробнее об авто-вводе первички">
+          <div class="scard__icon">📄</div>
+          <h3 class="scard__title">Документооборот <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <p class="scard__desc">Автоматическое распознавание первички (УПД, счета-фактуры), сверка реквизитов и маршрутизация в Диадок/СБИС без участия бухгалтера.</p>
+          <div class="scard__tags">
+            <span>OCR</span><span>Диадок</span><span>СБИС</span><span>1С:БП</span>
+          </div>
+        </a>
+        <a href="/services/customer-support/" class="scard scard--link" aria-label="ИИ-поддержка клиентов: подробнее о диспетчере первой линии">
+          <div class="scard__icon">💬</div>
+          <h3 class="scard__title">ИИ-поддержка клиентов <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <p class="scard__desc">Ассистент первой линии с доступом к базе знаний и 1С: квалифицирует лидов, выставляет счета и отвечает за 3 секунды 24/7.</p>
+          <div class="scard__tags">
+            <span>Telegram</span><span>WhatsApp</span><span>Bitrix24</span><span>1С</span>
+          </div>
+        </a>
+        <a href="/services/ai-analytics/" class="scard scard--link scard--dark" aria-label="ИИ-аналитика: подробнее о предиктивном мониторинге в 1С">
+          <div class="scard__icon">🧠</div>
+          <h3 class="scard__title">ИИ-аналитика <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <p class="scard__desc">Мониторинг кассовых разрывов, расчет неснижаемого складского остатка и выявление ценовых аномалий поставщиков.</p>
+          <div class="scard__tags">
+            <span>1С:ERP</span><span>ДДС</span><span>Safety Stock</span><span>Аудит цен</span>
+          </div>
+        </a>
+        <a href="/services/speech-analytics/" class="scard scard--link" aria-label="Речевая аналитика: подробнее об интеграции контроля звонков">
+          <div class="scard__icon">🎙️</div>
+          <h3 class="scard__title">Речевая аналитика <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <p class="scard__desc">100% аудит звонков отдела продаж за 30 секунд. Интеграция с АТС и amoCRM/Битрикс24 по вебхуку, оценка по 18 критериям чек-листа.</p>
+          <div class="scard__tags">
+            <span>Whisper</span><span>amoCRM</span><span>Битрикс24</span><span>АТС</span>
+          </div>
+        </a>
+        <a href="/services/specifications-kp/" class="scard scard--link" aria-label="Спецификации и КП: подробнее об автоматическом расчете">
+          <div class="scard__icon">📑</div>
+          <h3 class="scard__title">Спецификации и КП <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <p class="scard__desc">Авторазбор заявок клиентов (Excel/PDF), сопоставление со справочником 1С и расчет КП с маржой за 30 секунд.</p>
+          <div class="scard__tags">
+            <span>1С:УТ</span><span>1С:ERP</span><span>Excel/PDF</span><span>Расчет КП</span>
+          </div>
+        </a>
+        <a href="/services/price-monitoring/" class="scard scard--link" aria-label="Мониторинг цен: подробнее об автоматическом репрайсинге">
+          <div class="scard__icon">📈</div>
+          <h3 class="scard__title">Мониторинг цен <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <p class="scard__desc">Автоматический сбор открытых прайсов конкурентов и маркетплейсов. Сверка с себестоимостью в 1С и динамический репрайсинг без рутины.</p>
+          <div class="scard__tags">
+            <span>1С:УТ</span><span>OData</span><span>Репрайсинг</span><span>Парсер цен</span>
+          </div>
+        </a>
+        <a href="/services/debt-control/" class="scard scard--link" aria-label="Контроль дебиторки: подробнее об автоматизации работы с задолженностью">
+          <div class="scard__icon">💳</div>
+          <h3 class="scard__title">Контроль дебиторки <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <p class="scard__desc">Автоматический мониторинг сроков оплаты в 1С, ступенчатые напоминания клиентам и автогенерация претензий юристу без конфликтов.</p>
+          <div class="scard__tags">
+            <span>1С:ERP</span><span>1С:УТ</span><span>ДДС</span><span>Soft Collection</span>
+          </div>
+        </a>
+        <a href="/services/reviews-reputation/" class="scard scard--link" aria-label="Управление отзывами: подробнее об автоответах и гео-репутации">
+          <div class="scard__icon">⭐</div>
+          <h3 class="scard__title">Управление отзывами <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <p class="scard__desc">Автоматический сбор и генерация ответов на отзывы на Яндекс.Картах и 2ГИС с сопоставлением клиентов в 1С и защитой рейтинга 24/7.</p>
+          <div class="scard__tags">
+            <span>Яндекс Бизнес</span><span>2ГИС</span><span>1С:ERP</span><span>ORM</span>
+          </div>
+        </a>
+        <a href="/services/marketing-automation/" class="scard scard--link" aria-label="Автоматизация маркетинга: подробнее об автономных ИИ-агентах и сквозной аналитике">
+          <div class="scard__icon">🎯</div>
+          <h3 class="scard__title">Автоматизация маркетинга <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <p class="scard__desc">Автономные ИИ-агенты для квалификации лидов за 3 секунды, триггерных воронок в CRM, сквозной окупаемости и создания контента.</p>
+          <div class="scard__tags">
+            <span>amoCRM</span><span>Битрикс24</span><span>ИИ-агенты</span><span>Telegram</span>
+          </div>
+        </a>
+        <a href="/services/hr-recruitment/" class="scard scard--link" aria-label="ИИ-найм и рекрутинг: подробнее об автоматизации подбора персонала">
+          <div class="scard__icon">👥</div>
+          <h3 class="scard__title">ИИ-найм и рекрутинг <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <p class="scard__desc">Автоматический скрининг резюме на HH за 3 секунды, интервью в Telegram-боте и передача анкет финалистов в 1С:ЗУП.</p>
+          <div class="scard__tags">
+            <span>HeadHunter</span><span>1С:ЗУП</span><span>Telegram</span><span>HR-AI</span>
+          </div>
+        </a>
+        <a href="/services/tender-automation/" class="scard scard--link" aria-label="Автоматизация тендеров: подробнее о скоринге ТЗ и госзакупках">
+          <div class="scard__icon">⚖️</div>
+          <h3 class="scard__title">Автоматизация тендеров <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <p class="scard__desc">Семантический аудит ТЗ по 44-ФЗ и 223-ФЗ за 3 минуты, сверка номенклатуры в 1С:ERP и сборка Формы 2 без штрафов.</p>
+          <div class="scard__tags">
+            <span>44-ФЗ</span><span>223-ФЗ</span><span>1С:ERP</span><span>Форма 2</span>
+          </div>
+        </a>
+        <a href="/services/marketplace-automation/" class="scard scard--link" aria-label="Автоматизация маркетплейсов: подробнее о генерации карточек и автобиддере WB и Ozon">
+          <div class="scard__icon">📦</div>
+          <h3 class="scard__title">Автоматизация маркетплейсов <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <p class="scard__desc">Генерация SEO-карточек товара за 15 секунд, автобиддер ставок с контролем ДРР, ответы на отзывы и синхронизация с 1С.</p>
+          <div class="scard__tags">
+            <span>Wildberries</span><span>Ozon</span><span>1С:УТ/КА</span><span>Автобиддер</span>
+          </div>
+        </a>
+        <a href="/services/b2b-outbound/" class="scard scard--link" aria-label="AI SDR и B2B-аутрич: подробнее об автономных исходящих продажах">
+          <div class="scard__icon">🎯</div>
+          <h3 class="scard__title">AI SDR и B2B-аутрич <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <p class="scard__desc">Автономный поиск ЛПР, персонализированные холодные цепочки в Email и Telegram, квалификация лидов и передача готовых встреч в CRM.</p>
+          <div class="scard__tags">
+            <span>AI SDR</span><span>amoCRM</span><span>B2B-лиды</span><span>Битрикс24</span>
+          </div>
+        </a>
+        <a href="/services/customer-retention/" class="scard scard--link" aria-label="Retention и реактивация: подробнее об удержании клиентов и росте повторных продаж">
+          <div class="scard__icon">🔄</div>
+          <h3 class="scard__title">Retention и реактивация <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <p class="scard__desc">Предиктивный RFM-анализ в 1С, предотвращение оттока B2B-клиентов за 30 дней и возврат спящей базы через умные триггерные касания.</p>
+          <div class="scard__tags">
+            <span>1С:ERP</span><span>RFM</span><span>LTV</span><span>Удержание</span>
+          </div>
+        </a>
+        <a href="/services/rapid-pilot/" class="scard scard--link scard--accent" aria-label="Быстрый старт: подробнее о пилотном запуске за 14 дней">
+          <div class="scard__icon">⚡</div>
+          <h3 class="scard__title">Быстрый старт <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <p class="scard__desc">Пилотный робот за 14 дней. Видимый результат до подписания основного контракта.</p>
+          <span class="btn btn--primary">Начать →</span>
+        </a>
+      </div>
+      <div class="slider-controls">
+        <button type="button" class="slider-arrow slider-arrow--prev" id="other-services-prev" aria-label="Предыдущие сценарии" title="Предыдущие сценарии">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="carousel-dots other-services-dots" id="other-services-dots"></div>
+        <button type="button" class="slider-arrow slider-arrow--next" id="other-services-next" aria-label="Следующие сценарии" title="Следующие сценарии">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__top">
+        <a href="/" class="nav__logo" aria-label="АвтоПилот">⬡ АвтоПилот</a>
+        <div class="footer__dual-cta" role="group" aria-label="Связаться с нами">
+          <a href="https://t.me/AiAvtopilotbot" target="_blank" rel="noopener noreferrer" class="footer__dual-btn footer__dual-btn--tg footer__tg-cta" aria-label="Написать в Telegram Онлайн @AiAvtopilotbot">
+            <span class="footer__dual-icon footer__dual-icon--tg footer__tg-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+              </svg>
+            </span>
+            <span class="footer__dual-text footer__tg-text">
+              <span class="footer__dual-head">
+                <span class="footer__dual-label">Telegram</span>
+                <span class="footer__dual-status footer__tg-badge"><span class="footer__tg-dot"></span>Онлайн</span>
+              </span>
+              <span class="footer__dual-sub footer__tg-handle">@AiAvtopilotbot</span>
+            </span>
+          </a>
+          <span class="footer__dual-sep" aria-hidden="true"></span>
+          <button type="button" class="footer__dual-btn footer__dual-btn--email" id="open-express-modal" aria-haspopup="dialog" aria-expanded="false" aria-controls="express-contact-modal" aria-label="Написать на Email в 2 клика">
+            <span class="footer__dual-icon footer__dual-icon--email">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </span>
+            <span class="footer__dual-text">
+              <span class="footer__dual-head">
+                <span class="footer__dual-label">Email</span>
+                <span class="footer__dual-badge-hint">Экспресс</span>
+              </span>
+              <span class="footer__dual-sub">contact@ai-avtopilot.ru</span>
+            </span>
+          </button>
+        </div>
+      </div>
+      <div class="footer__body">
+        <div class="footer__brand">
+          <p>ИИ-автоматизация бизнес-процессов.<br />г. Москва · Работаем по всей России.<br /><span class="footer__support">Поддержка: 24/7 онлайн</span></p>
+        </div>
+      </div>
+      <div class="footer__links-row">
+        <div class="footer__links">
+          <a href="/dashboard/">Дашборд</a>
+          <a href="/services/">Услуги</a>
+          <a href="/cases/">Кейсы</a>
+          <a href="/calculator/">Калькулятор</a>
+          <a href="/faq/">FAQ</a>
+          <a href="/contact/">Контакты</a>
+        </div>
+        <div class="footer__meta-links">
+          <!--email_off--><a href="mailto:contact@ai-avtopilot.ru" class="footer__email">contact@ai-avtopilot.ru</a><!--/email_off-->
+          <a href="/privacy.html" class="footer__privacy">Политика конфиденциальности (152-ФЗ)</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div class="footer__copy">
+          © 2025–2026 АвтоПилот. Все права защищены.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════ SOTA EXPRESS CONTACT MODAL ═══════════════════ -->
+  <dialog id="express-contact-modal" class="express-modal" aria-labelledby="modal-title" aria-modal="true">
+    <div class="express-modal__card">
+      <div class="express-modal__header">
+        <div class="express-modal__header-left">
+          <h3 id="modal-title" class="express-modal__title">Связаться с АвтоПилот</h3>
+          <div class="express-modal__online-indicator">
+            <span class="footer__tg-dot"></span> Отвечаем в течение 5–15 минут
+          </div>
+        </div>
+        <button type="button" class="express-modal__close" id="close-express-modal" aria-label="Закрыть модальное окно">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Tabs -->
+      <div class="express-modal__tabs" role="tablist" aria-label="Каналы связи">
+        <button type="button" role="tab" class="express-modal__tab express-modal__tab--active" id="tab-email-btn" aria-selected="true" aria-controls="panel-email" tabindex="0">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <span>Написать на почту</span>
+        </button>
+        <button type="button" role="tab" class="express-modal__tab" id="tab-tg-btn" aria-selected="false" aria-controls="panel-tg" tabindex="-1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+          <span>Telegram бот</span>
+        </button>
+      </div>
+
+      <!-- Panel: Email -->
+      <div id="panel-email" class="express-modal__panel express-modal__panel--active" role="tabpanel" aria-labelledby="tab-email-btn">
+        <form id="express-email-form" class="express-modal__form" novalidate>
+          <input type="text" name="_honey" class="honeypot-input" style="display:none!important;" tabindex="-1" autocomplete="off" />
+          <div class="express-form-group">
+            <label for="express-contact" class="express-form-label">
+              Ваш Email или Telegram / телефон <span class="required-star">*</span>
+            </label>
+            <input type="text" id="express-contact" name="contact" class="express-form-input" placeholder="name@company.ru или @username" required />
+            <div class="express-form-error" id="express-contact-error"></div>
+          </div>
+          <div class="express-form-group">
+            <label for="express-message" class="express-form-label">
+              Ваш вопрос или задача <span class="required-star">*</span>
+            </label>
+            <textarea id="express-message" name="message" class="express-form-textarea" rows="3" placeholder="Кратко опишите задачу (например, интеграция 1С с CRM или автоматизация отчетов)..." required></textarea>
+            <div class="express-form-error" id="express-message-error"></div>
+          </div>
+          
+          <div class="express-form-footer">
+            <button type="submit" id="express-submit-btn" class="btn btn--primary express-submit-btn">
+              <span>Отправить сообщение</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+            <p class="express-form-consent">
+              Нажимая кнопку, вы соглашаетесь с <a href="/privacy.html" target="_blank" rel="noopener">Политикой конфиденциальности (152-ФЗ)</a>.
+            </p>
+          </div>
+        </form>
+
+        <!-- Direct copy row -->
+        <div class="express-modal__direct-email">
+          <span class="express-modal__direct-text">Или скопируйте наш прямой email:</span>
+          <button type="button" class="btn-copy-email" id="modal-copy-email-btn" aria-label="Скопировать contact@ai-avtopilot.ru">
+            <span class="copy-email-address">contact@ai-avtopilot.ru</span>
+            <span class="copy-email-badge" id="modal-copy-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span class="copy-label">Скопировать</span>
+            </span>
+          </button>
+        </div>
+
+        <!-- Result Card (Hidden by default) -->
+        <div id="express-success-card" class="express-modal__success" style="display:none;" aria-live="polite">
+          <div class="express-success__icon">✓</div>
+          <h4 class="express-success__title">Сообщение отправлено!</h4>
+          <p class="express-success__desc">Спасибо! Мы уже получили ваш запрос и ответим в течение 15 минут.</p>
+          <button type="button" class="btn btn--ghost" id="express-reset-btn" style="margin-top:12px;font-size:0.85rem;">Отправить еще одно</button>
+        </div>
+      </div>
+
+      <!-- Panel: Telegram -->
+      <div id="panel-tg" class="express-modal__panel" role="tabpanel" aria-labelledby="tab-tg-btn" hidden>
+        <div class="express-tg-content">
+          <div class="express-tg-badge-status">
+            <span class="footer__tg-dot"></span> ИИ-ассистент онлайн 24/7
+          </div>
+          <h4 class="express-tg-title">Чат с ботом @AiAvtopilotbot</h4>
+          <p class="express-tg-desc">Мгновенный расчет окупаемости, примеры внедрений и прямая связь с инженером без ожидания.</p>
+          <a href="https://t.me/AiAvtopilotbot" target="_blank" rel="noopener noreferrer" class="btn btn--primary express-tg-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+            <span>Открыть @AiAvtopilotbot</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </dialog>
+
+  <!-- Express Contact Modal Controller -->
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+      var modal = document.getElementById('express-contact-modal');
+      var openBtn = document.getElementById('open-express-modal');
+      var closeBtn = document.getElementById('close-express-modal');
+      var tabEmail = document.getElementById('tab-email-btn');
+      var tabTg = document.getElementById('tab-tg-btn');
+      var panelEmail = document.getElementById('panel-email');
+      var panelTg = document.getElementById('panel-tg');
+      var emailForm = document.getElementById('express-email-form');
+      var submitBtn = document.getElementById('express-submit-btn');
+      var successCard = document.getElementById('express-success-card');
+      var resetBtn = document.getElementById('express-reset-btn');
+      var copyEmailBtn = document.getElementById('modal-copy-email-btn');
+      var copyBadge = document.getElementById('modal-copy-badge');
+
+      if (!modal || !openBtn) return;
+
+      function reach(goal) {
+        if (typeof ym !== 'undefined') {
+          ym(112978516, 'reachGoal', goal);
+        }
+      }
+
+      function switchTab(target) {
+        var isEmail = target === 'email';
+        tabEmail.classList.toggle('express-modal__tab--active', isEmail);
+        tabEmail.setAttribute('aria-selected', isEmail ? 'true' : 'false');
+        tabEmail.setAttribute('tabindex', isEmail ? '0' : '-1');
+        panelEmail.hidden = !isEmail;
+
+        tabTg.classList.toggle('express-modal__tab--active', !isEmail);
+        tabTg.setAttribute('aria-selected', !isEmail ? 'true' : 'false');
+        tabTg.setAttribute('tabindex', !isEmail ? '0' : '-1');
+        panelTg.hidden = isEmail;
+
+        if (isEmail) {
+          var input = document.getElementById('express-contact');
+          if (input) setTimeout(function() { input.focus(); }, 60);
+        }
+      }
+
+      function openModal(defaultTab) {
+        switchTab(defaultTab || 'email');
+        if (typeof modal.showModal === 'function') {
+          modal.showModal();
+        } else {
+          modal.setAttribute('open', '');
+        }
+        openBtn.setAttribute('aria-expanded', 'true');
+        reach('express_modal_opened');
+      }
+
+      function closeModal() {
+        if (typeof modal.close === 'function') {
+          modal.close();
+        } else {
+          modal.removeAttribute('open');
+        }
+        openBtn.setAttribute('aria-expanded', 'false');
+        openBtn.focus();
+      }
+
+      openBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        openModal('email');
+      });
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+      }
+
+      modal.addEventListener('click', function(e) {
+        var rect = modal.getBoundingClientRect();
+        var isInDialog = (
+          rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+          rect.left <= e.clientX && e.clientX <= rect.left + rect.width
+        );
+        if (!isInDialog) {
+          closeModal();
+        }
+      });
+
+      tabEmail.addEventListener('click', function() { switchTab('email'); });
+      tabTg.addEventListener('click', function() { switchTab('tg'); });
+
+      // Keyboard navigation between tabs
+      [tabEmail, tabTg].forEach(function(tab) {
+        tab.addEventListener('keydown', function(e) {
+          if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+            e.preventDefault();
+            var targetTab = (tab === tabEmail) ? 'tg' : 'email';
+            switchTab(targetTab);
+            var nextBtn = (targetTab === 'tg') ? tabTg : tabEmail;
+            nextBtn.focus();
+          }
+        });
+      });
+
+      // Clear validation state on typing
+      var contactInp = document.getElementById('express-contact');
+      var msgInp = document.getElementById('express-message');
+      [contactInp, msgInp].forEach(function(inp) {
+        if (!inp) return;
+        inp.addEventListener('input', function() {
+          this.classList.remove('is-invalid');
+          var errEl = document.getElementById(this.id + '-error');
+          if (errEl) errEl.classList.remove('is-visible');
+        });
+      });
+
+      // Form submission
+      if (emailForm) {
+        emailForm.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          var contactVal = (contactInp.value || '').trim();
+          var messageVal = (msgInp.value || '').trim();
+          var hasError = false;
+
+          if (contactVal.length < 3) {
+            contactInp.classList.add('is-invalid');
+            var cErr = document.getElementById('express-contact-error');
+            if (cErr) {
+              cErr.textContent = 'Укажите ваш email, телефон или Telegram';
+              cErr.classList.add('is-visible');
+            }
+            hasError = true;
+          }
+
+          if (messageVal.length < 2) {
+            msgInp.classList.add('is-invalid');
+            var mErr = document.getElementById('express-message-error');
+            if (mErr) {
+              mErr.textContent = 'Опишите кратко вашу задачу';
+              mErr.classList.add('is-visible');
+            }
+            hasError = true;
+          }
+
+          if (hasError) return;
+
+          var honey = emailForm.querySelector('input[name="_honey"]');
+          if (honey && honey.value) return; // Silent drop bot
+
+          submitBtn.disabled = true;
+          var originalBtnText = submitBtn.innerHTML;
+          submitBtn.innerHTML = '<span>Отправка...</span>';
+
+          var payload = {
+            contact: contactVal,
+            message: messageVal,
+            source: 'express_modal'
+          };
+
+          var delivered = false;
+
+          // Dispatch in parallel: Telegram via Worker + Email via FormSubmit
+          var tgPromise = (async function() {
+            try {
+              var r0 = await fetch('/api/lead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              if (r0.ok) {
+                var d0 = await r0.json();
+                if (d0 && (d0.success === true || d0.success === 'true')) return true;
+              }
+            } catch (_locErr) {}
+            try {
+              var res = await fetch('https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              if (res.ok) {
+                var data = await res.json();
+                if (data && (data.success === true || data.success === 'true')) {
+                  return true;
+                }
+              }
+            } catch (_cfErr) {}
+            try {
+              var r2 = await fetch('/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              return r2.ok;
+            } catch (_relErr) {
+              return false;
+            }
+          })();
+
+          var emailPromise = (async function() {
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+              return true;
+            }
+            try {
+              var r = await fetch('https://formsubmit.co/ajax/mr.vladimir.voronin@ya.ru', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                  _subject: '⚡ Экспресс-сообщение из виджета ai-avtopilot.ru',
+                  _cc: 'contact@ai-avtopilot.ru',
+                  contact: contactVal,
+                  message: messageVal,
+                  _template: 'table'
+                })
+              });
+              if (r.ok) {
+                var d = await r.json();
+                if (d && (d.success === true || d.success === 'true')) return true;
+              }
+            } catch (_fsErr) {}
+            try {
+              var r2 = await fetch('https://formsubmit.co/ajax/contact@ai-avtopilot.ru', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                  _subject: '⚡ Экспресс-сообщение из виджета ai-avtopilot.ru',
+                  contact: contactVal,
+                  message: messageVal,
+                  _template: 'table'
+                })
+              });
+              return r2.ok;
+            } catch (_fsErr2) {
+              return false;
+            }
+          })();
+
+          var results = await Promise.allSettled([tgPromise, emailPromise]);
+          delivered = results.some(function(r) { return r.status === 'fulfilled' && r.value === true; });
+
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnText;
+
+          if (delivered) {
+            emailForm.style.display = 'none';
+            successCard.style.display = 'block';
+            reach('express_modal_submitted');
+          } else {
+            var fallbackNote = 'Заявка:\nКонтакт: ' + contactVal + '\nЗадача: ' + messageVal;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(fallbackNote);
+            }
+            alert('Сбой сети. Мы скопировали ваше сообщение в буфер обмена — отправьте его нам на contact@ai-avtopilot.ru или в Telegram @AiAvtopilotbot');
+            window.location.href = 'mailto:contact@ai-avtopilot.ru?subject=' + encodeURIComponent('Экспресс-заявка с сайта') + '&body=' + encodeURIComponent(fallbackNote);
+          }
+        });
+      }
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+          emailForm.reset();
+          emailForm.style.display = 'block';
+          successCard.style.display = 'none';
+        });
+      }
+
+      // Copy email in 1 click
+      if (copyEmailBtn) {
+        copyEmailBtn.addEventListener('click', function() {
+          var email = 'contact@ai-avtopilot.ru';
+          var copySuccess = function() {
+            if (copyBadge) {
+              copyBadge.classList.add('is-copied');
+              var label = copyBadge.querySelector('.copy-label');
+              if (label) label.textContent = 'Скопировано! ✓';
+              setTimeout(function() {
+                copyBadge.classList.remove('is-copied');
+                if (label) label.textContent = 'Скопировать';
+              }, 2500);
+            }
+            reach('copy_direct_email');
+          };
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(email).then(copySuccess).catch(function() {
+              prompt('Скопируйте email:', email);
+            });
+          } else {
+            prompt('Скопируйте email:', email);
+          }
+        });
+      }
+    });
+  </script>
+
+
+  <!-- Yandex.Metrika Custom Goals Tracking -->
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+      var COUNTER_ID = 112978516;
+      function reach(goalName) {
+        if (typeof ym !== 'undefined') {
+          ym(COUNTER_ID, 'reachGoal', goalName);
+        }
+      }
+
+      var form = document.getElementById('contact-form');
+      if (form) {
+        form.addEventListener('submit', function() {
+          reach('lead_form_submitted');
+        });
+      }
+
+      var ctaSelectors = ['#cta-main', '.btn--nav', '.scard--accent .btn', '.roi__cta-block .btn', 'a[href="#contact"]'];
+      ctaSelectors.forEach(function(sel) {
+        document.querySelectorAll(sel).forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            reach('click_cta_audit');
+          });
+        });
+      });
+
+      var sliders = ['#slider-employees', '#slider-hours', '#slider-salary'];
+      var calcTracked = false;
+      sliders.forEach(function(sel) {
+        var slider = document.querySelector(sel);
+        if (slider) {
+          slider.addEventListener('change', function() {
+            if (!calcTracked) {
+              reach('calc_interacted');
+              calcTracked = true;
+            }
+          });
+        }
+      });
+
+      var casesSec = document.getElementById('cases');
+      if (casesSec && 'IntersectionObserver' in window) {
+        var casesObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              reach('scroll_cases_deep');
+              casesObserver.disconnect();
+            }
+          });
+        }, { threshold: 0.25 });
+        casesObserver.observe(casesSec);
+      }
+
+      document.querySelectorAll('a[href^="mailto:"], a[href*="t.me"]').forEach(function(el) {
+        el.addEventListener('click', function() {
+          reach('click_contact');
+        });
+      });
+    });
+  </script>
+
+  <!-- Back to Top Button with Dynamic Circular Progress Indicator -->
+  <button type="button" class="back-to-top" id="back-to-top" aria-label="Вернуться наверх" title="Вернуться наверх" tabindex="-1" aria-hidden="true">
+    <svg class="back-to-top__progress" width="48" height="48" viewBox="0 0 48 48" aria-hidden="true">
+      <defs>
+        <linearGradient id="backToTopGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#6366f1" />
+          <stop offset="100%" stop-color="#a855f7" />
+        </linearGradient>
+      </defs>
+      <circle class="back-to-top__track" cx="24" cy="24" r="20" fill="none" stroke="rgba(255, 255, 255, 0.08)" stroke-width="2.5" />
+      <circle class="back-to-top__bar" cx="24" cy="24" r="20" fill="none" stroke="url(#backToTopGrad)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="125.66" stroke-dashoffset="125.66" />
+    </svg>
+    <span class="back-to-top__icon" aria-hidden="true">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19V5M5 12l7-7 7 7"/>
+      </svg>
+    </span>
+  </button>
+
+  <!-- Cookie Consent (152-ФЗ) -->
+  <div class="cookie-banner" id="cookie-banner" style="display:none;">
+    <div class="cookie-banner__inner">
+      <span>Мы используем cookies и аналитику для улучшения работы сайта. Подробнее в <a href="/privacy.html" class="cookie-link">Политике конфиденциальности</a>.</span>
+      <button class="btn btn--cookie" id="cookie-accept" aria-label="Понятно, принять условия использования файлов cookie">Понятно</button>
+    </div>
+  </div>
+  <style>
+    .cookie-banner {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 40px);
+      max-width: 720px;
+      background: rgba(17, 17, 25, 0.95);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      backdrop-filter: blur(12px);
+      padding: 14px 20px;
+      border-radius: 12px;
+      z-index: 9999;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      color: #c4c4d4;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    .cookie-banner__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .cookie-link {
+      color: #818cf8;
+      text-decoration: underline;
+    }
+    .btn--cookie {
+      background: #4f46e5;
+      color: #ffffff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .btn--cookie:hover {
+      background: #4338ca;
+    }
+  </style>
+  <script type="text/javascript">
+    (function() {
+      try {
+        if (!localStorage.getItem('cookie_consent')) {
+          var b = document.getElementById('cookie-banner');
+          if (b) b.style.display = 'block';
+          var btn = document.getElementById('cookie-accept');
+          if (btn) btn.addEventListener('click', function() {
+            localStorage.setItem('cookie_consent', '1');
+            if (b) b.style.display = 'none';
+          });
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Interactive Controls: Dashboard Tabs & Horizontal Carousels -->
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+      // 1. Dashboard Tabbed Board
+      var tabList = document.querySelector('.board-tabs');
+      if (tabList) {
+        var tabs = Array.from(tabList.querySelectorAll('[role="tab"]'));
+        var panels = Array.from(document.querySelectorAll('.board-panel'));
+
+        function activateTab(tab, setFocus) {
+          if (!tab) return;
+          tabs.forEach(function(t) {
+            var isSelected = (t === tab);
+            t.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+            t.setAttribute('tabindex', isSelected ? '0' : '-1');
+            t.classList.toggle('board-tab--active', isSelected);
+          });
+          var targetId = tab.getAttribute('aria-controls');
+          panels.forEach(function(p) {
+            var isTarget = (p.id === targetId);
+            p.hidden = !isTarget;
+            p.classList.toggle('board-panel--active', isTarget);
+          });
+          if (setFocus) tab.focus();
+        }
+
+        tabList.addEventListener('click', function(e) {
+          var tab = e.target.closest('[role="tab"]');
+          if (tab) activateTab(tab, false);
+        });
+
+        tabList.addEventListener('keydown', function(e) {
+          var idx = tabs.indexOf(document.activeElement);
+          if (idx === -1) return;
+          if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            activateTab(tabs[(idx + 1) % tabs.length], true);
+          } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            activateTab(tabs[(idx - 1 + tabs.length) % tabs.length], true);
+          } else if (e.key === 'Home') {
+            e.preventDefault();
+            activateTab(tabs[0], true);
+          } else if (e.key === 'End') {
+            e.preventDefault();
+            activateTab(tabs[tabs.length - 1], true);
+          }
+        });
+      }
+
+      // 2. Cases Horizontal Carousel Dots
+      var casesGrid = document.querySelector('.cases__grid');
+      var dotsWrap = document.getElementById('carousel-dots');
+      if (casesGrid && dotsWrap) {
+        var cards = Array.from(casesGrid.querySelectorAll('.case-card'));
+        if (cards.length > 0) {
+          dotsWrap.innerHTML = '';
+          cards.forEach(function(_, i) {
+            var dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Кейс ' + (i + 1) + ' из ' + cards.length);
+            dot.addEventListener('click', function() {
+              cards[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            });
+            dotsWrap.appendChild(dot);
+          });
+
+          var dots = Array.from(dotsWrap.querySelectorAll('.carousel-dot'));
+          var isTicking = false;
+
+          function updateActiveDot() {
+            var gridRect = casesGrid.getBoundingClientRect();
+            var gridCenter = gridRect.left + gridRect.width / 2;
+            var closestIdx = 0;
+            var minDiff = Infinity;
+
+            cards.forEach(function(card, idx) {
+              var r = card.getBoundingClientRect();
+              var cardCenter = r.left + r.width / 2;
+              var diff = Math.abs(gridCenter - cardCenter);
+              if (diff < minDiff) {
+                minDiff = diff;
+                closestIdx = idx;
+              }
+            });
+
+            dots.forEach(function(d, idx) {
+              d.classList.toggle('active', idx === closestIdx);
+            });
+            isTicking = false;
+          }
+
+          casesGrid.addEventListener('scroll', function() {
+            if (!isTicking) {
+              window.requestAnimationFrame(updateActiveDot);
+              isTicking = true;
+            }
+          }, { passive: true });
+        }
+      }
+
+      // 3. Services Horizontal Carousel Dots
+      var servicesBento = document.querySelector('.services__bento');
+      var sDotsWrap = document.getElementById('services-dots');
+      if (servicesBento && sDotsWrap) {
+        var sCards = Array.from(servicesBento.querySelectorAll('.scard'));
+        if (sCards.length > 0) {
+          sDotsWrap.innerHTML = '';
+          sCards.forEach(function(_, i) {
+            var dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Сценарий ' + (i + 1) + ' из ' + sCards.length);
+            dot.addEventListener('click', function() {
+              sCards[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            });
+            sDotsWrap.appendChild(dot);
+          });
+
+          var sDots = Array.from(sDotsWrap.querySelectorAll('.carousel-dot'));
+          var sTicking = false;
+
+          function updateServicesDot() {
+            var gridRect = servicesBento.getBoundingClientRect();
+            var gridCenter = gridRect.left + gridRect.width / 2;
+            var closestIdx = 0;
+            var minDiff = Infinity;
+
+            sCards.forEach(function(card, idx) {
+              var r = card.getBoundingClientRect();
+              var cardCenter = r.left + r.width / 2;
+              var diff = Math.abs(gridCenter - cardCenter);
+              if (diff < minDiff) {
+                minDiff = diff;
+                closestIdx = idx;
+              }
+            });
+
+            sDots.forEach(function(d, idx) {
+              d.classList.toggle('active', idx === closestIdx);
+            });
+            sTicking = false;
+          }
+
+          servicesBento.addEventListener('scroll', function() {
+            if (!sTicking) {
+              window.requestAnimationFrame(updateServicesDot);
+              sTicking = true;
+            }
+          }, { passive: true });
+        }
+      }
+
+      // Universal Adaptive Slider Controller
+      function initAdaptiveSlider(cfg) {
+        var container = cfg.container;
+        var dotsWrap = cfg.dotsWrap;
+        var prevBtn = cfg.prevBtn;
+        var nextBtn = cfg.nextBtn;
+        var itemSelector = cfg.itemSelector;
+        var labelPrefix = cfg.labelPrefix || 'Слайд';
+
+        if (!container || !dotsWrap) return;
+        var cards = Array.from(container.querySelectorAll(itemSelector));
+        if (cards.length === 0) return;
+
+        var isTicking = false;
+        var currentSlide = 0;
+        var totalSlides = 1;
+        var isDesktop = window.innerWidth >= 1025;
+
+        function calcTotalSlides() {
+          isDesktop = window.innerWidth >= 1025;
+          if (isDesktop) {
+            return Math.max(1, Math.ceil(cards.length / 8));
+          } else {
+            return cards.length;
+          }
+        }
+
+        function updateDots() {
+          totalSlides = calcTotalSlides();
+          dotsWrap.innerHTML = '';
+
+          for (var i = 0; i < totalSlides; i++) {
+            var dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'carousel-dot' + (i === currentSlide ? ' active' : '');
+            dot.setAttribute('aria-label', labelPrefix + ' ' + (i + 1) + ' из ' + totalSlides);
+            (function(idx) {
+              dot.addEventListener('click', function() {
+                goToSlide(idx);
+              });
+            })(i);
+            dotsWrap.appendChild(dot);
+          }
+          updateArrows();
+        }
+
+        function updateArrows() {
+          if (!prevBtn || !nextBtn) return;
+          if (totalSlides <= 1) {
+            prevBtn.setAttribute('hidden', '');
+            nextBtn.setAttribute('hidden', '');
+            prevBtn.disabled = true;
+            nextBtn.disabled = true;
+          } else {
+            prevBtn.removeAttribute('hidden');
+            nextBtn.removeAttribute('hidden');
+            prevBtn.disabled = (currentSlide <= 0);
+            nextBtn.disabled = (currentSlide >= totalSlides - 1);
+            prevBtn.setAttribute('aria-disabled', currentSlide <= 0 ? 'true' : 'false');
+            nextBtn.setAttribute('aria-disabled', currentSlide >= totalSlides - 1 ? 'true' : 'false');
+          }
+        }
+
+        function goToSlide(idx) {
+          idx = Math.max(0, Math.min(totalSlides - 1, idx));
+          currentSlide = idx;
+          if (isDesktop) {
+            var maxScroll = container.scrollWidth - container.clientWidth;
+            var targetScroll = totalSlides > 1 ? (idx / (totalSlides - 1)) * maxScroll : 0;
+            container.scrollTo({ left: targetScroll, behavior: 'smooth' });
+          } else {
+            if (cards[idx]) {
+              cards[idx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }
+          }
+          setActiveDot(idx);
+          updateArrows();
+        }
+
+        function setActiveDot(idx) {
+          currentSlide = idx;
+          var dots = Array.from(dotsWrap.querySelectorAll('.carousel-dot'));
+          dots.forEach(function(d, i) {
+            d.classList.toggle('active', i === idx);
+          });
+        }
+
+        function onScroll() {
+          if (isDesktop) {
+            var maxScroll = container.scrollWidth - container.clientWidth;
+            if (maxScroll <= 0) {
+              setActiveDot(0);
+            } else {
+              var progress = container.scrollLeft / maxScroll;
+              var slideIdx = Math.round(progress * (totalSlides - 1));
+              setActiveDot(slideIdx);
+            }
+          } else {
+            var gridRect = container.getBoundingClientRect();
+            var gridCenter = gridRect.left + gridRect.width / 2;
+            var closestIdx = 0;
+            var minDiff = Infinity;
+            cards.forEach(function(card, idx) {
+              var r = card.getBoundingClientRect();
+              var cardCenter = r.left + r.width / 2;
+              var diff = Math.abs(gridCenter - cardCenter);
+              if (diff < minDiff) {
+                minDiff = diff;
+                closestIdx = idx;
+              }
+            });
+            setActiveDot(closestIdx);
+          }
+          updateArrows();
+          isTicking = false;
+        }
+
+        container.addEventListener('scroll', function() {
+          if (!isTicking) {
+            window.requestAnimationFrame(onScroll);
+            isTicking = true;
+          }
+        }, { passive: true });
+
+        if (prevBtn) {
+          prevBtn.addEventListener('click', function() {
+            goToSlide(currentSlide - 1);
+          });
+        }
+        if (nextBtn) {
+          nextBtn.addEventListener('click', function() {
+            goToSlide(currentSlide + 1);
+          });
+        }
+
+        var resizeTimer;
+        window.addEventListener('resize', function() {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function() {
+            var wasDesktop = isDesktop;
+            var newIsDesktop = window.innerWidth >= 1025;
+            if (wasDesktop !== newIsDesktop) {
+              currentSlide = 0;
+              updateDots();
+              goToSlide(0);
+            } else {
+              updateDots();
+            }
+          }, 150);
+        });
+
+        var isMouseDown = false;
+        var startX = 0;
+        var startScrollLeft = 0;
+        var hasDragged = false;
+        var lastWalk = 0;
+
+        container.addEventListener('dragstart', function(e) {
+          e.preventDefault();
+        });
+
+        container.addEventListener('mousedown', function(e) {
+          if (window.innerWidth < 1025 || e.button !== 0) return;
+          isMouseDown = true;
+          hasDragged = false;
+          startX = e.pageX;
+          startScrollLeft = container.scrollLeft;
+          lastWalk = 0;
+          container.classList.add('is-dragging');
+        });
+
+        window.addEventListener('mousemove', function(e) {
+          if (!isMouseDown) return;
+          lastWalk = e.pageX - startX;
+          if (Math.abs(lastWalk) > 4) {
+            hasDragged = true;
+          }
+          container.scrollLeft = startScrollLeft - lastWalk;
+        });
+
+        function endDrag() {
+          if (!isMouseDown) return;
+          isMouseDown = false;
+          container.classList.remove('is-dragging');
+          if (hasDragged && isDesktop && totalSlides > 1) {
+            if (lastWalk < -50 && currentSlide < totalSlides - 1) {
+              goToSlide(currentSlide + 1);
+            } else if (lastWalk > 50 && currentSlide > 0) {
+              goToSlide(currentSlide - 1);
+            } else {
+              goToSlide(currentSlide);
+            }
+          }
+        }
+
+        window.addEventListener('mouseup', endDrag);
+        window.addEventListener('blur', endDrag);
+
+        container.addEventListener('click', function(e) {
+          if (hasDragged) {
+            e.preventDefault();
+            e.stopPropagation();
+            setTimeout(function() { hasDragged = false; }, 0);
+          }
+        }, true);
+
+        updateDots();
+      }
+
+      // 4. Other Services Universal Adaptive Slider (2 slides on desktop, arrows enabled)
+      if (typeof window.initAdaptiveSlider === 'undefined') {
+        window.initAdaptiveSlider = function(cfg) {
+          var container = cfg.container;
+          var dotsWrap = cfg.dotsWrap;
+          var prevBtn = cfg.prevBtn;
+          var nextBtn = cfg.nextBtn;
+          var itemSelector = cfg.itemSelector || '.scard';
+          var labelPrefix = cfg.labelPrefix || 'Слайд';
+
+          if (!container || !dotsWrap) return;
+          var cards = Array.from(container.querySelectorAll(itemSelector));
+          if (cards.length === 0) return;
+
+          var isTicking = false;
+          var currentSlide = 0;
+          var totalSlides = 1;
+          var isDesktop = window.innerWidth >= 1025;
+
+          function calcTotalSlides() {
+            isDesktop = window.innerWidth >= 1025;
+            if (isDesktop) {
+              return Math.max(1, Math.ceil(cards.length / 8));
+            } else {
+              return cards.length;
+            }
+          }
+
+          function updateDots() {
+            totalSlides = calcTotalSlides();
+            dotsWrap.innerHTML = '';
+
+            for (var i = 0; i < totalSlides; i++) {
+              var dot = document.createElement('button');
+              dot.type = 'button';
+              dot.className = 'carousel-dot' + (i === currentSlide ? ' active' : '');
+              dot.setAttribute('aria-label', labelPrefix + ' ' + (i + 1) + ' из ' + totalSlides);
+              (function(idx) {
+                dot.addEventListener('click', function() {
+                  goToSlide(idx);
+                });
+              })(i);
+              dotsWrap.appendChild(dot);
+            }
+            updateArrows();
+          }
+
+          function updateArrows() {
+            if (!prevBtn || !nextBtn) return;
+            if (totalSlides <= 1) {
+              prevBtn.setAttribute('hidden', '');
+              nextBtn.setAttribute('hidden', '');
+              prevBtn.disabled = true;
+              nextBtn.disabled = true;
+            } else {
+              prevBtn.removeAttribute('hidden');
+              nextBtn.removeAttribute('hidden');
+              prevBtn.disabled = (currentSlide <= 0);
+              nextBtn.disabled = (currentSlide >= totalSlides - 1);
+              prevBtn.setAttribute('aria-disabled', currentSlide <= 0 ? 'true' : 'false');
+              nextBtn.setAttribute('aria-disabled', currentSlide >= totalSlides - 1 ? 'true' : 'false');
+            }
+          }
+
+          function goToSlide(idx) {
+            idx = Math.max(0, Math.min(totalSlides - 1, idx));
+            currentSlide = idx;
+            if (isDesktop) {
+              var maxScroll = container.scrollWidth - container.clientWidth;
+              var targetScroll = totalSlides > 1 ? (idx / (totalSlides - 1)) * maxScroll : 0;
+              container.scrollTo({ left: targetScroll, behavior: 'smooth' });
+            } else {
+              if (cards[idx]) {
+                cards[idx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+              }
+            }
+            setActiveDot(idx);
+            updateArrows();
+          }
+
+          function setActiveDot(idx) {
+            currentSlide = idx;
+            var dots = Array.from(dotsWrap.querySelectorAll('.carousel-dot'));
+            dots.forEach(function(d, i) {
+              d.classList.toggle('active', i === idx);
+            });
+          }
+
+          function onScroll() {
+            if (isDesktop) {
+              var maxScroll = container.scrollWidth - container.clientWidth;
+              if (maxScroll <= 0) {
+                setActiveDot(0);
+              } else {
+                var progress = container.scrollLeft / maxScroll;
+                var slideIdx = Math.round(progress * (totalSlides - 1));
+                setActiveDot(slideIdx);
+              }
+            } else {
+              var gridRect = container.getBoundingClientRect();
+              var gridCenter = gridRect.left + gridRect.width / 2;
+              var closestIdx = 0;
+              var minDiff = Infinity;
+              cards.forEach(function(card, idx) {
+                var r = card.getBoundingClientRect();
+                var cardCenter = r.left + r.width / 2;
+                var diff = Math.abs(gridCenter - cardCenter);
+                if (diff < minDiff) {
+                  minDiff = diff;
+                  closestIdx = idx;
+                }
+              });
+              setActiveDot(closestIdx);
+            }
+            updateArrows();
+            isTicking = false;
+          }
+
+          container.addEventListener('scroll', function() {
+            if (!isTicking) {
+              window.requestAnimationFrame(onScroll);
+              isTicking = true;
+            }
+          }, { passive: true });
+
+          if (prevBtn) {
+            prevBtn.addEventListener('click', function() {
+              goToSlide(currentSlide - 1);
+            });
+          }
+          if (nextBtn) {
+            nextBtn.addEventListener('click', function() {
+              goToSlide(currentSlide + 1);
+            });
+          }
+
+          var resizeTimer;
+          window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+              var wasDesktop = isDesktop;
+              var newIsDesktop = window.innerWidth >= 1025;
+              if (wasDesktop !== newIsDesktop) {
+                currentSlide = 0;
+                updateDots();
+                goToSlide(0);
+              } else {
+                updateDots();
+              }
+            }, 150);
+          });
+
+          var isMouseDown = false;
+          var startX = 0;
+          var startScrollLeft = 0;
+          var hasDragged = false;
+          var lastWalk = 0;
+
+          container.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+          });
+
+          container.addEventListener('mousedown', function(e) {
+            if (window.innerWidth < 1025 || e.button !== 0) return;
+            isMouseDown = true;
+            hasDragged = false;
+            startX = e.pageX;
+            startScrollLeft = container.scrollLeft;
+            lastWalk = 0;
+            container.classList.add('is-dragging');
+          });
+
+          window.addEventListener('mousemove', function(e) {
+            if (!isMouseDown) return;
+            lastWalk = e.pageX - startX;
+            if (Math.abs(lastWalk) > 4) {
+              hasDragged = true;
+            }
+            container.scrollLeft = startScrollLeft - lastWalk;
+          });
+
+          function endDrag() {
+            if (!isMouseDown) return;
+            isMouseDown = false;
+            container.classList.remove('is-dragging');
+            if (hasDragged && isDesktop && totalSlides > 1) {
+              if (lastWalk < -50 && currentSlide < totalSlides - 1) {
+                goToSlide(currentSlide + 1);
+              } else if (lastWalk > 50 && currentSlide > 0) {
+                goToSlide(currentSlide - 1);
+              } else {
+                goToSlide(currentSlide);
+              }
+            }
+          }
+
+          window.addEventListener('mouseup', endDrag);
+          window.addEventListener('blur', endDrag);
+
+          container.addEventListener('click', function(e) {
+            if (hasDragged) {
+              e.preventDefault();
+              e.stopPropagation();
+              setTimeout(function() { hasDragged = false; }, 0);
+            }
+          }, true);
+
+          updateDots();
+        };
+      }
+
+      window.initAdaptiveSlider({
+        container: document.querySelector('.other-services__bento'),
+        dotsWrap: document.getElementById('other-services-dots'),
+        prevBtn: document.getElementById('other-services-prev'),
+        nextBtn: document.getElementById('other-services-next'),
+        itemSelector: '.scard',
+        labelPrefix: 'Сценарий'
+      });
+
+    });
+  </script>
+
+
+  <!-- Schema.org Microdata JSON-LD -->
+  <!--email_off-->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://ai-avtopilot.ru/#organization",
+      "name": "АвтоПилот",
+      "url": "https://ai-avtopilot.ru/",
+      "logo": "https://ai-avtopilot.ru/icon.svg",
+      "description": "Российская платформа и интегратор автономных ИИ-агентов для 1С, SAP, CRM, ERP и документооборота.",
+      "email": "contact@ai-avtopilot.ru",
+      "knowsAbout": [
+        "ИИ-агенты",
+        "Роботизация бизнес-процессов (RPA)",
+        "Автоматизация 1С",
+        "Интеграция ERP",
+        "152-ФЗ комплаенс",
+        "Управленческая аналитика",
+        "Электронный документооборот (ЭДО)"
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "Россия"
+      }
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://ai-avtopilot.ru/#service",
+      "name": "АвтоПилот — Автоматизация бизнес-процессов ИИ",
+      "url": "https://ai-avtopilot.ru/",
+      "image": "https://ai-avtopilot.ru/og-image.png",
+      "priceRange": "₽₽₽",
+      "currenciesAccepted": "RUB",
+      "paymentAccepted": "Безналичный расчет, расчетный счет, банковский перевод, СБП, выставление счета через ЭДО (Диадок / СБИС)",
+      "serviceType": [
+        "Внедрение ИИ-агентов",
+        "Интеграция 1С и SAP",
+        "Цифровой документооборот ЭДО",
+        "Автоматизация ритейла и склада",
+        "Аналитика данных"
+      ],
+      "email": "contact@ai-avtopilot.ru",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Москва",
+        "addressCountry": "RU"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "00:00",
+        "closes": "23:59"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Услуги автоматизации бизнеса",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Интеграция систем (1С, SAP, CRM, ERP, Excel)"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Автоотчётность и цифровой документооборот (ЭДО)"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Автоматизация ритейла и склада"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "ИИ-поддержка клиентов 24/7"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "ИИ-аналитика и прогнозирование спроса"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://ai-avtopilot.ru/#website",
+      "url": "https://ai-avtopilot.ru/",
+      "name": "АвтоПилот — ИИ-автоматизация бизнеса",
+      "publisher": {
+        "@id": "https://ai-avtopilot.ru/#organization"
+      },
+      "inLanguage": "ru-RU"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://ai-avtopilot.ru/services/knowledge-base-rag/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://ai-avtopilot.ru/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Услуги",
+          "item": "https://ai-avtopilot.ru/services/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Корпоративная AI-база знаний и RAG-поиск: ответы сотрудникам за 2 сек",
+          "item": "https://ai-avtopilot.ru/services/knowledge-base-rag/"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://ai-avtopilot.ru/services/knowledge-base-rag/#service",
+      "name": "АвтоПилот: Корпоративная AI-база знаний и RAG-поиск: ответы сотрудникам за 2 сек",
+      "provider": {
+        "@id": "https://ai-avtopilot.ru/#organization"
+      },
+      "description": "Локальная AI-база знаний и RAG-поиск для компании: индексация регламентов, инструкций, 1С и PDF. Ответ за 2 секунды с точной цитатой по 152-ФЗ On-Premise.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "RUB",
+        "name": "Бесплатный 30-минутный экспресс-аудит (knowledge-base-rag)"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ai-avtopilot.ru/services/knowledge-base-rag/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Какое оборудование требуется для локального развертывания On-Premise?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Для компании до 100 активных пользователей достаточно сервера с 1–2 графическими ускорителями потребительского или серверного класса (от 24 ГБ VRAM) либо современного CPU-сервера с 64 ГБ RAM при использовании квантованных открытых моделей."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как гарантируется, что нейросеть не выдумает несуществующий регламент?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "В RAG-контуре используется строгий промпт-каркас (Grounding Constraint): модель формирует ответ исключительно на основе предоставленных фрагментов векторного поиска. Если информации в базе нет, агент прямо сообщает об этом и фиксирует пробел в аналитическом дашборде."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как разграничиваются права доступа сотрудников к разным документам?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Векторная база поддерживает ролевую модель доступа (RBAC). При выполнении поиска агент учитывает доменные группы пользователя (Active Directory / LDAP / 1C) и исключает документы, к которым у сотрудника нет официального допуска."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "С какими корпоративными хранилищами возможна автоматическая синхронизация?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Коннекторы поддерживают синхронизацию с сетевыми дисками Windows/SMB, серверами Nextcloud, базами Confluence, Notion, почтовыми серверами и регистрами прикрепленных файлов в 1С:ERP и 1С:Документооборот."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как часто обновляется индекс при изменении документов?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Индексатор отслеживает события файловой системы (File System Watcher) или изменения в базах данных и переиндексирует измененные страницы документа в течение 60 секунд без остановки работы системы."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <!--/email_off-->
+</body>
+</html>

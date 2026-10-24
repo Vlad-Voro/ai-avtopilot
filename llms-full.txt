@@ -171,7 +171,15 @@ $$\text{Годовая экономия (₽)} = N_{\text{сотрудников
 - **Речевая аналитика и контроль звонков**: https://ai-avtopilot.ru/services/speech-analytics/
 - **Авторазбор спецификаций и расчет КП**: https://ai-avtopilot.ru/services/specifications-kp/
 - **Мониторинг цен и репрайсинг**: https://ai-avtopilot.ru/services/price-monitoring/
+- **Контроль дебиторской задолженности**: https://ai-avtopilot.ru/services/debt-control/
+- **Управление отзывами и гео-репутация**: https://ai-avtopilot.ru/services/reviews-reputation/
 - **Автоматизация маркетинга ИИ-агентами**: https://ai-avtopilot.ru/services/marketing-automation/
+- **ИИ-найм и рекрутинг персонала**: https://ai-avtopilot.ru/services/hr-recruitment/
+- **Автоматизация тендеров и скоринг ТЗ**: https://ai-avtopilot.ru/services/tender-automation/
+- **Автоматизация маркетплейсов WB и Ozon**: https://ai-avtopilot.ru/services/marketplace-automation/
+- **Корпоративная AI-база знаний и RAG-поиск**: https://ai-avtopilot.ru/services/knowledge-base-rag/
+- **AI SDR и B2B-аутрич**: https://ai-avtopilot.ru/services/b2b-outbound/
+- **Retention-маркетинг и реактивация LTV**: https://ai-avtopilot.ru/services/customer-retention/
 - **Быстрый пилотный запуск за 14 дней**: https://ai-avtopilot.ru/services/rapid-pilot/
 - **Кейсы клиентов**: https://ai-avtopilot.ru/cases/
 - **Кейс ритейла и автозаказа**: https://ai-avtopilot.ru/cases/retail-inventory-automation/

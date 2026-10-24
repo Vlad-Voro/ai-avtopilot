@@ -100,6 +100,42 @@ URL_SPEC = [
         "changefreq": "weekly",
         "priority": "0.9",
     },
+    {
+        "url": "https://ai-avtopilot.ru/services/hr-recruitment/",
+        "file": "services/hr-recruitment/index.html",
+        "changefreq": "weekly",
+        "priority": "0.9",
+    },
+    {
+        "url": "https://ai-avtopilot.ru/services/tender-automation/",
+        "file": "services/tender-automation/index.html",
+        "changefreq": "weekly",
+        "priority": "0.9",
+    },
+    {
+        "url": "https://ai-avtopilot.ru/services/marketplace-automation/",
+        "file": "services/marketplace-automation/index.html",
+        "changefreq": "weekly",
+        "priority": "0.9",
+    },
+    {
+        "url": "https://ai-avtopilot.ru/services/knowledge-base-rag/",
+        "file": "services/knowledge-base-rag/index.html",
+        "changefreq": "weekly",
+        "priority": "0.9",
+    },
+    {
+        "url": "https://ai-avtopilot.ru/services/b2b-outbound/",
+        "file": "services/b2b-outbound/index.html",
+        "changefreq": "weekly",
+        "priority": "0.9",
+    },
+    {
+        "url": "https://ai-avtopilot.ru/services/customer-retention/",
+        "file": "services/customer-retention/index.html",
+        "changefreq": "weekly",
+        "priority": "0.9",
+    },
     {"url": "https://ai-avtopilot.ru/cases/", "file": "cases/index.html", "changefreq": "weekly", "priority": "0.8"},
     {
         "url": "https://ai-avtopilot.ru/cases/retail-inventory-automation/",

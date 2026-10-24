@@ -36,6 +36,12 @@ const PAGES = [
   { slug: 'services/debt-control', file: 'services/debt-control/index.html', url: 'https://ai-avtopilot.ru/services/debt-control/', category: 'service', hasBreadcrumbs: true },
   { slug: 'services/reviews-reputation', file: 'services/reviews-reputation/index.html', url: 'https://ai-avtopilot.ru/services/reviews-reputation/', category: 'service', hasBreadcrumbs: true },
   { slug: 'services/marketing-automation', file: 'services/marketing-automation/index.html', url: 'https://ai-avtopilot.ru/services/marketing-automation/', category: 'service', hasBreadcrumbs: true },
+  { slug: 'services/hr-recruitment', file: 'services/hr-recruitment/index.html', url: 'https://ai-avtopilot.ru/services/hr-recruitment/', category: 'service', hasBreadcrumbs: true },
+  { slug: 'services/tender-automation', file: 'services/tender-automation/index.html', url: 'https://ai-avtopilot.ru/services/tender-automation/', category: 'service', hasBreadcrumbs: true },
+  { slug: 'services/marketplace-automation', file: 'services/marketplace-automation/index.html', url: 'https://ai-avtopilot.ru/services/marketplace-automation/', category: 'service', hasBreadcrumbs: true },
+  { slug: 'services/knowledge-base-rag', file: 'services/knowledge-base-rag/index.html', url: 'https://ai-avtopilot.ru/services/knowledge-base-rag/', category: 'service', hasBreadcrumbs: true },
+  { slug: 'services/b2b-outbound', file: 'services/b2b-outbound/index.html', url: 'https://ai-avtopilot.ru/services/b2b-outbound/', category: 'service', hasBreadcrumbs: true },
+  { slug: 'services/customer-retention', file: 'services/customer-retention/index.html', url: 'https://ai-avtopilot.ru/services/customer-retention/', category: 'service', hasBreadcrumbs: true },
 
   // Case Studies (7)
   { slug: 'cases/fintech-transaction-reconciliation', file: 'cases/fintech-transaction-reconciliation/index.html', url: 'https://ai-avtopilot.ru/cases/fintech-transaction-reconciliation/', category: 'case', hasBreadcrumbs: true },
@@ -412,10 +418,16 @@ const ALL_SERVICE_PAGES = [
   'services/price-monitoring',
   'services/debt-control',
   'services/reviews-reputation',
-  'services/marketing-automation'
+  'services/marketing-automation',
+  'services/hr-recruitment',
+  'services/tender-automation',
+  'services/marketplace-automation',
+  'services/knowledge-base-rag',
+  'services/b2b-outbound',
+  'services/customer-retention'
 ];
 
-runCheck('SEO-26', 'All 13 service landing pages contain #other-services positioned strictly below #contact with 12 sibling links and 0 self-links', () => {
+runCheck('SEO-26', 'All 19 service landing pages contain #other-services positioned strictly below #contact with 18 sibling links and 0 self-links', () => {
   ALL_SERVICE_PAGES.forEach(slug => {
     const filePath = path.join(ROOT_DIR, slug, 'index.html');
     assert.ok(fs.existsSync(filePath), `Service page ${slug} must exist`);
@@ -431,10 +443,10 @@ runCheck('SEO-26', 'All 13 service landing pages contain #other-services positio
     // Check H2
     assert.ok(html.includes('Другие сценарии автоматизации'), `Missing section title in #other-services for ${slug}`);
 
-    // Check sibling links (exactly 11, zero self-links, trailing slashes)
+    // Check sibling links (exactly 18, zero self-links, trailing slashes)
     const otherSection = html.slice(otherServicesIdx, html.indexOf('</section>', otherServicesIdx));
     const linkMatches = [...otherSection.matchAll(/href="(\/services\/[^"]+\/)"/g)].map(m => m[1]);
-    assert.strictEqual(linkMatches.length, 12, `Expected exactly 12 sibling links in ${slug}, found ${linkMatches.length}`);
+    assert.strictEqual(linkMatches.length, 18, `Expected exactly 18 sibling links in ${slug}, found ${linkMatches.length}`);
 
     const selfLink = `/${slug}/`;
     assert.ok(!linkMatches.includes(selfLink), `Self-link detected in ${slug}: ${selfLink}`);
