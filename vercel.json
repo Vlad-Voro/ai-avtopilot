@@ -31,10 +31,6 @@
   ],
   "rewrites": [
     {
-      "source": "/api/lead",
-      "destination": "https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/submit"
-    },
-    {
       "source": "/submit",
       "destination": "https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/submit"
     },
