@@ -167,11 +167,20 @@ def get_other_services_carousel_js() -> str:
           }
 
           function setActiveDot(idx) {
+            var slideChanged = (currentSlide !== idx);
             currentSlide = idx;
             var dots = Array.from(dotsWrap.querySelectorAll('.carousel-dot'));
             dots.forEach(function(d, i) {
               d.classList.toggle('active', i === idx);
             });
+            if (!isDesktop && slideChanged && dotsWrap && dots[idx]) {
+              var dRect = dots[idx].getBoundingClientRect();
+              var wRect = dotsWrap.getBoundingClientRect();
+              var delta = (dRect.left + dRect.width / 2) - (wRect.left + wRect.width / 2);
+              if (Math.abs(delta) > 4) {
+                dotsWrap.scrollTo({ left: dotsWrap.scrollLeft + delta, behavior: 'smooth' });
+              }
+            }
           }
 
           function onScroll() {

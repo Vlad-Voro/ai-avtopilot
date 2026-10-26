@@ -168,6 +168,61 @@ async function runSliderAndDragSuite(options = {}) {
     });
     assert(hasGlobalNudge, 'Global @keyframes sNudge rule is defined in stylesheet');
 
+    // 7. Verify Mobile Viewport touchpoint auto-centering (390x844 iPhone 14/15/16)
+    const mobileContext = await browser.newContext({ viewport: { width: 390, height: 844 } });
+    const mobilePage = await mobileContext.newPage();
+    try {
+      await mobilePage.goto(baseUrl, { waitUntil: 'domcontentloaded' });
+      await mobilePage.waitForSelector('#services-dots .carousel-dot');
+
+      const mobileDotsState = await mobilePage.evaluate(() => {
+        const sDots = document.querySelector('#services-dots');
+        const style = getComputedStyle(sDots);
+        const dots = Array.from(sDots.querySelectorAll('.carousel-dot'));
+        return {
+          justifyContent: style.justifyContent,
+          scrollBehavior: style.scrollBehavior,
+          dotsCount: dots.length
+        };
+      });
+
+      assert(mobileDotsState.justifyContent === 'flex-start', `Mobile services-dots justifyContent is 'flex-start' (got '${mobileDotsState.justifyContent}')`);
+      assert(mobileDotsState.dotsCount === 13, `Mobile services-dots has 13 dots (got ${mobileDotsState.dotsCount})`);
+
+      // Scroll services container to 9th card (idx 8) and verify active dot auto-centers in viewport
+      const autoCenterResult = await mobilePage.evaluate(async () => {
+        const sBento = document.querySelector('#services .services__bento');
+        const sDots = document.querySelector('#services-dots');
+        const cards = Array.from(sBento.querySelectorAll('.scard'));
+        if (cards[8]) {
+          cards[8].scrollIntoView({ inline: 'center', block: 'nearest' });
+          sBento.dispatchEvent(new Event('scroll'));
+        }
+        // Wait for smooth scroll / rAF
+        await new Promise((r) => setTimeout(r, 300));
+
+        const activeDot = sDots.querySelector('.carousel-dot.active');
+        if (!activeDot) return { hasActiveDot: false };
+        const dRect = activeDot.getBoundingClientRect();
+        const wRect = sDots.getBoundingClientRect();
+
+        return {
+          hasActiveDot: true,
+          activeDotIndex: Array.from(sDots.querySelectorAll('.carousel-dot')).indexOf(activeDot),
+          isWithinDotsWrap: dRect.left >= (wRect.left - 5) && dRect.right <= (wRect.right + 5),
+          dRectLeft: Math.round(dRect.left),
+          wRectLeft: Math.round(wRect.left),
+          wRectRight: Math.round(wRect.right)
+        };
+      });
+
+      assert(autoCenterResult.hasActiveDot && autoCenterResult.activeDotIndex === 8, `Mobile active dot switched to index 8 (got ${autoCenterResult.activeDotIndex})`);
+      assert(autoCenterResult.isWithinDotsWrap, `Active dot is within visible container bounds on mobile (got rect left: ${autoCenterResult.dRectLeft}, wrap: ${autoCenterResult.wRectLeft}..${autoCenterResult.wRectRight})`);
+    } finally {
+      await mobilePage.close().catch(() => {});
+      await mobileContext.close().catch(() => {});
+    }
+
   } catch (err) {
     console.error('Test execution error:', err);
     failed++;
