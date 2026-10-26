@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Калькулятор налога самозанятого: расчет выплат и налога компании в 1С</title>
-  <meta name="description" content="Калькулятор налога самозанятого (НПД 4%/6%) и экономии компании vs ГПХ/ТК. Сверка лимита 2,4 млн ₽, автопроверка чеков ФНС и интеграция с 1С. Аудит за 14 дней." />
+  <meta name="description" content="Калькулятор налога самозанятого (НПД 4%/6%) и экономии vs ГПХ/ТК. Сверка лимита 2,4 млн ₽, автопроверка чеков ФНС и интеграция с 1С. Аудит за 14 дней." />
   <meta name="keywords" content="калькулятор самозанятого, калькулятор налога самозанятого, расчет налога самозанятого, выплаты самозанятым, договор с самозанятым, налог самозанятых 4 и 6 процентов" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <link rel="canonical" href="https://ai-avtopilot.ru/calculator/self-employed/" />
@@ -19,7 +19,7 @@
   <meta property="og:url" content="https://ai-avtopilot.ru/calculator/self-employed/" />
   <meta property="og:site_name" content="АвтоПилот" />
   <meta property="og:title" content="Калькулятор налога самозанятого: расчет выплат и налога компании в 1С" />
-  <meta property="og:description" content="Калькулятор налога самозанятого (НПД 4%/6%) и экономии компании vs ГПХ/ТК. Сверка лимита 2,4 млн ₽, автопроверка чеков ФНС и интеграция с 1С. Аудит за 14 дней." />
+  <meta property="og:description" content="Калькулятор налога самозанятого (НПД 4%/6%) и экономии vs ГПХ/ТК. Сверка лимита 2,4 млн ₽, автопроверка чеков ФНС и интеграция с 1С. Аудит за 14 дней." />
   <meta property="og:image" content="https://ai-avtopilot.ru/og-image.png" />
   <meta property="og:image:secure_url" content="https://ai-avtopilot.ru/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -29,7 +29,7 @@
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Калькулятор налога самозанятого: расчет выплат и налога компании в 1С" />
-  <meta name="twitter:description" content="Калькулятор налога самозанятого (НПД 4%/6%) и экономии компании vs ГПХ/ТК. Сверка лимита 2,4 млн ₽, автопроверка чеков ФНС и интеграция с 1С. Аудит за 14 дней." />
+  <meta name="twitter:description" content="Калькулятор налога самозанятого (НПД 4%/6%) и экономии vs ГПХ/ТК. Сверка лимита 2,4 млн ₽, автопроверка чеков ФНС и интеграция с 1С. Аудит за 14 дней." />
   <meta name="twitter:image" content="https://ai-avtopilot.ru/og-image.png" />
 
   <!-- Favicon & Icons -->
@@ -90,6 +90,16 @@
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="/assets/css/styles.min.css?v=03f2d5b5" />
+
+  <!-- Progressive Enhancement Failsafe for data-reveal -->
+  <noscript>
+    <style>
+      [data-reveal] {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    </style>
+  </noscript>
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
@@ -238,16 +248,12 @@
       gap: 2rem;
       margin-top: 2rem;
     }
-    @media (max-width: 900px) {
-      .se-calc__grid {
-        grid-template-columns: 1fr;
-      }
-    }
     .se-card {
       background: var(--bg-card, #101018);
       border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
       border-radius: 16px;
       padding: 1.75rem;
+      box-sizing: border-box;
     }
     .se-toggle-group {
       display: flex;
@@ -259,7 +265,8 @@
     }
     .se-toggle-btn {
       flex: 1;
-      padding: 8px 12px;
+      padding: 10px 12px;
+      min-height: 44px;
       border: none;
       background: transparent;
       color: #94a3b8;
@@ -268,6 +275,11 @@
       cursor: pointer;
       transition: all 0.2s ease;
       font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-sizing: border-box;
     }
     .se-toggle-btn.active {
       background: var(--accent, #6366f1);
@@ -352,56 +364,107 @@
       background: rgba(239, 68, 68, 0.2);
       color: #f87171;
     }
+    @media (max-width: 900px) {
+      .se-calc__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 480px) {
+      .se-card {
+        padding: 1.25rem 1rem;
+      }
+      .se-toggle-group {
+        flex-direction: column;
+        gap: 6px;
+      }
+      .se-toggle-btn {
+        width: 100%;
+        min-height: 44px;
+      }
+      .se-matrix__row {
+        font-size: 0.85rem;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+      .se-radar {
+        padding: 1rem;
+      }
+    }
   </style>
 </head>
 
 <body>
+<div class="nav__backdrop" id="nav-backdrop"></div>
 
+  <!-- ═══════════════════ NAVIGATION ═══════════════════ -->
+  <header class="nav" id="site-header">
+    <nav class="nav__inner container" aria-label="Основная навигация">
+      <a href="/" class="nav__logo">
+        <span class="nav__logo-icon">⬡</span>
+        АвтоПилот
+      </a>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="/calculator/" class="nav__link">Калькулятор</a></li>
+        <li><a href="/services/" class="nav__link">Услуги</a></li>
+        <li><a href="/cases/" class="nav__link">Кейсы</a></li>
+        <li><a href="/faq/" class="nav__link">FAQ</a></li>
+        <li><a href="/dashboard/" class="nav__link">Дашборд</a></li>
+        <li class="nav__link-mobile"><a href="/contact/" class="nav__link">Контакты</a></li>
+      </ul>
+      <a href="#contact" class="btn btn--nav">Получить аудит</a>
+      <button class="nav__burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-links" id="burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
 
 <main id="main-content">
-  <!-- ═══════════════════ BREADCRUMBS ═══════════════════ -->
-  <div class="breadcrumbs-wrap">
-    <div class="container">
-      <nav class="breadcrumbs" aria-label="Навигация по сайту">
-        <ol class="breadcrumbs__list">
-          <li class="breadcrumbs__item"><a href="/" class="breadcrumbs__link">Главная</a></li>
-          <li class="breadcrumbs__separator" aria-hidden="true">/</li>
-          <li class="breadcrumbs__item"><a href="/calculator/" class="breadcrumbs__link">Калькулятор</a></li>
-          <li class="breadcrumbs__separator" aria-hidden="true">/</li>
-          <li class="breadcrumbs__item"><span class="breadcrumbs__current" aria-current="page">Самозанятые</span></li>
-        </ol>
-      </nav>
-    </div>
-  </div>
-
   <!-- ═══════════════════ HERO ═══════════════════ -->
-  <section class="hero hero--subpage">
-    <div class="container">
-      <div class="hero__badge" data-reveal="">НПД 4%/6% · Сверка с 1С · 0 рисков переквалификации</div>
-      <h1 class="hero__title" data-reveal="">Калькулятор налога самозанятого и оптимизации выплат компании</h1>
-      <p class="hero__subtitle" data-reveal="">
-        Мгновенный расчет налога на профессиональный доход (НПД 4% и 6%), налогового бонуса 10 000 ₽, совокупной экономии фонда оплаты труда (до 43 300 ₽ на 100 000 ₽ выплат) и автоматический аудит рисков переквалификации договоров ГПХ по критериям ФНС РФ.
-      </p>
-      <div class="hero__kpis" data-reveal="">
-        <div class="kpi-card">
-          <span class="kpi-card__val">4% / 6%</span>
-          <span class="kpi-card__label">ставки налога НПД</span>
-          <span class="kpi-card__desc">для физлиц и компаний</span>
+  <section class="hero hero--subpage" id="home">
+    <div class="hero__particles" id="particles"></div>
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+          <a href="/">Главная</a>
+          <span class="breadcrumbs__sep">/</span>
+          <a href="/calculator/">Калькулятор</a>
+          <span class="breadcrumbs__sep">/</span>
+          <span>Самозанятые</span>
+        </nav>
+        <div class="hero__badge" data-reveal="" title="НПД 4%/6% · Сверка с 1С · 0 рисков переквалификации" style="margin-bottom:14px;">
+          <span class="hero__badge-dot"></span>
+          <span class="hero__badge-text">НПД 4%/6% · Сверка с 1С · 0 рисков переквалификации</span>
         </div>
-        <div class="kpi-card">
-          <span class="kpi-card__val">2,4 млн ₽</span>
-          <span class="kpi-card__label">годовой лимит дохода</span>
-          <span class="kpi-card__desc">контроль порога 422-ФЗ</span>
+        <h1 class="hero__title">
+          <span class="hero__title-static">Калькулятор налога самозанятого: </span>
+          <span class="hero__title-accent-box">
+            <span class="hero__title-accent" data-phrases='["расчет выплат в 1С", "контроль лимита 2,4 млн ₽", "сверка чеков ФНС онлайн", "экономия 28,9% фонда оплаты"]' id="typed-text">расчет выплат в 1С</span>
+            <span class="hero__cursor" aria-hidden="true">|</span>
+          </span>
+        </h1>
+        <p class="hero__sub">
+          Мгновенный расчет налога на профессиональный доход (НПД 4% и 6%), налогового бонуса 10 000 ₽, совокупной экономии фонда оплаты труда (до 43 300 ₽ на 100 000 ₽ выплат) и автоматический аудит рисков переквалификации договоров ГПХ по критериям ФНС РФ.
+        </p>
+        <div class="hero__actions">
+          <a href="#calc-engine" class="btn btn--primary" id="cta-main">Рассчитать налоги и экономию →</a>
+          <a href="#contact" class="btn btn--ghost">Аудит выплат в 1С</a>
         </div>
-        <div class="kpi-card">
-          <span class="kpi-card__val">−28,9%</span>
-          <span class="kpi-card__label">снижение затрат бизнеса</span>
-          <span class="kpi-card__desc">по сравнению с ТК РФ</span>
+        <div class="hero__kpis">
+          <div class="kpi-card">
+            <span class="kpi-card__num">4% / 6%</span>
+            <span class="kpi-card__label">ставки налога НПД</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-card__num">2,4 млн ₽</span>
+            <span class="kpi-card__label">годовой лимит дохода</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-card__num">−28,9%</span>
+            <span class="kpi-card__label">снижение затрат бизнеса</span>
+          </div>
         </div>
-      </div>
-      <div class="hero__cta-group" data-reveal="">
-        <a href="#calc-engine" class="btn btn--primary">Рассчитать налоги и экономию</a>
-        <a href="#contact" class="btn btn--secondary">Аудит выплат в 1С</a>
       </div>
     </div>
   </section>
@@ -1042,6 +1105,284 @@
 
     recalc();
   })();
+</script>
+
+<!-- Express Contact Modal Controller -->
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+      var modal = document.getElementById('express-contact-modal');
+      var openBtn = document.getElementById('open-express-modal');
+      var closeBtn = document.getElementById('close-express-modal');
+      var tabEmail = document.getElementById('tab-email-btn');
+      var tabTg = document.getElementById('tab-tg-btn');
+      var panelEmail = document.getElementById('panel-email');
+      var panelTg = document.getElementById('panel-tg');
+      var emailForm = document.getElementById('express-email-form');
+      var submitBtn = document.getElementById('express-submit-btn');
+      var successCard = document.getElementById('express-success-card');
+      var resetBtn = document.getElementById('express-reset-btn');
+      var copyEmailBtn = document.getElementById('modal-copy-email-btn');
+      var copyBadge = document.getElementById('modal-copy-badge');
+
+      if (!modal || !openBtn) return;
+
+      function reach(goal) {
+        if (typeof ym !== 'undefined') {
+          ym(112978516, 'reachGoal', goal);
+        }
+      }
+
+      function switchTab(target) {
+        var isEmail = target === 'email';
+        tabEmail.classList.toggle('express-modal__tab--active', isEmail);
+        tabEmail.setAttribute('aria-selected', isEmail ? 'true' : 'false');
+        tabEmail.setAttribute('tabindex', isEmail ? '0' : '-1');
+        panelEmail.hidden = !isEmail;
+
+        tabTg.classList.toggle('express-modal__tab--active', !isEmail);
+        tabTg.setAttribute('aria-selected', !isEmail ? 'true' : 'false');
+        tabTg.setAttribute('tabindex', !isEmail ? '0' : '-1');
+        panelTg.hidden = isEmail;
+
+        if (isEmail) {
+          var input = document.getElementById('express-contact');
+          if (input) setTimeout(function() { input.focus(); }, 60);
+        }
+      }
+
+      function openModal(defaultTab) {
+        switchTab(defaultTab || 'email');
+        if (typeof modal.showModal === 'function') {
+          modal.showModal();
+        } else {
+          modal.setAttribute('open', '');
+        }
+        openBtn.setAttribute('aria-expanded', 'true');
+        reach('express_modal_opened');
+      }
+
+      function closeModal() {
+        if (typeof modal.close === 'function') {
+          modal.close();
+        } else {
+          modal.removeAttribute('open');
+        }
+        openBtn.setAttribute('aria-expanded', 'false');
+        openBtn.focus();
+      }
+
+      openBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        openModal('email');
+      });
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+      }
+
+      modal.addEventListener('click', function(e) {
+        var rect = modal.getBoundingClientRect();
+        var isInDialog = (
+          rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+          rect.left <= e.clientX && e.clientX <= rect.left + rect.width
+        );
+        if (!isInDialog) {
+          closeModal();
+        }
+      });
+
+      tabEmail.addEventListener('click', function() { switchTab('email'); });
+      tabTg.addEventListener('click', function() { switchTab('tg'); });
+
+      // Keyboard navigation between tabs
+      [tabEmail, tabTg].forEach(function(tab) {
+        tab.addEventListener('keydown', function(e) {
+          if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+            e.preventDefault();
+            var targetTab = (tab === tabEmail) ? 'tg' : 'email';
+            switchTab(targetTab);
+            var nextBtn = (targetTab === 'tg') ? tabTg : tabEmail;
+            nextBtn.focus();
+          }
+        });
+      });
+
+      // Clear validation state on typing
+      var contactInp = document.getElementById('express-contact');
+      var msgInp = document.getElementById('express-message');
+      [contactInp, msgInp].forEach(function(inp) {
+        if (!inp) return;
+        inp.addEventListener('input', function() {
+          this.classList.remove('is-invalid');
+          var errEl = document.getElementById(this.id + '-error');
+          if (errEl) errEl.classList.remove('is-visible');
+        });
+      });
+
+      // Form submission
+      if (emailForm) {
+        emailForm.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          var contactVal = (contactInp.value || '').trim();
+          var messageVal = (msgInp.value || '').trim();
+          var hasError = false;
+
+          if (contactVal.length < 3) {
+            contactInp.classList.add('is-invalid');
+            var cErr = document.getElementById('express-contact-error');
+            if (cErr) {
+              cErr.textContent = 'Укажите ваш email, телефон или Telegram';
+              cErr.classList.add('is-visible');
+            }
+            hasError = true;
+          }
+
+          if (messageVal.length < 2) {
+            msgInp.classList.add('is-invalid');
+            var mErr = document.getElementById('express-message-error');
+            if (mErr) {
+              mErr.textContent = 'Опишите кратко вашу задачу';
+              mErr.classList.add('is-visible');
+            }
+            hasError = true;
+          }
+
+          if (hasError) return;
+
+          var honey = emailForm.querySelector('input[name="_honey"]');
+          if (honey && honey.value) return; // Silent drop bot
+
+          submitBtn.disabled = true;
+          var originalBtnText = submitBtn.innerHTML;
+          submitBtn.innerHTML = '<span>Отправка...</span>';
+
+          var payload = {
+            contact: contactVal,
+            message: messageVal,
+            source: 'express_modal'
+          };
+
+          var delivered = false;
+
+          // Dispatch in parallel: Telegram via Worker + Email via FormSubmit
+          var tgPromise = (async function() {
+            try {
+              var r0 = await fetch('/api/lead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              if (r0.ok) {
+                var d0 = await r0.json();
+                if (d0 && (d0.success === true || d0.success === 'true')) return true;
+              }
+            } catch (_locErr) {}
+            try {
+              var res = await fetch('https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              if (res.ok) {
+                var data = await res.json();
+                if (data && (data.success === true || data.success === 'true')) {
+                  return true;
+                }
+              }
+            } catch (_cfErr) {}
+            try {
+              var r2 = await fetch('/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              if (r2.ok) {
+                var d2 = await r2.json();
+                if (d2 && (d2.success === true || d2.success === 'true')) return true;
+              }
+            } catch (_relErr) {}
+            try {
+              var r3 = await fetch('/api/fallback-lead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              return r3.ok;
+            } catch (_fbErr) {
+              return false;
+            }
+          })();
+
+          var delivered = await tgPromise;
+
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnText;
+
+          if (delivered) {
+            emailForm.style.display = 'none';
+            successCard.style.display = 'block';
+            reach('express_modal_submitted');
+          } else {
+            var fallbackNote = 'Заявка:\nКонтакт: ' + contactVal + '\nЗадача: ' + messageVal;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(fallbackNote);
+            }
+            alert('Сбой сети. Мы скопировали ваше сообщение в буфер обмена — отправьте его нам на contact@ai-avtopilot.ru или в Telegram @AiAvtopilotbot');
+            window.location.href = 'mailto:contact@ai-avtopilot.ru?subject=' + encodeURIComponent('Экспресс-заявка с сайта') + '&body=' + encodeURIComponent(fallbackNote);
+          }
+        });
+      }
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+          emailForm.reset();
+          emailForm.style.display = 'block';
+          successCard.style.display = 'none';
+        });
+      }
+
+      // Copy email in 1 click
+      if (copyEmailBtn) {
+        copyEmailBtn.addEventListener('click', function() {
+          var email = 'contact@ai-avtopilot.ru';
+          var copySuccess = function() {
+            if (copyBadge) {
+              copyBadge.classList.add('is-copied');
+              var label = copyBadge.querySelector('.copy-label');
+              if (label) label.textContent = 'Скопировано! ✓';
+              setTimeout(function() {
+                copyBadge.classList.remove('is-copied');
+                if (label) label.textContent = 'Скопировать';
+              }, 2500);
+            }
+            reach('copy_direct_email');
+          };
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(email).then(copySuccess).catch(function() {
+              prompt('Скопируйте email:', email);
+            });
+          } else {
+            prompt('Скопируйте email:', email);
+          }
+        });
+      }
+    });
+  
+</script>
+
+<!-- Deferred Core Bundle Script (Initializes Typewriter, Burger Menu, and Observer) -->
+<script type="module" crossorigin src="/assets/index-Bx30wa4i.js?v=2.6.1"></script>
+
+<!-- Inline Failsafe Reveal Timer (Guarantees content visibility regardless of network or JS parsing) -->
+<script>
+  setTimeout(function() {
+    var reveals = document.querySelectorAll('[data-reveal]');
+    for (var i = 0; i < reveals.length; i++) {
+      reveals[i].style.opacity = '1';
+      reveals[i].style.transform = 'none';
+    }
+  }, 800);
 </script>
 
 </body>

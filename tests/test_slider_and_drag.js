@@ -187,7 +187,7 @@ async function runSliderAndDragSuite(options = {}) {
       });
 
       assert(mobileDotsState.justifyContent === 'flex-start', `Mobile services-dots justifyContent is 'flex-start' (got '${mobileDotsState.justifyContent}')`);
-      assert(mobileDotsState.dotsCount === 13, `Mobile services-dots has 13 dots (got ${mobileDotsState.dotsCount})`);
+      assert(mobileDotsState.dotsCount === 24, `Mobile services-dots has 24 dots (got ${mobileDotsState.dotsCount})`);
 
       // Scroll services container to 9th card (idx 8) and verify active dot auto-centers in viewport
       const autoCenterResult = await mobilePage.evaluate(async () => {
@@ -218,6 +218,45 @@ async function runSliderAndDragSuite(options = {}) {
 
       assert(autoCenterResult.hasActiveDot && autoCenterResult.activeDotIndex === 8, `Mobile active dot switched to index 8 (got ${autoCenterResult.activeDotIndex})`);
       assert(autoCenterResult.isWithinDotsWrap, `Active dot is within visible container bounds on mobile (got rect left: ${autoCenterResult.dRectLeft}, wrap: ${autoCenterResult.wRectLeft}..${autoCenterResult.wRectRight})`);
+
+      // 8. Verify Other Services mobile touchbar visibility on service page in first swipes
+      await mobilePage.goto(`${baseUrl}/services/system-integration/`, { waitUntil: 'domcontentloaded' });
+      await mobilePage.waitForSelector('#other-services-dots .carousel-dot');
+
+      const otherServicesState = await mobilePage.evaluate(async () => {
+        const oDots = document.getElementById('other-services-dots');
+        const oBento = document.querySelector('.other-services__bento');
+        const style = getComputedStyle(oDots);
+        const dots = Array.from(oDots.querySelectorAll('.carousel-dot'));
+        const cards = Array.from(oBento.querySelectorAll('.scard'));
+
+        let allFirstVisible = true;
+        for (let i = 0; i < 4; i++) {
+          if (cards[i]) {
+            cards[i].scrollIntoView({ inline: 'center', block: 'nearest' });
+            oBento.dispatchEvent(new Event('scroll'));
+          }
+          await new Promise((r) => setTimeout(r, 150));
+          const active = oDots.querySelector('.carousel-dot.active');
+          if (active) {
+            const d = active.getBoundingClientRect();
+            const w = oDots.getBoundingClientRect();
+            if (d.left < w.left - 5 || d.right > w.right + 5) {
+              allFirstVisible = false;
+            }
+          }
+        }
+
+        return {
+          justifyContent: style.justifyContent,
+          dotsCount: dots.length,
+          allFirstVisible
+        };
+      });
+
+      assert(otherServicesState.justifyContent === 'flex-start', `Mobile other-services-dots justifyContent is 'flex-start' (got '${otherServicesState.justifyContent}')`);
+      assert(otherServicesState.dotsCount === 23, `Mobile other-services-dots has 23 dots (got ${otherServicesState.dotsCount})`);
+      assert(otherServicesState.allFirstVisible, 'Active touchbar dot remains fully visible on right swipe across first 4 cards in Other Services');
     } finally {
       await mobilePage.close().catch(() => {});
       await mobileContext.close().catch(() => {});

@@ -2,7 +2,7 @@
 
 > **Status**: Production Hardened | **Updated**: 2026-10-26  
 > **Live URL**: [https://ai-avtopilot.ru/](https://ai-avtopilot.ru/) | **Repo**: `Vlad-Voro/ai-avtopilot` (`main` - Private)  
-> **Local Root**: `d:\AI\data\ai-avtopilot` | **Inventory**: 42 Production URLs (1 Root, 6 Hubs, 21 Services, 11 Cases, 3 Utility)  
+> **Local Root**: `d:\AI\data\ai-avtopilot` | **Inventory**: 45 Production URLs (1 Root, 6 Hubs, 24 Services, 11 Cases, 3 Utility)  
 > **Verification Matrix**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E, 0 regressions) + 486 Layout Matrix
 
 ---
@@ -20,10 +20,10 @@ flowchart TD
         VEdge -->|Deployment Isolation| VIgn[".vercelignore (blocks _headers, *.md, tests, bot)"]
     end
 
-    subgraph AppLayer ["2. Multi-Entry Hybrid SSG (42 URLs)"]
+    subgraph AppLayer ["2. Multi-Entry Hybrid SSG (45 URLs)"]
         VEdge --> P1["/ (Main Landing)"]
         VEdge --> P2["6 Hub Pages (/services/, /cases/, /calculator/, /dashboard/, /faq/, /contact/)"]
-        VEdge --> P3["21 Dedicated Service Pages (/services/<slug>/)"]
+        VEdge --> P3["24 Dedicated Service Pages (/services/<slug>/)"]
         VEdge --> P4["11 Dedicated Case Pages (/cases/<slug>/)"]
         VEdge --> P5["3 Utility Pages (/privacy.html, /404.html, /success.html)"]
     end
@@ -242,10 +242,10 @@ node data/ai-avtopilot/tests/run_all.js
 | **6. FAQ** | `section.faq#faq` | Semantic accordion buttons (`aria-expanded`), B2B answers (1C, 152-FZ, SLA, NDA). |
 | **7. Dashboard** | `section.dashboard#dashboard` | Live terminal and agent telemetry. Zero duplicate CTA buttons inside widget. |
 | **8. Contact** | `section.contact#contact` | Canonical 3 fields (`#contact-name`, `#contact-company`, `#contact-email`), 152-FZ checkbox, honeypot `_honey`. |
-| **9. Mesh** | `section.other-services` | **$K_{12}$ Silo Mesh**: 11 sibling service cards strictly below `#contact`. Desktop: 4x2 slider (2 slides). |
+| **9. Mesh** | `section.other-services` | **$K_{24}$ Silo Mesh**: 23 sibling service cards strictly below `#contact`. Desktop: 4x2 slider (3 slides). |
 | **10. Footer** | `footer.footer` | B2B contacts, Telegram bot, 24/7 support hours, Schema.org graph. |
 
-### 9.2. Strict Negative Invariants (22 Rules)
+### 9.2. Strict Negative Invariants (23 Rules)
 1. ❌ **Zero Phantom Top Banners**: Never inject `subpage-deep` boxes above Hero; page starts with Hero immediately after Navigation.
 2. ❌ **Zero ScrollSpy URL Hijacking**: On subpages (`/services/*`, `/cases/*`), `history.replaceState` must NEVER overwrite clean URL during scroll.
 3. ❌ **Zero H1 Pollution**: Exactly ONE `<h1>` per page located in Hero title. Prohibited: 0 or $>1$ H1.
@@ -268,6 +268,7 @@ node data/ai-avtopilot/tests/run_all.js
 20. ❌ **Zero Asymmetric Mobile Cards (Equal-Height Invariant)**: In mobile/tablet horizontal swipe containers (`.services__bento`, `.other-services__bento`, `.cases__grid` under `@media(max-width: 1024px)`), containers must enforce `align-items: stretch !important` and card items (`.scard`, `.case-card`) must have `align-self: stretch !important`, `height: auto !important`, `display: flex !important`, `flex-direction: column !important`. Description blocks must have `flex: 1 1 auto !important`, and trailing tags/results/CTAs must have `margin-top: auto !important`. Sibling card descriptions and tag counts must remain balanced to prevent height disparity.
 21. ❌ **Zero Solo Telegram Footers (Canonical Dual-CTA Footer Invariant)**: Every production page (`/`, hubs, `/services/*`, `/cases/*`) must strictly render the canonical dual conversion footer (`.footer__dual-cta` containing both Telegram button and `#open-express-modal` Email express audit trigger, backed by `<dialog id="express-contact-modal">` and modal controller script). Standalone legacy `.footer__tg-cta` is strictly prohibited.
 22. ❌ **Zero Asymmetric Comparison Cards (Equal-Height & Alignment Invariant)**: In the `#compare` before/after block across all 29 production pages (`/`, 6 hubs, 12 services, 10 cases), `.compare__grid` MUST declare `align-items: stretch` (prohibited: `align-items: center` which vertically centers shorter cards and creates mismatched top/bottom bounds). Both cards (`.compare__card`) MUST specify `height: 100%` and `box-sizing: border-box` on desktop, and `height: auto` on mobile. Central arrow (`.compare__arrow`) MUST declare `align-self: center` and `justify-content: center` to ensure it remains perfectly centered between cards of equal height. Enforced by `test_compare_card_invariants.js` and E2E suites `R1.7` / `E2E-7`.
+23. ❌ **Zero Negative Scroll Clipping on Touchbar Dots (Mobile Touchbar Invariant)**: On mobile/tablet carousels (`@media(max-width: 1024px)`), `.services-dots, .other-services-dots, .carousel-dots` must strictly declare `justify-content: flex-start; scroll-behavior: smooth;`. Centering overflowing dot containers (`justify-content: center`) forces the initial dots into negative scroll coordinates on viewports > 380px, clipping the active touchbar dot from view during the first 4–6 rightward swipes. Enforced by `test_slider_and_drag.js`.
 
 
 ---
@@ -306,5 +307,5 @@ python data/ai-avtopilot/scripts/seo/push_indexnow.py
 node data/ai-avtopilot/tests/run_all.js --fast       # 78 fast checks (< 1.4s)
 node data/ai-avtopilot/tests/audit/audit_runner.js # 486 layout checks (~4s)
 node data/ai-avtopilot/tests/run_all.js --e2e        # 82 browser E2E checks (~18s)
-node data/ai-avtopilot/tests/run_all.js              # 160 full checks (~24s)
+node data/ai-avtopilot/tests/run_all.js              # 179 full checks (~20s)
 ```
