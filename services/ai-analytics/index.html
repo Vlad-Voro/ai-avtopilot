@@ -556,12 +556,10 @@ to{opacity:1;transform:scale(1) translateY(0)}
 .cases__grid .case-card{flex:0 0 min(330px,80vw);scroll-snap-align:center;scroll-snap-stop:normal;display:flex !important;flex-direction:column !important;align-self:stretch !important;height:auto !important;padding:24px 20px}
 .scard__desc,.case-card__desc{flex:1 1 auto !important}
 .scard__tags,.case-card__results,.scard--accent .btn{margin-top:auto !important}
-.services-dots,.other-services-dots{display:flex;justify-content:center;gap:4px;margin-top:8px;min-height:44px;max-width:100%;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 8px;box-sizing:border-box}
+.services-dots,.other-services-dots{display:flex;justify-content:flex-start;gap:4px;margin-top:8px;min-height:44px;max-width:100%;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 8px;box-sizing:border-box;scroll-behavior:smooth}
 .services-dots::-webkit-scrollbar,.other-services-dots::-webkit-scrollbar{display:none}
-@media(max-width:380px){.services-dots,.other-services-dots{justify-content:flex-start}}
-.carousel-dots{display:flex;justify-content:center;gap:4px;margin-top:8px;max-width:100%;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 8px;box-sizing:border-box}
+.carousel-dots{display:flex;justify-content:flex-start;gap:4px;margin-top:8px;max-width:100%;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 8px;box-sizing:border-box;scroll-behavior:smooth}
 .carousel-dots::-webkit-scrollbar{display:none}
-@media(max-width:380px){.carousel-dots{justify-content:flex-start}}
 .dashboard__grid{grid-template-columns:1fr}
 .roi__card{gap:40px}
 }
@@ -3103,6 +3101,38 @@ section[id] {
 <span>Гранд-Смета</span><span>КС-2 / КС-3</span><span>ГЭСН / ФЕР</span><span>1С:Строительство</span>
 </div>
 </a>
+<a aria-label="Логистика и 1С:УАТ: подробнее об автоматизации путевых листов и автопарка" class="scard scard--link" href="/services/fleet-logistics/">
+<div class="scard__icon">🚛</div>
+<h3 class="scard__title">Логистика и 1С:УАТ <span aria-hidden="true" class="scard__arrow">→</span></h3>
+<p class="scard__desc">Автоматизация автопарка на базе 1С:УАТ и ГИС ЭПД. Выпуск электронных путевых листов за 30 секунд, учет ГСМ по телематике ГЛОНАСС и маршрутизация.</p>
+<div class="scard__tags">
+<span>1С:УАТ</span><span>ГИС ЭПД</span><span>ГЛОНАСС</span><span>ЭПЛ</span>
+</div>
+</a>
+<a aria-label="ИИ-агенты для бизнеса: подробнее о сценарии внедрения автономных агентов" class="scard scard--link" href="/services/ai-agents/">
+<div class="scard__icon">🤖</div>
+<h3 class="scard__title">ИИ-агенты для бизнеса <span aria-hidden="true" class="scard__arrow">→</span></h3>
+<p class="scard__desc">Автономные мультиагентные системы в контуре 1С. AI-диспетчеры, SDR-агенты и автоматическая сверка первички без рутины. 100% On-Premise 152-ФЗ.</p>
+<div class="scard__tags">
+<span>Мультиагенты</span><span>1С:ERP</span><span>SDR-агент</span><span>152-ФЗ</span>
+</div>
+</a>
+<a aria-label="Производство и 1С:ERP: подробнее об автоматизации цехового учета и себестоимости" class="scard scard--link" href="/services/manufacturing-automation/">
+<div class="scard__icon">🏭</div>
+<h3 class="scard__title">Производство и 1С:ERP <span aria-hidden="true" class="scard__arrow">→</span></h3>
+<p class="scard__desc">Автоматизация цехового учета и диспетчеризации в 1С:ERP. Списание сырья по спецификациям, учет брака и расчет фактической себестоимости за 5 минут.</p>
+<div class="scard__tags">
+<span>1С:ERP</span><span>Диспетчеризация</span><span>Себестоимость</span><span>Спецификации</span>
+</div>
+</a>
+<a aria-label="Боты для Авито: подробнее об автоматизации магазина и интеграции с 1С" class="scard scard--link" href="/services/avito-automation/">
+<div class="scard__icon">🤖</div>
+<h3 class="scard__title">Боты для Авито <span aria-hidden="true" class="scard__arrow">→</span></h3>
+<p class="scard__desc">Автоматизация и умные ИИ-боты для Авито. Ответ клиентам за 30 секунд по официальному API, остатки из 1С и лиды в CRM без блокировок.</p>
+<div class="scard__tags">
+<span>Авито API</span><span>1С:УТ / ERP</span><span>RAG</span><span>amoCRM / Б24</span>
+</div>
+</a>
 <a aria-label="Быстрый старт: подробнее о пилотном запуске за 14 дней" class="scard scard--link scard--accent" href="/services/rapid-pilot/">
 <div class="scard__icon">⚡</div>
 <h3 class="scard__title">Быстрый старт <span aria-hidden="true" class="scard__arrow">→</span></h3>
@@ -3843,11 +3873,20 @@ section[id] {
         }
 
         function setActiveDot(idx) {
+          var slideChanged = (currentSlide !== idx);
           currentSlide = idx;
           var dots = Array.from(dotsWrap.querySelectorAll('.carousel-dot'));
           dots.forEach(function(d, i) {
             d.classList.toggle('active', i === idx);
           });
+          if (!isDesktop && slideChanged && dotsWrap && dots[idx]) {
+            var dRect = dots[idx].getBoundingClientRect();
+            var wRect = dotsWrap.getBoundingClientRect();
+            var delta = (dRect.left + dRect.width / 2) - (wRect.left + wRect.width / 2);
+            if (Math.abs(delta) > 4) {
+              dotsWrap.scrollTo({ left: dotsWrap.scrollLeft + delta, behavior: 'smooth' });
+            }
+          }
         }
 
         function onScroll() {
@@ -4325,11 +4364,20 @@ section[id] {
           }
 
           function setActiveDot(idx) {
+            var slideChanged = (currentSlide !== idx);
             currentSlide = idx;
             var dots = Array.from(dotsWrap.querySelectorAll('.carousel-dot'));
             dots.forEach(function(d, i) {
               d.classList.toggle('active', i === idx);
             });
+            if (!isDesktop && slideChanged && dotsWrap && dots[idx]) {
+              var dRect = dots[idx].getBoundingClientRect();
+              var wRect = dotsWrap.getBoundingClientRect();
+              var delta = (dRect.left + dRect.width / 2) - (wRect.left + wRect.width / 2);
+              if (Math.abs(delta) > 4) {
+                dotsWrap.scrollTo({ left: dotsWrap.scrollLeft + delta, behavior: 'smooth' });
+              }
+            }
           }
 
           function onScroll() {

@@ -230,6 +230,9 @@ const ALL_PAGES = [
   { path: '/services/debt-control/', name: 'Услуга: Контроль дебиторки', category: 'service' },
   { path: '/services/reviews-reputation/', name: 'Услуга: Управление отзывами', category: 'service' },
   { path: '/services/construction-estimate-audit/', name: 'Услуга: Аудит смет и КС-2', category: 'service' },
+  { path: '/services/fleet-logistics/', name: 'Услуга: Логистика и 1С:УАТ', category: 'service' },
+  { path: '/services/ai-agents/', name: 'Услуга: ИИ-агенты для бизнеса', category: 'service' },
+  { path: '/services/manufacturing-automation/', name: 'Услуга: 1С:ERP Производство', category: 'service' },
 
   // Deep Case Studies
   { path: '/cases/retail-inventory-automation/', name: 'Кейс: Ритейл и остатки', category: 'case' },

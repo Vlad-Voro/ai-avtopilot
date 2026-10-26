@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Калькулятор налога самозанятого: расчет выплат и налога компании в 1С</title>
+  <meta name="description" content="Калькулятор налога самозанятого (НПД 4%/6%) и экономии компании vs ГПХ/ТК. Сверка лимита 2,4 млн ₽, автопроверка чеков ФНС и интеграция с 1С. Аудит за 14 дней." />
+  <meta name="keywords" content="калькулятор самозанятого, калькулятор налога самозанятого, расчет налога самозанятого, выплаты самозанятым, договор с самозанятым, налог самозанятых 4 и 6 процентов" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href="https://ai-avtopilot.ru/calculator/self-employed/" />
+  <meta name="theme-color" content="#08080c" />
+
+  <!-- Search Console Verification -->
+  <meta name="google-site-verification" content="u42j0jjBKadmyE77f9wlqfy5gkyDONXtaPzcPRZ51R8" />
+
+  <!-- Open Graph / VK / Facebook -->
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ai-avtopilot.ru/calculator/self-employed/" />
+  <meta property="og:site_name" content="АвтоПилот" />
+  <meta property="og:title" content="Калькулятор налога самозанятого: расчет выплат и налога компании в 1С" />
+  <meta property="og:description" content="Калькулятор налога самозанятого (НПД 4%/6%) и экономии компании vs ГПХ/ТК. Сверка лимита 2,4 млн ₽, автопроверка чеков ФНС и интеграция с 1С. Аудит за 14 дней." />
+  <meta property="og:image" content="https://ai-avtopilot.ru/og-image.png" />
+  <meta property="og:image:secure_url" content="https://ai-avtopilot.ru/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="АвтоПилот — Калькулятор налога самозанятого и интеграция с 1С" />
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Калькулятор налога самозанятого: расчет выплат и налога компании в 1С" />
+  <meta name="twitter:description" content="Калькулятор налога самозанятого (НПД 4%/6%) и экономии компании vs ГПХ/ТК. Сверка лимита 2,4 млн ₽, автопроверка чеков ФНС и интеграция с 1С. Аудит за 14 дней." />
+  <meta name="twitter:image" content="https://ai-avtopilot.ru/og-image.png" />
+
+  <!-- Favicon & Icons -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="icon" type="image/svg+xml" href="/icon.svg" sizes="any" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" crossorigin="anonymous" />
+
+  <!-- AI & GEO Discovery (llms.txt v2 Standard) -->
+  <link rel="describedby" type="text/markdown" href="/llms.txt" />
+
+  <!-- Chrome Speculation Rules API (0ms Instant Page Navigations) -->
+  <script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "source": "list",
+        "urls": [
+          "/services/",
+          "/cases/",
+          "/calculator/",
+          "/dashboard/",
+          "/faq/",
+          "/contact/"
+        ],
+        "eagerness": "moderate"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Security Headers & Policies -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://mc.yandex.com https://yastatic.net https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://ai-avtopilot.ru https://mc.yandex.ru https://mc.yandex.com; connect-src 'self' https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev https://api.web3forms.com https://mc.yandex.ru https://mc.yandex.com wss://mc.yandex.ru wss://mc.yandex.com https://cloudflareinsights.com; frame-src https://mc.yandex.ru https://mc.yandex.com blob:; child-src https://mc.yandex.ru https://mc.yandex.com blob:;" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- Anti-Clickjacking Frame Guard -->
+  <style id="anti-clickjack">body{display:none !important;}</style>
+  <script>
+    if (self === top) {
+      var acj = document.getElementById('anti-clickjack');
+      if (acj) acj.parentNode.removeChild(acj);
+    } else {
+      top.location = self.location;
+    }
+  </script>
+
+  <!-- DNS Prefetch for Outbound Endpoints -->
+  <link rel="dns-prefetch" href="https://mc.yandex.ru" />
+  <link rel="dns-prefetch" href="https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev" />
+
+  <!-- Preload Local Core Fonts -->
+  <link rel="preload" href="/assets/fonts/Inter-400-1.woff2" as="font" type="font/woff2" crossorigin="" />
+  <link rel="preload" href="/assets/fonts/Outfit-600-14.woff2" as="font" type="font/woff2" crossorigin="" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/assets/css/styles.min.css?v=03f2d5b5" />
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://ai-avtopilot.ru/#organization",
+        "name": "АвтоПилот",
+        "url": "https://ai-avtopilot.ru/",
+        "logo": "https://ai-avtopilot.ru/icon.svg",
+        "description": "Внедрение ИИ-агентов и роботизация бизнес-процессов с интеграцией в 1С, SAP, CRM, ERP и телефонию.",
+        "email": "contact@ai-avtopilot.ru",
+        "knowsAbout": [
+          "ИИ-агенты",
+          "Роботизация бизнес-процессов (RPA)",
+          "Интеграция 1С",
+          "Внедрение ERP",
+          "152-ФЗ комплаенс",
+          "Голосовые боты",
+          "Компьютерное зрение (OCR)"
+        ],
+        "areaServed": {
+          "@type": "Country",
+          "name": "Россия"
+        }
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://ai-avtopilot.ru/#service",
+        "name": "АвтоПилот — Автоматизация бизнес-процессов ИИ",
+        "url": "https://ai-avtopilot.ru/",
+        "image": "https://ai-avtopilot.ru/og-image.png",
+        "priceRange": "₽₽₽",
+        "currenciesAccepted": "RUB",
+        "paymentAccepted": "Безналичный расчет, расчетный счет, банковский перевод, СБП, выставление счета через ЭДО (Диадок / СБИС)",
+        "email": "contact@ai-avtopilot.ru",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Услуги автоматизации бизнеса и интеграции с 1С",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Аудит выплат самозанятым и рисков переквалификации"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Интеграция 1С с открытым API ФНС и DirectBank"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Автоматизация реестровых выплат самозанятым"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://ai-avtopilot.ru/calculator/self-employed/#webapp",
+        "name": "Калькулятор налога самозанятого и оптимизации выплат компании",
+        "url": "https://ai-avtopilot.ru/calculator/self-employed/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "RUB"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://ai-avtopilot.ru/calculator/self-employed/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Главная",
+            "item": "https://ai-avtopilot.ru/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Калькулятор",
+            "item": "https://ai-avtopilot.ru/calculator/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Калькулятор налога самозанятого",
+            "item": "https://ai-avtopilot.ru/calculator/self-employed/"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://ai-avtopilot.ru/calculator/self-employed/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Как автоматизировать проверку статуса самозанятого перед каждой выплатой в 1С?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Модуль интеграции выполняет фоновый HTTP-запрос к API ФНС (npd-public.nalog.ru) по ИНН исполнителя непосредственно перед проведением платежного поручения в 1С. Если статус аннулирован или превышен лимит 2,4 млн ₽, проведение блокируется."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Что делать, если внештатный исполнитель не предоставил чек после получения денег?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "При интеграции с банковскими сервисами выплат (номинальные счета) чек формируется автоматически через открытый банковский шлюз ФНС в момент перечисления средств и сразу подкрепляется к документу ВыплатаСамозанятым в 1С."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Как компания защищена от претензий налоговой о переквалификации в трудовые отношения?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Внедряется регламент формирования проектных ТЗ, актов выполненных объемов работ с переменной оплатой и децентрализованный график задач без фиксации рабочего времени и должностных обязанностей."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    .se-calc {
+      padding: 3rem 0;
+    }
+    .se-calc__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    @media (max-width: 900px) {
+      .se-calc__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .se-card {
+      background: var(--bg-card, #101018);
+      border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+      border-radius: 16px;
+      padding: 1.75rem;
+    }
+    .se-toggle-group {
+      display: flex;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 4px;
+      border-radius: 10px;
+      margin-bottom: 1.25rem;
+    }
+    .se-toggle-btn {
+      flex: 1;
+      padding: 8px 12px;
+      border: none;
+      background: transparent;
+      color: #94a3b8;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    .se-toggle-btn.active {
+      background: var(--accent, #6366f1);
+      color: #fff;
+      font-weight: 500;
+    }
+    .se-checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+    .se-alert {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #fca5a5;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+      display: none;
+    }
+    .se-alert.visible {
+      display: block;
+    }
+    .se-matrix {
+      margin-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 1.25rem;
+    }
+    .se-matrix__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      font-size: 0.9rem;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+    }
+    .se-matrix__row:last-child {
+      border-bottom: none;
+    }
+    .se-matrix__val {
+      font-family: 'JetBrainsMono', monospace;
+      font-weight: 600;
+    }
+    .se-matrix__val--accent {
+      color: #10b981;
+      font-size: 1.15rem;
+    }
+    .se-radar {
+      margin-top: 2rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+    .se-radar__title {
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      color: #f8fafc;
+    }
+    .se-radar__badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .se-radar__badge--green {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+    }
+    .se-radar__badge--yellow {
+      background: rgba(245, 158, 11, 0.2);
+      color: #fbbf24;
+    }
+    .se-radar__badge--red {
+      background: rgba(239, 68, 68, 0.2);
+      color: #f87171;
+    }
+  </style>
+</head>
+
+<body>
+
+
+<main id="main-content">
+  <!-- ═══════════════════ BREADCRUMBS ═══════════════════ -->
+  <div class="breadcrumbs-wrap">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Навигация по сайту">
+        <ol class="breadcrumbs__list">
+          <li class="breadcrumbs__item"><a href="/" class="breadcrumbs__link">Главная</a></li>
+          <li class="breadcrumbs__separator" aria-hidden="true">/</li>
+          <li class="breadcrumbs__item"><a href="/calculator/" class="breadcrumbs__link">Калькулятор</a></li>
+          <li class="breadcrumbs__separator" aria-hidden="true">/</li>
+          <li class="breadcrumbs__item"><span class="breadcrumbs__current" aria-current="page">Самозанятые</span></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <section class="hero hero--subpage">
+    <div class="container">
+      <div class="hero__badge" data-reveal="">НПД 4%/6% · Сверка с 1С · 0 рисков переквалификации</div>
+      <h1 class="hero__title" data-reveal="">Калькулятор налога самозанятого и оптимизации выплат компании</h1>
+      <p class="hero__subtitle" data-reveal="">
+        Мгновенный расчет налога на профессиональный доход (НПД 4% и 6%), налогового бонуса 10 000 ₽, совокупной экономии фонда оплаты труда (до 43 300 ₽ на 100 000 ₽ выплат) и автоматический аудит рисков переквалификации договоров ГПХ по критериям ФНС РФ.
+      </p>
+      <div class="hero__kpis" data-reveal="">
+        <div class="kpi-card">
+          <span class="kpi-card__val">4% / 6%</span>
+          <span class="kpi-card__label">ставки налога НПД</span>
+          <span class="kpi-card__desc">для физлиц и компаний</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-card__val">2,4 млн ₽</span>
+          <span class="kpi-card__label">годовой лимит дохода</span>
+          <span class="kpi-card__desc">контроль порога 422-ФЗ</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-card__val">−28,9%</span>
+          <span class="kpi-card__label">снижение затрат бизнеса</span>
+          <span class="kpi-card__desc">по сравнению с ТК РФ</span>
+        </div>
+      </div>
+      <div class="hero__cta-group" data-reveal="">
+        <a href="#calc-engine" class="btn btn--primary">Рассчитать налоги и экономию</a>
+        <a href="#contact" class="btn btn--secondary">Аудит выплат в 1С</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ DIRECT ANSWER / FACTOID SHEET ═══════════════════ -->
+  <section class="direct-answer" id="direct-answer">
+    <div class="container">
+      <div class="direct-answer__card" data-reveal="">
+        <div class="direct-answer__header">
+          <div class="direct-answer__icon">💡</div>
+          <div>
+            <h2 class="direct-answer__title">Налог самозанятых и выплаты от юрлиц (Factoid Sheet)</h2>
+            <p class="direct-answer__desc">Справочная информация для финансовых директоров, бухгалтеров и поисковых систем.</p>
+          </div>
+        </div>
+        <div class="direct-answer__summary">
+          При выплате самозанятому компания не платит НДФЛ 13% и страховые взносы 30%. Налог 6% уплачивает сам исполнитель или компания компенсирует его с gross-up коэффициентом 1.0638. Для законного признания расходов в 1С необходим электронный фискальный чек ФНС.
+        </div>
+        <div class="direct-answer__grid">
+          <div class="da-item">
+            <span class="da-item__label">Налог при выплате от юрлица:</span>
+            <span class="da-item__val">6% от суммы дохода</span>
+          </div>
+          <div class="da-item">
+            <span class="da-item__label">Экономия фонда оплаты труда:</span>
+            <span class="da-item__val">43 290 ₽ на 100 000 ₽ выплаты</span>
+          </div>
+          <div class="da-item">
+            <span class="da-item__label">Первичный документ в 1С:</span>
+            <span class="da-item__val">Электронный чек ФНС (API Мой налог)</span>
+          </div>
+          <div class="da-item">
+            <span class="da-item__label">Счет бухгалтерского учета:</span>
+            <span class="da-item__val">Дт 20/26/44 — Кт 76.09</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ INTERACTIVE CALC ENGINE ═══════════════════ -->
+  <section class="se-calc" id="calc-engine">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag" data-reveal="">Интерактивный расчет</p>
+        <h2 class="section-title" data-reveal="">Онлайн-калькулятор налога и сравнение TCO найма</h2>
+      </div>
+
+      <div class="se-calc__grid" data-reveal="">
+        <!-- INPUTS -->
+        <div class="se-card">
+          <h3 style="margin-bottom: 1rem; font-size: 1.15rem;">Параметры выплаты</h3>
+
+          <!-- Client type toggle -->
+          <label class="roi-label" style="margin-bottom: 6px;">Кто производит выплату:</label>
+          <div class="se-toggle-group" id="payer-toggle">
+            <button type="button" class="se-toggle-btn active" data-rate="0.06">Юрлицо или ИП (6%)</button>
+            <button type="button" class="se-toggle-btn" data-rate="0.04">Физическое лицо (4%)</button>
+          </div>
+
+          <!-- Compensation toggle -->
+          <label class="roi-label" style="margin-bottom: 6px;">Условие уплаты налога:</label>
+          <div class="se-toggle-group" id="grossup-toggle">
+            <button type="button" class="se-toggle-btn active" data-gross="false">Исполнитель платит сам</button>
+            <button type="button" class="se-toggle-btn" data-gross="true">Компания компенсирует (на руки)</button>
+          </div>
+
+          <!-- Amount slider -->
+          <div class="roi-field" style="margin-top: 1.25rem;">
+            <div style="display:flex; justify-content:space-between; margin-bottom: 6px;">
+              <label for="se-amount" class="roi-label">Сумма выплаты:</label>
+              <span id="se-amount-disp" style="font-family:'JetBrainsMono', monospace; font-weight:600; color:var(--accent);">100 000 ₽</span>
+            </div>
+            <input type="range" id="se-amount" min="5000" max="1000000" step="5000" value="100000" class="roi-slider" />
+          </div>
+
+          <!-- YTD slider -->
+          <div class="roi-field" style="margin-top: 1.25rem;">
+            <div style="display:flex; justify-content:space-between; margin-bottom: 6px;">
+              <label for="se-ytd" class="roi-label">Доход самозанятого с начала года:</label>
+              <span id="se-ytd-disp" style="font-family:'JetBrainsMono', monospace; font-weight:600; color:#94a3b8;">500 000 ₽</span>
+            </div>
+            <input type="range" id="se-ytd" min="0" max="3000000" step="50000" value="500000" class="roi-slider" />
+          </div>
+
+          <!-- Bonus check -->
+          <label class="se-checkbox-label">
+            <input type="checkbox" id="se-bonus-check" />
+            <span>Учесть налоговый бонус 10 000 ₽ (снижает ставку до 3% / 4%)</span>
+          </label>
+
+          <!-- Threshold alert -->
+          <div class="se-alert" id="se-limit-alert">
+            ⚠️ <strong>Внимание!</strong> Совокупный доход превышает лимит 2 400 000 ₽ по ст. 4 422-ФЗ. С суммы превышения исполнитель теряет статус самозанятого, и компания обязана удерживать НДФЛ 13% и начислять взносы 30%.
+          </div>
+        </div>
+
+        <!-- OUTPUTS & COMPARISON MATRIX -->
+        <div class="se-card">
+          <h3 style="margin-bottom: 1rem; font-size: 1.15rem;">Результаты расчета</h3>
+
+          <div class="se-matrix__row">
+            <span>Эффективная ставка налога:</span>
+            <span class="se-matrix__val" id="res-rate">6%</span>
+          </div>
+          <div class="se-matrix__row">
+            <span>Сумма налога НПД:</span>
+            <span class="se-matrix__val" id="res-tax">6 000 ₽</span>
+          </div>
+          <div class="se-matrix__row">
+            <span>Выплата исполнителю «на руки»:</span>
+            <span class="se-matrix__val" id="res-net">94 000 ₽</span>
+          </div>
+
+          <div class="se-matrix">
+            <h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; color: #94a3b8;">Сравнение совокупных затрат работодателя (TCO):</h4>
+            <div class="se-matrix__row">
+              <span>1. Самозанятый (НПД):</span>
+              <span class="se-matrix__val" id="res-tco-se">100 000 ₽</span>
+            </div>
+            <div class="se-matrix__row">
+              <span>2. Договор ГПХ (НДФЛ 13% + взносы 30%):</span>
+              <span class="se-matrix__val" id="res-tco-gph">140 460 ₽</span>
+            </div>
+            <div class="se-matrix__row">
+              <span>3. Трудовой договор ТК РФ (+ отпускные):</span>
+              <span class="se-matrix__val" id="res-tco-tk">149 425 ₽</span>
+            </div>
+            <div class="se-matrix__row" style="background: rgba(16, 185, 129, 0.08); padding: 10px 8px; border-radius: 8px; margin-top: 8px;">
+              <span style="font-weight: 600; color: #34d399;">Экономия бюджета компании:</span>
+              <span class="se-matrix__val se-matrix__val--accent" id="res-save">49 425 ₽ (−33.1%)</span>
+            </div>
+          </div>
+
+          <!-- FTS Compliance Radar -->
+          <div class="se-radar">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="se-radar__title">🛡️ ФНС-Радар: Риск переквалификации</span>
+              <span class="se-radar__badge se-radar__badge--green" id="radar-badge">Риск: Низкий (0/5)</span>
+            </div>
+            <p style="font-size:0.8rem; color:#94a3b8; margin-bottom: 0.75rem;">Отметьте признаки для экспресс-оценки по алгоритмам АСК НПД:</p>
+            <label class="se-checkbox-label" style="margin-top:4px;">
+              <input type="checkbox" class="radar-box" />
+              <span>Выплаты проводятся строго в фиксированные дни 2 раза в месяц</span>
+            </label>
+            <label class="se-checkbox-label" style="margin-top:4px;">
+              <input type="checkbox" class="radar-box" />
+              <span>Компания является единственным источником дохода исполнителя</span>
+            </label>
+            <label class="se-checkbox-label" style="margin-top:4px;">
+              <input type="checkbox" class="radar-box" />
+              <span>Предоставляется стационарное рабочее место и оборудование</span>
+            </label>
+            <label class="se-checkbox-label" style="margin-top:4px;">
+              <input type="checkbox" class="radar-box" />
+              <span>Исполнитель подчиняется трудовому распорядку и регламентам</span>
+            </label>
+            <label class="se-checkbox-label" style="margin-top:4px;">
+              <input type="checkbox" class="radar-box" />
+              <span>В договоре указана трудовая функция вместо конкретного результата</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ SYMPTOMS & RISKS GRID ═══════════════════ -->
+  <section class="symptoms" id="symptoms">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag" data-reveal="">Риски и симптомы</p>
+        <h2 class="section-title" data-reveal="">3 критических риска при работе с самозанятыми</h2>
+      </div>
+      <div class="symptoms__grid" data-reveal="">
+        <div class="symptom-card">
+          <div class="symptom-card__icon">⚖️</div>
+          <h3 class="symptom-card__title">Доначисления НДФЛ и взносов 43%</h3>
+          <p class="symptom-card__desc">Скоринговая система ФНС АСК НПД автоматически анализирует регулярность и источники выплат. При признаках трудовых отношений налоги доначисляются со штрафом до 40%.</p>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-card__icon">📈</div>
+          <h3 class="symptom-card__title">Превышение лимита 2,4 млн ₽</h3>
+          <p class="symptom-card__desc">Если исполнитель утратил право на НПД в середине года из-за превышения порога, а бухгалтерия не проверила статус, компания становится налоговым агентом задним числом.</p>
+        </div>
+        <div class="symptom-card">
+          <div class="symptom-card__icon">📁</div>
+          <h3 class="symptom-card__title">Ручной сбор и потеря чеков</h3>
+          <p class="symptom-card__desc">Бухгалтеры тратят десятки часов на напоминания в мессенджерах. Без чека из приложения «Мой налог» сумму выплаты нельзя учесть в расходах по ст. 252 НК РФ.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 1C ARCHITECTURE ═══════════════════ -->
+  <section class="services" id="architecture">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag" data-reveal="">Интеграционный контур</p>
+        <h2 class="section-title" data-reveal="">Сквозная автоматизация выплат в 1С:БП КОРП и 1С:ЗУП</h2>
+      </div>
+      <div class="services__bento" data-reveal="">
+        <div class="scard">
+          <div class="scard__icon">⚙️</div>
+          <h3 class="scard__title">Документ ВыплатаСамозанятым</h3>
+          <p class="scard__desc">Типовой реестровый документ 1С:БП 3.0 КОРП для автоматического формирования ведомостей и платежных поручений в банк.</p>
+          <div class="scard__tags"><span>1С:БП 3.0</span><span>Реестры</span><span>Счет 76.09</span></div>
+        </div>
+        <div class="scard">
+          <div class="scard__icon">🛡️</div>
+          <h3 class="scard__title">Регистр СтатусыСамозанятыхФНС</h3>
+          <p class="scard__desc">Фоновый опрос открытого API ФНС (npd-public.nalog.ru) по ИНН перед проведением каждой транзакции.</p>
+          <div class="scard__tags"><span>Open API</span><span>Кэш 24ч</span><span>Блокировка сбоев</span></div>
+        </div>
+        <div class="scard">
+          <div class="scard__icon">🧾</div>
+          <h3 class="scard__title">Автофискализация ЧекиСамозанятых</h3>
+          <p class="scard__desc">Автоматическое получение ссылок на чеки через шлюз DirectBank в момент проведения платежа без ручной переписки.</p>
+          <div class="scard__tags"><span>Т-Банк</span><span>Сбер</span><span>Точка</span></div>
+        </div>
+        <div class="scard">
+          <div class="scard__icon">⚡</div>
+          <h3 class="scard__title">Проводки Дт 20/26/44 — Кт 76.09</h3>
+          <p class="scard__desc">Корректное закрытие затрат на основании документа ПоступлениеТоваровУслуг с видом операции «Услуги».</p>
+          <div class="scard__tags"><span>БУ/НУ</span><span>Ст. 252 НК РФ</span><span>0 ошибок</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ STRICT 3-CASE INVARIANT ═══════════════════ -->
+  <section class="cases" id="cases">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag" data-reveal="">Внедренные проекты</p>
+        <h2 class="section-title" data-reveal="">Кейсы финансовой автоматизации и интеграции 1С</h2>
+      </div>
+      <div class="cases__grid cases__grid--static" data-reveal="">
+        <div class="case-card case-card--fintech">
+          <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--fintech"></span>🏦 Финтех и финансовые сервисы</div>
+          <h3 class="case-card__title">Авторазнесение 50 000 банковских выписок и платежей за 8.4 секунды</h3>
+          <p class="case-card__desc">Сквозная сверка расчетных счетов и реестров выплат в 1С через протокол DirectBank с точностью 99.2%.</p>
+          <div class="case-card__results">
+            <div class="case-result"><span class="case-result__num">8.4 сек</span><span class="case-result__label">на 50k операций</span></div>
+            <div class="case-result"><span class="case-result__num case-num--green">99.2%</span><span class="case-result__label">точность сверки</span></div>
+            <div class="case-result"><span class="case-result__num case-num--gold">0</span><span class="case-result__label">ручных расхождений</span></div>
+          </div>
+          <div class="case-card__tags"><span>DirectBank</span><span>1С:ERP</span><span>Сверка</span></div>
+        </div>
+        <div class="case-card case-card--edi">
+          <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--edi"></span>🏭 Завод промышленного оборудования</div>
+          <h3 class="case-card__title">Сквозное ЭДО и синхронизация реестров выплат внештатникам</h3>
+          <p class="case-card__desc">Автоматизация сбора чеков и закрытие первичных документов в 1С за 5 минут вместо 3 рабочих дней бухгалтерии.</p>
+          <div class="case-card__results">
+            <div class="case-result"><span class="case-result__num case-num--green">−90%</span><span class="case-result__label">бумажной рутины</span></div>
+            <div class="case-result"><span class="case-result__num case-num--cyan">5 мин</span><span class="case-result__label">закрытие периода</span></div>
+            <div class="case-result"><span class="case-result__num case-num--gold">≥ 400%</span><span class="case-result__label">ROI проекта</span></div>
+          </div>
+          <div class="case-card__tags"><span>1С:ERP</span><span>Диадок</span><span>ЭДО</span></div>
+        </div>
+        <div class="case-card case-card--service">
+          <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--service"></span>🔧 Сервисный центр оборудования</div>
+          <h3 class="case-card__title">Диспетчеризация и моментальные выплаты внештатным мастерам</h3>
+          <p class="case-card__desc">Автоматическое назначение заявок по геопозиции и проведение выплат самозанятым мастерам по факту подписания акта клиентом.</p>
+          <div class="case-card__results">
+            <div class="case-result"><span class="case-result__num case-num--green">80.4%</span><span class="case-result__label">автономных заявок</span></div>
+            <div class="case-result"><span class="case-result__num case-num--cyan">3 ₽</span><span class="case-result__label">себестоимость контакта</span></div>
+            <div class="case-result"><span class="case-result__num case-num--gold">24/7</span><span class="case-result__label">цикл работы</span></div>
+          </div>
+          <div class="case-card__tags"><span>1С:УНФ</span><span>API ФНС</span><span>СБП Выплаты</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FAQ ═══════════════════ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag" data-reveal="">Частые вопросы</p>
+        <h2 class="section-title" data-reveal="">Вопросы и ответы по работе с самозанятыми в 1С</h2>
+      </div>
+      <div class="faq__accordion" data-reveal="">
+        <details class="faq__item" open="">
+          <summary class="faq__question">
+            <span>Как автоматизировать проверку статуса самозанятого перед каждой выплатой в 1С?</span>
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq__answer">
+            <p>Модуль интеграции выполняет фоновый HTTP-запрос к API ФНС (npd-public.nalog.ru) по ИНН исполнителя непосредственно перед проведением платежного поручения в 1С. Если статус аннулирован или превышен лимит 2,4 млн ₽, проведение блокируется.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question">
+            <span>Что делать, если внештатный исполнитель не предоставил чек после получения денег?</span>
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq__answer">
+            <p>При интеграции с банковскими сервисами выплат (номинальные счета) чек формируется автоматически через открытый банковский шлюз ФНС в момент перечисления средств и сразу подкрепляется к документу ВыплатаСамозанятым в 1С.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question">
+            <span>Как компания защищена от претензий налоговой о переквалификации в трудовые отношения?</span>
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq__answer">
+            <p>Внедряется регламент формирования проектных ТЗ, актов выполненных объемов работ с переменной оплатой и децентрализованный график задач без фиксации рабочего времени и должностных обязанностей.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ LEAD CAPTURE FORM ═══════════════════ -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact__card" data-reveal="">
+        <div class="contact__header">
+          <p class="section-tag">Бесплатный аудит</p>
+          <h2 class="section-title">Аудит выплат самозанятым и рисков переквалификации ФНС</h2>
+          <p class="contact__desc">
+            Проведем аудит договоров и актов с самозанятыми, настроим модуль автопроверки чеков в 1С и снизим налоговые риски компании за 14 дней.
+          </p>
+        </div>
+        <form class="contact__form" id="lead-form" method="POST" action="https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/lead">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+          <input type="hidden" name="source" value="/calculator/self-employed/" />
+          <div class="form-group">
+            <label for="lead-name">Ваше имя *</label>
+            <input type="text" id="lead-name" name="name" required="" placeholder="Константин" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label for="lead-contact">Телефон или Telegram *</label>
+            <input type="text" id="lead-contact" name="contact" required="" placeholder="+7 (999) 000-00-00 или @username" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label for="lead-volume">Количество самозанятых в компании</label>
+            <input type="text" id="lead-volume" name="volume" placeholder="От 5 человек (объем выплат от 300 000 ₽/мес)" class="form-input" />
+          </div>
+          <div class="form-group form-group--checkbox">
+            <label class="checkbox-label">
+              <input type="checkbox" name="consent" required="" checked="" />
+              <span>Согласен на обработку персональных данных в соответствии с <a href="/privacy.html" target="_blank" rel="noopener">152-ФЗ</a> *</span>
+            </label>
+          </div>
+          <button type="submit" class="btn btn--primary btn--submit">Записаться на аудит 1С</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__top">
+        <a href="/" class="nav__logo" aria-label="АвтоПилот">⬡ АвтоПилот</a>
+        <div class="footer__dual-cta" role="group" aria-label="Связаться с нами">
+          <a href="https://t.me/AiAvtopilotbot" target="_blank" rel="noopener noreferrer" class="footer__dual-btn footer__dual-btn--tg footer__tg-cta" aria-label="Написать в Telegram Онлайн @AiAvtopilotbot">
+            <span class="footer__dual-icon footer__dual-icon--tg footer__tg-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+              </svg>
+            </span>
+            <span class="footer__dual-text footer__tg-text">
+              <span class="footer__dual-head">
+                <span class="footer__dual-label">Telegram</span>
+                <span class="footer__dual-status footer__tg-badge"><span class="footer__tg-dot"></span>Онлайн</span>
+              </span>
+              <span class="footer__dual-sub footer__tg-handle">@AiAvtopilotbot</span>
+            </span>
+          </a>
+          <span class="footer__dual-sep" aria-hidden="true"></span>
+          <button type="button" class="footer__dual-btn footer__dual-btn--email" id="open-express-modal" aria-haspopup="dialog" aria-expanded="false" aria-controls="express-contact-modal" aria-label="Написать на Email в 2 клика">
+            <span class="footer__dual-icon footer__dual-icon--email">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </span>
+            <span class="footer__dual-text">
+              <span class="footer__dual-head">
+                <span class="footer__dual-label">Email</span>
+                <span class="footer__dual-badge-hint">Экспресс</span>
+              </span>
+              <span class="footer__dual-sub">contact@ai-avtopilot.ru</span>
+            </span>
+          </button>
+        </div>
+      </div>
+      <div class="footer__body">
+        <div class="footer__brand">
+          <p>ИИ-автоматизация бизнес-процессов.<br />г. Москва · Работаем по всей России.<br /><span class="footer__support">Поддержка: 24/7 онлайн</span></p>
+        </div>
+      </div>
+      <div class="footer__links-row">
+        <div class="footer__links">
+          <a href="/dashboard/">Дашборд</a>
+          <a href="/services/">Услуги</a>
+          <a href="/cases/">Кейсы</a>
+          <a href="/calculator/">Калькулятор</a>
+          <a href="/faq/">FAQ</a>
+          <a href="/contact/">Контакты</a>
+        </div>
+        <div class="footer__meta-links">
+          <!--email_off--><a href="mailto:contact@ai-avtopilot.ru" class="footer__email">contact@ai-avtopilot.ru</a><!--/email_off-->
+          <a href="/privacy.html" class="footer__privacy">Политика конфиденциальности (152-ФЗ)</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div class="footer__copy">
+          © 2025–2026 АвтоПилот. Все права защищены.
+        </div>
+      </div>
+    </div>
+  </footer>
+<dialog id="express-contact-modal" class="express-modal" aria-labelledby="modal-title" aria-modal="true">
+    <div class="express-modal__card">
+      <div class="express-modal__header">
+        <div class="express-modal__header-left">
+          <h3 id="modal-title" class="express-modal__title">Связаться с АвтоПилот</h3>
+          <div class="express-modal__online-indicator">
+            <span class="footer__tg-dot"></span> Отвечаем в течение 5–15 минут
+          </div>
+        </div>
+        <button type="button" class="express-modal__close" id="close-express-modal" aria-label="Закрыть модальное окно">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Tabs -->
+      <div class="express-modal__tabs" role="tablist" aria-label="Каналы связи">
+        <button type="button" role="tab" class="express-modal__tab express-modal__tab--active" id="tab-email-btn" aria-selected="true" aria-controls="panel-email" tabindex="0">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <span>Написать на почту</span>
+        </button>
+        <button type="button" role="tab" class="express-modal__tab" id="tab-tg-btn" aria-selected="false" aria-controls="panel-tg" tabindex="-1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+          <span>Telegram бот</span>
+        </button>
+      </div>
+
+      <!-- Panel: Email -->
+      <div id="panel-email" class="express-modal__panel express-modal__panel--active" role="tabpanel" aria-labelledby="tab-email-btn">
+        <form id="express-email-form" class="express-modal__form" novalidate>
+          <input type="text" name="_honey" class="honeypot-input" style="display:none!important;" tabindex="-1" autocomplete="off" />
+          <div class="express-form-group">
+            <label for="express-contact" class="express-form-label">
+              Ваш Email или Telegram / телефон <span class="required-star">*</span>
+            </label>
+            <input type="text" id="express-contact" name="contact" class="express-form-input" placeholder="name@company.ru или @usename" required />
+            <div class="express-form-error" id="express-contact-error"></div>
+          </div>
+          <div class="express-form-group">
+            <label for="express-message" class="express-form-label">
+              Ваш вопрос или задача <span class="required-star">*</span>
+            </label>
+            <textarea id="express-message" name="message" class="express-form-textarea" rows="3" placeholder="Кратко опишите задачу (например, интеграция 1С с CRM или автоматизация отчетов)..." required></textarea>
+            <div class="express-form-error" id="express-message-error"></div>
+          </div>
+          
+          <div class="express-form-footer">
+            <button type="submit" id="express-submit-btn" class="btn btn--primary express-submit-btn">
+              <span>Отправить сообщение</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+            <p class="express-form-consent">
+              Нажимая кнопку, вы соглашаетесь с <a href="/privacy.html" target="_blank" rel="noopener">Политикой конфиденциальности (152-ФЗ)</a>.
+            </p>
+          </div>
+        </form>
+
+        <!-- Direct copy row -->
+        <div class="express-modal__direct-email">
+          <span class="express-modal__direct-text">Или скопируйте наш прямой email:</span>
+          <button type="button" class="btn-copy-email" id="modal-copy-email-btn" aria-label="Скопировать contact@ai-avtopilot.ru">
+            <span class="copy-email-address">contact@ai-avtopilot.ru</span>
+            <span class="copy-email-badge" id="modal-copy-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span class="copy-label">Скопировать</span>
+            </span>
+          </button>
+        </div>
+
+        <!-- Result Card (Hidden by default) -->
+        <div id="express-success-card" class="express-modal__success" style="display:none;" aria-live="polite">
+          <div class="express-success__icon">✓</div>
+          <h4 class="express-success__title">Сообщение отправлено!</h4>
+          <p class="express-success__desc">Спасибо! Мы уже получили ваш запрос и ответим в течение 15 минут.</p>
+          <button type="button" class="btn btn--ghost" id="express-reset-btn" style="margin-top:12px;font-size:0.85rem;">Отправить еще одно</button>
+        </div>
+      </div>
+
+      <!-- Panel: Telegram -->
+      <div id="panel-tg" class="express-modal__panel" role="tabpanel" aria-labelledby="tab-tg-btn" hidden>
+        <div class="express-tg-content">
+          <div class="express-tg-badge-status">
+            <span class="footer__tg-dot"></span> ИИ-ассистент онлайн 24/7
+          </div>
+          <h4 class="express-tg-title">Чат с ботом @AiAvtopilotbot</h4>
+          <p class="express-tg-desc">Мгновенный расчет окупаемости, примеры внедрений и прямая связь с инженером без ожидания.</p>
+          <a href="https://t.me/AiAvtopilotbot" target="_blank" rel="noopener noreferrer" class="btn btn--primary express-tg-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+            <span>Открыть @AiAvtopilotbot</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </dialog>
+
+<!-- Interactive Calculator Script (0ms TBT, pure client JS) -->
+<script>
+  (function() {
+    var payerRate = 0.06;
+    var isGrossUp = false;
+
+    var amountInput = document.getElementById('se-amount');
+    var amountDisp = document.getElementById('se-amount-disp');
+    var ytdInput = document.getElementById('se-ytd');
+    var ytdDisp = document.getElementById('se-ytd-disp');
+    var bonusCheck = document.getElementById('se-bonus-check');
+    var limitAlert = document.getElementById('se-limit-alert');
+
+    var resRate = document.getElementById('res-rate');
+    var resTax = document.getElementById('res-tax');
+    var resNet = document.getElementById('res-net');
+    var resTcoSe = document.getElementById('res-tco-se');
+    var resTcoGph = document.getElementById('res-tco-gph');
+    var resTcoTk = document.getElementById('res-tco-tk');
+    var resSave = document.getElementById('res-save');
+
+    function fmtRub(n) {
+      return Math.round(n).toLocaleString('ru-RU') + ' ₽';
+    }
+
+    function recalc() {
+      var S = parseFloat(amountInput.value) || 0;
+      var YTD = parseFloat(ytdInput.value) || 0;
+      amountDisp.textContent = fmtRub(S);
+      ytdDisp.textContent = fmtRub(YTD);
+
+      // Check 2.4M threshold
+      if ((YTD + S) > 2400000) {
+        limitAlert.classList.add('visible');
+      } else {
+        limitAlert.classList.remove('visible');
+      }
+
+      // Rate with bonus logic
+      var effRate = payerRate;
+      if (bonusCheck && bonusCheck.checked) {
+        effRate = payerRate === 0.06 ? 0.04 : 0.03;
+      }
+      resRate.textContent = (effRate * 100).toFixed(0) + '%';
+
+      var net = 0;
+      var tax = 0;
+      var tcoSe = 0;
+
+      if (!isGrossUp) {
+        // Contractor pays tax
+        tax = S * effRate;
+        net = S - tax;
+        tcoSe = S;
+      } else {
+        // Employer gross-up: S / (1 - effRate)
+        tcoSe = S / (1.0 - effRate);
+        tax = tcoSe - S;
+        net = S;
+      }
+
+      // TCO for GPH & TK
+      // For equivalent net salary
+      var grossSalary = net / (1.0 - 0.13);
+      var tcoGph = grossSalary * (1.0 + 0.30);
+      var tcoTk = grossSalary * (1.0 + 0.30 + 0.002 + 0.083); // contributions + accident + vacation reserve
+
+      var saveRub = tcoTk - tcoSe;
+      var savePct = tcoTk > 0 ? (saveRub / tcoTk * 100).toFixed(1) : '0';
+
+      resTax.textContent = fmtRub(tax);
+      resNet.textContent = fmtRub(net);
+      resTcoSe.textContent = fmtRub(tcoSe);
+      resTcoGph.textContent = fmtRub(tcoGph);
+      resTcoTk.textContent = fmtRub(tcoTk);
+      resSave.textContent = fmtRub(saveRub) + ' (−' + savePct + '%)';
+    }
+
+    // Toggle button handlers
+    var payerBtns = document.querySelectorAll('#payer-toggle .se-toggle-btn');
+    payerBtns.forEach(function(b) {
+      b.addEventListener('click', function() {
+        payerBtns.forEach(function(x) { x.classList.remove('active'); });
+        b.classList.add('active');
+        payerRate = parseFloat(b.getAttribute('data-rate'));
+        recalc();
+      });
+    });
+
+    var grossBtns = document.querySelectorAll('#grossup-toggle .se-toggle-btn');
+    grossBtns.forEach(function(b) {
+      b.addEventListener('click', function() {
+        grossBtns.forEach(function(x) { x.classList.remove('active'); });
+        b.classList.add('active');
+        isGrossUp = b.getAttribute('data-gross') === 'true';
+        recalc();
+      });
+    });
+
+    if (amountInput) amountInput.addEventListener('input', recalc);
+    if (ytdInput) ytdInput.addEventListener('input', recalc);
+    if (bonusCheck) bonusCheck.addEventListener('change', recalc);
+
+    // Radar score
+    var radarBoxes = document.querySelectorAll('.radar-box');
+    var radarBadge = document.getElementById('radar-badge');
+    function updateRadar() {
+      var checked = 0;
+      radarBoxes.forEach(function(bx) { if (bx.checked) checked++; });
+      if (checked <= 1) {
+        radarBadge.className = 'se-radar__badge se-radar__badge--green';
+        radarBadge.textContent = 'Риск: Низкий (' + checked + '/5)';
+      } else if (checked <= 3) {
+        radarBadge.className = 'se-radar__badge se-radar__badge--yellow';
+        radarBadge.textContent = 'Риск: Средний (' + checked + '/5)';
+      } else {
+        radarBadge.className = 'se-radar__badge se-radar__badge--red';
+        radarBadge.textContent = 'Риск: Критический (' + checked + '/5)';
+      }
+    }
+    radarBoxes.forEach(function(bx) {
+      bx.addEventListener('change', updateRadar);
+    });
+
+    recalc();
+  })();
+</script>
+
+</body>
+</html>

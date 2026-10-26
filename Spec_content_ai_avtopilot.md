@@ -1,10 +1,9 @@
 # B2B Content Strategy & Demand Capture Specification: ai-avtopilot.ru (Spec_content_ai_avtopilot.md)
 
 > **Status**: Production Deployed | **Target**: [ai-avtopilot.ru](https://ai-avtopilot.ru/) | **Geo**: Russian Federation (Nationwide B2B)  
-> **Inventory**: 40 Production URLs (1 Root, 6 Hubs, 19 Services, 11 Cases, 3 Utility)  
+> **Inventory**: 44 Production URLs (1 Root, 6 Hubs, 23 Services, 11 Cases, 3 Utility)  
 > **Search Targets**: Yandex (Web + «Нейро»), Google RU (AI Overviews), Perplexity, Klerk.ru, Infostart.ru  
-> **Verification**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E) | **AI Slop**: **0 Markers** across all 41 URLs
-
+> **Verification**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E) | **AI Slop**: **0 Markers** across all 45 URLs
 ---
 
 ## 1. Demand Capture Topology & Architecture
@@ -18,10 +17,10 @@ flowchart TD
         Val -- "Validated Pool" --> Brief["Validated Semantics Matrix"]
     end
 
-    subgraph Architecture ["2. Production Silo Architecture (40 URLs)"]
+    subgraph Architecture ["2. Production Silo Architecture (44 URLs)"]
         Root["/ (Main Landing Page)"]
         Hubs["6 Hub Pages (/services/, /cases/, /calculator/, /dashboard/, /faq/, /contact/)"]
-        T1["19 Dedicated Service Pages (/services/*)"]
+        T1["23 Dedicated Service Pages (/services/*)"]
         T3["11 Applied Case Studies (/cases/*)"]
         Util["3 Utility Pages (/privacy.html, /404.html, /success.html)"]
     end
@@ -43,7 +42,7 @@ flowchart TD
     Brief --> Architecture --> Pipeline --> Conversion
 ```
 
-### 1.1. Production Page Inventory (40 URLs)
+### 1.1. Production Page Inventory (42 URLs)
 
 | Route / Slug | Page Type | Core B2B Scope & Value Proposition | Key Metric / KPI |
 | :--- | :--- | :--- | :--- |
@@ -51,6 +50,7 @@ flowchart TD
 | `/services/` | Hub | Complete catalog of enterprise automation scenarios and 1C integrations. | 12 scenarios |
 | `/cases/` | Hub | Enterprise case studies with verified metrics and 1C architecture workflows. | 10 case studies |
 | `/calculator/` | Tool Hub | Interactive B2B routine savings and payback estimator. | Real-time ROI |
+| `/calculator/self-employed/` | Tool Hub | Self-employed NPD 4%/6% tax calc, 2.4M ₽ threshold, 1C DirectBank & FTS compliance. | 0 ms TBT, 28.9% employer savings |
 | `/dashboard/` | Tool Hub | Live agent telemetry simulator and event stream monitor. | 0 ms TBT |
 | `/faq/` | Hub | Knowledge base: 1C integration, 14-day SLA, on-premise 152-FZ airgap. | Accordion DOM 1:1 |
 | `/contact/` | Hub | Express audit registration and direct communication channels. | 3-field form |
@@ -74,6 +74,10 @@ flowchart TD
 | `/services/b2b-outbound/` | Service | Autonomous AI SDR, cold outreach in Email & TG, lead scoring, CRM handover. | 100 touches/day, 12% reply rate |
 | `/services/customer-retention/` | Service | Predictive RFM cohort analysis in 1C, churn prevention, LTV reactivation. | +25% repeat sales, −40% churn |
 | `/services/construction-estimate-audit/` | Service | Automated estimate audit, KS-2/KS-3 verification, Grand-Smeta & 1C:ERP USO. | 3m audit, −12% overpricing |
+| `/services/fleet-logistics/` | Service | Fleet management, 1C:UAT & GIS EPD integration, electronic waybills in 30s. | 30s waybill dispatch, −30% fuel waste |
+| `/services/ai-agents/` | Service | Autonomous AI agents & multi-agent swarms in 1C contour, SDR & UPD audit. | 3s response, 100% On-Premise 152-FZ |
+| `/services/manufacturing-automation/` | Service | 1C:ERP workshop MES dispatching, raw materials write-off, real-time costing. | 5m batch cost calc, −90% paper |
+| `/services/avito-automation/` | Service | Avito Messenger API, 1C:UT/ERP stock sync, 24/7 lead capture, 0 bans. | 30s response, +35% conversion |
 | `/cases/retail-inventory-automation/` | Case | Retail network (230 stores): -72% manual accounting, 9,200 hrs/yr saved. | −72% labor, +18% turnover |
 | `/cases/manufacturing-edi-automation/` | Case | Manufacturing plant: -90% paper EDI, period close in 5 min vs 3 days. | $\ge 400\%$ ROI |
 | `/cases/service-center-ai-operator/` | Case | Service center (40k clients/mo): 80.4% autonomous resolution. | 80.4% automated, 3 ₽/lead |
@@ -90,7 +94,7 @@ flowchart TD
 | `/success.html` | Utility | Conversion confirmation page with direct Telegram contact action. | Post-submit UX |
 
 ### 1.2. Internal Linking Mesh & Hierarchy
-- **Service Silo Mesh ($K_{20}$)**: Each of the 20 service pages cross-links to all 19 sibling services in `#other-services` placed strictly below `#contact` (380 directed internal links, 0 self-links, 0 redirect hops).
+- **Service Silo Mesh ($K_{23}$)**: Each of the 23 service pages cross-links to all 22 sibling services in `#other-services` placed strictly below `#contact` (506 directed internal links, 0 self-links, 0 redirect hops).
 - **Strict 3-Case Invariant**: Every service page displays exactly 3 applied case cards in `#cases` (`.cases__grid--static`). Eliminates empty slots in 3-column desktop layout.
 - **Case Silo Mesh ($K_{11}$)**: Each of the 11 case pages cross-links to all 10 sibling cases in `#cases` strictly below `#contact` (110 directed internal links, 0 self-links).
 

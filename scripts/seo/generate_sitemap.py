@@ -142,6 +142,24 @@ URL_SPEC = [
         "changefreq": "weekly",
         "priority": "0.9",
     },
+    {
+        "url": "https://ai-avtopilot.ru/services/fleet-logistics/",
+        "file": "services/fleet-logistics/index.html",
+        "changefreq": "weekly",
+        "priority": "0.9",
+    },
+    {
+        "url": "https://ai-avtopilot.ru/services/ai-agents/",
+        "file": "services/ai-agents/index.html",
+        "changefreq": "weekly",
+        "priority": "0.9",
+    },
+    {
+        "url": "https://ai-avtopilot.ru/services/manufacturing-automation/",
+        "file": "services/manufacturing-automation/index.html",
+        "changefreq": "weekly",
+        "priority": "0.9",
+    },
     {"url": "https://ai-avtopilot.ru/cases/", "file": "cases/index.html", "changefreq": "weekly", "priority": "0.8"},
     {
         "url": "https://ai-avtopilot.ru/cases/retail-inventory-automation/",
