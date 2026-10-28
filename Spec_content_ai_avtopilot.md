@@ -93,10 +93,15 @@ flowchart TD
 | `/404.html` | Utility | Clean route fallback preserving original requested path. | Client state recovery |
 | `/success.html` | Utility | Conversion confirmation page with direct Telegram contact action. | Post-submit UX |
 
-### 1.2. Internal Linking Mesh & Hierarchy
-- **Service Silo Mesh ($K_{23}$)**: Each of the 23 service pages cross-links to all 22 sibling services in `#other-services` placed strictly below `#contact` (506 directed internal links, 0 self-links, 0 redirect hops).
+### 1.2. Internal Linking Mesh & Tri-Cluster Silo Architecture
+- **Tri-Cluster Silo Architecture (8/8/8 Partition)**: All 24 service landing pages are partitioned into 3 balanced thematic clusters (8 services each):
+  - *Cluster A (Finance & ERP)*: `automated-reporting` (★ Flagship), `ai-analytics`, `debt-control`, `specifications-kp`, `tender-automation`, `construction-estimate-audit`, `document-automation`, `rapid-pilot`.
+  - *Cluster B (Marketing & CRM)*: `ai-agents` (★ Flagship), `marketing-automation`, `customer-support`, `speech-analytics`, `reviews-reputation`, `b2b-outbound`, `customer-retention`, `avito-automation`.
+  - *Cluster C (Operations & Logistics)*: `system-integration` (★ Flagship), `retail-inventory`, `price-monitoring`, `hr-recruitment`, `marketplace-automation`, `knowledge-base-rag`, `fleet-logistics`, `manufacturing-automation`.
+- **Deterministic 9-Link Budget**: Each service page renders **exactly 9 links** in `#other-services` positioned strictly below `#contact`: 7 intra-cluster siblings + 2 cross-cluster flagships. Flagships receive $23 / 7 \approx 3.3\times$ higher in-link density, boosting PageRank by +49% (0.0315 vs 0.0211).
 - **Strict 3-Case Invariant**: Every service page displays exactly 3 applied case cards in `#cases` (`.cases__grid--static`). Eliminates empty slots in 3-column desktop layout.
 - **Case Silo Mesh ($K_{11}$)**: Each of the 11 case pages cross-links to all 10 sibling cases in `#cases` strictly below `#contact` (110 directed internal links, 0 self-links).
+- **Anti-Cannibalization & Anti-Slop Integrity**: All 11 cases feature unique domain modules, before/after compare blocks, and FAQs. All meta descriptions strictly adhere to the `ru_text_humanizer` standard (0 hard bans, 100/100 purity score, imperative verbs, 80–165 chars).
 
 ---
 

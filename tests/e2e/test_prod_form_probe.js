@@ -94,10 +94,17 @@ async function runProdProbeSuite() {
   // PROD-01: Gateway Health & Status
   await test('PROD-01: Live Cloudflare Gateway responds 200 OK with active status', async () => {
     const res = await requestHttps(`${WORKER_URL}/status`);
+    assert.strictEqual(typeof res, 'object');
+    assert.strictEqual(typeof res.statusCode, 'number');
     assert.strictEqual(res.statusCode, 200, `Expected 200 OK, got ${res.statusCode}`);
+    assert.strictEqual(typeof res.body, 'string');
+    assert.ok(res.body.length > 0);
     const data = JSON.parse(res.body);
+    assert.strictEqual(typeof data, 'object');
     assert.strictEqual(data.status, 'active', 'Gateway status must be active');
     assert.ok(data.server_time, 'Gateway must return server_time');
+    assert.strictEqual(typeof data.server_time, 'string');
+    assert.strictEqual(typeof res.headers, 'object');
     assert.strictEqual(res.headers['access-control-allow-origin'], PROD_SITE_URL, 'CORS header must cover prod origin');
   });
 
@@ -114,8 +121,13 @@ async function runProdProbeSuite() {
       headers: { 'Content-Type': 'application/json' }
     }, payload);
 
+    assert.strictEqual(typeof res, 'object');
+    assert.strictEqual(typeof res.statusCode, 'number');
     assert.strictEqual(res.statusCode, 200, `Expected 200 OK, got ${res.statusCode}`);
+    assert.strictEqual(typeof res.body, 'string');
+    assert.ok(res.body.length > 0);
     const data = JSON.parse(res.body);
+    assert.strictEqual(typeof data, 'object');
     assert.strictEqual(data.success, true, 'Submission response success must be true');
     assert.strictEqual(data.status, 'ok', 'Honeypot probe must be cleanly accepted');
   });

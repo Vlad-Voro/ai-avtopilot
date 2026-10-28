@@ -5,8 +5,8 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <title>Учет претензий в 1С и контроль дебиторской задолженности: кейс | АвтоПилот</title>
-<meta content="Кейс учета претензий в 1С:ERP: авторазбор актов ТОРГ-2, сверка отгрузок, расчет пеней по ст. 395 ГК РФ и подготовка досудебной претензии за 3 минуты." name="description"/>
-<meta content="учет претензий в 1с, контроль дебиторской задолженности 1с, претензионная работа 1с, расчет ст 395 гк рф, торг 2 1с, автопилот ии" name="keywords"/>
+<meta content="Посмотрите кейс снижения дебиторки: автоматическая сверка актов разногласий в 1С (счет 76.02), досудебные претензии и сокращение DSO на 40%." name="description"/>
+<meta content="учет претензий в 1с, контроль дебиторской задолженности 1с, претензионная работа 1с, расчет ст 395 гк рф, торг 2 1с, автопилот ии" name="keywords">
 <meta content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" name="robots"/>
 <link href="https://ai-avtopilot.ru/cases/claims-dispute-automation/" rel="canonical"/>
 <meta content="#08080c" name="theme-color"/>
@@ -18,7 +18,7 @@
 <meta content="https://ai-avtopilot.ru/cases/claims-dispute-automation/" property="og:url"/>
 <meta content="АвтоПилот" property="og:site_name"/>
 <meta content="Учет претензий в 1С и контроль дебиторской задолженности: кейс | АвтоПилот" property="og:title"/>
-<meta content="Кейс учета претензий в 1С:ERP: авторазбор актов ТОРГ-2, сверка отгрузок, расчет пеней по ст. 395 ГК РФ и подготовка досудебной претензии за 3 минуты." property="og:description"/>
+<meta content="Посмотрите кейс снижения дебиторки: автоматическая сверка актов разногласий в 1С (счет 76.02), досудебные претензии и сокращение DSO на 40%." property="og:description"/>
 <meta content="https://ai-avtopilot.ru/og-image.png" property="og:image"/>
 <meta content="https://ai-avtopilot.ru/og-image.png" property="og:image:secure_url"/>
 <meta content="1200" property="og:image:width"/>
@@ -27,7 +27,7 @@
 <!-- Twitter Cards -->
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="Учет претензий в 1С и контроль дебиторской задолженности: кейс | АвтоПилот" name="twitter:title"/>
-<meta content="Кейс учета претензий в 1С:ERP: авторазбор актов ТОРГ-2, сверка отгрузок, расчет пеней по ст. 395 ГК РФ и подготовка досудебной претензии за 3 минуты." name="twitter:description"/>
+<meta content="Посмотрите кейс снижения дебиторки: автоматическая сверка актов разногласий в 1С (счет 76.02), досудебные претензии и сокращение DSO на 40%." name="twitter:description"/>
 <meta content="https://ai-avtopilot.ru/og-image.png" name="twitter:image"/>
 <!-- Favicon & Icons -->
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
@@ -79,7 +79,7 @@
 <link as="font" crossorigin="" href="/assets/fonts/Inter-400-1.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/assets/fonts/Outfit-600-14.woff2" rel="preload" type="font/woff2"/>
 <!-- Inlined Styles (Eliminates Render-Blocking CSS & Critical Request Chains) -->
-<link href="/assets/css/styles.min.css?v=03f2d5b5" rel="stylesheet"/>
+<link href="/assets/css/styles.min.css?v=45555647" rel="stylesheet"/>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
 <script type="text/javascript">
     (function() {
@@ -123,7 +123,7 @@
   </script>
 <noscript><div><img alt="Yandex Metrica" src="https://mc.yandex.ru/watch/112978516" style="position:absolute; left:-9999px;"/></div></noscript>
 <!-- /Yandex.Metrika counter -->
-</head>
+</meta></head>
 <body>
 <div class="nav__backdrop" id="nav-backdrop"></div>
 <!-- ═══════════════════ NAVIGATION ═══════════════════ -->
@@ -270,13 +270,13 @@
 <div class="container">
 <div class="section-header">
 <p class="section-tag" data-reveal="">До и после автоматизации</p>
-<h2 class="section-title" data-reveal="">Ручной претензионный учет vs сквозной автопилот 1С</h2>
+<h2 class="section-title" data-reveal="">Ручное выбивание долгов vs предиктивный контроль дебиторки 1С</h2>
 </div>
 <div class="compare__grid">
 <div class="compare__card compare__card--pain" data-reveal="">
-<div class="compare__badge">Сейчас (Excel + Бумажные акты)</div>
+<div class="compare__badge">Сейчас (Бухгалтерия и юристы)</div>
 <div class="compare__icon">😰</div>
-<ul class="compare__list"><li><strong>Дни на поиск первички по спору: </strong>юрист вручную поднимает УПД, доверенности, транспортные накладные и платежки по разным архивам.</li><li><strong>Зависшие акты ТОРГ-2: </strong>разногласия по недовозам и браку неделями лежат в почте менеджеров без фиксации в 1С.</li><li><strong>Ручной расчет пеней и процентов: </strong>ошибки при расчете неустойки по сложным договорным формулам и ст. 395 ГК РФ.</li><li><strong>Пропуск сроков ответа на претензии: </strong>нарушение договорных 10–30 дней на ответ приводит к штрафам и проигрышам в суде.</li><li><strong>Неконтролируемый рост дебиторки: </strong>отгрузки продолжаются контрагентам с неоплаченными претензиями из-за несогласованности отделов.</li></ul>
+<ul class="compare__list"><li><strong>Дебиторка зависает на недели без внимания: </strong>бухгалтеры вспоминают о просроченном долге только при формировании квартального баланса.</li><li><strong>Долгие споры по актам разногласий (счет 76.02): </strong>несогласованные вычеты за бой и недовоз висят на балансе месяцами, затягивая оплату.</li><li><strong>Неловкие звонки менеджеров клиентам: </strong>менеджеры по продажам боятся портить отношения с клиентами и затягивают напоминания о платежах.</li><li><strong>Ручная подготовка пакетов претензий юристами: </strong>сбор первичных документов, накладных и расчетов неустойки занимает до 5 дней на контрагента.</li><li><strong>Кассовые разрывы из-за непредсказуемости ДДС: </strong>руководство не может точно спрогнозировать реальный график поступлений денег от должников.</li></ul>
 </div>
 <div class="compare__arrow" data-reveal="">
 <div class="compare__arrow-line"></div>
@@ -285,7 +285,7 @@
 <div class="compare__card compare__card--win" data-reveal="">
 <div class="compare__badge compare__badge--win">С агентами АвтоПилот</div>
 <div class="compare__icon">🚀</div>
-<ul class="compare__list"><li><strong>Пакет документов за 30 секунд: </strong>робот автоматически собирает цифровую цепочку (Заказ → УПД → Оплата → Акт сверки) из 1С:ERP.</li><li><strong>Мгновенный OCR-разбор ТОРГ-2: </strong>извлечение строк расхождений и создание документа «Претензия клиента» в 1С без ручного ввода.</li><li><strong>Точный калькулятор неустойки: </strong>расчет пеней с учетом ключевой ставки ЦБ РФ, условий конкретного договора и даты погашения долга.</li><li><strong>Контроль дедлайнов и реестр претензий: </strong>автоматический календарь сроков досудебного урегулирования и уведомления ответственным.</li><li><strong>Автоматический стоп-фактор отгрузок: </strong>блокировка новых заказов в 1С:ERP при превышении лимита спорной или просроченной задолженности.</li></ul>
+<ul class="compare__list"><li><strong>Ежедневный автоматический мониторинг сроков оплаты: </strong>система отслеживает дату отгрузки по договору и отправляет мягкое напоминание за 3 дня до срока.</li><li><strong>Автоматическая сверка актов разногласий ТОРГ-2: </strong>робот сопоставляет претензии клиента с накладными и формирует корректировочные проводки.</li><li><strong>Ступенчатый сценарий коммуникации (Soft Collection): </strong>последовательные уведомления в Telegram, Email и автозвонком без агрессии и негатива.</li><li><strong>Генерация комплекта досудебной претензии за 30 секунд: </strong>автосборка расчета пени, копий УПД и текста претензии по утвержденному шаблону компании.</li><li><strong>Предиктивный скоринг платежной дисциплины: </strong>алгоритм прогнозирует дату оплаты на основе истории расчетов и корректирует платежный календарь.</li></ul>
 </div>
 </div>
 </div>
@@ -295,9 +295,9 @@
 <div class="container">
 <div class="section-header">
 <p class="section-tag" data-reveal="">Решения и интеграции</p>
-<h2 class="section-title" data-reveal="">6 модулей архитектуры претензионно-исковой системы</h2>
+<h2 class="section-title" data-reveal="">6 модулей управления задолженностью и претензиями</h2>
 </div>
-<div aria-label="Сценарии автоматизации" aria-roledescription="carousel" class="services__bento services__bento--static" data-reveal="" role="region" tabindex="0"><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📄</div><h3 class="scard__title">OCR-интейк актов ТОРГ-2 и рекламаций</h3><p class="scard__desc">Интеллектуальное распознавание сканов актов расхождений, сопоставление позиций и цен с накладной.</p><div class="scard__tags"><span>OCR</span><span>ТОРГ-2</span><span>Акт расхождений</span><span>Рекламации</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🔗</div><h3 class="scard__title">Цифровая цепочка документов в 1С</h3><p class="scard__desc">Автоматическая привязка претензии к связанным документам реализации, счетам и банковским выпискам.</p><div class="scard__tags"><span>1С:ERP 2.5</span><span>1С:УТ 11.5</span><span>Структура подчиненности</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">⚖️</div><h3 class="scard__title">Юридический калькулятор ст. 395 ГК РФ</h3><p class="scard__desc">Расчет штрафов, договорных неустоек и процентов за пользование чужими денежными средствами с учетом ставок ЦБ РФ.</p><div class="scard__tags"><span>ст. 395 ГК РФ</span><span>Расчет пеней</span><span>Ключевая ставка ЦБ</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📑</div><h3 class="scard__title">Генератор досудебных претензий</h3><p class="scard__desc">Автоматическая сборка текста претензии и расчета требований по утвержденному юридическому шаблону компании.</p><div class="scard__tags"><span>Досудебная претензия</span><span>Шаблоны Word/PDF</span><span>Диадок</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🚨</div><h3 class="scard__title">Мониторинг дебиторки и стоп-листы</h3><p class="scard__desc">Контроль глубины задолженности и превентивная блокировка отгрузок недобросовестным покупателям в 1С.</p><div class="scard__tags"><span>Дебиторская задолженность</span><span>Стоп-лист</span><span>Кредитные лимиты</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🔒</div><h3 class="scard__title">Локальный On-Premise контур 152-ФЗ</h3><p class="scard__desc">Хранение финансовых документов, персональных данных подписантов и деталей споров на серверах компании.</p><div class="scard__tags"><span>On-Premise</span><span>152-ФЗ</span><span>Безопасность</span></div></div></div>
+<div aria-label="Сценарии автоматизации" aria-roledescription="carousel" class="services__bento services__bento--static" data-reveal="" role="region" tabindex="0"><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">💳</div><h3 class="scard__title">Модуль контроля дебиторки в 1С:ERP / УТ</h3><p class="scard__desc">Отслеживание оплат по договорам с учетом кредитных лимитов и отсрочек через OData.</p><div class="scard__tags"><span>1С:ERP</span><span>Дебиторка</span><span>Лимиты</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📑</div><h3 class="scard__title">Автоматический разбор актов разногласий</h3><p class="scard__desc">Сверка актов ТОРГ-2 и счетов 76.02 с фиксацией виновных сторон и корректировкой взаиморасчетов.</p><div class="scard__tags"><span>ТОРГ-2</span><span>Счет 76.02</span><span>Разногласия</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🔔</div><h3 class="scard__title">Омниканальный сервис уведомлений (Soft Collection)</h3><p class="scard__desc">Автоматическая рассылка дружелюбных напоминаний о счетах в Telegram, WhatsApp и на почту.</p><div class="scard__tags"><span>Напоминания</span><span>Soft Collection</span><span>Telegram</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">⚖️</div><h3 class="scard__title">Генератор досудебных претензий и расчетов пени</h3><p class="scard__desc">Автосборка юридически выверенных пакетов документов с расчетом неустойки по ст. 395 ГК РФ.</p><div class="scard__tags"><span>Претензия</span><span>ГК РФ</span><span>Неустойка</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📊</div><h3 class="scard__title">Интеграция с платежным календарем ДДС</h3><p class="scard__desc">Автоматическая корректировка прогноза денежных потоков с учетом вероятности оплаты счетов.</p><div class="scard__tags"><span>ДДС</span><span>Календарь</span><span>Кассовые разрывы</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🛡️</div><h3 class="scard__title">Скоринг контрагентов по базам ФССП и КАД</h3><p class="scard__desc">Проверка должников на наличие судебных исков и исполнительных производств для блокировки отгрузок.</p><div class="scard__tags"><span>КАД</span><span>ФССП</span><span>Скоринг</span></div></div></div>
 <div class="slider-controls">
 <button aria-label="Предыдущие решения" class="slider-arrow slider-arrow--prev" id="services-prev" title="Предыдущие решения" type="button">
 <svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="18"><path d="M15 18l-6-6 6-6"></path></svg>
@@ -787,6 +787,7 @@
 <a href="/services/">Услуги</a>
 <a href="/cases/">Кейсы</a>
 <a href="/calculator/">Калькулятор</a>
+<a href="/calculator/self-employed/">Калькулятор самозанятых</a>
 <a href="/faq/">FAQ</a>
 <a href="/contact/">Контакты</a>
 </div>
@@ -1459,11 +1460,20 @@
         }
 
         function setActiveDot(idx) {
+          var slideChanged = (currentSlide !== idx);
           currentSlide = idx;
           var dots = Array.from(dotsWrap.querySelectorAll('.carousel-dot'));
           dots.forEach(function(d, i) {
             d.classList.toggle('active', i === idx);
           });
+          if (!isDesktop && slideChanged && dotsWrap && dots[idx]) {
+            var dRect = dots[idx].getBoundingClientRect();
+            var wRect = dotsWrap.getBoundingClientRect();
+            var delta = (dRect.left + dRect.width / 2) - (wRect.left + wRect.width / 2);
+            if (Math.abs(delta) > 4) {
+              dotsWrap.scrollTo({ left: dotsWrap.scrollLeft + delta, behavior: 'smooth' });
+            }
+          }
         }
 
         function onScroll() {
@@ -1746,7 +1756,7 @@
       "@type": "TechArticle",
       "@id": "https://ai-avtopilot.ru/cases/claims-dispute-automation/#article",
       "headline": "Автоматизация претензионной работы и дебиторки в 1С:ERP и 1С:УТ",
-      "description": "Кейс учета претензий в 1С:ERP: авторазбор актов ТОРГ-2, сверка отгрузок, расчет пеней по ст. 395 ГК РФ и подготовка досудебной претензии за 3 минуты.",
+      "description": "Посмотрите кейс снижения дебиторки: автоматическая сверка актов разногласий в 1С (счет 76.02), досудебные претензии и сокращение DSO на 40%.",
       "image": "https://ai-avtopilot.ru/og-image.png",
       "datePublished": "2026-10-01T08:00:00+03:00",
       "dateModified": "2026-10-01T12:00:00+03:00",
@@ -1796,34 +1806,26 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Как система сопоставляет номенклатуру из стороннего акта с позициями в 1С?",
+          "name": "Не испортят ли автоматические напоминания отношения с клиентами?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Агент использует нечеткое сопоставление (fuzzy matching) по наименованию, артикулу и штрихкоду, а также сверяет номера позиций с исходной отгрузочной накладной (УПД)."
+            "text": "Сценарий коммуникации использует мягкий деловой тон (Soft Collection). Первые уведомления носят уведомительный характер («направляем счет для оплаты»), что воспринимается позитивно."
           }
         },
         {
           "@type": "Question",
-          "name": "Можно ли настроить индивидуальные формулы неустойки для разных договоров?",
+          "name": "Как система рассчитывает размер пени и штрафов?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Да. Система считывает условия штрафов и пеней из карточки договора контрагента в 1С (фиксированный процент, дифференцированная шкала или ст. 395 ГК РФ)."
+            "text": "Расчет выполняется строго по условиям конкретного договора контрагента либо по ключевой ставке ЦБ РФ в соответствии со статьей 395 ГК РФ."
           }
         },
         {
           "@type": "Question",
-          "name": "Как отправляются готовые претензии клиентам?",
+          "name": "Каковы результаты снижения задолженности у действующих клиентов?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Пакет документов может автоматически подписываться ЭЦП и отправляться через оператора ЭДО (Диадок, СБИС) либо формироваться в виде реестра для отправки Почтой России."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Каковы сроки интеграции с рабочей базой 1С?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "14 рабочих дней в рамках пилотного проекта. Подключаются типовые расширения, настраиваются шаблоны претензий и проводится калибровка на выборке из 50 завершенных дел."
+            "text": "В среднем просроченная дебиторская задолженность сокращается на 35–40% уже за первые 60 дней работы системы."
           }
         }
       ]

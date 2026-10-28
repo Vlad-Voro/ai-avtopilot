@@ -25,8 +25,17 @@ def render_other_services_cards(current_slug: str, catalog: list = None) -> str:
     if catalog is None:
         catalog = load_services_catalog()
 
-    siblings = [s for s in catalog if s["slug"] != current_slug]
-    expected_siblings = len(catalog) - 1
+    curr_item = next((s for s in catalog if s["slug"] == current_slug), None)
+    if curr_item and "cluster" in curr_item:
+        cluster = curr_item["cluster"]
+        intra_siblings = [s for s in catalog if s.get("cluster") == cluster and s["slug"] != current_slug]
+        cross_flagships = [s for s in catalog if s.get("cluster") != cluster and s.get("is_flagship")]
+        siblings = intra_siblings + cross_flagships
+        expected_siblings = 9
+    else:
+        siblings = [s for s in catalog if s["slug"] != current_slug]
+        expected_siblings = len(catalog) - 1
+
     if len(siblings) != expected_siblings:
         raise ValueError(
             f"Expected {expected_siblings} sibling services for slug '{current_slug}', got {len(siblings)}"

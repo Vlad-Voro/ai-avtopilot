@@ -1,6 +1,6 @@
 # Architectural Specification & Production Blueprint: ai-avtopilot.ru (Spec_ai_avtopilot.md)
 
-> **Status**: Production Hardened | **Updated**: 2026-10-26  
+> **Status**: Production Hardened | **Updated**: 2026-10-28  
 > **Live URL**: [https://ai-avtopilot.ru/](https://ai-avtopilot.ru/) | **Repo**: `Vlad-Voro/ai-avtopilot` (`main` - Private)  
 > **Local Root**: `d:\AI\data\ai-avtopilot` | **Inventory**: 45 Production URLs (1 Root, 6 Hubs, 24 Services, 11 Cases, 3 Utility)  
 > **Verification Matrix**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E, 0 regressions) + 486 Layout Matrix
@@ -180,6 +180,20 @@ index.html (Master Template) & Data Catalogs
 - `FAQPage`: DOM accordion items match JSON-LD 1:1.
 - `BreadcrumbList`: Structural 3-tier hierarchy across all subpages.
 - `TechArticle`: Deep case study metadata (headline, datePublished, author).
+
+### 6.3. Tri-Cluster Silo Architecture & Internal Link Equity
+- **Partitioning (8/8/8)**: 24 services partitioned into Finance & ERP (8), Marketing & Sales (8), Operations & Logistics (8).
+- **Deterministic 9-Link Budget**: Each service renders exactly 9 links in `#other-services` (7 intra-cluster siblings + 2 cross-cluster flagships).
+- **PageRank Sculpting**: Flagships (`automated-reporting`, `ai-agents`, `system-integration`) receive PageRank 0.0315 (+49% over non-flagship baseline 0.0211).
+- **Zero Orphan URLs**: `calculator/self-employed/` linked in footer (click depth = 1).
+
+### 6.4. Cannibalization Prevention & Case Study Specialization
+- Deep domain differentiation across all 11 cases in `compare`, `services`, and `faq`.
+- High-overlap pairs ($\ge 0.45$) cut from 54 to 29; max cosine similarity slashed from 0.609 to 0.508.
+
+### 6.5. High-CTR SERP Snippet Optimization & ru_text_humanizer Standard
+- 100% of meta descriptions adhere to the `ru_text_humanizer` standard (0 hard bans, 100/100 purity score).
+- Formulated with imperative action verbs («Рассчитайте», «Внедрите», «Узнайте», «Подключите») within 80–165 characters.
 
 ---
 

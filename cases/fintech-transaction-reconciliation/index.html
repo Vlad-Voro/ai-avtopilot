@@ -5,8 +5,8 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <title>Сверка транзакций и банковских реестров в 1С (B2B-финтех): кейс | АвтоПилот</title>
-<meta content="Кейс роботизации финансовой сверки 100 000+ транзакций в день: сокращение ошибок на 95%, сведение реестров за 10 секунд вместо 4 часов, 100% соответствие 152-ФЗ и ЦБ." name="description"/>
-<meta content="автоматическая сверка банковских выписок, робот сверки транзакций 1с, авторазнесение платежей ддс 1с, directbank сверка, финтех автоматизация, автопилот ии" name="keywords"/>
+<meta content="Узнайте, как финтех-сервис автоматизировал сверку 500 000 платежей в 1С: сокращение расхождений до 0%, контроль комиссий эквайринга за 20 секунд." name="description"/>
+<meta content="автоматическая сверка банковских выписок, робот сверки транзакций 1с, авторазнесение платежей ддс 1с, directbank сверка, финтех автоматизация, автопилот ии" name="keywords">
 <meta content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" name="robots"/>
 <link href="https://ai-avtopilot.ru/cases/fintech-transaction-reconciliation/" rel="canonical"/>
 <meta content="#08080c" name="theme-color"/>
@@ -18,7 +18,7 @@
 <meta content="https://ai-avtopilot.ru/cases/fintech-transaction-reconciliation/" property="og:url"/>
 <meta content="АвтоПилот" property="og:site_name"/>
 <meta content="Сверка транзакций и банковских реестров в 1С (B2B-финтех): кейс | АвтоПилот" property="og:title"/>
-<meta content="Кейс роботизации финансовой сверки 100 000+ транзакций в день: сокращение ошибок на 95%, сведение реестров за 10 секунд вместо 4 часов, 100% соответствие 152-ФЗ и ЦБ." property="og:description"/>
+<meta content="Узнайте, как финтех-сервис автоматизировал сверку 500 000 платежей в 1С: сокращение расхождений до 0%, контроль комиссий эквайринга за 20 секунд." property="og:description"/>
 <meta content="https://ai-avtopilot.ru/og-image.png" property="og:image"/>
 <meta content="https://ai-avtopilot.ru/og-image.png" property="og:image:secure_url"/>
 <meta content="1200" property="og:image:width"/>
@@ -27,7 +27,7 @@
 <!-- Twitter Cards -->
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="Сверка транзакций и банковских реестров в 1С (B2B-финтех): кейс | АвтоПилот" name="twitter:title"/>
-<meta content="Кейс роботизации финансовой сверки 100 000+ транзакций в день: сокращение ошибок на 95%, сведение реестров за 10 секунд вместо 4 часов, 100% соответствие 152-ФЗ и ЦБ." name="twitter:description"/>
+<meta content="Узнайте, как финтех-сервис автоматизировал сверку 500 000 платежей в 1С: сокращение расхождений до 0%, контроль комиссий эквайринга за 20 секунд." name="twitter:description"/>
 <meta content="https://ai-avtopilot.ru/og-image.png" name="twitter:image"/>
 <!-- Favicon & Icons -->
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
@@ -79,7 +79,7 @@
 <link as="font" crossorigin="" href="/assets/fonts/Inter-400-1.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/assets/fonts/Outfit-600-14.woff2" rel="preload" type="font/woff2"/>
 <!-- Inlined Styles (Eliminates Render-Blocking CSS & Critical Request Chains) -->
-<link href="/assets/css/styles.min.css?v=03f2d5b5" rel="stylesheet"/>
+<link href="/assets/css/styles.min.css?v=45555647" rel="stylesheet"/>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
 <script type="text/javascript">
     (function() {
@@ -123,7 +123,7 @@
   </script>
 <noscript><div><img alt="Yandex Metrica" src="https://mc.yandex.ru/watch/112978516" style="position:absolute; left:-9999px;"/></div></noscript>
 <!-- /Yandex.Metrika counter -->
-</head>
+</meta></head>
 <body>
 <div class="nav__backdrop" id="nav-backdrop"></div>
 <!-- ═══════════════════ NAVIGATION ═══════════════════ -->
@@ -270,13 +270,13 @@
 <div class="container">
 <div class="section-header">
 <p class="section-tag" data-reveal="">До и после автоматизации</p>
-<h2 class="section-title" data-reveal="">Ручное сведение выписок в Excel vs Highload-робот 1С</h2>
+<h2 class="section-title" data-reveal="">Ручная сверка выписок vs автоматический финтех-реконсилятор</h2>
 </div>
 <div class="compare__grid">
 <div class="compare__card compare__card--pain" data-reveal="">
-<div class="compare__badge">Сейчас (Ручная сверка в Excel)</div>
+<div class="compare__badge">Сейчас (Ручные реестры и Excel)</div>
 <div class="compare__icon">😰</div>
-<ul class="compare__list"><li><strong>3.5–5 часов ежедневно на сведение реестров: </strong>финансисты вручную сводят таблицы из разных банковских клиентов и платежных шлюзов.</li><li><strong>Неопознанные платежи на 76 и 62 счетах: </strong>клиенты не указывают номер счета или делают опечатки в назначении платежа.</li><li><strong>Расхождения по копейкам эквайринга: </strong>скрытые комиссии банков и возвраты (Chargeback) приводят к кассовым разрывам.</li><li><strong>Риск штрафов ЦБ и налоговой: </strong>задержка признания выручки и ошибки в разнесении НДС ведут к претензиям регулятора.</li><li><strong>Задержка закрытия кассовой смены: </strong>руководство видит фактический финансовый результат дня только на следующее утро.</li></ul>
+<ul class="compare__list"><li><strong>6 часов в сутки на сведение банковских выписок: </strong>финансисты вручную сопоставляют транзакции эквайринга со счетами учета в 1С:Бухгалтерия.</li><li><strong>Зависшие неопознанные платежи (до 3% объема): </strong>отсутствие корректного назначения платежа приводит к кассовым разрывам и блокировке счетов.</li><li><strong>Ошибки в расчете скрытых комиссий банков: </strong>эквайеры списывают повышенные комиссии по отдельным типам карт, что остается незамеченным.</li><li><strong>Задержка закрытия финансового месяца на 10 дней: </strong>бухгалтерия не может сдать баланс из-за неразнесенных остатков на транзитных счетах 57 и 76.</li><li><strong>Риск кассовых расхождений при возвратах средств: </strong>возвраты и чарджбэки учитываются вручную, приводя к повторным ошибочным выплатам.</li></ul>
 </div>
 <div class="compare__arrow" data-reveal="">
 <div class="compare__arrow-line"></div>
@@ -285,7 +285,7 @@
 <div class="compare__card compare__card--win" data-reveal="">
 <div class="compare__badge compare__badge--win">С агентами АвтоПилот</div>
 <div class="compare__icon">🚀</div>
-<ul class="compare__list"><li><strong>8.4 секунды на 50 000 операций: </strong>высокоскоростной матчинг по ИНН, суммам, номерам договоров и таймстампам.</li><li><strong>Авторазнесение ДДС с точностью 99.2%: </strong>NLP-классификатор назначения платежей мгновенно определяет счета 51, 60, 62, 76.</li><li><strong>Фоновая сверка каждые 15 минут: </strong>автоматический забор выписок через DirectBank без скачивания файлов на рабочий стол.</li><li><strong>Автоматический учет комиссий и чарджбеков: </strong>робот выделяет эквайринговую комиссию и формирует корректные сторно-проводки.</li><li><strong>Закрытие смены минута-в-минуту: </strong>актуальный P&amp;L и Cash Flow доступны финансовому директору в реальном времени.</li></ul>
+<ul class="compare__list"><li><strong>Автоматическая сверка 500 000 строк за 20 секунд: </strong>алгоритм сводит банковские реестры с внутренними транзакциями по уникальным хешам.</li><li><strong>ИИ-распознавание неопознанных платежей: </strong>нейросеть анализирует текст назначения платежа, сопоставляет ИНН и находит верный счет на 99.8%.</li><li><strong>Построчный аудит банковских комиссий: </strong>система сверяет каждую удержанную комиссию с тарифом эквайринга и подсвечивает переплаты.</li><li><strong>Закрытие транзитного счета 57 в реальном времени: </strong>автоматическое формирование проводок день в день без ожидания конца календарного месяца.</li><li><strong>Автоматический учет чарджбэков и возвратов: </strong>мгновенная фиксация сторнирующих записей в 1С исключает риск двойных перечислений клиентам.</li></ul>
 </div>
 </div>
 </div>
@@ -295,9 +295,9 @@
 <div class="container">
 <div class="section-header">
 <p class="section-tag" data-reveal="">Решения и интеграции</p>
-<h2 class="section-title" data-reveal="">6 модулей архитектуры потоковой сверки транзакций и биллинга</h2>
+<h2 class="section-title" data-reveal="">6 модулей финансовой сверки и контроля транзакций</h2>
 </div>
-<div aria-label="Сценарии автоматизации" aria-roledescription="carousel" class="services__bento services__bento--static" data-reveal="" role="region" tabindex="0"><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🏦</div><h3 class="scard__title">Шлюз банковских коннекторов (DirectBank)</h3><p class="scard__desc">Автоматический забор выписок каждые 15 минут по защищенным API Сбера, Т-Банка, ВТБ, Альфы без ручного скачивания.</p><div class="scard__tags"><span>DirectBank</span><span>Сбер</span><span>Т-Банк</span><span>ВТБ / Альфа</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">⚡</div><h3 class="scard__title">Движок сопоставления (Reconciliation)</h3><p class="scard__desc">Многоуровневый матчинг по ИНН, сумме до копеек, номеру договора, ID транзакции и таймстампу.</p><div class="scard__tags"><span>Highload Matcher</span><span>ClickHouse</span><span>PostgreSQL</span><span>Копейки</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🧠</div><h3 class="scard__title">Классификатор назначения платежей (NLP)</h3><p class="scard__desc">Автоматическое определение статей ДДС и счетов бухгалтерского учета (51, 60, 62, 76) с точностью 99.2%.</p><div class="scard__tags"><span>NLP ДДС</span><span>Статьи ДДС</span><span>Счета 51/60/62/76</span><span>Точность 99%</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🔍</div><h3 class="scard__title">Модуль локализации коллизий</h3><p class="scard__desc">Автоматическая подсветка скрытых банковских комиссий, чарджбеков, частичных оплат и курсовых разниц.</p><div class="scard__tags"><span>Коллизии</span><span>Комиссии эквайринга</span><span>Chargeback</span><span>Сторно</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📄</div><h3 class="scard__title">Генератор автопроводок в 1С:БП 3.0</h3><p class="scard__desc">Автоматическое создание и проведение документов ПоступлениеНаРасчетныйСчет и СписаниеСРасчетногоСчета.</p><div class="scard__tags"><span>1С:БП 3.0</span><span>1С:ERP</span><span>Автопроводки</span><span>OData</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🔒</div><h3 class="scard__title">Контур финансового аудита и 152-ФЗ</h3><p class="scard__desc">Сквозное версионирование, маскирование карточных данных (PAN) и неизменяемый лог финансовых операций.</p><div class="scard__tags"><span>152-ФЗ / ЦБ РФ</span><span>Маскирование PAN</span><span>On-Premise</span><span>Аудит лог</span></div></div></div>
+<div aria-label="Сценарии автоматизации" aria-roledescription="carousel" class="services__bento services__bento--static" data-reveal="" role="region" tabindex="0"><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">💳</div><h3 class="scard__title">Парсер банковских выписок и реестров</h3><p class="scard__desc">Прямая загрузка форматов 1CClientBank, ISO 20022 и кастомных CSV-реестров платежных шлюзов.</p><div class="scard__tags"><span>Клиент-Банк</span><span>ISO 20022</span><span>Выписки</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">⚡</div><h3 class="scard__title">Ядро сопоставления транзакций (Matching Engine)</h3><p class="scard__desc">Высокоскоростной алгоритм сверки по сумме, дате, RRN и маскированному номеру карты.</p><div class="scard__tags"><span>Matching</span><span>RRN</span><span>Транзакции</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🏦</div><h3 class="scard__title">Аудитор комиссий интернет-эквайринга</h3><p class="scard__desc">Проверка фактических удержаний банков на соответствие индивидуальной тарифной сетке.</p><div class="scard__tags"><span>Эквайринг</span><span>Комиссии</span><span>Аудит</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📊</div><h3 class="scard__title">Интеграция с планом счетов 1С:Бухгалтерия</h3><p class="scard__desc">Автоматическое создание документов движения денежных средств и закрытие счета 57.03.</p><div class="scard__tags"><span>1С:БП</span><span>Счет 57</span><span>Проводки</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🔍</div><h3 class="scard__title">Классификатор невыясненных поступлений</h3><p class="scard__desc">NLP-анализ назначения платежей от физических и юридических лиц для точного разнесения.</p><div class="scard__tags"><span>NLP</span><span>Платежи</span><span>Назначение</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🛡️</div><h3 class="scard__title">Модуль контроля чарджбэков и диспутов</h3><p class="scard__desc">Фиксация спорных операций, автосбор доказательной базы для банков и контроль возвратов.</p><div class="scard__tags"><span>Чарджбэк</span><span>Диспуты</span><span>Финконтроль</span></div></div></div>
 <div class="slider-controls">
 <button aria-label="Предыдущие решения" class="slider-arrow slider-arrow--prev" id="services-prev" title="Предыдущие решения" type="button">
 <svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="18"><path d="M15 18l-6-6 6-6"></path></svg>
@@ -786,6 +786,7 @@
 <a href="/services/">Услуги</a>
 <a href="/cases/">Кейсы</a>
 <a href="/calculator/">Калькулятор</a>
+<a href="/calculator/self-employed/">Калькулятор самозанятых</a>
 <a href="/faq/">FAQ</a>
 <a href="/contact/">Контакты</a>
 </div>
@@ -1458,11 +1459,20 @@
         }
 
         function setActiveDot(idx) {
+          var slideChanged = (currentSlide !== idx);
           currentSlide = idx;
           var dots = Array.from(dotsWrap.querySelectorAll('.carousel-dot'));
           dots.forEach(function(d, i) {
             d.classList.toggle('active', i === idx);
           });
+          if (!isDesktop && slideChanged && dotsWrap && dots[idx]) {
+            var dRect = dots[idx].getBoundingClientRect();
+            var wRect = dotsWrap.getBoundingClientRect();
+            var delta = (dRect.left + dRect.width / 2) - (wRect.left + wRect.width / 2);
+            if (Math.abs(delta) > 4) {
+              dotsWrap.scrollTo({ left: dotsWrap.scrollLeft + delta, behavior: 'smooth' });
+            }
+          }
         }
 
         function onScroll() {
@@ -1745,7 +1755,7 @@
       "@type": "TechArticle",
       "@id": "https://ai-avtopilot.ru/cases/fintech-transaction-reconciliation/#article",
       "headline": "Автоматическая сверка транзакций и банковских реестров",
-      "description": "Кейс роботизации финансовой сверки 100 000+ транзакций в день: сокращение ошибок на 95%, сведение реестров за 10 секунд вместо 4 часов, 100% соответствие 152-ФЗ и ЦБ.",
+      "description": "Узнайте, как финтех-сервис автоматизировал сверку 500 000 платежей в 1С: сокращение расхождений до 0%, контроль комиссий эквайринга за 20 секунд.",
       "image": "https://ai-avtopilot.ru/og-image.png",
       "datePublished": "2026-10-01T08:00:00+03:00",
       "dateModified": "2026-10-01T12:00:00+03:00",
@@ -1795,42 +1805,26 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Как система сопоставляет платежи, если клиент не указал номер счета в назначении платежа?",
+          "name": "Какова пропускная способность ядра сверки транзакций?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Задействуется каскадный матчинг: сопоставление по ИНН плательщика, сумме с точностью до копеек и открытым договорам в 1С."
+            "text": "Система обрабатывает до 100 000 транзакций за 5 секунд на стандартных вычислительных ресурсах без замедления работы основной базы 1С."
           }
         },
         {
           "@type": "Question",
-          "name": "Что происходит при возврате средств (Chargeback / частичная отмена)?",
+          "name": "Как система определяет платежи с ошибками в реквизитах?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Робот связывает возвратную транзакцию с исходным платежом, делает сторнирующую запись и формирует отчет по корректировкам."
+            "text": "Используются алгоритмы нечеткого поиска (Fuzzy Matching) по справочнику плательщиков, сопоставляющие номер договора, сумму и телефон клиента."
           }
         },
         {
           "@type": "Question",
-          "name": "Поддерживаются ли международные или нетиповые выписки (SWIFT, 1CClientBankExchange)?",
+          "name": "Безопасно ли подключать систему к банковским выпискам?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Да, поддерживаются форматы 1CClientBankExchange, ISO 20022 XML, CSV и выгрузки платежных агрегаторов."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Где хранятся банковские ключи и токены доступа?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Все токены хранятся в изолированном локальном хранилище (Vault) внутри вашей корпоративной инфраструктуры."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Какая версия 1С:Бухгалтерии требуется?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Поддерживаются 1С:Бухгалтерия предприятия 3.0 (КОРП / ПРОФ), 1С:ERP, а также любые кастомные учетные базы на базе PostgreSQL/ClickHouse."
+            "text": "Да. Доступ предоставляется только в режиме чтения выписок (Read-Only) без права подписи и отправки платежных поручений."
           }
         }
       ]

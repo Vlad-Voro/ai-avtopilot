@@ -79,6 +79,12 @@ async function runSliderAndDragSuite(options = {}) {
     });
 
     console.log('Alignment test result:', alignment);
+    assert.strictEqual(typeof alignment, 'object');
+    assert.strictEqual(typeof alignment.servicesControlsHeight, 'number');
+    assert.strictEqual(typeof alignment.casesControlsHeight, 'number');
+    assert.strictEqual(typeof alignment.servicesDiffY, 'number');
+    assert.strictEqual(typeof alignment.casesDiffY, 'number');
+    assert.strictEqual(typeof alignment.servicesDotsMarginTop, 'string');
     assert(alignment.servicesControlsHeight === 44, `Services slider-controls height is 44px (got ${alignment.servicesControlsHeight}px)`);
     assert(alignment.servicesControlsHeight === alignment.casesControlsHeight, 'Services slider-controls height matches Cases slider-controls height');
     assert(alignment.servicesDiffY <= 1, `Services dots vertically centered with arrows (diff: ${alignment.servicesDiffY}px)`);
@@ -89,12 +95,21 @@ async function runSliderAndDragSuite(options = {}) {
     await bento.scrollIntoViewIfNeeded();
     await page.waitForTimeout(100); // test-lint: disable=WEB-01 [scroll settling]
     const bentoBox = await bento.boundingBox();
+    assert.strictEqual(typeof bentoBox, 'object');
+    assert.ok(bentoBox !== null);
+    assert.strictEqual(typeof bentoBox.x, 'number');
+    assert.strictEqual(typeof bentoBox.y, 'number');
+    assert.strictEqual(typeof bentoBox.width, 'number');
+    assert.strictEqual(typeof bentoBox.height, 'number');
+    assert(bentoBox.width > 0);
+    assert(bentoBox.height > 0);
 
     // Verify initial active dot
     const initialSlide = await page.evaluate(() => {
       const dots = Array.from(document.querySelectorAll('#services-dots .carousel-dot'));
       return dots.findIndex((d) => d.classList.contains('active'));
     });
+    assert.strictEqual(typeof initialSlide, 'number');
     assert(initialSlide === 0, 'Initial active dot on #services is index 0');
 
     // Simulate drag left on desktop (mouse down, move, mouse up)
@@ -118,6 +133,7 @@ async function runSliderAndDragSuite(options = {}) {
       const dots = Array.from(document.querySelectorAll('#services-dots .carousel-dot'));
       return dots.findIndex((d) => d.classList.contains('active'));
     });
+    assert.strictEqual(typeof afterDragSlide, 'number');
     assert(afterDragSlide > 0, `Active dot updated after LMB drag (was 0, now ${afterDragSlide})`);
 
     // 3. Verify drag on #cases .cases__grid
@@ -125,6 +141,11 @@ async function runSliderAndDragSuite(options = {}) {
     await casesGrid.scrollIntoViewIfNeeded();
     await page.waitForTimeout(100); // test-lint: disable=WEB-01 [scroll settling]
     const casesBox = await casesGrid.boundingBox();
+    assert.strictEqual(typeof casesBox, 'object');
+    assert.ok(casesBox !== null);
+    assert.strictEqual(typeof casesBox.x, 'number');
+    assert.strictEqual(typeof casesBox.width, 'number');
+    assert(casesBox.width > 0);
 
     const cStart = casesBox.x + casesBox.width * 0.8;
     const cY = casesBox.y + casesBox.height * 0.5;
@@ -143,16 +164,19 @@ async function runSliderAndDragSuite(options = {}) {
       const dots = Array.from(document.querySelectorAll('#carousel-dots .carousel-dot'));
       return dots.findIndex((d) => d.classList.contains('active'));
     });
+    assert.strictEqual(typeof finalCasesSlide, 'number');
     assert(finalCasesSlide === 1, `Cases active dot updated to 1 after drag (got slide ${finalCasesSlide})`);
 
     // 4. Verify cursor style on desktop
     const cursorStyle = await bento.evaluate((el) => getComputedStyle(el).cursor);
+    assert.strictEqual(typeof cursorStyle, 'string');
     assert(cursorStyle === 'grab', `Cursor on desktop carousel is 'grab' (got '${cursorStyle}')`);
 
     // 5. Verify normal click without drag still navigates to target link
     const firstCard = page.locator('#services .services__bento .scard').first();
     await firstCard.click();
     await page.waitForURL(url => url.pathname.includes('/services/system-integration/'));
+    assert.strictEqual(typeof page.url(), 'string');
     assert(page.url().includes('/services/system-integration/'), `Normal click without drag navigates to card page (URL: ${page.url()})`);
 
     // 6. Verify sNudge animation keyframes exist globally
@@ -166,6 +190,7 @@ async function runSliderAndDragSuite(options = {}) {
       }
       return false;
     });
+    assert.strictEqual(typeof hasGlobalNudge, 'boolean');
     assert(hasGlobalNudge, 'Global @keyframes sNudge rule is defined in stylesheet');
 
     // 7. Verify Mobile Viewport touchpoint auto-centering (390x844 iPhone 14/15/16)

@@ -12,7 +12,9 @@
       "OData"
     ],
     "aria_label": "Интеграция систем: подробнее о сценарии внедрения",
-    "class_extra": ""
+    "class_extra": "",
+    "cluster": "operations",
+    "is_flagship": true
   },
   {
     "slug": "automated-reporting",
@@ -27,7 +29,9 @@
       "ДДС"
     ],
     "aria_label": "Автоотчётность: подробнее о сценарии внедрения в Telegram",
-    "class_extra": ""
+    "class_extra": "",
+    "cluster": "finance",
+    "is_flagship": true
   },
   {
     "slug": "retail-inventory",
@@ -42,7 +46,9 @@
       "Safety Stock"
     ],
     "aria_label": "Ритейл и склад: подробнее об автоматизации остатков",
-    "class_extra": ""
+    "class_extra": "",
+    "cluster": "operations",
+    "is_flagship": false
   },
   {
     "slug": "document-automation",
@@ -57,7 +63,9 @@
       "1С:БП"
     ],
     "aria_label": "Документооборот: подробнее об авто-вводе первички",
-    "class_extra": ""
+    "class_extra": "",
+    "cluster": "finance",
+    "is_flagship": false
   },
   {
     "slug": "customer-support",
@@ -72,7 +80,9 @@
       "1С"
     ],
     "aria_label": "ИИ-поддержка клиентов: подробнее о диспетчере первой линии",
-    "class_extra": ""
+    "class_extra": "",
+    "cluster": "marketing",
+    "is_flagship": false
   },
   {
     "slug": "ai-analytics",
@@ -87,7 +97,9 @@
       "Аудит цен"
     ],
     "aria_label": "ИИ-аналитика: подробнее о предиктивном мониторинге в 1С",
-    "class_extra": "scard--dark"
+    "class_extra": "scard--dark",
+    "cluster": "finance",
+    "is_flagship": false
   },
   {
     "slug": "speech-analytics",
@@ -102,7 +114,9 @@
       "АТС"
     ],
     "aria_label": "Речевая аналитика: подробнее об интеграции контроля звонков",
-    "class_extra": ""
+    "class_extra": "",
+    "cluster": "marketing",
+    "is_flagship": false
   },
   {
     "slug": "specifications-kp",
@@ -117,7 +131,9 @@
       "Расчет КП"
     ],
     "aria_label": "Спецификации и КП: подробнее об автоматическом расчете",
-    "class_extra": ""
+    "class_extra": "",
+    "cluster": "finance",
+    "is_flagship": false
   },
   {
     "slug": "price-monitoring",
@@ -132,7 +148,9 @@
       "Парсер цен"
     ],
     "aria_label": "Мониторинг цен: подробнее об автоматическом репрайсинге",
-    "class_extra": ""
+    "class_extra": "",
+    "cluster": "operations",
+    "is_flagship": false
   },
   {
     "slug": "debt-control",
@@ -147,7 +165,9 @@
       "Soft Collection"
     ],
     "aria_label": "Контроль дебиторки: подробнее об автоматизации работы с задолженностью",
-    "class_extra": ""
+    "class_extra": "",
+    "cluster": "finance",
+    "is_flagship": false
   },
   {
     "slug": "reviews-reputation",
@@ -162,7 +182,9 @@
       "ORM"
     ],
     "aria_label": "Управление отзывами: подробнее об автоответах и гео-репутации",
-    "class_extra": ""
+    "class_extra": "",
+    "cluster": "marketing",
+    "is_flagship": false
   },
   {
     "slug": "marketing-automation",
@@ -177,7 +199,9 @@
       "Telegram"
     ],
     "aria_label": "Автоматизация маркетинга: подробнее об автономных ИИ-агентах и сквозной аналитике",
-    "class_extra": ""
+    "class_extra": "",
+    "cluster": "marketing",
+    "is_flagship": false
   },
   {
     "slug": "hr-recruitment",
@@ -192,7 +216,9 @@
       "HR-AI"
     ],
     "aria_label": "ИИ-найм и рекрутинг: подробнее об автоматизации подбора персонала",
-    "class_extra": ""
+    "class_extra": "",
+    "cluster": "operations",
+    "is_flagship": false
   },
   {
     "slug": "tender-automation",
@@ -207,7 +233,9 @@
       "Форма 2"
     ],
     "aria_label": "Автоматизация тендеров: подробнее о скоринге ТЗ и госзакупках",
-    "class_extra": ""
+    "class_extra": "",
+    "cluster": "finance",
+    "is_flagship": false
   },
   {
     "slug": "marketplace-automation",
@@ -222,7 +250,9 @@
       "Автобиддер"
     ],
     "aria_label": "Автоматизация маркетплейсов: подробнее о генерации карточек и автобиддере WB и Ozon",
-    "class_extra": ""
+    "class_extra": "",
+    "cluster": "operations",
+    "is_flagship": false
   },
   {
     "slug": "knowledge-base-rag",
@@ -237,7 +267,9 @@
       "Copilot 1С"
     ],
     "aria_label": "Корпоративная AI-база знаний: подробнее о RAG-поиске и локальных ассистентах для сотрудников",
-    "class_extra": ""
+    "class_extra": "",
+    "cluster": "operations",
+    "is_flagship": false
   },
   {
     "slug": "b2b-outbound",
@@ -252,7 +284,9 @@
       "Битрикс24"
     ],
     "aria_label": "AI SDR и B2B-аутрич: подробнее об автономных исходящих продажах",
-    "class_extra": ""
+    "class_extra": "",
+    "cluster": "marketing",
+    "is_flagship": false
   },
   {
     "slug": "customer-retention",
@@ -267,7 +301,9 @@
       "Удержание"
     ],
     "aria_label": "Retention и реактивация: подробнее об удержании клиентов и росте повторных продаж",
-    "class_extra": ""
+    "class_extra": "",
+    "cluster": "marketing",
+    "is_flagship": false
   },
   {
     "slug": "construction-estimate-audit",
@@ -282,7 +318,9 @@
       "1С:Строительство"
     ],
     "aria_label": "Аудит смет и КС-2: подробнее об автоматической проверке сметной стоимости и актов",
-    "class_extra": ""
+    "class_extra": "",
+    "cluster": "finance",
+    "is_flagship": false
   },
   {
     "slug": "fleet-logistics",
@@ -297,7 +335,9 @@
       "ЭПЛ"
     ],
     "aria_label": "Логистика и 1С:УАТ: подробнее об автоматизации путевых листов и автопарка",
-    "class_extra": ""
+    "class_extra": "",
+    "cluster": "operations",
+    "is_flagship": false
   },
   {
     "slug": "ai-agents",
@@ -312,7 +352,9 @@
       "152-ФЗ"
     ],
     "aria_label": "ИИ-агенты для бизнеса: подробнее о сценарии внедрения автономных агентов",
-    "class_extra": ""
+    "class_extra": "",
+    "cluster": "marketing",
+    "is_flagship": true
   },
   {
     "slug": "manufacturing-automation",
@@ -327,7 +369,9 @@
       "Спецификации"
     ],
     "aria_label": "Производство и 1С:ERP: подробнее об автоматизации цехового учета и себестоимости",
-    "class_extra": ""
+    "class_extra": "",
+    "cluster": "operations",
+    "is_flagship": false
   },
   {
     "slug": "avito-automation",
@@ -342,7 +386,9 @@
       "amoCRM / Б24"
     ],
     "aria_label": "Боты для Авито: подробнее об автоматизации магазина и интеграции с 1С",
-    "class_extra": ""
+    "class_extra": "",
+    "cluster": "marketing",
+    "is_flagship": false
   },
   {
     "slug": "rapid-pilot",
@@ -353,6 +399,8 @@
     "aria_label": "Быстрый старт: подробнее о пилотном запуске за 14 дней",
     "class_extra": "scard--accent",
     "title": "Быстрый старт",
-    "url": "/services/rapid-pilot/"
+    "url": "/services/rapid-pilot/",
+    "cluster": "finance",
+    "is_flagship": false
   }
 ]

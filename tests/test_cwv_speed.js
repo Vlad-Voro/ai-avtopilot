@@ -94,11 +94,30 @@ async function measureWebVitals(options = {}) {
     console.log(`Load Complete:                   ${vitals.loadTime} ms`);
     console.log('=================================================================\n');
 
+    const assert = require('assert');
     let passed = true;
+    assert.strictEqual(typeof vitals.cls, 'number', 'CLS must be numeric');
+    assert.ok(vitals.cls <= 0.05, 'CLS target <= 0.05');
+    assert.strictEqual(typeof vitals.fcp, 'number', 'FCP must be numeric');
+    assert.ok(vitals.fcp <= 1800, 'FCP target < 1800ms');
+    assert.strictEqual(typeof vitals.lcp, 'number', 'LCP must be numeric');
+    assert.ok(vitals.lcp <= 2500, 'LCP target < 2500ms');
+    assert.strictEqual(typeof vitals.tbt, 'number', 'TBT must be numeric');
+    assert.ok(vitals.tbt <= 200, 'TBT target < 200ms');
+    assert.strictEqual(typeof vitals.domContentLoaded, 'number', 'DOMContentLoaded must be numeric');
+    assert.ok(vitals.domContentLoaded >= 0, 'DOMContentLoaded must be non-negative');
+    assert.strictEqual(typeof vitals.loadTime, 'number', 'loadTime must be numeric');
+    assert.ok(vitals.loadTime >= 0, 'loadTime must be non-negative');
+    assert.strictEqual(typeof vitals.allTasks, 'number', 'allTasks must be numeric');
+    assert.ok(vitals.allTasks >= 0, 'allTasks must be non-negative');
+
     if (vitals.cls > 0.05) { console.error('❌ CLS budget exceeded'); passed = false; }
     if (vitals.fcp > 1800) { console.error('❌ FCP budget exceeded'); passed = false; }
     if (vitals.lcp > 2500) { console.error('❌ LCP budget exceeded'); passed = false; }
     if (vitals.tbt > 200) { console.error('❌ TBT budget exceeded'); passed = false; }
+
+    assert.strictEqual(typeof passed, 'boolean');
+    assert.ok(passed, 'All Core Web Vitals budgets must pass');
 
     return {
       vitals,

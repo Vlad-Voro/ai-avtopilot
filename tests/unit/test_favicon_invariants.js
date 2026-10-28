@@ -44,10 +44,14 @@ function runFaviconSuite() {
   ];
 
   check('All required favicon assets exist and are non-empty', () => {
+    assert.strictEqual(typeof requiredAssets, 'object');
+    assert.strictEqual(requiredAssets.length, 7);
     for (const asset of requiredAssets) {
       const p = path.join(ROOT_DIR, asset);
+      assert.strictEqual(typeof asset, 'string');
       assert.ok(fs.existsSync(p), `Missing required asset: ${asset}`);
       const stats = fs.statSync(p);
+      assert.strictEqual(typeof stats.size, 'number');
       assert.ok(stats.size > 0, `Asset is empty: ${asset}`);
     }
   });
@@ -56,13 +60,18 @@ function runFaviconSuite() {
   check('favicon.ico has 3 layers in Windows BMP/DIB format (0x28000000 header)', () => {
     const icoPath = path.join(ROOT_DIR, 'favicon.ico');
     const icoBuf = fs.readFileSync(icoPath);
+    assert.ok(Buffer.isBuffer(icoBuf), 'Must be valid Buffer');
+    assert.ok(icoBuf.length > 62, 'ICO buffer must exceed header size');
 
     const reserved = icoBuf.readUInt16LE(0);
     const icoType = icoBuf.readUInt16LE(2);
     const numImages = icoBuf.readUInt16LE(4);
 
+    assert.strictEqual(typeof reserved, 'number');
     assert.strictEqual(reserved, 0, 'ICO header reserved must be 0');
+    assert.strictEqual(typeof icoType, 'number');
     assert.strictEqual(icoType, 1, 'ICO header type must be 1 (icon)');
+    assert.strictEqual(typeof numImages, 'number');
     assert.strictEqual(numImages, 3, 'ICO must contain exactly 3 layers (16, 32, 48)');
 
     const expectedSizes = [16, 32, 48];
@@ -72,8 +81,12 @@ function runFaviconSuite() {
       const h = icoBuf.readUInt8(entryOffset + 1) || 256;
       const imgOffset = icoBuf.readUInt32LE(entryOffset + 12);
 
+      assert.strictEqual(typeof w, 'number');
+      assert.strictEqual(typeof h, 'number');
       assert.strictEqual(w, expectedSizes[i], `Layer ${i + 1} width mismatch`);
       assert.strictEqual(h, expectedSizes[i], `Layer ${i + 1} height mismatch`);
+      assert.strictEqual(typeof imgOffset, 'number');
+      assert.ok(imgOffset > 0, `Layer ${i + 1} imgOffset must be positive`);
 
       const headerSize = icoBuf.readUInt32LE(imgOffset);
       assert.strictEqual(headerSize, 40, `Layer ${i + 1} must be BITMAPINFOHEADER (BMP/DIB format), found ${headerSize}`);
@@ -84,6 +97,7 @@ function runFaviconSuite() {
         icoBuf[imgOffset + 2] === 0x4e &&
         icoBuf[imgOffset + 3] === 0x47
       );
+      assert.strictEqual(typeof isPng, 'boolean');
       assert.strictEqual(isPng, false, `Layer ${i + 1} must NOT be PNG-compressed in ICO`);
     }
   });
@@ -92,6 +106,12 @@ function runFaviconSuite() {
   check('PNG icons have valid PNG magic signatures', () => {
     for (const relPath of ['favicon-32x32.png', 'favicon-16x16.png', 'apple-touch-icon.png']) {
       const buf = fs.readFileSync(path.join(ROOT_DIR, relPath));
+      assert.ok(Buffer.isBuffer(buf));
+      assert.ok(buf.length > 8);
+      assert.strictEqual(buf[0], 0x89, 'PNG byte 0');
+      assert.strictEqual(buf[1], 0x50, 'PNG byte 1');
+      assert.strictEqual(buf[2], 0x4e, 'PNG byte 2');
+      assert.strictEqual(buf[3], 0x47, 'PNG byte 3');
       assert.ok(
         buf[0] === 0x89 && buf[1] === 0x50 && buf[2] === 0x4e && buf[3] === 0x47,
         `${relPath} is not a valid PNG`
@@ -102,6 +122,8 @@ function runFaviconSuite() {
   // 4. Check icon.svg explicit width/height
   check('icon.svg contains explicit width="64", height="64", and viewBox', () => {
     const svgContent = fs.readFileSync(path.join(ROOT_DIR, 'icon.svg'), 'utf-8');
+    assert.strictEqual(typeof svgContent, 'string');
+    assert.ok(svgContent.length > 0);
     assert.ok(svgContent.includes('width="64"'), 'icon.svg must have width="64"');
     assert.ok(svgContent.includes('height="64"'), 'icon.svg must have height="64"');
     assert.ok(svgContent.includes('viewBox="0 0 64 64"'), 'icon.svg must have viewBox="0 0 64 64"');
@@ -111,6 +133,8 @@ function runFaviconSuite() {
   check('site.webmanifest and manifest.json contain all icon sizes', () => {
     for (const manifestName of ['site.webmanifest', 'manifest.json']) {
       const manifestContent = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, manifestName), 'utf-8'));
+      assert.strictEqual(typeof manifestContent, 'object');
+      assert.ok(Array.isArray(manifestContent.icons));
       const iconSrcs = manifestContent.icons.map(ic => ic.src);
       assert.ok(iconSrcs.includes('/favicon-32x32.png'), `${manifestName} must include /favicon-32x32.png`);
       assert.ok(iconSrcs.includes('/favicon-16x16.png'), `${manifestName} must include /favicon-16x16.png`);

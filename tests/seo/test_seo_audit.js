@@ -439,7 +439,7 @@ const ALL_SERVICE_PAGES = [
   'services/avito-automation',
 ];
 
-runCheck('SEO-26', 'All 24 service landing pages contain #other-services positioned strictly below #contact with 23 sibling links and 0 self-links', () => {
+runCheck('SEO-26', 'All 24 service landing pages contain #other-services positioned strictly below #contact with 9 Silo sibling links and 0 self-links', () => {
   ALL_SERVICE_PAGES.forEach(slug => {
     const filePath = path.join(ROOT_DIR, slug, 'index.html');
     assert.ok(fs.existsSync(filePath), `Service page ${slug} must exist`);
@@ -458,7 +458,7 @@ runCheck('SEO-26', 'All 24 service landing pages contain #other-services positio
     // Check sibling links (exactly 23, zero self-links, trailing slashes)
     const otherSection = html.slice(otherServicesIdx, html.indexOf('</section>', otherServicesIdx));
     const linkMatches = [...otherSection.matchAll(/href="(\/services\/[^"]+\/)"/g)].map(m => m[1]);
-    assert.strictEqual(linkMatches.length, 23, `Expected exactly 22 sibling links in ${slug}, found ${linkMatches.length}`);
+    assert.strictEqual(linkMatches.length, 9, `Expected exactly 9 Silo links in ${slug}, found ${linkMatches.length}`);
 
     const selfLink = `/${slug}/`;
     assert.ok(!linkMatches.includes(selfLink), `Self-link detected in ${slug}: ${selfLink}`);

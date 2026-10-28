@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <title>Автоматизация тендерного отдела и скоринг ТЗ (44-ФЗ / 223-ФЗ): кейс | АвтоПилот</title>
 <meta content="Кейс автоматизации тендерного отдела: ИИ-скоринг ТЗ по 44-ФЗ и 223-ФЗ, сверка номенклатуры в 1С:ERP, расчет себестоимости и сборка заявки за 15 минут." name="description"/>
-<meta content="автоматизация тендеров, анализ тендеров, скоринг тендеров, тендерный отдел 1с, расчет формы 2, автопилот ии" name="keywords"/>
+<meta content="автоматизация тендеров, анализ тендеров, скоринг тендеров, тендерный отдел 1с, расчет формы 2, автопилот ии" name="keywords">
 <meta content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" name="robots"/>
 <link href="https://ai-avtopilot.ru/cases/tender-procurement-automation/" rel="canonical"/>
 <meta content="#08080c" name="theme-color"/>
@@ -79,7 +79,7 @@
 <link as="font" crossorigin="" href="/assets/fonts/Inter-400-1.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/assets/fonts/Outfit-600-14.woff2" rel="preload" type="font/woff2"/>
 <!-- Inlined Styles (Eliminates Render-Blocking CSS & Critical Request Chains) -->
-<link href="/assets/css/styles.min.css?v=03f2d5b5" rel="stylesheet"/>
+<link href="/assets/css/styles.min.css?v=45555647" rel="stylesheet"/>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
 <script type="text/javascript">
     (function() {
@@ -123,7 +123,7 @@
   </script>
 <noscript><div><img alt="Yandex Metrica" src="https://mc.yandex.ru/watch/112978516" style="position:absolute; left:-9999px;"/></div></noscript>
 <!-- /Yandex.Metrika counter -->
-</head>
+</meta></head>
 <body>
 <div class="nav__backdrop" id="nav-backdrop"></div>
 <!-- ═══════════════════ NAVIGATION ═══════════════════ -->
@@ -787,6 +787,7 @@
 <a href="/services/">Услуги</a>
 <a href="/cases/">Кейсы</a>
 <a href="/calculator/">Калькулятор</a>
+<a href="/calculator/self-employed/">Калькулятор самозанятых</a>
 <a href="/faq/">FAQ</a>
 <a href="/contact/">Контакты</a>
 </div>
@@ -1459,11 +1460,20 @@
         }
 
         function setActiveDot(idx) {
+          var slideChanged = (currentSlide !== idx);
           currentSlide = idx;
           var dots = Array.from(dotsWrap.querySelectorAll('.carousel-dot'));
           dots.forEach(function(d, i) {
             d.classList.toggle('active', i === idx);
           });
+          if (!isDesktop && slideChanged && dotsWrap && dots[idx]) {
+            var dRect = dots[idx].getBoundingClientRect();
+            var wRect = dotsWrap.getBoundingClientRect();
+            var delta = (dRect.left + dRect.width / 2) - (wRect.left + wRect.width / 2);
+            if (Math.abs(delta) > 4) {
+              dotsWrap.scrollTo({ left: dotsWrap.scrollLeft + delta, behavior: 'smooth' });
+            }
+          }
         }
 
         function onScroll() {

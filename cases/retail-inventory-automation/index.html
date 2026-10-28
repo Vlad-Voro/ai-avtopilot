@@ -5,8 +5,8 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <title>Инвентаризация и автозаказ в 1С:Розница (230 магазинов): кейс | АвтоПилот</title>
-<meta content="Кейс внедрения ИИ-агентов для сети из 230 магазинов: сокращение ручного труда в учете на 72%, рост оборачиваемости склада на 18% и экономия 9 200 часов в год." name="description"/>
-<meta content="автозаказ поставщикам 1с, 1с розница автоматизация, синхронизация остатков складов, расчет неснижаемого остатка, автоматизация ритейла, автопилот ии" name="keywords"/>
+<meta content="Узнайте, как сеть из 230 магазинов сократила рутину в 1С:Розница на 72%: автоматический расчет страхового остатка и автозаказ поставщикам без Excel." name="description"/>
+<meta content="автозаказ поставщикам 1с, 1с розница автоматизация, синхронизация остатков складов, расчет неснижаемого остатка, автоматизация ритейла, автопилот ии" name="keywords">
 <meta content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" name="robots"/>
 <link href="https://ai-avtopilot.ru/cases/retail-inventory-automation/" rel="canonical"/>
 <meta content="#08080c" name="theme-color"/>
@@ -18,7 +18,7 @@
 <meta content="https://ai-avtopilot.ru/cases/retail-inventory-automation/" property="og:url"/>
 <meta content="АвтоПилот" property="og:site_name"/>
 <meta content="Инвентаризация и автозаказ в 1С:Розница (230 магазинов): кейс | АвтоПилот" property="og:title"/>
-<meta content="Кейс внедрения ИИ-агентов для сети из 230 магазинов: сокращение ручного труда в учете на 72%, рост оборачиваемости склада на 18% и экономия 9 200 часов в год." property="og:description"/>
+<meta content="Узнайте, как сеть из 230 магазинов сократила рутину в 1С:Розница на 72%: автоматический расчет страхового остатка и автозаказ поставщикам без Excel." property="og:description"/>
 <meta content="https://ai-avtopilot.ru/og-image.png" property="og:image"/>
 <meta content="https://ai-avtopilot.ru/og-image.png" property="og:image:secure_url"/>
 <meta content="1200" property="og:image:width"/>
@@ -27,7 +27,7 @@
 <!-- Twitter Cards -->
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="Инвентаризация и автозаказ в 1С:Розница (230 магазинов): кейс | АвтоПилот" name="twitter:title"/>
-<meta content="Кейс внедрения ИИ-агентов для сети из 230 магазинов: сокращение ручного труда в учете на 72%, рост оборачиваемости склада на 18% и экономия 9 200 часов в год." name="twitter:description"/>
+<meta content="Узнайте, как сеть из 230 магазинов сократила рутину в 1С:Розница на 72%: автоматический расчет страхового остатка и автозаказ поставщикам без Excel." name="twitter:description"/>
 <meta content="https://ai-avtopilot.ru/og-image.png" name="twitter:image"/>
 <!-- Favicon & Icons -->
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
@@ -79,7 +79,7 @@
 <link as="font" crossorigin="" href="/assets/fonts/Inter-400-1.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/assets/fonts/Outfit-600-14.woff2" rel="preload" type="font/woff2"/>
 <!-- Inlined Styles (Eliminates Render-Blocking CSS & Critical Request Chains) -->
-<link href="/assets/css/styles.min.css?v=03f2d5b5" rel="stylesheet"/>
+<link href="/assets/css/styles.min.css?v=45555647" rel="stylesheet"/>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
 <script type="text/javascript">
     (function() {
@@ -123,7 +123,7 @@
   </script>
 <noscript><div><img alt="Yandex Metrica" src="https://mc.yandex.ru/watch/112978516" style="position:absolute; left:-9999px;"/></div></noscript>
 <!-- /Yandex.Metrika counter -->
-</head>
+</meta></head>
 <body>
 <div class="nav__backdrop" id="nav-backdrop"></div>
 <!-- ═══════════════════ NAVIGATION ═══════════════════ -->
@@ -270,13 +270,13 @@
 <div class="container">
 <div class="section-header">
 <p class="section-tag" data-reveal="">До и после автоматизации</p>
-<h2 class="section-title" data-reveal="">Ручной учет остатков vs автономный автопилот 1С</h2>
+<h2 class="section-title" data-reveal="">Ручной учет остатков в рознице vs автономный автопилот 1С</h2>
 </div>
 <div class="compare__grid">
 <div class="compare__card compare__card--pain" data-reveal="">
-<div class="compare__badge">Сейчас (Excel + 1С)</div>
+<div class="compare__badge">Сейчас (Excel + 1С:Розница)</div>
 <div class="compare__icon">😰</div>
-<ul class="compare__list"><li><strong>3.5 часа каждое утро на рутину: </strong>товароведы вручную сводят остатки в Excel и пересылают заявки поставщикам по почте.</li><li><strong>14% ошибок в накладных и пересортица: </strong>человеческий фактор приводит к поставкам не тех артикулов или лишних объемов.</li><li><strong>Кассовые разрывы и out-of-stock в выходные: </strong>ходовой товар заканчивается к вечеру пятницы, а новая поставка оформляется только во вторник.</li><li><strong>Инвентаризация останавливает магазин: </strong>пересчет остатков требует ночных смен, сверхурочных выплат и ручного набора актов в 1С.</li><li><strong>Остатки видны с задержкой в 2 дня: </strong>руководство сети не может оперативно перебросить излишки между соседними филиалами.</li></ul>
+<ul class="compare__list"><li><strong>3.5 часа каждое утро на сведение таблиц: </strong>товароведы вручную сводят остатки в Excel и пересылают заявки поставщикам по почте.</li><li><strong>Пересортица на 14% поставок: </strong>человеческий фактор при ручном наборе номенклатуры приводит к поставкам не тех артикулов на склад.</li><li><strong>Out-of-stock в пиковые часы выходных: </strong>ходовой товар на полках заканчивается к вечеру пятницы, а новая поставка заказывается только во вторник.</li><li><strong>Ночные инвентаризации с простоем: </strong>пересчет остатков требует остановки магазина, ночных смен и ручного набора актов списания в 1С.</li><li><strong>Остатки в РЦ видны с задержкой 48 часов: </strong>руководство сети не успевает оперативно перебросить излишки товара между филиалами.</li></ul>
 </div>
 <div class="compare__arrow" data-reveal="">
 <div class="compare__arrow-line"></div>
@@ -285,7 +285,7 @@
 <div class="compare__card compare__card--win" data-reveal="">
 <div class="compare__badge compare__badge--win">С агентами АвтоПилот</div>
 <div class="compare__icon">🚀</div>
-<ul class="compare__list"><li><strong>Формирование заказа за 45 секунд: </strong>агент рассчитывает потребность по формуле страхового остатка и создает документ в 1С.</li><li><strong>100% сверка номенклатуры: </strong>робот сопоставляет штрихкоды и артикулы поставщика с базой 1С:Розница до проведения накладной.</li><li><strong>Предиктивный расчет заказов: </strong>система учитывает темп продаж за последние 14 дней и день недели, заказывая партии заранее.</li><li><strong>Фоновая циклическая ревизия: </strong>данные с ТСД попадают в 1С без ручного ввода, расхождения подсвечиваются за 5 минут.</li><li><strong>Единая сквозная матрица ТМЦ: </strong>оперативное перераспределение излишков между точками сокращает повторные закупки на 12%.</li></ul>
+<ul class="compare__list"><li><strong>Расчет заказа за 45 секунд: </strong>агент рассчитывает потребность по формуле Мин-Макс страхового запаса и формирует документ в 1С.</li><li><strong>100% сверка штрихкодов ТСД: </strong>робот сопоставляет штрихкоды поставщика со справочником номенклатуры 1С:Розница до проведения накладной.</li><li><strong>Предиктивный учет темпа продаж: </strong>алгоритм анализирует динамику чеков за 14 дней и день недели, заказывая партии заблаговременно.</li><li><strong>Фоновая циклическая ревизия полок: </strong>данные терминалов сбора данных поступают в 1С без ручного ввода, расхождения подсвечиваются мгновенно.</li><li><strong>Сквозная матрица распределения РЦ: </strong>автоматическое перераспределение излишков между соседними точками снижает повторные закупки на 12%.</li></ul>
 </div>
 </div>
 </div>
@@ -295,9 +295,9 @@
 <div class="container">
 <div class="section-header">
 <p class="section-tag" data-reveal="">Решения и интеграции</p>
-<h2 class="section-title" data-reveal="">6 модулей архитектуры автоматизации торговой сети</h2>
+<h2 class="section-title" data-reveal="">6 модулей архитектуры автозаказа торговой сети</h2>
 </div>
-<div aria-label="Сценарии автоматизации" aria-roledescription="carousel" class="services__bento services__bento--static" data-reveal="" role="region" tabindex="0"><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🔄</div><h3 class="scard__title">Интеграция с 1С:Розница и 1С:УТ</h3><p class="scard__desc">Двусторонний обмен без изменения типовой конфигурации через штатное расширение CFE или REST OData.</p><div class="scard__tags"><span>1С:Розница 3.0</span><span>1С:УТ 11.5</span><span>CFE</span><span>OData API</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📦</div><h3 class="scard__title">Предиктивный расчет автозаказа</h3><p class="scard__desc">Автоматический расчет неснижаемого остатка с учетом плеча доставки поставщика и пиков спроса выходного дня.</p><div class="scard__tags"><span>Safety Stock</span><span>Автозаказ</span><span>Плечо поставки</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">💬</div><h3 class="scard__title">Telegram-бот товароведа</h3><p class="scard__desc">Мгновенные алерты о расхождениях при приемке и подтверждение корректировок поставок в один клик.</p><div class="scard__tags"><span>Telegram</span><span>Алерты приемки</span><span>1 клик</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🔍</div><h3 class="scard__title">Фоновый аудит остатков и ТМЦ</h3><p class="scard__desc">Непрерывный мониторинг отрицательных остатков, зависших перемещений и ошибок пересортицы каждые 15 минут.</p><div class="scard__tags"><span>Аудит ТМЦ</span><span>Пересортица</span><span>Контроль</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📄</div><h3 class="scard__title">Шлюз обмена с поставщиками</h3><p class="scard__desc">Автоматическая отправка структурированных заказов (XML, Excel) напрямую в учетные базы поставщиков.</p><div class="scard__tags"><span>EDI</span><span>XML / Excel</span><span>Поставщики</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🔒</div><h3 class="scard__title">Локальный On-Premise контур 152-ФЗ</h3><p class="scard__desc">Обработка и хранение данных строго внутри серверов компании без передачи коммерческих баз в облака.</p><div class="scard__tags"><span>152-ФЗ</span><span>On-Premise</span><span>Безопасность</span></div></div></div>
+<div aria-label="Сценарии автоматизации" aria-roledescription="carousel" class="services__bento services__bento--static" data-reveal="" role="region" tabindex="0"><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🏪</div><h3 class="scard__title">Модуль интеграции 1С:Розница 3.0</h3><p class="scard__desc">Двусторонний обмен через штатное расширение CFE без снятия конфигурации с поддержки 1С.</p><div class="scard__tags"><span>1С:Розница</span><span>CFE</span><span>OData API</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📦</div><h3 class="scard__title">Алгоритм Safety Stock &amp; Мин-Макс</h3><p class="scard__desc">Предиктивный расчет неснижаемого складского запаса с учетом плеча доставки каждого поставщика.</p><div class="scard__tags"><span>Мин-Макс</span><span>Safety Stock</span><span>Склад</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📱</div><h3 class="scard__title">Шлюз интеграции с ТСД терминалами</h3><p class="scard__desc">Прямая выгрузка данных сканирования штрихкодов в документы инвентаризации без Excel-файлов.</p><div class="scard__tags"><span>ТСД</span><span>Штрихкодирование</span><span>Инвентаризация</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🚚</div><h3 class="scard__title">Автогенерация заказов поставщикам</h3><p class="scard__desc">Формирование заказов поставщикам с разбивкой по квантам поставок и кратности упаковки.</p><div class="scard__tags"><span>Автозаказ</span><span>Поставщики</span><span>EDI</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📊</div><h3 class="scard__title">Дашборд оборачиваемости SKU</h3><p class="scard__desc">Контроль неликвидных позиций, анализ ABC/XYZ-матрицы и расчет упущенной выручки по точкам.</p><div class="scard__tags"><span>ABC/XYZ</span><span>Неликвиды</span><span>Аналитика</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🔔</div><h3 class="scard__title">Telegram-алерты об out-of-stock</h3><p class="scard__desc">Мгновенные уведомления категорийным менеджерам о рисках обнуления критических товаров.</p><div class="scard__tags"><span>Telegram</span><span>Алерты</span><span>Ритейл</span></div></div></div>
 <div class="slider-controls">
 <button aria-label="Предыдущие решения" class="slider-arrow slider-arrow--prev" id="services-prev" title="Предыдущие решения" type="button">
 <svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="18"><path d="M15 18l-6-6 6-6"></path></svg>
@@ -786,6 +786,7 @@
 <a href="/services/">Услуги</a>
 <a href="/cases/">Кейсы</a>
 <a href="/calculator/">Калькулятор</a>
+<a href="/calculator/self-employed/">Калькулятор самозанятых</a>
 <a href="/faq/">FAQ</a>
 <a href="/contact/">Контакты</a>
 </div>
@@ -1458,11 +1459,20 @@
         }
 
         function setActiveDot(idx) {
+          var slideChanged = (currentSlide !== idx);
           currentSlide = idx;
           var dots = Array.from(dotsWrap.querySelectorAll('.carousel-dot'));
           dots.forEach(function(d, i) {
             d.classList.toggle('active', i === idx);
           });
+          if (!isDesktop && slideChanged && dotsWrap && dots[idx]) {
+            var dRect = dots[idx].getBoundingClientRect();
+            var wRect = dotsWrap.getBoundingClientRect();
+            var delta = (dRect.left + dRect.width / 2) - (wRect.left + wRect.width / 2);
+            if (Math.abs(delta) > 4) {
+              dotsWrap.scrollTo({ left: dotsWrap.scrollLeft + delta, behavior: 'smooth' });
+            }
+          }
         }
 
         function onScroll() {
@@ -1745,7 +1755,7 @@
       "@type": "TechArticle",
       "@id": "https://ai-avtopilot.ru/cases/retail-inventory-automation/#article",
       "headline": "Автоматизация инвентаризации и автозаказа в 1С:Розница",
-      "description": "Кейс внедрения ИИ-агентов для сети из 230 магазинов: сокращение ручного труда в учете на 72%, рост оборачиваемости склада на 18% и экономия 9 200 часов в год.",
+      "description": "Узнайте, как сеть из 230 магазинов сократила рутину в 1С:Розница на 72%: автоматический расчет страхового остатка и автозаказ поставщикам без Excel.",
       "image": "https://ai-avtopilot.ru/og-image.png",
       "datePublished": "2026-10-01T08:00:00+03:00",
       "dateModified": "2026-10-01T12:00:00+03:00",
@@ -1795,34 +1805,26 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Нужно ли дорабатывать конфигурацию 1С для работы агента?",
+          "name": "Требуется ли доработка типовой конфигурации 1С:Розница?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Нет. Агент подключается через штатное расширение конфигурации (CFE) или внешние HTTP-сервисы OData. Базовый код 1С остается типовым и обновляется в стандартном режиме."
+            "text": "Нет. Внедрение выполняется через штатный механизм расширений конфигурации (CFE). Ваша база остается на официальной поддержке 1С без изменения типового кода."
           }
         },
         {
           "@type": "Question",
-          "name": "Как система защищена от ложных заказов при сбое поставщика?",
+          "name": "Как алгоритм учитывает сезонные всплески и праздничные дни?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "В 1С задаются финансовые и объемные лимиты. Любая заявка с отклонением более 15% от среднего расхода отправляется на ручное подтверждение категорийному менеджеру."
+            "text": "Алгоритм анализирует исторические данные продаж аналогичных периодов прошлого года и коэффициенты сезонности, корректируя страховой запас за 7 дней до пика спроса."
           }
         },
         {
           "@type": "Question",
-          "name": "Что происходит при отключении интернета в магазине?",
+          "name": "Какое оборудование и ТСД поддерживаются решением?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Кассовые узлы работают в автономном режиме РИБ. Сразу после восстановления связи агент проводит пакетную фоновую синхронизацию."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Сколько длится запуск пилотного проекта?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "14 рабочих дней на выборку из 5–10 магазинов с фиксацией замеров трудозатрат и оборачиваемости до и после старта."
+            "text": "Поддерживаются любые терминалы сбора данных на ОС Android с установленным ПО Mobile SMARTS, Клеверенс или штатными клиентами 1С."
           }
         }
       ]
