@@ -48,8 +48,8 @@ async function runSliderAndDragSuite(options = {}) {
       passed++;
     }
   }
-  assert.strictEqual = (a, b, msg) => assert(a === b, msg || `Expected ${a} === ${b}`);
-  assert.ok = (a, msg) => assert(Boolean(a), msg || `Expected truthy value`);
+  assert.strictEqual = (actual, expected, message) => assert(actual === expected, message || `Expected ${actual} === ${expected}`);
+  assert.ok = (value, message) => assert(Boolean(value), message || `Expected truthy value`);
 
   try {
     await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });

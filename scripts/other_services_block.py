@@ -112,9 +112,10 @@ def get_other_services_carousel_js() -> str:
           var isTicking = false;
           var currentSlide = 0;
           var totalSlides = 1;
-          var isDesktop = typeof sharedIsDesktop !== 'undefined' ? sharedIsDesktop : (window.innerWidth >= 1025);
+          var isDesktop = window.innerWidth >= 1025;
 
           function calcTotalSlides() {
+            isDesktop = window.innerWidth >= 1025;
             if (isDesktop) {
               return Math.max(1, Math.ceil(cards.length / 8));
             } else {
@@ -245,7 +246,6 @@ def get_other_services_carousel_js() -> str:
             resizeTimer = setTimeout(function() {
               var wasDesktop = isDesktop;
               var newIsDesktop = window.innerWidth >= 1025;
-              isDesktop = newIsDesktop;
               if (wasDesktop !== newIsDesktop) {
                 currentSlide = 0;
                 updateDots();
@@ -267,7 +267,7 @@ def get_other_services_carousel_js() -> str:
           });
 
           container.addEventListener('mousedown', function(e) {
-            if (!isDesktop || e.button !== 0) return;
+            if (window.innerWidth < 1025 || e.button !== 0) return;
             isMouseDown = true;
             hasDragged = false;
             startX = e.pageX;

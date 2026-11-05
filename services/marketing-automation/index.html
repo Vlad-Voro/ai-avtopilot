@@ -86,13 +86,16 @@
 
   <!-- Preload Local Core Fonts -->
   <link rel="preload" href="/assets/fonts/Inter-400-1.woff2" as="font" type="font/woff2" crossorigin="" />
+  <link rel="preload" href="/assets/fonts/Inter-400-6.woff2" as="font" type="font/woff2" crossorigin="" />
   <link rel="preload" href="/assets/fonts/Outfit-600-14.woff2" as="font" type="font/woff2" crossorigin="" />
+  <link rel="preload" href="/assets/fonts/JetBrainsMono-400-8.woff2" as="font" type="font/woff2" crossorigin="" />
+  <link rel="preload" href="/assets/fonts/JetBrainsMono-400-12.woff2" as="font" type="font/woff2" crossorigin="" />
 
   <!-- Extenal Stylesheet -->
-  <link rel="stylesheet" href="/assets/css/styles.min.css?v=796802ea" />
+  <link rel="stylesheet" href="/assets/css/styles.min.css?v=f085db04" />
 
   <!-- Scripts -->
-  <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.2"></script>
+  <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.3"></script>
 
   <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
   <script type="text/javascript">
@@ -1377,7 +1380,6 @@
   <!-- Interactive Controls: Dashboard Tabs & Horizontal Carousels -->
   <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
-      var sharedIsDesktop = window.innerWidth >= 1025;
       // 1. Dashboard Tabbed Board
       var tabList = document.querySelector('.board-tabs');
       if (tabList) {
@@ -1545,9 +1547,11 @@
         var isTicking = false;
         var currentSlide = 0;
         var totalSlides = 1;
-        var isDesktop = typeof sharedIsDesktop !== 'undefined' ? sharedIsDesktop : (window.innerWidth >= 1025);
+        var desktopMQ = window.matchMedia('(min-width: 1025px)');
+        var isDesktop = desktopMQ.matches;
 
         function calcTotalSlides() {
+          isDesktop = desktopMQ.matches;
           if (isDesktop) {
             return Math.max(1, Math.ceil(cards.length / 8));
           } else {
@@ -1668,9 +1672,7 @@
           clearTimeout(resizeTimer);
           resizeTimer = setTimeout(function() {
             var wasDesktop = isDesktop;
-            var newIsDesktop = window.innerWidth >= 1025;
-            sharedIsDesktop = newIsDesktop;
-            isDesktop = newIsDesktop;
+            var newIsDesktop = desktopMQ.matches;
             if (wasDesktop !== newIsDesktop) {
               currentSlide = 0;
               updateDots();
@@ -1756,9 +1758,10 @@
           var isTicking = false;
           var currentSlide = 0;
           var totalSlides = 1;
-          var isDesktop = typeof sharedIsDesktop !== 'undefined' ? sharedIsDesktop : (window.innerWidth >= 1025);
+          var isDesktop = window.innerWidth >= 1025;
 
           function calcTotalSlides() {
+            isDesktop = window.innerWidth >= 1025;
             if (isDesktop) {
               return Math.max(1, Math.ceil(cards.length / 8));
             } else {
@@ -1889,7 +1892,6 @@
             resizeTimer = setTimeout(function() {
               var wasDesktop = isDesktop;
               var newIsDesktop = window.innerWidth >= 1025;
-              isDesktop = newIsDesktop;
               if (wasDesktop !== newIsDesktop) {
                 currentSlide = 0;
                 updateDots();
@@ -1911,7 +1913,7 @@
           });
 
           container.addEventListener('mousedown', function(e) {
-            if (!isDesktop || e.button !== 0) return;
+            if (window.innerWidth < 1025 || e.button !== 0) return;
             isMouseDown = true;
             hasDragged = false;
             startX = e.pageX;
