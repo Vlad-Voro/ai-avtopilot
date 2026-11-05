@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <title>Инвентаризация и автозаказ в 1С:Розница (230 магазинов): кейс | АвтоПилот</title>
 <meta content="Узнайте, как сеть из 230 магазинов сократила рутину в 1С:Розница на 72%: автоматический расчет страхового остатка и автозаказ поставщикам без Excel." name="description"/>
-<meta content="автозаказ поставщикам 1с, 1с розница автоматизация, синхронизация остатков складов, расчет неснижаемого остатка, автоматизация ритейла, автопилот ии" name="keywords">
+<meta content="автозаказ поставщикам 1с, 1с розница автоматизация, синхронизация остатков складов, расчет неснижаемого остатка, автоматизация ритейла, автопилот ии" name="keywords"/>
 <meta content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" name="robots"/>
 <link href="https://ai-avtopilot.ru/cases/retail-inventory-automation/" rel="canonical"/>
 <meta content="#08080c" name="theme-color"/>
@@ -78,8 +78,9 @@
 <!-- Preload Local Core Fonts (High-Impact Above-The-Fold) -->
 <link as="font" crossorigin="" href="/assets/fonts/Inter-400-1.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/assets/fonts/Outfit-600-14.woff2" rel="preload" type="font/woff2"/>
+<script crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.2" type="module"></script>
 <!-- Inlined Styles (Eliminates Render-Blocking CSS & Critical Request Chains) -->
-<link href="/assets/css/styles.min.css?v=45555647" rel="stylesheet"/>
+<link href="/assets/css/styles.min.css?v=796802ea" rel="stylesheet"/>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
 <script type="text/javascript">
     (function() {
@@ -123,7 +124,7 @@
   </script>
 <noscript><div><img alt="Yandex Metrica" src="https://mc.yandex.ru/watch/112978516" style="position:absolute; left:-9999px;"/></div></noscript>
 <!-- /Yandex.Metrika counter -->
-</meta></head>
+</head>
 <body>
 <div class="nav__backdrop" id="nav-backdrop"></div>
 <!-- ═══════════════════ NAVIGATION ═══════════════════ -->
@@ -214,10 +215,10 @@
 <section class="roi" id="calculator">
 <div class="container">
 <div class="section-header">
-<p class="section-tag" data-reveal="">Посчитайте вашу экономию</p>
-<h2 class="section-title" data-reveal="">Рассчитайте окупаемость для вашей сети магазинов</h2>
+<p class="section-tag">Посчитайте вашу экономию</p>
+<h2 class="section-title">Рассчитайте окупаемость для вашей сети магазинов</h2>
 </div>
-<div class="roi__card" data-reveal="">
+<div class="roi__card">
 <div class="roi__inputs">
 <div class="roi-input-group">
 <label class="roi-label" for="slider-employees"><span>Сотрудников на рутинных задачах</span> <span class="roi-value-display" id="display-employees">10</span></label>
@@ -247,15 +248,15 @@
 <div class="roi__results">
 <div class="roi-result-card">
 <span class="roi-result-label">Стоимость рутины в год</span>
-<span class="roi-result-num" id="roi-cost">0 ₽</span>
+<span class="roi-result-num" id="roi-cost">1 200 000 ₽</span>
 </div>
 <div class="roi-result-card roi-result-card--accent">
 <span class="roi-result-label">Экономия с АвтоПилотом (80%)</span>
-<span class="roi-result-num" id="roi-save">0 ₽</span>
+<span class="roi-result-num" id="roi-save">960 000 ₽</span>
 </div>
 <div class="roi-result-card">
 <span class="roi-result-label">Освободится человеко-часов в год</span>
-<span class="roi-result-num" id="roi-hours">0 часов</span>
+<span class="roi-result-num" id="roi-hours">10 400 часов</span>
 </div>
 <div class="roi__cta-block">
 <p>Готовы увидеть реальные цифры для вашего бизнеса?</p>
@@ -1245,76 +1246,23 @@
 <button aria-label="Понятно, принять условия использования файлов cookie" class="btn btn--cookie" id="cookie-accept">Понятно</button>
 </div>
 </div>
-<style>
-    .cookie-banner {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: calc(100% - 40px);
-      max-width: 720px;
-      background: rgba(17, 17, 25, 0.95);
-      border: 1px solid rgba(99, 102, 241, 0.35);
-      backdrop-filter: blur(12px);
-      padding: 14px 20px;
-      border-radius: 12px;
-      z-index: 9999;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      color: #c4c4d4;
-      font-size: 0.88rem;
-      line-height: 1.5;
-      contain: layout paint;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-    .cookie-banner.is-visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .cookie-banner__inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .cookie-link {
-      color: #818cf8;
-      text-decoration: underline;
-    }
-    .btn--cookie {
-      background: #4f46e5;
-      color: #ffffff;
-      border: none;
-      padding: 8px 18px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.85rem;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: background 0.2s;
-    }
-    .btn--cookie:hover {
-      background: #4338ca;
-    }
-  </style>
 <script type="text/javascript">
     (function() {
       try {
         if (!localStorage.getItem('cookie_consent')) {
           var b = document.getElementById('cookie-banner');
+          var shown = false;
           function showBanner() {
+            if (shown) return;
+            shown = true;
             if (b && !localStorage.getItem('cookie_consent')) {
               b.classList.add('is-visible');
               b.setAttribute('aria-hidden', 'false');
             }
           }
-          if ('requestIdleCallback' in window) {
-            requestIdleCallback(function() { setTimeout(showBanner, 1000); });
-          } else {
-            setTimeout(showBanner, 1000);
-          }
+          ['scroll', 'touchstart', 'keydown', 'click'].forEach(function(ev) {
+            window.addEventListener(ev, showBanner, { passive: true, once: true });
+          });
           var btn = document.getElementById('cookie-accept');
           if (btn) btn.addEventListener('click', function() {
             localStorage.setItem('cookie_consent', '1');
@@ -1330,6 +1278,7 @@
 <!-- Compact Layout Interactive Controls: Dashboard Board Tabs & Cases Carousel -->
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
+      var sharedIsDesktop = window.innerWidth >= 1025;
       // 1. Dashboard Tabbed Board
       var tabList = document.querySelector('.board-tabs');
       if (tabList) {
@@ -1393,10 +1342,9 @@
         var isTicking = false;
         var currentSlide = 0;
         var totalSlides = 1;
-        var isDesktop = window.innerWidth >= 1025;
+        var isDesktop = typeof sharedIsDesktop !== 'undefined' ? sharedIsDesktop : (window.innerWidth >= 1025);
 
         function calcTotalSlides() {
-          isDesktop = window.innerWidth >= 1025;
           if (isDesktop) {
             return Math.max(1, Math.ceil(cards.length / 8));
           } else {
@@ -1539,6 +1487,8 @@
           resizeTimer = setTimeout(function() {
             var wasDesktop = isDesktop;
             var newIsDesktop = window.innerWidth >= 1025;
+            sharedIsDesktop = newIsDesktop;
+            isDesktop = newIsDesktop;
             if (wasDesktop !== newIsDesktop) {
               currentSlide = 0;
               updateDots();
@@ -1560,7 +1510,7 @@
         });
 
         container.addEventListener('mousedown', function(e) {
-          if (window.innerWidth < 1025 || e.button !== 0) return;
+          if (!isDesktop || e.button !== 0) return;
           isMouseDown = true;
           hasDragged = false;
           startX = e.pageX;
@@ -1832,7 +1782,5 @@
   ]
 }</script>
 <!--/email_off-->
-<!-- Deferred Scripts (Eliminates Critical Request Chains) -->
-<script crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.1" type="module"></script>
 </body>
 </html>

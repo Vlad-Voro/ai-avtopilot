@@ -138,25 +138,26 @@ def generate_subpage(slug: str, spec: dict, master_html: str) -> str:
     if slug == "services":
         html = html.replace(
             '<h2 class="section-title" data-reveal>Готовые сценарии автоматизации</h2>',
-            '<h1 class="section-title" data-reveal>Готовые сценарии автоматизации</h1>',
+            '<h1 class="section-title">Готовые сценарии автоматизации</h1>',
             1,
         )
     elif slug == "cases":
         html = html.replace(
             '<h2 class="section-title" data-reveal>Кейсы внедрения</h2>',
-            '<h1 class="section-title" data-reveal>Кейсы внедрения</h1>',
+            '<h1 class="section-title">Кейсы внедрения</h1>',
             1,
         )
     elif slug == "calculator":
-        html = html.replace(
-            '<h2 class="section-title" data-reveal>Калькулятор окупаемости</h2>',
-            '<h1 class="section-title" data-reveal>Калькулятор окупаемости</h1>',
-            1,
+        html = re.sub(
+            r'<h2 class="section-title"(?:\s+data-reveal)?>Калькулятор окупаемости</h2>',
+            '<h1 class="section-title">Калькулятор окупаемости</h1>',
+            html,
+            count=1,
         )
     elif slug == "dashboard":
         html = html.replace(
             '<h2 class="section-title" data-reveal>Ваши агенты могут работать прямо сейчас</h2>',
-            '<h1 class="section-title" data-reveal>Ваши агенты могут работать прямо сейчас</h1>',
+            '<h1 class="section-title">Ваши агенты могут работать прямо сейчас</h1>',
             1,
         )
     elif slug == "faq":

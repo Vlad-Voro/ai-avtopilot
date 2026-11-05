@@ -119,11 +119,59 @@ async function measureWebVitals(options = {}) {
     assert.strictEqual(typeof passed, 'boolean');
     assert.ok(passed, 'All Core Web Vitals budgets must pass');
 
+    // Mobile 4x CPU Throttled CWV & Visual Completeness Check (412x823 Moto G Power)
+    const mobContext = await browser.newContext({ viewport: { width: 412, height: 823 }, isMobile: true, hasTouch: true });
+    const mobPage = await mobContext.newPage();
+    try {
+      const cdp = await mobContext.newCDPSession(mobPage);
+      await cdp.send('Emulation.setCPUThrottlingRate', { rate: 4 });
+      await mobPage.addInitScript(() => {
+        window.__mobVitals = { cls: 0, fcp: 0, longTasks: [] };
+        new PerformanceObserver((l) => {
+          for (const e of l.getEntries()) if (!e.hadRecentInput) window.__mobVitals.cls += e.value;
+        }).observe({ type: 'layout-shift', buffered: true });
+        new PerformanceObserver((l) => {
+          for (const e of l.getEntries()) if (e.name === 'first-contentful-paint') window.__mobVitals.fcp = e.startTime;
+        }).observe({ type: 'paint', buffered: true });
+        new PerformanceObserver((l) => {
+          for (const e of l.getEntries()) window.__mobVitals.longTasks.push({ startTime: e.startTime, duration: e.duration });
+        }).observe({ type: 'longtask', buffered: true });
+      });
+      await mobPage.goto(baseUrl, { waitUntil: 'load' });
+      await mobPage.waitForTimeout(600); // test-lint: disable=web-01 [mobile 4x CPU TBT window]
+      const mobRes = await mobPage.evaluate(() => {
+        const fcp = window.__mobVitals.fcp;
+        let tbt = 0;
+        for (const t of window.__mobVitals.longTasks) {
+          if (t.startTime >= fcp) tbt += Math.max(0, t.duration - 50);
+        }
+        const roiCard = document.querySelector('#calculator .roi__card');
+        const cookieBanner = document.getElementById('cookie-banner');
+        const particlesCanvas = document.querySelector('#particles canvas');
+        return {
+          cls: Math.round(window.__mobVitals.cls * 1000) / 1000,
+          tbt: Math.round(tbt),
+          roiOpacity: roiCard ? window.getComputedStyle(roiCard).opacity : '1',
+          cookieOpacity: cookieBanner ? window.getComputedStyle(cookieBanner).opacity : '0',
+          hasMobileCanvas: Boolean(particlesCanvas)
+        };
+      });
+      console.log(`Mobile (412x823, 4x CPU) -> CLS: ${mobRes.cls}, TBT: ${mobRes.tbt} ms, ROI Opacity: ${mobRes.roiOpacity}, Cookie Opacity: ${mobRes.cookieOpacity}, Mobile Canvas: ${mobRes.hasMobileCanvas}`);
+      assert.strictEqual(mobRes.cls, 0, 'Mobile CLS must be 0');
+      assert.ok(mobRes.tbt <= 50, `Mobile 4x CPU TBT must be <= 50ms (got ${mobRes.tbt}ms)`);
+      assert.strictEqual(mobRes.roiOpacity, '1', 'Mobile #calculator .roi__card must have opacity 1 at initial load');
+      assert.strictEqual(mobRes.cookieOpacity, '0', 'Mobile #cookie-banner must remain hidden until user interaction');
+      assert.strictEqual(mobRes.hasMobileCanvas, false, 'Mobile must not allocate #particles canvas');
+    } finally {
+      await mobPage.close().catch(() => {});
+      await mobContext.close().catch(() => {});
+    }
+
     return {
       vitals,
-      totalChecks: 4,
-      passedChecks: passed ? 4 : 0,
-      failedChecks: passed ? 0 : 4,
+      totalChecks: 5,
+      passedChecks: passed ? 5 : 0,
+      failedChecks: passed ? 0 : 5,
       passed
     };
   } finally {
