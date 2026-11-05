@@ -148,20 +148,23 @@ async function measureWebVitals(options = {}) {
         const roiCard = document.querySelector('#calculator .roi__card');
         const cookieBanner = document.getElementById('cookie-banner');
         const particlesCanvas = document.querySelector('#particles canvas');
+        const heroKpi = document.querySelector('.hero__kpis .kpi-card__num');
         return {
           cls: Math.round(window.__mobVitals.cls * 1000) / 1000,
           tbt: Math.round(tbt),
           roiOpacity: roiCard ? window.getComputedStyle(roiCard).opacity : '1',
           cookieVisibility: cookieBanner ? window.getComputedStyle(cookieBanner).visibility : 'hidden',
-          hasMobileCanvas: Boolean(particlesCanvas)
+          hasMobileCanvas: Boolean(particlesCanvas),
+          heroKpiObserved: Boolean(heroKpi && heroKpi.dataset.observedCount === 'true')
         };
       });
-      console.log(`Mobile (412x823, 4x CPU) -> CLS: ${mobRes.cls}, TBT: ${mobRes.tbt} ms, ROI Opacity: ${mobRes.roiOpacity}, Cookie Visibility: ${mobRes.cookieVisibility}, Mobile Canvas: ${mobRes.hasMobileCanvas}`);
+      console.log(`Mobile (412x823, 4x CPU) -> CLS: ${mobRes.cls}, TBT: ${mobRes.tbt} ms, ROI Opacity: ${mobRes.roiOpacity}, Cookie Visibility: ${mobRes.cookieVisibility}, Mobile Canvas: ${mobRes.hasMobileCanvas}, Hero KPI Animated: ${mobRes.heroKpiObserved}`);
       assert.ok(mobRes.cls <= 0.05, 'Mobile CLS <= 0.05');
       assert.ok(mobRes.tbt <= 50, `Mobile 4x CPU TBT <= 50ms (got ${mobRes.tbt}ms)`);
       assert.strictEqual(mobRes.roiOpacity, '1', 'Mobile ROI card must be immediately visible');
       assert.strictEqual(mobRes.cookieVisibility, 'hidden', 'Cookie banner must have visibility:hidden when aria-hidden=true');
       assert.strictEqual(mobRes.hasMobileCanvas, false, 'Mobile particles canvas must not be created');
+      assert.strictEqual(mobRes.heroKpiObserved, true, 'Mobile Hero KPI counters must be observed and animated');
     } finally {
       await mobPage.close().catch(() => {});
       await mobCtx.close().catch(() => {});
