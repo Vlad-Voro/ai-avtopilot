@@ -210,26 +210,26 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Как автоматизировать проверку статуса самозанятого перед каждой выплатой в 1С?",
+            "name": "Как автоматизировать проверку статуса самозанятого перед выплатой в 1С?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Модуль интеграции выполняет фоновый HTTP-запрос к API ФНС (npd-public.nalog.ru) по ИНН исполнителя непосредственно перед проведением платежного поручения в 1С. Если статус аннулирован или превышен лимит 2,4 млн ₽, проведение блокируется."
+              "text": "Модуль интеграции делает фоновый запрос к открытому сервису ФНС по ИНН исполнителя перед проведением платежа. Если статус аннулирован или превышен лимит 2,4 млн ₽, проведение документа в 1С автоматически блокируется."
             }
           },
           {
             "@type": "Question",
-            "name": "Что делать, если внештатный исполнитель не предоставил чек после получения денег?",
+            "name": "Что делать, если внештатный исполнитель не предоставил чек?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "При интеграции с банковскими сервисами выплат (номинальные счета) чек формируется автоматически через открытый банковский шлюз ФНС в момент перечисления средств и сразу подкрепляется к документу ВыплатаСамозанятым в 1С."
+              "text": "При интеграции с номинальными счетами банков чек формируется автоматически через шлюз ФНС в момент списания средств и сразу подкрепляется к проводке документа в 1С без ручной переписки."
             }
           },
           {
             "@type": "Question",
-            "name": "Как компания защищена от претензий налоговой о переквалификации в трудовые отношения?",
+            "name": "Как защитить компанию от претензий налоговой о переквалификации?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Внедряется регламент формирования проектных ТЗ, актов выполненных объемов работ с переменной оплатой и децентрализованный график задач без фиксации рабочего времени и должностных обязанностей."
+              "text": "Внедряются проектные технические задания и акты с оплатой за конкретный объем работ, без фиксации рабочего времени и подчинения штатному трудовому распорядку предприятия."
             }
           }
         ]
@@ -239,79 +239,198 @@
   </script>
 
   <style>
+    /* ═══════════ DIRECT ANSWER CARD ═══════════ */
+    .direct-answer {
+      padding: 24px 0 32px;
+    }
+    .direct-answer__card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+    }
+    .direct-answer__header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .direct-answer__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .direct-answer__title {
+      font-family: var(--font-head);
+      font-size: clamp(1.2rem, 2.5vw, 1.45rem);
+      font-weight: 700;
+      color: var(--text-1);
+      margin: 0 0 4px;
+    }
+    .direct-answer__desc {
+      font-size: 0.92rem;
+      color: var(--text-2);
+      margin: 0;
+    }
+    .direct-answer__summary {
+      background: rgba(99, 102, 241, 0.06);
+      border-left: 3px solid var(--accent-1);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text-2);
+      margin-bottom: 20px;
+    }
+    .direct-answer__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .da-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .da-item__label {
+      font-size: 0.8rem;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .da-item__val {
+      font-family: var(--font-head);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-1);
+    }
+
+    /* ═══════════ CALCULATOR ENGINE ═══════════ */
     .se-calc {
-      padding: 3rem 0;
+      padding: 24px 0 40px;
     }
     .se-calc__grid {
+      background: var(--surface);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: var(--radius-lg);
+      padding: 32px 36px 28px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2rem;
+      gap: 48px;
+      box-shadow: 0 0 80px rgba(99, 102, 241, 0.06);
       margin-top: 2rem;
     }
     .se-card {
-      background: var(--bg-card, #101018);
-      border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
-      border-radius: 16px;
-      padding: 1.75rem;
-      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .se-card__title {
+      font-family: var(--font-head);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-1);
+      margin-bottom: 1.25rem;
     }
     .se-toggle-group {
       display: flex;
-      gap: 0.5rem;
-      background: rgba(255, 255, 255, 0.04);
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
       padding: 4px;
-      border-radius: 10px;
+      border-radius: var(--radius);
       margin-bottom: 1.25rem;
     }
     .se-toggle-btn {
       flex: 1;
-      padding: 10px 12px;
+      padding: 10px 14px;
       min-height: 44px;
-      border: none;
+      border: 1px solid transparent;
       background: transparent;
-      color: #94a3b8;
+      color: var(--text-2);
+      font-family: var(--font-head);
       font-size: 0.9rem;
+      font-weight: 600;
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.2s ease;
-      font-family: inherit;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       box-sizing: border-box;
     }
+    .se-toggle-btn:hover {
+      color: var(--text-1);
+      background: rgba(255, 255, 255, 0.04);
+    }
     .se-toggle-btn.active {
-      background: var(--accent, #6366f1);
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
       color: #fff;
-      font-weight: 500;
+      font-weight: 600;
+      box-shadow: 0 2px 12px rgba(99, 102, 241, 0.35);
     }
     .se-checkbox-label {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       font-size: 0.9rem;
-      color: #cbd5e1;
+      color: var(--text-2);
       margin-top: 1rem;
+      cursor: pointer;
+      user-select: none;
+    }
+    .se-checkbox-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent-1);
       cursor: pointer;
     }
     .se-alert {
-      background: rgba(239, 68, 68, 0.15);
-      border: 1px solid rgba(239, 68, 68, 0.4);
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.35);
       color: #fca5a5;
       padding: 12px 16px;
       border-radius: 10px;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
+      line-height: 1.5;
       margin-top: 1rem;
       display: none;
     }
     .se-alert.visible {
       display: block;
     }
+    .se-results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 1.25rem;
+    }
     .se-matrix {
-      margin-top: 1.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding-top: 1.25rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      margin-bottom: 1.25rem;
+    }
+    .se-matrix__title {
+      font-family: var(--font-head);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-2);
+      margin: 0 0 12px;
     }
     .se-matrix__row {
       display: flex;
@@ -319,30 +438,46 @@
       align-items: center;
       padding: 8px 0;
       font-size: 0.9rem;
-      border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+      color: var(--text-2);
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
     }
     .se-matrix__row:last-child {
       border-bottom: none;
     }
+    .se-matrix__row--highlight {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-top: 8px;
+    }
     .se-matrix__val {
       font-family: 'JetBrainsMono', monospace;
       font-weight: 600;
+      color: var(--text-1);
     }
     .se-matrix__val--accent {
-      color: #10b981;
+      color: #34d399;
       font-size: 1.15rem;
+      font-weight: 700;
     }
     .se-radar {
-      margin-top: 2rem;
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 12px;
-      padding: 1.25rem;
+      border-radius: var(--radius);
+      padding: 18px 20px;
+    }
+    .se-radar__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
     }
     .se-radar__title {
-      font-size: 1rem;
-      margin-bottom: 0.75rem;
-      color: #f8fafc;
+      font-family: var(--font-head);
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--text-1);
     }
     .se-radar__badge {
       display: inline-block;
@@ -350,36 +485,85 @@
       border-radius: 6px;
       font-size: 0.8rem;
       font-weight: 600;
-      margin-bottom: 1rem;
+      letter-spacing: 0.02em;
     }
     .se-radar__badge--green {
       background: rgba(16, 185, 129, 0.2);
       color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.35);
     }
     .se-radar__badge--yellow {
       background: rgba(245, 158, 11, 0.2);
       color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.35);
     }
     .se-radar__badge--red {
       background: rgba(239, 68, 68, 0.2);
       color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.35);
     }
+    .se-radar__hint {
+      font-size: 0.82rem;
+      color: var(--text-3);
+      margin: 0 0 10px;
+    }
+
+    /* ═══════════ SYMPTOMS & RISKS ═══════════ */
+    .symptoms__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 2rem;
+    }
+    .symptom-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s ease;
+    }
+    .symptom-card:hover {
+      border-color: var(--border-glow);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(99, 102, 241, 0.1);
+    }
+    .symptom-card__icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+    .symptom-card__title {
+      font-family: var(--font-head);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text-1);
+    }
+    .symptom-card__desc {
+      color: var(--text-2);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
     @media (max-width: 900px) {
       .se-calc__grid {
+        grid-template-columns: 1fr;
+        padding: 24px 18px;
+        gap: 32px;
+      }
+      .se-results-grid {
+        grid-template-columns: 1fr;
+      }
+      .symptoms__grid {
         grid-template-columns: 1fr;
       }
     }
     @media (max-width: 480px) {
-      .se-card {
-        padding: 1.25rem 1rem;
-      }
       .se-toggle-group {
         flex-direction: column;
         gap: 6px;
-      }
-      .se-toggle-btn {
-        width: 100%;
-        min-height: 44px;
       }
       .se-matrix__row {
         font-size: 0.85rem;
@@ -387,7 +571,12 @@
         gap: 4px;
       }
       .se-radar {
-        padding: 1rem;
+        padding: 14px;
+      }
+      .se-radar__header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
       }
     }
   </style>
@@ -445,7 +634,7 @@
           </span>
         </h1>
         <p class="hero__sub">
-          Мгновенный расчет налога на профессиональный доход (НПД 4% и 6%), налогового бонуса 10 000 ₽, совокупной экономии фонда оплаты труда (до 43 300 ₽ на 100 000 ₽ выплат) и автоматический аудит рисков переквалификации договоров ГПХ по критериям ФНС РФ.
+          Расчет налога на профессиональный доход (НПД 4% и 6%), налогового вычета 10 000 ₽, экономии фонда оплаты труда и рисков переквалификации договоров по критериям ФНС.
         </p>
         <div class="hero__actions">
           <a href="#calc-engine" class="btn btn--primary" id="cta-main">Рассчитать налоги и экономию →</a>
@@ -469,19 +658,19 @@
     </div>
   </section>
 
-  <!-- ═══════════════════ DIRECT ANSWER / FACTOID SHEET ═══════════════════ -->
+  <!-- ═══════════════════ DIRECT ANSWER / СПРАВОЧНИК ═══════════════════ -->
   <section class="direct-answer" id="direct-answer">
     <div class="container">
       <div class="direct-answer__card" data-reveal="">
         <div class="direct-answer__header">
           <div class="direct-answer__icon">💡</div>
           <div>
-            <h2 class="direct-answer__title">Налог самозанятых и выплаты от юрлиц (Factoid Sheet)</h2>
-            <p class="direct-answer__desc">Справочная информация для финансовых директоров, бухгалтеров и поисковых систем.</p>
+            <h2 class="direct-answer__title">Налог самозанятых и выплаты от юрлиц</h2>
+            <p class="direct-answer__desc">Справочник для финансовых директоров, бухгалтерии и налогового учета в 1С.</p>
           </div>
         </div>
         <div class="direct-answer__summary">
-          При выплате самозанятому компания не платит НДФЛ 13% и страховые взносы 30%. Налог 6% уплачивает сам исполнитель или компания компенсирует его с gross-up коэффициентом 1.0638. Для законного признания расходов в 1С необходим электронный фискальный чек ФНС.
+          При выплатах самозанятым бизнес освобожден от НДФЛ 13% и страховых взносов 30%. Налог 6% платит исполнитель, либо компания компенсирует сумму с коэффициентом 1,0638. Расходы в 1С подтверждает электронный чек ФНС.
         </div>
         <div class="direct-answer__grid">
           <div class="da-item">
@@ -494,7 +683,7 @@
           </div>
           <div class="da-item">
             <span class="da-item__label">Первичный документ в 1С:</span>
-            <span class="da-item__val">Электронный чек ФНС (API Мой налог)</span>
+            <span class="da-item__val">Электронный чек ФНС («Мой налог»)</span>
           </div>
           <div class="da-item">
             <span class="da-item__label">Счет бухгалтерского учета:</span>
@@ -510,13 +699,13 @@
     <div class="container">
       <div class="section-header">
         <p class="section-tag" data-reveal="">Интерактивный расчет</p>
-        <h2 class="section-title" data-reveal="">Онлайн-калькулятор налога и сравнение TCO найма</h2>
+        <h2 class="section-title" data-reveal="">Калькулятор налога и сравнение затрат компании</h2>
       </div>
 
       <div class="se-calc__grid" data-reveal="">
         <!-- INPUTS -->
         <div class="se-card">
-          <h3 style="margin-bottom: 1rem; font-size: 1.15rem;">Параметры выплаты</h3>
+          <h3 class="se-card__title">Параметры выплаты</h3>
 
           <!-- Client type toggle -->
           <label class="roi-label" style="margin-bottom: 6px;">Кто производит выплату:</label>
@@ -533,54 +722,64 @@
           </div>
 
           <!-- Amount slider -->
-          <div class="roi-field" style="margin-top: 1.25rem;">
-            <div style="display:flex; justify-content:space-between; margin-bottom: 6px;">
-              <label for="se-amount" class="roi-label">Сумма выплаты:</label>
-              <span id="se-amount-disp" style="font-family:'JetBrainsMono', monospace; font-weight:600; color:var(--accent);">100 000 ₽</span>
+          <div class="roi-input-group" style="margin-top: 1rem;">
+            <label for="se-amount" class="roi-label">
+              <span>Сумма выплаты:</span>
+              <span class="roi-value-display" id="se-amount-disp">100 000 ₽</span>
+            </label>
+            <input type="range" id="se-amount" min="5000" max="1000000" step="5000" value="100000" class="roi-slider" aria-label="Сумма выплаты самозанятому" />
+            <div class="roi-slider-limits">
+              <span>5 000 ₽</span>
+              <span>1 000 000 ₽</span>
             </div>
-            <input type="range" id="se-amount" min="5000" max="1000000" step="5000" value="100000" class="roi-slider" />
           </div>
 
           <!-- YTD slider -->
-          <div class="roi-field" style="margin-top: 1.25rem;">
-            <div style="display:flex; justify-content:space-between; margin-bottom: 6px;">
-              <label for="se-ytd" class="roi-label">Доход самозанятого с начала года:</label>
-              <span id="se-ytd-disp" style="font-family:'JetBrainsMono', monospace; font-weight:600; color:#94a3b8;">500 000 ₽</span>
+          <div class="roi-input-group" style="margin-top: 12px;">
+            <label for="se-ytd" class="roi-label">
+              <span>Доход с начала года:</span>
+              <span class="roi-value-display" id="se-ytd-disp">500 000 ₽</span>
+            </label>
+            <input type="range" id="se-ytd" min="0" max="3000000" step="50000" value="500000" class="roi-slider" aria-label="Доход исполнителя с начала года" />
+            <div class="roi-slider-limits">
+              <span>0 ₽</span>
+              <span>3 000 000 ₽</span>
             </div>
-            <input type="range" id="se-ytd" min="0" max="3000000" step="50000" value="500000" class="roi-slider" />
           </div>
 
           <!-- Bonus check -->
           <label class="se-checkbox-label">
             <input type="checkbox" id="se-bonus-check" />
-            <span>Учесть налоговый бонус 10 000 ₽ (снижает ставку до 3% / 4%)</span>
+            <span>Учесть налоговый вычет 10 000 ₽ (снижает ставку до 3% / 4%)</span>
           </label>
 
           <!-- Threshold alert -->
           <div class="se-alert" id="se-limit-alert">
-            ⚠️ <strong>Внимание!</strong> Совокупный доход превышает лимит 2 400 000 ₽ по ст. 4 422-ФЗ. С суммы превышения исполнитель теряет статус самозанятого, и компания обязана удерживать НДФЛ 13% и начислять взносы 30%.
+            ⚠️ <strong>Лимит превышен!</strong> Доход превышает порог 2 400 000 ₽ по ст. 4 422-ФЗ. С суммы превышения исполнитель теряет статус НПД, и компания обязана удержать НДФЛ 13% и начислить страховые взносы 30%.
           </div>
         </div>
 
         <!-- OUTPUTS & COMPARISON MATRIX -->
         <div class="se-card">
-          <h3 style="margin-bottom: 1rem; font-size: 1.15rem;">Результаты расчета</h3>
+          <h3 class="se-card__title">Результаты расчета</h3>
 
-          <div class="se-matrix__row">
-            <span>Эффективная ставка налога:</span>
-            <span class="se-matrix__val" id="res-rate">6%</span>
-          </div>
-          <div class="se-matrix__row">
-            <span>Сумма налога НПД:</span>
-            <span class="se-matrix__val" id="res-tax">6 000 ₽</span>
-          </div>
-          <div class="se-matrix__row">
-            <span>Выплата исполнителю «на руки»:</span>
-            <span class="se-matrix__val" id="res-net">94 000 ₽</span>
+          <div class="se-results-grid">
+            <div class="roi-result-card">
+              <span class="roi-result-label">Ставка налога</span>
+              <span class="roi-result-num" id="res-rate">6%</span>
+            </div>
+            <div class="roi-result-card">
+              <span class="roi-result-label">Сумма налога</span>
+              <span class="roi-result-num" id="res-tax">6 000 ₽</span>
+            </div>
+            <div class="roi-result-card">
+              <span class="roi-result-label">«На руки»</span>
+              <span class="roi-result-num" id="res-net">94 000 ₽</span>
+            </div>
           </div>
 
           <div class="se-matrix">
-            <h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; color: #94a3b8;">Сравнение совокупных затрат работодателя (TCO):</h4>
+            <h4 class="se-matrix__title">Сравнение затрат компании при одинаковой сумме «на руки»:</h4>
             <div class="se-matrix__row">
               <span>1. Самозанятый (НПД):</span>
               <span class="se-matrix__val" id="res-tco-se">100 000 ₽</span>
@@ -590,10 +789,10 @@
               <span class="se-matrix__val" id="res-tco-gph">140 460 ₽</span>
             </div>
             <div class="se-matrix__row">
-              <span>3. Трудовой договор ТК РФ (+ отпускные):</span>
+              <span>3. Штат по ТК РФ (+ резерв отпусков):</span>
               <span class="se-matrix__val" id="res-tco-tk">149 425 ₽</span>
             </div>
-            <div class="se-matrix__row" style="background: rgba(16, 185, 129, 0.08); padding: 10px 8px; border-radius: 8px; margin-top: 8px;">
+            <div class="se-matrix__row se-matrix__row--highlight">
               <span style="font-weight: 600; color: #34d399;">Экономия бюджета компании:</span>
               <span class="se-matrix__val se-matrix__val--accent" id="res-save">49 425 ₽ (−33.1%)</span>
             </div>
@@ -601,30 +800,30 @@
 
           <!-- FTS Compliance Radar -->
           <div class="se-radar">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span class="se-radar__title">🛡️ ФНС-Радар: Риск переквалификации</span>
+            <div class="se-radar__header">
+              <span class="se-radar__title">🛡️ Проверка рисков переквалификации ФНС</span>
               <span class="se-radar__badge se-radar__badge--green" id="radar-badge">Риск: Низкий (0/5)</span>
             </div>
-            <p style="font-size:0.8rem; color:#94a3b8; margin-bottom: 0.75rem;">Отметьте признаки для экспресс-оценки по алгоритмам АСК НПД:</p>
-            <label class="se-checkbox-label" style="margin-top:4px;">
+            <p class="se-radar__hint">Критерии скоринга АСК НПД при проверках:</p>
+            <label class="se-checkbox-label">
               <input type="checkbox" class="radar-box" />
-              <span>Выплаты проводятся строго в фиксированные дни 2 раза в месяц</span>
+              <span>Выплаты проводятся 2 раза в месяц в фиксированные даты</span>
             </label>
-            <label class="se-checkbox-label" style="margin-top:4px;">
+            <label class="se-checkbox-label">
               <input type="checkbox" class="radar-box" />
-              <span>Компания является единственным источником дохода исполнителя</span>
+              <span>Компания — единственный источник дохода исполнителя</span>
             </label>
-            <label class="se-checkbox-label" style="margin-top:4px;">
+            <label class="se-checkbox-label">
               <input type="checkbox" class="radar-box" />
-              <span>Предоставляется стационарное рабочее место и оборудование</span>
+              <span>Предоставляется постоянное рабочее место и оборудование</span>
             </label>
-            <label class="se-checkbox-label" style="margin-top:4px;">
+            <label class="se-checkbox-label">
               <input type="checkbox" class="radar-box" />
-              <span>Исполнитель подчиняется трудовому распорядку и регламентам</span>
+              <span>Исполнитель подчиняется трудовому распорядку заказчика</span>
             </label>
-            <label class="se-checkbox-label" style="margin-top:4px;">
+            <label class="se-checkbox-label">
               <input type="checkbox" class="radar-box" />
-              <span>В договоре указана трудовая функция вместо конкретного результата</span>
+              <span>В договоре указана трудовая функция вместо конкретного объема работ</span>
             </label>
           </div>
         </div>
@@ -643,17 +842,17 @@
         <div class="symptom-card">
           <div class="symptom-card__icon">⚖️</div>
           <h3 class="symptom-card__title">Доначисления НДФЛ и взносов 43%</h3>
-          <p class="symptom-card__desc">Скоринговая система ФНС АСК НПД автоматически анализирует регулярность и источники выплат. При признаках трудовых отношений налоги доначисляются со штрафом до 40%.</p>
+          <p class="symptom-card__desc">Алгоритмы АСК НПД ФНС отслеживают периодичность выплат. При признаках трудовых отношений налоги доначисляются со штрафом до 40%.</p>
         </div>
         <div class="symptom-card">
           <div class="symptom-card__icon">📈</div>
           <h3 class="symptom-card__title">Превышение лимита 2,4 млн ₽</h3>
-          <p class="symptom-card__desc">Если исполнитель утратил право на НПД в середине года из-за превышения порога, а бухгалтерия не проверила статус, компания становится налоговым агентом задним числом.</p>
+          <p class="symptom-card__desc">Если исполнитель превысил годовой доход, а бухгалтерия вовремя не проверила статус, компания признается налоговым агентом задним числом.</p>
         </div>
         <div class="symptom-card">
           <div class="symptom-card__icon">📁</div>
-          <h3 class="symptom-card__title">Ручной сбор и потеря чеков</h3>
-          <p class="symptom-card__desc">Бухгалтеры тратят десятки часов на напоминания в мессенджерах. Без чека из приложения «Мой налог» сумму выплаты нельзя учесть в расходах по ст. 252 НК РФ.</p>
+          <h3 class="symptom-card__title">Потеря фискальных чеков</h3>
+          <p class="symptom-card__desc">Без чека из сервиса «Мой налог» выплату нельзя учесть в расходах по ст. 252 НК РФ, что ведет к доначислению налога на прибыль.</p>
         </div>
       </div>
     </div>
@@ -669,27 +868,27 @@
       <div class="services__bento" data-reveal="">
         <div class="scard">
           <div class="scard__icon">⚙️</div>
-          <h3 class="scard__title">Документ ВыплатаСамозанятым</h3>
-          <p class="scard__desc">Типовой реестровый документ 1С:БП 3.0 КОРП для автоматического формирования ведомостей и платежных поручений в банк.</p>
+          <h3 class="scard__title">Документ «Выплаты самозанятым»</h3>
+          <p class="scard__desc">Штатный реестровый документ в 1С:БП 3.0 КОРП для автоматического формирования ведомостей и банковских платежей.</p>
           <div class="scard__tags"><span>1С:БП 3.0</span><span>Реестры</span><span>Счет 76.09</span></div>
         </div>
         <div class="scard">
           <div class="scard__icon">🛡️</div>
-          <h3 class="scard__title">Регистр СтатусыСамозанятыхФНС</h3>
-          <p class="scard__desc">Фоновый опрос открытого API ФНС (npd-public.nalog.ru) по ИНН перед проведением каждой транзакции.</p>
-          <div class="scard__tags"><span>Open API</span><span>Кэш 24ч</span><span>Блокировка сбоев</span></div>
+          <h3 class="scard__title">Регистр «Статусы самозанятых»</h3>
+          <p class="scard__desc">Автоматическая проверка статуса через API ФНС (npd-public.nalog.ru) по ИНН перед каждой транзакцией.</p>
+          <div class="scard__tags"><span>API ФНС</span><span>Кэш 24ч</span><span>Защита от сбоев</span></div>
         </div>
         <div class="scard">
           <div class="scard__icon">🧾</div>
-          <h3 class="scard__title">Автофискализация ЧекиСамозанятых</h3>
-          <p class="scard__desc">Автоматическое получение ссылок на чеки через шлюз DirectBank в момент проведения платежа без ручной переписки.</p>
+          <h3 class="scard__title">Автофискализация чеков</h3>
+          <p class="scard__desc">Получение электронных чеков через шлюз DirectBank в момент проведения платежа без ручной переписки.</p>
           <div class="scard__tags"><span>Т-Банк</span><span>Сбер</span><span>Точка</span></div>
         </div>
         <div class="scard">
           <div class="scard__icon">⚡</div>
           <h3 class="scard__title">Проводки Дт 20/26/44 — Кт 76.09</h3>
-          <p class="scard__desc">Корректное закрытие затрат на основании документа ПоступлениеТоваровУслуг с видом операции «Услуги».</p>
-          <div class="scard__tags"><span>БУ/НУ</span><span>Ст. 252 НК РФ</span><span>0 ошибок</span></div>
+          <p class="scard__desc">Корректное отнесение затрат на расходы компании по ст. 252 НК РФ на основании закрывающих документов.</p>
+          <div class="scard__tags"><span>БУ и НУ</span><span>Ст. 252 НК РФ</span><span>Без ошибок</span></div>
         </div>
       </div>
     </div>
@@ -708,7 +907,7 @@
           <h3 class="case-card__title">Авторазнесение 50 000 банковских выписок и платежей за 8.4 секунды</h3>
           <p class="case-card__desc">Сквозная сверка расчетных счетов и реестров выплат в 1С через протокол DirectBank с точностью 99.2%.</p>
           <div class="case-card__results">
-            <div class="case-result"><span class="case-result__num">8.4 сек</span><span class="case-result__label">на 50k операций</span></div>
+            <div class="case-result"><span class="case-result__num">8.4 сек</span><span class="case-result__label">на 50 тыс. операций</span></div>
             <div class="case-result"><span class="case-result__num case-num--green">99.2%</span><span class="case-result__label">точность сверки</span></div>
             <div class="case-result"><span class="case-result__num case-num--gold">0</span><span class="case-result__label">ручных расхождений</span></div>
           </div>
@@ -716,12 +915,12 @@
         </div>
         <div class="case-card case-card--edi">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--edi"></span>🏭 Завод промышленного оборудования</div>
-          <h3 class="case-card__title">Сквозное ЭДО и синхронизация реестров выплат внештатникам</h3>
+          <h3 class="case-card__title">Сквозной документооборот и сверка выплат внештатникам</h3>
           <p class="case-card__desc">Автоматизация сбора чеков и закрытие первичных документов в 1С за 5 минут вместо 3 рабочих дней бухгалтерии.</p>
           <div class="case-card__results">
             <div class="case-result"><span class="case-result__num case-num--green">−90%</span><span class="case-result__label">бумажной рутины</span></div>
             <div class="case-result"><span class="case-result__num case-num--cyan">5 мин</span><span class="case-result__label">закрытие периода</span></div>
-            <div class="case-result"><span class="case-result__num case-num--gold">≥ 400%</span><span class="case-result__label">ROI проекта</span></div>
+            <div class="case-result"><span class="case-result__num case-num--gold">≥ 400%</span><span class="case-result__label">Окупаемость</span></div>
           </div>
           <div class="case-card__tags"><span>1С:ERP</span><span>Диадок</span><span>ЭДО</span></div>
         </div>
@@ -743,76 +942,116 @@
   <!-- ═══════════════════ FAQ ═══════════════════ -->
   <section class="faq" id="faq">
     <div class="container">
-      <div class="section-header">
-        <p class="section-tag" data-reveal="">Частые вопросы</p>
-        <h2 class="section-title" data-reveal="">Вопросы и ответы по работе с самозанятыми в 1С</h2>
+      <div class="section-header" data-reveal="">
+        <span class="section-tag">Ответы на вопросы</span>
+        <h2 class="section-title">Вопросы и ответы по расчетам с самозанятыми в 1С</h2>
+        <p class="section-desc" style="color:var(--text-2);margin-top:12px;">Всё о ставках налога, сверке с сервисами ФНС и защите от переквалификации</p>
       </div>
-      <div class="faq__accordion" data-reveal="">
-        <details class="faq__item" open="">
-          <summary class="faq__question">
-            <span>Как автоматизировать проверку статуса самозанятого перед каждой выплатой в 1С?</span>
-            <span class="faq__icon" aria-hidden="true">+</span>
-          </summary>
-          <div class="faq__answer">
-            <p>Модуль интеграции выполняет фоновый HTTP-запрос к API ФНС (npd-public.nalog.ru) по ИНН исполнителя непосредственно перед проведением платежного поручения в 1С. Если статус аннулирован или превышен лимит 2,4 млн ₽, проведение блокируется.</p>
+      <div class="faq__grid" data-reveal="">
+        <div class="faq-item">
+          <button class="faq-item__header" aria-expanded="false" type="button">
+            <span class="faq-item__question">Как автоматизировать проверку статуса самозанятого перед выплатой в 1С?</span>
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__inner">
+              <p>Модуль интеграции делает фоновый запрос к открытому сервису ФНС по ИНН исполнителя перед проведением платежа. Если статус аннулирован или превышен лимит 2,4 млн ₽, проведение документа в 1С автоматически блокируется.</p>
+            </div>
           </div>
-        </details>
-        <details class="faq__item">
-          <summary class="faq__question">
-            <span>Что делать, если внештатный исполнитель не предоставил чек после получения денег?</span>
-            <span class="faq__icon" aria-hidden="true">+</span>
-          </summary>
-          <div class="faq__answer">
-            <p>При интеграции с банковскими сервисами выплат (номинальные счета) чек формируется автоматически через открытый банковский шлюз ФНС в момент перечисления средств и сразу подкрепляется к документу ВыплатаСамозанятым в 1С.</p>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-item__header" aria-expanded="false" type="button">
+            <span class="faq-item__question">Что делать, если внештатный исполнитель не предоставил чек?</span>
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__inner">
+              <p>При интеграции с номинальными счетами банков чек формируется автоматически через шлюз ФНС в момент списания средств и сразу подкрепляется к проводке документа в 1С без ручной переписки.</p>
+            </div>
           </div>
-        </details>
-        <details class="faq__item">
-          <summary class="faq__question">
-            <span>Как компания защищена от претензий налоговой о переквалификации в трудовые отношения?</span>
-            <span class="faq__icon" aria-hidden="true">+</span>
-          </summary>
-          <div class="faq__answer">
-            <p>Внедряется регламент формирования проектных ТЗ, актов выполненных объемов работ с переменной оплатой и децентрализованный график задач без фиксации рабочего времени и должностных обязанностей.</p>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-item__header" aria-expanded="false" type="button">
+            <span class="faq-item__question">Как защитить компанию от претензий налоговой о переквалификации?</span>
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__inner">
+              <p>Внедряются проектные технические задания и акты с оплатой за конкретный объем работ, без фиксации рабочего времени и подчинения штатному трудовому распорядку предприятия.</p>
+            </div>
           </div>
-        </details>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════ LEAD CAPTURE FORM ═══════════════════ -->
+  <!-- ═══════════════════ CTA + CONTACT ═══════════════════ -->
   <section class="contact" id="contact">
     <div class="container">
-      <div class="contact__card" data-reveal="">
-        <div class="contact__header">
-          <p class="section-tag">Бесплатный аудит</p>
-          <h2 class="section-title">Аудит выплат самозанятым и рисков переквалификации ФНС</h2>
-          <p class="contact__desc">
-            Проведем аудит договоров и актов с самозанятыми, настроим модуль автопроверки чеков в 1С и снизим налоговые риски компании за 14 дней.
-          </p>
+      <div class="contact__inner" data-reveal="">
+        <div class="contact__text">
+          <span class="section-tag" style="margin-bottom:12px;display:inline-block;">Бесплатный аудит</span>
+          <h2 class="contact__title">Аудит выплат самозанятым и рисков переквалификации</h2>
+          <p class="contact__desc">За 30 минут разберем ваши договоры и акты с внештатными исполнителями, выявим риски переквалификации по критериям ФНС и покажем схему автопроверки чеков в 1С.</p>
+          <ul class="contact__benefits">
+            <li><strong>30 минут</strong> — экспресс-анализ с ведущим архитектором 1С</li>
+            <li><strong>0 рисков</strong> — проверка формулировок договоров по чек-листу ФНС</li>
+            <li><strong>14 дней</strong> — подключение сквозной автопроверки статусов и чеков</li>
+          </ul>
         </div>
-        <form class="contact__form" id="lead-form" method="POST" action="https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/lead">
-          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
-          <input type="hidden" name="source" value="/calculator/self-employed/" />
-          <div class="form-group">
-            <label for="lead-name">Ваше имя *</label>
-            <input type="text" id="lead-name" name="name" required="" placeholder="Константин" class="form-input" />
+        <!--email_off-->
+        <form class="contact__form" id="contact-form" name="contact" method="POST" action="/api/lead" novalidate="">
+          <input type="hidden" name="_next" value="https://ai-avtopilot.ru/success.html" />
+          <input type="hidden" name="_subject" value="Новая заявка на аудит самозанятых с сайта ai-avtopilot.ru" />
+          <div class="form-group form-group--required">
+            <div class="form-label-row">
+              <label for="contact-name">Ваше имя <span class="required-star" aria-label="Обязательное поле" title="Обязательное поле">*</span></label>
+              <span class="required-badge">обязательно</span>
+            </div>
+            <div class="form-field-wrap">
+              <input type="text" id="contact-name" name="name" placeholder="Константин" required="" autocomplete="name" />
+            </div>
           </div>
           <div class="form-group">
-            <label for="lead-contact">Телефон или Telegram *</label>
-            <input type="text" id="lead-contact" name="contact" required="" placeholder="+7 (999) 000-00-00 или @username" class="form-input" />
+            <div class="form-label-row">
+              <label for="contact-company">Компания</label>
+              <span class="optional-hint">необязательно</span>
+            </div>
+            <div class="form-field-wrap">
+              <input type="text" id="contact-company" name="company" placeholder="ООО «Компания»" autocomplete="organization" />
+            </div>
           </div>
-          <div class="form-group">
-            <label for="lead-volume">Количество самозанятых в компании</label>
-            <input type="text" id="lead-volume" name="volume" placeholder="От 5 человек (объем выплат от 300 000 ₽/мес)" class="form-input" />
+          <div class="form-group form-group--required">
+            <div class="form-label-row">
+              <label for="contact-email">Телефон или Telegram / почта <span class="required-star" aria-label="Обязательное поле" title="Обязательное поле">*</span></label>
+              <span class="required-badge">обязательно</span>
+            </div>
+            <div class="form-field-wrap">
+              <input type="text" id="contact-email" name="contact" placeholder="+7 (999) 000-00-00 или @username" required="" autocomplete="on" />
+            </div>
           </div>
-          <div class="form-group form-group--checkbox">
-            <label class="checkbox-label">
-              <input type="checkbox" name="consent" required="" checked="" />
-              <span>Согласен на обработку персональных данных в соответствии с <a href="/privacy.html" target="_blank" rel="noopener">152-ФЗ</a> *</span>
-            </label>
-          </div>
-          <button type="submit" class="btn btn--primary btn--submit">Записаться на аудит 1С</button>
+
+          <!-- Согласие 152-ФЗ -->
+          <input type="hidden" name="consent" value="accepted" />
+
+          <!-- Multi-Layer Anti-Bot Honeypot -->
+          <input type="text" name="_honey" class="honeypot-input" style="display:none!important;" tabindex="-1" autocomplete="off" />
+          <input type="hidden" name="_ts" id="lead-ts" value="" />
+
+          <button type="submit" class="btn btn--primary btn--full" id="form-submit">
+            Записаться на аудит 1С
+          </button>
+          <p class="form-privacy">Нажимая кнопку, вы подтверждаете согласие на обработку персональных данных в соответствии с <a href="/privacy.html" target="_blank" rel="noopener noreferrer" class="form-link">Политикой конфиденциальности</a> (152-ФЗ)</p>
+          <div class="form-message" id="form-message" style="display:none;"></div>
+          <noscript>
+            <div class="noscript-lead-fallback" style="margin-top:12px;padding:10px 14px;background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.3);border-radius:8px;font-size:0.85rem;color:var(--text-2,#94a3b8);text-align:center;">
+              Для быстрой связи напишите нам в Telegram: <a href="https://t.me/AiAvtopilotbot" target="_blank" rel="noopener" style="color:var(--accent-1,#6366f1);font-weight:600;text-decoration:underline;">@AiAvtopilotbot</a> или на <a href="mailto:contact@ai-avtopilot.ru" style="color:var(--accent-1,#6366f1);text-decoration:underline;">contact@ai-avtopilot.ru</a>
+            </div>
+          </noscript>
         </form>
+        <!--/email_off-->
       </div>
     </div>
   </section>
@@ -1004,11 +1243,20 @@
       return Math.round(n).toLocaleString('ru-RU') + ' ₽';
     }
 
+    function updateSliderFill(sl) {
+      if (!sl) return;
+      var min = +sl.min || 0, max = +sl.max || 100, val = +sl.value || 0;
+      var pct = ((val - min) / (max - min)) * 100;
+      sl.style.background = 'linear-gradient(to right, #6366f1 0%, #a855f7 ' + pct + '%, rgba(255, 255, 255, 0.1) ' + pct + '%, rgba(255, 255, 255, 0.1) 100%)';
+    }
+
     function recalc() {
       var S = parseFloat(amountInput.value) || 0;
       var YTD = parseFloat(ytdInput.value) || 0;
       amountDisp.textContent = fmtRub(S);
       ytdDisp.textContent = fmtRub(YTD);
+      updateSliderFill(amountInput);
+      updateSliderFill(ytdInput);
 
       // Check 2.4M threshold
       if ((YTD + S) > 2400000) {
