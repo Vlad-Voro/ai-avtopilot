@@ -1355,6 +1355,139 @@
   })();
 </script>
 
+<!-- Self-Employed Page Interactive Controllers (FAQ Accordion & Lead Form Submission) -->
+<script>
+  (function() {
+    function initFaq() {
+      document.querySelectorAll('.faq-item__header').forEach(function(btn) {
+        if (btn.__faqBound) return;
+        btn.__faqBound = true;
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var item = this.closest('.faq-item');
+          if (!item) return;
+          var wasActive = item.classList.contains('active');
+          document.querySelectorAll('.faq-item').forEach(function(i) {
+            i.classList.remove('active');
+            var b = i.querySelector('.faq-item__header');
+            if (b) b.setAttribute('aria-expanded', 'false');
+          });
+          if (!wasActive) {
+            item.classList.add('active');
+            this.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    }
+
+    function initForm() {
+      var form = document.getElementById('contact-form');
+      if (!form || form.__leadBound) return;
+      form.__leadBound = true;
+
+      var tsInput = document.getElementById('lead-ts');
+      form.querySelectorAll('input').forEach(function(inp) {
+        inp.addEventListener('focus', function() {
+          if (tsInput && !tsInput.value) tsInput.value = Date.now();
+        }, { once: true });
+      });
+
+      form.addEventListener('submit', async function(ev) {
+        ev.preventDefault();
+        var submitBtn = document.getElementById('form-submit');
+        var nameInput = form.querySelector('[name="name"]');
+        var contactInput = form.querySelector('[name="contact"]');
+        var compInput = form.querySelector('[name="company"]');
+        var honeyInput = form.querySelector('[name="_honey"]');
+        var msgBox = document.getElementById('form-message') || form.querySelector('.form-message');
+
+        var nameVal = (nameInput ? nameInput.value : '').trim();
+        var contactVal = (contactInput ? contactInput.value : '').trim();
+        var compVal = (compInput ? compInput.value : '').trim();
+
+        if (honeyInput && honeyInput.value) {
+          form.innerHTML = '<div class="form-success"><div class="form-success__icon">✓</div><h3 class="form-success__title">Заявка отправлена!</h3><p class="form-success__text">Спасибо! Мы свяжемся с вами в ближайшее время.</p></div>';
+          return;
+        }
+
+        if (!nameVal) {
+          if (nameInput) nameInput.focus();
+          return;
+        }
+        if (!contactVal) {
+          if (contactInput) contactInput.focus();
+          return;
+        }
+
+        var origText = submitBtn ? submitBtn.innerHTML : 'Записаться на аудит 1С';
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = 'Отправка...';
+        }
+
+        var payload = JSON.stringify({
+          name: nameVal,
+          company: compVal || 'Не указана',
+          contact: contactVal,
+          source: '/calculator/self-employed/'
+        });
+
+        var ok = false;
+        try {
+          var res = await fetch('https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: payload
+          });
+          if (res.ok) {
+            var data = await res.json().catch(function() { return {}; });
+            if (data && (data.success === true || data.success === 'true')) ok = true;
+          }
+        } catch (e1) {}
+
+        if (!ok) {
+          try {
+            var res2 = await fetch('/api/lead', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: payload
+            });
+            if (res2.ok) ok = true;
+          } catch (e2) {}
+        }
+
+        if (ok) {
+          if (typeof ym !== 'undefined') {
+            ym(112978516, 'reachGoal', 'lead_form_success');
+            ym(112978516, 'reachGoal', 'lead_form_submitted');
+          }
+          form.innerHTML = '<div class="form-success"><div class="form-success__icon">✓</div><h3 class="form-success__title">Заявка отправлена!</h3><p class="form-success__text">Спасибо, <strong>' + nameVal + '</strong>! Мы свяжемся с вами в ближайшее время.</p><div class="form-success__details"><span>📋 ' + (compVal || 'Компания не указана') + '</span><span>📱 ' + contactVal + '</span></div></div>';
+          setTimeout(function() { window.location.href = '/success.html'; }, 1200);
+        } else {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = origText;
+          }
+          if (msgBox) {
+            msgBox.innerHTML = '<div class="form-fallback-card" style="margin-top:14px;padding:14px 16px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.3);border-radius:10px;text-align:left;"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;color:#ef4444;font-weight:600;font-size:0.92rem;"><span>⚠️</span><span>Сбой сети при отправке</span></div><p style="margin:0 0 10px;font-size:0.85rem;color:var(--text-2,#94a3b8);line-height:1.45;">Передайте заявку напрямую в Telegram — бот примет её мгновенно:</p><div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;"><a href="https://t.me/AiAvtopilotbot" target="_blank" rel="noopener" class="btn btn--primary" style="padding:7px 12px;font-size:0.82rem;text-decoration:none;">✈️ Открыть @AiAvtopilotbot</a></div></div>';
+            msgBox.style.display = 'block';
+          }
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        initFaq();
+        initForm();
+      });
+    } else {
+      initFaq();
+      initForm();
+    }
+  })();
+</script>
+
 <!-- Express Contact Modal Controller -->
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded', function() {
