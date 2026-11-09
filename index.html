@@ -324,6 +324,9 @@ ul{list-style:none}
 .hero__sub{color:var(--text-2);font-size:1.1rem;line-height:1.7;margin-bottom:20px;max-width:500px}
 .hero__actions{display:flex;gap:12px;margin-top:24px;margin-bottom:20px;flex-direction:column;width:100%}
 .hero__actions .btn{width:100%;justify-content:center;text-align:center;box-sizing:border-box}
+.hero__actions .btn--ghost{background:rgba(99,102,241,.18);border:1px solid rgba(168,85,247,.6);box-shadow:0 0 24px rgba(99,102,241,.25),inset 0 1px 1px rgba(255,255,255,.15);font-weight:600}
+.hero__actions .btn--ghost:hover{border-color:rgba(168,85,247,.9);background:rgba(99,102,241,.3);box-shadow:0 0 32px rgba(168,85,247,.45),0 4px 16px rgba(0,0,0,.35),inset 0 1px 1px rgba(255,255,255,.25);transform:translateY(-2px);color:#ffffff}
+.hero__actions .btn--ghost:active{transform:translateY(0) scale(.98);box-shadow:0 0 16px rgba(168,85,247,.3)}
 @media(min-width:640px){
   .hero__actions{flex-direction:row;flex-wrap:nowrap;gap:16px;width:100%}
   .hero__actions .btn{flex:1 1 0;width:auto;justify-content:center;text-align:center;padding:13px 20px;font-size:0.95rem;white-space:nowrap;box-sizing:border-box}
@@ -2457,7 +2460,7 @@ section[id] {
           Устраняем ручной ввод и сверку первички, высвобождая до 80% времени команды.
         </p>
         <div class="hero__actions">
-          <a href="#contact" class="btn btn--primary" id="cta-main">Запустить автоматизацию</a>
+          <a href="/services/" class="btn btn--ghost" id="cta-main">Смотреть услуги →</a>
           <a href="/cases/" class="btn btn--ghost">Смотреть кейсы →</a>
         </div>
         <div class="hero__kpis">
