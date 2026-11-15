@@ -51,15 +51,31 @@ module.exports = async function handler(req, res) {
     // Forward to Cloudflare Worker Gateway
     const cfRes = await fetch("https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/submit", {
       method: "POST",
+      redirect: "manual",
       headers: {
         "Content-Type": "application/json",
+        "Accept": req.headers.accept || "application/json",
         "Origin": "https://ai-avtopilot.ru",
         "Referer": "https://ai-avtopilot.ru/",
       },
       body: JSON.stringify(body || {}),
     });
 
-    const cfData = await cfRes.json();
+    if (cfRes.status >= 300 && cfRes.status < 400) {
+      const location = cfRes.headers.get("location");
+      if (location) {
+        res.setHeader("Location", location);
+        return res.status(cfRes.status).end();
+      }
+    }
+
+    const rawText = await cfRes.text();
+    let cfData;
+    try {
+      cfData = JSON.parse(rawText);
+    } catch (_) {
+      cfData = { success: false, error: rawText || "Upstream gateway error" };
+    }
     return res.status(cfRes.status).json(cfData);
   } catch (err) {
     console.error("Error in /api/lead:", err);

@@ -5,6 +5,12 @@
   "redirects": [
     {
       "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ai-avtopilot.ru"
+        }
+      ],
       "destination": "https://ai-avtopilot.ru/$1",
       "permanent": true
     },
@@ -41,6 +47,10 @@
     {
       "source": "/status",
       "destination": "https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/status"
+    },
+    {
+      "source": "/manifest.json",
+      "destination": "/site.webmanifest"
     }
   ],
   "headers": [
@@ -124,12 +134,6 @@
           "value": "public, max-age=0, must-revalidate"
         }
       ]
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/manifest.json",
-      "destination": "/site.webmanifest"
     }
   ]
 }

@@ -276,16 +276,42 @@ async function runSecuritySuite() {
     });
   });
 
-  // Test 10: SEC-10 - Zero Naked FormSubmit Endpoints & Anti-Spam Form Hardening
-  await test('SEC-10: Zero naked FormSubmit endpoints, no _captcha=false, and valid /api/lead action across HTML files', async () => {
-    const files = ['index.html', 'services/index.html', 'cases/index.html', 'calculator/index.html', 'dashboard/index.html', 'faq/index.html', 'contact/index.html'];
-    files.forEach(f => {
-      const html = fs.readFileSync(path.resolve(__dirname, '../../', f), 'utf8');
-      assert.ok(!html.includes('https://formsubmit.co/'), `Found naked FormSubmit endpoint in ${f}`);
-      assert.ok(!html.includes('_captcha'), `Found _captcha flag in ${f}`);
-      assert.ok(html.includes('action="/api/lead"'), `Form in ${f} must target /api/lead`);
-      assert.ok(html.includes('name="_honey"'), `Form in ${f} must include honeypot`);
+  // Test 10: SEC-10 - Zero Naked FormSubmit Endpoints & Anti-Spam Form Hardening (all 44 form pages)
+  await test('SEC-10: Zero naked FormSubmit endpoints, no _captcha=false, and valid worker /submit action across all 44 form HTML files', async () => {
+    const rootDir = path.resolve(__dirname, '../..');
+    const expectedAction = 'action="https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/submit"';
+    const formFiles = [];
+    const walk = dir => {
+      for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        if (entry.name.startsWith('.') || ['node_modules', '_site', 'bot', 'cloudflare-worker', 'api', 'scripts', 'tests', 'data', 'tmp'].includes(entry.name)) continue;
+        const full = path.join(dir, entry.name);
+        if (entry.isDirectory()) walk(full);
+        else if (entry.name.endsWith('.html')) {
+          const html = fs.readFileSync(full, 'utf8');
+          if (html.includes('id="contact-form"')) formFiles.push({ rel: path.relative(rootDir, full), html });
+        }
+      }
+    };
+    walk(rootDir);
+    assert.strictEqual(formFiles.length, 44, `Expected 44 HTML pages with #contact-form, got ${formFiles.length}`);
+    formFiles.forEach(({ rel, html }) => {
+      assert.ok(!html.includes('https://formsubmit.co/'), `Found naked FormSubmit endpoint in ${rel}`);
+      assert.ok(!html.includes('_captcha'), `Found _captcha flag in ${rel}`);
+      assert.ok(html.includes(expectedAction), `Form in ${rel} must target ${expectedAction}`);
+      assert.ok(html.includes('name="_honey"'), `Form in ${rel} must include honeypot`);
     });
+  });
+
+  // Test 11: SEC-11 - vercel.json unique keys & www host guard on apex redirect
+  await test('SEC-11: vercel.json has no duplicate top-level keys and scopes apex redirect to www.ai-avtopilot.ru', async () => {
+    const vercelPath = path.resolve(__dirname, '../../vercel.json');
+    const raw = fs.readFileSync(vercelPath, 'utf8');
+    const topKeys = [...raw.matchAll(/^  "([^"]+)":/gm)].map(m => m[1]);
+    assert.strictEqual(new Set(topKeys).size, topKeys.length, `Duplicate top-level keys in vercel.json: ${topKeys.join(', ')}`);
+    const cfg = JSON.parse(raw);
+    assert.ok(Array.isArray(cfg.rewrites) && cfg.rewrites.some(r => r.source === '/submit') && cfg.rewrites.some(r => r.source === '/manifest.json'), 'vercel.json rewrites must keep both /submit and /manifest.json');
+    const apexRedirect = cfg.redirects && cfg.redirects[0];
+    assert.ok(apexRedirect && Array.isArray(apexRedirect.has) && apexRedirect.has.some(h => h.type === 'host' && h.value === 'www.ai-avtopilot.ru'), 'vercel.json redirects[0] must guard with host www.ai-avtopilot.ru');
   });
 
   console.log(`\n${C.bold}▶ [Category 3] WCAG AA Palette Contrast Audit (Promoted from Tier 3)${C.reset}`);

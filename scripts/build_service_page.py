@@ -766,7 +766,7 @@ def generate_service_html(data: dict) -> str:
           <p class="contact__desc">За 30 минут разберем ваши процессы, покажем узкие места в текущем учете и рассчитаем потенциал экономии для вашей компании.</p>
         </div>
         <!--email_off-->
-        <form class="contact__form" id="contact-form" name="contact" method="POST" action="/api/lead" novalidate="">
+        <form class="contact__form" id="contact-form" name="contact" method="POST" action="https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/submit" novalidate="">
           <input type="hidden" name="_next" value="https://ai-avtopilot.ru/success.html" />
           <input type="hidden" name="_subject" value="Новая заявка на аудит с сайта ai-avtopilot.ru ({slug})" />
           <div class="form-group form-group--required">
@@ -1144,17 +1144,6 @@ def generate_service_html(data: dict) -> str:
           // Dispatch in parallel: Telegram via Worker + Email via FormSubmit
           var tgPromise = (async function() {{
             try {{
-              var r0 = await fetch('/api/lead', {{
-                method: 'POST',
-                headers: {{ 'Content-Type': 'application/json' }},
-                body: JSON.stringify(payload)
-              }});
-              if (r0.ok) {{
-                var d0 = await r0.json();
-                if (d0 && (d0.success === true || d0.success === 'true')) return true;
-              }}
-            }} catch (_locErr) {{}}
-            try {{
               var res = await fetch('https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/submit', {{
                 method: 'POST',
                 headers: {{ 'Content-Type': 'application/json' }},
@@ -1167,6 +1156,17 @@ def generate_service_html(data: dict) -> str:
                 }}
               }}
             }} catch (_cfErr) {{}}
+            try {{
+              var r0 = await fetch('/api/lead', {{
+                method: 'POST',
+                headers: {{ 'Content-Type': 'application/json' }},
+                body: JSON.stringify(payload)
+              }});
+              if (r0.ok) {{
+                var d0 = await r0.json();
+                if (d0 && (d0.success === true || d0.success === 'true')) return true;
+              }}
+            }} catch (_locErr) {{}}
             try {{
               var r2 = await fetch('/submit', {{
                 method: 'POST',

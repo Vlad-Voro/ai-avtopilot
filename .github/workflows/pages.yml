@@ -1,0 +1,96 @@
+name: Deploy Static Site to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build, Guard & Deploy _site
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run offline security, SEO & resiliency checks
+        run: |
+          node tests/unit/test_roi_calculator.js
+          node tests/seo/test_seo_audit.js
+          node tests/security/test_security_audit.js
+          node tests/resiliency/test_resiliency_jtbd.js
+          node tests/unit/test_favicon_invariants.js
+          node tests/unit/test_compare_card_invariants.js
+
+      - name: Assemble whitelisted _site directory
+        run: |
+          rm -rf _site
+          mkdir -p _site
+
+          # 19 public root files
+          for f in \
+            index.html 404.html success.html privacy.html \
+            robots.txt sitemap.xml llms.txt llms-full.txt \
+            manifest.json site.webmanifest CNAME \
+            favicon.ico favicon-16x16.png favicon-32x32.png \
+            apple-touch-icon.png icon.svg og-image.png \
+            yandex_cd29b4304b5e16c6.html d8a24f0c9b7e416a9e3d81b7e651c4a0.txt; do
+            cp "$f" "_site/$f"
+          done
+
+          # 9 public directories
+          for d in \
+            .well-known assets calculator cases contact \
+            dashboard faq pricing services; do
+            cp -R "$d" "_site/$d"
+          done
+
+          # Enable dotfiles (e.g. .well-known/security.txt) inside _site only
+          touch _site/.nojekyll
+
+      - name: Guard against private source or secret leaks
+        run: |
+          for forbidden in \
+            _site/.git _site/.github _site/api _site/bot \
+            _site/cloudflare-worker _site/data _site/scripts \
+            _site/tests _site/tmp _site/vercel.json; do
+            if [ -e "$forbidden" ]; then
+              echo "::error::Forbidden path found in _site: $forbidden"
+              exit 1
+            fi
+          done
+
+          leaked=$(find _site -type f \( -name '*.md' -o -name '.env' -o -name '.env.*' \))
+          if [ -n "$leaked" ]; then
+            echo "::error::Forbidden files found in _site: $leaked"
+            exit 1
+          fi
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
