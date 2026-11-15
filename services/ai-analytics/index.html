@@ -81,8 +81,7 @@
 <link as="font" crossorigin="" href="/assets/fonts/Inter-400-1.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/assets/fonts/Outfit-600-14.woff2" rel="preload" type="font/woff2"/>
 <!-- Inlined Styles (Eliminates Render-Blocking CSS & Critical Request Chains) -->
-<style id="app-styles">
-@font-face {
+<style id="app-styles">@font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -309,9 +308,6 @@ ul{list-style:none}
 .hero__sub{color:var(--text-2);font-size:1.1rem;line-height:1.7;margin-bottom:20px;max-width:500px}
 .hero__actions{display:flex;gap:12px;margin-top:24px;margin-bottom:20px;flex-direction:column;width:100%}
 .hero__actions .btn{width:100%;justify-content:center;text-align:center;box-sizing:border-box}
-.hero__actions .btn--ghost{background:rgba(99,102,241,.18);border:1px solid rgba(168,85,247,.6);box-shadow:0 0 24px rgba(99,102,241,.25),inset 0 1px 1px rgba(255,255,255,.15);font-weight:600}
-.hero__actions .btn--ghost:hover{border-color:rgba(168,85,247,.9);background:rgba(99,102,241,.3);box-shadow:0 0 32px rgba(168,85,247,.45),0 4px 16px rgba(0,0,0,.35),inset 0 1px 1px rgba(255,255,255,.25);transform:translateY(-2px);color:#ffffff}
-.hero__actions .btn--ghost:active{transform:translateY(0) scale(.98);box-shadow:0 0 16px rgba(168,85,247,.3)}
 @media(min-width:640px){
   .hero__actions{flex-direction:row;flex-wrap:nowrap;gap:16px;width:100%}
   .hero__actions .btn{flex:1 1 0;width:auto;justify-content:center;text-align:center;padding:13px 20px;font-size:0.95rem;white-space:nowrap;box-sizing:border-box}
@@ -2353,12 +2349,14 @@ section[id] {
   .footer__dual-btn,#open-express-modal{min-height:44px}
   .slider-controls,.services-dots,.other-services-dots,.pricing-dots,.carousel-dots{max-width:100%;overflow-x:auto}
   /* Pricing Section & Tablet Nav Compression */
-  .pricing{padding:20px 0 32px;position:relative;overflow-x:hidden}
-  .pricing__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch;scrollbar-width:none}
+  .pricing{padding:20px 0 32px;position:relative;overflow-x:clip;overflow-y:visible}
+  .pricing__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch;scrollbar-width:none;overflow-y:clip}
   .pricing__grid::-webkit-scrollbar{display:none}
   .pricing__grid.is-nudging{animation:sNudge 1s cubic-bezier(.25,1,.4,1) 1;will-change:transform}
-  .pricing__card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:22px 20px;display:flex;flex-direction:column;gap:14px;position:relative;min-width:0;overflow-wrap:break-word;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+  .pricing__card{cursor:pointer;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:22px 20px;display:flex;flex-direction:column;gap:14px;position:relative;min-width:0;overflow-wrap:break-word;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
   .pricing__card:hover{transform:translateY(-4px);border-color:rgba(99,102,241,.45)}
+  .pricing__title-link{color:inherit;text-decoration:none;transition:color .2s ease}
+  .pricing__card:hover .pricing__title-link{color:var(--accent-1)}
   .pricing__card--featured{border-color:rgba(168,85,247,.65);background:linear-gradient(180deg,rgba(99,102,241,.12) 0%,rgba(16,16,28,.92) 100%);box-shadow:0 16px 40px -16px rgba(99,102,241,.4)}
   .pricing__head{display:flex;flex-direction:column;gap:6px}
   .pricing__tier,.pricing__badge{display:inline-flex;align-self:flex-start;padding:4px 12px;border-radius:999px;font-size:.75rem;font-weight:700;letter-spacing:.02em}
@@ -2396,7 +2394,7 @@ section[id] {
   }
   @media(max-width:1024px){
     .pricing{padding:20px 0 32px}
-    .pricing__grid{display:flex;align-items:stretch !important;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;gap:16px;padding:8px 4px 18px;margin:0 -4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+    .pricing__grid{display:flex;align-items:stretch !important;overflow-x:auto;overflow-y:clip !important;scroll-snap-type:x mandatory;scroll-padding:0 16px;gap:16px;padding:8px 4px 18px;margin:0 -4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
     .pricing__card{flex:0 0 min(330px,80vw);scroll-snap-align:center;scroll-snap-stop:normal;display:flex !important;flex-direction:column !important;align-self:stretch !important;height:auto !important;padding:20px 18px}
     .pricing__list{flex:1 1 auto !important}
     .pricing__cta{margin-top:auto !important}
@@ -2407,8 +2405,7 @@ section[id] {
   }
   @media(prefers-reduced-motion:reduce){
     .pricing__grid.is-nudging{animation:none !important}
-  }
-  </style>
+  }</style>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
 <script type="text/javascript">
     (function() {
@@ -2791,6 +2788,7 @@ section[id] {
 </div>
 </section>
 <!-- ═══════════════════ PRICING ═══════════════════ -->
+<!-- ═══════════════════ PRICING ═══════════════════ -->
 <section class="pricing" id="pricing">
 <div class="container">
 <div class="section-header" data-reveal="">
@@ -2799,11 +2797,11 @@ section[id] {
 <p class="section-desc">Фиксированная смета, критерии приемки и гарантийный SLA в договоре.</p>
 </div>
 <div class="pricing__grid">
-<article class="pricing__card" data-reveal="">
+<article class="pricing__card" data-reveal="" onclick="if(!event.target.closest('a.pricing__cta, button')) window.location.href='/pricing/'">
 <div class="pricing__head">
 <span class="pricing__tier">Быстрый старт</span>
-<h3 class="pricing__title">Пилот 14 дней</h3>
-<div class="pricing__price">от 100 000 ₽</div>
+<h3 class="pricing__title"><a class="pricing__title-link" href="/pricing/">Пилот 14 дней</a></h3>
+<div class="pricing__price">от 50 000 ₽</div>
 <p class="pricing__meta">14 дней · 1 процесс</p>
 </div>
 <ul class="pricing__list">
@@ -2813,12 +2811,12 @@ section[id] {
 </ul>
 <a class="btn btn--ghost btn--full pricing__cta" href="#contact">Обсудить пилот</a>
 </article>
-<article class="pricing__card pricing__card--featured" data-reveal="">
+<article class="pricing__card pricing__card--featured" data-reveal="" onclick="if(!event.target.closest('a.pricing__cta, button')) window.location.href='/pricing/'">
 <div class="pricing__head">
 <span class="pricing__badge">★ Оптимальный</span>
-<h3 class="pricing__title">Внедрение под ключ</h3>
-<div class="pricing__price">от 250 000 ₽</div>
-<p class="pricing__meta">250 000 – 550 000 ₽ · 3–6 недель</p>
+<h3 class="pricing__title"><a class="pricing__title-link" href="/pricing/">Внедрение под ключ</a></h3>
+<div class="pricing__price">от 125 000 ₽</div>
+<p class="pricing__meta">125 000 – 275 000 ₽ · 3–6 недель</p>
 </div>
 <ul class="pricing__list">
 <li>1–3 ИИ-агента в ваших рабочих программах</li>
@@ -2827,11 +2825,11 @@ section[id] {
 </ul>
 <a class="btn btn--primary btn--full pricing__cta" href="#contact">Обсудить внедрение</a>
 </article>
-<article class="pricing__card" data-reveal="">
+<article class="pricing__card" data-reveal="" onclick="if(!event.target.closest('a.pricing__cta, button')) window.location.href='/pricing/'">
 <div class="pricing__head">
 <span class="pricing__tier">Закрытый контур</span>
-<h3 class="pricing__title">Серверы компании (On-Premise)</h3>
-<div class="pricing__price">от 800 000 ₽</div>
+<h3 class="pricing__title"><a class="pricing__title-link" href="/pricing/">Серверы компании (On-Premise)</a></h3>
+<div class="pricing__price">от 400 000 ₽</div>
 <p class="pricing__meta">от 6 недель · 152-ФЗ</p>
 </div>
 <ul class="pricing__list">
@@ -2850,10 +2848,6 @@ section[id] {
 <button aria-label="Следующие тарифы" class="slider-arrow slider-arrow--next" id="pricing-next" title="Следующие тарифы" type="button">
 <svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="18"><path d="M9 18l6-6-6-6"></path></svg>
 </button>
-</div>
-<div class="pricing__footnote" data-reveal="">
-<p><strong>Условия РФ:</strong> Договор с юрлицом (ОСНО с НДС 20% или УСН), Диадок и СБИС. Модели и GPU без наценок. Гарантийный SLA 30 дней включен в каждый тариф.</p>
-<a class="pricing__hub-link" href="/pricing/">Подробные условия, SLA и сравнение Cloud vs On-Premise →</a>
 </div>
 </div>
 </section>
@@ -4117,7 +4111,7 @@ section[id] {
       "name": "АвтоПилот — Автоматизация бизнес-процессов ИИ",
       "url": "https://ai-avtopilot.ru/",
       "image": "https://ai-avtopilot.ru/og-image.png",
-      "priceRange": "от 100 000 ₽",
+      "priceRange": "от 50 000 ₽",
       "currenciesAccepted": "RUB",
       "paymentAccepted": "Безналичный расчет, расчетный счет, банковский перевод, СБП, выставление счета через ЭДО (Диадок / СБИС)",
       "serviceType": [
@@ -4156,7 +4150,7 @@ section[id] {
             "name": "Пилот 14 дней",
             "priceSpecification": {
               "@type": "PriceSpecification",
-              "minPrice": "100000",
+              "minPrice": "50000",
               "priceCurrency": "RUB"
             },
             "itemOffered": {
@@ -4169,8 +4163,8 @@ section[id] {
             "name": "Внедрение под ключ",
             "priceSpecification": {
               "@type": "PriceSpecification",
-              "minPrice": "250000",
-              "maxPrice": "550000",
+              "minPrice": "125000",
+              "maxPrice": "275000",
               "priceCurrency": "RUB"
             },
             "itemOffered": {
@@ -4183,7 +4177,7 @@ section[id] {
             "name": "Серверы компании (On-Premise)",
             "priceSpecification": {
               "@type": "PriceSpecification",
-              "minPrice": "800000",
+              "minPrice": "400000",
               "priceCurrency": "RUB"
             },
             "itemOffered": {

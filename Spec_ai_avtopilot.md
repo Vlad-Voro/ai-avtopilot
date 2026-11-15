@@ -92,14 +92,14 @@ flowchart TD
 ### 2.4. Pricing Block Architecture (`#pricing`), `/pricing/` Hub, and AI Tech Stack
 
 #### A. 3-Tier Enterprise Commercial Model
-1. **Tier 1: 14-Day Rapid Pilot (`from 100,000 RUB`)**:
+1. **Tier 1: 14-Day Rapid Pilot (`from 50,000 RUB`)**:
    - Scope: Deploy 1 operational automation workflow in 1C, CRM, or EDI on a sanitized database replica.
    - Financial Invariant: **100% of pilot fee credits toward total project cost** when transitioned within 30 calendar days.
    - Delivery Timeline: Exactly 14 business days.
-2. **Tier 2: Turnkey Enterprise Implementation (`from 250,000 RUB`, budget bracket `250,000–550,000 RUB`)**:
+2. **Tier 2: Turnkey Enterprise Implementation (`from 125,000 RUB`, budget bracket `125,000–275,000 RUB`)**:
    - Scope: 1 to 3 autonomous AI agents integrated into 1C (via OData / REST HTTP services), CRM (Bitrix24, amoCRM), and Corporate RAG Knowledge Base.
    - Execution Window: 3 to 6 weeks. Includes operator training and mandatory 30-day warranty SLA.
-3. **Tier 3: Air-Gapped On-Premise Cluster (`from 800,000 RUB`)**:
+3. **Tier 3: Air-Gapped On-Premise Cluster (`from 400,000 RUB`)**:
    - Scope: Deployment on customer-managed GPU servers with zero external network egress (152-FZ compliance).
    - Integration: Deep integration with 1C:ERP, SAP, corporate access controls, and 24/7 mission-critical SLA.
    - Lead Time: $\ge 6$ weeks including cybersecurity audit.

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-PRICE_RANGE_TEXT = "от 100 000 ₽"
+PRICE_RANGE_TEXT = "от 50 000 ₽"
 
 
 def get_offer_catalog_items() -> list[dict]:
@@ -13,7 +13,7 @@ def get_offer_catalog_items() -> list[dict]:
             "name": "Пилот 14 дней",
             "priceSpecification": {
                 "@type": "PriceSpecification",
-                "minPrice": "100000",
+                "minPrice": "50000",
                 "priceCurrency": "RUB",
             },
             "itemOffered": {
@@ -26,8 +26,8 @@ def get_offer_catalog_items() -> list[dict]:
             "name": "Внедрение под ключ",
             "priceSpecification": {
                 "@type": "PriceSpecification",
-                "minPrice": "250000",
-                "maxPrice": "550000",
+                "minPrice": "125000",
+                "maxPrice": "275000",
                 "priceCurrency": "RUB",
             },
             "itemOffered": {
@@ -40,7 +40,7 @@ def get_offer_catalog_items() -> list[dict]:
             "name": "Серверы компании (On-Premise)",
             "priceSpecification": {
                 "@type": "PriceSpecification",
-                "minPrice": "800000",
+                "minPrice": "400000",
                 "priceCurrency": "RUB",
             },
             "itemOffered": {
@@ -53,11 +53,6 @@ def get_offer_catalog_items() -> list[dict]:
 
 def render_pricing_section(active_hub: bool = False) -> str:
     """Render the unified cross-site #pricing section HTML."""
-    hub_link_html = (
-        ""
-        if active_hub
-        else '\n        <a href="/pricing/" class="pricing__hub-link">Подробные условия, SLA и сравнение Cloud vs On-Premise →</a>'
-    )
     return f"""  <!-- ═══════════════════ PRICING ═══════════════════ -->
   <section class="pricing" id="pricing">
     <div class="container">
@@ -68,11 +63,11 @@ def render_pricing_section(active_hub: bool = False) -> str:
       </div>
 
       <div class="pricing__grid">
-        <article class="pricing__card" data-reveal="">
+        <article class="pricing__card" data-reveal="" onclick="if(!event.target.closest('a.pricing__cta, button')) window.location.href='/pricing/'">
           <div class="pricing__head">
             <span class="pricing__tier">Быстрый старт</span>
-            <h3 class="pricing__title">Пилот 14 дней</h3>
-            <div class="pricing__price">от 100 000 ₽</div>
+            <h3 class="pricing__title"><a href="/pricing/" class="pricing__title-link">Пилот 14 дней</a></h3>
+            <div class="pricing__price">от 50 000 ₽</div>
             <p class="pricing__meta">14 дней · 1 процесс</p>
           </div>
           <ul class="pricing__list">
@@ -83,12 +78,12 @@ def render_pricing_section(active_hub: bool = False) -> str:
           <a href="#contact" class="btn btn--ghost btn--full pricing__cta">Обсудить пилот</a>
         </article>
 
-        <article class="pricing__card pricing__card--featured" data-reveal="">
+        <article class="pricing__card pricing__card--featured" data-reveal="" onclick="if(!event.target.closest('a.pricing__cta, button')) window.location.href='/pricing/'">
           <div class="pricing__head">
             <span class="pricing__badge">★ Оптимальный</span>
-            <h3 class="pricing__title">Внедрение под ключ</h3>
-            <div class="pricing__price">от 250 000 ₽</div>
-            <p class="pricing__meta">250 000 – 550 000 ₽ · 3–6 недель</p>
+            <h3 class="pricing__title"><a href="/pricing/" class="pricing__title-link">Внедрение под ключ</a></h3>
+            <div class="pricing__price">от 125 000 ₽</div>
+            <p class="pricing__meta">125 000 – 275 000 ₽ · 3–6 недель</p>
           </div>
           <ul class="pricing__list">
             <li>1–3 ИИ-агента в ваших рабочих программах</li>
@@ -98,11 +93,11 @@ def render_pricing_section(active_hub: bool = False) -> str:
           <a href="#contact" class="btn btn--primary btn--full pricing__cta">Обсудить внедрение</a>
         </article>
 
-        <article class="pricing__card" data-reveal="">
+        <article class="pricing__card" data-reveal="" onclick="if(!event.target.closest('a.pricing__cta, button')) window.location.href='/pricing/'">
           <div class="pricing__head">
             <span class="pricing__tier">Закрытый контур</span>
-            <h3 class="pricing__title">Серверы компании (On-Premise)</h3>
-            <div class="pricing__price">от 800 000 ₽</div>
+            <h3 class="pricing__title"><a href="/pricing/" class="pricing__title-link">Серверы компании (On-Premise)</a></h3>
+            <div class="pricing__price">от 400 000 ₽</div>
             <p class="pricing__meta">от 6 недель · 152-ФЗ</p>
           </div>
           <ul class="pricing__list">
@@ -121,10 +116,6 @@ def render_pricing_section(active_hub: bool = False) -> str:
         <button type="button" class="slider-arrow slider-arrow--next" id="pricing-next" aria-label="Следующие тарифы" title="Следующие тарифы">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
         </button>
-      </div>
-
-      <div class="pricing__footnote" data-reveal="">
-        <p><strong>Условия РФ:</strong> Договор с юрлицом (ОСНО с НДС 20% или УСН), Диадок и СБИС. Модели и GPU без наценок. Гарантийный SLA 30 дней включен в каждый тариф.</p>{hub_link_html}
       </div>
     </div>
   </section>"""
