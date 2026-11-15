@@ -92,7 +92,7 @@ suite.test('R5.6: Backward compatibility: direct navigation with #hash jumps cle
 });
 
 // Rapid navigation stress
-suite.test('Rapid Navigation: Rapid clicking across multiple nav links does not throw errors', async ({ page }) => {
+suite.test('Rapid Navigation: Rapid clicking across multiple nav links does not throw errors', async ({ page, baseUrl }) => {
   const errors = [];
   page.on('pageerror', err => errors.push(err.message));
   const links = page.locator('.nav__links a, .nav__link');
@@ -101,10 +101,11 @@ suite.test('Rapid Navigation: Rapid clicking across multiple nav links does not 
     const link = links.nth(i);
     if (await link.isVisible()) {
       await link.click({ timeout: 500, noWaitAfter: true, force: true }).catch(() => {});
-      await page.evaluate(() => new Promise(r => requestAnimationFrame(r)));
+      await page.evaluate(() => new Promise(r => requestAnimationFrame(r))).catch(() => {});
     }
   }
   assert.strictEqual(errors.length, 0, `Errors during rapid nav: ${errors.join(', ')}`);
+  await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
   await sanitizePage(page);
 });
 

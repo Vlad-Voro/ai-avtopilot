@@ -48,6 +48,7 @@
         "urls": [
           "/services/",
           "/cases/",
+          "/pricing/",
           "/calculator/",
           "/dashboard/",
           "/faq/",
@@ -79,7 +80,7 @@
 <link as="font" crossorigin="" href="/assets/fonts/Inter-400-1.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/assets/fonts/Outfit-600-14.woff2" rel="preload" type="font/woff2"/>
 <!-- Inlined Styles (Eliminates Render-Blocking CSS & Critical Request Chains) -->
-<link href="/assets/css/styles.min.css?v=f085db04" rel="stylesheet"/>
+<link href="/assets/css/styles.min.css?v=9e57733c" rel="stylesheet"/>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
 <script type="text/javascript">
     (function() {
@@ -137,6 +138,7 @@
 <li><a class="nav__link" href="/calculator/">Калькулятор</a></li>
 <li><a class="nav__link" href="/services/">Услуги</a></li>
 <li><a class="nav__link" href="/cases/">Кейсы</a></li>
+<li><a class="nav__link" href="/pricing/">Цены</a></li>
 <li><a class="nav__link" href="/faq/">FAQ</a></li>
 <li><a class="nav__link" href="/dashboard/">Дашборд</a></li>
 <li class="nav__link-mobile"><a class="nav__link" href="/contact/">Контакты</a></li>
@@ -158,7 +160,7 @@
 <h1 class="hero__title"><span class="hero__title-static">Речевая аналитика и контроль звонков </span><span class="hero__title-accent-box"><span class="hero__title-accent" data-phrases='["в amoCRM", "в Битрикс24", "для 35 менеджеров"]' id="typed-text">в amoCRM</span><span aria-hidden="true" class="hero__cursor">|</span></span></h1>
 <p class="hero__sub">Транскрибация и ИИ-аудит 100% звонков из облачной АТС без расширения штата контролеров. Выявление нарушений скрипта и точек роста конверсии за 30 секунд.</p>
 <div class="hero__actions">
-<a class="btn btn--primary" href="#contact" id="cta-main">Запустить автоматизацию</a>
+<a class="btn btn--ghost" href="/services/" id="cta-main">Смотреть услуги →</a>
 <a class="btn btn--ghost" href="/cases/">Смотреть кейсы →</a>
 </div>
 <div class="hero__kpis"><div class="kpi-card"><span class="kpi-card__num" data-count="-85">−85%</span><span class="kpi-card__label">затрат на контроль качества</span></div><div class="kpi-card"><span class="kpi-card__num case-num--green" data-count="100">100%</span><span class="kpi-card__label">звонков под ИИ-аудитом</span></div><div class="kpi-card"><span class="kpi-card__num case-num--gold" data-count="+22">+22%</span><span class="kpi-card__label">конверсия звонков в оплату</span></div></div>
@@ -311,6 +313,67 @@
 </section>
 <!-- ═══════════════════ CASE STUDIES ═══════════════════ -->
 
+<!-- ═══════════════════ PRICING ═══════════════════ -->
+<section class="pricing" id="pricing">
+<div class="container">
+<div class="section-header" data-reveal="">
+<span class="section-tag">Стоимость внедрения</span>
+<h2 class="section-title">Прозрачные форматы <span class="grad-text">запуска ИИ-агентов</span></h2>
+<p class="section-desc">Фиксируем бюджет и KPI в договоре до старта работ. Поэтапная оплата по ЭДО без скрытых платежей.</p>
+</div>
+<div class="pricing__grid">
+<article class="pricing__card" data-reveal="">
+<div class="pricing__head">
+<span class="pricing__tier">Быстрый старт</span>
+<h3 class="pricing__title">Пилот 14 дней</h3>
+<div class="pricing__price">от 100 000 ₽</div>
+<p class="pricing__meta">Срок: 14 дней · 1 процесс</p>
+</div>
+<ul class="pricing__list">
+<li>1 процесс в 1С, CRM или ЭДО на реальных документах</li>
+<li>Запуск в песочнице без остановки текущей работы</li>
+<li>Замер KPI до и после внедрения по договору</li>
+<li><strong>100% оплаты пилота засчитывается</strong> в основное внедрение в течение 30 дней</li>
+</ul>
+<a class="btn btn--ghost btn--full pricing__cta" href="#contact">Обсудить пилот</a>
+</article>
+<article class="pricing__card pricing__card--featured" data-reveal="">
+<div class="pricing__head">
+<span class="pricing__badge">★ Оптимальный</span>
+<h3 class="pricing__title">Внедрение под ключ</h3>
+<div class="pricing__price">от 250 000 ₽</div>
+<p class="pricing__meta">Вилка типового проекта: 250 000 – 550 000 ₽ · 3–6 недель</p>
+</div>
+<ul class="pricing__list">
+<li>1–3 автономных ИИ-агента в промышленной эксплуатации</li>
+<li>Интеграция с 1С, CRM, ЭДО и корпоративной базой знаний (RAG)</li>
+<li>Обучение сотрудников и передача регламентов поддержки</li>
+<li>Гарантийный SLA 30 дней после запуска включен</li>
+</ul>
+<a class="btn btn--primary btn--full pricing__cta" href="#contact">Обсудить внедрение</a>
+</article>
+<article class="pricing__card" data-reveal="">
+<div class="pricing__head">
+<span class="pricing__tier">Корпоративный контур</span>
+<h3 class="pricing__title">Enterprise On-Premise (152-ФЗ)</h3>
+<div class="pricing__price">от 800 000 ₽</div>
+<p class="pricing__meta">Срок: от 6 недель · Закрытый контур</p>
+</div>
+<ul class="pricing__list">
+<li>Развертывание полностью на серверах заказчика</li>
+<li>Локальные LLM (vLLM, YandexGPT, GigaChat) без внешнего трафика</li>
+<li>Интеграция с 1С:ERP, 1С:УХ, SAP и прохождение аудита ИБ</li>
+<li>Соглашение о неразглашении (NDA) и мониторинг SLA 24/7</li>
+</ul>
+<a class="btn btn--ghost btn--full pricing__cta" href="#contact">Запросить смету</a>
+</article>
+</div>
+<div class="pricing__footnote" data-reveal="">
+<p><strong>Прозрачные условия РФ:</strong> поддержка и SLA после запуска — от 25 000 ₽/мес (опционально). LLM-токены (BYOK) или GPU-серверы оплачиваются заказчиком напрямую без наценки. Работаем по договору (ОСНО с НДС 20% или УСН без НДС), оплата 50%/50%, закрывающие документы через ЭДО Диадок и СБИС.</p>
+<a class="pricing__hub-link" href="/pricing/">Подробные условия, SLA и сравнение Cloud vs On-Premise →</a>
+</div>
+</div>
+</section>
 <!-- ═══════════════════ FAQ SECTION ═══════════════════ -->
 <section class="faq" id="faq">
 <div class="container">
@@ -786,6 +849,7 @@
 <a href="/dashboard/">Дашборд</a>
 <a href="/services/">Услуги</a>
 <a href="/cases/">Кейсы</a>
+<a href="/pricing/">Цены</a>
 <a href="/calculator/">Калькулятор</a>
 <a href="/calculator/self-employed/">Калькулятор самозанятых</a>
 <a href="/faq/">FAQ</a>
@@ -1677,7 +1741,7 @@
       "name": "АвтоПилот — Автоматизация бизнес-процессов ИИ",
       "url": "https://ai-avtopilot.ru/",
       "image": "https://ai-avtopilot.ru/og-image.png",
-      "priceRange": "₽₽₽",
+      "priceRange": "от 100 000 ₽",
       "currenciesAccepted": "RUB",
       "paymentAccepted": "Безналичный расчет, расчетный счет, банковский перевод, СБП, выставление счета через ЭДО (Диадок / СБИС)",
       "serviceType": [
@@ -1709,41 +1773,46 @@
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Услуги автоматизации бизнеса",
+        "name": "Форматы внедрения ИИ-агентов",
         "itemListElement": [
           {
             "@type": "Offer",
+            "name": "Пилот 14 дней",
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "minPrice": "100000",
+              "priceCurrency": "RUB"
+            },
             "itemOffered": {
               "@type": "Service",
-              "name": "Интеграция систем (1С, SAP, CRM, ERP, Excel)"
+              "name": "Пилот 14 дней: автоматизация 1 процесса в 1С, CRM или ЭДО в песочнице с замером KPI"
             }
           },
           {
             "@type": "Offer",
+            "name": "Внедрение под ключ",
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "minPrice": "250000",
+              "maxPrice": "550000",
+              "priceCurrency": "RUB"
+            },
             "itemOffered": {
               "@type": "Service",
-              "name": "Автоотчётность и цифровой документооборот (ЭДО)"
+              "name": "Внедрение под ключ: 1–3 ИИ-агента, интеграция 1С/CRM/ЭДО, RAG, обучение команды и SLA 30 дней"
             }
           },
           {
             "@type": "Offer",
+            "name": "Enterprise On-Premise (152-ФЗ)",
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "minPrice": "800000",
+              "priceCurrency": "RUB"
+            },
             "itemOffered": {
               "@type": "Service",
-              "name": "Автоматизация ритейла и склада"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "ИИ-поддержка клиентов 24/7"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "ИИ-аналитика и прогнозирование спроса"
+              "name": "Enterprise On-Premise (152-ФЗ): закрытый контур, локальные LLM, 1С:ERP/УХ, NDA и SLA 24/7"
             }
           }
         ]

@@ -3,7 +3,7 @@
 > **Status**: Production Deployed | **Target**: [ai-avtopilot.ru](https://ai-avtopilot.ru/) | **Geo**: Russian Federation (Nationwide B2B)  
 > **Inventory**: 45 Production URLs (1 Root, 6 Hubs, 24 Services, 11 Cases, 3 Utility)  
 > **Search Targets**: Yandex (Web + «Нейро»), Google RU (AI Overviews), Perplexity, Klerk.ru, Infostart.ru  
-> **Verification**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E) | **AI Slop**: **0 Markers** across all 45 URLs
+> **Verification**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E) | **AI Slop**: **0 Markers** across all 46 URLs
 ---
 
 ## 1. Demand Capture Topology & Architecture
@@ -42,13 +42,14 @@ flowchart TD
     Brief --> Architecture --> Pipeline --> Conversion
 ```
 
-### 1.1. Production Page Inventory (45 URLs)
+### 1.1. Production Page Inventory (46 URLs)
 
 | Route / Slug | Page Type | Core B2B Scope & Value Proposition | Key Metric / KPI |
 | :--- | :--- | :--- | :--- |
 | `/` | Root Landing | Core landing with ROI calculator, bento grid, live telemetry, and direct audit capture. | 80% routine savings |
 | `/services/` | Hub | Complete catalog of enterprise automation scenarios and 1C integrations. | 12 scenarios |
 | `/cases/` | Hub | Enterprise case studies with verified metrics and 1C architecture workflows. | 10 case studies |
+| `/pricing/` | Hub | Transparent B2B pricing tiers (Pilot from 100k ₽, Turnkey 250k–550k ₽, On-Premise from 800k ₽), Cloud vs On-Premise & SLA. | 100% pilot credit |
 | `/calculator/` | Tool Hub | Interactive B2B routine savings and payback estimator. | Real-time ROI |
 | `/calculator/self-employed/` | Tool Hub | Self-employed NPD 4%/6% tax calc, 2.4M ₽ threshold, 1C DirectBank & FTS compliance. | 0 ms TBT, 28.9% employer savings |
 | `/dashboard/` | Tool Hub | Live agent telemetry simulator and event stream monitor. | 0 ms TBT |

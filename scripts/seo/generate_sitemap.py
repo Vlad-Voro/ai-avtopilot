@@ -228,8 +228,26 @@ URL_SPEC = [
         "priority": "0.9",
     },
     {
+        "url": "https://ai-avtopilot.ru/services/avito-automation/",
+        "file": "services/avito-automation/index.html",
+        "changefreq": "weekly",
+        "priority": "0.9",
+    },
+    {
+        "url": "https://ai-avtopilot.ru/pricing/",
+        "file": "pricing/index.html",
+        "changefreq": "weekly",
+        "priority": "0.9",
+    },
+    {
         "url": "https://ai-avtopilot.ru/calculator/",
         "file": "calculator/index.html",
+        "changefreq": "weekly",
+        "priority": "0.8",
+    },
+    {
+        "url": "https://ai-avtopilot.ru/calculator/self-employed/",
+        "file": "calculator/self-employed/index.html",
         "changefreq": "weekly",
         "priority": "0.8",
     },

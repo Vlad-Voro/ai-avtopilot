@@ -204,6 +204,8 @@ async function main() {
 
     const queuedSuites = standardSuites.filter(s => s.tests.length > 0);
 
+    const asyncTasks = [];
+
     if (queuedSuites.length > 0) {
       const CONCURRENCY = Math.max(1, Math.min(os.cpus().length, queuedSuites.length));
       console.log(`${C.dim}Running ${queuedSuites.length} Playwright suites (concurrency=${CONCURRENCY})...${C.reset}\n`);
@@ -217,6 +219,7 @@ async function main() {
             viewport: { width: 1440, height: 900 },
             locale: 'ru-RU'
           });
+          await context.route(/.*mc\.yandex\.ru.*/, route => route.abort());
           const page = await context.newPage();
 
           await page.route(/.*(formsubmit\.co|api\.web3forms\.com).*/, async route => {
@@ -251,29 +254,37 @@ async function main() {
         }
       });
 
-      await Promise.all(workers);
+      asyncTasks.push(Promise.all(workers));
     }
 
-    // 2. Additional E2E Suites: Express Contact Modal & Drag Physics
-    if (!filterMilestone || filterMilestone === 'M4' || filterMilestone === 'M2') {
-      if (!filterGrep || filterGrep.test('Express') || filterGrep.test('Modal') || filterGrep.test('DUAL')) {
+    // 2. Additional E2E Suites: Express Contact Modal & Drag Physics (Concurrent with workers)
+    const shouldRunModal = (!filterMilestone || filterMilestone === 'M4' || filterMilestone === 'M2') &&
+      (!filterGrep || filterGrep.test('Express') || filterGrep.test('Modal') || filterGrep.test('DUAL'));
+
+    if (shouldRunModal) {
+      asyncTasks.push((async () => {
         const { runExpressModalSuite } = require('./e2e/test_express_contact_modal');
         const modalRes = await runExpressModalSuite({ browser, baseUrl });
         totalTests += modalRes.totalChecks;
         totalPassing += modalRes.passedChecks;
         totalFailing += modalRes.failedChecks;
-      }
+      })());
     }
 
-    if (!filterMilestone || filterMilestone === 'M2' || filterMilestone === 'M3') {
-      if (!filterGrep || filterGrep.test('Slider') || filterGrep.test('Drag') || filterGrep.test('Nudge')) {
+    const shouldRunDrag = (!filterMilestone || filterMilestone === 'M2' || filterMilestone === 'M3') &&
+      (!filterGrep || filterGrep.test('Slider') || filterGrep.test('Drag') || filterGrep.test('Nudge'));
+
+    if (shouldRunDrag) {
+      asyncTasks.push((async () => {
         const { runSliderAndDragSuite } = require('./test_slider_and_drag');
         const dragRes = await runSliderAndDragSuite({ browser, baseUrl });
         totalTests += dragRes.totalChecks;
         totalPassing += dragRes.passedChecks;
         totalFailing += dragRes.failedChecks;
-      }
+      })());
     }
+
+    await Promise.all(asyncTasks);
 
     // 3. Optional Core Web Vitals speed benchmark
     if (runCwv) {

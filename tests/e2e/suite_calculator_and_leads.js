@@ -206,13 +206,16 @@ suite.test('FORM-03: Auto-clearing error tooltip on input typing', async ({ page
 
 suite.test('FORM-04: End-to-end lead delivery sends payload and displays success card', async ({ page }) => {
   // Mock worker endpoint with confirmed success
-  await page.route('**/submit**', async route => {
+  const successHandler = async route => {
     await route.fulfill({
       status: 200,
       contentType: 'application/json',
       body: JSON.stringify({ success: true, ok: true, lead_id: 12345 })
     });
-  });
+  };
+  await page.route('**/submit**', successHandler);
+  await page.route('**/api/lead**', successHandler);
+  await page.route('**/api/fallback-lead**', successHandler);
   await page.route(/.*(formsubmit\.co|api\.web3forms\.com).*/, async route => {
     const req = route.request();
     if (req.isNavigationRequest()) {
@@ -236,19 +239,31 @@ suite.test('FORM-04: End-to-end lead delivery sends payload and displays success
     assert.ok(hasSuccess || true, 'Form delivery flow handled');
   }
   await page.unroute('**/submit**').catch(() => {});
+  await page.unroute('**/api/lead**').catch(() => {});
+  await page.unroute('**/api/fallback-lead**').catch(() => {});
   await sanitizePage(page);
 });
 
 suite.test('FORM-05: Network failure / timeout cascades to fallback card', async ({ page }) => {
-  await page.evaluate(() => window.location.reload());
+  await page.evaluate(() => {
+    const f = document.querySelector('#contact-form');
+    if (f) {
+      f.reset();
+      f.querySelectorAll('.is-invalid, .is-valid').forEach(el => el.classList.remove('is-invalid', 'is-valid'));
+      const sc = document.querySelector('.success-card, .form-success, #form-success');
+      if (sc) sc.style.display = 'none';
+      f.style.display = '';
+    }
+  });
   await page.waitForSelector('#contact-name', { timeout: 3000 }).catch(() => {});
 
-  await page.route('**/submit**', async route => {
+  const abortHandler = async route => {
     await route.abort('failed');
-  });
-  await page.route(/.*(formsubmit\.co|api\.web3forms\.com).*/, async route => {
-    await route.abort('failed');
-  });
+  };
+  await page.route('**/submit**', abortHandler);
+  await page.route('**/api/lead**', abortHandler);
+  await page.route('**/api/fallback-lead**', abortHandler);
+  await page.route(/.*(formsubmit\.co|api\.web3forms\.com).*/, abortHandler);
 
   const form = page.locator('#contact-form');
   if (await form.count() > 0) {
@@ -259,6 +274,8 @@ suite.test('FORM-05: Network failure / timeout cascades to fallback card', async
     assert.ok(true, 'Fallback card or error state activated');
   }
   await page.unroute('**/submit**').catch(() => {});
+  await page.unroute('**/api/lead**').catch(() => {});
+  await page.unroute('**/api/fallback-lead**').catch(() => {});
   await sanitizePage(page);
 });
 

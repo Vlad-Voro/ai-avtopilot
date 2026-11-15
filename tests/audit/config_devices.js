@@ -211,6 +211,7 @@ const ALL_PAGES = [
   // Hubs
   { path: '/services/', name: 'Хаб: Услуги', category: 'hub' },
   { path: '/cases/', name: 'Хаб: Кейсы', category: 'hub' },
+  { path: '/pricing/', name: 'Хаб: Цены', category: 'hub' },
   { path: '/calculator/', name: 'Хаб: Калькулятор ROI', category: 'hub' },
   { path: '/dashboard/', name: 'Хаб: Дашборд', category: 'hub' },
   { path: '/faq/', name: 'Хаб: FAQ', category: 'hub' },

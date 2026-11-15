@@ -69,7 +69,7 @@ def get_site_inventory() -> dict[str, any]:
             print(f"[WARN] Failed to parse cases_data.json: {e}", file=sys.stderr)
 
     # Hub subpages: directories with index.html
-    known_hubs = ["services", "cases", "calculator", "dashboard", "faq", "contact"]
+    known_hubs = ["services", "cases", "pricing", "calculator", "dashboard", "faq", "contact"]
     active_hubs = [h for h in known_hubs if (REPO_ROOT / h / "index.html").is_file()]
 
     # Dedicated services: all directories under services/ that contain index.html
@@ -196,7 +196,7 @@ def sync_content_strategy_doc(inventory: dict, today_str: str) -> bool:
 
     # 3. Section 1.1 title
     content = re.sub(
-        r"(### 1\.1\. Production Page Inventory \()\d+( Active URLs\))",
+        r"(### 1\.1\. Production Page Inventory \()\d+((?: Active)? URLs\))",
         rf"\g<1>{total_urls}\g<2>",
         content,
         count=1,
@@ -265,6 +265,7 @@ def is_site_change(staged_files: list[str]) -> bool:
         "scripts/",
         "services/",
         "cases/",
+        "pricing/",
         "calculator/",
         "dashboard/",
         "faq/",

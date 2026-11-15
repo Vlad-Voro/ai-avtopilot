@@ -89,10 +89,25 @@ async function runSslAuditSuite() {
     }
   }
 
-  // Check network connectivity first
+  // Check network connectivity first and capture TLS 1.3 handshake parameters
   let isOnline = true;
+  let probeCert = null;
+  let probeProto = null;
+  let probeCipher = null;
+  let probeAlpn = null;
   try {
-    const probe = await connectTls({ host: HOSTNAME, port: 443, servername: HOSTNAME });
+    const probe = await connectTls({
+      host: HOSTNAME,
+      port: 443,
+      servername: HOSTNAME,
+      minVersion: 'TLSv1.3',
+      maxVersion: 'TLSv1.3',
+      ALPNProtocols: ['h2', 'http/1.1']
+    });
+    probeCert = probe.getPeerCertificate();
+    probeProto = probe.getProtocol();
+    probeCipher = probe.getCipher();
+    probeAlpn = probe.alpnProtocol;
     probe.end();
   } catch (err) {
     console.log(`   ${C.yellow}⚠ WARNING: Network unreachable or DNS offline (${err.message}). Skipping remote tests.${C.reset}`);
@@ -103,10 +118,7 @@ async function runSslAuditSuite() {
     await Promise.all([
       // SSL-01: Leaf certificate validity & lifetime
       test('SSL-01: Certificate validity and expiration threshold (> 14 days)', async () => {
-        const socket = await connectTls({ host: HOSTNAME, port: 443, servername: HOSTNAME });
-        const cert = socket.getPeerCertificate();
-        socket.end();
-
+        const cert = probeCert;
         assert.ok(cert && cert.valid_to, 'Peer certificate must be present');
         const validTo = new Date(cert.valid_to);
         const now = new Date();
@@ -118,27 +130,15 @@ async function runSslAuditSuite() {
 
       // SSL-02: Certificate SAN coverage
       test('SSL-02: Certificate SAN covers target host', async () => {
-        const socket = await connectTls({ host: HOSTNAME, port: 443, servername: HOSTNAME });
-        const cert = socket.getPeerCertificate();
-        socket.end();
-
-        const altNames = cert.subjectaltname || '';
+        const cert = probeCert;
+        const altNames = (cert && cert.subjectaltname) || '';
         assert.ok(altNames.includes(HOSTNAME), `SAN must include ${HOSTNAME}, got: ${altNames}`);
       }),
 
       // SSL-03: Modern TLS 1.3 protocol negotiation
       test('SSL-03: Modern TLS 1.3 protocol support & AEAD cipher', async () => {
-        const socket = await connectTls({
-          host: HOSTNAME,
-          port: 443,
-          servername: HOSTNAME,
-          minVersion: 'TLSv1.3',
-          maxVersion: 'TLSv1.3'
-        });
-        const proto = socket.getProtocol();
-        const cipher = socket.getCipher();
-        socket.end();
-
+        const proto = probeProto;
+        const cipher = probeCipher;
         assert.strictEqual(proto, 'TLSv1.3', `Protocol must be TLSv1.3, got ${proto}`);
         assert.ok(cipher && cipher.name, 'Cipher must be defined in TLS 1.3');
       }),
@@ -213,15 +213,7 @@ async function runSslAuditSuite() {
 
       // SSL-09: ALPN negotiation (HTTP/2 preferred)
       test('SSL-09: ALPN negotiates HTTP/2 (h2)', async () => {
-        const socket = await connectTls({
-          host: HOSTNAME,
-          port: 443,
-          servername: HOSTNAME,
-          ALPNProtocols: ['h2', 'http/1.1']
-        });
-        const alpn = socket.alpnProtocol;
-        socket.end();
-
+        const alpn = probeAlpn;
         assert.strictEqual(alpn, 'h2', `ALPN should negotiate h2, got: ${alpn}`);
       })
     ]);

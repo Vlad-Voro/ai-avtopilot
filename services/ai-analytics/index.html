@@ -48,6 +48,7 @@
         "urls": [
           "/services/",
           "/cases/",
+          "/pricing/",
           "/calculator/",
           "/dashboard/",
           "/faq/",
@@ -307,6 +308,9 @@ ul{list-style:none}
 .hero__sub{color:var(--text-2);font-size:1.1rem;line-height:1.7;margin-bottom:20px;max-width:500px}
 .hero__actions{display:flex;gap:12px;margin-top:24px;margin-bottom:20px;flex-direction:column;width:100%}
 .hero__actions .btn{width:100%;justify-content:center;text-align:center;box-sizing:border-box}
+.hero__actions .btn--ghost{background:rgba(99,102,241,.18);border:1px solid rgba(168,85,247,.6);box-shadow:0 0 24px rgba(99,102,241,.25),inset 0 1px 1px rgba(255,255,255,.15);font-weight:600}
+.hero__actions .btn--ghost:hover{border-color:rgba(168,85,247,.9);background:rgba(99,102,241,.3);box-shadow:0 0 32px rgba(168,85,247,.45),0 4px 16px rgba(0,0,0,.35),inset 0 1px 1px rgba(255,255,255,.25);transform:translateY(-2px);color:#ffffff}
+.hero__actions .btn--ghost:active{transform:translateY(0) scale(.98);box-shadow:0 0 16px rgba(168,85,247,.3)}
 @media(min-width:640px){
   .hero__actions{flex-direction:row;flex-wrap:nowrap;gap:16px;width:100%}
   .hero__actions .btn{flex:1 1 0;width:auto;justify-content:center;text-align:center;padding:13px 20px;font-size:0.95rem;white-space:nowrap;box-sizing:border-box}
@@ -2347,6 +2351,47 @@ section[id] {
 
   .footer__dual-btn,#open-express-modal{min-height:44px}
   .slider-controls,.services-dots,.other-services-dots,.carousel-dots{max-width:100%;overflow-x:auto}
+  /* Pricing Section & Tablet Nav Compression */
+  .pricing{padding:96px 0;position:relative;overflow-x:hidden}
+  .pricing__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:stretch}
+  .pricing__card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px;display:flex;flex-direction:column;gap:20px;position:relative;min-width:0;overflow-wrap:break-word;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+  .pricing__card:hover{transform:translateY(-4px);border-color:rgba(99,102,241,.45)}
+  .pricing__card--featured{border-color:rgba(168,85,247,.65);background:linear-gradient(180deg,rgba(99,102,241,.12) 0%,rgba(16,16,28,.92) 100%);box-shadow:0 16px 40px -16px rgba(99,102,241,.4)}
+  .pricing__head{display:flex;flex-direction:column;gap:8px}
+  .pricing__tier,.pricing__badge{display:inline-flex;align-self:flex-start;padding:4px 12px;border-radius:999px;font-size:.75rem;font-weight:700;letter-spacing:.02em}
+  .pricing__tier{background:rgba(255,255,255,.06);color:var(--text-2);border:1px solid var(--border)}
+  .pricing__badge{background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff}
+  .pricing__title{font-family:var(--font-head);font-size:1.3rem;font-weight:700;color:var(--text-1);margin:4px 0 0}
+  .pricing__price{font-family:var(--font-head);font-size:clamp(1.65rem,2.4vw,2.15rem);font-weight:800;color:#fff;line-height:1.15}
+  .pricing__meta{font-size:.88rem;color:var(--text-3);margin:0}
+  .pricing__list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;flex:1 1 auto}
+  .pricing__list li{position:relative;padding-left:22px;color:var(--text-2);font-size:.94rem;line-height:1.5}
+  .pricing__list li:before{content:"✓";position:absolute;left:0;top:0;color:var(--accent-1);font-weight:700}
+  .pricing__cta{margin-top:auto;min-height:44px}
+  .pricing__footnote{margin-top:24px;padding:18px 22px;border-radius:var(--radius-sm);background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--text-2);font-size:.9rem;line-height:1.6}
+  .pricing__footnote p{margin:0}
+  .pricing__hub-link{display:inline-flex;align-items:center;margin-top:10px;min-height:44px;color:var(--accent-1);font-weight:600;text-decoration:none}
+  .pricing__hub-link:hover{text-decoration:underline}
+  .pricing-details{padding:72px 0;overflow-x:hidden}
+  .pricing-table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-card)}
+  .pricing-table{width:100%;border-collapse:collapse;min-width:600px}
+  .pricing-table th,.pricing-table td{padding:16px 20px;text-align:left;border-bottom:1px solid var(--border);font-size:.94rem;line-height:1.5;color:var(--text-2)}
+  .pricing-table th{color:var(--text-1);font-weight:700;background:rgba(255,255,255,.03)}
+  .pricing-table tr:last-child td{border-bottom:none}
+  .pricing-terms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:28px}
+  .pricing-terms__item{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:20px}
+  .pricing-terms__item h3{font-family:var(--font-head);font-size:1.05rem;font-weight:700;color:var(--text-1);margin:0 0 8px}
+  .pricing-terms__item p{margin:0;font-size:.9rem;line-height:1.55;color:var(--text-2)}
+  @media(min-width:769px) and (max-width:1120px){
+    .nav__inner{gap:12px}
+    .nav__links{gap:clamp(6px,1vw,16px)}
+    .nav__link{font-size:clamp(.8rem,.98vw,.92rem);padding:10px 7px;white-space:nowrap}
+    .btn--nav{padding:10px 14px;font-size:.84rem;white-space:nowrap}
+  }
+  @media(max-width:1024px){
+    .pricing{padding:72px 0}
+    .pricing__grid,.pricing-terms{grid-template-columns:1fr;gap:16px}
+  }
   </style>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
 <script type="text/javascript">
@@ -2405,6 +2450,7 @@ section[id] {
 <li><a class="nav__link" href="/calculator/">Калькулятор</a></li>
 <li><a class="nav__link" href="/services/">Услуги</a></li>
 <li><a class="nav__link" href="/cases/">Кейсы</a></li>
+<li><a class="nav__link" href="/pricing/">Цены</a></li>
 <li><a class="nav__link" href="/faq/">FAQ</a></li>
 <li><a class="nav__link" href="/dashboard/">Дашборд</a></li>
 <li class="nav__link-mobile"><a class="nav__link" href="/contact/">Контакты</a></li>
@@ -2725,6 +2771,67 @@ section[id] {
 <button aria-label="Следующие кейсы" class="slider-arrow slider-arrow--next" id="cases-next" title="Следующие кейсы" type="button">
 <svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="18"><path d="M9 18l6-6-6-6"></path></svg>
 </button>
+</div>
+</div>
+</section>
+<!-- ═══════════════════ PRICING ═══════════════════ -->
+<section class="pricing" id="pricing">
+<div class="container">
+<div class="section-header" data-reveal="">
+<span class="section-tag">Стоимость внедрения</span>
+<h2 class="section-title">Прозрачные форматы <span class="grad-text">запуска ИИ-агентов</span></h2>
+<p class="section-desc">Фиксируем бюджет и KPI в договоре до старта работ. Поэтапная оплата по ЭДО без скрытых платежей.</p>
+</div>
+<div class="pricing__grid">
+<article class="pricing__card" data-reveal="">
+<div class="pricing__head">
+<span class="pricing__tier">Быстрый старт</span>
+<h3 class="pricing__title">Пилот 14 дней</h3>
+<div class="pricing__price">от 100 000 ₽</div>
+<p class="pricing__meta">Срок: 14 дней · 1 процесс</p>
+</div>
+<ul class="pricing__list">
+<li>1 процесс в 1С, CRM или ЭДО на реальных документах</li>
+<li>Запуск в песочнице без остановки текущей работы</li>
+<li>Замер KPI до и после внедрения по договору</li>
+<li><strong>100% оплаты пилота засчитывается</strong> в основное внедрение в течение 30 дней</li>
+</ul>
+<a class="btn btn--ghost btn--full pricing__cta" href="#contact">Обсудить пилот</a>
+</article>
+<article class="pricing__card pricing__card--featured" data-reveal="">
+<div class="pricing__head">
+<span class="pricing__badge">★ Оптимальный</span>
+<h3 class="pricing__title">Внедрение под ключ</h3>
+<div class="pricing__price">от 250 000 ₽</div>
+<p class="pricing__meta">Вилка типового проекта: 250 000 – 550 000 ₽ · 3–6 недель</p>
+</div>
+<ul class="pricing__list">
+<li>1–3 автономных ИИ-агента в промышленной эксплуатации</li>
+<li>Интеграция с 1С, CRM, ЭДО и корпоративной базой знаний (RAG)</li>
+<li>Обучение сотрудников и передача регламентов поддержки</li>
+<li>Гарантийный SLA 30 дней после запуска включен</li>
+</ul>
+<a class="btn btn--primary btn--full pricing__cta" href="#contact">Обсудить внедрение</a>
+</article>
+<article class="pricing__card" data-reveal="">
+<div class="pricing__head">
+<span class="pricing__tier">Корпоративный контур</span>
+<h3 class="pricing__title">Enterprise On-Premise (152-ФЗ)</h3>
+<div class="pricing__price">от 800 000 ₽</div>
+<p class="pricing__meta">Срок: от 6 недель · Закрытый контур</p>
+</div>
+<ul class="pricing__list">
+<li>Развертывание полностью на серверах заказчика</li>
+<li>Локальные LLM (vLLM, YandexGPT, GigaChat) без внешнего трафика</li>
+<li>Интеграция с 1С:ERP, 1С:УХ, SAP и прохождение аудита ИБ</li>
+<li>Соглашение о неразглашении (NDA) и мониторинг SLA 24/7</li>
+</ul>
+<a class="btn btn--ghost btn--full pricing__cta" href="#contact">Запросить смету</a>
+</article>
+</div>
+<div class="pricing__footnote" data-reveal="">
+<p><strong>Прозрачные условия РФ:</strong> поддержка и SLA после запуска — от 25 000 ₽/мес (опционально). LLM-токены (BYOK) или GPU-серверы оплачиваются заказчиком напрямую без наценки. Работаем по договору (ОСНО с НДС 20% или УСН без НДС), оплата 50%/50%, закрывающие документы через ЭДО Диадок и СБИС.</p>
+<a class="pricing__hub-link" href="/pricing/">Подробные условия, SLA и сравнение Cloud vs On-Premise →</a>
 </div>
 </div>
 </section>
@@ -3090,6 +3197,7 @@ section[id] {
 <a href="/dashboard/">Дашборд</a>
 <a href="/services/">Услуги</a>
 <a href="/cases/">Кейсы</a>
+<a href="/pricing/">Цены</a>
 <a href="/calculator/">Калькулятор</a>
 <a href="/calculator/self-employed/">Калькулятор самозанятых</a>
 <a href="/faq/">FAQ</a>
@@ -3982,7 +4090,7 @@ section[id] {
       "name": "АвтоПилот — Автоматизация бизнес-процессов ИИ",
       "url": "https://ai-avtopilot.ru/",
       "image": "https://ai-avtopilot.ru/og-image.png",
-      "priceRange": "₽₽₽",
+      "priceRange": "от 100 000 ₽",
       "currenciesAccepted": "RUB",
       "paymentAccepted": "Безналичный расчет, расчетный счет, банковский перевод, СБП, выставление счета через ЭДО (Диадок / СБИС)",
       "serviceType": [
@@ -4014,41 +4122,46 @@ section[id] {
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Услуги автоматизации бизнеса",
+        "name": "Форматы внедрения ИИ-агентов",
         "itemListElement": [
           {
             "@type": "Offer",
+            "name": "Пилот 14 дней",
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "minPrice": "100000",
+              "priceCurrency": "RUB"
+            },
             "itemOffered": {
               "@type": "Service",
-              "name": "Интеграция систем (1С, SAP, CRM, ERP, Excel)"
+              "name": "Пилот 14 дней: автоматизация 1 процесса в 1С, CRM или ЭДО в песочнице с замером KPI"
             }
           },
           {
             "@type": "Offer",
+            "name": "Внедрение под ключ",
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "minPrice": "250000",
+              "maxPrice": "550000",
+              "priceCurrency": "RUB"
+            },
             "itemOffered": {
               "@type": "Service",
-              "name": "Автоотчётность и цифровой документооборот (ЭДО)"
+              "name": "Внедрение под ключ: 1–3 ИИ-агента, интеграция 1С/CRM/ЭДО, RAG, обучение команды и SLA 30 дней"
             }
           },
           {
             "@type": "Offer",
+            "name": "Enterprise On-Premise (152-ФЗ)",
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "minPrice": "800000",
+              "priceCurrency": "RUB"
+            },
             "itemOffered": {
               "@type": "Service",
-              "name": "Автоматизация ритейла и склада"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "ИИ-поддержка клиентов 24/7"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "ИИ-аналитика и прогнозирование спроса"
+              "name": "Enterprise On-Premise (152-ФЗ): закрытый контур, локальные LLM, 1С:ERP/УХ, NDA и SLA 24/7"
             }
           }
         ]

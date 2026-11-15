@@ -17,6 +17,7 @@ const PAGES = [
   // Hubs
   { slug: 'services', file: 'services/index.html', url: 'https://ai-avtopilot.ru/services/', category: 'hub', hasBreadcrumbs: true },
   { slug: 'cases', file: 'cases/index.html', url: 'https://ai-avtopilot.ru/cases/', category: 'hub', hasBreadcrumbs: true },
+  { slug: 'pricing', file: 'pricing/index.html', url: 'https://ai-avtopilot.ru/pricing/', category: 'hub', hasBreadcrumbs: true },
   { slug: 'calculator', file: 'calculator/index.html', url: 'https://ai-avtopilot.ru/calculator/', category: 'hub', hasBreadcrumbs: true },
   { slug: 'dashboard', file: 'dashboard/index.html', url: 'https://ai-avtopilot.ru/dashboard/', category: 'hub', hasBreadcrumbs: true },
   { slug: 'faq', file: 'faq/index.html', url: 'https://ai-avtopilot.ru/faq/', category: 'hub', hasBreadcrumbs: true },
@@ -137,7 +138,7 @@ runCheck('SEO-04', 'Internal navigation links in all HTML files use trailing sla
   PAGES.forEach(p => {
     const filePath = path.join(ROOT_DIR, p.file);
     const html = fs.readFileSync(filePath, 'utf8');
-    const invalidLinks = html.match(/href="\/(services|cases|calculator|dashboard|faq|contact)"/g);
+    const invalidLinks = html.match(/href="\/(services|cases|pricing|calculator|dashboard|faq|contact)"/g);
     assert.strictEqual(
       invalidLinks,
       null,
@@ -539,7 +540,7 @@ console.log('\n▶ [Category 7] DOM Architecture & Conversion Sequence (Promoted
 runCheck('R2-01', 'DOM sections follow canonical conversion sequence', () => {
   const html = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8');
   const sectionMatches = Array.from(html.matchAll(/<section[^>]*id="([^"]+)"/g)).map(m => m[1]);
-  const expectedSequence = ['home', 'calculator', 'compare', 'services', 'cases', 'faq', 'dashboard', 'contact'];
+  const expectedSequence = ['home', 'calculator', 'compare', 'services', 'cases', 'pricing', 'faq', 'dashboard', 'contact'];
 
   for (const expected of expectedSequence) {
     assert.ok(sectionMatches.includes(expected), `Section with id='${expected}' was not found in index.html`);

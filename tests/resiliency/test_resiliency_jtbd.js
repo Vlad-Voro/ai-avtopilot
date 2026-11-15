@@ -48,7 +48,7 @@ async function runResiliencySuite() {
   const rootDir = path.resolve(__dirname, '../..');
   const bundlePath = path.join(rootDir, 'assets/index-Bx30wa4i.js');
   const indexPath = path.join(rootDir, 'index.html');
-  const subpages = ['services', 'cases', 'calculator', 'dashboard', 'faq', 'contact'];
+  const subpages = ['services', 'cases', 'pricing', 'calculator', 'dashboard', 'faq', 'contact'];
 
   const bundle = fs.readFileSync(bundlePath, 'utf8');
   const indexHtml = fs.readFileSync(indexPath, 'utf8');

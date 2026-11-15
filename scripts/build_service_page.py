@@ -29,6 +29,7 @@ SCRIPTS_DIR = Path(__file__).resolve().parent
 if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 from other_services_block import render_other_services_section, get_other_services_carousel_js
+from pricing_block import PRICE_RANGE_TEXT, get_offer_catalog_items, render_pricing_section
 
 
 def format_rub(val: int) -> str:
@@ -139,7 +140,7 @@ def generate_service_html(data: dict) -> str:
                 "name": "АвтоПилот — Автоматизация бизнес-процессов ИИ",
                 "url": "https://ai-avtopilot.ru/",
                 "image": "https://ai-avtopilot.ru/og-image.png",
-                "priceRange": "₽₽₽",
+                "priceRange": PRICE_RANGE_TEXT,
                 "currenciesAccepted": "RUB",
                 "paymentAccepted": "Безналичный расчет, расчетный счет, банковский перевод, СБП, выставление счета через ЭДО (Диадок / СБИС)",
                 "serviceType": [
@@ -159,29 +160,8 @@ def generate_service_html(data: dict) -> str:
                 },
                 "hasOfferCatalog": {
                     "@type": "OfferCatalog",
-                    "name": "Услуги автоматизации бизнеса",
-                    "itemListElement": [
-                        {
-                            "@type": "Offer",
-                            "itemOffered": {"@type": "Service", "name": "Интеграция систем (1С, SAP, CRM, ERP, Excel)"},
-                        },
-                        {
-                            "@type": "Offer",
-                            "itemOffered": {
-                                "@type": "Service",
-                                "name": "Автоотчётность и цифровой документооборот (ЭДО)",
-                            },
-                        },
-                        {
-                            "@type": "Offer",
-                            "itemOffered": {"@type": "Service", "name": "Автоматизация ритейла и склада"},
-                        },
-                        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "ИИ-поддержка клиентов 24/7"}},
-                        {
-                            "@type": "Offer",
-                            "itemOffered": {"@type": "Service", "name": "ИИ-аналитика и прогнозирование спроса"},
-                        },
-                    ],
+                    "name": "Форматы внедрения ИИ-агентов",
+                    "itemListElement": get_offer_catalog_items(),
                 },
             },
             {
@@ -389,6 +369,7 @@ def generate_service_html(data: dict) -> str:
         "urls": [
           "/services/",
           "/cases/",
+          "/pricing/",
           "/calculator/",
           "/dashboard/",
           "/faq/",
@@ -495,13 +476,13 @@ def generate_service_html(data: dict) -> str:
       </a>
       <ul class="nav__links" id="nav-links">
         <li><a href="/calculator/" class="nav__link">Калькулятор</a></li>
-        <li><a href="/services/" class="nav__link">Услуги</a></li>
+        <li><a href="/services/" class="nav__link active">Услуги</a></li>
         <li><a href="/cases/" class="nav__link">Кейсы</a></li>
+        <li><a href="/pricing/" class="nav__link">Цены</a></li>
         <li><a href="/faq/" class="nav__link">FAQ</a></li>
         <li><a href="/dashboard/" class="nav__link">Дашборд</a></li>
         <li class="nav__link-mobile"><a href="/contact/" class="nav__link">Контакты</a></li>
-      </ul>
-      <a href="#contact" class="btn btn--nav">Получить аудит</a>
+      </ul>      <a href="#contact" class="btn btn--nav">Получить аудит</a>
       <button class="nav__burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-links" id="burger">
         <span></span>
         <span></span>
@@ -687,6 +668,8 @@ def generate_service_html(data: dict) -> str:
       <div class="carousel-dots" id="carousel-dots"></div>
     </div>
   </section>
+
+{render_pricing_section()}
 
   <!-- ═══════════════════ FAQ SECTION ═══════════════════ -->
   <section class="faq" id="faq">
@@ -884,6 +867,7 @@ def generate_service_html(data: dict) -> str:
           <a href="/dashboard/">Дашборд</a>
           <a href="/services/">Услуги</a>
           <a href="/cases/">Кейсы</a>
+          <a href="/pricing/">Цены</a>
           <a href="/calculator/">Калькулятор</a>
           <a href="/faq/">FAQ</a>
           <a href="/contact/">Контакты</a>

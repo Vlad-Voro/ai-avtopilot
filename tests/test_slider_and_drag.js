@@ -34,6 +34,7 @@ async function runSliderAndDragSuite(options = {}) {
   }
 
   const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+  await context.route(/.*mc\.yandex\.ru.*/, route => route.abort());
   const page = await context.newPage();
 
   let passed = 0;
@@ -129,7 +130,10 @@ async function runSliderAndDragSuite(options = {}) {
     await page.mouse.up();
 
     // Wait for debounce/scroll settlement
-    await page.waitForTimeout(400); // test-lint: disable=WEB-01 [carousel debounce]
+    await page.waitForFunction(() => {
+      const dots = Array.from(document.querySelectorAll('#services-dots .carousel-dot'));
+      return dots.findIndex((d) => d.classList.contains('active')) > 0;
+    }, { timeout: 3000 }).catch(() => {});
 
     const afterDragSlide = await page.evaluate(() => {
       const dots = Array.from(document.querySelectorAll('#services-dots .carousel-dot'));
@@ -141,7 +145,7 @@ async function runSliderAndDragSuite(options = {}) {
     // 3. Verify drag on #cases .cases__grid
     const casesGrid = page.locator('#cases .cases__grid');
     await casesGrid.scrollIntoViewIfNeeded();
-    await page.waitForTimeout(100); // test-lint: disable=WEB-01 [scroll settling]
+    await page.waitForTimeout(50); // test-lint: disable=WEB-01 [scroll settling]
     const casesBox = await casesGrid.boundingBox();
     assert.strictEqual(typeof casesBox, 'object');
     assert.ok(casesBox !== null);
@@ -160,7 +164,10 @@ async function runSliderAndDragSuite(options = {}) {
       await page.waitForTimeout(16); // test-lint: disable=WEB-01 [mouse drag cadence]
     }
     await page.mouse.up();
-    await page.waitForTimeout(400); // test-lint: disable=WEB-01 [carousel debounce]
+    await page.waitForFunction(() => {
+      const dots = Array.from(document.querySelectorAll('#carousel-dots .carousel-dot'));
+      return dots.findIndex((d) => d.classList.contains('active')) === 1;
+    }, { timeout: 3000 }).catch(() => {});
 
     const finalCasesSlide = await page.evaluate(() => {
       const dots = Array.from(document.querySelectorAll('#carousel-dots .carousel-dot'));
@@ -197,6 +204,7 @@ async function runSliderAndDragSuite(options = {}) {
 
     // 7. Verify Mobile Viewport touchpoint auto-centering (390x844 iPhone 14/15/16)
     const mobileContext = await browser.newContext({ viewport: { width: 390, height: 844 } });
+    await mobileContext.route(/.*mc\.yandex\.ru.*/, route => route.abort());
     const mobilePage = await mobileContext.newPage();
     try {
       await mobilePage.goto(baseUrl, { waitUntil: 'domcontentloaded' });
@@ -225,8 +233,16 @@ async function runSliderAndDragSuite(options = {}) {
           cards[8].scrollIntoView({ inline: 'center', block: 'nearest' });
           sBento.dispatchEvent(new Event('scroll'));
         }
-        // Wait for smooth scroll / rAF
-        await new Promise((r) => setTimeout(r, 300));
+        // Poll for smooth scroll auto-centering settlement
+        for (let i = 0; i < 20; i++) {
+          await new Promise((r) => setTimeout(r, 20));
+          const active = sDots.querySelector('.carousel-dot.active');
+          if (active) {
+            const d = active.getBoundingClientRect();
+            const w = sDots.getBoundingClientRect();
+            if (d.left >= (w.left - 5) && d.right <= (w.right + 5)) break;
+          }
+        }
 
         const activeDot = sDots.querySelector('.carousel-dot.active');
         if (!activeDot) return { hasActiveDot: false };
@@ -263,7 +279,7 @@ async function runSliderAndDragSuite(options = {}) {
             cards[i].scrollIntoView({ inline: 'center', block: 'nearest' });
             oBento.dispatchEvent(new Event('scroll'));
           }
-          await new Promise((r) => setTimeout(r, 150));
+          await new Promise((r) => setTimeout(r, 30));
           const active = oDots.querySelector('.carousel-dot.active');
           if (active) {
             const d = active.getBoundingClientRect();

@@ -35,6 +35,7 @@ async function runExpressModalSuite(options = {}) {
   let baseUrl = options.baseUrl;
   let ownServer = false;
   let ownBrowser = false;
+  let context = null;
   let passed = 0;
   let failed = 0;
 
@@ -66,7 +67,11 @@ async function runExpressModalSuite(options = {}) {
       ownBrowser = true;
     }
 
-    const page = await browser.newPage();
+    context = await browser.newContext({
+      permissions: ['clipboard-read', 'clipboard-write'],
+      viewport: { width: 1440, height: 900 }
+    });
+    const page = await context.newPage();
     await page.route(/.*(formsubmit\.co|api\.web3forms\.com).*/, async route => {
       const req = route.request();
       if (req.isNavigationRequest()) {
@@ -79,6 +84,7 @@ async function runExpressModalSuite(options = {}) {
         });
       }
     });
+    await page.route(/.*(mc\.yandex\.ru).*/, route => route.abort());
     await page.goto(`${baseUrl}/`);
 
     // TEST 1: Dual contact pill exists with both Telegram and Email buttons
@@ -211,6 +217,10 @@ async function runExpressModalSuite(options = {}) {
       assert.strictEqual(await copyBtn.count(), 1, 'Copy email button must exist');
 
       await copyBtn.click();
+      await page.waitForFunction(() => {
+        const el = document.querySelector('#modal-copy-badge .copy-label');
+        return el && el.textContent.includes('Скопировано');
+      }, { timeout: 3000 }).catch(() => {});
       const badgeText = await page.locator('#modal-copy-badge .copy-label').textContent();
       assert.ok(badgeText.includes('Скопировано'), 'Badge text must update to confirmed copy state');
 
@@ -218,6 +228,7 @@ async function runExpressModalSuite(options = {}) {
     });
 
   } finally {
+    if (context) await context.close().catch(() => {});
     if (ownBrowser && browser) await browser.close();
     if (ownServer && server) await server.stop();
   }
