@@ -2,7 +2,7 @@
 
 > **Status**: Production Hardened | **Updated**: 2026-11-15  
 > **Live URL**: [https://ai-avtopilot.ru/](https://ai-avtopilot.ru/) | **Repo**: `Vlad-Voro/ai-avtopilot` (`main` - Private)  
-> **Local Root**: `d:\AI\data\ai-avtopilot` | **Inventory**: 45 Production URLs (1 Root, 6 Hubs, 24 Services, 11 Cases, 3 Utility)  
+> **Local Root**: `d:\AI\data\ai-avtopilot` | **Inventory**: 46 Production URLs (1 Root, 7 Hubs, 24 Services, 11 Cases, 3 Utility) + 1 Canonical Stub (`/automated-reporting/`)  
 > **Verification Matrix**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E, 0 regressions) + 486 Layout Matrix
 
 ---
@@ -14,20 +14,20 @@ flowchart TD
     Client["Client Browser"] -->|HTTPS / TLS 1.3 / Anycast 76.76.21.21| Vercel["Vercel Anycast Edge"]
 
     subgraph EdgeLayer ["1. Edge & DNS Layer (GitHub Pages + Vercel + Cloudflare Grey Cloud)"]
-        GHP["GitHub Pages (_site/ whitelist)"] -->|Static HTML/Assets| Client
+        GHP["GitHub Pages (_site/ whitelist pipeline)"] -->|Static HTML/Assets| Client
         Vercel -->|308 Canonical Apex Redirect (www -> non-www)| Client
         Vercel -->|Edge Mirror & Fallback Headers| VEdge["Vercel Edge (vercel.json)"]
-        Client -->|POST /submit (Lead Ingestion)| CFW["Cloudflare Worker (ai-avtopilot-bot)"]
+        Client -->|POST /submit (Direct Worker Ingestion)| CFW["Cloudflare Worker (ai-avtopilot-bot)"]
         GHP -->|Security Headers + Static Distribution| VSec["HSTS, CSP, Frame Guard, Permissions-Policy"]
         VEdge -->|Deployment Isolation| VIgn[".vercelignore (blocks _headers, *.md, tests, bot)"]
     end
 
-    subgraph AppLayer ["2. Multi-Entry Hybrid SSG (45 URLs)"]
+    subgraph AppLayer ["2. Multi-Entry Hybrid SSG (46 URLs)"]
         VEdge --> P1["/ (Main Landing)"]
-        VEdge --> P2["6 Hub Pages (/services/, /cases/, /calculator/, /dashboard/, /faq/, /contact/)"]
+        VEdge --> P2["7 Hub Pages (/services/, /cases/, /pricing/, /calculator/, /dashboard/, /faq/, /contact/)"]
         VEdge --> P3["24 Dedicated Service Pages (/services/<slug>/)"]
         VEdge --> P4["11 Dedicated Case Pages (/cases/<slug>/)"]
-        VEdge --> P5["3 Utility Pages (/privacy.html, /404.html, /success.html)"]
+        VEdge --> P5["3 Utility Pages (/privacy.html, /404.html, /success.html) + /automated-reporting/ Stub"]
     end
 
     subgraph Ingestion ["3. Multi-Cloud Ingestion & Notifications"]
@@ -88,19 +88,52 @@ flowchart TD
 - **Mobile Nav**: Synchronous `aria-expanded` toggle, body scroll lock (`overflow: hidden`), auto-close on `Escape` or link click.
 - **Motion Reduction**: `@media (prefers-reduced-motion: reduce)` disables particles, transforms, and pulsating glows.
 
+### 2.4. Pricing Block Architecture (`#pricing`), `/pricing/` Hub & AI Stack
+
+#### A. 3-Tier Enterprise Launch Model
+1. **Пилот 14 дней (`от 100 000 ₽`)**:
+   - Быстрый запуск 1 рабочего сценария в 1С, CRM или ЭДО на копии рабочей базы (без риска для продуктивной среды).
+   - **100% стоимости пилота засчитывается** в бюджет основного внедрения при переходе к проекту в течение 30 дней.
+2. **Внедрение под ключ (`от 250 000 ₽`, вилка 250 000 – 550 000 ₽)**:
+   - Срок 3–6 недель: разработка 1–3 автономных ИИ-агентов, глубокая интеграция с 1С (OData/HTTP-сервисы), CRM и корпоративной базой знаний (RAG).
+   - Включает обучение персонала и 30 дней безусловного гарантийного SLA.
+3. **Серверы компании On-Premise (`от 800 000 ₽`)**:
+   - Развертывание в закрытом корпоративном контуре заказчика (Air-gapped) без передачи данных во внешние облака.
+   - Полное соблюдение 152-ФЗ, интеграция с 1С:ERP/SAP, аудит информационной безопасности и поддержка 24/7.
+4. **Условия сотрудничества (РФ)**:
+   - Официальный договор с юрлицом (ОСНО с НДС 20% или УСН), документооборот через Диадок или СБИС, обязательный NDA до передачи доступов.
+   - График расчетов: аванс 50%, окончательный расчет 50% после проверки точности на боевых сценариях и подписания акта приемки.
+   - Расходы на токены LLM и GPU-инфраструктуру оплачиваются по модели BYOK (Bring Your Own Key) напрямую провайдерам без агентской наценки.
+
+#### B. Архитектурное сравнение контуров (Cloud vs On-Premise)
+
+| Параметр архитектуры | Cloud / API (Быстрый старт) | On-Premise (Серверы компании) |
+| :--- | :--- | :--- |
+| **Среда исполнения** | Изолированный сервис в РФ или облачный API по ключу заказчика | Полностью на серверах компании без внешнего сетевого трафика |
+| **Языковые модели (LLM)** | YandexGPT, GigaChat, OpenAI через прямой API заказчика (BYOK) | Локальные открытые LLM (vLLM, Qwen 2.5, Llama 3) на GPU заказчика |
+| **Сроки запуска** | Пилот — 14 дней, комплексное внедрение — 3–6 недель | От 6 недель с прохождением аудита ИБ предприятия |
+| **Оплата LLM-ресурсов** | Прямая оплата провайдеру без агентской наценки (по счетчикам) | Без абонентской платы за запросы — на мощностях собственных GPU |
+| **Гарантийный SLA** | 30 дней гарантии включено в проект, далее опционально от 25 000 ₽/мес | Выделенный инженер, мониторинг 24/7 и регламентированный SLA в договоре |
+
 ---
 
 ## 3. Multi-Entry Hybrid SSG & Navigation Engine
 
 ```text
 index.html (Master Template) & Data Catalogs
-   ├── [sync_pages.py] ──────────> 6 Hub & Tool Pages (/services/, /cases/, /calculator/, etc.)
-   ├── [build_service_page.py] ──> 15 Dedicated Service Pages (/services/<slug>/)
-   └── [build_case_page.py] ─────> 10 Dedicated Case Pages (/cases/<slug>/)
+   ├── [Deduplicated Hubs] ──────> 7 Standalone Hub Pages (/services/, /cases/, /pricing/, /calculator/, etc.)
+   ├── [build_service_page.py] ──> 24 Dedicated Service Pages (/services/<slug>/)
+   ├── [build_case_page.py] ─────> 11 Dedicated Case Pages (/cases/<slug>/)
+   └── [Redirect Stubs] ─────────> Canonical Stubs (/automated-reporting/ -> /services/automated-reporting/)
 ```
 
 ### 3.1. SSG Routing & Navigation Contracts
-- **SOTA 404 Fallback**: Root `/404.html` caught natively by Vercel; preserves request path and executes client-side `history.replaceState` to restore target route.
+- **Deduplicated Standalone Hub Architecture**:
+  - Hub-страницы (`/services/`, `/cases/`, `/pricing/`, `/calculator/`, `/dashboard/`, `/faq/`, `/contact/`) больше не являются полными дублями главной страницы (`222.6 KiB`). Каждая страница содержит собственный семантический `<h1>` в Hero, только тематические секции каталога/кейсов/калькулятора, компактный FAQ и форму заявки. Вес снижен до 72–175 KiB.
+  - Каждая страница хаба сохраняет валидный JSON-LD `@graph` (`WebSite`, `FAQPage`, `ProfessionalService`, `Organization`, `BreadcrumbList`) для соблюдения контракта `SEO-10`.
+- **SOTA 404 Fallback & Canonical Stubs**:
+  - Root `/404.html` ловит несуществующие пути; клиентский `history.replaceState` восстанавливает целевой маршрут.
+  - Устаревшие ссылки (например, `/automated-reporting/`) обслуживаются через HTML-заглушки с `<link rel="canonical">`, `<meta http-equiv="refresh">` и JS-редиректом, включенные в белый список сборки `_site`.
 - **Deterministic ScrollSpy Guard**:
   - Active section calculated via DOM geometry (`getActiveSection()`) using scroll offset (`window.scrollY + offset`).
   - Clears active underline on `#home`.
@@ -172,7 +205,9 @@ index.html (Master Template) & Data Catalogs
   ```txt
   Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&_openstat&from&vk_source&gclid&fbclid /
   ```
-- **Machine Discovery**: `/llms.txt` and `/llms-full.txt` indexed via `<link rel="describedby" href="/llms.txt">`.
+- **Machine Discovery**: `/llms.txt` and `/llms-full.txt` indexed via `<link rel="describedby" href="/llms.txt">` (100% покрытие всех 46 маршрутов платформы, включая `/pricing/`, калькуляторы и новые сервисы).
+- **No-JS Accessibility & Clickjack Protection**: `<noscript>`-страховка нейтрализует скрытие `#anti-clickjack` (`body { display: block !important; }`) и форсирует видимость `[data-reveal]` (`opacity: 1 !important; transform: none !important;`) без синтаксических ошибок `</meta>`.
+- **Princeton KDD 2024 GEO Levers**: Разметка по модели Aggarwal et al. включает внешние цитируемые источники (ГОСТ Р ИСО 9001, стандарты обмена 1C:Enterprise, 152-ФЗ, +40.2%), экспертные цитаты архитекторов (`<blockquote cite="...">`, +37.8%) и точные числовые тайминги рутины (+34.1%).
 - **Instant Navigation**: Chrome Speculation Rules API prerenders subpages with moderate threshold.
 - **Security Standards**: RFC 9116 security policy at `/.well-known/security.txt`.
 - **IndexNow Protocol**: Real-time push via `scripts/seo/push_indexnow.py` keyed by `d8a24f0c9b7e416a9e3d81b7e651c4a0.txt`.

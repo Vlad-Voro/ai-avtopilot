@@ -1,7 +1,7 @@
 # B2B Content Strategy & Demand Capture Specification: ai-avtopilot.ru (Spec_content_ai_avtopilot.md)
 
 > **Status**: Production Deployed | **Target**: [ai-avtopilot.ru](https://ai-avtopilot.ru/) | **Geo**: Russian Federation (Nationwide B2B)  
-> **Inventory**: 45 Production URLs (1 Root, 6 Hubs, 24 Services, 11 Cases, 3 Utility)  
+> **Inventory**: 46 Production URLs (1 Root, 7 Hubs, 24 Services, 11 Cases, 3 Utility) + 1 Canonical Stub (`/automated-reporting/`)  
 > **Search Targets**: Yandex (Web + «Нейро»), Google RU (AI Overviews), Perplexity, Klerk.ru, Infostart.ru  
 > **Verification**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E) | **AI Slop**: **0 Markers** across all 46 URLs
 ---
@@ -17,12 +17,12 @@ flowchart TD
         Val -- "Validated Pool" --> Brief["Validated Semantics Matrix"]
     end
 
-    subgraph Architecture ["2. Production Silo Architecture (45 URLs)"]
+    subgraph Architecture ["2. Production Silo Architecture (46 URLs)"]
         Root["/ (Main Landing Page)"]
-        Hubs["6 Hub Pages (/services/, /cases/, /calculator/, /dashboard/, /faq/, /contact/)"]
+        Hubs["7 Hub Pages (/services/, /cases/, /pricing/, /calculator/, /dashboard/, /faq/, /contact/)"]
         T1["24 Dedicated Service Pages (/services/*)"]
         T3["11 Applied Case Studies (/cases/*)"]
-        Util["3 Utility Pages (/privacy.html, /404.html, /success.html)"]
+        Util["3 Utility Pages (/privacy.html, /404.html, /success.html) + Stub (/automated-reporting/)"]
     end
 
     subgraph Pipeline ["3. Multi-Agent Synthesis Gate"]
