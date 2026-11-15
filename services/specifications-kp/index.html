@@ -72,7 +72,6 @@
 
   <!-- Anti-Clickjacking Frame Guard (OWASP Defense) -->
   <style id="anti-clickjack">body{display:none !important;}</style>
-  <noscript><style>#anti-clickjack{display:none !important;}body{display:block !important;}[data-reveal]{opacity:1 !important;transform:none !important;visibility:visible !important;}</style></noscript>
   <script>
     if (self === top) {
       var acj = document.getElementById('anti-clickjack');
@@ -505,7 +504,7 @@
       <div class="section-header" data-reveal="">
         <span class="section-tag">Стоимость</span>
         <h2 class="section-title">Прозрачные форматы <span class="grad-text">запуска</span></h2>
-        <p class="section-desc">Фиксируем смету и KPI в договоре. Оплата по ЭДО 50/50.</p>
+        <p class="section-desc">Фиксированная смета, критерии приемки и гарантийный SLA в договоре.</p>
       </div>
 
       <div class="pricing__grid">
@@ -517,9 +516,9 @@
             <p class="pricing__meta">14 дней · 1 процесс</p>
           </div>
           <ul class="pricing__list">
-            <li>1 процесс в 1С, CRM или ЭДО</li>
-            <li>Песочница без остановки работы</li>
-            <li><strong>100% зачет</strong> в проект за 30 дней</li>
+            <li>1 рабочий сценарий в 1С, CRM или ЭДО</li>
+            <li>Тест на копии базы: без риска для боевых систем</li>
+            <li><strong>100% стоимости</strong> пилота идет в зачет внедрения</li>
           </ul>
           <a href="#contact" class="btn btn--ghost btn--full pricing__cta">Обсудить пилот</a>
         </article>
@@ -532,9 +531,9 @@
             <p class="pricing__meta">250 000 – 550 000 ₽ · 3–6 недель</p>
           </div>
           <ul class="pricing__list">
-            <li>1–3 ИИ-агента в рабочем контуре</li>
-            <li>1С, CRM, ЭДО и корпоративный RAG</li>
-            <li>Обучение команды и SLA 30 дней</li>
+            <li>1–3 ИИ-агента в ваших рабочих программах</li>
+            <li>Интеграция с 1С, CRM и базой знаний (RAG)</li>
+            <li>Обучение команды и 30 дней гарантийного SLA</li>
           </ul>
           <a href="#contact" class="btn btn--primary btn--full pricing__cta">Обсудить внедрение</a>
         </article>
@@ -542,14 +541,14 @@
         <article class="pricing__card" data-reveal="">
           <div class="pricing__head">
             <span class="pricing__tier">Закрытый контур</span>
-            <h3 class="pricing__title">Enterprise On-Premise (152-ФЗ)</h3>
+            <h3 class="pricing__title">Серверы компании (On-Premise)</h3>
             <div class="pricing__price">от 800 000 ₽</div>
-            <p class="pricing__meta">от 6 недель · Серверы РФ</p>
+            <p class="pricing__meta">от 6 недель · 152-ФЗ</p>
           </div>
           <ul class="pricing__list">
-            <li>Развертывание на серверах заказчика</li>
-            <li>Локальные LLM без внешнего трафика</li>
-            <li>1С:ERP, SAP, аудит ИБ, NDA и SLA 24/7</li>
+            <li>Развертывание на ваших серверах без выхода наружу</li>
+            <li>Локальные нейросети: данные строго по 152-ФЗ</li>
+            <li>Интеграция с 1С:ERP/SAP, аудит ИБ и SLA 24/7</li>
           </ul>
           <a href="#contact" class="btn btn--ghost btn--full pricing__cta">Запросить смету</a>
         </article>
@@ -565,7 +564,7 @@
       </div>
 
       <div class="pricing__footnote" data-reveal="">
-        <p><strong>Условия РФ:</strong> SLA — от 25 000 ₽/мес (опционально); токены LLM (BYOK) и GPU без наценки; ОСНО с НДС 20% или УСН, ЭДО Диадок и СБИС.</p>
+        <p><strong>Условия РФ:</strong> Договор с юрлицом (ОСНО с НДС 20% или УСН), Диадок и СБИС. Модели и GPU без наценок. Гарантийный SLA 30 дней включен в каждый тариф.</p>
         <a href="/pricing/" class="pricing__hub-link">Подробные условия, SLA и сравнение Cloud vs On-Premise →</a>
       </div>
     </div>
@@ -2147,7 +2146,7 @@
             },
             "itemOffered": {
               "@type": "Service",
-              "name": "Пилот 14 дней: автоматизация 1 процесса в 1С, CRM или ЭДО в песочнице с замером KPI"
+              "name": "Пилот 14 дней: 1 рабочий сценарий в 1С, CRM или ЭДО с проверкой метрик и зачетом в проект"
             }
           },
           {
@@ -2161,12 +2160,12 @@
             },
             "itemOffered": {
               "@type": "Service",
-              "name": "Внедрение под ключ: 1–3 ИИ-агента, интеграция 1С/CRM/ЭДО, RAG, обучение команды и SLA 30 дней"
+              "name": "Внедрение под ключ: 1–3 ИИ-агента, интеграция 1С/CRM/ЭДО, база знаний RAG и SLA 30 дней"
             }
           },
           {
             "@type": "Offer",
-            "name": "Enterprise On-Premise (152-ФЗ)",
+            "name": "Серверы компании (On-Premise)",
             "priceSpecification": {
               "@type": "PriceSpecification",
               "minPrice": "800000",
@@ -2174,7 +2173,7 @@
             },
             "itemOffered": {
               "@type": "Service",
-              "name": "Enterprise On-Premise (152-ФЗ): закрытый контур, локальные LLM, 1С:ERP/УХ, NDA и SLA 24/7"
+              "name": "Серверы компании (On-Premise): закрытый контур по 152-ФЗ, локальные нейросети, 1С:ERP, NDA и SLA 24/7"
             }
           }
         ]
