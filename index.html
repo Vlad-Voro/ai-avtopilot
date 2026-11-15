@@ -78,6 +78,7 @@
 
   <!-- Anti-Clickjacking Frame Guard (OWASP Defense) -->
   <style id="anti-clickjack">body{display:none !important;}</style>
+  <noscript><style>#anti-clickjack{display:none !important;}body{display:block !important;}[data-reveal]{opacity:1 !important;transform:none !important;visibility:visible !important;}</style></noscript>
   <script>
     if (self === top) {
       var acj = document.getElementById('anti-clickjack');
@@ -3845,6 +3846,7 @@ section[id] {
           if (delivered) {
             emailForm.style.display = 'none';
             successCard.style.display = 'block';
+            reach('lead_form_submitted');
             reach('express_modal_submitted');
           } else {
             var fallbackNote = 'Заявка:\nКонтакт: ' + contactVal + '\nЗадача: ' + messageVal;
@@ -3904,13 +3906,7 @@ section[id] {
         }
       }
 
-      // 1. Макро: Заявка на аудит отправлена (JS)
-      var form = document.getElementById('contact-form');
-      if (form) {
-        form.addEventListener('submit', function() {
-          reach('lead_form_submitted');
-        });
-      }
+      // 1. Макро: Заявка на аудит отправлена (JS) - вызывается в if (delivered) при подтвержденном ответе
 
       // 2. Микро: Клик по кнопке аудита (CTA)
       var ctaSelectors = ['#cta-main', '.btn--nav', '.scard--accent .btn', '.roi__cta-block .btn', 'a[href="#contact"]'];

@@ -55,9 +55,9 @@ jobs:
             cp "$f" "_site/$f"
           done
 
-          # 9 public directories
+          # 10 public directories
           for d in \
-            .well-known assets calculator cases contact \
+            .well-known assets automated-reporting calculator cases contact \
             dashboard faq pricing services; do
             cp -R "$d" "_site/$d"
           done

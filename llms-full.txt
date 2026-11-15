@@ -162,7 +162,12 @@ $$\text{Годовая экономия (₽)} = N_{\text{сотрудников
 ## 7. Карта разделов платформы
 
 - **Главная страница**: https://ai-avtopilot.ru/
+- **Тарифы и форматы внедрения**: https://ai-avtopilot.ru/pricing/
 - **Каталог услуг**: https://ai-avtopilot.ru/services/
+- **Автономные ИИ-агенты для бизнеса**: https://ai-avtopilot.ru/services/ai-agents/
+- **1С:УАТ и автоматизация логистики**: https://ai-avtopilot.ru/services/fleet-logistics/
+- **1С:ERP Производство и учет**: https://ai-avtopilot.ru/services/manufacturing-automation/
+- **Автоматизация и ИИ-боты для Авито**: https://ai-avtopilot.ru/services/avito-automation/
 - **Автоотчётность и P&L из 1С**: https://ai-avtopilot.ru/services/automated-reporting/
 - **Предиктивная ИИ-аналитика 1С**: https://ai-avtopilot.ru/services/ai-analytics/
 - **Интеграция 1С, CRM и ERP**: https://ai-avtopilot.ru/services/system-integration/
@@ -196,6 +201,7 @@ $$\text{Годовая экономия (₽)} = N_{\text{сотрудников
 - **Кейс автоответов на отзывы нейросетью**: https://ai-avtopilot.ru/cases/reviews-reputation-automation/
 - **Кейс подбора автозапчастей по VIN (СТО)**: https://ai-avtopilot.ru/cases/auto-dealer-parts-automation/
 - **Калькулятор окупаемости ROI**: https://ai-avtopilot.ru/calculator/
+- **Калькулятор налога самозанятого (НПД)**: https://ai-avtopilot.ru/calculator/self-employed/
 - **Интерактивный дашборд**: https://ai-avtopilot.ru/dashboard/
 - **Частые вопросы (FAQ)**: https://ai-avtopilot.ru/faq/
 - **Запись на аудит и контакты**: https://ai-avtopilot.ru/contact/

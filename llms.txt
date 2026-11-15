@@ -75,7 +75,12 @@
 ## Ссылки на разделы платформы
 
 - Главная страница: https://ai-avtopilot.ru/
+- Тарифы и форматы внедрения: https://ai-avtopilot.ru/pricing/
 - Каталог услуг: https://ai-avtopilot.ru/services/
+- Автономные ИИ-агенты для бизнеса: https://ai-avtopilot.ru/services/ai-agents/
+- 1С:УАТ и автоматизация логистики: https://ai-avtopilot.ru/services/fleet-logistics/
+- 1С:ERP Производство и учет сырья: https://ai-avtopilot.ru/services/manufacturing-automation/
+- Автоматизация и ИИ-боты для Авито: https://ai-avtopilot.ru/services/avito-automation/
 - Автоматические отчеты по продажам, остаткам и P&L: https://ai-avtopilot.ru/services/automated-reporting/
 - Предиктивная ИИ-аналитика: https://ai-avtopilot.ru/services/ai-analytics/
 - Бесшовная интеграция 1С, CRM и ERP: https://ai-avtopilot.ru/services/system-integration/
@@ -109,6 +114,8 @@
 - Кейс автоответов на отзывы нейросетью (SERM / ORM, 2ГИС, Яндекс Карты): https://ai-avtopilot.ru/cases/reviews-reputation-automation/
 - Кейс подбора автозапчастей по VIN (45 СТО, 1С:Альфа-Авто): https://ai-avtopilot.ru/cases/auto-dealer-parts-automation/
 - Калькулятор ROI: https://ai-avtopilot.ru/calculator/
+- Калькулятор налога самозанятого (НПД): https://ai-avtopilot.ru/calculator/self-employed/
+- Частые вопросы (FAQ): https://ai-avtopilot.ru/faq/
 - Интерактивный дашборд: https://ai-avtopilot.ru/dashboard/
 - Запись на бесплатный аудит: https://ai-avtopilot.ru/contact/
 - Политика конфиденциальности (152-ФЗ): https://ai-avtopilot.ru/privacy.html

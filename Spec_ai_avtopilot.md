@@ -13,10 +13,12 @@
 flowchart TD
     Client["Client Browser"] -->|HTTPS / TLS 1.3 / Anycast 76.76.21.21| Vercel["Vercel Anycast Edge"]
 
-    subgraph EdgeLayer ["1. Edge & DNS Layer (Vercel + Cloudflare Grey Cloud)"]
-        Vercel -->|Static Assets & Subpages| VEdge["Vercel Edge (vercel.json)"]
-        Vercel -->|POST /submit (Lead Ingestion)| CFW["Cloudflare Worker (ai-avtopilot-bot)"]
-        VEdge -->|Security Headers + 1y Cache| VSec["HSTS, CSP, Frame Guard, Permissions-Policy"]
+    subgraph EdgeLayer ["1. Edge & DNS Layer (GitHub Pages + Vercel + Cloudflare Grey Cloud)"]
+        GHP["GitHub Pages (_site/ whitelist)"] -->|Static HTML/Assets| Client
+        Vercel -->|308 Canonical Apex Redirect (www -> non-www)| Client
+        Vercel -->|Edge Mirror & Fallback Headers| VEdge["Vercel Edge (vercel.json)"]
+        Client -->|POST /submit (Lead Ingestion)| CFW["Cloudflare Worker (ai-avtopilot-bot)"]
+        GHP -->|Security Headers + Static Distribution| VSec["HSTS, CSP, Frame Guard, Permissions-Policy"]
         VEdge -->|Deployment Isolation| VIgn[".vercelignore (blocks _headers, *.md, tests, bot)"]
     end
 
@@ -154,11 +156,11 @@ index.html (Master Template) & Data Catalogs
 - **Anti-Hijacking Parser**: Regex `^🆔 ID клиента: <code>(\d+)</code>` isolates client ID, preventing prompt injection in user quotes.
 
 ### 5.2. Multi-Cloud Lead Failover Cascade
-1. **Tier 1 (Primary Gateway)**: Cloudflare Worker `/submit` (`/api/lead`) with dual parser (JSON + `urlencoded`), bot timing verification, sliding-window rate limit (5 req/10m), and HTML 303 Redirect to `/success.html`.
+1. **Tier 1 (Primary Gateway)**: Cloudflare Worker direct `/submit` (`https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/submit`) with dual parser (JSON + `urlencoded`), bot timing verification, sliding-window rate limit (5 req/10m), and HTML 303 Redirect to `/success.html`.
 2. **Tier 2 (Multi-Cloud Failover)**: Vercel Serverless Function `/api/fallback-lead` running independently on Vercel Edge infrastructure, guaranteeing zero-loss if Cloudflare suffers an edge outage.
 3. **Tier 3 (Offline / Network Stall Guard)**: Resilient fallback card with 1-click clipboard payload copy and direct Telegram contact link (`@AiAvtopilotbot`) (`RES-02`, `RES-03`).
 4. **Tier 4 (NoScript Accessibility)**: In-page `<noscript>` container with instant Telegram and mailto direct contact buttons.
-5. **Zero Naked Form Endpoints**: Complete elimination of public third-party endpoints and hardcoded emails across all 41 HTML pages and client bundles.
+5. **Zero Naked Form Endpoints**: Complete elimination of public third-party endpoints and hardcoded emails across all 44 HTML pages and client bundles.
 
 ---
 
@@ -205,7 +207,7 @@ index.html (Master Template) & Data Catalogs
 | **XSS & Injection** | Strict CSP: `default-src 'self'`; whitelisted analytics and fonts | Mitigates unauthorized script execution. |
 | **MIME Sniffing** | `X-Content-Type-Options: nosniff` header | Prevents browser MIME confusion attacks. |
 | **Outbound Leakage** | `Referrer-Policy: strict-origin-when-cross-origin` | Protects query tokens on outbound links. |
-| **Form Scraping & Spam Injection** | Masked `action="/api/lead"`, zero third-party endpoints, honeypot & timing trap ($\ge 1.0$s) | Neutralizes automated direct-to-endpoint bot submissions. |
+| **Form Scraping & Spam Injection** | Direct Cloudflare Worker `action="https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/submit"`, zero third-party endpoints, honeypot & timing trap ($\ge 1.0$s) | Neutralizes automated direct-to-endpoint bot submissions. |
 | **Non-JS Lead Drop** | Worker dual parser (`application/x-www-form-urlencoded`) + 303 Redirect to `/success.html` | 100% lead capture resilience without client-side JavaScript. |
 | **Gateway Single Point of Failure** | Tier 2 Vercel Serverless Function `/api/fallback-lead` running independently | Eliminates edge dependency, ensuring failover lead capture. |
 | **Payload Flooding** | 10 KB body clamp and input length validations | Neutralizes buffer overflow and DoS vectors. |
