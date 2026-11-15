@@ -370,6 +370,7 @@ runCheck('SEO-21', 'Zero aria-hidden attributes on carousel dots or interactive 
     const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
     assert.ok(!html.includes('id="services-dots" aria-hidden="true"'), `Found aria-hidden="true" on services-dots in ${p.file}`);
     assert.ok(!html.includes('id="carousel-dots" aria-hidden="true"'), `Found aria-hidden="true" on carousel-dots in ${p.file}`);
+    assert.ok(!html.includes('id="pricing-dots" aria-hidden="true"'), `Found aria-hidden="true" on pricing-dots in ${p.file}`);
   });
 });
 

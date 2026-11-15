@@ -300,10 +300,58 @@ async function runSliderAndDragSuite(options = {}) {
       assert(otherServicesState.justifyContent === 'flex-start', `Mobile other-services-dots justifyContent is 'flex-start' (got '${otherServicesState.justifyContent}')`);
       assert(otherServicesState.dotsCount === 9 || otherServicesState.dotsCount === 23, `Mobile other-services-dots has 9 Silo sibling dots (got ${otherServicesState.dotsCount})`);
       assert(otherServicesState.allFirstVisible, 'Active touchbar dot remains fully visible on right swipe across first 4 cards in Other Services');
+
+      // 9. Verify #pricing compact horizontal slider on mobile (3 dots, equal height cards, dot switching)
+      await mobilePage.goto(baseUrl, { waitUntil: 'domcontentloaded' });
+      await mobilePage.waitForSelector('#pricing-dots .carousel-dot');
+
+      const pricingMobileState = await mobilePage.evaluate(async () => {
+        const pGrid = document.querySelector('#pricing .pricing__grid');
+        const pDotsWrap = document.getElementById('pricing-dots');
+        const pDots = Array.from(pDotsWrap.querySelectorAll('.carousel-dot'));
+        const pCards = Array.from(pGrid.querySelectorAll('.pricing__card'));
+        const heights = pCards.map((c) => Math.round(c.getBoundingClientRect().height));
+        const maxH = Math.max(...heights);
+        const minH = Math.min(...heights);
+
+        if (pCards[1]) {
+          pCards[1].scrollIntoView({ inline: 'center', block: 'nearest' });
+          pGrid.dispatchEvent(new Event('scroll'));
+        }
+        await new Promise((r) => setTimeout(r, 80));
+
+        const activeIdx = Array.from(pDotsWrap.querySelectorAll('.carousel-dot')).findIndex((d) => d.classList.contains('active'));
+        return {
+          dotsCount: pDots.length,
+          cardsCount: pCards.length,
+          heightSpread: maxH - minH,
+          overflowX: getComputedStyle(pGrid).overflowX,
+          activeIdx
+        };
+      });
+
+      assert(pricingMobileState.dotsCount === 3, `Mobile #pricing-dots has 3 dots (got ${pricingMobileState.dotsCount})`);
+      assert(pricingMobileState.overflowX === 'auto' || pricingMobileState.overflowX === 'scroll', `Mobile .pricing__grid has horizontal slider overflow-x (got '${pricingMobileState.overflowX}')`);
+      assert(pricingMobileState.heightSpread <= 2, `Mobile #pricing cards have equal height (spread: ${pricingMobileState.heightSpread}px)`);
+      assert(pricingMobileState.activeIdx === 1, `Mobile #pricing active dot switches to index 1 on scroll (got ${pricingMobileState.activeIdx})`);
     } finally {
       await mobilePage.close().catch(() => {});
       await mobileContext.close().catch(() => {});
     }
+
+    // 10. Verify #pricing desktop 3-column grid & hidden slider-controls
+    await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
+    const pricingDesktop = await page.evaluate(() => {
+      const ctrl = document.querySelector('#pricing .slider-controls');
+      const cards = Array.from(document.querySelectorAll('#pricing .pricing__card'));
+      const tops = cards.map((c) => Math.round(c.getBoundingClientRect().top));
+      return {
+        controlsDisplay: ctrl ? getComputedStyle(ctrl).display : null,
+        sameRow: tops.length === 3 && Math.max(...tops) - Math.min(...tops) <= 2
+      };
+    });
+    assert(pricingDesktop.controlsDisplay === 'none', `Desktop #pricing .slider-controls is hidden (got '${pricingDesktop.controlsDisplay}')`);
+    assert(pricingDesktop.sameRow, 'Desktop #pricing renders 3 cards in a single row');
 
   } catch (err) {
     console.error('Test execution error:', err);

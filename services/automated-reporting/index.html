@@ -2350,27 +2350,29 @@ section[id] {
   }
 
   .footer__dual-btn,#open-express-modal{min-height:44px}
-  .slider-controls,.services-dots,.other-services-dots,.carousel-dots{max-width:100%;overflow-x:auto}
+  .slider-controls,.services-dots,.other-services-dots,.pricing-dots,.carousel-dots{max-width:100%;overflow-x:auto}
   /* Pricing Section & Tablet Nav Compression */
-  .pricing{padding:96px 0;position:relative;overflow-x:hidden}
-  .pricing__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:stretch}
-  .pricing__card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px;display:flex;flex-direction:column;gap:20px;position:relative;min-width:0;overflow-wrap:break-word;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+  .pricing{padding:20px 0 32px;position:relative;overflow-x:hidden}
+  .pricing__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch;scrollbar-width:none}
+  .pricing__grid::-webkit-scrollbar{display:none}
+  .pricing__grid.is-nudging{animation:sNudge 1s cubic-bezier(.25,1,.4,1) 1;will-change:transform}
+  .pricing__card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:22px 20px;display:flex;flex-direction:column;gap:14px;position:relative;min-width:0;overflow-wrap:break-word;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
   .pricing__card:hover{transform:translateY(-4px);border-color:rgba(99,102,241,.45)}
   .pricing__card--featured{border-color:rgba(168,85,247,.65);background:linear-gradient(180deg,rgba(99,102,241,.12) 0%,rgba(16,16,28,.92) 100%);box-shadow:0 16px 40px -16px rgba(99,102,241,.4)}
-  .pricing__head{display:flex;flex-direction:column;gap:8px}
+  .pricing__head{display:flex;flex-direction:column;gap:6px}
   .pricing__tier,.pricing__badge{display:inline-flex;align-self:flex-start;padding:4px 12px;border-radius:999px;font-size:.75rem;font-weight:700;letter-spacing:.02em}
   .pricing__tier{background:rgba(255,255,255,.06);color:var(--text-2);border:1px solid var(--border)}
   .pricing__badge{background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff}
-  .pricing__title{font-family:var(--font-head);font-size:1.3rem;font-weight:700;color:var(--text-1);margin:4px 0 0}
-  .pricing__price{font-family:var(--font-head);font-size:clamp(1.65rem,2.4vw,2.15rem);font-weight:800;color:#fff;line-height:1.15}
-  .pricing__meta{font-size:.88rem;color:var(--text-3);margin:0}
-  .pricing__list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;flex:1 1 auto}
-  .pricing__list li{position:relative;padding-left:22px;color:var(--text-2);font-size:.94rem;line-height:1.5}
+  .pricing__title{font-family:var(--font-head);font-size:1.22rem;font-weight:700;color:var(--text-1);margin:2px 0 0}
+  .pricing__price{font-family:var(--font-head);font-size:clamp(1.55rem,2.2vw,2rem);font-weight:800;color:#fff;line-height:1.15}
+  .pricing__meta{font-size:.86rem;color:var(--text-3);margin:0}
+  .pricing__list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;flex:1 1 auto}
+  .pricing__list li{position:relative;padding-left:20px;color:var(--text-2);font-size:.88rem;line-height:1.45}
   .pricing__list li:before{content:"✓";position:absolute;left:0;top:0;color:var(--accent-1);font-weight:700}
   .pricing__cta{margin-top:auto;min-height:44px}
-  .pricing__footnote{margin-top:24px;padding:18px 22px;border-radius:var(--radius-sm);background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--text-2);font-size:.9rem;line-height:1.6}
+  .pricing__footnote{margin-top:16px;padding:14px 18px;border-radius:var(--radius-sm);background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--text-2);font-size:.85rem;line-height:1.5}
   .pricing__footnote p{margin:0}
-  .pricing__hub-link{display:inline-flex;align-items:center;margin-top:10px;min-height:44px;color:var(--accent-1);font-weight:600;text-decoration:none}
+  .pricing__hub-link{display:inline-flex;align-items:center;margin-top:6px;min-height:44px;color:var(--accent-1);font-weight:600;text-decoration:none}
   .pricing__hub-link:hover{text-decoration:underline}
   .pricing-details{padding:72px 0;overflow-x:hidden}
   .pricing-table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-card)}
@@ -2382,6 +2384,9 @@ section[id] {
   .pricing-terms__item{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:20px}
   .pricing-terms__item h3{font-family:var(--font-head);font-size:1.05rem;font-weight:700;color:var(--text-1);margin:0 0 8px}
   .pricing-terms__item p{margin:0;font-size:.9rem;line-height:1.55;color:var(--text-2)}
+  @media(min-width:1025px){
+    .pricing__grid + .slider-controls{display:none !important}
+  }
   @media(min-width:769px) and (max-width:1120px){
     .nav__inner{gap:12px}
     .nav__links{gap:clamp(6px,1vw,16px)}
@@ -2389,8 +2394,18 @@ section[id] {
     .btn--nav{padding:10px 14px;font-size:.84rem;white-space:nowrap}
   }
   @media(max-width:1024px){
-    .pricing{padding:72px 0}
-    .pricing__grid,.pricing-terms{grid-template-columns:1fr;gap:16px}
+    .pricing{padding:20px 0 32px}
+    .pricing__grid{display:flex;align-items:stretch !important;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;gap:16px;padding:8px 4px 18px;margin:0 -4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+    .pricing__card{flex:0 0 min(330px,80vw);scroll-snap-align:center;scroll-snap-stop:normal;display:flex !important;flex-direction:column !important;align-self:stretch !important;height:auto !important;padding:20px 18px}
+    .pricing__list{flex:1 1 auto !important}
+    .pricing__cta{margin-top:auto !important}
+    .pricing-terms{grid-template-columns:1fr;gap:16px}
+  }
+  @media(max-width:480px){
+    .pricing__card{flex:0 0 84vw;padding:18px 16px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .pricing__grid.is-nudging{animation:none !important}
   }
   </style>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
@@ -2790,9 +2805,9 @@ section[id] {
 <section class="pricing" id="pricing">
 <div class="container">
 <div class="section-header" data-reveal="">
-<span class="section-tag">Стоимость внедрения</span>
-<h2 class="section-title">Прозрачные форматы <span class="grad-text">запуска ИИ-агентов</span></h2>
-<p class="section-desc">Фиксируем бюджет и KPI в договоре до старта работ. Поэтапная оплата по ЭДО без скрытых платежей.</p>
+<span class="section-tag">Стоимость</span>
+<h2 class="section-title">Прозрачные форматы <span class="grad-text">запуска</span></h2>
+<p class="section-desc">Фиксируем смету и KPI в договоре. Оплата по ЭДО 50/50.</p>
 </div>
 <div class="pricing__grid">
 <article class="pricing__card" data-reveal="">
@@ -2800,13 +2815,12 @@ section[id] {
 <span class="pricing__tier">Быстрый старт</span>
 <h3 class="pricing__title">Пилот 14 дней</h3>
 <div class="pricing__price">от 100 000 ₽</div>
-<p class="pricing__meta">Срок: 14 дней · 1 процесс</p>
+<p class="pricing__meta">14 дней · 1 процесс</p>
 </div>
 <ul class="pricing__list">
-<li>1 процесс в 1С, CRM или ЭДО на реальных документах</li>
-<li>Запуск в песочнице без остановки текущей работы</li>
-<li>Замер KPI до и после внедрения по договору</li>
-<li><strong>100% оплаты пилота засчитывается</strong> в основное внедрение в течение 30 дней</li>
+<li>1 процесс в 1С, CRM или ЭДО</li>
+<li>Песочница без остановки работы</li>
+<li><strong>100% зачет</strong> в проект за 30 дней</li>
 </ul>
 <a class="btn btn--ghost btn--full pricing__cta" href="#contact">Обсудить пилот</a>
 </article>
@@ -2815,34 +2829,41 @@ section[id] {
 <span class="pricing__badge">★ Оптимальный</span>
 <h3 class="pricing__title">Внедрение под ключ</h3>
 <div class="pricing__price">от 250 000 ₽</div>
-<p class="pricing__meta">Вилка типового проекта: 250 000 – 550 000 ₽ · 3–6 недель</p>
+<p class="pricing__meta">250 000 – 550 000 ₽ · 3–6 недель</p>
 </div>
 <ul class="pricing__list">
-<li>1–3 автономных ИИ-агента в промышленной эксплуатации</li>
-<li>Интеграция с 1С, CRM, ЭДО и корпоративной базой знаний (RAG)</li>
-<li>Обучение сотрудников и передача регламентов поддержки</li>
-<li>Гарантийный SLA 30 дней после запуска включен</li>
+<li>1–3 ИИ-агента в рабочем контуре</li>
+<li>1С, CRM, ЭДО и корпоративный RAG</li>
+<li>Обучение команды и SLA 30 дней</li>
 </ul>
 <a class="btn btn--primary btn--full pricing__cta" href="#contact">Обсудить внедрение</a>
 </article>
 <article class="pricing__card" data-reveal="">
 <div class="pricing__head">
-<span class="pricing__tier">Корпоративный контур</span>
+<span class="pricing__tier">Закрытый контур</span>
 <h3 class="pricing__title">Enterprise On-Premise (152-ФЗ)</h3>
 <div class="pricing__price">от 800 000 ₽</div>
-<p class="pricing__meta">Срок: от 6 недель · Закрытый контур</p>
+<p class="pricing__meta">от 6 недель · Серверы РФ</p>
 </div>
 <ul class="pricing__list">
-<li>Развертывание полностью на серверах заказчика</li>
-<li>Локальные LLM (vLLM, YandexGPT, GigaChat) без внешнего трафика</li>
-<li>Интеграция с 1С:ERP, 1С:УХ, SAP и прохождение аудита ИБ</li>
-<li>Соглашение о неразглашении (NDA) и мониторинг SLA 24/7</li>
+<li>Развертывание на серверах заказчика</li>
+<li>Локальные LLM без внешнего трафика</li>
+<li>1С:ERP, SAP, аудит ИБ, NDA и SLA 24/7</li>
 </ul>
 <a class="btn btn--ghost btn--full pricing__cta" href="#contact">Запросить смету</a>
 </article>
 </div>
+<div class="slider-controls">
+<button type="button" class="slider-arrow slider-arrow--prev" id="pricing-prev" aria-label="Предыдущие тарифы" title="Предыдущие тарифы">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+</button>
+<div class="carousel-dots pricing-dots" id="pricing-dots"></div>
+<button type="button" class="slider-arrow slider-arrow--next" id="pricing-next" aria-label="Следующие тарифы" title="Следующие тарифы">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+</button>
+</div>
 <div class="pricing__footnote" data-reveal="">
-<p><strong>Прозрачные условия РФ:</strong> поддержка и SLA после запуска — от 25 000 ₽/мес (опционально). LLM-токены (BYOK) или GPU-серверы оплачиваются заказчиком напрямую без наценки. Работаем по договору (ОСНО с НДС 20% или УСН без НДС), оплата 50%/50%, закрывающие документы через ЭДО Диадок и СБИС.</p>
+<p><strong>Условия РФ:</strong> SLA — от 25 000 ₽/мес (опционально); токены LLM (BYOK) и GPU без наценки; ОСНО с НДС 20% или УСН, ЭДО Диадок и СБИС.</p>
 <a class="pricing__hub-link" href="/pricing/">Подробные условия, SLA и сравнение Cloud vs On-Premise →</a>
 </div>
 </div>
@@ -4057,6 +4078,16 @@ section[id] {
         nextBtn: document.getElementById('services-next'),
         itemSelector: '.scard',
         labelPrefix: 'Сценарий'
+      });
+
+      // Initialize Pricing Horizontal Slider (1:1 Cases/Services mobile UX)
+      initAdaptiveSlider({
+        container: document.querySelector('.pricing__grid'),
+        dotsWrap: document.getElementById('pricing-dots'),
+        prevBtn: document.getElementById('pricing-prev'),
+        nextBtn: document.getElementById('pricing-next'),
+        itemSelector: '.pricing__card',
+        labelPrefix: 'Тариф'
       });
     });
   </script>

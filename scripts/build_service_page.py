@@ -1760,6 +1760,15 @@ def generate_service_html(data: dict) -> str:
 
         updateDots();
       }}
+      // Initialize Pricing Horizontal Slider (1:1 Cases/Services mobile UX)
+      initAdaptiveSlider({{
+        container: document.querySelector('.pricing__grid'),
+        dotsWrap: document.getElementById('pricing-dots'),
+        prevBtn: document.getElementById('pricing-prev'),
+        nextBtn: document.getElementById('pricing-next'),
+        itemSelector: '.pricing__card',
+        labelPrefix: 'Тариф'
+      }});
 {other_services_js}
     }});
   </script>

@@ -141,7 +141,7 @@ sequenceDiagram
 4. **De-slopped Realism**: Eliminate AI platitudes; enforce hard units (секунды, рубли, штуки, проценты) via `ru_text_humanizer` (0/64 patterns).
 5. **On-Site Conversion**: Ensure organic integration of `#contact` anchor and interactive sliders without external bot redirects.
 6. **Metric Units & Decimal Integrity**: Preserve measurement units (`%`, `₽`, `ч`, `сек`, `млн ₽`, `★`, `шт`) and signs (`+18%`, `−72%`, `9 200 ч`). Use Russian decimal comma notation (`4,9★`, not integer `4`).
-7. **Mobile Card Equal-Height Invariant**: Verify height uniformity across horizontal swipe card blocks (`.scard`, `.case-card`) under mobile viewports ($\le 480\text{px}$). Enforce stretch flexbox rules, `flex: 1 1 auto` on descriptions, `margin-top: auto` on tags/CTAs, and balanced copy length.
+7. **Mobile Card Equal-Height Invariant**: Verify height uniformity across horizontal swipe card blocks (`.scard`, `.case-card`, `.pricing__card`) under mobile viewports ($\le 1024\text{px}$ / $\le 480\text{px}$). Enforce stretch flexbox rules, `flex: 1 1 auto` on descriptions/lists, `margin-top: auto` on tags/CTAs, and balanced copy length.
 8. **Canonical Dual-CTA Footer & Express Modal**: Ensure all newly generated pages include `.footer__dual-cta` (Telegram channel + Email express audit modal trigger) and `<dialog id="express-contact-modal">`. Standalone legacy footers are strictly rejected.
 
 
