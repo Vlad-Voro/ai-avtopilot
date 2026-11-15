@@ -1,5 +1,6 @@
 # B2B Content Strategy & Demand Capture Specification: ai-avtopilot.ru (Spec_content_ai_avtopilot.md)
 
+> **Standard**: ASD-STE100 (Simplified Technical English) / SDR  
 > **Status**: Production Deployed | **Target**: [ai-avtopilot.ru](https://ai-avtopilot.ru/) | **Geo**: Russian Federation (Nationwide B2B)  
 > **Inventory**: 46 Production URLs (1 Root, 7 Hubs, 24 Services, 11 Cases, 3 Utility) + 1 Canonical Stub (`/automated-reporting/`)  
 > **Search Targets**: Yandex (Web + «Нейро»), Google RU (AI Overviews), Perplexity, Klerk.ru, Infostart.ru  

@@ -1,5 +1,6 @@
 # Architectural Specification & Production Blueprint: ai-avtopilot.ru (Spec_ai_avtopilot.md)
 
+> **Standard**: ASD-STE100 (Simplified Technical English)  
 > **Status**: Production Hardened | **Updated**: 2026-11-15  
 > **Live URL**: [https://ai-avtopilot.ru/](https://ai-avtopilot.ru/) | **Repo**: `Vlad-Voro/ai-avtopilot` (`main` - Private)  
 > **Local Root**: `d:\AI\data\ai-avtopilot` | **Inventory**: 46 Production URLs (1 Root, 7 Hubs, 24 Services, 11 Cases, 3 Utility) + 1 Canonical Stub (`/automated-reporting/`)  
@@ -88,32 +89,36 @@ flowchart TD
 - **Mobile Nav**: Synchronous `aria-expanded` toggle, body scroll lock (`overflow: hidden`), auto-close on `Escape` or link click.
 - **Motion Reduction**: `@media (prefers-reduced-motion: reduce)` disables particles, transforms, and pulsating glows.
 
-### 2.4. Pricing Block Architecture (`#pricing`), `/pricing/` Hub & AI Stack
+### 2.4. Pricing Block Architecture (`#pricing`), `/pricing/` Hub, and AI Tech Stack
 
-#### A. 3-Tier Enterprise Launch Model
-1. **Пилот 14 дней (`от 100 000 ₽`)**:
-   - Быстрый запуск 1 рабочего сценария в 1С, CRM или ЭДО на копии рабочей базы (без риска для продуктивной среды).
-   - **100% стоимости пилота засчитывается** в бюджет основного внедрения при переходе к проекту в течение 30 дней.
-2. **Внедрение под ключ (`от 250 000 ₽`, вилка 250 000 – 550 000 ₽)**:
-   - Срок 3–6 недель: разработка 1–3 автономных ИИ-агентов, глубокая интеграция с 1С (OData/HTTP-сервисы), CRM и корпоративной базой знаний (RAG).
-   - Включает обучение персонала и 30 дней безусловного гарантийного SLA.
-3. **Серверы компании On-Premise (`от 800 000 ₽`)**:
-   - Развертывание в закрытом корпоративном контуре заказчика (Air-gapped) без передачи данных во внешние облака.
-   - Полное соблюдение 152-ФЗ, интеграция с 1С:ERP/SAP, аудит информационной безопасности и поддержка 24/7.
-4. **Условия сотрудничества (РФ)**:
-   - Официальный договор с юрлицом (ОСНО с НДС 20% или УСН), документооборот через Диадок или СБИС, обязательный NDA до передачи доступов.
-   - График расчетов: аванс 50%, окончательный расчет 50% после проверки точности на боевых сценариях и подписания акта приемки.
-   - Расходы на токены LLM и GPU-инфраструктуру оплачиваются по модели BYOK (Bring Your Own Key) напрямую провайдерам без агентской наценки.
+#### A. 3-Tier Enterprise Commercial Model
+1. **Tier 1: 14-Day Rapid Pilot (`from 100,000 RUB`)**:
+   - Scope: Deploy 1 operational automation workflow in 1C, CRM, or EDI on a sanitized database replica.
+   - Financial Invariant: **100% of pilot fee credits toward total project cost** when transitioned within 30 calendar days.
+   - Delivery Timeline: Exactly 14 business days.
+2. **Tier 2: Turnkey Enterprise Implementation (`from 250,000 RUB`, budget bracket `250,000–550,000 RUB`)**:
+   - Scope: 1 to 3 autonomous AI agents integrated into 1C (via OData / REST HTTP services), CRM (Bitrix24, amoCRM), and Corporate RAG Knowledge Base.
+   - Execution Window: 3 to 6 weeks. Includes operator training and mandatory 30-day warranty SLA.
+3. **Tier 3: Air-Gapped On-Premise Cluster (`from 800,000 RUB`)**:
+   - Scope: Deployment on customer-managed GPU servers with zero external network egress (152-FZ compliance).
+   - Integration: Deep integration with 1C:ERP, SAP, corporate access controls, and 24/7 mission-critical SLA.
+   - Lead Time: $\ge 6$ weeks including cybersecurity audit.
+4. **Commercial Terms (Russian Federation Jurisdiction)**:
+   - Contract Entity: Registered legal contract (OSNO with 20% VAT or USN).
+   - Document Flow: Legally binding electronic document exchange via Diadoc or SBIS.
+   - Bilateral NDA: Executed prior to sensitive credential disclosure.
+   - Payment Schedule: 50% prepayment, 50% upon verified acceptance testing.
+   - Infrastructure Costs: Direct BYOK (Bring Your Own Key) billing for cloud LLM and GPU compute with 0% agency markup.
 
-#### B. Архитектурное сравнение контуров (Cloud vs On-Premise)
+#### B. Architectural Execution Environments (Cloud vs On-Premise)
 
-| Параметр архитектуры | Cloud / API (Быстрый старт) | On-Premise (Серверы компании) |
+| Parameter | Cloud / API (Rapid Deployment) | On-Premise (Air-Gapped Infrastructure) |
 | :--- | :--- | :--- |
-| **Среда исполнения** | Изолированный сервис в РФ или облачный API по ключу заказчика | Полностью на серверах компании без внешнего сетевого трафика |
-| **Языковые модели (LLM)** | YandexGPT, GigaChat, OpenAI через прямой API заказчика (BYOK) | Локальные открытые LLM (vLLM, Qwen 2.5, Llama 3) на GPU заказчика |
-| **Сроки запуска** | Пилот — 14 дней, комплексное внедрение — 3–6 недель | От 6 недель с прохождением аудита ИБ предприятия |
-| **Оплата LLM-ресурсов** | Прямая оплата провайдеру без агентской наценки (по счетчикам) | Без абонентской платы за запросы — на мощностях собственных GPU |
-| **Гарантийный SLA** | 30 дней гарантии включено в проект, далее опционально от 25 000 ₽/мес | Выделенный инженер, мониторинг 24/7 и регламентированный SLA в договоре |
+| **Execution Environment** | Isolated Russian sovereign cloud or external API via customer token | Dedicated customer-owned bare metal or VM without external WAN egress |
+| **Model Runtime (LLM)** | YandexGPT, GigaChat, or OpenAI via direct customer API key (BYOK) | Local open-weights LLMs (vLLM, Qwen 2.5, Llama 3) on NVIDIA GPUs |
+| **Deployment SLA** | Pilot in 14 days, full integration in 3–6 weeks | $\ge 6$ weeks including corporate security clearance |
+| **Token Ingestion Cost** | Pay-as-you-go billed directly by cloud LLM provider | 0 RUB API token fee; powered by internal server hardware |
+| **Warranty & Support** | 30-day warranty included; optional support from 25,000 RUB/month | Dedicated support engineer, 24/7 monitoring, formal SLA in contract |
 
 ---
 
@@ -129,15 +134,15 @@ index.html (Master Template) & Data Catalogs
 
 ### 3.1. SSG Routing & Navigation Contracts
 - **Deduplicated Standalone Hub Architecture**:
-  - Hub-страницы (`/services/`, `/cases/`, `/pricing/`, `/calculator/`, `/dashboard/`, `/faq/`, `/contact/`) больше не являются полными дублями главной страницы (`222.6 KiB`). Каждая страница содержит собственный семантический `<h1>` в Hero, только тематические секции каталога/кейсов/калькулятора, компактный FAQ и форму заявки. Вес снижен до 72–175 KiB.
-  - Каждая страница хаба сохраняет валидный JSON-LD `@graph` (`WebSite`, `FAQPage`, `ProfessionalService`, `Organization`, `BreadcrumbList`) для соблюдения контракта `SEO-10`.
-- **SOTA 404 Fallback & Canonical Stubs**:
-  - Root `/404.html` ловит несуществующие пути; клиентский `history.replaceState` восстанавливает целевой маршрут.
-  - Устаревшие ссылки (например, `/automated-reporting/`) обслуживаются через HTML-заглушки с `<link rel="canonical">`, `<meta http-equiv="refresh">` и JS-редиректом, включенные в белый список сборки `_site`.
+  - Hub pages (`/services/`, `/cases/`, `/pricing/`, `/calculator/`, `/dashboard/`, `/faq/`, `/contact/`) do not duplicate the full homepage markup (`222.6 KiB`). Each page renders a dedicated semantic `<h1>` in `#home`, relevant category components, an isolated FAQ accordion, and lead capture form. Page transfer size is bounded within 72–175 KiB.
+  - Each hub page preserves valid Schema.org JSON-LD `@graph` (`WebSite`, `FAQPage`, `ProfessionalService`, `Organization`, `BreadcrumbList`) to maintain strict compliance with automated rule `SEO-10`.
+- **404 Fallback & Canonical Redirect Stubs**:
+  - The root `/404.html` intercepts invalid routes; client-side `history.replaceState` restores target route state.
+  - Legacy URLs (e.g. `/automated-reporting/`) render dedicated HTML stubs with `<link rel="canonical">`, `<meta http-equiv="refresh">`, and synchronous JavaScript redirect, whitelisted in the `_site` packaging loop.
 - **Deterministic ScrollSpy Guard**:
-  - Active section calculated via DOM geometry (`getActiveSection()`) using scroll offset (`window.scrollY + offset`).
-  - Clears active underline on `#home`.
-  - **Subpage Isolation**: `const isSubpage = window.location.pathname.startsWith('/services') || window.location.pathname.startsWith('/cases') || document.querySelector('.subpage-deep')`. Bypasses `history.replaceState` during scroll on subpages to preserve canonical URLs.
+  - Section state computes via DOM coordinates (`getActiveSection()`) using scroll offset (`window.scrollY + offset`).
+  - Active indicator on `#home` clears automatically when scrolling out of hero bounds.
+  - **Subpage Navigation Guard**: `const isSubpage = window.location.pathname.startsWith('/services') || window.location.pathname.startsWith('/cases') || document.querySelector('.subpage-deep')`. Bypasses `history.replaceState` during scroll events on subpages to retain canonical path integrity.
 
 ---
 
@@ -205,9 +210,9 @@ index.html (Master Template) & Data Catalogs
   ```txt
   Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&_openstat&from&vk_source&gclid&fbclid /
   ```
-- **Machine Discovery**: `/llms.txt` and `/llms-full.txt` indexed via `<link rel="describedby" href="/llms.txt">` (100% покрытие всех 46 маршрутов платформы, включая `/pricing/`, калькуляторы и новые сервисы).
-- **No-JS Accessibility & Clickjack Protection**: `<noscript>`-страховка нейтрализует скрытие `#anti-clickjack` (`body { display: block !important; }`) и форсирует видимость `[data-reveal]` (`opacity: 1 !important; transform: none !important;`) без синтаксических ошибок `</meta>`.
-- **Princeton KDD 2024 GEO Levers**: Разметка по модели Aggarwal et al. включает внешние цитируемые источники (ГОСТ Р ИСО 9001, стандарты обмена 1C:Enterprise, 152-ФЗ, +40.2%), экспертные цитаты архитекторов (`<blockquote cite="...">`, +37.8%) и точные числовые тайминги рутины (+34.1%).
+- **Machine Discovery**: `/llms.txt` and `/llms-full.txt` indexed via `<link rel="describedby" href="/llms.txt">` (100% route coverage across all 46 active endpoints).
+- **No-JS Accessibility & Clickjack Defense**: `<noscript>` block neutralizes `#anti-clickjack` hidden state (`body { display: block !important; }`) and forces `[data-reveal]` visibility (`opacity: 1 !important; transform: none !important;`) without invalid `</meta>` closing elements.
+- **Princeton KDD 2024 GEO Levers**: Content adherence to Aggarwal et al. (KDD 2024) models: verifiable citations (GOST R ISO 9001, 1C:Enterprise exchange standards, 152-FZ, +40.2%), expert architect quotations (`<blockquote cite="...">`, +37.8%), and empirical time-reduction statistics (+34.1%).
 - **Instant Navigation**: Chrome Speculation Rules API prerenders subpages with moderate threshold.
 - **Security Standards**: RFC 9116 security policy at `/.well-known/security.txt`.
 - **IndexNow Protocol**: Real-time push via `scripts/seo/push_indexnow.py` keyed by `d8a24f0c9b7e416a9e3d81b7e651c4a0.txt`.
