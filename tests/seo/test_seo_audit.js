@@ -241,9 +241,18 @@ runCheck('SEO-10', 'Schema.org JSON-LD @graph contains required entities per cat
       assert.ok(!types.includes('WebSite'), `Unexpected WebSite in hub ${p.file}`);
       if (p.hasFaq !== false) assert.ok(types.includes('FAQPage'), `Missing FAQPage in ${p.file}`);
     } else if (p.category === 'service') {
+      assert.ok(!types.includes('WebSite'), `Unexpected WebSite in service ${p.file}`);
       assert.ok(types.includes('Service') || types.includes('SoftwareApplication'), `Missing Service in ${p.file}`);
     } else if (p.category === 'case') {
+      assert.ok(!types.includes('WebSite'), `Unexpected WebSite in case ${p.file}`);
       assert.ok(types.includes('TechArticle'), `Missing TechArticle in ${p.file}`);
+    }
+    const rawJson = m[1];
+    assert.ok(!/"price"\s*:\s*"0"/.test(rawJson), `Forbidden Offer price:"0" in JSON-LD of ${p.file}`);
+    assert.ok(!/icon\.svg/.test(rawJson), `Forbidden SVG logo icon.svg in JSON-LD of ${p.file}`);
+    const profService = data['@graph'].find(item => item['@type'] === 'ProfessionalService');
+    if (p.category !== 'home' && p.slug !== 'pricing') {
+      assert.strictEqual(profService && profService.hasOfferCatalog, undefined, `Unexpected hasOfferCatalog in ${p.file}`);
     }
   });
 });

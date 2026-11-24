@@ -58,11 +58,11 @@ def render_other_services_cards(current_slug: str, catalog: list = None) -> str:
         if s.get("cta_btn"):
             btn_html = f'\n          <span class="btn btn--primary">{s["cta_btn"]}</span>'
 
-        card_str = f'''        <a href="{s["url"]}" class="{" ".join(classes)}" aria-label="{s["aria_label"]}">
+        card_str = f'''        <article class="{" ".join(classes)}">
           <div class="scard__icon">{s["icon"]}</div>
-          <h3 class="scard__title">{s["title"]} <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="{s["url"]}" class="scard__title-link" aria-label="{s["aria_label"]}">{s["title"]} <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">{s["desc"]}</p>{tags_html}{btn_html}
-        </a>'''
+        </article>'''
         cards_html.append(card_str)
 
     return "\n".join(cards_html)

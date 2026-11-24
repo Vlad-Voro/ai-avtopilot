@@ -2412,7 +2412,13 @@ section[id] {
   .case-card__title-link::after{content:'';position:absolute;inset:0;z-index:1}
   .case-card:hover .case-card__arrow{transform:translateX(4px);color:var(--accent-1)}
   .case-service-note{margin-top:12px;color:var(--text-2);font-size:.95rem;line-height:1.6}
-  .case-service-note a{color:var(--accent-1);text-decoration:underline;text-underline-offset:3px}</style>
+  .case-service-note a{color:var(--accent-1);text-decoration:underline;text-underline-offset:3px}
+  .scard--link{position:relative}
+  .scard__title-link{color:inherit;text-decoration:none}
+  .scard__title-link::after{content:'';position:absolute;inset:0;z-index:1}
+  .scard--link:hover .scard__title-link{color:var(--accent-1)}
+  .pricing__title-link::after{content:'';position:absolute;inset:0;z-index:1}
+  .pricing__cta{position:relative;z-index:2}</style>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
 <script type="text/javascript">
     (function() {
@@ -2816,7 +2822,7 @@ section[id] {
 <p class="section-desc">Фиксированная смета, критерии приемки и гарантийный SLA в договоре.</p>
 </div>
 <div class="pricing__grid">
-<article class="pricing__card" data-reveal="" onclick="if(!event.target.closest('a.pricing__cta, button')) window.location.href='/pricing/'">
+<article class="pricing__card" data-reveal="">
 <div class="pricing__head">
 <span class="pricing__tier">Быстрый старт</span>
 <h3 class="pricing__title"><a class="pricing__title-link" href="/pricing/">Пилот 14 дней</a></h3>
@@ -2830,7 +2836,7 @@ section[id] {
 </ul>
 <a class="btn btn--ghost btn--full pricing__cta" href="#contact">Обсудить пилот</a>
 </article>
-<article class="pricing__card pricing__card--featured" data-reveal="" onclick="if(!event.target.closest('a.pricing__cta, button')) window.location.href='/pricing/'">
+<article class="pricing__card pricing__card--featured" data-reveal="">
 <div class="pricing__head">
 <span class="pricing__badge">★ Оптимальный</span>
 <h3 class="pricing__title"><a class="pricing__title-link" href="/pricing/">Внедрение под ключ</a></h3>
@@ -2844,7 +2850,7 @@ section[id] {
 </ul>
 <a class="btn btn--primary btn--full pricing__cta" href="#contact">Обсудить внедрение</a>
 </article>
-<article class="pricing__card" data-reveal="" onclick="if(!event.target.closest('a.pricing__cta, button')) window.location.href='/pricing/'">
+<article class="pricing__card" data-reveal="">
 <div class="pricing__head">
 <span class="pricing__tier">Закрытый контур</span>
 <h3 class="pricing__title"><a class="pricing__title-link" href="/pricing/">Серверы компании (On-Premise)</a></h3>
@@ -3101,76 +3107,76 @@ section[id] {
 <h2 class="section-title" data-reveal="">Другие сценарии автоматизации</h2>
 </div>
 <div aria-label="Другие сценарии автоматизации" aria-roledescription="carousel" class="services__bento other-services__bento" data-reveal="" role="region" tabindex="0">
-<a aria-label="Документооборот: подробнее об авто-вводе первички" class="scard scard--link" href="/services/document-automation/">
+<article class="scard scard--link">
 <div class="scard__icon">📄</div>
-<h3 class="scard__title">Документооборот <span aria-hidden="true" class="scard__arrow">→</span></h3>
+<h3 class="scard__title"><a aria-label="Документооборот: подробнее об авто-вводе первички" class="scard__title-link" href="/services/document-automation/">Документооборот <span aria-hidden="true" class="scard__arrow">→</span></a></h3>
 <p class="scard__desc">Автоматическое распознавание первички (УПД, счета-фактуры), сверка реквизитов и маршрутизация в Диадок/СБИС без участия бухгалтера.</p>
 <div class="scard__tags">
 <span>OCR</span><span>Диадок</span><span>СБИС</span><span>1С:БП</span>
 </div>
-</a>
-<a aria-label="ИИ-аналитика: подробнее о предиктивном мониторинге в 1С" class="scard scard--link scard--dark" href="/services/ai-analytics/">
+</article>
+<article class="scard scard--link scard--dark">
 <div class="scard__icon">🧠</div>
-<h3 class="scard__title">ИИ-аналитика <span aria-hidden="true" class="scard__arrow">→</span></h3>
+<h3 class="scard__title"><a aria-label="ИИ-аналитика: подробнее о предиктивном мониторинге в 1С" class="scard__title-link" href="/services/ai-analytics/">ИИ-аналитика <span aria-hidden="true" class="scard__arrow">→</span></a></h3>
 <p class="scard__desc">Мониторинг кассовых разрывов, расчет неснижаемого складского остатка и выявление ценовых аномалий поставщиков.</p>
 <div class="scard__tags">
 <span>1С:ERP</span><span>ДДС</span><span>Safety Stock</span><span>Аудит цен</span>
 </div>
-</a>
-<a aria-label="Спецификации и КП: подробнее об автоматическом расчете" class="scard scard--link" href="/services/specifications-kp/">
+</article>
+<article class="scard scard--link">
 <div class="scard__icon">📑</div>
-<h3 class="scard__title">Спецификации и КП <span aria-hidden="true" class="scard__arrow">→</span></h3>
+<h3 class="scard__title"><a aria-label="Спецификации и КП: подробнее об автоматическом расчете" class="scard__title-link" href="/services/specifications-kp/">Спецификации и КП <span aria-hidden="true" class="scard__arrow">→</span></a></h3>
 <p class="scard__desc">Авторазбор заявок клиентов (Excel/PDF), сопоставление со справочником 1С и расчет КП с маржой за 30 секунд.</p>
 <div class="scard__tags">
 <span>1С:УТ</span><span>1С:ERP</span><span>Excel/PDF</span><span>Расчет КП</span>
 </div>
-</a>
-<a aria-label="Контроль дебиторки: подробнее об автоматизации работы с задолженностью" class="scard scard--link" href="/services/debt-control/">
+</article>
+<article class="scard scard--link">
 <div class="scard__icon">💳</div>
-<h3 class="scard__title">Контроль дебиторки <span aria-hidden="true" class="scard__arrow">→</span></h3>
+<h3 class="scard__title"><a aria-label="Контроль дебиторки: подробнее об автоматизации работы с задолженностью" class="scard__title-link" href="/services/debt-control/">Контроль дебиторки <span aria-hidden="true" class="scard__arrow">→</span></a></h3>
 <p class="scard__desc">Автоматический мониторинг сроков оплаты в 1С, ступенчатые напоминания клиентам и автогенерация претензий юристу без конфликтов.</p>
 <div class="scard__tags">
 <span>1С:ERP</span><span>1С:УТ</span><span>ДДС</span><span>Soft Collection</span>
 </div>
-</a>
-<a aria-label="Автоматизация тендеров: подробнее о скоринге ТЗ и госзакупках" class="scard scard--link" href="/services/tender-automation/">
+</article>
+<article class="scard scard--link">
 <div class="scard__icon">⚖️</div>
-<h3 class="scard__title">Автоматизация тендеров <span aria-hidden="true" class="scard__arrow">→</span></h3>
+<h3 class="scard__title"><a aria-label="Автоматизация тендеров: подробнее о скоринге ТЗ и госзакупках" class="scard__title-link" href="/services/tender-automation/">Автоматизация тендеров <span aria-hidden="true" class="scard__arrow">→</span></a></h3>
 <p class="scard__desc">Семантический аудит ТЗ по 44-ФЗ и 223-ФЗ за 3 минуты, сверка номенклатуры в 1С:ERP и сборка Формы 2 без штрафов.</p>
 <div class="scard__tags">
 <span>44-ФЗ</span><span>223-ФЗ</span><span>1С:ERP</span><span>Форма 2</span>
 </div>
-</a>
-<a aria-label="Аудит смет и КС-2: подробнее об автоматической проверке сметной стоимости и актов" class="scard scard--link" href="/services/construction-estimate-audit/">
+</article>
+<article class="scard scard--link">
 <div class="scard__icon">📐</div>
-<h3 class="scard__title">Аудит смет и КС-2 <span aria-hidden="true" class="scard__arrow">→</span></h3>
+<h3 class="scard__title"><a aria-label="Аудит смет и КС-2: подробнее об автоматической проверке сметной стоимости и актов" class="scard__title-link" href="/services/construction-estimate-audit/">Аудит смет и КС-2 <span aria-hidden="true" class="scard__arrow">→</span></a></h3>
 <p class="scard__desc">Автоматическая проверка смет и актов КС-2/КС-3 с сопоставлением ГЭСН, ФЕР и проектных объемов в 1С:Строительство за 3 минуты.</p>
 <div class="scard__tags">
 <span>Гранд-Смета</span><span>КС-2 / КС-3</span><span>ГЭСН / ФЕР</span><span>1С:Строительство</span>
 </div>
-</a>
-<a aria-label="Быстрый старт: подробнее о пилотном запуске за 14 дней" class="scard scard--link scard--accent" href="/services/rapid-pilot/">
+</article>
+<article class="scard scard--link scard--accent">
 <div class="scard__icon">⚡</div>
-<h3 class="scard__title">Быстрый старт <span aria-hidden="true" class="scard__arrow">→</span></h3>
+<h3 class="scard__title"><a aria-label="Быстрый старт: подробнее о пилотном запуске за 14 дней" class="scard__title-link" href="/services/rapid-pilot/">Быстрый старт <span aria-hidden="true" class="scard__arrow">→</span></a></h3>
 <p class="scard__desc">Пилотный робот за 14 дней. Видимый результат до подписания основного контракта.</p>
 <span class="btn btn--primary">Начать →</span>
-</a>
-<a aria-label="Интеграция систем: подробнее о сценарии внедрения" class="scard scard--link" href="/services/system-integration/">
+</article>
+<article class="scard scard--link">
 <div class="scard__icon">🔄</div>
-<h3 class="scard__title">Интеграция систем <span aria-hidden="true" class="scard__arrow">→</span></h3>
+<h3 class="scard__title"><a aria-label="Интеграция систем: подробнее о сценарии внедрения" class="scard__title-link" href="/services/system-integration/">Интеграция систем <span aria-hidden="true" class="scard__arrow">→</span></a></h3>
 <p class="scard__desc">Прямая синхронизация 1С, CRM (Битрикс24/amoCRM) и учетных баз через API. Автоматический обмен без ручных выгрузок в Excel.</p>
 <div class="scard__tags">
 <span>1С:ERP</span><span>API</span><span>Bitrix24</span><span>OData</span>
 </div>
-</a>
-<a aria-label="ИИ-агенты для бизнеса: подробнее о сценарии внедрения автономных агентов" class="scard scard--link" href="/services/ai-agents/">
+</article>
+<article class="scard scard--link">
 <div class="scard__icon">🤖</div>
-<h3 class="scard__title">ИИ-агенты для бизнеса <span aria-hidden="true" class="scard__arrow">→</span></h3>
+<h3 class="scard__title"><a aria-label="ИИ-агенты для бизнеса: подробнее о сценарии внедрения автономных агентов" class="scard__title-link" href="/services/ai-agents/">ИИ-агенты для бизнеса <span aria-hidden="true" class="scard__arrow">→</span></a></h3>
 <p class="scard__desc">Автономные мультиагентные системы в контуре 1С. AI-диспетчеры, SDR-агенты и автоматическая сверка первички без рутины. 100% On-Premise 152-ФЗ.</p>
 <div class="scard__tags">
 <span>Мультиагенты</span><span>1С:ERP</span><span>SDR-агент</span><span>152-ФЗ</span>
 </div>
-</a>
+</article>
 </div>
 <div class="slider-controls">
 <button aria-label="Предыдущие сценарии" class="slider-arrow slider-arrow--prev" id="other-services-prev" title="Предыдущие сценарии" type="button">
@@ -4102,7 +4108,7 @@ section[id] {
       "url": "https://ai-avtopilot.ru/",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://ai-avtopilot.ru/icon.svg"
+        "url": "https://ai-avtopilot.ru/apple-touch-icon.png"
       },
       "email": "contact@ai-avtopilot.ru",
       "description": "Внедрение ИИ-агентов и роботизация бизнес-процессов в 1С, SAP, CRM и ERP для компаний в России.",
@@ -4159,63 +4165,7 @@ section[id] {
         ],
         "opens": "00:00",
         "closes": "23:59"
-      },
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Форматы внедрения ИИ-агентов",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "name": "Пилот 14 дней",
-            "priceSpecification": {
-              "@type": "PriceSpecification",
-              "minPrice": "50000",
-              "priceCurrency": "RUB"
-            },
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Пилот 14 дней: 1 рабочий сценарий в 1С, CRM или ЭДО с проверкой метрик и зачетом в проект"
-            }
-          },
-          {
-            "@type": "Offer",
-            "name": "Внедрение под ключ",
-            "priceSpecification": {
-              "@type": "PriceSpecification",
-              "minPrice": "125000",
-              "maxPrice": "275000",
-              "priceCurrency": "RUB"
-            },
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Внедрение под ключ: 1–3 ИИ-агента, интеграция 1С/CRM/ЭДО, база знаний RAG и SLA 30 дней"
-            }
-          },
-          {
-            "@type": "Offer",
-            "name": "Серверы компании (On-Premise)",
-            "priceSpecification": {
-              "@type": "PriceSpecification",
-              "minPrice": "400000",
-              "priceCurrency": "RUB"
-            },
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Серверы компании (On-Premise): закрытый контур по 152-ФЗ, локальные нейросети, 1С:ERP, NDA и SLA 24/7"
-            }
-          }
-        ]
       }
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://ai-avtopilot.ru/#website",
-      "url": "https://ai-avtopilot.ru/",
-      "name": "АвтоПилот — ИИ-автоматизация бизнеса",
-      "publisher": {
-        "@id": "https://ai-avtopilot.ru/#organization"
-      },
-      "inLanguage": "ru-RU"
     },
     {
       "@type": "BreadcrumbList",
@@ -4250,10 +4200,12 @@ section[id] {
       },
       "description": "Рассчитайте окупаемость за 1 минуту: автоматизация отчетности в 1С за 14 дней. Сократите рутину аналитиков на 80%. Гарантия окупаемости по договору.",
       "offers": {
-        "@type": "Offer",
-        "price": "0",
+        "@type": "AggregateOffer",
+        "lowPrice": "50000",
+        "highPrice": "400000",
         "priceCurrency": "RUB",
-        "name": "Бесплатный 30-минутный аудит 1С-отчетности"
+        "offerCount": 3,
+        "name": "Внедрение автоотчетности 1С"
       }
     },
     {

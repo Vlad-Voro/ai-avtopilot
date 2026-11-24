@@ -91,7 +91,7 @@
   <link rel="preload" href="/assets/fonts/Outfit-600-14.woff2" as="font" type="font/woff2" crossorigin="" />
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="/assets/css/styles.min.css?v=825d48c9" />
+  <link rel="stylesheet" href="/assets/css/styles.min.css?v=814e33e0" />
 
   <!-- Progressive Enhancement Failsafe for data-reveal -->
   <noscript>
@@ -113,7 +113,8 @@
       "@id": "https://ai-avtopilot.ru/#organization",
       "name": "АвтоПилот",
       "url": "https://ai-avtopilot.ru/",
-      "logo": "https://ai-avtopilot.ru/icon.svg",
+      "logo": "https://ai-avtopilot.ru/apple-touch-icon.png",
+      "sameAs": ["https://t.me/AiAvtopilotbot"],
       "description": "Внедрение ИИ-агентов и роботизация бизнес-процессов с интеграцией в 1С, SAP, CRM, ERP и телефонию.",
       "email": "contact@ai-avtopilot.ru",
       "knowsAbout": [
@@ -139,53 +140,7 @@
       "priceRange": "от 50 000 ₽",
       "currenciesAccepted": "RUB",
       "paymentAccepted": "Безналичный расчет, расчетный счет, банковский перевод, СБП, выставление счета через ЭДО (Диадок / СБИС)",
-      "email": "contact@ai-avtopilot.ru",
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Форматы внедрения ИИ-агентов",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "name": "Пилот 14 дней",
-            "priceSpecification": {
-              "@type": "PriceSpecification",
-              "minPrice": "50000",
-              "priceCurrency": "RUB"
-            },
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Пилот 14 дней: 1 рабочий сценарий в 1С, CRM или ЭДО с проверкой метрик и зачетом в проект"
-            }
-          },
-          {
-            "@type": "Offer",
-            "name": "Внедрение под ключ",
-            "priceSpecification": {
-              "@type": "PriceSpecification",
-              "minPrice": "125000",
-              "maxPrice": "275000",
-              "priceCurrency": "RUB"
-            },
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Внедрение под ключ: 1–3 ИИ-агента, интеграция 1С/CRM/ЭДО, база знаний RAG и SLA 30 дней"
-            }
-          },
-          {
-            "@type": "Offer",
-            "name": "Серверы компании (On-Premise)",
-            "priceSpecification": {
-              "@type": "PriceSpecification",
-              "minPrice": "400000",
-              "priceCurrency": "RUB"
-            },
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Серверы компании (On-Premise): закрытый контур по 152-ФЗ, локальные нейросети, 1С:ERP, NDA и SLA 24/7"
-            }
-          }
-        ]
-      }
+      "email": "contact@ai-avtopilot.ru"
     },
     {
       "@type": "WebApplication",
@@ -206,12 +161,7 @@
         "Обратный расчет суммы к выставлению с учетом налога",
         "Учет остатка налогового вычета 10 000 ₽",
         "Контроль годового лимита дохода 2,4 млн ₽"
-      ],
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "RUB"
-      }
+      ]
     },
     {
       "@type": "BreadcrumbList",
@@ -990,7 +940,7 @@
       </div>
 
       <div class="pricing__grid">
-        <article class="pricing__card" data-reveal="" onclick="if(!event.target.closest('a.pricing__cta, button')) window.location.href='/pricing/'">
+        <article class="pricing__card" data-reveal="">
           <div class="pricing__head">
             <span class="pricing__tier">Быстрый старт</span>
             <h3 class="pricing__title"><a href="/pricing/" class="pricing__title-link">Пилот 14 дней</a></h3>
@@ -1005,7 +955,7 @@
           <a href="#contact" class="btn btn--ghost btn--full pricing__cta">Обсудить пилот</a>
         </article>
 
-        <article class="pricing__card pricing__card--featured" data-reveal="" onclick="if(!event.target.closest('a.pricing__cta, button')) window.location.href='/pricing/'">
+        <article class="pricing__card pricing__card--featured" data-reveal="">
           <div class="pricing__head">
             <span class="pricing__badge">★ Оптимальный</span>
             <h3 class="pricing__title"><a href="/pricing/" class="pricing__title-link">Внедрение под ключ</a></h3>
@@ -1020,7 +970,7 @@
           <a href="#contact" class="btn btn--primary btn--full pricing__cta">Обсудить внедрение</a>
         </article>
 
-        <article class="pricing__card" data-reveal="" onclick="if(!event.target.closest('a.pricing__cta, button')) window.location.href='/pricing/'">
+        <article class="pricing__card" data-reveal="">
           <div class="pricing__head">
             <span class="pricing__tier">Закрытый контур</span>
             <h3 class="pricing__title"><a href="/pricing/" class="pricing__title-link">Серверы компании (On-Premise)</a></h3>

@@ -104,10 +104,12 @@ def generate_service_html(data: dict) -> str:
         "provider": {"@id": "https://ai-avtopilot.ru/#organization"},
         "description": description,
         "offers": {
-            "@type": "Offer",
-            "price": "0",
+            "@type": "AggregateOffer",
+            "lowPrice": "50000",
+            "highPrice": "400000",
             "priceCurrency": "RUB",
-            "name": f"Бесплатный 30-минутный экспресс-аудит ({slug})",
+            "offerCount": 3,
+            "name": f"Внедрение ИИ-агентов: {title.split('|')[0].strip()}",
         },
     }
 
@@ -120,9 +122,10 @@ def generate_service_html(data: dict) -> str:
                 "@id": "https://ai-avtopilot.ru/#organization",
                 "name": "АвтоПилот",
                 "url": "https://ai-avtopilot.ru/",
-                "logo": "https://ai-avtopilot.ru/icon.svg",
+                "logo": "https://ai-avtopilot.ru/apple-touch-icon.png",
                 "description": "Российская платформа и интегратор автономных ИИ-агентов для 1С, SAP, CRM, ERP и документооборота.",
                 "email": "contact@ai-avtopilot.ru",
+                "sameAs": ["https://t.me/AiAvtopilotbot"],
                 "knowsAbout": [
                     "ИИ-агенты",
                     "Роботизация бизнес-процессов (RPA)",
@@ -158,19 +161,6 @@ def generate_service_html(data: dict) -> str:
                     "opens": "00:00",
                     "closes": "23:59",
                 },
-                "hasOfferCatalog": {
-                    "@type": "OfferCatalog",
-                    "name": "Форматы внедрения ИИ-агентов",
-                    "itemListElement": get_offer_catalog_items(),
-                },
-            },
-            {
-                "@type": "WebSite",
-                "@id": "https://ai-avtopilot.ru/#website",
-                "url": "https://ai-avtopilot.ru/",
-                "name": "АвтоПилот — ИИ-автоматизация бизнеса",
-                "publisher": {"@id": "https://ai-avtopilot.ru/#organization"},
-                "inLanguage": "ru-RU",
             },
             breadcrumb_ld,
             service_ld,

@@ -104,7 +104,7 @@ flowchart TD
    - Integration: Deep integration with 1C:ERP, SAP, corporate access controls, and 24/7 mission-critical SLA.
    - Lead Time: $\ge 6$ weeks including cybersecurity audit.
 4. **Commercial Terms (Russian Federation Jurisdiction)**:
-   - Contract Entity: Registered legal contract (OSNO with 20% VAT or USN).
+   - Contract Entity: Registered legal contract (OSNO with 22% VAT or USN).
    - Document Flow: Legally binding electronic document exchange via Diadoc or SBIS.
    - Bilateral NDA: Executed prior to sensitive credential disclosure.
    - Payment Schedule: 50% prepayment, 50% upon verified acceptance testing.

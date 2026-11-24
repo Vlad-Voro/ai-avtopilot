@@ -22,7 +22,7 @@
   <meta property="og:site_name" content="АвтоПилот" />
   <meta property="og:title" content="ИИ-автоматизация бизнеса и внедрение ИИ-агентов в 1С, CRM | АвтоПилот" />
   <meta property="og:description"
-    content="Внедрение ИИ-агентов в 1С, SAP и CRM для бизнеса в России. Роботизация рутины, сокращение затрат до 70%. Закажите бесплатный аудит процессов!" />
+    content="Внедрение ИИ-агентов в 1С, SAP и CRM для бизнеса в России. Роботизация рутины, сокращение затрат до 80%. Закажите бесплатный аудит процессов!" />
   <meta property="og:image" content="https://ai-avtopilot.ru/og-image.png" />
   <meta property="og:image:secure_url" content="https://ai-avtopilot.ru/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -33,7 +33,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="ИИ-автоматизация бизнеса и внедрение ИИ-агентов в 1С, CRM | АвтоПилот" />
   <meta name="twitter:description"
-    content="Внедрение ИИ-агентов в 1С, SAP и CRM для бизнеса в России. Роботизация рутины, сокращение затрат до 70%." />
+    content="Внедрение ИИ-агентов в 1С, SAP и CRM для бизнеса в России. Роботизация рутины, сокращение затрат до 80%." />
   <meta name="twitter:image" content="https://ai-avtopilot.ru/og-image.png" />
 
   <!-- Favicon & Icons -->
@@ -2429,7 +2429,13 @@ section[id] {
   .case-card__title-link::after{content:'';position:absolute;inset:0;z-index:1}
   .case-card:hover .case-card__arrow{transform:translateX(4px);color:var(--accent-1)}
   .case-service-note{margin-top:12px;color:var(--text-2);font-size:.95rem;line-height:1.6}
-  .case-service-note a{color:var(--accent-1);text-decoration:underline;text-underline-offset:3px}</style>
+  .case-service-note a{color:var(--accent-1);text-decoration:underline;text-underline-offset:3px}
+  .scard--link{position:relative}
+  .scard__title-link{color:inherit;text-decoration:none}
+  .scard__title-link::after{content:'';position:absolute;inset:0;z-index:1}
+  .scard--link:hover .scard__title-link{color:var(--accent-1)}
+  .pricing__title-link::after{content:'';position:absolute;inset:0;z-index:1}
+  .pricing__cta{position:relative;z-index:2}</style>
 
   <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
   <script type="text/javascript">
@@ -2697,219 +2703,219 @@ section[id] {
       </div>
       <div class="services__bento" data-reveal tabindex="0" role="region" aria-roledescription="carousel" aria-label="Сценарии автоматизации">
 
-        <a href="/services/system-integration/" class="scard scard--link" aria-label="Интеграция систем: подробнее о сценарии внедрения">
+        <article class="scard scard--link">
           <div class="scard__icon">🔄</div>
-          <h3 class="scard__title">Интеграция систем <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/system-integration/" class="scard__title-link" aria-label="Интеграция систем: подробнее о сценарии внедрения">Интеграция систем <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">Прямая синхронизация 1С, CRM (Битрикс24/amoCRM) и учетных баз через API. Автоматический обмен без ручных выгрузок в Excel.</p>
           <div class="scard__tags">
             <span>1С:ERP</span><span>API</span><span>Bitrix24</span><span>OData</span>
           </div>
-        </a>
+        </article>
 
-        <a href="/services/automated-reporting/" class="scard scard--link" aria-label="Автоотчётность: подробнее о сценарии внедрения в Telegram">
+        <article class="scard scard--link">
           <div class="scard__icon">📊</div>
-          <h3 class="scard__title">Автоотчётность <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/automated-reporting/" class="scard__title-link" aria-label="Автоотчётность: подробнее о сценарии внедрения в Telegram">Автоотчётность <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">Сводные отчеты по продажам, остаткам и P&L формируются автоматически. Доставка руководителю в Telegram или на почту каждое утро в 09:00.</p>
           <div class="scard__tags">
             <span>1С:ERP</span><span>Telegram</span><span>P&L</span><span>ДДС</span>
           </div>
-        </a>
+        </article>
 
-        <a href="/services/retail-inventory/" class="scard scard--link" aria-label="Ритейл и склад: подробнее об автоматизации остатков">
+        <article class="scard scard--link">
           <div class="scard__icon">🏪</div>
-          <h3 class="scard__title">Ритейл и склад <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/retail-inventory/" class="scard__title-link" aria-label="Ритейл и склад: подробнее об автоматизации остатков">Ритейл и склад <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">Автоматизация инвентаризации, заказов поставщикам, ценообразования и кассовых операций без рутины в 1С.</p>
           <div class="scard__tags">
             <span>1С:УТ</span><span>WB / Ozon</span><span>ТОРГ-2</span><span>Safety Stock</span>
           </div>
-        </a>
+        </article>
 
-        <a href="/services/document-automation/" class="scard scard--link" aria-label="Документооборот: подробнее об авто-вводе первички">
+        <article class="scard scard--link">
           <div class="scard__icon">📄</div>
-          <h3 class="scard__title">Документооборот <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/document-automation/" class="scard__title-link" aria-label="Документооборот: подробнее об авто-вводе первички">Документооборот <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">Автоматическое распознавание первички (УПД, счета-фактуры), сверка реквизитов и маршрутизация в Диадок/СБИС без участия бухгалтера.</p>
           <div class="scard__tags">
             <span>OCR</span><span>Диадок</span><span>СБИС</span><span>1С:БП</span>
           </div>
-        </a>
+        </article>
 
-        <a href="/services/customer-support/" class="scard scard--link" aria-label="ИИ-поддержка клиентов: подробнее о диспетчере первой линии">
+        <article class="scard scard--link">
           <div class="scard__icon">💬</div>
-          <h3 class="scard__title">ИИ-поддержка клиентов <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/customer-support/" class="scard__title-link" aria-label="ИИ-поддержка клиентов: подробнее о диспетчере первой линии">ИИ-поддержка клиентов <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">Ассистент первой линии с доступом к базе знаний и 1С: квалифицирует лидов, выставляет счета и отвечает за 3 секунды 24/7.</p>
           <div class="scard__tags">
             <span>Telegram</span><span>WhatsApp</span><span>Bitrix24</span><span>1С</span>
           </div>
-        </a>
+        </article>
 
-        <a href="/services/ai-analytics/" class="scard scard--link scard--dark" aria-label="ИИ-аналитика: подробнее о предиктивном мониторинге в 1С">
+        <article class="scard scard--link scard--dark">
           <div class="scard__icon">🧠</div>
-          <h3 class="scard__title">ИИ-аналитика <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/ai-analytics/" class="scard__title-link" aria-label="ИИ-аналитика: подробнее о предиктивном мониторинге в 1С">ИИ-аналитика <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">Мониторинг кассовых разрывов, расчет неснижаемого складского остатка и выявление ценовых аномалий поставщиков.</p>
           <div class="scard__tags">
             <span>1С:ERP</span><span>ДДС</span><span>Safety Stock</span><span>Аудит цен</span>
           </div>
-        </a>
+        </article>
 
-        <a href="/services/speech-analytics/" class="scard scard--link" aria-label="Речевая аналитика: подробнее об интеграции контроля звонков">
+        <article class="scard scard--link">
           <div class="scard__icon">🎙️</div>
-          <h3 class="scard__title">Речевая аналитика <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/speech-analytics/" class="scard__title-link" aria-label="Речевая аналитика: подробнее об интеграции контроля звонков">Речевая аналитика <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">100% аудит звонков отдела продаж за 30 секунд. Интеграция с АТС и amoCRM/Битрикс24 по вебхуку, оценка по 18 критериям чек-листа.</p>
           <div class="scard__tags">
             <span>Whisper</span><span>amoCRM</span><span>Битрикс24</span><span>АТС</span>
           </div>
-        </a>
+        </article>
 
-        <a href="/services/specifications-kp/" class="scard scard--link" aria-label="Спецификации и КП: подробнее об автоматическом расчете">
+        <article class="scard scard--link">
           <div class="scard__icon">📑</div>
-          <h3 class="scard__title">Спецификации и КП <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/specifications-kp/" class="scard__title-link" aria-label="Спецификации и КП: подробнее об автоматическом расчете">Спецификации и КП <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">Авторазбор заявок клиентов (Excel/PDF), сопоставление со справочником 1С и расчет КП с маржой за 30 секунд.</p>
           <div class="scard__tags">
             <span>1С:УТ</span><span>1С:ERP</span><span>Excel/PDF</span><span>Расчет КП</span>
           </div>
-        </a>
+        </article>
 
-        <a href="/services/price-monitoring/" class="scard scard--link" aria-label="Мониторинг цен: подробнее об автоматическом репрайсинге">
+        <article class="scard scard--link">
           <div class="scard__icon">📈</div>
-          <h3 class="scard__title">Мониторинг цен <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/price-monitoring/" class="scard__title-link" aria-label="Мониторинг цен: подробнее об автоматическом репрайсинге">Мониторинг цен <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">Автоматический сбор открытых прайсов конкурентов и маркетплейсов. Сверка с себестоимостью в 1С и динамический репрайсинг без рутины.</p>
           <div class="scard__tags">
             <span>1С:УТ</span><span>OData</span><span>Репрайсинг</span><span>Парсер цен</span>
           </div>
-        </a>
+        </article>
 
-        <a href="/services/debt-control/" class="scard scard--link" aria-label="Контроль дебиторки: подробнее об автоматизации работы с задолженностью">
+        <article class="scard scard--link">
           <div class="scard__icon">💳</div>
-          <h3 class="scard__title">Контроль дебиторки <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/debt-control/" class="scard__title-link" aria-label="Контроль дебиторки: подробнее об автоматизации работы с задолженностью">Контроль дебиторки <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">Автоматический мониторинг сроков оплаты в 1С, ступенчатые напоминания клиентам и автогенерация претензий юристу без конфликтов.</p>
           <div class="scard__tags">
             <span>1С:ERP</span><span>1С:УТ</span><span>ДДС</span><span>Soft Collection</span>
           </div>
-        </a>
+        </article>
 
-        <a href="/services/reviews-reputation/" class="scard scard--link" aria-label="Управление отзывами: подробнее об автоответах и гео-репутации">
+        <article class="scard scard--link">
           <div class="scard__icon">⭐</div>
-          <h3 class="scard__title">Управление отзывами <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/reviews-reputation/" class="scard__title-link" aria-label="Управление отзывами: подробнее об автоответах и гео-репутации">Управление отзывами <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">Автоматический сбор и генерация ответов на отзывы на Яндекс.Картах и 2ГИС с сопоставлением клиентов в 1С и защитой рейтинга 24/7.</p>
           <div class="scard__tags">
             <span>Яндекс Бизнес</span><span>2ГИС</span><span>1С:ERP</span><span>ORM</span>
           </div>
-        </a>
+        </article>
 
-        <a href="/services/marketing-automation/" class="scard scard--link" aria-label="Автоматизация маркетинга: подробнее об автономных ИИ-агентах и сквозной аналитике">
+        <article class="scard scard--link">
           <div class="scard__icon">🎯</div>
-          <h3 class="scard__title">Автоматизация маркетинга <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/marketing-automation/" class="scard__title-link" aria-label="Автоматизация маркетинга: подробнее об автономных ИИ-агентах и сквозной аналитике">Автоматизация маркетинга <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">Автономные ИИ-агенты для квалификации лидов за 3 секунды, триггерных воронок в CRM, сквозной окупаемости и создания контента.</p>
           <div class="scard__tags">
             <span>amoCRM</span><span>Битрикс24</span><span>ИИ-агенты</span><span>Telegram</span>
           </div>
-        </a>
+        </article>
 
-        <a href="/services/hr-recruitment/" class="scard scard--link" aria-label="ИИ-найм и рекрутинг: подробнее об автоматизации подбора персонала">
+        <article class="scard scard--link">
           <div class="scard__icon">👥</div>
-          <h3 class="scard__title">ИИ-найм и рекрутинг <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/hr-recruitment/" class="scard__title-link" aria-label="ИИ-найм и рекрутинг: подробнее об автоматизации подбора персонала">ИИ-найм и рекрутинг <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">Автоматический скрининг резюме на HH за 3 секунды, интервью в Telegram-боте и передача анкет финалистов в 1С:ЗУП.</p>
           <div class="scard__tags">
             <span>HeadHunter</span><span>1С:ЗУП</span><span>Telegram</span><span>HR-AI</span>
           </div>
-        </a>
+        </article>
 
-        <a href="/services/tender-automation/" class="scard scard--link" aria-label="Автоматизация тендеров: подробнее о скоринге ТЗ и госзакупках">
+        <article class="scard scard--link">
           <div class="scard__icon">⚖️</div>
-          <h3 class="scard__title">Автоматизация тендеров <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/tender-automation/" class="scard__title-link" aria-label="Автоматизация тендеров: подробнее о скоринге ТЗ и госзакупках">Автоматизация тендеров <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">Семантический аудит ТЗ по 44-ФЗ и 223-ФЗ за 3 минуты, сверка номенклатуры в 1С:ERP и сборка Формы 2 без штрафов.</p>
           <div class="scard__tags">
             <span>44-ФЗ</span><span>223-ФЗ</span><span>1С:ERP</span><span>Форма 2</span>
           </div>
-        </a>
+        </article>
 
-        <a href="/services/marketplace-automation/" class="scard scard--link" aria-label="Автоматизация маркетплейсов: подробнее о генерации карточек и автобиддере WB и Ozon">
+        <article class="scard scard--link">
           <div class="scard__icon">📦</div>
-          <h3 class="scard__title">Автоматизация маркетплейсов <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/marketplace-automation/" class="scard__title-link" aria-label="Автоматизация маркетплейсов: подробнее о генерации карточек и автобиддере WB и Ozon">Автоматизация маркетплейсов <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">Генерация SEO-карточек товара за 15 секунд, автобиддер ставок с контролем ДРР, ответы на отзывы и синхронизация с 1С.</p>
           <div class="scard__tags">
             <span>Wildberries</span><span>Ozon</span><span>1С:УТ/КА</span><span>Автобиддер</span>
           </div>
-        </a>
+        </article>
 
-        <a href="/services/knowledge-base-rag/" class="scard scard--link" aria-label="Корпоративная AI-база знаний: подробнее о RAG-поиске и локальных ассистентах для сотрудников">
+        <article class="scard scard--link">
           <div class="scard__icon">📑</div>
-          <h3 class="scard__title">Корпоративная AI-база знаний <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/knowledge-base-rag/" class="scard__title-link" aria-label="Корпоративная AI-база знаний: подробнее о RAG-поиске и локальных ассистентах для сотрудников">Корпоративная AI-база знаний <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">Семантический RAG-поиск по регламентам, инструкциям и базам 1С. Ответ сотруднику за 2 секунды с точной цитатой по 152-ФЗ On-Premise.</p>
           <div class="scard__tags">
             <span>RAG-поиск</span><span>On-Premise LLM</span><span>152-ФЗ</span><span>Copilot 1С</span>
           </div>
-        </a>
+        </article>
 
-        <a href="/services/b2b-outbound/" class="scard scard--link" aria-label="AI SDR и B2B-аутрич: подробнее об автономных исходящих продажах">
+        <article class="scard scard--link">
           <div class="scard__icon">🎯</div>
-          <h3 class="scard__title">AI SDR и B2B-аутрич <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/b2b-outbound/" class="scard__title-link" aria-label="AI SDR и B2B-аутрич: подробнее об автономных исходящих продажах">AI SDR и B2B-аутрич <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">Автономный поиск ЛПР, персонализированные холодные цепочки в Email и Telegram, квалификация лидов и передача готовых встреч в CRM.</p>
           <div class="scard__tags">
             <span>AI SDR</span><span>amoCRM</span><span>B2B-лиды</span><span>Битрикс24</span>
           </div>
-        </a>
+        </article>
 
-        <a href="/services/customer-retention/" class="scard scard--link" aria-label="Retention и реактивация: подробнее об удержании клиентов и росте повторных продаж">
+        <article class="scard scard--link">
           <div class="scard__icon">🔄</div>
-          <h3 class="scard__title">Retention и реактивация <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/customer-retention/" class="scard__title-link" aria-label="Retention и реактивация: подробнее об удержании клиентов и росте повторных продаж">Retention и реактивация <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">Предиктивный RFM-анализ в 1С, предотвращение оттока B2B-клиентов за 30 дней и возврат спящей базы через умные триггерные касания.</p>
           <div class="scard__tags">
             <span>1С:ERP</span><span>RFM</span><span>LTV</span><span>Удержание</span>
           </div>
-        </a>
+        </article>
 
-        <a href="/services/construction-estimate-audit/" class="scard scard--link" aria-label="Аудит смет и КС-2: подробнее об автоматической проверке сметной стоимости и актов">
+        <article class="scard scard--link">
           <div class="scard__icon">📐</div>
-          <h3 class="scard__title">Аудит смет и КС-2 <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/construction-estimate-audit/" class="scard__title-link" aria-label="Аудит смет и КС-2: подробнее об автоматической проверке сметной стоимости и актов">Аудит смет и КС-2 <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">Автоматическая проверка смет и актов КС-2/КС-3 с сопоставлением ГЭСН, ФЕР и проектных объемов в 1С:Строительство за 3 минуты.</p>
           <div class="scard__tags">
             <span>Гранд-Смета</span><span>КС-2 / КС-3</span><span>ГЭСН / ФЕР</span><span>1С:Строительство</span>
           </div>
-        </a>
+        </article>
 
-        <a href="/services/fleet-logistics/" class="scard scard--link" aria-label="Логистика и 1С:УАТ: подробнее об автоматизации путевых листов и автопарка">
+        <article class="scard scard--link">
           <div class="scard__icon">🚛</div>
-          <h3 class="scard__title">Логистика и 1С:УАТ <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/fleet-logistics/" class="scard__title-link" aria-label="Логистика и 1С:УАТ: подробнее об автоматизации путевых листов и автопарка">Логистика и 1С:УАТ <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">Автоматизация автопарка на базе 1С:УАТ и ГИС ЭПД. Выпуск электронных путевых листов за 30 секунд, учет ГСМ по телематике ГЛОНАСС и маршрутизация.</p>
           <div class="scard__tags">
             <span>1С:УАТ</span><span>ГИС ЭПД</span><span>ГЛОНАСС</span><span>ЭПЛ</span>
           </div>
-        </a>
+        </article>
 
-        <a href="/services/ai-agents/" class="scard scard--link" aria-label="ИИ-агенты для бизнеса: подробнее о сценарии внедрения автономных агентов">
+        <article class="scard scard--link">
           <div class="scard__icon">🤖</div>
-          <h3 class="scard__title">ИИ-агенты для бизнеса <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/ai-agents/" class="scard__title-link" aria-label="ИИ-агенты для бизнеса: подробнее о сценарии внедрения автономных агентов">ИИ-агенты для бизнеса <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">Автономные мультиагентные системы в контуре 1С. AI-диспетчеры, SDR-агенты и автоматическая сверка первички без рутины. 100% On-Premise 152-ФЗ.</p>
           <div class="scard__tags">
             <span>Мультиагенты</span><span>1С:ERP</span><span>SDR-агент</span><span>152-ФЗ</span>
           </div>
-        </a>
+        </article>
 
-        <a href="/services/manufacturing-automation/" class="scard scard--link" aria-label="Производство и 1С:ERP: подробнее об автоматизации цехового учета и себестоимости">
+        <article class="scard scard--link">
           <div class="scard__icon">🏭</div>
-          <h3 class="scard__title">Производство и 1С:ERP <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/manufacturing-automation/" class="scard__title-link" aria-label="Производство и 1С:ERP: подробнее об автоматизации цехового учета и себестоимости">Производство и 1С:ERP <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">Автоматизация цехового учета и диспетчеризации в 1С:ERP. Списание сырья по спецификациям, учет брака и расчет фактической себестоимости за 5 минут.</p>
           <div class="scard__tags">
             <span>1С:ERP</span><span>Диспетчеризация</span><span>Себестоимость</span><span>Спецификации</span>
           </div>
-        </a>
+        </article>
 
-        <a href="/services/avito-automation/" class="scard scard--link" aria-label="Боты для Авито: подробнее об автоматизации магазина и интеграции с 1С">
+        <article class="scard scard--link">
           <div class="scard__icon">🤖</div>
-          <h3 class="scard__title">Боты для Авито <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/avito-automation/" class="scard__title-link" aria-label="Боты для Авито: подробнее об автоматизации магазина и интеграции с 1С">Боты для Авито <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">Автоматизация и умные ИИ-боты для Авито. Ответ клиентам за 30 секунд по официальному API, остатки из 1С и лиды в CRM без блокировок.</p>
           <div class="scard__tags">
             <span>Авито API</span><span>1С:УТ / ERP</span><span>RAG</span><span>amoCRM / Б24</span>
           </div>
-        </a>
+        </article>
 
-        <a href="/services/rapid-pilot/" class="scard scard--link scard--accent" aria-label="Быстрый старт: подробнее о пилотном запуске за 14 дней">
+        <article class="scard scard--link scard--accent">
           <div class="scard__icon">⚡</div>
-          <h3 class="scard__title">Быстрый старт <span class="scard__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="scard__title"><a href="/services/rapid-pilot/" class="scard__title-link" aria-label="Быстрый старт: подробнее о пилотном запуске за 14 дней">Быстрый старт <span class="scard__arrow" aria-hidden="true">→</span></a></h3>
           <p class="scard__desc">Пилотный робот за 14 дней. Видимый результат до подписания основного контракта.</p>
           <span class="btn btn--primary">Начать →</span>
-        </a>
+        </article>
 
       </div>
       <div class="slider-controls">
@@ -2934,9 +2940,9 @@ section[id] {
       </div>
       <div class="cases__grid" data-reveal>
 
-        <a href="/cases/retail-inventory-automation/" class="case-card case-card--retail case-card--link" aria-label="Автоматизация инвентаризации и заказов: подробнее о кейсе внедрения">
+        <article class="case-card case-card--retail case-card--link">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--retail"></span>🏪 Сеть магазинов · 230 точек</div>
-          <h3 class="case-card__title">Автоматизация инвентаризации и заказов <span class="case-card__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="case-card__title"><a href="/cases/retail-inventory-automation/" class="case-card__title-link" aria-label="Автоматизация инвентаризации и заказов: подробнее о кейсе внедрения">Автоматизация инвентаризации и заказов <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Внедрили агентов для <span class="case-highlight case-highlight--retail">синхронизации остатков</span> между складами и точками продаж,
             автоматической генерации заявок поставщикам при снижении ТМЦ ниже порога.</p>
           <div class="case-card__results">
@@ -2954,11 +2960,11 @@ section[id] {
             </div>
           </div>
           <div class="case-card__tags"><span>1С:Розница</span><span>RPA</span><span>ИИ-агент</span></div>
-        </a>
+        </article>
 
-        <a href="/cases/manufacturing-edi-automation/" class="case-card case-card--edi case-card--link" aria-label="Полностью цифровой документооборот: подробнее о кейсе внедрения">
+        <article class="case-card case-card--edi case-card--link">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--edi"></span>🏭 Производство · Средний бизнес</div>
-          <h3 class="case-card__title">Полностью цифровой документооборот <span class="case-card__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="case-card__title"><a href="/cases/manufacturing-edi-automation/" class="case-card__title-link" aria-label="Полностью цифровой документооборот: подробнее о кейсе внедрения">Полностью цифровой документооборот <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Переход с бумажных актов и накладных на <span class="case-highlight case-highlight--edi">автоматический ЭДО</span>. Роботы создают,
             проверяют, подписывают и архивируют документы без участия бухгалтера.</p>
           <div class="case-card__results">
@@ -2976,11 +2982,11 @@ section[id] {
             </div>
           </div>
           <div class="case-card__tags"><span>ЭДО</span><span>SAP</span><span>Автоматизация</span></div>
-        </a>
+        </article>
 
-        <a href="/cases/service-center-ai-operator/" class="case-card case-card--service case-card--link" aria-label="ИИ-оператор поддержки 24/7: подробнее о кейсе внедрения">
+        <article class="case-card case-card--service case-card--link">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--service"></span>📞 Сервисный центр · 40 000 клиентов/мес</div>
-          <h3 class="case-card__title">ИИ-оператор поддержки 24/7 <span class="case-card__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="case-card__title"><a href="/cases/service-center-ai-operator/" class="case-card__title-link" aria-label="ИИ-оператор поддержки 24/7: подробнее о кейсе внедрения">ИИ-оператор поддержки 24/7 <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Заменили первую линию поддержки <span class="case-highlight case-highlight--service">ИИ-агентом</span>, который понимает запросы, обращается к
             базе знаний и решает типовые вопросы без передачи оператору.</p>
           <div class="case-card__results">
@@ -2998,11 +3004,11 @@ section[id] {
             </div>
           </div>
           <div class="case-card__tags"><span>LLM</span><span>Чатбот</span><span>CRM</span></div>
-        </a>
+        </article>
 
-        <a href="/cases/hr-recruitment-automation/" class="case-card case-card--hr case-card--link" aria-label="Автоматизация найма и онбординга: подробнее о кейсе внедрения">
+        <article class="case-card case-card--hr case-card--link">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--hr"></span>👥 HR-департамент · Крупный ритейл</div>
-          <h3 class="case-card__title">Автоматизация найма и онбординга <span class="case-card__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="case-card__title"><a href="/cases/hr-recruitment-automation/" class="case-card__title-link" aria-label="Автоматизация найма и онбординга: подробнее о кейсе внедрения">Автоматизация найма и онбординга <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Внедрение ИИ-агента для <span class="case-highlight case-highlight--hr">скрининга 5000+ резюме</span> в месяц, автоматического назначения
             собеседований и подготовки документов.</p>
           <div class="case-card__results">
@@ -3020,11 +3026,11 @@ section[id] {
             </div>
           </div>
           <div class="case-card__tags"><span>NLP</span><span>HR-Tech</span><span>Automation</span></div>
-        </a>
+        </article>
 
-        <a href="/cases/supply-chain-logistics/" class="case-card case-card--logistics case-card--link" aria-label="Управление цепочками поставок: подробнее о кейсе внедрения">
+        <article class="case-card case-card--logistics case-card--link">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--logistics"></span>🚛 Логистический хаб · Cargo Express</div>
-          <h3 class="case-card__title">Управление цепочками поставок <span class="case-card__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="case-card__title"><a href="/cases/supply-chain-logistics/" class="case-card__title-link" aria-label="Управление цепочками поставок: подробнее о кейсе внедрения">Управление цепочками поставок <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Агенты мониторят статус грузов в <span class="case-highlight case-highlight--logistics">реальном времени</span>, формируют таможенные декларации
             и уведомляют клиентов о задержках.</p>
           <div class="case-card__results">
@@ -3042,11 +3048,11 @@ section[id] {
             </div>
           </div>
           <div class="case-card__tags"><span>Logistics</span><span>ИИ-агенты</span><span>API</span></div>
-        </a>
+        </article>
 
-        <a href="/cases/fintech-transaction-reconciliation/" class="case-card case-card--fintech case-card--link" aria-label="Автоматическая сверка транзакций: подробнее о кейсе внедрения">
+        <article class="case-card case-card--fintech case-card--link">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--fintech"></span>💳 Финтех-стартап · b2b платежи</div>
-          <h3 class="case-card__title">Автоматическая сверка транзакций <span class="case-card__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="case-card__title"><a href="/cases/fintech-transaction-reconciliation/" class="case-card__title-link" aria-label="Автоматическая сверка транзакций: подробнее о кейсе внедрения">Автоматическая сверка транзакций <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Роботизация сверки <span class="case-highlight case-highlight--fintech">тысяч транзакций</span> между банками и CRM. Агенты находят расхождения
             и мгновенно формируют отчеты.</p>
           <div class="case-card__results">
@@ -3064,11 +3070,11 @@ section[id] {
             </div>
           </div>
           <div class="case-card__tags"><span>Fintech</span><span>SQL</span><span>Analytics</span></div>
-        </a>
+        </article>
 
-        <a href="/cases/sales-speech-analytics/" class="case-card case-card--speech case-card--link" aria-label="Речевая аналитика и контроль звонков: подробнее о кейсе внедрения">
+        <article class="case-card case-card--speech case-card--link">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--speech"></span>🎙️ Отдел продаж · 35 менеджеров</div>
-          <h3 class="case-card__title">Речевая аналитика и контроль звонков <span class="case-card__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="case-card__title"><a href="/cases/sales-speech-analytics/" class="case-card__title-link" aria-label="Речевая аналитика и контроль звонков: подробнее о кейсе внедрения">Речевая аналитика и контроль звонков <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Транскрибация и <span class="case-highlight case-highlight--speech">ИИ-аудит 100% звонков</span> из облачной АТС. Автоматический чек-лист из 18 критериев и алерты РОПу о рисках за 30 секунд.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -3085,11 +3091,11 @@ section[id] {
             </div>
           </div>
           <div class="case-card__tags"><span>amoCRM</span><span>Битрикс24</span><span>Whisper</span><span>152-ФЗ</span></div>
-        </a>
+        </article>
 
-        <a href="/cases/tender-procurement-automation/" class="case-card case-card--tender case-card--link" aria-label="Автоматизация тендерного отдела: подробнее о кейсе внедрения">
+        <article class="case-card case-card--tender case-card--link">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--tender"></span>🏛️ Дистрибьютор оборудования · 44-ФЗ и 223-ФЗ</div>
-          <h3 class="case-card__title">Автоматизация тендерного отдела <span class="case-card__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="case-card__title"><a href="/cases/tender-procurement-automation/" class="case-card__title-link" aria-label="Автоматизация тендерного отдела: подробнее о кейсе внедрения">Автоматизация тендерного отдела <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">ИИ-скоринг 150-страничных ТЗ, <span class="case-highlight case-highlight--tender">сопоставление номенклатуры</span> в 1С:ERP, калькуляция плановой себестоимости и автосборка Формы 2 за 15 минут.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -3106,11 +3112,11 @@ section[id] {
             </div>
           </div>
           <div class="case-card__tags"><span>44-ФЗ / 223-ФЗ</span><span>1С:ERP</span><span>Форма 2</span><span>Скоринг</span></div>
-        </a>
+        </article>
 
-        <a href="/cases/claims-dispute-automation/" class="case-card case-card--claims case-card--link" aria-label="Учет претензий и дебиторка: подробнее о кейсе внедрения">
+        <article class="case-card case-card--claims case-card--link">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--claims"></span>⚖️ B2B-дистрибуция · 18 000 отгрузок/мес</div>
-          <h3 class="case-card__title">Учет претензий и дебиторка <span class="case-card__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="case-card__title"><a href="/cases/claims-dispute-automation/" class="case-card__title-link" aria-label="Учет претензий и дебиторка: подробнее о кейсе внедрения">Учет претензий и дебиторка <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Сквозной учет претензий: <span class="case-highlight case-highlight--claims">разбор актов ТОРГ-2</span>, сверка цепочки отгрузок в 1С:ERP, расчет пеней по ст. 395 ГК РФ и подготовка претензии за 3 минуты.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -3127,11 +3133,11 @@ section[id] {
             </div>
           </div>
           <div class="case-card__tags"><span>1С:ERP</span><span>ТОРГ-2</span><span>ст. 395 ГК</span><span>Диадок</span></div>
-        </a>
+        </article>
 
-        <a href="/cases/reviews-reputation-automation/" class="case-card case-card--reviews case-card--link" aria-label="Ответы на отзывы нейросетью: подробнее о кейсе внедрения">
+        <article class="case-card case-card--reviews case-card--link">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--reviews"></span>⭐ Сеть медцентров · 18 филиалов</div>
-          <h3 class="case-card__title">Ответы на отзывы нейросетью <span class="case-card__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="case-card__title"><a href="/cases/reviews-reputation-automation/" class="case-card__title-link" aria-label="Ответы на отзывы нейросетью: подробнее о кейсе внедрения">Ответы на отзывы нейросетью <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Автоматический мониторинг карт, <span class="case-highlight case-highlight--reviews">генерация уникальных ответов</span> в Tone-of-Voice бренда, алерты о негативе в Telegram и рост рейтинга до 4.9★.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -3148,11 +3154,11 @@ section[id] {
             </div>
           </div>
           <div class="case-card__tags"><span>Яндекс Карты</span><span>2ГИС</span><span>Tone-of-Voice</span><span>SERM</span></div>
-        </a>
+        </article>
 
-        <a href="/cases/auto-dealer-parts-automation/" class="case-card case-card--dealer case-card--link" aria-label="Подбор запчастей по VIN и автозаказ-наряды: подробнее о кейсе внедрения">
+        <article class="case-card case-card--dealer case-card--link">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--dealer"></span>🚗 Сеть автосервисов · 45 станций ТО</div>
-          <h3 class="case-card__title">Подбор автозапчастей по VIN <span class="case-card__arrow" aria-hidden="true">→</span></h3>
+          <h3 class="case-card__title"><a href="/cases/auto-dealer-parts-automation/" class="case-card__title-link" aria-label="Подбор запчастей по VIN и автозаказ-наряды: подробнее о кейсе внедрения">Подбор автозапчастей по VIN <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Автоматическая расшифровка VIN, <span class="case-highlight case-highlight--dealer">мультипроценка по API 6 дистрибьюторов</span>, автосоздание заказ-нарядов в 1С:Альфа-Авто и снижение возвратов до 0,4%.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -3169,7 +3175,7 @@ section[id] {
             </div>
           </div>
           <div class="case-card__tags"><span>1С:Альфа-Авто</span><span>TecDoc API</span><span>АвтоДилер</span><span>Каталог VIN</span></div>
-        </a>
+        </article>
 
 
 
@@ -3197,7 +3203,7 @@ section[id] {
       </div>
 
       <div class="pricing__grid">
-        <article class="pricing__card" data-reveal="" onclick="if(!event.target.closest('a.pricing__cta, button')) window.location.href='/pricing/'">
+        <article class="pricing__card" data-reveal="">
           <div class="pricing__head">
             <span class="pricing__tier">Быстрый старт</span>
             <h3 class="pricing__title"><a href="/pricing/" class="pricing__title-link">Пилот 14 дней</a></h3>
@@ -3212,7 +3218,7 @@ section[id] {
           <a href="#contact" class="btn btn--ghost btn--full pricing__cta">Обсудить пилот</a>
         </article>
 
-        <article class="pricing__card pricing__card--featured" data-reveal="" onclick="if(!event.target.closest('a.pricing__cta, button')) window.location.href='/pricing/'">
+        <article class="pricing__card pricing__card--featured" data-reveal="">
           <div class="pricing__head">
             <span class="pricing__badge">★ Оптимальный</span>
             <h3 class="pricing__title"><a href="/pricing/" class="pricing__title-link">Внедрение под ключ</a></h3>
@@ -3227,7 +3233,7 @@ section[id] {
           <a href="#contact" class="btn btn--primary btn--full pricing__cta">Обсудить внедрение</a>
         </article>
 
-        <article class="pricing__card" data-reveal="" onclick="if(!event.target.closest('a.pricing__cta, button')) window.location.href='/pricing/'">
+        <article class="pricing__card" data-reveal="">
           <div class="pricing__head">
             <span class="pricing__tier">Закрытый контур</span>
             <h3 class="pricing__title"><a href="/pricing/" class="pricing__title-link">Серверы компании (On-Premise)</a></h3>
@@ -4397,7 +4403,7 @@ section[id] {
       "url": "https://ai-avtopilot.ru/",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://ai-avtopilot.ru/icon.svg"
+        "url": "https://ai-avtopilot.ru/apple-touch-icon.png"
       },
       "email": "contact@ai-avtopilot.ru",
       "description": "Внедрение ИИ-агентов и роботизация бизнес-процессов в 1С, SAP, CRM и ERP для компаний в России.",

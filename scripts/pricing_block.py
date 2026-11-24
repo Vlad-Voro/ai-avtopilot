@@ -63,7 +63,7 @@ def render_pricing_section(active_hub: bool = False) -> str:
       </div>
 
       <div class="pricing__grid">
-        <article class="pricing__card" data-reveal="" onclick="if(!event.target.closest('a.pricing__cta, button')) window.location.href='/pricing/'">
+        <article class="pricing__card" data-reveal="">
           <div class="pricing__head">
             <span class="pricing__tier">Быстрый старт</span>
             <h3 class="pricing__title"><a href="/pricing/" class="pricing__title-link">Пилот 14 дней</a></h3>
@@ -78,7 +78,7 @@ def render_pricing_section(active_hub: bool = False) -> str:
           <a href="#contact" class="btn btn--ghost btn--full pricing__cta">Обсудить пилот</a>
         </article>
 
-        <article class="pricing__card pricing__card--featured" data-reveal="" onclick="if(!event.target.closest('a.pricing__cta, button')) window.location.href='/pricing/'">
+        <article class="pricing__card pricing__card--featured" data-reveal="">
           <div class="pricing__head">
             <span class="pricing__badge">★ Оптимальный</span>
             <h3 class="pricing__title"><a href="/pricing/" class="pricing__title-link">Внедрение под ключ</a></h3>
@@ -93,7 +93,7 @@ def render_pricing_section(active_hub: bool = False) -> str:
           <a href="#contact" class="btn btn--primary btn--full pricing__cta">Обсудить внедрение</a>
         </article>
 
-        <article class="pricing__card" data-reveal="" onclick="if(!event.target.closest('a.pricing__cta, button')) window.location.href='/pricing/'">
+        <article class="pricing__card" data-reveal="">
           <div class="pricing__head">
             <span class="pricing__tier">Закрытый контур</span>
             <h3 class="pricing__title"><a href="/pricing/" class="pricing__title-link">Серверы компании (On-Premise)</a></h3>

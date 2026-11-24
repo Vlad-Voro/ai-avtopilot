@@ -72,7 +72,13 @@ json_ld = soup.find("script", attrs={"type": "application/ld+json"})
 if json_ld and json_ld.string:
     try:
         data = json.loads(json_ld.string)
-        graph = [item for item in data.get("@graph", []) if item.get("@id") != "https://ai-avtopilot.ru/#faq"]
+        graph = []
+        for item in data.get("@graph", []):
+            if item.get("@id") == "https://ai-avtopilot.ru/#faq" or item.get("@type") == "WebSite":
+                continue
+            if item.get("@type") == "ProfessionalService":
+                item.pop("hasOfferCatalog", None)
+            graph.append(item)
 
         # BreadcrumbList (3-level Silo)
         graph.append(
@@ -101,10 +107,12 @@ if json_ld and json_ld.string:
                 "provider": {"@id": "https://ai-avtopilot.ru/#organization"},
                 "description": "Рассчитайте окупаемость за 1 минуту: автоматизация отчетности в 1С за 14 дней. Сократите рутину аналитиков на 80%. Гарантия окупаемости по договору.",
                 "offers": {
-                    "@type": "Offer",
-                    "price": "0",
+                    "@type": "AggregateOffer",
+                    "lowPrice": "50000",
+                    "highPrice": "400000",
                     "priceCurrency": "RUB",
-                    "name": "Бесплатный 30-минутный аудит 1С-отчетности",
+                    "offerCount": 3,
+                    "name": "Внедрение автоотчетности 1С",
                 },
             }
         )

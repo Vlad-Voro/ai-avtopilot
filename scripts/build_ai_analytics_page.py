@@ -83,7 +83,13 @@ json_ld = soup.find("script", attrs={"type": "application/ld+json"})
 if json_ld and json_ld.string:
     try:
         data = json.loads(json_ld.string)
-        graph = [item for item in data.get("@graph", []) if item.get("@id") != "https://ai-avtopilot.ru/#faq"]
+        graph = []
+        for item in data.get("@graph", []):
+            if item.get("@id") == "https://ai-avtopilot.ru/#faq" or item.get("@type") == "WebSite":
+                continue
+            if item.get("@type") == "ProfessionalService":
+                item.pop("hasOfferCatalog", None)
+            graph.append(item)
 
         # BreadcrumbList (3-level Silo)
         graph.append(
@@ -112,10 +118,12 @@ if json_ld and json_ld.string:
                 "provider": {"@id": "https://ai-avtopilot.ru/#organization"},
                 "description": "Подключите предиктивную аналитику в 1С: предотвращение кассовых разрывов за 10 дней, расчет неснижаемого остатка и контроль цен. Запустите пилот за 14 дней.",
                 "offers": {
-                    "@type": "Offer",
-                    "price": "0",
+                    "@type": "AggregateOffer",
+                    "lowPrice": "50000",
+                    "highPrice": "400000",
                     "priceCurrency": "RUB",
-                    "name": "Бесплатный 30-минутный предиктивный аудит 1С",
+                    "offerCount": 3,
+                    "name": "Внедрение предиктивной ИИ-аналитики 1С",
                 },
             }
         )

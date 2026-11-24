@@ -118,7 +118,13 @@ def build_case_page(case_key: str) -> str:
     if json_ld and json_ld.string:
         try:
             ld_data = json.loads(json_ld.string)
-            graph = [item for item in ld_data.get("@graph", []) if item.get("@id") != "https://ai-avtopilot.ru/#faq"]
+            graph = []
+            for item in ld_data.get("@graph", []):
+                if item.get("@id") == "https://ai-avtopilot.ru/#faq" or item.get("@type") == "WebSite":
+                    continue
+                if item.get("@type") == "ProfessionalService":
+                    item.pop("hasOfferCatalog", None)
+                graph.append(item)
 
             # TechArticle
             graph.append(
@@ -128,15 +134,15 @@ def build_case_page(case_key: str) -> str:
                     "headline": data["hero"]["title_static"] + " " + data["hero"]["typed_phrases"][0],
                     "description": data["description"],
                     "image": "https://ai-avtopilot.ru/og-image.png",
-                    "datePublished": "2026-10-01T08:00:00+03:00",
-                    "dateModified": "2026-10-01T12:00:00+03:00",
+                    "datePublished": data.get("datePublished", "2026-06-01T08:00:00+03:00"),
+                    "dateModified": data.get("dateModified", "2026-11-15T12:00:00+03:00"),
                     "inLanguage": "ru-RU",
                     "author": {"@type": "Organization", "name": "АвтоПилот", "url": "https://ai-avtopilot.ru/"},
                     "publisher": {
                         "@type": "Organization",
                         "name": "АвтоПилот",
                         "url": "https://ai-avtopilot.ru/",
-                        "logo": {"@type": "ImageObject", "url": "https://ai-avtopilot.ru/icon.svg"},
+                        "logo": {"@type": "ImageObject", "url": "https://ai-avtopilot.ru/apple-touch-icon.png"},
                     },
                 }
             )
