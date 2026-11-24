@@ -210,18 +210,22 @@ async function runSliderAndDragSuite(options = {}) {
       await mobilePage.goto(baseUrl, { waitUntil: 'domcontentloaded' });
       await mobilePage.waitForSelector('#services-dots .carousel-dot');
 
+      const VALID_START = ['flex-start', 'start', 'flow-start'];
       const mobileDotsState = await mobilePage.evaluate(() => {
         const sDots = document.querySelector('#services-dots');
         const style = getComputedStyle(sDots);
         const dots = Array.from(sDots.querySelectorAll('.carousel-dot'));
+        const wRect = sDots.getBoundingClientRect();
+        const d0Rect = dots[0] ? dots[0].getBoundingClientRect() : null;
         return {
           justifyContent: style.justifyContent,
           scrollBehavior: style.scrollBehavior,
-          dotsCount: dots.length
+          dotsCount: dots.length,
+          firstDotLeftAligned: Boolean(d0Rect && d0Rect.left >= wRect.left - 1 && d0Rect.left < wRect.left + wRect.width / 2)
         };
       });
 
-      assert(mobileDotsState.justifyContent === 'flex-start', `Mobile services-dots justifyContent is 'flex-start' (got '${mobileDotsState.justifyContent}')`);
+      assert(VALID_START.includes(mobileDotsState.justifyContent) && mobileDotsState.firstDotLeftAligned, `Mobile services-dots justifyContent is start/left-aligned (got '${mobileDotsState.justifyContent}', aligned=${mobileDotsState.firstDotLeftAligned})`);
       assert(mobileDotsState.dotsCount === 24, `Mobile services-dots has 24 dots (got ${mobileDotsState.dotsCount})`);
 
       // Scroll services container to 9th card (idx 8) and verify active dot auto-centers in viewport
@@ -233,11 +237,12 @@ async function runSliderAndDragSuite(options = {}) {
           cards[8].scrollIntoView({ inline: 'center', block: 'nearest' });
           sBento.dispatchEvent(new Event('scroll'));
         }
-        // Poll for smooth scroll auto-centering settlement
-        for (let i = 0; i < 20; i++) {
+        // Poll for rAF scroll handler + smooth scroll auto-centering settlement on index 8
+        for (let i = 0; i < 25; i++) {
           await new Promise((r) => setTimeout(r, 20));
+          const dots = Array.from(sDots.querySelectorAll('.carousel-dot'));
           const active = sDots.querySelector('.carousel-dot.active');
-          if (active) {
+          if (active && dots.indexOf(active) === 8) {
             const d = active.getBoundingClientRect();
             const w = sDots.getBoundingClientRect();
             if (d.left >= (w.left - 5) && d.right <= (w.right + 5)) break;
@@ -272,6 +277,9 @@ async function runSliderAndDragSuite(options = {}) {
         const style = getComputedStyle(oDots);
         const dots = Array.from(oDots.querySelectorAll('.carousel-dot'));
         const cards = Array.from(oBento.querySelectorAll('.scard'));
+        const wRectInit = oDots.getBoundingClientRect();
+        const d0RectInit = dots[0] ? dots[0].getBoundingClientRect() : null;
+        const firstDotLeftAligned = Boolean(d0RectInit && d0RectInit.left >= wRectInit.left - 1 && d0RectInit.left < wRectInit.left + wRectInit.width / 2);
 
         let allFirstVisible = true;
         for (let i = 0; i < 4; i++) {
@@ -293,11 +301,12 @@ async function runSliderAndDragSuite(options = {}) {
         return {
           justifyContent: style.justifyContent,
           dotsCount: dots.length,
+          firstDotLeftAligned,
           allFirstVisible
         };
       });
 
-      assert(otherServicesState.justifyContent === 'flex-start', `Mobile other-services-dots justifyContent is 'flex-start' (got '${otherServicesState.justifyContent}')`);
+      assert(VALID_START.includes(otherServicesState.justifyContent) && otherServicesState.firstDotLeftAligned, `Mobile other-services-dots justifyContent is start/left-aligned (got '${otherServicesState.justifyContent}', aligned=${otherServicesState.firstDotLeftAligned})`);
       assert(otherServicesState.dotsCount === 9 || otherServicesState.dotsCount === 23, `Mobile other-services-dots has 9 Silo sibling dots (got ${otherServicesState.dotsCount})`);
       assert(otherServicesState.allFirstVisible, 'Active touchbar dot remains fully visible on right swipe across first 4 cards in Other Services');
 
