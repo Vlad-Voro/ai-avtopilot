@@ -170,7 +170,7 @@ suite.test('Cross-Feature Interactions: Scroll, slider touch, clean pushState, t
 suite.test('Journey 1: First-time visitor lands, observes hero typewriter and examines live dashboard', async ({ page, baseUrl }) => {
   await page.goto(`${baseUrl}/`);
   const heroTitle = await page.locator('.hero__title').textContent();
-  assert.ok(heroTitle.includes('Ваши процессы'), 'Hero title must be present');
+  assert.ok(heroTitle.includes('Внедрение ИИ'), 'Hero title must be present');
 
   const typedText = await page.locator('#typed-text').textContent().catch(() => '');
   assert.ok(typeof typedText === 'string', 'Typewriter element present');

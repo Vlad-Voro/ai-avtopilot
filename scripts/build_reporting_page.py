@@ -34,7 +34,7 @@ soup = BeautifulSoup(html_content, "html.parser")
 # 1. Update Head metadata
 title_tag = soup.find("title")
 if title_tag:
-    title_tag.string = "Отчеты по продажам, остаткам и P&L из 1С в Telegram | АвтоПилот"
+    title_tag.string = "Автоматизация отчетности 1С: управленческий P&L в Telegram | АвтоПилот"
 
 desc_tag = soup.find("meta", attrs={"name": "description"})
 if desc_tag:
@@ -49,14 +49,14 @@ if canonical_tag:
 
 # OG / Twitter
 for prop, val in [
-    ("og:title", "Отчеты по продажам, остаткам и P&L из 1С в Telegram | АвтоПилот"),
+    ("og:title", "Автоматизация отчетности 1С: управленческий P&L в Telegram | АвтоПилот"),
     ("og:url", "https://ai-avtopilot.ru/services/automated-reporting/"),
     (
         "og:description",
         "Рассчитайте окупаемость за 1 минуту: автоматизация отчетности в 1С за 14 дней. "
         "Сократите рутину аналитиков на 80%. Гарантия окупаемости по договору.",
     ),
-    ("twitter:title", "Отчеты по продажам, остаткам и P&L из 1С в Telegram | АвтоПилот"),
+    ("twitter:title", "Автоматизация отчетности 1С: управленческий P&L в Telegram | АвтоПилот"),
     (
         "twitter:description",
         "Рассчитайте окупаемость за 1 минуту: автоматизация отчетности в 1С за 14 дней. "
@@ -176,12 +176,12 @@ if hero_sec:
         h1 = hero_inner.find("h1")
         if h1:
             h1.clear()
-            phrases_json = '["каждое утро в Telegram в 09:00", "на автопилоте без Excel", "с расчетом P&L за секунды", "без ожидания закрытия месяца"]'
+            phrases_json = '["P&L и продажи в Telegram", "на автопилоте без Excel", "с расчетом P&L за секунды", "без ожидания закрытия месяца"]'
             h1.append(
                 BeautifulSoup(
-                    f'<span class="hero__title-static">Сводные отчеты по продажам, остаткам и P&amp;L </span>'
+                    f'<span class="hero__title-static">Автоматизация управленческой отчетности 1С: </span>'
                     f'<span class="hero__title-accent-box">'
-                    f'<span class="hero__title-accent" id="typed-text" data-phrases=\'{phrases_json}\'>каждое утро в Telegram в 09:00</span>'
+                    f'<span class="hero__title-accent" id="typed-text" data-phrases=\'{phrases_json}\'>P&amp;L и продажи в Telegram</span>'
                     f'<span aria-hidden="true" class="hero__cursor"></span></span>',
                     "html.parser",
                 )

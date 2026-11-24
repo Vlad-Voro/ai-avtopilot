@@ -191,7 +191,7 @@ if hero_sec:
             phrases_json = '["без кассовых разрывов", "с расчетом остатков и ROP", "с автоконтролем цен УПД", "в On-Premise контуре"]'
             h1.append(
                 BeautifulSoup(
-                    f'<span class="hero__title-static">Предиктивная аналитика для 1С </span>'
+                    f'<span class="hero__title-static">Платежный календарь 1С и аналитика </span>'
                     f'<span class="hero__title-accent-box">'
                     f'<span class="hero__title-accent" id="typed-text" data-phrases=\'{phrases_json}\'>без кассовых разрывов</span>'
                     f'<span aria-hidden="true" class="hero__cursor"></span></span>',

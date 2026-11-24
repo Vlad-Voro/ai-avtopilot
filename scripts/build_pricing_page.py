@@ -17,7 +17,7 @@ if str(SCRIPT_DIR) not in sys.path:
 from pricing_block import PRICE_RANGE_TEXT, get_offer_catalog_items, render_pricing_section
 
 PRICING_URL = "https://ai-avtopilot.ru/pricing/"
-PRICING_TITLE = "Цены на внедрение ИИ-агентов для бизнеса — АвтоПилот"
+PRICING_TITLE = "Стоимость внедрения ИИ-агентов и автоматизация 1С: цены от 50 000 ₽ | АвтоПилот"
 PRICING_DESC = (
     "Стоимость внедрения ИИ-агентов: пилот 14 дней от 50 000 ₽ с зачетом в проект, "
     "внедрение под ключ от 125 000 ₽, серверы компании (On-Premise) от 400 000 ₽."
@@ -62,7 +62,7 @@ def _render_pricing_hero() -> str:
           <span class="hero__badge-dot"></span>
           <span class="hero__badge-text">Фиксированный бюджет · Зачет пилота 100%</span>
         </div>
-        <h1 class="hero__title">Стоимость внедрения <span class="grad-text">ИИ-агентов для бизнеса</span></h1>
+        <h1 class="hero__title">Стоимость внедрения <span class="grad-text">ИИ-агентов и автоматизации 1С</span></h1>
         <p class="hero__sub">Форматы запуска для 1С, CRM и ЭДО: от пилота за 14 дней до закрытого On-Premise контура по 152-ФЗ. Смета, этапы и SLA фиксируются в договоре.</p>
         <div class="hero__actions">
           <a href="#pricing" class="btn btn--primary btn--lg">Смотреть форматы</a>
