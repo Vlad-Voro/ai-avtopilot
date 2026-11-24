@@ -1,7 +1,7 @@
 # Architectural Specification & Production Blueprint: ai-avtopilot.ru (Spec_ai_avtopilot.md)
 
 > **Standard**: ASD-STE100 (Simplified Technical English)  
-> **Status**: Production Hardened | **Updated**: 2026-11-15  
+> **Status**: Production Hardened | **Updated**: 2026-11-24  
 > **Live URL**: [https://ai-avtopilot.ru/](https://ai-avtopilot.ru/) | **Repo**: `Vlad-Voro/ai-avtopilot` (`main` - Private)  
 > **Local Root**: `d:\AI\data\ai-avtopilot` | **Inventory**: 46 Production URLs (1 Root, 7 Hubs, 24 Services, 11 Cases, 3 Utility) + 1 Canonical Stub (`/automated-reporting/`)  
 > **Verification Matrix**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E, 0 regressions) + 486 Layout Matrix

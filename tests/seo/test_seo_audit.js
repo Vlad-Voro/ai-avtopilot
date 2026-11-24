@@ -650,6 +650,31 @@ runCheck('SEM-02', 'Zero inline JavaScript syntax errors across all production H
   });
 });
 
+// SEO-29: Anti-Clickjacking <noscript> restore guard (prevents Non-JS crawler blackout)
+runCheck('SEO-29', 'All pages with #anti-clickjack restore body and [data-reveal] inside <noscript>', () => {
+  const htmlFiles = [];
+  (function scan(dir) {
+    fs.readdirSync(dir, { withFileTypes: true }).forEach(ent => {
+      if (ent.name.startsWith('.') || ent.name === 'node_modules' || ent.name === 'tmp' || ent.name === 'tests' || ent.name === '_site') return;
+      const full = path.join(dir, ent.name);
+      if (ent.isDirectory()) scan(full);
+      else if (ent.name.endsWith('.html')) htmlFiles.push(full);
+    });
+  })(ROOT_DIR);
+
+  const missing = [];
+  htmlFiles.forEach(file => {
+    const html = fs.readFileSync(file, 'utf8');
+    if (!html.includes('id="anti-clickjack"')) return;
+    const noscriptRe = /<noscript>[\s\S]*?#anti-clickjack[\s\S]*?body\s*\{\s*display\s*:\s*block\s*!important\s*;?[\s\S]*?\[data-reveal\][\s\S]*?<\/noscript>/i;
+    if (!noscriptRe.test(html)) {
+      missing.push(path.relative(ROOT_DIR, file));
+    }
+  });
+
+  assert.strictEqual(missing.length, 0, `Missing <noscript> anti-clickjack/data-reveal restore on: ${missing.join(', ')}`);
+});
+
 // SEO-19: Test execution time benchmark
 runCheck('SEO-19', 'Full SEO verification suite completes in under 500ms', () => {
 

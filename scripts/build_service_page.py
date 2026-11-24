@@ -388,6 +388,7 @@ def generate_service_html(data: dict) -> str:
 
   <!-- Anti-Clickjacking Frame Guard (OWASP Defense) -->
   <style id="anti-clickjack">body{{display:none !important;}}</style>
+  <noscript><style>#anti-clickjack{{display:none !important;}}body{{display:block !important;}}[data-reveal]{{opacity:1 !important;transform:none !important;visibility:visible !important;}}</style></noscript>
   <script>
     if (self === top) {{
       var acj = document.getElementById('anti-clickjack');
