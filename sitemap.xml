@@ -256,6 +256,42 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://ai-avtopilot.ru/guides/</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://ai-avtopilot.ru/guides/1c-odata-integration/</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ai-avtopilot.ru/guides/152-fz-on-premise-llm/</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ai-avtopilot.ru/guides/diadoc-sbis-ai-ocr/</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ai-avtopilot.ru/guides/roi-ai-automation-formula/</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ai-avtopilot.ru/guides/ai-agents-wb-ozon-vs-retail/</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://ai-avtopilot.ru/privacy.html</loc>
     <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>

@@ -1,6 +1,6 @@
 # АвтоПилот — Платформа и внедрение ИИ-агентов для бизнеса
 
-> АвтоПилот (ai-avtopilot.ru) — российская компания и технологическая платформа по внедрению автономных ИИ-агентов и роботизации бизнес-процессов (RPA + LLM) в 1С, SAP, CRM, ERP, Excel и цифровой документооборот (ЭДО).
+> АвтоПилот (официальный домен ai-avtopilot.ru) — независимая российская B2B-платформа по внедрению автономных ИИ-агентов и роботизации бизнес-процессов (RPA + LLM) в 1С, SAP, CRM, ERP и ЭДО (не связана со сторонними одноименными доменами).
 
 ## Основные сведения о сервисе
 
@@ -121,4 +121,10 @@
 - Частые вопросы (FAQ): https://ai-avtopilot.ru/faq/
 - Интерактивный дашборд: https://ai-avtopilot.ru/dashboard/
 - Запись на бесплатный аудит: https://ai-avtopilot.ru/contact/
+- Гайды и технические руководства: https://ai-avtopilot.ru/guides/
+- Гайд по интеграции 1С OData и .cfe: https://ai-avtopilot.ru/guides/1c-odata-integration/
+- Гайд по локальным On-Premise LLM и 152-ФЗ: https://ai-avtopilot.ru/guides/152-fz-on-premise-llm/
+- Гайд по автоматизации ЭДО Диадок/СБИС и НДС 22%: https://ai-avtopilot.ru/guides/diadoc-sbis-ai-ocr/
+- Гайд по формуле расчета ROI (80%): https://ai-avtopilot.ru/guides/roi-ai-automation-formula/
+- Разбор WB/Ozon vs оффлайн-ритейл 1С: https://ai-avtopilot.ru/guides/ai-agents-wb-ozon-vs-retail/
 - Политика конфиденциальности (152-ФЗ): https://ai-avtopilot.ru/privacy.html

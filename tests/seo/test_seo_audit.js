@@ -61,7 +61,15 @@ const PAGES = [
   { slug: 'cases/tender-procurement-automation', file: 'cases/tender-procurement-automation/index.html', url: 'https://ai-avtopilot.ru/cases/tender-procurement-automation/', category: 'case', hasBreadcrumbs: true },
   { slug: 'cases/claims-dispute-automation', file: 'cases/claims-dispute-automation/index.html', url: 'https://ai-avtopilot.ru/cases/claims-dispute-automation/', category: 'case', hasBreadcrumbs: true },
   { slug: 'cases/reviews-reputation-automation', file: 'cases/reviews-reputation-automation/index.html', url: 'https://ai-avtopilot.ru/cases/reviews-reputation-automation/', category: 'case', hasBreadcrumbs: true },
-  { slug: 'cases/auto-dealer-parts-automation', file: 'cases/auto-dealer-parts-automation/index.html', url: 'https://ai-avtopilot.ru/cases/auto-dealer-parts-automation/', category: 'case', hasBreadcrumbs: true }
+  { slug: 'cases/auto-dealer-parts-automation', file: 'cases/auto-dealer-parts-automation/index.html', url: 'https://ai-avtopilot.ru/cases/auto-dealer-parts-automation/', category: 'case', hasBreadcrumbs: true },
+
+  // Guides Hub & Articles (6)
+  { slug: 'guides', file: 'guides/index.html', url: 'https://ai-avtopilot.ru/guides/', category: 'guide-hub', hasBreadcrumbs: true },
+  { slug: 'guides/1c-odata-integration', file: 'guides/1c-odata-integration/index.html', url: 'https://ai-avtopilot.ru/guides/1c-odata-integration/', category: 'guide', hasBreadcrumbs: true },
+  { slug: 'guides/152-fz-on-premise-llm', file: 'guides/152-fz-on-premise-llm/index.html', url: 'https://ai-avtopilot.ru/guides/152-fz-on-premise-llm/', category: 'guide', hasBreadcrumbs: true },
+  { slug: 'guides/diadoc-sbis-ai-ocr', file: 'guides/diadoc-sbis-ai-ocr/index.html', url: 'https://ai-avtopilot.ru/guides/diadoc-sbis-ai-ocr/', category: 'guide', hasBreadcrumbs: true },
+  { slug: 'guides/roi-ai-automation-formula', file: 'guides/roi-ai-automation-formula/index.html', url: 'https://ai-avtopilot.ru/guides/roi-ai-automation-formula/', category: 'guide', hasBreadcrumbs: true },
+  { slug: 'guides/ai-agents-wb-ozon-vs-retail', file: 'guides/ai-agents-wb-ozon-vs-retail/index.html', url: 'https://ai-avtopilot.ru/guides/ai-agents-wb-ozon-vs-retail/', category: 'guide', hasBreadcrumbs: true }
 ];
 
 let totalChecks = 0;
@@ -246,6 +254,14 @@ runCheck('SEO-10', 'Schema.org JSON-LD @graph contains required entities per cat
     } else if (p.category === 'case') {
       assert.ok(!types.includes('WebSite'), `Unexpected WebSite in case ${p.file}`);
       assert.ok(types.includes('TechArticle'), `Missing TechArticle in ${p.file}`);
+    } else if (p.category === 'guide-hub') {
+      assert.ok(!types.includes('WebSite'), `Unexpected WebSite in guide hub ${p.file}`);
+      assert.ok(types.includes('CollectionPage'), `Missing CollectionPage in ${p.file}`);
+      assert.ok(types.includes('FAQPage'), `Missing FAQPage in ${p.file}`);
+    } else if (p.category === 'guide') {
+      assert.ok(!types.includes('WebSite'), `Unexpected WebSite in guide ${p.file}`);
+      assert.ok(types.includes('TechArticle'), `Missing TechArticle in ${p.file}`);
+      assert.ok(types.includes('FAQPage'), `Missing FAQPage in ${p.file}`);
     }
     const rawJson = m[1];
     assert.ok(!/"price"\s*:\s*"0"/.test(rawJson), `Forbidden Offer price:"0" in JSON-LD of ${p.file}`);
@@ -723,6 +739,22 @@ runCheck('SEO-30', 'Cases have DOM breadcrumbs, working FAQ markup, static termi
     const casesSection = html.slice(casesIdx, html.indexOf('</section>', casesIdx));
     const caseLinks = [...casesSection.matchAll(/href="(\/cases\/[^"]+\/)"/g)].map(m => m[1]);
     assert.strictEqual(caseLinks.length, 3, `Expected 3 case links in ${slug}, found ${caseLinks.length}`);
+  });
+});
+
+// SEO-31: Guides Content Hub, Princeton GEO citations & Brand Disambiguation
+runCheck('SEO-31', 'Guides hub & articles include cited blockquotes, primary references, and brand disambiguation', () => {
+  const guidePages = PAGES.filter(p => p.category === 'guide');
+  assert.strictEqual(guidePages.length, 5, 'Expected 5 MoFu/ToFu guides');
+  guidePages.forEach(p => {
+    const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
+    assert.ok(/<blockquote[^>]+cite="https:\/\/[^"]+"/.test(html), `Missing cited <blockquote cite> in ${p.file}`);
+    assert.ok(html.includes('ai-avtopilot.ru'), `Missing brand disambiguation in ${p.file}`);
+    assert.ok(/href="\/services\/[^"]+\/"/.test(html), `Missing internal service link in ${p.file}`);
+  });
+  const hubHtml = fs.readFileSync(path.join(ROOT_DIR, 'guides/index.html'), 'utf8');
+  guidePages.forEach(p => {
+    assert.ok(hubHtml.includes(`href="/${p.slug}/"`), `Guides hub missing card link to /${p.slug}/`);
   });
 });
 

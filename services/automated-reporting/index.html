@@ -2418,7 +2418,15 @@ section[id] {
   .scard__title-link::after{content:'';position:absolute;inset:0;z-index:1}
   .scard--link:hover .scard__title-link{color:var(--accent-1)}
   .pricing__title-link::after{content:'';position:absolute;inset:0;z-index:1}
-  .pricing__cta{position:relative;z-index:2}</style>
+  .pricing__cta{position:relative;z-index:2}
+  .guide-article{max-width:860px;margin:0 auto;padding:24px 0 56px;color:var(--text-2);line-height:1.75;font-size:1.02rem}
+  .guide-article h2{font-family:var(--font-head);color:var(--text-1);margin:36px 0 14px;font-size:1.5rem}
+  .guide-article p{margin:0 0 16px}
+  .guide-article ul{margin:12px 0 20px 22px;display:flex;flex-direction:column;gap:8px}
+  .geo-quote{margin:24px 0;padding:18px 22px;border-left:3px solid var(--accent-1);background:rgba(99,102,241,.07);border-radius:0 var(--radius-sm) var(--radius-sm) 0;color:var(--text-1)}
+  .geo-quote footer{margin-top:8px;font-size:.86rem;color:var(--text-3)}
+  .geo-quote a,.guide-article a{color:var(--accent-1);text-decoration:underline;text-underline-offset:3px}
+  .guides-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:28px}</style>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
 <script type="text/javascript">
     (function() {
@@ -2762,12 +2770,12 @@ section[id] {
 </article>
 <article class="case-card case-card--retail">
 <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--retail"></span>🛒 Розничная сеть · 45 магазинов</div>
-<h3 class="case-card__title"><a class="case-card__title-link" href="/cases/retail-inventory-automation/">Предиктивный платежный календарь и защита от кассовых разрывов <span aria-hidden="true" class="case-card__arrow">→</span></a></h3>
-<p class="case-card__desc">Объединили потоки данных из 1С:Розница и банковских выписок. Запустили <span class="case-highlight case-highlight--retail">предиктивный платежный календарь</span> с алертами неликвидных остатков.</p>
+<h3 class="case-card__title"><a class="case-card__title-link" href="/cases/retail-inventory-automation/">План-факт выручки, остатков и маржи 45 магазинов в Telegram <span aria-hidden="true" class="case-card__arrow">→</span></a></h3>
+<p class="case-card__desc">Объединили отчеты из 1С:Розница и эквайринга. Руководители получают <span class="case-highlight case-highlight--retail">ежедневную сводку продаж</span> и неликвидов ровно в 09:00 без ручных выгрузок в Excel.</p>
 <div class="case-card__results">
 <div class="case-result">
-<span class="case-result__num case-num--green">0</span>
-<span class="case-result__label">кассовых разрывов</span>
+<span class="case-result__num case-num--green">09:00</span>
+<span class="case-result__label">сводка в Telegram</span>
 </div>
 <div class="case-result">
 <span class="case-result__num case-num--gold">4.2 млн ₽</span>
@@ -2778,7 +2786,7 @@ section[id] {
 <span class="case-result__label">ROI за 1-й квартал</span>
 </div>
 </div>
-<div class="case-card__tags"><span>1С:Розница</span><span>ДДС</span><span>Платежный календарь</span></div>
+<div class="case-card__tags"><span>1С:Розница</span><span>ОПиУ</span><span>Утренний отчет</span></div>
 </article>
 <article class="case-card case-card--edi">
 <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--edi"></span>🏭 Производственное предприятие · 1С:ERP</div>
@@ -3230,7 +3238,7 @@ section[id] {
 </div>
 <div class="footer__body">
 <div class="footer__brand">
-<p>ИИ-автоматизация бизнес-процессов.<br/>г. Москва · Работаем по всей России.<br/><span class="footer__support">Поддержка: 24/7 онлайн</span></p>
+<p>АвтоПилот (ai-avtopilot.ru) — независимая платформа ИИ-автоматизации 1С, CRM и ЭДО.<br/>г. Москва · Работаем по всей России.<br/><span class="footer__support">Поддержка: 24/7 онлайн</span></p>
 </div>
 </div>
 <div class="footer__links-row">
@@ -3238,6 +3246,7 @@ section[id] {
 <a href="/dashboard/">Дашборд</a>
 <a href="/services/">Услуги</a>
 <a href="/cases/">Кейсы</a>
+<a href="/guides/">Гайды</a>
 <a href="/pricing/">Цены</a>
 <a href="/calculator/">Калькулятор</a>
 <a href="/calculator/self-employed/">Калькулятор самозанятых</a>

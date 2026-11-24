@@ -276,8 +276,8 @@ async function runSecuritySuite() {
     });
   });
 
-  // Test 10: SEC-10 - Zero Naked FormSubmit Endpoints & Anti-Spam Form Hardening (all 44 form pages)
-  await test('SEC-10: Zero naked FormSubmit endpoints, no _captcha=false, and valid worker /submit action across all 44 form HTML files', async () => {
+  // Test 10: SEC-10 - Zero Naked FormSubmit Endpoints & Anti-Spam Form Hardening (all 50 form pages)
+  await test('SEC-10: Zero naked FormSubmit endpoints, no _captcha=false, and valid worker /submit action across all 50 form HTML files', async () => {
     const rootDir = path.resolve(__dirname, '../..');
     const expectedAction = 'action="https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/submit"';
     const formFiles = [];
@@ -293,7 +293,7 @@ async function runSecuritySuite() {
       }
     };
     walk(rootDir);
-    assert.strictEqual(formFiles.length, 44, `Expected 44 HTML pages with #contact-form, got ${formFiles.length}`);
+    assert.strictEqual(formFiles.length, 50, `Expected 50 HTML pages with #contact-form, got ${formFiles.length}`);
     formFiles.forEach(({ rel, html }) => {
       assert.ok(!html.includes('https://formsubmit.co/'), `Found naked FormSubmit endpoint in ${rel}`);
       assert.ok(!html.includes('_captcha'), `Found _captcha flag in ${rel}`);

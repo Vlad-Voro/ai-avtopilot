@@ -252,6 +252,37 @@ URL_SPEC = [
         "priority": "0.8",
     },
     {"url": "https://ai-avtopilot.ru/faq/", "file": "faq/index.html", "changefreq": "weekly", "priority": "0.8"},
+    {"url": "https://ai-avtopilot.ru/guides/", "file": "guides/index.html", "changefreq": "weekly", "priority": "0.85"},
+    {
+        "url": "https://ai-avtopilot.ru/guides/1c-odata-integration/",
+        "file": "guides/1c-odata-integration/index.html",
+        "changefreq": "monthly",
+        "priority": "0.8",
+    },
+    {
+        "url": "https://ai-avtopilot.ru/guides/152-fz-on-premise-llm/",
+        "file": "guides/152-fz-on-premise-llm/index.html",
+        "changefreq": "monthly",
+        "priority": "0.8",
+    },
+    {
+        "url": "https://ai-avtopilot.ru/guides/diadoc-sbis-ai-ocr/",
+        "file": "guides/diadoc-sbis-ai-ocr/index.html",
+        "changefreq": "monthly",
+        "priority": "0.8",
+    },
+    {
+        "url": "https://ai-avtopilot.ru/guides/roi-ai-automation-formula/",
+        "file": "guides/roi-ai-automation-formula/index.html",
+        "changefreq": "monthly",
+        "priority": "0.8",
+    },
+    {
+        "url": "https://ai-avtopilot.ru/guides/ai-agents-wb-ozon-vs-retail/",
+        "file": "guides/ai-agents-wb-ozon-vs-retail/index.html",
+        "changefreq": "monthly",
+        "priority": "0.8",
+    },
     {"url": "https://ai-avtopilot.ru/privacy.html", "file": "privacy.html", "changefreq": "monthly", "priority": "0.5"},
 ]
 

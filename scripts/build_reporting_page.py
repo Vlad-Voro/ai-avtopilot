@@ -475,12 +475,12 @@ if cases_sec:
 
         <article class="case-card case-card--retail">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--retail"></span>🛒 Розничная сеть · 45 магазинов</div>
-          <h3 class="case-card__title"><a href="/cases/retail-inventory-automation/" class="case-card__title-link">Предиктивный платежный календарь и защита от кассовых разрывов <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
-          <p class="case-card__desc">Объединили потоки данных из 1С:Розница и банковских выписок. Запустили <span class="case-highlight case-highlight--retail">предиктивный платежный календарь</span> с алертами неликвидных остатков.</p>
+          <h3 class="case-card__title"><a href="/cases/retail-inventory-automation/" class="case-card__title-link">План-факт выручки, остатков и маржи 45 магазинов в Telegram <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
+          <p class="case-card__desc">Объединили отчеты из 1С:Розница и эквайринга. Руководители получают <span class="case-highlight case-highlight--retail">ежедневную сводку продаж</span> и неликвидов ровно в 09:00 без ручных выгрузок в Excel.</p>
           <div class="case-card__results">
             <div class="case-result">
-              <span class="case-result__num case-num--green">0</span>
-              <span class="case-result__label">кассовых разрывов</span>
+              <span class="case-result__num case-num--green">09:00</span>
+              <span class="case-result__label">сводка в Telegram</span>
             </div>
             <div class="case-result">
               <span class="case-result__num case-num--gold">4.2 млн ₽</span>
@@ -491,7 +491,7 @@ if cases_sec:
               <span class="case-result__label">ROI за 1-й квартал</span>
             </div>
           </div>
-          <div class="case-card__tags"><span>1С:Розница</span><span>ДДС</span><span>Платежный календарь</span></div>
+          <div class="case-card__tags"><span>1С:Розница</span><span>ОПиУ</span><span>Утренний отчет</span></div>
         </article>
 
         <article class="case-card case-card--edi">

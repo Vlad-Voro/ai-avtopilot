@@ -850,7 +850,7 @@ def generate_service_html(data: dict) -> str:
       </div>
       <div class="footer__body">
         <div class="footer__brand">
-          <p>ИИ-автоматизация бизнес-процессов.<br />г. Москва · Работаем по всей России.<br /><span class="footer__support">Поддержка: 24/7 онлайн</span></p>
+          <p>АвтоПилот (ai-avtopilot.ru) — независимая платформа ИИ-автоматизации 1С, CRM и ЭДО.<br />г. Москва · Работаем по всей России.<br /><span class="footer__support">Поддержка: 24/7 онлайн</span></p>
         </div>
       </div>
       <div class="footer__links-row">
@@ -858,6 +858,7 @@ def generate_service_html(data: dict) -> str:
           <a href="/dashboard/">Дашборд</a>
           <a href="/services/">Услуги</a>
           <a href="/cases/">Кейсы</a>
+          <a href="/guides/">Гайды</a>
           <a href="/pricing/">Цены</a>
           <a href="/calculator/">Калькулятор</a>
           <a href="/calculator/self-employed/">Калькулятор самозанятых</a>
