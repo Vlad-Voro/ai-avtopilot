@@ -403,7 +403,7 @@ def generate_service_html(data: dict) -> str:
 {stylesheet_tag}
 
   <!-- Scripts -->
-  <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.4"></script>
+  <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.6"></script>
 
   <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
   <script type="text/javascript">
@@ -850,7 +850,7 @@ def generate_service_html(data: dict) -> str:
       </div>
       <div class="footer__body">
         <div class="footer__brand">
-          <p>АвтоПилот (ai-avtopilot.ru) — независимая платформа ИИ-автоматизации 1С, CRM и ЭДО.<br />г. Москва · Работаем по всей России.<br /><span class="footer__support">Поддержка: 24/7 онлайн</span></p>
+          <p>АвтоПилот (ai-avtopilot.ru) — платформа ИИ-автоматизации 1С, CRM и ЭДО.<br />г. Москва · Работаем по всей России.<br /><span class="footer__support">Поддержка: 24/7 онлайн</span></p>
         </div>
       </div>
       <div class="footer__links-row">

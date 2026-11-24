@@ -140,6 +140,21 @@ function runInBrowserAudit(device) {
     }
   }
 
+  for (const btn of document.querySelectorAll('.hero__actions .btn')) {
+    const style = window.getComputedStyle(btn);
+    if (!isVisible(btn, style)) continue;
+    if (btn.scrollWidth > btn.clientWidth + 2) {
+      issues.push({
+        type: 'button-text-clipping',
+        severity: 'P0',
+        category: 'layout',
+        selector: getCssSelector(btn),
+        message: `Текст кнопки обрезан по ширине: scrollWidth (${btn.scrollWidth}px) > clientWidth (${btn.clientWidth}px) [${(btn.textContent || '').trim()}]`,
+        recommendation: 'Сократите текст кнопки или разрешите перенос white-space: normal'
+      });
+    }
+  }
+
   // ==========================================
   // CHECK 3: Form Input Font Size on Mobile (P1)
   // Prevents iOS Safari Automatic Zoom

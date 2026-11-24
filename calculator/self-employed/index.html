@@ -91,7 +91,7 @@
   <link rel="preload" href="/assets/fonts/Outfit-600-14.woff2" as="font" type="font/woff2" crossorigin="" />
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="/assets/css/styles.min.css?v=82892ba5" />
+  <link rel="stylesheet" href="/assets/css/styles.min.css?v=c2c21abd" />
 
   <!-- Progressive Enhancement Failsafe for data-reveal -->
   <noscript>
@@ -568,6 +568,12 @@
       line-height: 1.35;
       padding: 12px 18px;
     }
+    @media (max-width: 340px) {
+      .contact__title {
+        font-size: 1.42rem;
+        overflow-wrap: anywhere;
+      }
+    }
   </style>
 </head>
 
@@ -642,6 +648,49 @@
           <div class="kpi-card">
             <span class="kpi-card__num">−28,9%</span>
             <span class="kpi-card__label">снижение затрат бизнеса</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero__terminal-wrap">
+        <div class="terminal">
+          <div class="terminal__header">
+            <span class="terminal__dot terminal__dot--red"></span>
+            <span class="terminal__dot terminal__dot--yellow"></span>
+            <span class="terminal__dot terminal__dot--green"></span>
+            <span class="terminal__title">autopilot — npd_1c_guard v2.6</span>
+          </div>
+          <div class="terminal__body" id="terminal-body" data-static-terminal="true">
+            <div class="terminal__line terminal__line--prompt"><span>$ npd-check --inn 7707083893 --1c-sync</span></div>
+            <div class="terminal__line terminal__line--ok"><span>  ✔ Статус ФНС: Самозанятый (НПД активен)</span></div>
+            <div class="terminal__line terminal__line--ok"><span>  ✔ Ставка: 6% (выплата от ООО/ИП) · Вычет учтен</span></div>
+            <div class="terminal__line terminal__line--ok"><span>  ✔ Экономия ФОТ: −43 290 ₽ на каждые 100 000 ₽</span></div>
+            <div class="terminal__line terminal__line--dim"><span>  Проводка 1С: Дт 20/26/44 — Кт 76.09 (чек ФНС OK)</span></div>
+          </div>
+        </div>
+        <div class="hero__agent-cards">
+          <div class="agent-card" role="button" tabindex="0" aria-label="Инспектировать агента Ставка НПД" data-agent-log='[{"type":"prompt","text":"$ npd-calc --rate 6% --gross-up 1.0638"},{"type":"ok","text":"  ✔ Компенсация налога: сумма × 1.0638 к выплате"}]'>
+            <div class="agent-card__icon">🧮</div>
+            <div class="agent-card__info">
+              <span class="agent-card__name">Ставка НПД</span>
+              <span class="agent-card__status agent-card__status--live">4% / 6%</span>
+            </div>
+            <div class="agent-card__bar"><div class="agent-card__fill" style="width:86%"></div></div>
+          </div>
+          <div class="agent-card" role="button" tabindex="0" aria-label="Инспектировать агента Лимит 2,4 млн" data-agent-log='[{"type":"prompt","text":"$ fns-guard --limit 2400000 --inn check"},{"type":"ok","text":"  ✔ Автоблок платежа в 1С при превышении лимита"}]'>
+            <div class="agent-card__icon">🛡️</div>
+            <div class="agent-card__info">
+              <span class="agent-card__name">Лимит ФНС</span>
+              <span class="agent-card__status agent-card__status--live">2,4 млн ₽</span>
+            </div>
+            <div class="agent-card__bar"><div class="agent-card__fill" style="width:92%"></div></div>
+          </div>
+          <div class="agent-card" role="button" tabindex="0" aria-label="Инспектировать агента Чек ФНС в 1С" data-agent-log='[{"type":"prompt","text":"$ 1c-edo --attach-receipt moy-nalog"},{"type":"ok","text":"  ✔ Чек ФНС прикреплен к платежу в 1С автоматически"}]'>
+            <div class="agent-card__icon">🧾</div>
+            <div class="agent-card__info">
+              <span class="agent-card__name">Чек в 1С</span>
+              <span class="agent-card__status agent-card__status--live">Авто-сверка</span>
+            </div>
+            <div class="agent-card__bar"><div class="agent-card__fill" style="width:88%"></div></div>
           </div>
         </div>
       </div>
@@ -1154,7 +1203,7 @@
       </div>
       <div class="footer__body">
         <div class="footer__brand">
-          <p>АвтоПилот (ai-avtopilot.ru) — независимая платформа ИИ-автоматизации 1С, CRM и ЭДО.<br />г. Москва · Работаем по всей России.<br /><span class="footer__support">Поддержка: 24/7 онлайн</span></p>
+          <p>АвтоПилот (ai-avtopilot.ru) — платформа ИИ-автоматизации 1С, CRM и ЭДО.<br />г. Москва · Работаем по всей России.<br /><span class="footer__support">Поддержка: 24/7 онлайн</span></p>
         </div>
       </div>
       <div class="footer__links-row">
@@ -1797,7 +1846,7 @@ document.addEventListener('DOMContentLoaded', function() {
   </script>
 
 <!-- Deferred Core Bundle Script (Initializes Typewriter, Burger Menu, and Observer) -->
-<script type="module" crossorigin src="/assets/index-Bx30wa4i.js?v=2.6.5"></script>
+<script type="module" crossorigin src="/assets/index-Bx30wa4i.js?v=2.6.6"></script>
 
 <!-- Pricing Horizontal Slider Controller -->
 <script type="text/javascript">

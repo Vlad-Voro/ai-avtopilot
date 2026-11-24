@@ -134,15 +134,15 @@ index.html (Master Template) & Data Catalogs
 
 ### 3.1. SSG Routing & Navigation Contracts
 - **Deduplicated Standalone Hub Architecture**:
-  - Hub pages (`/services/`, `/cases/`, `/pricing/`, `/calculator/`, `/dashboard/`, `/faq/`, `/contact/`) do not duplicate the full homepage markup (`222.6 KiB`). Each page renders a dedicated semantic `<h1>` in `#home`, relevant category components, an isolated FAQ accordion, and lead capture form. Page transfer size is bounded within 72–175 KiB.
-  - Each hub page preserves valid Schema.org JSON-LD `@graph` (`WebSite`, `FAQPage`, `ProfessionalService`, `Organization`, `BreadcrumbList`) to maintain strict compliance with automated rule `SEO-10`.
+  - Hub pages (`/services/`, `/cases/`, `/pricing/`, `/calculator/`, `/dashboard/`, `/faq/`, `/contact/`) do not duplicate the full homepage markup (`222.6 KiB`). Each page renders a dedicated semantic `<h1>` in `#home` alongside an interactive SSR `.hero__terminal-wrap` telemetry widget, relevant category components, and lead capture form. Page transfer size is bounded within 45–110 KiB.
+  - Each hub page scopes Schema.org JSON-LD `@graph` (`Organization`, `ProfessionalService`, `BreadcrumbList`, plus `FAQPage` only where `#faq` DOM exists), omitting homepage-only `WebSite` and ungrounded `hasOfferCatalog`.
 - **404 Fallback & Canonical Redirect Stubs**:
   - The root `/404.html` intercepts invalid routes; client-side `history.replaceState` restores target route state.
   - Legacy URLs (e.g. `/automated-reporting/`) render dedicated HTML stubs with `<link rel="canonical">`, `<meta http-equiv="refresh">`, and synchronous JavaScript redirect, whitelisted in the `_site` packaging loop.
-- **Deterministic ScrollSpy Guard**:
+- **Deterministic ScrollSpy & Standalone Subpage Guard**:
   - Section state computes via DOM coordinates (`getActiveSection()`) using scroll offset (`window.scrollY + offset`).
   - Active indicator on `#home` clears automatically when scrolling out of hero bounds.
-  - **Subpage Navigation Guard**: `const isSubpage = window.location.pathname.startsWith('/services') || window.location.pathname.startsWith('/cases') || document.querySelector('.subpage-deep')`. Bypasses `history.replaceState` during scroll events on subpages to retain canonical path integrity.
+  - **Full Landing Guard (`isFullLanding()`)**: Checks `link[rel="canonical"] === "https://ai-avtopilot.ru/"`. On all standalone hubs, tools, services, cases, and guides (`!isFullLanding()`), ScrollSpy and SPA `pushState` interception are disabled so header, footer, and logo links perform genuine browser navigation and keep server-rendered `.active` highlights.
 
 ---
 

@@ -81,7 +81,7 @@
 <link as="font" crossorigin="" href="/assets/fonts/Inter-400-1.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/assets/fonts/Outfit-600-14.woff2" rel="preload" type="font/woff2"/>
 <!-- Inlined Styles (Eliminates Render-Blocking CSS & Critical Request Chains) -->
-<link href="/assets/css/styles.min.css?v=82892ba5" rel="stylesheet"/>
+<link href="/assets/css/styles.min.css?v=c2c21abd" rel="stylesheet"/>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
 <script type="text/javascript">
     (function() {
@@ -157,7 +157,7 @@
  <section class="hero" id="home">
 <div class="hero__particles" id="particles"></div>
 <div class="container hero__inner">
-<div class="hero__content" style="max-width:820px">
+<div class="hero__content">
 <nav aria-label="Хлебные крошки" class="breadcrumbs">
 <a href="/">Главная</a>
 <span class="breadcrumbs__sep">/</span>
@@ -172,6 +172,49 @@
 <div class="hero__actions">
 <a class="btn btn--primary" href="#services" id="cta-main">Смотреть каталог услуг</a>
 <a class="btn btn--ghost" href="/calculator/">Рассчитать ROI →</a>
+</div>
+</div>
+<div class="hero__terminal-wrap">
+<div class="terminal">
+<div class="terminal__header">
+<span class="terminal__dot terminal__dot--red"></span>
+<span class="terminal__dot terminal__dot--yellow"></span>
+<span class="terminal__dot terminal__dot--green"></span>
+<span class="terminal__title">autopilot — services_catalog v2.6</span>
+</div>
+<div class="terminal__body" data-static-terminal="true" id="terminal-body">
+<div class="terminal__line terminal__line--prompt"><span>$ autopilot-catalog --list --clusters 3</span></div>
+<div class="terminal__line terminal__line--ok"><span>  ✔ Финансы и 1С: 8 готовых сценариев</span></div>
+<div class="terminal__line terminal__line--ok"><span>  ✔ Маркетинг и CRM: 8 готовых сценариев</span></div>
+<div class="terminal__line terminal__line--ok"><span>  ✔ Склад и логистика: 8 готовых сценариев</span></div>
+<div class="terminal__line terminal__line--dim"><span>  Пилот за 14 дней · Гарантия ROI в договоре</span></div>
+</div>
+</div>
+<div class="hero__agent-cards">
+<div aria-label="Инспектировать Финансы и 1С" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ catalog --cluster finance-erp"}, {"type": "ok", "text": "  ✔ P&amp;L, ЭДО, тендеры, дебиторка и сметы КС-2"}]' role="button" tabindex="0">
+<div class="agent-card__icon">📊</div>
+<div class="agent-card__info">
+<span class="agent-card__name">Финансы и 1С</span>
+<span class="agent-card__status agent-card__status--live">8 модулей</span>
+</div>
+<div class="agent-card__bar"><div class="agent-card__fill" style="width:86%"></div></div>
+</div>
+<div aria-label="Инспектировать CRM и продажи" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ catalog --cluster marketing-crm"}, {"type": "ok", "text": "  ✔ ИИ-агенты, речевая аналитика, Авито и отзывы"}]' role="button" tabindex="0">
+<div class="agent-card__icon">💬</div>
+<div class="agent-card__info">
+<span class="agent-card__name">CRM и продажи</span>
+<span class="agent-card__status agent-card__status--live">8 модулей</span>
+</div>
+<div class="agent-card__bar"><div class="agent-card__fill" style="width:82%"></div></div>
+</div>
+<div aria-label="Инспектировать Склад и цепи" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ catalog --cluster ops-logistics"}, {"type": "ok", "text": "  ✔ Запасы 1С, маркетплейсы, RAG 152-ФЗ, 1С:УАТ"}]' role="button" tabindex="0">
+<div class="agent-card__icon">📦</div>
+<div class="agent-card__info">
+<span class="agent-card__name">Склад и цепи</span>
+<span class="agent-card__status agent-card__status--live">8 модулей</span>
+</div>
+<div class="agent-card__bar"><div class="agent-card__fill" style="width:78%"></div></div>
+</div>
 </div>
 </div>
 </div>
@@ -498,7 +541,7 @@
 </div>
 <div class="footer__body">
 <div class="footer__brand">
-<p>АвтоПилот (ai-avtopilot.ru) — независимая платформа ИИ-автоматизации 1С, CRM и ЭДО.<br/>г. Москва · Работаем по всей России.<br/><span class="footer__support">Поддержка: 24/7 онлайн</span></p>
+<p>АвтоПилот (ai-avtopilot.ru) — платформа ИИ-автоматизации 1С, CRM и ЭДО.<br/>г. Москва · Работаем по всей России.<br/><span class="footer__support">Поддержка: 24/7 онлайн</span></p>
 </div>
 </div>
 <div class="footer__links-row">
@@ -1459,6 +1502,6 @@
 </script>
 <!--/email_off-->
 <!-- Deferred Scripts (Eliminates Critical Request Chains) -->
-<script crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.4" type="module"></script>
+<script crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.6" type="module"></script>
 </body>
 </html>

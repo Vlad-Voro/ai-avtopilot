@@ -55,8 +55,8 @@ flowchart TD
 | `/guides/diadoc-sbis-ai-ocr/` | Guide | Diadoc/SBIS UPD OCR, VAT 22% (425-FZ) checks, and 1C:ERP NSI matching. | −90% manual EDI |
 | `/guides/roi-ai-automation-formula/` | Guide | Conservative 80% payroll savings ROI model and pilot acceptance gates. | +340% avg ROI |
 | `/guides/ai-agents-wb-ozon-vs-retail/` | Guide | Marketplace API & DRR auto-bidder vs offline retail ROP auto-order in 1C. | Zero overselling |
-| `/services/` | Hub | Complete catalog of enterprise automation scenarios and 1C integrations. | 12 scenarios |
-| `/cases/` | Hub | Enterprise case studies with verified metrics and 1C architecture workflows. | 10 case studies |
+| `/services/` | Hub | Complete catalog of enterprise automation scenarios and 1C integrations. | 24 scenarios |
+| `/cases/` | Hub | Enterprise case studies with verified metrics and 1C architecture workflows. | 11 case studies |
 | `/pricing/` | Hub | Transparent B2B pricing tiers (Pilot from 50k ₽, Turnkey 125k–275k ₽, On-Premise from 400k ₽), Cloud vs On-Premise & SLA. | 100% pilot credit |
 | `/calculator/` | Tool Hub | Interactive B2B routine savings and payback estimator. | Real-time ROI |
 | `/calculator/self-employed/` | Tool Hub | Self-employed NPD 4%/6% tax calc, 2.4M ₽ threshold, 1C DirectBank & FTS compliance. | 0 ms TBT, 28.9% employer savings |

@@ -213,9 +213,11 @@ const ALL_PAGES = [
   { path: '/cases/', name: 'Хаб: Кейсы', category: 'hub' },
   { path: '/pricing/', name: 'Хаб: Цены', category: 'hub' },
   { path: '/calculator/', name: 'Хаб: Калькулятор ROI', category: 'hub' },
+  { path: '/calculator/self-employed/', name: 'Калькулятор самозанятых (НПД)', category: 'tool' },
   { path: '/dashboard/', name: 'Хаб: Дашборд', category: 'hub' },
   { path: '/faq/', name: 'Хаб: FAQ', category: 'hub' },
   { path: '/contact/', name: 'Хаб: Контакты', category: 'hub' },
+  { path: '/guides/', name: 'Хаб: Гайды', category: 'hub' },
 
   // Service Scenarios
   { path: '/services/automated-reporting/', name: 'Услуга: Автоотчетность', category: 'service' },

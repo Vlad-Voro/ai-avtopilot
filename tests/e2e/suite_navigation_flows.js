@@ -256,4 +256,32 @@ suite.test('Fallback Routing: Double slashes or trailing slashes /services/ norm
   await sanitizePage(page);
 });
 
+suite.test('Hub Navigation: Header, footer and logo links navigate cleanly without manual refresh', async ({ page, baseUrl }) => {
+  const hubs = ['/calculator/', '/services/', '/cases/', '/faq/'];
+  for (const hub of hubs) {
+    await page.goto(`${baseUrl}${hub}`);
+    const nextPath = hub === '/services/' ? '/cases/' : '/services/';
+    await Promise.all([
+      page.waitForURL(url => url.pathname === nextPath),
+      page.locator(`.nav__links a[href="${nextPath}"]`).first().click()
+    ]);
+    const h1Text = await page.locator('h1').first().textContent();
+    assert.ok(h1Text && h1Text.trim().length > 5, `Loaded target H1 on ${nextPath} from ${hub}`);
+
+    await Promise.all([
+      page.waitForURL(url => url.pathname === '/pricing/'),
+      page.locator('footer a[href="/pricing/"]').first().click()
+    ]);
+    assert.ok(await page.locator('#pricing').count() > 0, `Footer link to /pricing/ loaded from ${nextPath}`);
+
+    await Promise.all([
+      page.waitForURL(url => url.pathname === '/'),
+      page.locator('header .nav__logo').first().click()
+    ]);
+    assert.ok(await page.locator('#calculator').count() > 0 && await page.locator('#faq').count() > 0, `Logo returned to full landing from /pricing/`);
+  }
+  await page.goto(`${baseUrl}/`);
+  await sanitizePage(page);
+});
+
 module.exports = suite;

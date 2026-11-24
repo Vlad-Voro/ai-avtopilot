@@ -206,10 +206,11 @@ def build_case_page(case_key: str) -> str:
         parent_svc = data.get("parent_service")
         if actions_div and parent_svc:
             actions_div.clear()
+            svc_label = parent_svc.get("cta_label") or parent_svc["name"]
             actions_div.append(
                 BeautifulSoup(
                     f'<a href="#contact" class="btn btn--primary" id="cta-main">Хочу такой же результат →</a>'
-                    f'<a href="/services/{parent_svc["slug"]}/" class="btn btn--ghost">Услуга: {parent_svc["name"]} →</a>',
+                    f'<a href="/services/{parent_svc["slug"]}/" class="btn btn--ghost">{svc_label} →</a>',
                     "html.parser",
                 )
             )

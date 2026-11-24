@@ -219,7 +219,7 @@ if hero_sec:
             actions.clear()
             actions.append(
                 BeautifulSoup(
-                    '<a href="#contact" class="btn btn--primary" id="cta-main">Запустить предиктивный аудит</a>'
+                    '<a href="#contact" class="btn btn--primary" id="cta-main">Запустить аудит 1С</a>'
                     '<a href="#dashboard" class="btn btn--ghost">Смотреть демо алертов →</a>',
                     "html.parser",
                 )

@@ -81,7 +81,7 @@
 <link as="font" crossorigin="" href="/assets/fonts/Inter-400-1.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/assets/fonts/Outfit-600-14.woff2" rel="preload" type="font/woff2"/>
 <!-- Inlined Styles (Eliminates Render-Blocking CSS & Critical Request Chains) -->
-<link href="/assets/css/styles.min.css?v=82892ba5" rel="stylesheet"/>
+<link href="/assets/css/styles.min.css?v=c2c21abd" rel="stylesheet"/>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
 <script type="text/javascript">
     (function() {
@@ -157,7 +157,7 @@
  <section class="hero" id="home">
 <div class="hero__particles" id="particles"></div>
 <div class="container hero__inner">
-<div class="hero__content" style="max-width:820px">
+<div class="hero__content">
 <nav aria-label="Хлебные крошки" class="breadcrumbs">
 <a href="/">Главная</a>
 <span class="breadcrumbs__sep">/</span>
@@ -172,6 +172,49 @@
 <div class="hero__actions">
 <a class="btn btn--primary" href="#cases" id="cta-main">Смотреть все кейсы</a>
 <a class="btn btn--ghost" href="#contact">Запросить аудит →</a>
+</div>
+</div>
+<div class="hero__terminal-wrap">
+<div class="terminal">
+<div class="terminal__header">
+<span class="terminal__dot terminal__dot--red"></span>
+<span class="terminal__dot terminal__dot--yellow"></span>
+<span class="terminal__dot terminal__dot--green"></span>
+<span class="terminal__title">autopilot — case_metrics --verified</span>
+</div>
+<div class="terminal__body" data-static-terminal="true" id="terminal-body">
+<div class="terminal__line terminal__line--prompt"><span>$ autopilot-audit --summary --cases 11</span></div>
+<div class="terminal__line terminal__line--ok"><span>  ✔ Ритейл (230 точек): 9 200 ч/год экономии</span></div>
+<div class="terminal__line terminal__line--ok"><span>  ✔ Финтех DirectBank: 50 000 оп. за 8.4 сек</span></div>
+<div class="terminal__line terminal__line--ok"><span>  ✔ Сервис-центр: 80.4% обращений без оператора</span></div>
+<div class="terminal__line terminal__line--dim"><span>  Средняя окупаемость: 1.5–3 месяца ✓</span></div>
+</div>
+</div>
+<div class="hero__agent-cards">
+<div aria-label="Инспектировать Ритейл 1С" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ case --inspect retail-inventory"}, {"type": "ok", "text": "  ✔ +18% оборачиваемость · 230 магазинов 1С:УТ"}]' role="button" tabindex="0">
+<div class="agent-card__icon">🏪</div>
+<div class="agent-card__info">
+<span class="agent-card__name">Ритейл 1С</span>
+<span class="agent-card__status agent-card__status--live">−72% рутины</span>
+</div>
+<div class="agent-card__bar"><div class="agent-card__fill" style="width:88%"></div></div>
+</div>
+<div aria-label="Инспектировать DirectBank 1С" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ case --inspect fintech-recon"}, {"type": "ok", "text": "  ✔ 50 000 банковских транзакций за 8.4 сек"}]' role="button" tabindex="0">
+<div class="agent-card__icon">💳</div>
+<div class="agent-card__info">
+<span class="agent-card__name">DirectBank 1С</span>
+<span class="agent-card__status agent-card__status--live">99.2% точность</span>
+</div>
+<div class="agent-card__bar"><div class="agent-card__fill" style="width:94%"></div></div>
+</div>
+<div aria-label="Инспектировать ИИ-оператор" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ case --inspect service-center"}, {"type": "ok", "text": "  ✔ 80.4% авто-закрытие тикетов 24/7"}]' role="button" tabindex="0">
+<div class="agent-card__icon">🎧</div>
+<div class="agent-card__info">
+<span class="agent-card__name">ИИ-оператор</span>
+<span class="agent-card__status agent-card__status--live">3 ₽ / контакт</span>
+</div>
+<div class="agent-card__bar"><div class="agent-card__fill" style="width:80%"></div></div>
+</div>
 </div>
 </div>
 </div>
@@ -534,7 +577,7 @@
 </div>
 <div class="footer__body">
 <div class="footer__brand">
-<p>АвтоПилот (ai-avtopilot.ru) — независимая платформа ИИ-автоматизации 1С, CRM и ЭДО.<br/>г. Москва · Работаем по всей России.<br/><span class="footer__support">Поддержка: 24/7 онлайн</span></p>
+<p>АвтоПилот (ai-avtopilot.ru) — платформа ИИ-автоматизации 1С, CRM и ЭДО.<br/>г. Москва · Работаем по всей России.<br/><span class="footer__support">Поддержка: 24/7 онлайн</span></p>
 </div>
 </div>
 <div class="footer__links-row">
@@ -1495,6 +1538,6 @@
 </script>
 <!--/email_off-->
 <!-- Deferred Scripts (Eliminates Critical Request Chains) -->
-<script crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.4" type="module"></script>
+<script crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.6" type="module"></script>
 </body>
 </html>

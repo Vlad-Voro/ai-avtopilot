@@ -96,7 +96,7 @@ def _replace_hero(
         <p class="hero__sub">{sub}</p>
         <div class="hero__actions">
           <a href="{primary_href}" class="btn btn--primary" id="cta-main">{primary_txt}</a>
-          <a href="#contact" class="btn btn--ghost">Заказать бесплатный аудит →</a>
+          <a href="#contact" class="btn btn--ghost">Заказать аудит →</a>
         </div>
       </div>
     </div>

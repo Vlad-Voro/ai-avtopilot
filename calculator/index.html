@@ -81,7 +81,7 @@
 <link as="font" crossorigin="" href="/assets/fonts/Inter-400-1.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/assets/fonts/Outfit-600-14.woff2" rel="preload" type="font/woff2"/>
 <!-- Inlined Styles (Eliminates Render-Blocking CSS & Critical Request Chains) -->
-<link href="/assets/css/styles.min.css?v=82892ba5" rel="stylesheet"/>
+<link href="/assets/css/styles.min.css?v=c2c21abd" rel="stylesheet"/>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
 <script type="text/javascript">
     (function() {
@@ -157,7 +157,7 @@
  <section class="hero" id="home">
 <div class="hero__particles" id="particles"></div>
 <div class="container hero__inner">
-<div class="hero__content" style="max-width:820px">
+<div class="hero__content">
 <nav aria-label="Хлебные крошки" class="breadcrumbs">
 <a href="/">Главная</a>
 <span class="breadcrumbs__sep">/</span>
@@ -171,7 +171,50 @@
 <p class="hero__sub">Оцените годовые потери ФОТ на ручной ввод в 1С, CRM и ЭДО и потенциальную экономию 80% рутины до старта пилота.</p>
 <div class="hero__actions">
 <a class="btn btn--primary" href="#calculator" id="cta-main">Рассчитать ROI сейчас</a>
-<a class="btn btn--ghost" href="/calculator/self-employed/">Калькулятор НПД (самозанятые) →</a>
+<a class="btn btn--ghost" href="/calculator/self-employed/">Калькулятор НПД →</a>
+</div>
+</div>
+<div class="hero__terminal-wrap">
+<div class="terminal">
+<div class="terminal__header">
+<span class="terminal__dot terminal__dot--red"></span>
+<span class="terminal__dot terminal__dot--yellow"></span>
+<span class="terminal__dot terminal__dot--green"></span>
+<span class="terminal__title">autopilot — roi_engine v2.4</span>
+</div>
+<div class="terminal__body" data-static-terminal="true" id="terminal-body">
+<div class="terminal__line terminal__line--prompt"><span>$ roi-model --staff 10 --hours 15 --salary 80k</span></div>
+<div class="terminal__line terminal__line--dim"><span>  Доля рутины: 15 / 160 = 9.38%</span></div>
+<div class="terminal__line terminal__line--ok"><span>  ✔ Затраты на рутину: 900 000 ₽/год</span></div>
+<div class="terminal__line terminal__line--ok"><span>  ✔ Потенциал экономии (80%): 720 000 ₽/год</span></div>
+<div class="terminal__line terminal__line--ok"><span>  ✔ Высвобождается: 7 800 ч/год ✓</span></div>
+</div>
+</div>
+<div class="hero__agent-cards">
+<div aria-label="Инспектировать Модель ФОТ" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ roi-model --formula annual-save"}, {"type": "ok", "text": "  ✔ W = E × S × (H/160) × 12 × 0.80"}]' role="button" tabindex="0">
+<div class="agent-card__icon">📈</div>
+<div class="agent-card__info">
+<span class="agent-card__name">Модель ФОТ</span>
+<span class="agent-card__status agent-card__status--live">80% эффект</span>
+</div>
+<div class="agent-card__bar"><div class="agent-card__fill" style="width:80%"></div></div>
+</div>
+<div aria-label="Инспектировать Окупаемость" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ roi-model --payback-window"}, {"type": "ok", "text": "  ✔ Пилот от 50 000 ₽ с 100% зачетом в смету"}]' role="button" tabindex="0">
+<div class="agent-card__icon">⏱️</div>
+<div class="agent-card__info">
+<span class="agent-card__name">Окупаемость</span>
+<span class="agent-card__status agent-card__status--live">1.5–3 мес</span>
+</div>
+<div class="agent-card__bar"><div class="agent-card__fill" style="width:75%"></div></div>
+</div>
+<div aria-label="Инспектировать Калькулятор НПД" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ npd-check --limit 2.4M"}, {"type": "ok", "text": "  ✔ Расчет выплат самозанятым в 1С без НДФЛ"}]' role="button" tabindex="0">
+<div class="agent-card__icon">🧾</div>
+<div class="agent-card__info">
+<span class="agent-card__name">Калькулятор НПД</span>
+<span class="agent-card__status agent-card__status--live">4% / 6%</span>
+</div>
+<div class="agent-card__bar"><div class="agent-card__fill" style="width:90%"></div></div>
+</div>
 </div>
 </div>
 </div>
@@ -343,7 +386,7 @@
 </div>
 <div class="footer__body">
 <div class="footer__brand">
-<p>АвтоПилот (ai-avtopilot.ru) — независимая платформа ИИ-автоматизации 1С, CRM и ЭДО.<br/>г. Москва · Работаем по всей России.<br/><span class="footer__support">Поддержка: 24/7 онлайн</span></p>
+<p>АвтоПилот (ai-avtopilot.ru) — платформа ИИ-автоматизации 1С, CRM и ЭДО.<br/>г. Москва · Работаем по всей России.<br/><span class="footer__support">Поддержка: 24/7 онлайн</span></p>
 </div>
 </div>
 <div class="footer__links-row">
@@ -1304,6 +1347,6 @@
 </script>
 <!--/email_off-->
 <!-- Deferred Scripts (Eliminates Critical Request Chains) -->
-<script crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.4" type="module"></script>
+<script crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.6" type="module"></script>
 </body>
 </html>

@@ -188,7 +188,8 @@
     },
     "parent_service": {
       "slug": "retail-inventory",
-      "name": "Ритейл и склад"
+      "name": "Ритейл и склад",
+      "cta_label": "Ритейл и склад"
     },
     "related_services": [
       {
@@ -472,7 +473,8 @@
     },
     "parent_service": {
       "slug": "document-automation",
-      "name": "Документооборот и ЭДО"
+      "name": "Документооборот и ЭДО",
+      "cta_label": "ЭДО и Диадок"
     },
     "related_services": [
       {
@@ -748,7 +750,8 @@
     },
     "parent_service": {
       "slug": "customer-support",
-      "name": "ИИ-поддержка клиентов"
+      "name": "ИИ-поддержка клиентов",
+      "cta_label": "Поддержка 24/7"
     },
     "related_services": [
       {
@@ -1024,7 +1027,8 @@
     },
     "parent_service": {
       "slug": "hr-recruitment",
-      "name": "ИИ-найм и рекрутинг"
+      "name": "ИИ-найм и рекрутинг",
+      "cta_label": "ИИ-рекрутинг"
     },
     "related_services": [
       {
@@ -1300,7 +1304,8 @@
     },
     "parent_service": {
       "slug": "fleet-logistics",
-      "name": "Логистика и 1С:УАТ"
+      "name": "Логистика и 1С:УАТ",
+      "cta_label": "Логистика 1С:УАТ"
     },
     "related_services": [
       {
@@ -1576,7 +1581,8 @@
     },
     "parent_service": {
       "slug": "ai-analytics",
-      "name": "Предиктивная ИИ-аналитика 1С"
+      "name": "Предиктивная ИИ-аналитика 1С",
+      "cta_label": "ИИ-аналитика 1С"
     },
     "related_services": [
       {
@@ -1856,7 +1862,8 @@
     },
     "parent_service": {
       "slug": "speech-analytics",
-      "name": "Речевая аналитика"
+      "name": "Речевая аналитика",
+      "cta_label": "Речевая аналитика"
     },
     "related_services": [
       {
@@ -2141,7 +2148,8 @@
     },
     "parent_service": {
       "slug": "tender-automation",
-      "name": "Автоматизация тендеров"
+      "name": "Автоматизация тендеров",
+      "cta_label": "Тендеры в 1С"
     },
     "related_services": [
       {
@@ -2417,7 +2425,8 @@
     },
     "parent_service": {
       "slug": "debt-control",
-      "name": "Контроль дебиторки"
+      "name": "Контроль дебиторки",
+      "cta_label": "Дебиторка 1С"
     },
     "related_services": [
       {
@@ -2693,7 +2702,8 @@
     },
     "parent_service": {
       "slug": "reviews-reputation",
-      "name": "Управление отзывами"
+      "name": "Управление отзывами",
+      "cta_label": "Отзывы и карты"
     },
     "related_services": [
       {
@@ -2969,7 +2979,8 @@
     },
     "parent_service": {
       "slug": "avito-automation",
-      "name": "Боты для Авито"
+      "name": "Боты для Авито",
+      "cta_label": "Боты для Авито"
     },
     "related_services": [
       {
