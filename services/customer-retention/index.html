@@ -94,7 +94,7 @@
   <link rel="preload" href="/assets/fonts/JetBrainsMono-400-12.woff2" as="font" type="font/woff2" crossorigin="" />
 
   <!-- Extenal Stylesheet -->
-  <link rel="stylesheet" href="/assets/css/styles.min.css?v=825d48c9" />
+  <link rel="stylesheet" href="/assets/css/styles.min.css?v=5f6af294" />
 
   <!-- Scripts -->
   <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.4"></script>
@@ -230,7 +230,7 @@
             <span class="terminal__dot terminal__dot--green"></span>
             <span class="terminal__title">autopilot — agent_core v2.4.1</span>
           </div>
-          <div class="terminal__body" id="terminal-body">
+          <div class="terminal__body" id="terminal-body" data-static-terminal="true">
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[08:00:15]</span> <span style="color:var(--blue);font-weight:600;">[1C_SYNC]</span> Синхронизация регистра «ВыручкаИСебестоимостьПродаж» из 1С:ERP: обработано 1 420 документов</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[08:02:44]</span> <span style="color:var(--purple);font-weight:600;">[RFM_CALC]</span> Сегментация завершена: 180 контрагентов отнесены к группе «В зоне риска»</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[09:30:10]</span> <span style="color:var(--amber);font-weight:600;">[CHURN_ALERT]</span> ООО «УралТрейд» не разместило заказ в привычный 25-дневный цикл; интервал превышен на 8 дней</div>
@@ -441,9 +441,9 @@
         <h2 class="section-title" data-reveal="">Доказанные кейсы внедрения</h2>
       </div>
       <div class="cases__grid cases__grid--static" data-reveal="">
-        <div class="case-card case-card--retail">
+        <article class="case-card case-card--retail">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--retail"></span>Федеральная розничная сеть (230 магазинов)</div>
-          <h3 class="case-card__title">Увеличение оборачиваемости товаров на 18% без дефицита</h3>
+          <h3 class="case-card__title"><a href="/cases/retail-inventory-automation/" class="case-card__title-link">Увеличение оборачиваемости товаров на 18% без дефицита <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Автоматический расчет неснижаемого остатка и автозаказ поставщикам на базе динамики фактических продаж в 1С:УТ.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -460,10 +460,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>1С:УТ</span><span>Повторные заказы</span><span>Склад</span><span>Safety Stock</span></div>
-        </div>
-        <div class="case-card case-card--legal">
+        </article>
+        <article class="case-card case-card--legal">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--legal"></span>B2B-дистрибуция запчастей и расходников</div>
-          <h3 class="case-card__title">Сокращение времени разбора рекламаций с 4 дней до 40 минут</h3>
+          <h3 class="case-card__title"><a href="/cases/claims-dispute-automation/" class="case-card__title-link">Сокращение времени разбора рекламаций с 4 дней до 40 минут <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Автоматическая классификация претензий, проверка партии в 1С и согласование компенсаций спасли 92% спорных контрагентов от ухода.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -480,10 +480,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>Претензии</span><span>1С:КА</span><span>Удержание LTV</span><span>Контроль оттока</span></div>
-        </div>
-        <div class="case-card case-card--sales">
+        </article>
+        <article class="case-card case-card--sales">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--sales"></span>B2B-отдел продаж со сложным циклом сделки</div>
-          <h3 class="case-card__title">Анализ 100% звонков менеджеров и выявление признаков оттока</h3>
+          <h3 class="case-card__title"><a href="/cases/sales-speech-analytics/" class="case-card__title-link">Анализ 100% звонков менеджеров и выявление признаков оттока <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Речевая аналитика разговоров выявляет жалобы на цены и задержки отгрузок, мгновенно эскалируя инцидент руководству.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -500,7 +500,7 @@
             </div>
           </div>
           <div class="case-card__tags"><span>Speech AI</span><span>Битрикс24</span><span>Отток клиентов</span><span>LTV</span></div>
-        </div>
+        </article>
       </div>
       <div class="carousel-dots" id="carousel-dots"></div>
     </div>

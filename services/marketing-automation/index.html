@@ -94,7 +94,7 @@
   <link rel="preload" href="/assets/fonts/JetBrainsMono-400-12.woff2" as="font" type="font/woff2" crossorigin="" />
 
   <!-- Extenal Stylesheet -->
-  <link rel="stylesheet" href="/assets/css/styles.min.css?v=825d48c9" />
+  <link rel="stylesheet" href="/assets/css/styles.min.css?v=5f6af294" />
 
   <!-- Scripts -->
   <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.4"></script>
@@ -230,7 +230,7 @@
             <span class="terminal__dot terminal__dot--green"></span>
             <span class="terminal__title">autopilot — agent_core v2.4.1</span>
           </div>
-          <div class="terminal__body" id="terminal-body">
+          <div class="terminal__body" id="terminal-body" data-static-terminal="true">
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:14:02]</span> <span style="color:var(--accent-1);font-weight:600;">[Telegram Lead SDR]</span> Входящая заявка: опт, бюджет 1.2M ₽. Сделка создана в amoCRM #48102</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:14:18]</span> <span style="color:var(--accent-2);font-weight:600;">[CRM AutoFunnel]</span> Задержка КП 48 часов: запущен триггерный прогрев в WhatsApp</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:15:00]</span> <span style="color:var(--green);font-weight:600;">[Attribution Engine]</span> Сквозная атрибуция: Яндекс.Директ -&gt; 14 лидов, CPL 420 ₽, ROMI 380%</div>
@@ -440,9 +440,9 @@
         <h2 class="section-title" data-reveal="">Доказанные кейсы внедрения</h2>
       </div>
       <div class="cases__grid cases__grid--static" data-reveal="">
-        <div class="case-card case-card--service">
+        <article class="case-card case-card--service">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--service"></span>Сервисный центр</div>
-          <h3 class="case-card__title">ИИ-диспетчер первой линии: 80,4% диалогов без оператора</h3>
+          <h3 class="case-card__title"><a href="/cases/service-center-ai-operator/" class="case-card__title-link">ИИ-диспетчер первой линии: 80,4% диалогов без оператора <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Обработка 40 000 входящих обращений в месяц: мгновенный перехват лидов за 3 секунды, квалификация по опроснику и передача сделок в CRM.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -459,10 +459,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>Telegram</span><span>WhatsApp</span><span>amoCRM</span><span>AI SDR</span></div>
-        </div>
-        <div class="case-card case-card--sales">
+        </article>
+        <article class="case-card case-card--sales">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--sales"></span>B2B-продажи</div>
-          <h3 class="case-card__title">Контроль качества лидов и речевая аналитика в CRM</h3>
+          <h3 class="case-card__title"><a href="/cases/sales-speech-analytics/" class="case-card__title-link">Контроль качества лидов и речевая аналитика в CRM <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">100% аудит входящих заявок и звонков: автоматическая фиксация причин отказа, скоринг лидов и триггерный дожим зависших сделок.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -479,10 +479,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>Битрикс24</span><span>amoCRM</span><span>Сквозной ROMI</span><span>Автоворонки</span></div>
-        </div>
-        <div class="case-card case-card--clinic">
+        </article>
+        <article class="case-card case-card--clinic">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--clinic"></span>Сеть клиник</div>
-          <h3 class="case-card__title">Автоматический мониторинг гео-репутации и отзывов</h3>
+          <h3 class="case-card__title"><a href="/cases/reviews-reputation-automation/" class="case-card__title-link">Автоматический мониторинг гео-репутации и отзывов <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Круглосуточный мониторинг Яндекс.Карт и 2ГИС: автоматическая генерация ответов на отзывы, защита рейтинга 4,9★ и перехват негатива.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -499,7 +499,7 @@
             </div>
           </div>
           <div class="case-card__tags"><span>Яндекс Бизнес</span><span>2ГИС</span><span>ORM</span><span>Алерты Telegram</span></div>
-        </div>
+        </article>
       </div>
       <div class="carousel-dots" id="carousel-dots"></div>
     </div>

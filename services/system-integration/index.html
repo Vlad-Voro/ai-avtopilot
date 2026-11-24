@@ -94,7 +94,7 @@
   <link rel="preload" href="/assets/fonts/JetBrainsMono-400-12.woff2" as="font" type="font/woff2" crossorigin="" />
 
   <!-- Extenal Stylesheet -->
-  <link rel="stylesheet" href="/assets/css/styles.min.css?v=825d48c9" />
+  <link rel="stylesheet" href="/assets/css/styles.min.css?v=5f6af294" />
 
   <!-- Scripts -->
   <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.4"></script>
@@ -230,7 +230,7 @@
             <span class="terminal__dot terminal__dot--green"></span>
             <span class="terminal__title">autopilot — agent_core v2.4.1</span>
           </div>
-          <div class="terminal__body" id="terminal-body">
+          <div class="terminal__body" id="terminal-body" data-static-terminal="true">
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:14:02]</span> <span style="color:var(--accent-1);font-weight:600;">[EventBus]</span> 1C:ERP -&gt; Bitrix24: 420 orders synced (42ms, 0 duplicates)</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:14:05]</span> <span style="color:var(--accent-2);font-weight:600;">[OData Gateway]</span> Counterparty master-record resolved: INN 7701928410 deduplicated</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:14:08]</span> <span style="color:var(--green);font-weight:600;">[Queue Monitor]</span> RabbitMQ buffer: 0 pending, throughput 1.8k msg/sec</div>
@@ -440,9 +440,9 @@
         <h2 class="section-title" data-reveal="">Доказанные кейсы внедрения</h2>
       </div>
       <div class="cases__grid cases__grid--static" data-reveal="">
-        <div class="case-card case-card--retail">
+        <article class="case-card case-card--retail">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--retail"></span>🏪 Оптово-розничная сеть · 45 филиалов</div>
-          <h3 class="case-card__title">Синхронизация 1С:УТ с Битрикс24 и складами</h3>
+          <h3 class="case-card__title"><a href="/cases/retail-inventory-automation/" class="case-card__title-link">Синхронизация 1С:УТ с Битрикс24 и складами <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Внедрили шину обмена для передачи заказов и остатков между 1С:УТ и CRM. Устранили зависания и ручной перенос счетов.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -459,10 +459,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>1С:УТ 11</span><span>Bitrix24</span><span>Event Bus</span><span>REST API</span></div>
-        </div>
-        <div class="case-card case-card--edi">
+        </article>
+        <article class="case-card case-card--edi">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--edi"></span>🏭 Производственный холдинг · 5 заводов</div>
-          <h3 class="case-card__title">Интеграция 1С:ERP с SAP и логистическими сервисами</h3>
+          <h3 class="case-card__title"><a href="/cases/manufacturing-edi-automation/" class="case-card__title-link">Интеграция 1С:ERP с SAP и логистическими сервисами <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Развернули брокер сообщений для сквозной передачи заявок на перемещение ТМЦ и трекинга автотранспорта в 1С.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -479,10 +479,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>1С:ERP</span><span>SAP</span><span>RabbitMQ</span><span>СДЭК API</span></div>
-        </div>
-        <div class="case-card case-card--service">
+        </article>
+        <article class="case-card case-card--service">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--service"></span>💼 Дистрибьютор электроники · 12 000 контрагентов</div>
-          <h3 class="case-card__title">Дедупликация баз и автообмен с amoCRM</h3>
+          <h3 class="case-card__title"><a href="/cases/fintech-transaction-reconciliation/" class="case-card__title-link">Дедупликация баз и автообмен с amoCRM <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Объединили 3 разрозненные базы 1С:УТ в единый мастер-каталог с автоматической дедупликацией контрагентов по ИНН.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -499,7 +499,7 @@
             </div>
           </div>
           <div class="case-card__tags"><span>1С:УТ</span><span>amoCRM</span><span>Мастер-данные</span><span>Дедупликация</span></div>
-        </div>
+        </article>
       </div>
       <div class="carousel-dots" id="carousel-dots"></div>
     </div>

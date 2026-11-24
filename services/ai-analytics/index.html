@@ -2406,7 +2406,13 @@ section[id] {
   }
   @media(prefers-reduced-motion:reduce){
     .pricing__grid.is-nudging{animation:none !important}
-  }</style>
+  }
+  .case-card{position:relative}
+  .case-card__title-link{color:inherit;text-decoration:none}
+  .case-card__title-link::after{content:'';position:absolute;inset:0;z-index:1}
+  .case-card:hover .case-card__arrow{transform:translateX(4px);color:var(--accent-1)}
+  .case-service-note{margin-top:12px;color:var(--text-2);font-size:.95rem;line-height:1.6}
+  .case-service-note a{color:var(--accent-1);text-decoration:underline;text-underline-offset:3px}</style>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
 <script type="text/javascript">
     (function() {
@@ -2509,7 +2515,7 @@ section[id] {
 <span class="terminal__dot terminal__dot--green"></span>
 <span class="terminal__title">autopilot — agent_core v2.4.1</span>
 </div>
-<div class="terminal__body" id="terminal-body">
+<div class="terminal__body" data-static-terminal="true" id="terminal-body">
 <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:42:01]</span> <span style="color:var(--accent-1);font-weight:600;">[OData]</span> Подключение к 1С:ERP (200 OK)</div>
 <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:42:02]</span> <span style="color:var(--accent-2);font-weight:600;">[CashFlow]</span> Прогноз ДДС на 30 дней: расчет рисков</div>
 <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:42:04]</span> <span style="color:var(--green);font-weight:600;">[SafetyStock]</span> Пересчет ROP для 18 000 SKU завершен</div>
@@ -2716,9 +2722,9 @@ section[id] {
 <h2 class="section-title" data-reveal="">Кейсы внедрения предиктивной аналитики</h2>
 </div>
 <div class="cases__grid cases__grid--static" data-reveal="">
-<div class="case-card case-card--retail">
+<article class="case-card case-card--retail">
 <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--retail"></span>🛒 Федеральный дистрибьютор · 18 000 SKU</div>
-<h3 class="case-card__title">Оптимизация неснижаемого остатка и ликвидация out-of-stock</h3>
+<h3 class="case-card__title"><a class="case-card__title-link" href="/cases/retail-inventory-automation/">Оптимизация неснижаемого остатка и ликвидация out-of-stock <span aria-hidden="true" class="case-card__arrow">→</span></a></h3>
 <p class="case-card__desc">Внедрили алгоритм динамического расчета страхового запаса на данных 1С:УТ. Настроили <span class="case-highlight case-highlight--retail">предиктивный автозаказ поставщикам</span> с учетом вариативности спроса.</p>
 <div class="case-card__results">
 <div class="case-result">
@@ -2735,10 +2741,10 @@ section[id] {
 </div>
 </div>
 <div class="case-card__tags"><span>1С:УТ 11</span><span>Safety Stock</span><span>ROP</span><span>Автозаказ</span></div>
-</div>
-<div class="case-card case-card--fintech">
+</article>
+<article class="case-card case-card--fintech">
 <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--fintech"></span>🏢 Производственно-торговый холдинг · 140 поставщиков</div>
-<h3 class="case-card__title">Автоконтроль цен поставщиков и аудит первичных накладных</h3>
+<h3 class="case-card__title"><a class="case-card__title-link" href="/cases/fintech-transaction-reconciliation/">Автоконтроль цен поставщиков и аудит первичных накладных <span aria-hidden="true" class="case-card__arrow">→</span></a></h3>
 <p class="case-card__desc">Подключили агента Price Shield к потоку входящих УПД в 1С:ERP. Настроили <span class="case-highlight case-highlight--fintech">автоматическую сверку со спецификациями</span> и блокировку скрытого повышения цен.</p>
 <div class="case-card__results">
 <div class="case-result">
@@ -2755,10 +2761,10 @@ section[id] {
 </div>
 </div>
 <div class="case-card__tags"><span>1С:ERP</span><span>Аудит цен</span><span>Спецификации</span><span>УПД</span></div>
-</div>
-<div class="case-card case-card--edi">
+</article>
+<article class="case-card case-card--edi">
 <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--edi"></span>🏪 Сеть оптово-розничных баз · 35 филиалов</div>
-<h3 class="case-card__title">Предиктивный платежный календарь и защита от кассовых разрывов</h3>
+<h3 class="case-card__title"><a class="case-card__title-link" href="/cases/manufacturing-edi-automation/">Предиктивный платежный календарь и защита от кассовых разрывов <span aria-hidden="true" class="case-card__arrow">→</span></a></h3>
 <p class="case-card__desc">Связали базы 1С:КА и банковские выписки. Модель <span class="case-highlight case-highlight--edi">прогнозирует кассовые разрывы</span> на 14 дней вперед с учетом скоринга платежной дисциплины покупателей.</p>
 <div class="case-card__results">
 <div class="case-result">
@@ -2775,7 +2781,7 @@ section[id] {
 </div>
 </div>
 <div class="case-card__tags"><span>1С:КА 2</span><span>Платежный календарь</span><span>ДДС</span><span>Скоринг</span></div>
-</div>
+</article>
 </div>
 <div class="slider-controls">
 <button aria-label="Предыдущие кейсы" class="slider-arrow slider-arrow--prev" id="cases-prev" title="Предыдущие кейсы" type="button">

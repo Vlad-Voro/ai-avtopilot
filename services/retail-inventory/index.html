@@ -94,7 +94,7 @@
   <link rel="preload" href="/assets/fonts/JetBrainsMono-400-12.woff2" as="font" type="font/woff2" crossorigin="" />
 
   <!-- Extenal Stylesheet -->
-  <link rel="stylesheet" href="/assets/css/styles.min.css?v=825d48c9" />
+  <link rel="stylesheet" href="/assets/css/styles.min.css?v=5f6af294" />
 
   <!-- Scripts -->
   <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.4"></script>
@@ -230,7 +230,7 @@
             <span class="terminal__dot terminal__dot--green"></span>
             <span class="terminal__title">autopilot — agent_core v2.4.1</span>
           </div>
-          <div class="terminal__body" id="terminal-body">
+          <div class="terminal__body" id="terminal-body" data-static-terminal="true">
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[11:20:01]</span> <span style="color:var(--accent-1);font-weight:600;">[Stock Bridge]</span> Multi-channel sync: 14 200 SKU aligned across 4 warehouses</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[11:20:04]</span> <span style="color:var(--accent-2);font-weight:600;">[Safety Stock]</span> SKU #99014 reached threshold -&gt; Auto-drafted Order #1104 in 1C:UT</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[11:20:07]</span> <span style="color:var(--green);font-weight:600;">[Discrepancy]</span> Inbound shipment #812: TORG-2 drafted (-3 units), supplier notified</div>
@@ -440,9 +440,9 @@
         <h2 class="section-title" data-reveal="">Доказанные кейсы внедрения</h2>
       </div>
       <div class="cases__grid cases__grid--static" data-reveal="">
-        <div class="case-card case-card--retail">
+        <article class="case-card case-card--retail">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--retail"></span>🏪 Сеть магазинов · 230 точек</div>
-          <h3 class="case-card__title">Автоматизация инвентаризации и заказов</h3>
+          <h3 class="case-card__title"><a href="/cases/retail-inventory-automation/" class="case-card__title-link">Автоматизация инвентаризации и заказов <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Внедрили агентов для синхронизации остатков между складами и точками продаж, автоматической генерации заявок поставщикам.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -459,10 +459,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>1С:Розница</span><span>RPA</span><span>ИИ-агент</span><span>Склад</span></div>
-        </div>
-        <div class="case-card case-card--edi">
+        </article>
+        <article class="case-card case-card--edi">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--edi"></span>🛒 Крупный селлер маркетплейсов · 18 000 SKU</div>
-          <h3 class="case-card__title">Ликвидация штрафов и оверселлинга на WB и Ozon</h3>
+          <h3 class="case-card__title"><a href="/cases/supply-chain-logistics/" class="case-card__title-link">Ликвидация штрафов и оверселлинга на WB и Ozon <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Настроили синхронизацию остатков из 1С:УТ каждые 30 секунд. Исключили отмены заказов и блокировки кабинетов.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -479,10 +479,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>API Wildberries</span><span>API Ozon</span><span>1С:УТ 11</span><span>FBS</span></div>
-        </div>
-        <div class="case-card case-card--service">
+        </article>
+        <article class="case-card case-card--service">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--service"></span>🏭 Дистрибьютор строительных материалов · 4 склада</div>
-          <h3 class="case-card__title">Контроль приемки и автогенерация ТОРГ-2</h3>
+          <h3 class="case-card__title"><a href="/cases/claims-dispute-automation/" class="case-card__title-link">Контроль приемки и автогенерация ТОРГ-2 <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Роботы сверяют данные сканирования ТСД с входящими накладными и автоматически создают акты ТОРГ-2 при расхождениях.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -499,7 +499,7 @@
             </div>
           </div>
           <div class="case-card__tags"><span>1С:ERP</span><span>ТОРГ-2</span><span>ТСД</span><span>Претензии</span></div>
-        </div>
+        </article>
       </div>
       <div class="carousel-dots" id="carousel-dots"></div>
     </div>

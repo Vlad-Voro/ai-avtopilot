@@ -94,7 +94,7 @@
   <link rel="preload" href="/assets/fonts/JetBrainsMono-400-12.woff2" as="font" type="font/woff2" crossorigin="" />
 
   <!-- Extenal Stylesheet -->
-  <link rel="stylesheet" href="/assets/css/styles.min.css?v=825d48c9" />
+  <link rel="stylesheet" href="/assets/css/styles.min.css?v=5f6af294" />
 
   <!-- Scripts -->
   <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.4"></script>
@@ -230,7 +230,7 @@
             <span class="terminal__dot terminal__dot--green"></span>
             <span class="terminal__title">autopilot — agent_core v2.4.1</span>
           </div>
-          <div class="terminal__body" id="terminal-body">
+          <div class="terminal__body" id="terminal-body" data-static-terminal="true">
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[09:00:12]</span> <span style="color:var(--blue);font-weight:600;">[WB-API]</span> Импорт 24 новых артикулов: генерация спецификаций и SEO</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[09:00:27]</span> <span style="color:var(--purple);font-weight:600;">[AI-CONTENT]</span> Карточки сформированы: 100% атрибутов заполнены за 15 сек</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[09:03:00]</span> <span style="color:var(--green);font-weight:600;">[BIDDER]</span> Аукцион WB Поиск: ставка скорректирована с 380 ₽ до 245 ₽ (ДРР 8,2%)</div>
@@ -440,9 +440,9 @@
         <h2 class="section-title" data-reveal="">Доказанные кейсы внедрения</h2>
       </div>
       <div class="cases__grid cases__grid--static" data-reveal="">
-        <div class="case-card case-card--retail">
+        <article class="case-card case-card--retail">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--retail"></span>Федеральный ритейл и селлер (230 магазинов)</div>
-          <h3 class="case-card__title">Автоматизация остатков и синхронизация WB/Ozon с 1С:УТ</h3>
+          <h3 class="case-card__title"><a href="/cases/retail-inventory-automation/" class="case-card__title-link">Автоматизация остатков и синхронизация WB/Ozon с 1С:УТ <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Внедрен контур автоматического распределения складских остатков между Wildberries, Ozon и собственной розничной сетью в 1С.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -459,10 +459,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>1С:УТ 11</span><span>Wildberries</span><span>Ozon</span><span>Остатки FBS</span></div>
-        </div>
-        <div class="case-card case-card--finance">
+        </article>
+        <article class="case-card case-card--finance">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--finance"></span>Брендовые магазины одежды и электроники</div>
-          <h3 class="case-card__title">Мониторинг отзывов 24/7 и защита рейтинга карточек 4,9★</h3>
+          <h3 class="case-card__title"><a href="/cases/reviews-reputation-automation/" class="case-card__title-link">Мониторинг отзывов 24/7 и защита рейтинга карточек 4,9★ <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Автоматическая классификация отзывов, генерация персонализированных ответов и перехват негатива с предложением компенсации.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -479,10 +479,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>Рейтинг WB/Ozon</span><span>Автоответы</span><span>NLP-анализ</span></div>
-        </div>
-        <div class="case-card case-card--production">
+        </article>
+        <article class="case-card case-card--production">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--production"></span>B2B дистрибуция и поставки на маркетплейсы</div>
-          <h3 class="case-card__title">Разбор брака, возвратов и споров по поставкам FBO/FBS</h3>
+          <h3 class="case-card__title"><a href="/cases/claims-dispute-automation/" class="case-card__title-link">Разбор брака, возвратов и споров по поставкам FBO/FBS <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Автоматическая сверка актов приемки маркетплейсов с данными отгрузок в 1С:ERP и автоматическое формирование претензий по недостачам.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -499,7 +499,7 @@
             </div>
           </div>
           <div class="case-card__tags"><span>Акты приемки</span><span>Претензии WB</span><span>1С:ERP</span></div>
-        </div>
+        </article>
       </div>
       <div class="carousel-dots" id="carousel-dots"></div>
     </div>

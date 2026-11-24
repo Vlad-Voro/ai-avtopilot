@@ -244,6 +244,7 @@ if hero_sec:
     # Pre-render Terminal content with clean domain log
     term_body = hero_sec.find("div", id="terminal-body")
     if term_body:
+        term_body["data-static-terminal"] = "true"
         term_body.clear()
         term_body.append(
             BeautifulSoup(
@@ -543,9 +544,9 @@ if cases_sec:
         grid.append(
             BeautifulSoup(
                 """
-        <div class="case-card case-card--retail">
+        <article class="case-card case-card--retail">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--retail"></span>🛒 Федеральный дистрибьютор · 18 000 SKU</div>
-          <h3 class="case-card__title">Оптимизация неснижаемого остатка и ликвидация out-of-stock</h3>
+          <h3 class="case-card__title"><a href="/cases/retail-inventory-automation/" class="case-card__title-link">Оптимизация неснижаемого остатка и ликвидация out-of-stock <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Внедрили алгоритм динамического расчета страхового запаса на данных 1С:УТ. Настроили <span class="case-highlight case-highlight--retail">предиктивный автозаказ поставщикам</span> с учетом вариативности спроса.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -562,11 +563,11 @@ if cases_sec:
             </div>
           </div>
           <div class="case-card__tags"><span>1С:УТ 11</span><span>Safety Stock</span><span>ROP</span><span>Автозаказ</span></div>
-        </div>
+        </article>
 
-        <div class="case-card case-card--fintech">
+        <article class="case-card case-card--fintech">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--fintech"></span>🏢 Производственно-торговый холдинг · 140 поставщиков</div>
-          <h3 class="case-card__title">Автоконтроль цен поставщиков и аудит первичных накладных</h3>
+          <h3 class="case-card__title"><a href="/cases/fintech-transaction-reconciliation/" class="case-card__title-link">Автоконтроль цен поставщиков и аудит первичных накладных <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Подключили агента Price Shield к потоку входящих УПД в 1С:ERP. Настроили <span class="case-highlight case-highlight--fintech">автоматическую сверку со спецификациями</span> и блокировку скрытого повышения цен.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -583,11 +584,11 @@ if cases_sec:
             </div>
           </div>
           <div class="case-card__tags"><span>1С:ERP</span><span>Аудит цен</span><span>Спецификации</span><span>УПД</span></div>
-        </div>
+        </article>
 
-        <div class="case-card case-card--edi">
+        <article class="case-card case-card--edi">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--edi"></span>🏪 Сеть оптово-розничных баз · 35 филиалов</div>
-          <h3 class="case-card__title">Предиктивный платежный календарь и защита от кассовых разрывов</h3>
+          <h3 class="case-card__title"><a href="/cases/manufacturing-edi-automation/" class="case-card__title-link">Предиктивный платежный календарь и защита от кассовых разрывов <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Связали базы 1С:КА и банковские выписки. Модель <span class="case-highlight case-highlight--edi">прогнозирует кассовые разрывы</span> на 14 дней вперед с учетом скоринга платежной дисциплины покупателей.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -604,7 +605,7 @@ if cases_sec:
             </div>
           </div>
           <div class="case-card__tags"><span>1С:КА 2</span><span>Платежный календарь</span><span>ДДС</span><span>Скоринг</span></div>
-        </div>
+        </article>
         """,
                 "html.parser",
             )

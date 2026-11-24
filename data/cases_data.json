@@ -185,7 +185,101 @@
           "text": "Telegram: Уведомление товароведу точки отправлено. Статус: Подтверждено автоматически."
         }
       ]
-    }
+    },
+    "parent_service": {
+      "slug": "retail-inventory",
+      "name": "Ритейл и склад"
+    },
+    "related_services": [
+      {
+        "slug": "ai-analytics",
+        "name": "Предиктивная ИИ-аналитика 1С"
+      },
+      {
+        "slug": "marketplace-automation",
+        "name": "Автоматизация маркетплейсов"
+      }
+    ],
+    "agent_cards": [
+      {
+        "icon": "📦",
+        "name": "Агент: Остатки РЦ",
+        "status": "Активен",
+        "width": "86%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-retail --check-stock --stores 230"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Синхронизация 1С:Розница: 230/230 точек OK"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Сформировано 142 автозаказа с расчётом ROP"
+          }
+        ]
+      },
+      {
+        "icon": "📊",
+        "name": "Агент: Прогноз спроса",
+        "status": "Активен",
+        "width": "74%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-retail --forecast --horizon 14d"
+          },
+          {
+            "type": "dim",
+            "text": "  Анализ скорости выбытия по 18 400 SKU..."
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Уровень out-of-stock снижен до 0.8%"
+          }
+        ]
+      },
+      {
+        "icon": "🔔",
+        "name": "Агент: Telegram РЦ",
+        "status": "Активен",
+        "width": "68%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-retail --notify-buyers"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Алерты товароведам отправлены (среднее 1.2с)"
+          }
+        ]
+      }
+    ],
+    "terminal_lines": [
+      {
+        "type": "prompt",
+        "text": "$ autopilot-case --inspect retail-inventory-automation --env prod"
+      },
+      {
+        "type": "ok",
+        "text": "  [09:14:02] ✔ Склад РЦ: Зафиксирован расход номенклатуры 'Артикул 48210' (остаток: 120 шт., порог: 250 шт.)"
+      },
+      {
+        "type": "ok",
+        "text": "  [09:14:05] ✔ Магазин #42: Анализ темпа продаж за 7 дней (средний расход: 38 шт./сутки, плечо доставки: 48ч)"
+      },
+      {
+        "type": "ok",
+        "text": "  [09:14:07] ✔ 1С:Розница: Сформирован документ 'Заказ поставщику #00284' на 300 шт."
+      },
+      {
+        "type": "ok",
+        "text": "  [09:14:10] ✔ Telegram: Уведомление товароведу точки отправлено. Статус: Подтверждено автоматически."
+      }
+    ]
   },
   "manufacturing-edi-automation": {
     "slug": "manufacturing-edi-automation",
@@ -373,7 +467,93 @@
           "text": "1С:ERP: Проведен документ 'Приобретение товаров #0842'. Проводки Дт 10.01 Кт 60.01 сформированы."
         }
       ]
-    }
+    },
+    "parent_service": {
+      "slug": "document-automation",
+      "name": "Документооборот и ЭДО"
+    },
+    "related_services": [
+      {
+        "slug": "manufacturing-automation",
+        "name": "Производство и 1С:ERP"
+      },
+      {
+        "slug": "system-integration",
+        "name": "Интеграция систем"
+      }
+    ],
+    "agent_cards": [
+      {
+        "icon": "📑",
+        "name": "Агент: OCR Первичка",
+        "status": "Активен",
+        "width": "91%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-edi --ocr-batch --source diadoc"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Распознано 32 строки УПД за 3.8с (99.9%)"
+          }
+        ]
+      },
+      {
+        "icon": "🔄",
+        "name": "Агент: Матчинг НСИ",
+        "status": "Активен",
+        "width": "84%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-edi --match-nsi --erp 1c"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Сопоставлено 32/32 позиций с номенклатурой 1С:ERP"
+          }
+        ]
+      },
+      {
+        "icon": "⚖️",
+        "name": "Агент: Валидатор НДС",
+        "status": "Активен",
+        "width": "79%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-edi --verify-fns"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ КПП/ИНН и ставки НДС проверены, проводки Дт10/Кт60 ОК"
+          }
+        ]
+      }
+    ],
+    "terminal_lines": [
+      {
+        "type": "prompt",
+        "text": "$ autopilot-case --inspect manufacturing-edi-automation --env prod"
+      },
+      {
+        "type": "ok",
+        "text": "  [11:20:14] ✔ Диадок API: Получен входящий пакет документов от 'СеверСталь-Трейд' (УПД #4109, 32 строки)"
+      },
+      {
+        "type": "ok",
+        "text": "  [11:20:18] ✔ OCR Engine: Распознаны реквизиты и табличная часть за 3.8с (точность: 99.9%)"
+      },
+      {
+        "type": "ok",
+        "text": "  [11:20:20] ✔ 1С:ERP: Векторный матчинг номенклатуры (32/32 сопоставлено, сходство 98.4%)"
+      },
+      {
+        "type": "ok",
+        "text": "  [11:20:22] ✔ 1С:ERP: Проведен документ 'Приобретение товаров #0842'. Проводки Дт 10.01 Кт 60.01 сформированы."
+      }
+    ]
   },
   "service-center-ai-operator": {
     "slug": "service-center-ai-operator",
@@ -561,7 +741,93 @@
           "text": "WhatsApp: Ответ отправлен. Клиент оценил консультацию на 5/5."
         }
       ]
-    }
+    },
+    "parent_service": {
+      "slug": "customer-support",
+      "name": "ИИ-поддержка клиентов"
+    },
+    "related_services": [
+      {
+        "slug": "ai-agents",
+        "name": "ИИ-агенты для бизнеса"
+      },
+      {
+        "slug": "knowledge-base-rag",
+        "name": "Корпоративная AI-база знаний"
+      }
+    ],
+    "agent_cards": [
+      {
+        "icon": "💬",
+        "name": "Агент: Диспетчер Л1",
+        "status": "Активен",
+        "width": "88%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-support --triage --channel omnichannel"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ 80.4% обращений закрыты на 1-й линии (< 3с)"
+          }
+        ]
+      },
+      {
+        "icon": "📚",
+        "name": "Агент: RAG База знаний",
+        "status": "Активен",
+        "width": "76%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-support --rag-lookup"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Найдены регламенты и статус заказа в 1С/CRM"
+          }
+        ]
+      },
+      {
+        "icon": "🔁",
+        "name": "Агент: Эскалация СRM",
+        "status": "Активен",
+        "width": "64%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-support --escalate-l2"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Тикет #4921 передан инженеру со сводкой контекста"
+          }
+        ]
+      }
+    ],
+    "terminal_lines": [
+      {
+        "type": "prompt",
+        "text": "$ autopilot-case --inspect service-center-ai-operator --env prod"
+      },
+      {
+        "type": "ok",
+        "text": "  [14:05:32] ✔ WhatsApp: Входящий запрос от клиента (+7 916 ***-**-44): 'Готова ли кофемашина DeLonghi по квитанции #8921?'"
+      },
+      {
+        "type": "ok",
+        "text": "  [14:05:33] ✔ 1С:УНФ: Проверка регистра 'ЗаказыНаОбслуживание' (статус: 'Готов к выдаче', сумма: 4 200 ₽)"
+      },
+      {
+        "type": "ok",
+        "text": "  [14:05:34] ✔ RAG Engine: Сформирован персонализированный ответ с графиком работы пункта выдачи за 1.8с"
+      },
+      {
+        "type": "ok",
+        "text": "  [14:05:35] ✔ WhatsApp: Ответ отправлен. Клиент оценил консультацию на 5/5."
+      }
+    ]
   },
   "hr-recruitment-automation": {
     "slug": "hr-recruitment-automation",
@@ -749,7 +1015,93 @@
           "text": "1С:ЗУП: Создана предварительная карточка соискателя с прикрепленным резюме."
         }
       ]
-    }
+    },
+    "parent_service": {
+      "slug": "hr-recruitment",
+      "name": "ИИ-найм и рекрутинг"
+    },
+    "related_services": [
+      {
+        "slug": "speech-analytics",
+        "name": "Речевая аналитика"
+      },
+      {
+        "slug": "knowledge-base-rag",
+        "name": "Корпоративная AI-база знаний"
+      }
+    ],
+    "agent_cards": [
+      {
+        "icon": "👥",
+        "name": "Агент: Скрининг HH",
+        "status": "Активен",
+        "width": "92%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-hr --screen-resumes --limit 5000"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Отранжировано 5 140 откликов без пропусков"
+          }
+        ]
+      },
+      {
+        "icon": "🤖",
+        "name": "Агент: Интервью Бот",
+        "status": "Активен",
+        "width": "78%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-hr --tg-interview"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Первичное анкетирование в Telegram завершено за 4 мин"
+          }
+        ]
+      },
+      {
+        "icon": "📋",
+        "name": "Агент: Экспорт 1С:ЗУП",
+        "status": "Активен",
+        "width": "71%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-hr --sync-zup"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Проверенные анкеты финалистов переданы в 1С:ЗУП"
+          }
+        ]
+      }
+    ],
+    "terminal_lines": [
+      {
+        "type": "prompt",
+        "text": "$ autopilot-case --inspect hr-recruitment-automation --env prod"
+      },
+      {
+        "type": "ok",
+        "text": "  [16:40:10] ✔ HeadHunter API: Зафиксирован новый отклик на вакансию 'Продавец-кассир (ТЦ Авиапарк)'"
+      },
+      {
+        "type": "ok",
+        "text": "  [16:40:48] ✔ Telegram Bot: Инициирован квалификационный диалог с соискателем (4 вопроса за 2 мин)"
+      },
+      {
+        "type": "ok",
+        "text": "  [16:42:55] ✔ Календарь: Забронирован слот на собеседование с директором филиала #12 на завтра 11:30"
+      },
+      {
+        "type": "ok",
+        "text": "  [16:43:02] ✔ 1С:ЗУП: Создана предварительная карточка соискателя с прикрепленным резюме."
+      }
+    ]
   },
   "supply-chain-logistics": {
     "slug": "supply-chain-logistics",
@@ -937,7 +1289,93 @@
           "text": "Telegram: Водитель подтвердил завершение загрузки фотосканом пломбы (статус: В пути)."
         }
       ]
-    }
+    },
+    "parent_service": {
+      "slug": "fleet-logistics",
+      "name": "Логистика и 1С:УАТ"
+    },
+    "related_services": [
+      {
+        "slug": "system-integration",
+        "name": "Интеграция систем"
+      },
+      {
+        "slug": "document-automation",
+        "name": "Документооборот и ЭДО"
+      }
+    ],
+    "agent_cards": [
+      {
+        "icon": "🚛",
+        "name": "Агент: Трекинг рейсов",
+        "status": "Активен",
+        "width": "85%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-logistics --watch-eta"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Отслежено 340 активных рейсов, алерты < 1 мин"
+          }
+        ]
+      },
+      {
+        "icon": "📑",
+        "name": "Агент: ЭТрН и ГТД",
+        "status": "Активен",
+        "width": "81%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-logistics --build-docs"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Сформировано 100% комплектов транспортных накладных"
+          }
+        ]
+      },
+      {
+        "icon": "🗺️",
+        "name": "Агент: ГЛОНАСС / УАТ",
+        "status": "Активен",
+        "width": "69%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-logistics --sync-uat"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Пробег и ГСМ сопоставлены с 1С:УАТ без расхождений"
+          }
+        ]
+      }
+    ],
+    "terminal_lines": [
+      {
+        "type": "prompt",
+        "text": "$ autopilot-case --inspect supply-chain-logistics --env prod"
+      },
+      {
+        "type": "ok",
+        "text": "  [12:35:10] ✔ ГЛОНАСС Wialon: Тягач 'Scania Р384УУ' (Рейс #491 Москва-Казань): скорость 78 км/ч, остаток топлива 340 л"
+      },
+      {
+        "type": "ok",
+        "text": "  [12:35:14] ✔ ETA Engine: Расчетное время прибытия на РЦ WB Электросталь: 14:15 (запас до тайм-слота: +35 мин)"
+      },
+      {
+        "type": "ok",
+        "text": "  [12:35:18] ✔ 1С:УАТ: Пакет документов ЭПЛ и ЭТРН #9102 валидирован и подписан ЭЦП"
+      },
+      {
+        "type": "ok",
+        "text": "  [12:35:22] ✔ Telegram: Водитель подтвердил завершение загрузки фотосканом пломбы (статус: В пути)."
+      }
+    ]
   },
   "fintech-transaction-reconciliation": {
     "slug": "fintech-transaction-reconciliation",
@@ -1125,7 +1563,93 @@
           "text": "Финансовый контроль: Кассовая смена закрыта со 100% сходимостью сальдо за 6.2с."
         }
       ]
-    }
+    },
+    "parent_service": {
+      "slug": "ai-analytics",
+      "name": "Предиктивная ИИ-аналитика 1С"
+    },
+    "related_services": [
+      {
+        "slug": "automated-reporting",
+        "name": "Автоотчетность и P&L"
+      },
+      {
+        "slug": "debt-control",
+        "name": "Контроль дебиторки"
+      }
+    ],
+    "agent_cards": [
+      {
+        "icon": "💳",
+        "name": "Агент: Банк-Сверка",
+        "status": "Активен",
+        "width": "94%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-fintech --reconcile --batch 15000"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Сверено 15 000 транзакций (банк ↔ CRM) за 10с"
+          }
+        ]
+      },
+      {
+        "icon": "🔍",
+        "name": "Агент: Поиск аномалий",
+        "status": "Активен",
+        "width": "82%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-fintech --detect-drift"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Выявлены и локализованы расхождения в комиссиях эквайринга"
+          }
+        ]
+      },
+      {
+        "icon": "🛡️",
+        "name": "Агент: 152-ФЗ Аудит",
+        "status": "Активен",
+        "width": "77%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-fintech --compliance-check"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ On-Premise контур 152-ФЗ, журнал сверок подписан"
+          }
+        ]
+      }
+    ],
+    "terminal_lines": [
+      {
+        "type": "prompt",
+        "text": "$ autopilot-case --inspect fintech-transaction-reconciliation --env prod"
+      },
+      {
+        "type": "ok",
+        "text": "  [18:00:01] ✔ DirectBank API: Загружена вечерняя выписка Т-Банк и Сбер (4 820 транзакций на сумму 142.8 млн ₽)"
+      },
+      {
+        "type": "ok",
+        "text": "  [18:00:03] ✔ Reconciliation Engine: Сопоставлено 4 818 платежей (99.96%), 2 платежа отправлены на валидацию"
+      },
+      {
+        "type": "ok",
+        "text": "  [18:00:05] ✔ 1С:Бухгалтерия: Сформированы банковские ордера и проводки Дт 51 Кт 62.01, Дт 76.09 Кт 51"
+      },
+      {
+        "type": "ok",
+        "text": "  [18:00:07] ✔ Финансовый контроль: Кассовая смена закрыта со 100% сходимостью сальдо за 6.2с."
+      }
+    ]
   },
   "sales-speech-analytics": {
     "slug": "sales-speech-analytics",
@@ -1317,7 +1841,97 @@
           "text": "Telegram: РОПу отправлен отчет по звонку. Статус: Лид теплый, бюджет 450 000 ₽."
         }
       ]
-    }
+    },
+    "parent_service": {
+      "slug": "speech-analytics",
+      "name": "Речевая аналитика"
+    },
+    "related_services": [
+      {
+        "slug": "b2b-outbound",
+        "name": "AI SDR и B2B-аутрич"
+      },
+      {
+        "slug": "customer-retention",
+        "name": "Retention и реактивация"
+      }
+    ],
+    "agent_cards": [
+      {
+        "icon": "🎙️",
+        "name": "Агент: ASR Whisper",
+        "status": "Активен",
+        "width": "90%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-speech --transcribe --pbx webhook"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Аудит 100% звонков отдела продаж за 30с"
+          }
+        ]
+      },
+      {
+        "icon": "✅",
+        "name": "Агент: Чек-лист 18",
+        "status": "Активен",
+        "width": "83%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-speech --score --criteria 18"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Оценка выявления потребностей и отработки возражений ОК"
+          }
+        ]
+      },
+      {
+        "icon": "📢",
+        "name": "Агент: Алерты РОПу",
+        "status": "Активен",
+        "width": "72%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-speech --push-crm"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Резюме звонка и задачи записаны в карточку amoCRM/Б24"
+          }
+        ]
+      }
+    ],
+    "terminal_lines": [
+      {
+        "type": "prompt",
+        "text": "$ autopilot-case --inspect sales-speech-analytics --env prod"
+      },
+      {
+        "type": "ok",
+        "text": "  [11:42:15] ✔ АТС: Завершен входящий звонок менеджеру 'Алексей С.' (длительность: 04:18)"
+      },
+      {
+        "type": "ok",
+        "text": "  [11:42:19] ✔ Whisper: Транскрибация завершена (2 840 символов, 2 спикера, 99.4% точность)"
+      },
+      {
+        "type": "ok",
+        "text": "  [11:42:21] ✔ Чек-лист: Аудит скрипта пройден (17/18). Нарушение: Не озвучен дедлайн спецпредложения."
+      },
+      {
+        "type": "ok",
+        "text": "  [11:42:24] ✔ amoCRM: В карточку сделки #41908 добавлено краткое саммари и оценка 94/100."
+      },
+      {
+        "type": "ok",
+        "text": "  [11:42:26] ✔ Telegram: РОПу отправлен отчет по звонку. Статус: Лид теплый, бюджет 450 000 ₽."
+      }
+    ]
   },
   "tender-procurement-automation": {
     "slug": "tender-procurement-automation",
@@ -1510,7 +2124,93 @@
           "text": "Форма 2: Документ сформирован без замечаний. Черновик заявки передан ведущему инженеру."
         }
       ]
-    }
+    },
+    "parent_service": {
+      "slug": "tender-automation",
+      "name": "Автоматизация тендеров"
+    },
+    "related_services": [
+      {
+        "slug": "specifications-kp",
+        "name": "Спецификации и КП"
+      },
+      {
+        "slug": "manufacturing-automation",
+        "name": "Производство и 1С:ERP"
+      }
+    ],
+    "agent_cards": [
+      {
+        "icon": "🏛️",
+        "name": "Агент: Скоринг ТЗ",
+        "status": "Активен",
+        "width": "89%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-tender --audit-tz --fz 44,223"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Разобрано ТЗ на 150 стр., риски по 44-ФЗ/223-ФЗ отмечены"
+          }
+        ]
+      },
+      {
+        "icon": "📐",
+        "name": "Агент: 1С Эквиваленты",
+        "status": "Активен",
+        "width": "80%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-tender --match-1c-erp"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Подобрана номенклатура 1С:ERP и плановая себестоимость"
+          }
+        ]
+      },
+      {
+        "icon": "📝",
+        "name": "Агент: Форма 2",
+        "status": "Активен",
+        "width": "75%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-tender --build-form2"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Собрана заявка Форма 2 за 15 мин без нарушений по ГОСТ"
+          }
+        ]
+      }
+    ],
+    "terminal_lines": [
+      {
+        "type": "prompt",
+        "text": "$ autopilot-case --inspect tender-procurement-automation --env prod"
+      },
+      {
+        "type": "ok",
+        "text": "  [11:42:01] ✔ ЕИС Закупки: Загружен архив документации #0173200001424000184 (142 стр. ТЗ, 44-ФЗ)"
+      },
+      {
+        "type": "ok",
+        "text": "  [11:42:18] ✔ ИИ-Скоринг: Проверка ограничений завершена. СРО: Пройдено. Обеспечение: 5%. Стоп-факторы: 0."
+      },
+      {
+        "type": "ok",
+        "text": "  [11:42:35] ✔ 1С:ERP: Сопоставлено 84 из 84 позиций номенклатуры. Расчетная рентабельность: 21.4%."
+      },
+      {
+        "type": "ok",
+        "text": "  [11:42:49] ✔ Форма 2: Документ сформирован без замечаний. Черновик заявки передан ведущему инженеру."
+      }
+    ]
   },
   "claims-dispute-automation": {
     "slug": "claims-dispute-automation",
@@ -1698,7 +2398,93 @@
           "text": "Претензия: Досудебная претензия #ПР-2024-118 сформирована. Файл направлен на подписание в Диадок."
         }
       ]
-    }
+    },
+    "parent_service": {
+      "slug": "debt-control",
+      "name": "Контроль дебиторки"
+    },
+    "related_services": [
+      {
+        "slug": "document-automation",
+        "name": "Документооборот и ЭДО"
+      },
+      {
+        "slug": "customer-retention",
+        "name": "Retention и реактивация"
+      }
+    ],
+    "agent_cards": [
+      {
+        "icon": "⚖️",
+        "name": "Агент: Разбор ТОРГ-2",
+        "status": "Активен",
+        "width": "87%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-claims --parse-torg2 --edms diadoc"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Акт ТОРГ-2 сверен с цепочкой отгрузок в 1С:ERP"
+          }
+        ]
+      },
+      {
+        "icon": "🧮",
+        "name": "Агент: Пени ст. 395",
+        "status": "Активен",
+        "width": "79%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-claims --calc-penalty --gk 395"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Расчёт пени по ключевой ставке ЦБ выполнен точно"
+          }
+        ]
+      },
+      {
+        "icon": "📄",
+        "name": "Агент: Автопретензия",
+        "status": "Активен",
+        "width": "73%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-claims --draft-claim"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Пакет досудебной претензии сформирован за 3 минуты"
+          }
+        ]
+      }
+    ],
+    "terminal_lines": [
+      {
+        "type": "prompt",
+        "text": "$ autopilot-case --inspect claims-dispute-automation --env prod"
+      },
+      {
+        "type": "ok",
+        "text": "  [14:05:12] ✔ Диадок: Поступил входящий документ 'Акт о расхождениях ТОРГ-2 #84' от ООО 'ТоргСнаб'"
+      },
+      {
+        "type": "ok",
+        "text": "  [14:05:15] ✔ 1С:ERP: Найдена отгрузка УПД #1042 от 12.08. Сопоставлено 12 из 12 позиций. Недостача: 4 шт. на сумму 84 200 ₽"
+      },
+      {
+        "type": "ok",
+        "text": "  [14:05:21] ✔ Калькулятор: Расчет процентов по ст. 395 ГК РФ за 24 дня просрочки (ставка ЦБ 16%): 887.41 ₽"
+      },
+      {
+        "type": "ok",
+        "text": "  [14:05:28] ✔ Претензия: Досудебная претензия #ПР-2024-118 сформирована. Файл направлен на подписание в Диадок."
+      }
+    ]
   },
   "reviews-reputation-automation": {
     "slug": "reviews-reputation-automation",
@@ -1886,7 +2672,93 @@
           "text": "2ГИС: Поступил отзыв 2★ (филиал Центр). Алерт отправлен управляющему в Telegram. Черновик урегулирования прикреплен."
         }
       ]
-    }
+    },
+    "parent_service": {
+      "slug": "reviews-reputation",
+      "name": "Управление отзывами"
+    },
+    "related_services": [
+      {
+        "slug": "marketplace-automation",
+        "name": "Автоматизация маркетплейсов"
+      },
+      {
+        "slug": "customer-support",
+        "name": "ИИ-поддержка клиентов"
+      }
+    ],
+    "agent_cards": [
+      {
+        "icon": "⭐",
+        "name": "Агент: Монитор Карт",
+        "status": "Активен",
+        "width": "91%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-serm --poll --sources yandex,2gis"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ 18 филиалов под мониторингом 24/7, рейтинг 4.9★"
+          }
+        ]
+      },
+      {
+        "icon": "✍️",
+        "name": "Агент: Ответы Tone-of-Voice",
+        "status": "Активен",
+        "width": "85%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-serm --reply --tov medical"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Персонализированный ответ опубликован за 30 секунд"
+          }
+        ]
+      },
+      {
+        "icon": "🚨",
+        "name": "Агент: Фильтр негатива",
+        "status": "Активен",
+        "width": "70%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-serm --detect-anomaly"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Фейк-отзывы помечены на оспаривание, алерт руководителю"
+          }
+        ]
+      }
+    ],
+    "terminal_lines": [
+      {
+        "type": "prompt",
+        "text": "$ autopilot-case --inspect reviews-reputation-automation --env prod"
+      },
+      {
+        "type": "ok",
+        "text": "  [12:15:02] ✔ Яндекс Карты: Поступил отзыв 5★ от 'Елена М.' (филиал Пресня): 'Прекрасный сервис, доктор Иванов настоящий профессионал!'"
+      },
+      {
+        "type": "ok",
+        "text": "  [12:15:07] ✔ ИИ-Агент: Тональность: Позитив. Выделены сущности: Доктор Иванов, филиал Пресня. Сгенерирован ответ в Tone-of-Voice."
+      },
+      {
+        "type": "ok",
+        "text": "  [12:15:14] ✔ Автопилот: Ответ опубликован на Яндекс Картах за 12 секунд. Статус: Успешно (HTTP 200)."
+      },
+      {
+        "type": "ok",
+        "text": "  [12:15:42] ✔ 2ГИС: Поступил отзыв 2★ (филиал Центр). Алерт отправлен управляющему в Telegram. Черновик урегулирования прикреплен."
+      }
+    ]
   },
   "auto-dealer-parts-automation": {
     "slug": "auto-dealer-parts-automation",
@@ -2074,6 +2946,92 @@
           "text": "1С:Альфа-Авто 6: Сформирован черновик заказ-наряда #ЗН-14029. Расчетная маржа: +22,4%. Зарезервировано."
         }
       ]
-    }
+    },
+    "parent_service": {
+      "slug": "avito-automation",
+      "name": "Боты для Авито"
+    },
+    "related_services": [
+      {
+        "slug": "specifications-kp",
+        "name": "Спецификации и КП"
+      },
+      {
+        "slug": "fleet-logistics",
+        "name": "Логистика и 1С:УАТ"
+      }
+    ],
+    "agent_cards": [
+      {
+        "icon": "🚗",
+        "name": "Агент: Парсер VIN/OEM",
+        "status": "Активен",
+        "width": "93%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-auto --decode-vin --catalog tecdoc"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Точный подбор оригинала и аналогов (ошибки 0.4%)"
+          }
+        ]
+      },
+      {
+        "icon": "💰",
+        "name": "Агент: Мультипроценка",
+        "status": "Активен",
+        "width": "84%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-auto --price-api --suppliers 6"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Собраны цены и сроки с 6 дистрибьюторов за 40с"
+          }
+        ]
+      },
+      {
+        "icon": "🔧",
+        "name": "Агент: 1С:Альфа-Авто",
+        "status": "Активен",
+        "width": "77%",
+        "logs": [
+          {
+            "type": "prompt",
+            "text": "$ autopilot-auto --create-order --alpha-auto"
+          },
+          {
+            "type": "ok",
+            "text": "  ✔ Заказ-наряд проведён в 1С:Альфа-Авто с +18% маржи"
+          }
+        ]
+      }
+    ],
+    "terminal_lines": [
+      {
+        "type": "prompt",
+        "text": "$ autopilot-case --inspect auto-dealer-parts-automation --env prod"
+      },
+      {
+        "type": "ok",
+        "text": "  [14:20:11] ✔ Telegram Bot (Мастер СТО #12): Загружено фото СТС. Распознан VIN: WAUZZZ4G* (Audi A6 C7 2.0 TFSI)."
+      },
+      {
+        "type": "ok",
+        "text": "  [14:20:13] ✔ OEM Каталог: Модификация определена за 1,8 сек. Запрошен регламент ТО-60 (масло, фильтры, свечи)."
+      },
+      {
+        "type": "ok",
+        "text": "  [14:20:16] ✔ Мультипроценка API: Опрошено 5 поставщиков. Выбран комплект: 3 позиции на складе Armtek (доставка 2ч), 1 позиция Exist."
+      },
+      {
+        "type": "ok",
+        "text": "  [14:20:20] ✔ 1С:Альфа-Авто 6: Сформирован черновик заказ-наряда #ЗН-14029. Расчетная маржа: +22,4%. Зарезервировано."
+      }
+    ]
   }
 }

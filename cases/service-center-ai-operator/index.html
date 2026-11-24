@@ -81,7 +81,7 @@
 <link as="font" crossorigin="" href="/assets/fonts/Inter-400-1.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/assets/fonts/Outfit-600-14.woff2" rel="preload" type="font/woff2"/>
 <!-- Inlined Styles (Eliminates Render-Blocking CSS & Critical Request Chains) -->
-<link href="/assets/css/styles.min.css?v=825d48c9" rel="stylesheet"/>
+<link href="/assets/css/styles.min.css?v=5f6af294" rel="stylesheet"/>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
 <script type="text/javascript">
     (function() {
@@ -157,13 +157,10 @@
 <section class="hero" id="home">
 <div class="hero__particles" id="particles"></div>
 <div class="container hero__inner">
-<div class="hero__content">
+<div class="hero__content"><nav aria-label="Хлебные крошки" class="breadcrumbs"><a href="/">Главная</a><span class="breadcrumbs__sep">/</span><a href="/cases/">Кейсы</a><span class="breadcrumbs__sep">/</span><span>ИИ-оператор сервисного центра</span></nav>
 <h1 class="hero__title"><span class="hero__title-static">ИИ-оператор первой линии поддержки </span><span class="hero__title-accent-box"><span class="hero__title-accent" data-phrases='["24/7 без перерывов", "с интеграцией в 1С", "для 40k клиентов"]' id="typed-text">24/7 без перерывов</span><span aria-hidden="true" class="hero__cursor"></span></span></h1>
 <p class="hero__sub">ИИ-оператор первой линии с интеграцией в 1С:УНФ и CRM. Ответ за 2 секунды, стоимость контакта 3 ₽ и закрытие 80.4% обращений.</p>
-<div class="hero__actions">
-<a class="btn btn--ghost" href="/services/" id="cta-main">Смотреть услуги →</a>
-<a class="btn btn--ghost" href="/cases/">Смотреть кейсы →</a>
-</div>
+<div class="hero__actions"><a class="btn btn--primary" href="#contact" id="cta-main">Хочу такой же результат →</a><a class="btn btn--ghost" href="/services/customer-support/">Услуга: ИИ-поддержка клиентов →</a></div>
 <div class="hero__kpis"><div class="kpi-card"><span class="kpi-card__num case-num--green" data-count="80.4">80.4%</span><span class="kpi-card__label">обращений закрыто ИИ</span></div><div class="kpi-card"><span class="kpi-card__num case-num--cyan" data-count="3">&lt; 3 сек</span><span class="kpi-card__label">среднее время ответа</span></div><div class="kpi-card"><span class="kpi-card__num" data-count="-60">−60%</span><span class="kpi-card__label">нагрузка на операторов</span></div></div>
 </div>
 <div class="hero__terminal-wrap">
@@ -174,42 +171,9 @@
 <span class="terminal__dot terminal__dot--green"></span>
 <span class="terminal__title">autopilot — agent_core v2.4.1</span>
 </div>
-<div class="terminal__body" id="terminal-body">
-<!-- JS fills this -->
+<div class="terminal__body" data-static-terminal="true" id="terminal-body"><div class="terminal__line terminal__line--prompt"><span>$ autopilot-case --inspect service-center-ai-operator --env prod</span></div><div class="terminal__line terminal__line--ok"><span>  [14:05:32] ✔ WhatsApp: Входящий запрос от клиента (+7 916 ***-**-44): 'Готова ли кофемашина DeLonghi по квитанции #8921?'</span></div><div class="terminal__line terminal__line--ok"><span>  [14:05:33] ✔ 1С:УНФ: Проверка регистра 'ЗаказыНаОбслуживание' (статус: 'Готов к выдаче', сумма: 4 200 ₽)</span></div><div class="terminal__line terminal__line--ok"><span>  [14:05:34] ✔ RAG Engine: Сформирован персонализированный ответ с графиком работы пункта выдачи за 1.8с</span></div><div class="terminal__line terminal__line--ok"><span>  [14:05:35] ✔ WhatsApp: Ответ отправлен. Клиент оценил консультацию на 5/5.</span></div></div>
 </div>
-</div>
-<div class="hero__agent-cards">
-<div aria-label="Инспектировать агента Отчёты" class="agent-card" data-agent="reports" role="button" tabindex="0">
-<div class="agent-card__icon">🤖</div>
-<div class="agent-card__info">
-<span class="agent-card__name">Агент: Отчёты</span>
-<span class="agent-card__status agent-card__status--live">Активен</span>
-</div>
-<div class="agent-card__bar">
-<div class="agent-card__fill" style="width:78%"></div>
-</div>
-</div>
-<div aria-label="Инспектировать агента Склад" class="agent-card" data-agent="warehouse" role="button" tabindex="0">
-<div class="agent-card__icon">📦</div>
-<div class="agent-card__info">
-<span class="agent-card__name">Агент: Склад</span>
-<span class="agent-card__status agent-card__status--live">Активен</span>
-</div>
-<div class="agent-card__bar">
-<div class="agent-card__fill" style="width:62%"></div>
-</div>
-</div>
-<div aria-label="Инспектировать агента Счета" class="agent-card" data-agent="invoices" role="button" tabindex="0">
-<div class="agent-card__icon">💳</div>
-<div class="agent-card__info">
-<span class="agent-card__name">Агент: Счета</span>
-<span class="agent-card__status agent-card__status--idle">Ожидает</span>
-</div>
-<div class="agent-card__bar">
-<div class="agent-card__fill" style="width:23%"></div>
-</div>
-</div>
-</div>
+<div class="hero__agent-cards"><div aria-label="Инспектировать агента Агент: Диспетчер Л1" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ autopilot-support --triage --channel omnichannel"}, {"type": "ok", "text": "  ✔ 80.4% обращений закрыты на 1-й линии (&lt; 3с)"}]' role="button" tabindex="0"><div class="agent-card__icon">💬</div><div class="agent-card__info"><span class="agent-card__name">Агент: Диспетчер Л1</span><span class="agent-card__status agent-card__status--live">Активен</span></div><div class="agent-card__bar"><div class="agent-card__fill" style="width:88%"></div></div></div><div aria-label="Инспектировать агента Агент: RAG База знаний" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ autopilot-support --rag-lookup"}, {"type": "ok", "text": "  ✔ Найдены регламенты и статус заказа в 1С/CRM"}]' role="button" tabindex="0"><div class="agent-card__icon">📚</div><div class="agent-card__info"><span class="agent-card__name">Агент: RAG База знаний</span><span class="agent-card__status agent-card__status--live">Активен</span></div><div class="agent-card__bar"><div class="agent-card__fill" style="width:76%"></div></div></div><div aria-label="Инспектировать агента Агент: Эскалация СRM" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ autopilot-support --escalate-l2"}, {"type": "ok", "text": "  ✔ Тикет #4921 передан инженеру со сводкой контекста"}]' role="button" tabindex="0"><div class="agent-card__icon">🔁</div><div class="agent-card__info"><span class="agent-card__name">Агент: Эскалация СRM</span><span class="agent-card__status agent-card__status--live">Активен</span></div><div class="agent-card__bar"><div class="agent-card__fill" style="width:64%"></div></div></div></div>
 </div>
 </div>
 </section>
@@ -299,7 +263,7 @@
 <div class="section-header">
 <p class="section-tag" data-reveal="">Решения и интеграции</p>
 <h2 class="section-title" data-reveal="">6 модулей диспетчеризации сервисного центра</h2>
-</div>
+<p class="case-service-note">Основное решение: <a href="/services/customer-support/">ИИ-поддержка клиентов</a>, <a href="/services/ai-agents/">ИИ-агенты для бизнеса</a>, <a href="/services/knowledge-base-rag/">Корпоративная AI-база знаний</a>.</p></div>
 <div aria-label="Сценарии автоматизации" aria-roledescription="carousel" class="services__bento services__bento--static" data-reveal="" role="region" tabindex="0"><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">💬</div><h3 class="scard__title">Омниканальный бот (TG / WA / Web)</h3><p class="scard__desc">Единое диалоговое окно для клиентов с сохранением контекста переписки в CRM.</p><div class="scard__tags"><span>Telegram</span><span>WhatsApp</span><span>Web-чат</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🛠️</div><h3 class="scard__title">Интеграция с 1С:Сервисный центр</h3><p class="scard__desc">Создание заказ-нарядов, резервирование запчастей и обновление статусов через OData REST API.</p><div class="scard__tags"><span>1С:Сервис</span><span>OData</span><span>Заказ-наряд</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🔍</div><h3 class="scard__title">Поиск статуса по номеру квитанции</h3><p class="scard__desc">Автоматическая выдача актуальной информации о диагностике, согласовании и готовности техники.</p><div class="scard__tags"><span>Статус заказа</span><span>Квитанция</span><span>Self-service</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📅</div><h3 class="scard__title">Календарь слотов выездных инженеров</h3><p class="scard__desc">Интеллектуальное планирование графика выездов мастеров с учетом загрузки и геолокации.</p><div class="scard__tags"><span>Логистика</span><span>Календарь</span><span>Выездной ремонт</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">💳</div><h3 class="scard__title">Модуль онлайн-оплаты и отправки чеков</h3><p class="scard__desc">Генерация платежных ссылок СБП и фискализация чеков по 54-ФЗ прямо в чате с клиентом.</p><div class="scard__tags"><span>СБП</span><span>54-ФЗ</span><span>Эквайринг</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">⭐</div><h3 class="scard__title">Сбор обратной связи и контроль NPS</h3><p class="scard__desc">Автоматический опрос клиентов после выдачи техники и маршрутизация негатива руководителю.</p><div class="scard__tags"><span>NPS</span><span>Качество</span><span>Лояльность</span></div></div></div>
 <div class="slider-controls">
 <button aria-label="Предыдущие решения" class="slider-arrow slider-arrow--prev" id="services-prev" title="Предыдущие решения" type="button">
@@ -386,63 +350,7 @@
 <h2 class="section-title">Часто задаваемые вопросы</h2>
 <p class="section-desc" style="color:var(--text-2);margin-top:12px;">Всё, что важно знать о безопасности, сроках внедрения и интеграции ИИ-агентов</p>
 </div>
-<div class="faq__grid" data-reveal="">
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Сколько времени занимает запуск первого пилотного проекта?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p>Развёртывание первого работающего ИИ-агента в вашем контуре занимает ровно <strong>14 календарных дней</strong>. Мы подключаемся к 1–3 ключевым процессам, проводим калибровку точности до 99%+ и передаём результат с гарантией окупаемости.</p>
-</div>
-</div>
-</div>
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Нужно ли дорабатывать или менять существующую 1С, SAP или CRM?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p><strong>Нет, менять ничего не требуется.</strong> ИИ-агенты подключаются через стандартные протоколы (1C OData REST API, HTTP-сервисы, Webhooks, Диадок SDK). Мы не вмешиваемся в типовую конфигурацию и не нарушаем штатные процессы вашей системы.</p>
-</div>
-</div>
-</div>
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Как обеспечивается безопасность коммерческих данных и соблюдение 152-ФЗ?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p>Все данные обрабатываются на защищённых серверах в Российской Федерации в строгом соответствии с <strong>152-ФЗ РФ</strong>. Перед началом работ подписывается соглашение о неразглашении (NDA). Для предприятий с повышенными требованиями безопасности возможно развёртывание <strong>локальных On-Premise моделей</strong> внутри закрытого периметра без выхода во внешние сети.</p>
-</div>
-</div>
-</div>
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Какова средняя окупаемость (ROI) и экономический эффект?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p>В среднем внедрение окупается за <strong>1.5–3 месяца</strong> после ввода в эксплуатацию. Средний доказанный ROI составляет <strong>340% годовых</strong> за счёт сокращения рутинного ручного труда на 70–80% и ликвидации человеческих ошибок в первичных документах.</p>
-</div>
-</div>
-</div>
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Что входит в бесплатный 30-минутный экспресс-аудит?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p>В рамках 30-минутного экспресс-аудита наш архитектор анализирует 3 самых трудоёмких процесса вашей компании, рассчитывает индивидуальную матрицу окупаемости (ROI) и готовит пошаговую архитектурную схему внедрения пилотного агента.</p>
-</div>
-</div>
-</div>
-</div>
+<div class="faq__grid" data-reveal=""><div class="faq-item"><button aria-controls="faq-ans-0" aria-expanded="false" class="faq-item__header" type="button"><span class="faq-item__question">Может ли бот консультировать по техническим неисправностям?</span><span class="faq-item__icon">+</span></button><div class="faq-item__answer" id="faq-ans-0" role="region"><div class="faq-item__inner"><p>Да. Бот подключается к корпоративной базе знаний по моделям техники и отвечает на типовые вопросы по симптомам поломок, ориентируя по примерной стоимости работ.</p></div></div></div><div class="faq-item"><button aria-controls="faq-ans-1" aria-expanded="false" class="faq-item__header" type="button"><span class="faq-item__question">Как происходит передача диалога живому сотруднику?</span><span class="faq-item__icon">+</span></button><div class="faq-item__answer" id="faq-ans-1" role="region"><div class="faq-item__inner"><p>Если запрос клиента нестандартный или требует сложной экспертной оценки, бот бесшовно переводит диалог на свободного мастера с передачей всей истории переписки.</p></div></div></div><div class="faq-item"><button aria-controls="faq-ans-2" aria-expanded="false" class="faq-item__header" type="button"><span class="faq-item__question">Поддерживается ли голосовой прием звонков?</span><span class="faq-item__icon">+</span></button><div class="faq-item__answer" id="faq-ans-2" role="region"><div class="faq-item__inner"><p>Да, возможно подключение голосового AI-ассистента к виртуальной АТС через SIP-транк для обработки телефонных звонков.</p></div></div></div></div>
 </div>
 </section>
 <!-- ═══════════════════ LIVE DASHBOARD ═══════════════════ -->
@@ -501,9 +409,7 @@
 </div>
 <div class="board-panels">
 <div aria-labelledby="tab-log" class="board-panel board-panel--active" id="panel-log" role="tabpanel">
-<div class="log" id="event-log">
-<!-- JS fills this -->
-</div>
+<div class="log" id="case-event-log"><div class="log-item log-item--default"><span class="log-item__time">14:05:32</span><span class="log-item__text">WhatsApp: Входящий запрос от клиента (+7 916 ***-**-44): 'Готова ли кофемашина DeLonghi по квитанции #8921?'</span></div><div class="log-item log-item--default"><span class="log-item__time">14:05:33</span><span class="log-item__text">1С:УНФ: Проверка регистра 'ЗаказыНаОбслуживание' (статус: 'Готов к выдаче', сумма: 4 200 ₽)</span></div><div class="log-item log-item--default"><span class="log-item__time">14:05:34</span><span class="log-item__text">RAG Engine: Сформирован персонализированный ответ с графиком работы пункта выдачи за 1.8с</span></div><div class="log-item log-item--default"><span class="log-item__time">14:05:35</span><span class="log-item__text">WhatsApp: Ответ отправлен. Клиент оценил консультацию на 5/5.</span></div></div>
 </div>
 <div aria-labelledby="tab-agents" class="board-panel" hidden="" id="panel-agents" role="tabpanel">
 <div class="agent-list" id="agent-list">

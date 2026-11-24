@@ -239,12 +239,12 @@ def generate_service_html(data: dict) -> str:
         ]
     )
 
-    # HTML Snippets for Cases
+    # HTML Snippets for Cases (header anchor + CSS overlay to avoid 40-word <a> wrappers)
     cases_html = "\n".join(
         [
-            f"""        <div class="case-card case-card--{cs.get("type", "retail")}">
+            f"""        <article class="case-card case-card--{cs.get("type", "retail")}">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--{cs.get("type", "retail")}"></span>{cs["industry"]}</div>
-          <h3 class="case-card__title">{cs["title"]}</h3>
+          <h3 class="case-card__title"><a href="/cases/{cs["case_slug"]}/" class="case-card__title-link">{cs["title"]} <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">{cs["desc"]}</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -261,7 +261,7 @@ def generate_service_html(data: dict) -> str:
             </div>
           </div>
           <div class="case-card__tags">{"".join([f"<span>{t}</span>" for t in cs["tags"]])}</div>
-        </div>"""
+        </article>"""
             for cs in cases
         ]
     )
@@ -535,7 +535,7 @@ def generate_service_html(data: dict) -> str:
             <span class="terminal__dot terminal__dot--green"></span>
             <span class="terminal__title">autopilot — agent_core v2.4.1</span>
           </div>
-          <div class="terminal__body" id="terminal-body">
+          <div class="terminal__body" id="terminal-body" data-static-terminal="true">
 {hero_terminal_lines}
           </div>
         </div>

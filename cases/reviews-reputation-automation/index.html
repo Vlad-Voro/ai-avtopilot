@@ -81,7 +81,7 @@
 <link as="font" crossorigin="" href="/assets/fonts/Inter-400-1.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/assets/fonts/Outfit-600-14.woff2" rel="preload" type="font/woff2"/>
 <!-- Inlined Styles (Eliminates Render-Blocking CSS & Critical Request Chains) -->
-<link href="/assets/css/styles.min.css?v=825d48c9" rel="stylesheet"/>
+<link href="/assets/css/styles.min.css?v=5f6af294" rel="stylesheet"/>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
 <script type="text/javascript">
     (function() {
@@ -157,13 +157,10 @@
 <section class="hero" id="home">
 <div class="hero__particles" id="particles"></div>
 <div class="container hero__inner">
-<div class="hero__content">
+<div class="hero__content"><nav aria-label="Хлебные крошки" class="breadcrumbs"><a href="/">Главная</a><span class="breadcrumbs__sep">/</span><a href="/cases/">Кейсы</a><span class="breadcrumbs__sep">/</span><span>Ответы на отзывы нейросетью</span></nav>
 <h1 class="hero__title"><span class="hero__title-static">Кейс розничной сети: обработка </span><span class="hero__title-accent-box"><span class="hero__title-accent" data-phrases='["отзывов за 30 сек (4,9★)", "в 2ГИС и на Авито", "ответ за 30 секунд"]' id="typed-text">отзывов за 30 сек (4,9★)</span><span aria-hidden="true" class="hero__cursor"></span></span></h1>
 <p class="hero__sub">Автоматический мониторинг геосервисов, генерация уникальных ответов без шаблонных отписок и мгновенные алерты в Telegram о негативе за 30 секунд.</p>
-<div class="hero__actions">
-<a class="btn btn--ghost" href="/services/" id="cta-main">Смотреть услуги →</a>
-<a class="btn btn--ghost" href="/cases/">Смотреть кейсы →</a>
-</div>
+<div class="hero__actions"><a class="btn btn--primary" href="#contact" id="cta-main">Хочу такой же результат →</a><a class="btn btn--ghost" href="/services/reviews-reputation/">Услуга: Управление отзывами →</a></div>
 <div class="hero__kpis"><div class="kpi-card"><span class="kpi-card__num case-num--green" data-count="30">30 сек</span><span class="kpi-card__label">время ответа на отзыв</span></div><div class="kpi-card"><span class="kpi-card__num case-num--gold" data-count="0">0%</span><span class="kpi-card__label">пропущенных отзывов</span></div><div class="kpi-card"><span class="kpi-card__num case-num--green" data-count="4.9">4,9★</span><span class="kpi-card__label">рейтинг на картах</span></div></div>
 </div>
 <div class="hero__terminal-wrap">
@@ -174,42 +171,9 @@
 <span class="terminal__dot terminal__dot--green"></span>
 <span class="terminal__title">autopilot — agent_core v2.4.1</span>
 </div>
-<div class="terminal__body" id="terminal-body">
-<!-- JS fills this -->
+<div class="terminal__body" data-static-terminal="true" id="terminal-body"><div class="terminal__line terminal__line--prompt"><span>$ autopilot-case --inspect reviews-reputation-automation --env prod</span></div><div class="terminal__line terminal__line--ok"><span>  [12:15:02] ✔ Яндекс Карты: Поступил отзыв 5★ от 'Елена М.' (филиал Пресня): 'Прекрасный сервис, доктор Иванов настоящий профессионал!'</span></div><div class="terminal__line terminal__line--ok"><span>  [12:15:07] ✔ ИИ-Агент: Тональность: Позитив. Выделены сущности: Доктор Иванов, филиал Пресня. Сгенерирован ответ в Tone-of-Voice.</span></div><div class="terminal__line terminal__line--ok"><span>  [12:15:14] ✔ Автопилот: Ответ опубликован на Яндекс Картах за 12 секунд. Статус: Успешно (HTTP 200).</span></div><div class="terminal__line terminal__line--ok"><span>  [12:15:42] ✔ 2ГИС: Поступил отзыв 2★ (филиал Центр). Алерт отправлен управляющему в Telegram. Черновик урегулирования прикреплен.</span></div></div>
 </div>
-</div>
-<div class="hero__agent-cards">
-<div aria-label="Инспектировать агента Отчёты" class="agent-card" data-agent="reports" role="button" tabindex="0">
-<div class="agent-card__icon">🤖</div>
-<div class="agent-card__info">
-<span class="agent-card__name">Агент: Отчёты</span>
-<span class="agent-card__status agent-card__status--live">Активен</span>
-</div>
-<div class="agent-card__bar">
-<div class="agent-card__fill" style="width:78%"></div>
-</div>
-</div>
-<div aria-label="Инспектировать агента Склад" class="agent-card" data-agent="warehouse" role="button" tabindex="0">
-<div class="agent-card__icon">📦</div>
-<div class="agent-card__info">
-<span class="agent-card__name">Агент: Склад</span>
-<span class="agent-card__status agent-card__status--live">Активен</span>
-</div>
-<div class="agent-card__bar">
-<div class="agent-card__fill" style="width:62%"></div>
-</div>
-</div>
-<div aria-label="Инспектировать агента Счета" class="agent-card" data-agent="invoices" role="button" tabindex="0">
-<div class="agent-card__icon">💳</div>
-<div class="agent-card__info">
-<span class="agent-card__name">Агент: Счета</span>
-<span class="agent-card__status agent-card__status--idle">Ожидает</span>
-</div>
-<div class="agent-card__bar">
-<div class="agent-card__fill" style="width:23%"></div>
-</div>
-</div>
-</div>
+<div class="hero__agent-cards"><div aria-label="Инспектировать агента Агент: Монитор Карт" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ autopilot-serm --poll --sources yandex,2gis"}, {"type": "ok", "text": "  ✔ 18 филиалов под мониторингом 24/7, рейтинг 4.9★"}]' role="button" tabindex="0"><div class="agent-card__icon">⭐</div><div class="agent-card__info"><span class="agent-card__name">Агент: Монитор Карт</span><span class="agent-card__status agent-card__status--live">Активен</span></div><div class="agent-card__bar"><div class="agent-card__fill" style="width:91%"></div></div></div><div aria-label="Инспектировать агента Агент: Ответы Tone-of-Voice" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ autopilot-serm --reply --tov medical"}, {"type": "ok", "text": "  ✔ Персонализированный ответ опубликован за 30 секунд"}]' role="button" tabindex="0"><div class="agent-card__icon">✍️</div><div class="agent-card__info"><span class="agent-card__name">Агент: Ответы Tone-of-Voice</span><span class="agent-card__status agent-card__status--live">Активен</span></div><div class="agent-card__bar"><div class="agent-card__fill" style="width:85%"></div></div></div><div aria-label="Инспектировать агента Агент: Фильтр негатива" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ autopilot-serm --detect-anomaly"}, {"type": "ok", "text": "  ✔ Фейк-отзывы помечены на оспаривание, алерт руководителю"}]' role="button" tabindex="0"><div class="agent-card__icon">🚨</div><div class="agent-card__info"><span class="agent-card__name">Агент: Фильтр негатива</span><span class="agent-card__status agent-card__status--live">Активен</span></div><div class="agent-card__bar"><div class="agent-card__fill" style="width:70%"></div></div></div></div>
 </div>
 </div>
 </section>
@@ -299,7 +263,7 @@
 <div class="section-header">
 <p class="section-tag" data-reveal="">Решения и интеграции</p>
 <h2 class="section-title" data-reveal="">6 модулей управления локальной репутацией</h2>
-</div>
+<p class="case-service-note">Основное решение: <a href="/services/reviews-reputation/">Управление отзывами</a>, <a href="/services/marketplace-automation/">Автоматизация маркетплейсов</a>, <a href="/services/customer-support/">ИИ-поддержка клиентов</a>.</p></div>
 <div aria-label="Сценарии автоматизации" aria-roledescription="carousel" class="services__bento services__bento--static" data-reveal="" role="region" tabindex="0"><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">⭐</div><h3 class="scard__title">Шлюз интеграции с Яндекс Бизнес и 2ГИС</h3><p class="scard__desc">Мгновенный сбор новых отзывов и публикация официальных ответов через верифицированный API.</p><div class="scard__tags"><span>Яндекс Карты</span><span>2ГИС</span><span>API</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🧠</div><h3 class="scard__title">Нейросетевой генератор персональных ответов</h3><p class="scard__desc">Генерация теплых уважительных текстов с разбором деталей отзыва без роботизированных штампов.</p><div class="scard__tags"><span>LLM</span><span>Персонализация</span><span>Tone of Voice</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🔍</div><h3 class="scard__title">Модуль сопоставления с базой чеков 1С</h3><p class="scard__desc">Проверка факта покупки в магазине по дате, времени и номенклатуре для отсева заказного хейта.</p><div class="scard__tags"><span>1С:Розница</span><span>Чеки</span><span>Верификация</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🛡️</div><h3 class="scard__title">Детектор черного пиара и подача жалоб</h3><p class="scard__desc">Автоматическая подготовка аргументированных жалоб модераторам площадок на спам и фейковые отзывы.</p><div class="scard__tags"><span>Модерация</span><span>Жалобы</span><span>Защита</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🎁</div><h3 class="scard__title">Интеграция с системой лояльности</h3><p class="scard__desc">Автоматическая генерация промокодов и начисление бонусов недовольным клиентам для сохранения LTV.</p><div class="scard__tags"><span>Лояльность</span><span>Промокоды</span><span>LTV</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📈</div><h3 class="scard__title">Дашборд репутации филиальной сети</h3><p class="scard__desc">Сводная аналитика динамики рейтинга по городам, частые причины жалоб и NPS торговых точек.</p><div class="scard__tags"><span>Аналитика</span><span>Рейтинг</span><span>Дашборд</span></div></div></div>
 <div class="slider-controls">
 <button aria-label="Предыдущие решения" class="slider-arrow slider-arrow--prev" id="services-prev" title="Предыдущие решения" type="button">
@@ -386,63 +350,7 @@
 <h2 class="section-title">Часто задаваемые вопросы</h2>
 <p class="section-desc" style="color:var(--text-2);margin-top:12px;">Всё, что важно знать о безопасности, сроках внедрения и интеграции ИИ-агентов</p>
 </div>
-<div class="faq__grid" data-reveal="">
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Сколько времени занимает запуск первого пилотного проекта?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p>Развёртывание первого работающего ИИ-агента в вашем контуре занимает ровно <strong>14 календарных дней</strong>. Мы подключаемся к 1–3 ключевым процессам, проводим калибровку точности до 99%+ и передаём результат с гарантией окупаемости.</p>
-</div>
-</div>
-</div>
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Нужно ли дорабатывать или менять существующую 1С, SAP или CRM?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p><strong>Нет, менять ничего не требуется.</strong> ИИ-агенты подключаются через стандартные протоколы (1C OData REST API, HTTP-сервисы, Webhooks, Диадок SDK). Мы не вмешиваемся в типовую конфигурацию и не нарушаем штатные процессы вашей системы.</p>
-</div>
-</div>
-</div>
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Как обеспечивается безопасность коммерческих данных и соблюдение 152-ФЗ?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p>Все данные обрабатываются на защищённых серверах в Российской Федерации в строгом соответствии с <strong>152-ФЗ РФ</strong>. Перед началом работ подписывается соглашение о неразглашении (NDA). Для предприятий с повышенными требованиями безопасности возможно развёртывание <strong>локальных On-Premise моделей</strong> внутри закрытого периметра без выхода во внешние сети.</p>
-</div>
-</div>
-</div>
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Какова средняя окупаемость (ROI) и экономический эффект?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p>В среднем внедрение окупается за <strong>1.5–3 месяца</strong> после ввода в эксплуатацию. Средний доказанный ROI составляет <strong>340% годовых</strong> за счёт сокращения рутинного ручного труда на 70–80% и ликвидации человеческих ошибок в первичных документах.</p>
-</div>
-</div>
-</div>
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Что входит в бесплатный 30-минутный экспресс-аудит?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p>В рамках 30-минутного экспресс-аудита наш архитектор анализирует 3 самых трудоёмких процесса вашей компании, рассчитывает индивидуальную матрицу окупаемости (ROI) и готовит пошаговую архитектурную схему внедрения пилотного агента.</p>
-</div>
-</div>
-</div>
-</div>
+<div class="faq__grid" data-reveal=""><div class="faq-item"><button aria-controls="faq-ans-0" aria-expanded="false" class="faq-item__header" type="button"><span class="faq-item__question">Публикуются ли ответы автоматически без контроля человека?</span><span class="faq-item__icon">+</span></button><div class="faq-item__answer" id="faq-ans-0" role="region"><div class="faq-item__inner"><p>Вы можете выбрать режим: 100% автопубликация либо режим полуавтомата, при котором ответ отправляется в Telegram РОПа и публикуется по нажатию одной кнопки «Одобрить».</p></div></div></div><div class="faq-item"><button aria-controls="faq-ans-1" aria-expanded="false" class="faq-item__header" type="button"><span class="faq-item__question">Как система реагирует на нецензурную брань и клевету?</span><span class="faq-item__icon">+</span></button><div class="faq-item__answer" id="faq-ans-1" role="region"><div class="faq-item__inner"><p>Агент не публикует ответы на спам или оскорбления, а формирует готовую жалобу в службу поддержки Яндекса со ссылкой на правила площадки.</p></div></div></div><div class="faq-item"><button aria-controls="faq-ans-2" aria-expanded="false" class="faq-item__header" type="button"><span class="faq-item__question">Какие гео-сервисы и отзовики поддерживаются?</span><span class="faq-item__icon">+</span></button><div class="faq-item__answer" id="faq-ans-2" role="region"><div class="faq-item__inner"><p>Поддерживаются Яндекс Карты (Яндекс Бизнес), 2ГИС, Zoon, Flamp, Отзовик и профильные площадки.</p></div></div></div></div>
 </div>
 </section>
 <!-- ═══════════════════ LIVE DASHBOARD ═══════════════════ -->
@@ -501,9 +409,7 @@
 </div>
 <div class="board-panels">
 <div aria-labelledby="tab-log" class="board-panel board-panel--active" id="panel-log" role="tabpanel">
-<div class="log" id="event-log">
-<!-- JS fills this -->
-</div>
+<div class="log" id="case-event-log"><div class="log-item log-item--default"><span class="log-item__time">12:15:02</span><span class="log-item__text">Яндекс Карты: Поступил отзыв 5★ от 'Елена М.' (филиал Пресня): 'Прекрасный сервис, доктор Иванов настоящий профессионал!'</span></div><div class="log-item log-item--default"><span class="log-item__time">12:15:07</span><span class="log-item__text">ИИ-Агент: Тональность: Позитив. Выделены сущности: Доктор Иванов, филиал Пресня. Сгенерирован ответ в Tone-of-Voice.</span></div><div class="log-item log-item--default"><span class="log-item__time">12:15:14</span><span class="log-item__text">Автопилот: Ответ опубликован на Яндекс Картах за 12 секунд. Статус: Успешно (HTTP 200).</span></div><div class="log-item log-item--default"><span class="log-item__time">12:15:42</span><span class="log-item__text">2ГИС: Поступил отзыв 2★ (филиал Центр). Алерт отправлен управляющему в Telegram. Черновик урегулирования прикреплен.</span></div></div>
 </div>
 <div aria-labelledby="tab-agents" class="board-panel" hidden="" id="panel-agents" role="tabpanel">
 <div class="agent-list" id="agent-list">

@@ -94,7 +94,7 @@
   <link rel="preload" href="/assets/fonts/JetBrainsMono-400-12.woff2" as="font" type="font/woff2" crossorigin="" />
 
   <!-- Extenal Stylesheet -->
-  <link rel="stylesheet" href="/assets/css/styles.min.css?v=825d48c9" />
+  <link rel="stylesheet" href="/assets/css/styles.min.css?v=5f6af294" />
 
   <!-- Scripts -->
   <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.4"></script>
@@ -230,7 +230,7 @@
             <span class="terminal__dot terminal__dot--green"></span>
             <span class="terminal__title">autopilot — agent_core v2.4.1</span>
           </div>
-          <div class="terminal__body" id="terminal-body">
+          <div class="terminal__body" id="terminal-body" data-static-terminal="true">
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[11:20:04]</span> <span style="color:var(--accent-1);font-weight:600;">[PBX Webhook]</span> Mango PBX: Incoming audio stream call_8921.mp3 received (4m 12s)</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[11:20:18]</span> <span style="color:var(--accent-2);font-weight:600;">[Whisper STT]</span> On-Premise STT complete in 14.2s (confidence 98.6%, 152-FZ airgap)</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[11:20:25]</span> <span style="color:var(--green);font-weight:600;">[Checklist QA]</span> Scoring finished: 16/18 criteria passed (Score: 89/100, Objections handled)</div>
@@ -440,9 +440,9 @@
         <h2 class="section-title" data-reveal="">Доказанные кейсы внедрения</h2>
       </div>
       <div class="cases__grid cases__grid--static" data-reveal="">
-        <div class="case-card case-card--speech">
+        <article class="case-card case-card--speech">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--speech"></span>💼 B2B-дистрибуция и опт · 35 менеджеров</div>
-          <h3 class="case-card__title">ИИ-контроль 100% звонков и интеграция с amoCRM</h3>
+          <h3 class="case-card__title"><a href="/cases/sales-speech-analytics/" class="case-card__title-link">ИИ-контроль 100% звонков и интеграция с amoCRM <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Подключили речевую аналитику к облачной АТС. Сократили расходы на ОКК на 85% и повысили конверсию на 22%.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -459,10 +459,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>amoCRM</span><span>Манго АТС</span><span>Whisper</span><span>152-ФЗ</span></div>
-        </div>
-        <div class="case-card case-card--service">
+        </article>
+        <article class="case-card case-card--service">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--service"></span>📞 Сервисный центр · 40 000 клиентов/мес</div>
-          <h3 class="case-card__title">Автоматическая квалификация обращений</h3>
+          <h3 class="case-card__title"><a href="/cases/service-center-ai-operator/" class="case-card__title-link">Автоматическая квалификация обращений <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Внедрили транскрибацию входящих звонков и маршрутизацию на профильных инженеров.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -479,10 +479,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>1С:УНФ</span><span>Телефония</span><span>Маршрутизация</span><span>SLA</span></div>
-        </div>
-        <div class="case-card case-card--retail">
+        </article>
+        <article class="case-card case-card--retail">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--retail"></span>🏪 Ритейл и доставка · 120 операторов</div>
-          <h3 class="case-card__title">Контроль соблюдения стандартов сервиса</h3>
+          <h3 class="case-card__title"><a href="/cases/reviews-reputation-automation/" class="case-card__title-link">Контроль соблюдения стандартов сервиса <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">ИИ-анализ диалогов с клиентами интернет-магазина, выявление конфликтных ситуаций за 15 секунд.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -499,7 +499,7 @@
             </div>
           </div>
           <div class="case-card__tags"><span>Битрикс24</span><span>UIS</span><span>NPS</span><span>Качество</span></div>
-        </div>
+        </article>
       </div>
       <div class="carousel-dots" id="carousel-dots"></div>
     </div>

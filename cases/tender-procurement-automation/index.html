@@ -81,7 +81,7 @@
 <link as="font" crossorigin="" href="/assets/fonts/Inter-400-1.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/assets/fonts/Outfit-600-14.woff2" rel="preload" type="font/woff2"/>
 <!-- Inlined Styles (Eliminates Render-Blocking CSS & Critical Request Chains) -->
-<link href="/assets/css/styles.min.css?v=825d48c9" rel="stylesheet"/>
+<link href="/assets/css/styles.min.css?v=5f6af294" rel="stylesheet"/>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
 <script type="text/javascript">
     (function() {
@@ -157,13 +157,10 @@
 <section class="hero" id="home">
 <div class="hero__particles" id="particles"></div>
 <div class="container hero__inner">
-<div class="hero__content">
+<div class="hero__content"><nav aria-label="Хлебные крошки" class="breadcrumbs"><a href="/">Главная</a><span class="breadcrumbs__sep">/</span><a href="/cases/">Кейсы</a><span class="breadcrumbs__sep">/</span><span>Автоматизация тендерного отдела</span></nav>
 <h1 class="hero__title"><span class="hero__title-static">Кейс тендерного отдела: анализ ТЗ </span><span class="hero__title-accent-box"><span class="hero__title-accent" data-phrases='["за 15 мин в 1С:ERP 2.5", "по 44-ФЗ и 223-ФЗ", "скоринг ТЗ за 15 мин"]' id="typed-text">за 15 мин в 1С:ERP 2.5</span><span aria-hidden="true" class="hero__cursor"></span></span></h1>
 <p class="hero__sub">ИИ-скоринг 150-страничных ТЗ, проверка обеспечения и допусков СРО, сопоставление номенклатуры в 1С:ERP и автосборка Формы 2 за 15 минут.</p>
-<div class="hero__actions">
-<a class="btn btn--ghost" href="/services/" id="cta-main">Смотреть услуги →</a>
-<a class="btn btn--ghost" href="/cases/">Смотреть кейсы →</a>
-</div>
+<div class="hero__actions"><a class="btn btn--primary" href="#contact" id="cta-main">Хочу такой же результат →</a><a class="btn btn--ghost" href="/services/tender-automation/">Услуга: Автоматизация тендеров →</a></div>
 <div class="hero__kpis"><div class="kpi-card"><span class="kpi-card__num" data-count="-85">−85%</span><span class="kpi-card__label">времени на анализ ТЗ</span></div><div class="kpi-card"><span class="kpi-card__num case-num--green" data-count="+34">+34%</span><span class="kpi-card__label">поданных заявок/мес</span></div><div class="kpi-card"><span class="kpi-card__num case-num--gold" data-count="0">0 ₽</span><span class="kpi-card__label">штрафов по Форме 2</span></div></div>
 </div>
 <div class="hero__terminal-wrap">
@@ -174,42 +171,9 @@
 <span class="terminal__dot terminal__dot--green"></span>
 <span class="terminal__title">autopilot — agent_core v2.4.1</span>
 </div>
-<div class="terminal__body" id="terminal-body">
-<!-- JS fills this -->
+<div class="terminal__body" data-static-terminal="true" id="terminal-body"><div class="terminal__line terminal__line--prompt"><span>$ autopilot-case --inspect tender-procurement-automation --env prod</span></div><div class="terminal__line terminal__line--ok"><span>  [11:42:01] ✔ ЕИС Закупки: Загружен архив документации #0173200001424000184 (142 стр. ТЗ, 44-ФЗ)</span></div><div class="terminal__line terminal__line--ok"><span>  [11:42:18] ✔ ИИ-Скоринг: Проверка ограничений завершена. СРО: Пройдено. Обеспечение: 5%. Стоп-факторы: 0.</span></div><div class="terminal__line terminal__line--ok"><span>  [11:42:35] ✔ 1С:ERP: Сопоставлено 84 из 84 позиций номенклатуры. Расчетная рентабельность: 21.4%.</span></div><div class="terminal__line terminal__line--ok"><span>  [11:42:49] ✔ Форма 2: Документ сформирован без замечаний. Черновик заявки передан ведущему инженеру.</span></div></div>
 </div>
-</div>
-<div class="hero__agent-cards">
-<div aria-label="Инспектировать агента Отчёты" class="agent-card" data-agent="reports" role="button" tabindex="0">
-<div class="agent-card__icon">🤖</div>
-<div class="agent-card__info">
-<span class="agent-card__name">Агент: Отчёты</span>
-<span class="agent-card__status agent-card__status--live">Активен</span>
-</div>
-<div class="agent-card__bar">
-<div class="agent-card__fill" style="width:78%"></div>
-</div>
-</div>
-<div aria-label="Инспектировать агента Склад" class="agent-card" data-agent="warehouse" role="button" tabindex="0">
-<div class="agent-card__icon">📦</div>
-<div class="agent-card__info">
-<span class="agent-card__name">Агент: Склад</span>
-<span class="agent-card__status agent-card__status--live">Активен</span>
-</div>
-<div class="agent-card__bar">
-<div class="agent-card__fill" style="width:62%"></div>
-</div>
-</div>
-<div aria-label="Инспектировать агента Счета" class="agent-card" data-agent="invoices" role="button" tabindex="0">
-<div class="agent-card__icon">💳</div>
-<div class="agent-card__info">
-<span class="agent-card__name">Агент: Счета</span>
-<span class="agent-card__status agent-card__status--idle">Ожидает</span>
-</div>
-<div class="agent-card__bar">
-<div class="agent-card__fill" style="width:23%"></div>
-</div>
-</div>
-</div>
+<div class="hero__agent-cards"><div aria-label="Инспектировать агента Агент: Скоринг ТЗ" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ autopilot-tender --audit-tz --fz 44,223"}, {"type": "ok", "text": "  ✔ Разобрано ТЗ на 150 стр., риски по 44-ФЗ/223-ФЗ отмечены"}]' role="button" tabindex="0"><div class="agent-card__icon">🏛️</div><div class="agent-card__info"><span class="agent-card__name">Агент: Скоринг ТЗ</span><span class="agent-card__status agent-card__status--live">Активен</span></div><div class="agent-card__bar"><div class="agent-card__fill" style="width:89%"></div></div></div><div aria-label="Инспектировать агента Агент: 1С Эквиваленты" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ autopilot-tender --match-1c-erp"}, {"type": "ok", "text": "  ✔ Подобрана номенклатура 1С:ERP и плановая себестоимость"}]' role="button" tabindex="0"><div class="agent-card__icon">📐</div><div class="agent-card__info"><span class="agent-card__name">Агент: 1С Эквиваленты</span><span class="agent-card__status agent-card__status--live">Активен</span></div><div class="agent-card__bar"><div class="agent-card__fill" style="width:80%"></div></div></div><div aria-label="Инспектировать агента Агент: Форма 2" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ autopilot-tender --build-form2"}, {"type": "ok", "text": "  ✔ Собрана заявка Форма 2 за 15 мин без нарушений по ГОСТ"}]' role="button" tabindex="0"><div class="agent-card__icon">📝</div><div class="agent-card__info"><span class="agent-card__name">Агент: Форма 2</span><span class="agent-card__status agent-card__status--live">Активен</span></div><div class="agent-card__bar"><div class="agent-card__fill" style="width:75%"></div></div></div></div>
 </div>
 </div>
 </section>
@@ -299,7 +263,7 @@
 <div class="section-header">
 <p class="section-tag" data-reveal="">Решения и интеграции</p>
 <h2 class="section-title" data-reveal="">6 модулей архитектуры автоматизации тендерного цикла</h2>
-</div>
+<p class="case-service-note">Основное решение: <a href="/services/tender-automation/">Автоматизация тендеров</a>, <a href="/services/specifications-kp/">Спецификации и КП</a>, <a href="/services/manufacturing-automation/">Производство и 1С:ERP</a>.</p></div>
 <div aria-label="Сценарии автоматизации" aria-roledescription="carousel" class="services__bento services__bento--static" data-reveal="" role="region" tabindex="0"><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🔄</div><h3 class="scard__title">Парсинг площадок и ЕИС</h3><p class="scard__desc">Автоматическая выгрузка документации по фильтрам ОКПД2 с ЕИС, Сбербанк-АСТ, РТС-Тендер и Росэлторг.</p><div class="scard__tags"><span>ЕИС API</span><span>44-ФЗ</span><span>223-ФЗ</span><span>Скрапинг</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">⚡</div><h3 class="scard__title">ИИ-скоринг документации</h3><p class="scard__desc">Разбор PDF/DOCX ТЗ, извлечение ограничивающих условий, проверка соответствия лицензиям и допускам.</p><div class="scard__tags"><span>NLP</span><span>Скоринг ТЗ</span><span>Анализ рисков</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📦</div><h3 class="scard__title">Семантический матчинг в 1С:ERP</h3><p class="scard__desc">Поиск точных соответствий и совместимых аналогов по характеристикам номенклатуры в учетной системе.</p><div class="scard__tags"><span>1С:ERP 2.5</span><span>Матчинг номенклатуры</span><span>OData</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📊</div><h3 class="scard__title">Калькулятор плановой себестоимости</h3><p class="scard__desc">Расчет минимальной допустимой цены с учетом логистики, банковской гарантии и обеспечения заявки.</p><div class="scard__tags"><span>Калькуляция</span><span>Маржинальность</span><span>Банковская гарантия</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📝</div><h3 class="scard__title">Генератор Формы 2</h3><p class="scard__desc">Автоматическое заполнение таблицы конкретных показателей в строгом соответствии с инструкцией заказчика.</p><div class="scard__tags"><span>Форма 2</span><span>Первая часть заявки</span><span>ГОСТ</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🔒</div><h3 class="scard__title">Локальный On-Premise контур 152-ФЗ</h3><p class="scard__desc">Обработка закупочных стратегий и расчетных цен строго внутри инфраструктуры заказчика без облаков.</p><div class="scard__tags"><span>On-Premise</span><span>152-ФЗ</span><span>Коммерческая тайна</span></div></div></div>
 <div class="slider-controls">
 <button aria-label="Предыдущие решения" class="slider-arrow slider-arrow--prev" id="services-prev" title="Предыдущие решения" type="button">
@@ -386,63 +350,7 @@
 <h2 class="section-title">Часто задаваемые вопросы</h2>
 <p class="section-desc" style="color:var(--text-2);margin-top:12px;">Всё, что важно знать о безопасности, сроках внедрения и интеграции ИИ-агентов</p>
 </div>
-<div class="faq__grid" data-reveal="">
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Сколько времени занимает запуск первого пилотного проекта?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p>Развёртывание первого работающего ИИ-агента в вашем контуре занимает ровно <strong>14 календарных дней</strong>. Мы подключаемся к 1–3 ключевым процессам, проводим калибровку точности до 99%+ и передаём результат с гарантией окупаемости.</p>
-</div>
-</div>
-</div>
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Нужно ли дорабатывать или менять существующую 1С, SAP или CRM?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p><strong>Нет, менять ничего не требуется.</strong> ИИ-агенты подключаются через стандартные протоколы (1C OData REST API, HTTP-сервисы, Webhooks, Диадок SDK). Мы не вмешиваемся в типовую конфигурацию и не нарушаем штатные процессы вашей системы.</p>
-</div>
-</div>
-</div>
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Как обеспечивается безопасность коммерческих данных и соблюдение 152-ФЗ?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p>Все данные обрабатываются на защищённых серверах в Российской Федерации в строгом соответствии с <strong>152-ФЗ РФ</strong>. Перед началом работ подписывается соглашение о неразглашении (NDA). Для предприятий с повышенными требованиями безопасности возможно развёртывание <strong>локальных On-Premise моделей</strong> внутри закрытого периметра без выхода во внешние сети.</p>
-</div>
-</div>
-</div>
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Какова средняя окупаемость (ROI) и экономический эффект?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p>В среднем внедрение окупается за <strong>1.5–3 месяца</strong> после ввода в эксплуатацию. Средний доказанный ROI составляет <strong>340% годовых</strong> за счёт сокращения рутинного ручного труда на 70–80% и ликвидации человеческих ошибок в первичных документах.</p>
-</div>
-</div>
-</div>
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Что входит в бесплатный 30-минутный экспресс-аудит?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p>В рамках 30-минутного экспресс-аудита наш архитектор анализирует 3 самых трудоёмких процесса вашей компании, рассчитывает индивидуальную матрицу окупаемости (ROI) и готовит пошаговую архитектурную схему внедрения пилотного агента.</p>
-</div>
-</div>
-</div>
-</div>
+<div class="faq__grid" data-reveal=""><div class="faq-item"><button aria-controls="faq-ans-0" aria-expanded="false" class="faq-item__header" type="button"><span class="faq-item__question">Как ИИ понимает сложные формулировки «не более/не менее» в ТЗ по 44-ФЗ?</span><span class="faq-item__icon">+</span></button><div class="faq-item__answer" id="faq-ans-0" role="region"><div class="faq-item__inner"><p>Модель обучена на юридической и технической лексике госзакупок, разбирает логические связки условий и сопоставляет их с паспортами изделий из 1С без искажений.</p></div></div></div><div class="faq-item"><button aria-controls="faq-ans-1" aria-expanded="false" class="faq-item__header" type="button"><span class="faq-item__question">Поддерживается ли работа с закрытыми торгами и коммерческими площадками?</span><span class="faq-item__icon">+</span></button><div class="faq-item__answer" id="faq-ans-1" role="region"><div class="faq-item__inner"><p>Да. Помимо интеграции с ЕИС, система поддерживает загрузку архивов документов вручную или через коннекторы к B2B-Center, Фабрикант и ГПБ.</p></div></div></div><div class="faq-item"><button aria-controls="faq-ans-2" aria-expanded="false" class="faq-item__header" type="button"><span class="faq-item__question">Требуется ли внесение изменений в типовую конфигурацию 1С:ERP?</span><span class="faq-item__icon">+</span></button><div class="faq-item__answer" id="faq-ans-2" role="region"><div class="faq-item__inner"><p>Нет. Интеграция выполняется через внешнее расширение (CFE) и стандартный OData/HTTP интерфейс, не снимая базу с поддержки вендора.</p></div></div></div><div class="faq-item"><button aria-controls="faq-ans-3" aria-expanded="false" class="faq-item__header" type="button"><span class="faq-item__question">Каковы сроки внедрения пилотного проекта?</span><span class="faq-item__icon">+</span></button><div class="faq-item__answer" id="faq-ans-3" role="region"><div class="faq-item__inner"><p>14 рабочих дней. За это время настраивается коннектор к вашей 1С, правила сопоставления номенклатуры и калибруется скоринг на 10 реальных закупках.</p></div></div></div></div>
 </div>
 </section>
 <!-- ═══════════════════ LIVE DASHBOARD ═══════════════════ -->
@@ -501,9 +409,7 @@
 </div>
 <div class="board-panels">
 <div aria-labelledby="tab-log" class="board-panel board-panel--active" id="panel-log" role="tabpanel">
-<div class="log" id="event-log">
-<!-- JS fills this -->
-</div>
+<div class="log" id="case-event-log"><div class="log-item log-item--default"><span class="log-item__time">11:42:01</span><span class="log-item__text">ЕИС Закупки: Загружен архив документации #0173200001424000184 (142 стр. ТЗ, 44-ФЗ)</span></div><div class="log-item log-item--default"><span class="log-item__time">11:42:18</span><span class="log-item__text">ИИ-Скоринг: Проверка ограничений завершена. СРО: Пройдено. Обеспечение: 5%. Стоп-факторы: 0.</span></div><div class="log-item log-item--default"><span class="log-item__time">11:42:35</span><span class="log-item__text">1С:ERP: Сопоставлено 84 из 84 позиций номенклатуры. Расчетная рентабельность: 21.4%.</span></div><div class="log-item log-item--default"><span class="log-item__time">11:42:49</span><span class="log-item__text">Форма 2: Документ сформирован без замечаний. Черновик заявки передан ведущему инженеру.</span></div></div>
 </div>
 <div aria-labelledby="tab-agents" class="board-panel" hidden="" id="panel-agents" role="tabpanel">
 <div class="agent-list" id="agent-list">

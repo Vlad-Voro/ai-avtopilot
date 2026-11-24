@@ -94,7 +94,7 @@
   <link rel="preload" href="/assets/fonts/JetBrainsMono-400-12.woff2" as="font" type="font/woff2" crossorigin="" />
 
   <!-- Extenal Stylesheet -->
-  <link rel="stylesheet" href="/assets/css/styles.min.css?v=825d48c9" />
+  <link rel="stylesheet" href="/assets/css/styles.min.css?v=5f6af294" />
 
   <!-- Scripts -->
   <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.4"></script>
@@ -230,7 +230,7 @@
             <span class="terminal__dot terminal__dot--green"></span>
             <span class="terminal__title">autopilot — agent_core v2.4.1</span>
           </div>
-          <div class="terminal__body" id="terminal-body">
+          <div class="terminal__body" id="terminal-body" data-static-terminal="true">
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:22:01]</span> <span style="color:var(--accent-1);font-weight:600;">[Orchestrator]</span> Task received: Inbound B2B lead via Telegram bot, routing to SDR Agent</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:22:03]</span> <span style="color:var(--accent-2);font-weight:600;">[AI SDR]</span> EGRUL lookup: INN 7701234567 verified, revenue &gt; 120M, qualified as Key Account</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:22:04]</span> <span style="color:var(--green);font-weight:600;">[1C Gateway]</span> CRM lead created: Partner #8491, Assigned manager: Ivanov A., Stage: Scheduled</div>
@@ -440,9 +440,9 @@
         <h2 class="section-title" data-reveal="">Доказанные кейсы внедрения</h2>
       </div>
       <div class="cases__grid cases__grid--static" data-reveal="">
-        <div class="case-card case-card--support">
+        <article class="case-card case-card--support">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--support"></span>🔧 Сервисный центр оборудования · 12 филиалов</div>
-          <h3 class="case-card__title">Автономный ИИ-оператор первой линии и маршрутизация обращений</h3>
+          <h3 class="case-card__title"><a href="/cases/service-center-ai-operator/" class="case-card__title-link">Автономный ИИ-оператор первой линии и маршрутизация обращений <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Внедрили мультиагентную систему приема заявок: квалификация поломки по фото, проверка гарантии по серийному номеру в 1С и запись мастера.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -459,10 +459,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>1С:УНФ</span><span>RAG-база</span><span>Telegram-бот</span><span>Мультиагенты</span></div>
-        </div>
-        <div class="case-card case-card--sales">
+        </article>
+        <article class="case-card case-card--sales">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--sales"></span>📞 B2B-дистрибьютор промышленной химии · 45 менеджеров</div>
-          <h3 class="case-card__title">Речевая аналитика и ИИ-супервизор звонков в реальном времени</h3>
+          <h3 class="case-card__title"><a href="/cases/sales-speech-analytics/" class="case-card__title-link">Речевая аналитика и ИИ-супервизор звонков в реальном времени <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Агент-контролер транскрибирует 100% звонков, проверяет соблюдение скриптов, выявляет возражения по цене и заполняет карточки сделок в CRM.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -479,10 +479,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>Whisper On-Prem</span><span>Битрикс24</span><span>Скоринг звонков</span><span>152-ФЗ</span></div>
-        </div>
-        <div class="case-card case-card--claims">
+        </article>
+        <article class="case-card case-card--claims">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--claims"></span>📦 Федеральный логистический оператор · 18 РЦ</div>
-          <h3 class="case-card__title">Автоматизация обработки претензий и рекламаций клиентов</h3>
+          <h3 class="case-card__title"><a href="/cases/claims-dispute-automation/" class="case-card__title-link">Автоматизация обработки претензий и рекламаций клиентов <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">ИИ-агент сверяет акты расхождений ТОРГ-2 с записями видеонаблюдения сборки заказа и оформляет корректировочные документы в 1С.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -499,7 +499,7 @@
             </div>
           </div>
           <div class="case-card__tags"><span>1С:ERP</span><span>ТОРГ-2</span><span>Рекламации</span><span>OData API</span></div>
-        </div>
+        </article>
       </div>
       <div class="carousel-dots" id="carousel-dots"></div>
     </div>

@@ -94,7 +94,7 @@
   <link rel="preload" href="/assets/fonts/JetBrainsMono-400-12.woff2" as="font" type="font/woff2" crossorigin="" />
 
   <!-- Extenal Stylesheet -->
-  <link rel="stylesheet" href="/assets/css/styles.min.css?v=825d48c9" />
+  <link rel="stylesheet" href="/assets/css/styles.min.css?v=5f6af294" />
 
   <!-- Scripts -->
   <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.4"></script>
@@ -230,7 +230,7 @@
             <span class="terminal__dot terminal__dot--green"></span>
             <span class="terminal__title">autopilot — agent_core v2.4.1</span>
           </div>
-          <div class="terminal__body" id="terminal-body">
+          <div class="terminal__body" id="terminal-body" data-static-terminal="true">
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[08:30:00]</span> <span style="color:var(--accent-1);font-weight:600;">[CRON]</span> Сканирование регистра РасчетыСКлиентамиПоСрокам: 342 активных договора</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[08:30:15]</span> <span style="color:var(--accent-2);font-weight:600;">[DETECT]</span> Выявлено 18 дедлайнов через 3 дня, 7 просрочек до 5 дней, 2 критические (15+ дней)</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[08:31:02]</span> <span style="color:var(--accent-1);font-weight:600;">[DISPATCH]</span> Отправлено 18 превентивных уведомлений с PDF-счетами контрагентам</div>
@@ -434,9 +434,9 @@
         <h2 class="section-title" data-reveal="">Доказанные кейсы внедрения</h2>
       </div>
       <div class="cases__grid cases__grid--static" data-reveal="">
-        <div class="case-card case-card--distribution">
+        <article class="case-card case-card--distribution">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--distribution"></span>🏢 Оптовый поставщик металлопроката · 450 контрагентов</div>
-          <h3 class="case-card__title">Сокращение просроченной задолженности на 42% за 2 месяца</h3>
+          <h3 class="case-card__title"><a href="/cases/claims-dispute-automation/" class="case-card__title-link">Сокращение просроченной задолженности на 42% за 2 месяца <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Подключили автономного робота к 1С:КА. Робот ведет ступенчатое информирование и автоматически формирует акты сверки.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -453,10 +453,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>1С:КА 2</span><span>450 контрагентов</span><span>Soft Collection</span><span>Telegram</span></div>
-        </div>
-        <div class="case-card case-card--fmcg">
+        </article>
+        <article class="case-card case-card--fmcg">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--fmcg"></span>📦 FMCG-дистрибуция · 1 200 торговых точек</div>
-          <h3 class="case-card__title">Исключение отгрузок неплательщикам и автогенерация претензий</h3>
+          <h3 class="case-card__title"><a href="/cases/fintech-transaction-reconciliation/" class="case-card__title-link">Исключение отгрузок неплательщикам и автогенерация претензий <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Настроили контроль отгрузок в 1С:УТ 11. Претензии по клиентам с долгом свыше 14 дней уходят юристам автоматически.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -473,10 +473,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>1С:УТ 11.5</span><span>1 200 точек</span><span>Контроль отгрузок</span><span>Расчет пеней</span></div>
-        </div>
-        <div class="case-card case-card--distribution">
+        </article>
+        <article class="case-card case-card--distribution">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--distribution"></span>🚛 Транспортно-логистический оператор · 800 заказчиков</div>
-          <h3 class="case-card__title">Автоматический биллинг и контроль постоплат по путевым листам</h3>
+          <h3 class="case-card__title"><a href="/cases/supply-chain-logistics/" class="case-card__title-link">Автоматический биллинг и контроль постоплат по путевым листам <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Интегрировали робота soft-collection с 1С:Управление автотранспортом (УАТ). Робот отправляет реестры выполненных рейсов со счетами и контролирует дедлайны по постоплате.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -493,7 +493,7 @@
             </div>
           </div>
           <div class="case-card__tags"><span>1С:УАТ</span><span>Логистика</span><span>Контроль постоплаты</span><span>DSO</span></div>
-        </div>
+        </article>
       </div>
       <div class="carousel-dots" id="carousel-dots"></div>
     </div>

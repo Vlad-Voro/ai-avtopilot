@@ -94,7 +94,7 @@
   <link rel="preload" href="/assets/fonts/JetBrainsMono-400-12.woff2" as="font" type="font/woff2" crossorigin="" />
 
   <!-- Extenal Stylesheet -->
-  <link rel="stylesheet" href="/assets/css/styles.min.css?v=825d48c9" />
+  <link rel="stylesheet" href="/assets/css/styles.min.css?v=5f6af294" />
 
   <!-- Scripts -->
   <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.4"></script>
@@ -230,7 +230,7 @@
             <span class="terminal__dot terminal__dot--green"></span>
             <span class="terminal__title">autopilot — agent_core v2.4.1</span>
           </div>
-          <div class="terminal__body" id="terminal-body">
+          <div class="terminal__body" id="terminal-body" data-static-terminal="true">
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[11:42:01]</span> <span style="color:var(--accent-1);font-weight:600;">[EstimateScanner]</span> GrandSmeta XML parsed: 840 positions processed in 1.4s</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[11:42:04]</span> <span style="color:var(--accent-2);font-weight:600;">[NormativeAudit]</span> FER-2020 validation: 4 inflated coefficient anomalies flagged</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[11:42:08]</span> <span style="color:var(--green);font-weight:600;">[KS2Verifier]</span> Act KS-2 #48 matched with KS-6a: accumulated volume 94.2% within limit</div>
@@ -440,9 +440,9 @@
         <h2 class="section-title" data-reveal="">Доказанные кейсы внедрения</h2>
       </div>
       <div class="cases__grid cases__grid--static" data-reveal="">
-        <div class="case-card case-card--enterprise">
+        <article class="case-card case-card--enterprise">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--enterprise"></span>🏗️ Федеральный девелопер ЖК · 14 объектов</div>
-          <h3 class="case-card__title">Сокращение сметной стоимости строительства ЖК на 8.4%</h3>
+          <h3 class="case-card__title"><a href="/cases/tender-procurement-automation/" class="case-card__title-link">Сокращение сметной стоимости строительства ЖК на 8.4% <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Внедрили AI-аудит смет генподрядчика в 1С:ERP УСО. Проверили сметную документацию на 1.8 млрд руб., пресекли задвоение монолитных объемов и завышенные коэффициенты.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -459,10 +459,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>Девелопмент</span><span>1С:ERP УСО</span><span>Гранд-Смета</span><span>КС-2 / КС-3</span></div>
-        </div>
-        <div class="case-card case-card--edi">
+        </article>
+        <article class="case-card case-card--edi">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--edi"></span>🏭 Генподрядчик промышленного строительства · 6 заводов</div>
-          <h3 class="case-card__title">Автоматизация проверки смет и актов КС-2 от 45 субподрядчиков</h3>
+          <h3 class="case-card__title"><a href="/cases/manufacturing-edi-automation/" class="case-card__title-link">Автоматизация проверки смет и актов КС-2 от 45 субподрядчиков <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Настроили шлюз автоматического разбора актов КС-2 в XML и Excel со сверкой с журналом КС-6а и лимитами рамочных договоров.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -479,10 +479,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>Промстроительство</span><span>Инженеры ПТО</span><span>КС-6а</span><span>Давальческое сырье</span></div>
-        </div>
-        <div class="case-card case-card--service">
+        </article>
+        <article class="case-card case-card--service">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--service"></span>🏛️ Технический заказчик инфраструктуры · Контракты 44-ФЗ</div>
-          <h3 class="case-card__title">Контроль сметной стоимости и нормативов Минстроя по ФЕР/ГЭСН</h3>
+          <h3 class="case-card__title"><a href="/cases/claims-dispute-automation/" class="case-card__title-link">Контроль сметной стоимости и нормативов Минстроя по ФЕР/ГЭСН <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Интегрировали ИИ-аудитор с базой ФЕР и территориальными индексами. Пресекли необоснованные повышающие коэффициенты и расхождения с отчетами М-29.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -499,7 +499,7 @@
             </div>
           </div>
           <div class="case-card__tags"><span>Техзаказчик</span><span>44-ФЗ</span><span>ФЕР / ГЭСН</span><span>М-29 отчетность</span></div>
-        </div>
+        </article>
       </div>
       <div class="carousel-dots" id="carousel-dots"></div>
     </div>

@@ -256,19 +256,22 @@ runCheck('SEO-11', 'All subpages include valid BreadcrumbList schema in JSON-LD'
   });
 });
 
-// SEO-12: FAQ 1:1 match between DOM and Schema
-runCheck('SEO-12', 'FAQ accordion questions in DOM match JSON-LD FAQPage entities 1:1', () => {
-  const html = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8');
-  const domQuestions = Array.from(html.matchAll(/class="faq-item__question">(.*?)<\/span>/g)).map(m => m[1].trim());
-  assert.ok(domQuestions.length >= 5, 'DOM must contain at least 5 FAQ questions');
+// SEO-12: FAQ 1:1 match between DOM and Schema across all FAQPage pages
+runCheck('SEO-12', 'FAQ accordion questions in DOM match JSON-LD FAQPage entities 1:1 across all pages', () => {
+  const decodeHtml = s => s.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").trim();
+  PAGES.forEach(p => {
+    const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
+    const m = html.match(/<script\s+type="application\/ld\+json">([\s\S]*?)<\/script>/s);
+    if (!m) return;
+    const data = JSON.parse(m[1].trim());
+    const faqPage = (data['@graph'] || []).find(item => item['@type'] === 'FAQPage');
+    if (!faqPage) return;
 
-  const m = html.match(/<script\s+type="application\/ld\+json">(.*?)<\/script>/s);
-  const data = JSON.parse(m[1].trim());
-  const faqPage = data['@graph'].find(item => item['@type'] === 'FAQPage');
-  assert.ok(faqPage, 'FAQPage must be present in @graph');
-  const schemaQuestions = faqPage.mainEntity.map(q => q.name.trim());
-
-  assert.deepStrictEqual(domQuestions, schemaQuestions, 'DOM and Schema FAQ questions must match 1:1');
+    const domQuestions = Array.from(html.matchAll(/class="faq-item__question">([\s\S]*?)<\/span>/g)).map(x => decodeHtml(x[1].replace(/<[^>]+>/g, '')));
+    assert.ok(domQuestions.length >= 3, `DOM must contain FAQ questions in ${p.file}`);
+    const schemaQuestions = faqPage.mainEntity.map(q => q.name.trim());
+    assert.deepStrictEqual(domQuestions, schemaQuestions, `DOM and Schema FAQ mismatch in ${p.file}`);
+  });
 });
 
 console.log('\n▶ [Category 5] Commercial & Compliance Factors (Yandex & 152-FZ)');
@@ -673,6 +676,31 @@ runCheck('SEO-29', 'All pages with #anti-clickjack restore body and [data-reveal
   });
 
   assert.strictEqual(missing.length, 0, `Missing <noscript> anti-clickjack/data-reveal restore on: ${missing.join(', ')}`);
+});
+
+// SEO-30: Case DOM FAQ parity, DOM breadcrumbs, static domain terminal & bidirectional Case <-> Service links
+runCheck('SEO-30', 'Cases have DOM breadcrumbs, working FAQ markup, static terminal, and bidirectional Service <-> Case links', () => {
+  ALL_CASE_PAGES.forEach(slug => {
+    const html = fs.readFileSync(path.join(ROOT_DIR, slug, 'index.html'), 'utf8');
+    const mainMatch = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i);
+    assert.ok(mainMatch, `Missing <main> in ${slug}`);
+    const mainHtml = mainMatch[1];
+
+    assert.ok(mainHtml.includes('class="breadcrumbs"'), `Missing DOM .breadcrumbs in ${slug}`);
+    assert.ok(!html.includes('faq-item__content'), `Forbidden broken .faq-item__content in ${slug}`);
+    assert.ok(html.includes('faq-item__answer') && html.includes('faq-item__inner'), `Missing working FAQ markup in ${slug}`);
+    assert.ok(html.includes('data-static-terminal="true"'), `Missing static terminal guard in ${slug}`);
+    assert.ok(/href="\/services\/[^"]+\/"/.test(mainHtml), `Missing Case -> Service contextual link inside <main> in ${slug}`);
+  });
+
+  ALL_SERVICE_PAGES.forEach(slug => {
+    const html = fs.readFileSync(path.join(ROOT_DIR, slug, 'index.html'), 'utf8');
+    const casesIdx = html.indexOf('id="cases"');
+    assert.ok(casesIdx !== -1, `Missing #cases in ${slug}`);
+    const casesSection = html.slice(casesIdx, html.indexOf('</section>', casesIdx));
+    const caseLinks = [...casesSection.matchAll(/href="(\/cases\/[^"]+\/)"/g)].map(m => m[1]);
+    assert.strictEqual(caseLinks.length, 3, `Expected 3 case links in ${slug}, found ${caseLinks.length}`);
+  });
 });
 
 // SEO-19: Test execution time benchmark

@@ -94,7 +94,7 @@
   <link rel="preload" href="/assets/fonts/JetBrainsMono-400-12.woff2" as="font" type="font/woff2" crossorigin="" />
 
   <!-- Extenal Stylesheet -->
-  <link rel="stylesheet" href="/assets/css/styles.min.css?v=825d48c9" />
+  <link rel="stylesheet" href="/assets/css/styles.min.css?v=5f6af294" />
 
   <!-- Scripts -->
   <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.4"></script>
@@ -230,7 +230,7 @@
             <span class="terminal__dot terminal__dot--green"></span>
             <span class="terminal__title">autopilot — agent_core v2.4.1</span>
           </div>
-          <div class="terminal__body" id="terminal-body">
+          <div class="terminal__body" id="terminal-body" data-static-terminal="true">
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[09:15:02]</span> <span style="color:var(--green);font-weight:600;">[PARSER]</span> Выгружено 140 компаний по ОКВЭД 46.69 (Оптовая торговля техникой), выручка от 120 млн ₽</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[09:17:40]</span> <span style="color:var(--blue);font-weight:600;">[ENRICH]</span> Определены контакты 118 ЛПР (коммерческие директора, IT-директора)</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:02:11]</span> <span style="color:var(--purple);font-weight:600;">[OUTREACH]</span> Отправлено 45 персонализированных цепочек; доставлено 100%, 0 спам-блокировок</div>
@@ -441,9 +441,9 @@
         <h2 class="section-title" data-reveal="">Доказанные кейсы внедрения</h2>
       </div>
       <div class="cases__grid cases__grid--static" data-reveal="">
-        <div class="case-card case-card--sales">
+        <article class="case-card case-card--sales">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--sales"></span>B2B-дистрибуция оборудования (35 менеджеров)</div>
-          <h3 class="case-card__title">Рост конверсии квалифицированных лидов на 22%</h3>
+          <h3 class="case-card__title"><a href="/cases/sales-speech-analytics/" class="case-card__title-link">Рост конверсии квалифицированных лидов на 22% <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Внедрен автономный скоринг диалогов, автоматическая фиксация договоренностей в amoCRM и мгновенная реакция на запросы клиентов.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -460,10 +460,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>B2B-продажи</span><span>amoCRM</span><span>Лидогенерация</span><span>Аутрич</span></div>
-        </div>
-        <div class="case-card case-card--service">
+        </article>
+        <article class="case-card case-card--service">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--service"></span>Федеральный сервисный центр (40 000 обращений в месяц)</div>
-          <h3 class="case-card__title">Автономная квалификация 80,4% входящих контактов</h3>
+          <h3 class="case-card__title"><a href="/cases/service-center-ai-operator/" class="case-card__title-link">Автономная квалификация 80,4% входящих контактов <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Автоматизирован прием первого обращения, сбор ключевых требований заказчика и маршрутизация на профильного инженера.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -480,10 +480,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>Квалификация</span><span>AI-агент</span><span>Telegram</span><span>Маршрутизация</span></div>
-        </div>
-        <div class="case-card case-card--production">
+        </article>
+        <article class="case-card case-card--production">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--production"></span>Промышленные поставки и закупки</div>
-          <h3 class="case-card__title">Ускорение подготовки коммерческих предложений в 3 раза</h3>
+          <h3 class="case-card__title"><a href="/cases/tender-procurement-automation/" class="case-card__title-link">Ускорение подготовки коммерческих предложений в 3 раза <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Семантическое сопоставление номенклатуры заказчика со складскими остатками в 1С:ERP и автоматический расчет маржинальности оффера.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -500,7 +500,7 @@
             </div>
           </div>
           <div class="case-card__tags"><span>B2B офферы</span><span>1С:ERP</span><span>КП на автопилоте</span><span>Скоринг</span></div>
-        </div>
+        </article>
       </div>
       <div class="carousel-dots" id="carousel-dots"></div>
     </div>

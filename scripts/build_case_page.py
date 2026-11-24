@@ -176,9 +176,37 @@ def build_case_page(case_key: str) -> str:
     # 2. Update Hero Section
     hero = soup.find("section", id="home")
     if hero:
+        hero_content = hero.find("div", class_="hero__content")
+        if hero_content:
+            old_bc = hero_content.find("nav", class_="breadcrumbs")
+            if old_bc:
+                old_bc.decompose()
+            bc_html = (
+                f'<nav class="breadcrumbs" aria-label="Хлебные крошки">'
+                f'<a href="/">Главная</a>'
+                f'<span class="breadcrumbs__sep">/</span>'
+                f'<a href="/cases/">Кейсы</a>'
+                f'<span class="breadcrumbs__sep">/</span>'
+                f"<span>{data['breadcrumb_name']}</span>"
+                f"</nav>"
+            )
+            hero_content.insert(0, BeautifulSoup(bc_html, "html.parser"))
+
         tag_p = hero.find("p", class_="section-tag") or hero.find("div", class_="hero__tag")
         if tag_p:
             tag_p.string = data["hero"]["tag"]
+
+        actions_div = hero.find("div", class_="hero__actions")
+        parent_svc = data.get("parent_service")
+        if actions_div and parent_svc:
+            actions_div.clear()
+            actions_div.append(
+                BeautifulSoup(
+                    f'<a href="#contact" class="btn btn--primary" id="cta-main">Хочу такой же результат →</a>'
+                    f'<a href="/services/{parent_svc["slug"]}/" class="btn btn--ghost">Услуга: {parent_svc["name"]} →</a>',
+                    "html.parser",
+                )
+            )
 
         title_h1 = hero.find("h1", class_="hero__title")
         if title_h1:
@@ -223,6 +251,50 @@ def build_case_page(case_key: str) -> str:
                 kcard.append(num_span)
                 kcard.append(label_span)
                 kpis_div.append(kcard)
+
+        term_body = hero.find("div", id="terminal-body")
+        if term_body and data.get("terminal_lines"):
+            term_body["data-static-terminal"] = "true"
+            term_body.clear()
+            for tline in data["terminal_lines"]:
+                line_div = soup.new_tag(
+                    "div", attrs={"class": f"terminal__line terminal__line--{tline.get('type', 'ok')}"}
+                )
+                span = soup.new_tag("span")
+                span.string = tline["text"]
+                line_div.append(span)
+                term_body.append(line_div)
+
+        ag_cards_wrap = hero.find("div", class_="hero__agent-cards")
+        if ag_cards_wrap and data.get("agent_cards"):
+            ag_cards_wrap.clear()
+            for ac in data["agent_cards"]:
+                card_div = soup.new_tag(
+                    "div",
+                    attrs={
+                        "class": "agent-card",
+                        "role": "button",
+                        "tabindex": "0",
+                        "aria-label": f"Инспектировать агента {ac['name']}",
+                        "data-agent-log": json.dumps(ac.get("logs", []), ensure_ascii=False),
+                    },
+                )
+                icon_d = soup.new_tag("div", attrs={"class": "agent-card__icon"})
+                icon_d.string = ac["icon"]
+                info_d = soup.new_tag("div", attrs={"class": "agent-card__info"})
+                nm = soup.new_tag("span", attrs={"class": "agent-card__name"})
+                nm.string = ac["name"]
+                st = soup.new_tag("span", attrs={"class": "agent-card__status agent-card__status--live"})
+                st.string = ac["status"]
+                info_d.append(nm)
+                info_d.append(st)
+                bar_d = soup.new_tag("div", attrs={"class": "agent-card__bar"})
+                fill_d = soup.new_tag("div", attrs={"class": "agent-card__fill", "style": f"width:{ac['width']}"})
+                bar_d.append(fill_d)
+                card_div.append(icon_d)
+                card_div.append(info_d)
+                card_div.append(bar_d)
+                ag_cards_wrap.append(card_div)
 
     # 3. Update ROI Section Header
     roi_sec = soup.find("section", id="calculator")
@@ -285,6 +357,21 @@ def build_case_page(case_key: str) -> str:
         if svc_title:
             svc_title.string = data["services"]["title"]
 
+        svc_header = svc_sec.find("div", class_="section-header")
+        parent_svc = data.get("parent_service")
+        related_svcs = data.get("related_services", [])
+        if svc_header and parent_svc:
+            old_note = svc_header.find("p", class_="case-service-note")
+            if old_note:
+                old_note.decompose()
+            rel_links = "".join([f', <a href="/services/{rs["slug"]}/">{rs["name"]}</a>' for rs in related_svcs])
+            note_html = (
+                f'<p class="case-service-note">Основное решение: '
+                f'<a href="/services/{parent_svc["slug"]}/">{parent_svc["name"]}</a>'
+                f"{rel_links}.</p>"
+            )
+            svc_header.append(BeautifulSoup(note_html, "html.parser"))
+
         bento = svc_sec.find("div", class_="services__bento")
         if bento:
             classes = bento.get("class", [])
@@ -312,12 +399,12 @@ def build_case_page(case_key: str) -> str:
                 scard.append(tags_div)
                 bento.append(scard)
 
-    # 6. Update FAQ Section
+    # 6. Update FAQ Section (using canonical .faq__grid + .faq-item__answer > .faq-item__inner)
     faq_sec = soup.find("section", id="faq")
     if faq_sec:
-        faq_list = faq_sec.find("div", class_="faq__list")
-        if faq_list and "faq" in data:
-            faq_list.clear()
+        faq_grid = faq_sec.find("div", class_="faq__grid")
+        if faq_grid and "faq" in data:
+            faq_grid.clear()
             for idx, item in enumerate(data["faq"]):
                 fitem = soup.new_tag("div", attrs={"class": "faq-item"})
                 fbtn = soup.new_tag(
@@ -329,23 +416,25 @@ def build_case_page(case_key: str) -> str:
                         "aria-controls": f"faq-ans-{idx}",
                     },
                 )
-                qspan = soup.new_tag("span")
+                qspan = soup.new_tag("span", attrs={"class": "faq-item__question"})
                 qspan.string = item["q"]
                 ispan = soup.new_tag("span", attrs={"class": "faq-item__icon"})
                 ispan.string = "+"
                 fbtn.append(qspan)
                 fbtn.append(ispan)
 
-                fcontent = soup.new_tag(
-                    "div", attrs={"class": "faq-item__content", "id": f"faq-ans-{idx}", "role": "region"}
+                fanswer = soup.new_tag(
+                    "div", attrs={"class": "faq-item__answer", "id": f"faq-ans-{idx}", "role": "region"}
                 )
+                finner = soup.new_tag("div", attrs={"class": "faq-item__inner"})
                 p = soup.new_tag("p")
                 p.string = item["a"]
-                fcontent.append(p)
+                finner.append(p)
+                fanswer.append(finner)
 
                 fitem.append(fbtn)
-                fitem.append(fcontent)
-                faq_list.append(fitem)
+                fitem.append(fanswer)
+                faq_grid.append(fitem)
 
     # 7. Update Dashboard Telemetry Logs
     dash_sec = soup.find("section", id="dashboard")
@@ -353,6 +442,19 @@ def build_case_page(case_key: str) -> str:
         dash_title = dash_sec.find("h2", class_="section-title")
         if dash_title:
             dash_title.string = data["dashboard"]["title"]
+        ev_log = dash_sec.find("div", id="event-log")
+        if ev_log and data["dashboard"].get("logs"):
+            ev_log["id"] = "case-event-log"
+            ev_log.clear()
+            for lg in data["dashboard"]["logs"]:
+                row = soup.new_tag("div", attrs={"class": "log-item log-item--default"})
+                tm = soup.new_tag("span", attrs={"class": "log-item__time"})
+                tm.string = lg["time"]
+                tx = soup.new_tag("span", attrs={"class": "log-item__text"})
+                tx.string = lg["text"]
+                row.append(tm)
+                row.append(tx)
+                ev_log.append(row)
 
     # 8. Reposition Cases Section to Bottom & Rename to "Другие кейсы"
     cases_sec = soup.find("section", id="cases")

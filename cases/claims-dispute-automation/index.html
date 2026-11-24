@@ -81,7 +81,7 @@
 <link as="font" crossorigin="" href="/assets/fonts/Inter-400-1.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/assets/fonts/Outfit-600-14.woff2" rel="preload" type="font/woff2"/>
 <!-- Inlined Styles (Eliminates Render-Blocking CSS & Critical Request Chains) -->
-<link href="/assets/css/styles.min.css?v=825d48c9" rel="stylesheet"/>
+<link href="/assets/css/styles.min.css?v=5f6af294" rel="stylesheet"/>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
 <script type="text/javascript">
     (function() {
@@ -157,13 +157,10 @@
 <section class="hero" id="home">
 <div class="hero__particles" id="particles"></div>
 <div class="container hero__inner">
-<div class="hero__content">
+<div class="hero__content"><nav aria-label="Хлебные крошки" class="breadcrumbs"><a href="/">Главная</a><span class="breadcrumbs__sep">/</span><a href="/cases/">Кейсы</a><span class="breadcrumbs__sep">/</span><span>Претензионная работа и дебиторка</span></nav>
 <h1 class="hero__title"><span class="hero__title-static">Автоматизация претензионной работы и дебиторки </span><span class="hero__title-accent-box"><span class="hero__title-accent" data-phrases='["в 1С:ERP и 1С:УТ", "разбор ТОРГ-2 за 3 мин", "контроль ст. 395 ГК"]' id="typed-text">в 1С:ERP и 1С:УТ</span><span aria-hidden="true" class="hero__cursor"></span></span></h1>
 <p class="hero__sub">Сквозной учет претензий: разбор актов ТОРГ-2, сверка цепочки Заказ-УПД в 1С:ERP, автоматический расчет штрафов и подготовка досудебной претензии за 3 минуты.</p>
-<div class="hero__actions">
-<a class="btn btn--ghost" href="/services/" id="cta-main">Смотреть услуги →</a>
-<a class="btn btn--ghost" href="/cases/">Смотреть кейсы →</a>
-</div>
+<div class="hero__actions"><a class="btn btn--primary" href="#contact" id="cta-main">Хочу такой же результат →</a><a class="btn btn--ghost" href="/services/debt-control/">Услуга: Контроль дебиторки →</a></div>
 <div class="hero__kpis"><div class="kpi-card"><span class="kpi-card__num" data-count="-90">−90%</span><span class="kpi-card__label">времени на сбор первички</span></div><div class="kpi-card"><span class="kpi-card__num case-num--green" data-count="3">3 мин</span><span class="kpi-card__label">подготовка претензии</span></div><div class="kpi-card"><span class="kpi-card__num case-num--gold" data-count="100">100%</span><span class="kpi-card__label">контроль дебиторки</span></div></div>
 </div>
 <div class="hero__terminal-wrap">
@@ -174,42 +171,9 @@
 <span class="terminal__dot terminal__dot--green"></span>
 <span class="terminal__title">autopilot — agent_core v2.4.1</span>
 </div>
-<div class="terminal__body" id="terminal-body">
-<!-- JS fills this -->
+<div class="terminal__body" data-static-terminal="true" id="terminal-body"><div class="terminal__line terminal__line--prompt"><span>$ autopilot-case --inspect claims-dispute-automation --env prod</span></div><div class="terminal__line terminal__line--ok"><span>  [14:05:12] ✔ Диадок: Поступил входящий документ 'Акт о расхождениях ТОРГ-2 #84' от ООО 'ТоргСнаб'</span></div><div class="terminal__line terminal__line--ok"><span>  [14:05:15] ✔ 1С:ERP: Найдена отгрузка УПД #1042 от 12.08. Сопоставлено 12 из 12 позиций. Недостача: 4 шт. на сумму 84 200 ₽</span></div><div class="terminal__line terminal__line--ok"><span>  [14:05:21] ✔ Калькулятор: Расчет процентов по ст. 395 ГК РФ за 24 дня просрочки (ставка ЦБ 16%): 887.41 ₽</span></div><div class="terminal__line terminal__line--ok"><span>  [14:05:28] ✔ Претензия: Досудебная претензия #ПР-2024-118 сформирована. Файл направлен на подписание в Диадок.</span></div></div>
 </div>
-</div>
-<div class="hero__agent-cards">
-<div aria-label="Инспектировать агента Отчёты" class="agent-card" data-agent="reports" role="button" tabindex="0">
-<div class="agent-card__icon">🤖</div>
-<div class="agent-card__info">
-<span class="agent-card__name">Агент: Отчёты</span>
-<span class="agent-card__status agent-card__status--live">Активен</span>
-</div>
-<div class="agent-card__bar">
-<div class="agent-card__fill" style="width:78%"></div>
-</div>
-</div>
-<div aria-label="Инспектировать агента Склад" class="agent-card" data-agent="warehouse" role="button" tabindex="0">
-<div class="agent-card__icon">📦</div>
-<div class="agent-card__info">
-<span class="agent-card__name">Агент: Склад</span>
-<span class="agent-card__status agent-card__status--live">Активен</span>
-</div>
-<div class="agent-card__bar">
-<div class="agent-card__fill" style="width:62%"></div>
-</div>
-</div>
-<div aria-label="Инспектировать агента Счета" class="agent-card" data-agent="invoices" role="button" tabindex="0">
-<div class="agent-card__icon">💳</div>
-<div class="agent-card__info">
-<span class="agent-card__name">Агент: Счета</span>
-<span class="agent-card__status agent-card__status--idle">Ожидает</span>
-</div>
-<div class="agent-card__bar">
-<div class="agent-card__fill" style="width:23%"></div>
-</div>
-</div>
-</div>
+<div class="hero__agent-cards"><div aria-label="Инспектировать агента Агент: Разбор ТОРГ-2" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ autopilot-claims --parse-torg2 --edms diadoc"}, {"type": "ok", "text": "  ✔ Акт ТОРГ-2 сверен с цепочкой отгрузок в 1С:ERP"}]' role="button" tabindex="0"><div class="agent-card__icon">⚖️</div><div class="agent-card__info"><span class="agent-card__name">Агент: Разбор ТОРГ-2</span><span class="agent-card__status agent-card__status--live">Активен</span></div><div class="agent-card__bar"><div class="agent-card__fill" style="width:87%"></div></div></div><div aria-label="Инспектировать агента Агент: Пени ст. 395" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ autopilot-claims --calc-penalty --gk 395"}, {"type": "ok", "text": "  ✔ Расчёт пени по ключевой ставке ЦБ выполнен точно"}]' role="button" tabindex="0"><div class="agent-card__icon">🧮</div><div class="agent-card__info"><span class="agent-card__name">Агент: Пени ст. 395</span><span class="agent-card__status agent-card__status--live">Активен</span></div><div class="agent-card__bar"><div class="agent-card__fill" style="width:79%"></div></div></div><div aria-label="Инспектировать агента Агент: Автопретензия" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ autopilot-claims --draft-claim"}, {"type": "ok", "text": "  ✔ Пакет досудебной претензии сформирован за 3 минуты"}]' role="button" tabindex="0"><div class="agent-card__icon">📄</div><div class="agent-card__info"><span class="agent-card__name">Агент: Автопретензия</span><span class="agent-card__status agent-card__status--live">Активен</span></div><div class="agent-card__bar"><div class="agent-card__fill" style="width:73%"></div></div></div></div>
 </div>
 </div>
 </section>
@@ -299,7 +263,7 @@
 <div class="section-header">
 <p class="section-tag" data-reveal="">Решения и интеграции</p>
 <h2 class="section-title" data-reveal="">6 модулей управления задолженностью и претензиями</h2>
-</div>
+<p class="case-service-note">Основное решение: <a href="/services/debt-control/">Контроль дебиторки</a>, <a href="/services/document-automation/">Документооборот и ЭДО</a>, <a href="/services/customer-retention/">Retention и реактивация</a>.</p></div>
 <div aria-label="Сценарии автоматизации" aria-roledescription="carousel" class="services__bento services__bento--static" data-reveal="" role="region" tabindex="0"><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">💳</div><h3 class="scard__title">Модуль контроля дебиторки в 1С:ERP / УТ</h3><p class="scard__desc">Отслеживание оплат по договорам с учетом кредитных лимитов и отсрочек через OData.</p><div class="scard__tags"><span>1С:ERP</span><span>Дебиторка</span><span>Лимиты</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📑</div><h3 class="scard__title">Автоматический разбор актов разногласий</h3><p class="scard__desc">Сверка актов ТОРГ-2 и счетов 76.02 с фиксацией виновных сторон и корректировкой взаиморасчетов.</p><div class="scard__tags"><span>ТОРГ-2</span><span>Счет 76.02</span><span>Разногласия</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🔔</div><h3 class="scard__title">Омниканальный сервис уведомлений (Soft Collection)</h3><p class="scard__desc">Автоматическая рассылка дружелюбных напоминаний о счетах в Telegram, WhatsApp и на почту.</p><div class="scard__tags"><span>Напоминания</span><span>Soft Collection</span><span>Telegram</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">⚖️</div><h3 class="scard__title">Генератор досудебных претензий и расчетов пени</h3><p class="scard__desc">Автосборка юридически выверенных пакетов документов с расчетом неустойки по ст. 395 ГК РФ.</p><div class="scard__tags"><span>Претензия</span><span>ГК РФ</span><span>Неустойка</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📊</div><h3 class="scard__title">Интеграция с платежным календарем ДДС</h3><p class="scard__desc">Автоматическая корректировка прогноза денежных потоков с учетом вероятности оплаты счетов.</p><div class="scard__tags"><span>ДДС</span><span>Календарь</span><span>Кассовые разрывы</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🛡️</div><h3 class="scard__title">Скоринг контрагентов по базам ФССП и КАД</h3><p class="scard__desc">Проверка должников на наличие судебных исков и исполнительных производств для блокировки отгрузок.</p><div class="scard__tags"><span>КАД</span><span>ФССП</span><span>Скоринг</span></div></div></div>
 <div class="slider-controls">
 <button aria-label="Предыдущие решения" class="slider-arrow slider-arrow--prev" id="services-prev" title="Предыдущие решения" type="button">
@@ -386,63 +350,7 @@
 <h2 class="section-title">Часто задаваемые вопросы</h2>
 <p class="section-desc" style="color:var(--text-2);margin-top:12px;">Всё, что важно знать о безопасности, сроках внедрения и интеграции ИИ-агентов</p>
 </div>
-<div class="faq__grid" data-reveal="">
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Сколько времени занимает запуск первого пилотного проекта?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p>Развёртывание первого работающего ИИ-агента в вашем контуре занимает ровно <strong>14 календарных дней</strong>. Мы подключаемся к 1–3 ключевым процессам, проводим калибровку точности до 99%+ и передаём результат с гарантией окупаемости.</p>
-</div>
-</div>
-</div>
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Нужно ли дорабатывать или менять существующую 1С, SAP или CRM?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p><strong>Нет, менять ничего не требуется.</strong> ИИ-агенты подключаются через стандартные протоколы (1C OData REST API, HTTP-сервисы, Webhooks, Диадок SDK). Мы не вмешиваемся в типовую конфигурацию и не нарушаем штатные процессы вашей системы.</p>
-</div>
-</div>
-</div>
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Как обеспечивается безопасность коммерческих данных и соблюдение 152-ФЗ?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p>Все данные обрабатываются на защищённых серверах в Российской Федерации в строгом соответствии с <strong>152-ФЗ РФ</strong>. Перед началом работ подписывается соглашение о неразглашении (NDA). Для предприятий с повышенными требованиями безопасности возможно развёртывание <strong>локальных On-Premise моделей</strong> внутри закрытого периметра без выхода во внешние сети.</p>
-</div>
-</div>
-</div>
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Какова средняя окупаемость (ROI) и экономический эффект?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p>В среднем внедрение окупается за <strong>1.5–3 месяца</strong> после ввода в эксплуатацию. Средний доказанный ROI составляет <strong>340% годовых</strong> за счёт сокращения рутинного ручного труда на 70–80% и ликвидации человеческих ошибок в первичных документах.</p>
-</div>
-</div>
-</div>
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Что входит в бесплатный 30-минутный экспресс-аудит?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p>В рамках 30-минутного экспресс-аудита наш архитектор анализирует 3 самых трудоёмких процесса вашей компании, рассчитывает индивидуальную матрицу окупаемости (ROI) и готовит пошаговую архитектурную схему внедрения пилотного агента.</p>
-</div>
-</div>
-</div>
-</div>
+<div class="faq__grid" data-reveal=""><div class="faq-item"><button aria-controls="faq-ans-0" aria-expanded="false" class="faq-item__header" type="button"><span class="faq-item__question">Не испортят ли автоматические напоминания отношения с клиентами?</span><span class="faq-item__icon">+</span></button><div class="faq-item__answer" id="faq-ans-0" role="region"><div class="faq-item__inner"><p>Сценарий коммуникации использует мягкий деловой тон (Soft Collection). Первые уведомления носят уведомительный характер («направляем счет для оплаты»), что воспринимается позитивно.</p></div></div></div><div class="faq-item"><button aria-controls="faq-ans-1" aria-expanded="false" class="faq-item__header" type="button"><span class="faq-item__question">Как система рассчитывает размер пени и штрафов?</span><span class="faq-item__icon">+</span></button><div class="faq-item__answer" id="faq-ans-1" role="region"><div class="faq-item__inner"><p>Расчет выполняется строго по условиям конкретного договора контрагента либо по ключевой ставке ЦБ РФ в соответствии со статьей 395 ГК РФ.</p></div></div></div><div class="faq-item"><button aria-controls="faq-ans-2" aria-expanded="false" class="faq-item__header" type="button"><span class="faq-item__question">Каковы результаты снижения задолженности у действующих клиентов?</span><span class="faq-item__icon">+</span></button><div class="faq-item__answer" id="faq-ans-2" role="region"><div class="faq-item__inner"><p>В среднем просроченная дебиторская задолженность сокращается на 35–40% уже за первые 60 дней работы системы.</p></div></div></div></div>
 </div>
 </section>
 <!-- ═══════════════════ LIVE DASHBOARD ═══════════════════ -->
@@ -501,9 +409,7 @@
 </div>
 <div class="board-panels">
 <div aria-labelledby="tab-log" class="board-panel board-panel--active" id="panel-log" role="tabpanel">
-<div class="log" id="event-log">
-<!-- JS fills this -->
-</div>
+<div class="log" id="case-event-log"><div class="log-item log-item--default"><span class="log-item__time">14:05:12</span><span class="log-item__text">Диадок: Поступил входящий документ 'Акт о расхождениях ТОРГ-2 #84' от ООО 'ТоргСнаб'</span></div><div class="log-item log-item--default"><span class="log-item__time">14:05:15</span><span class="log-item__text">1С:ERP: Найдена отгрузка УПД #1042 от 12.08. Сопоставлено 12 из 12 позиций. Недостача: 4 шт. на сумму 84 200 ₽</span></div><div class="log-item log-item--default"><span class="log-item__time">14:05:21</span><span class="log-item__text">Калькулятор: Расчет процентов по ст. 395 ГК РФ за 24 дня просрочки (ставка ЦБ 16%): 887.41 ₽</span></div><div class="log-item log-item--default"><span class="log-item__time">14:05:28</span><span class="log-item__text">Претензия: Досудебная претензия #ПР-2024-118 сформирована. Файл направлен на подписание в Диадок.</span></div></div>
 </div>
 <div aria-labelledby="tab-agents" class="board-panel" hidden="" id="panel-agents" role="tabpanel">
 <div class="agent-list" id="agent-list">

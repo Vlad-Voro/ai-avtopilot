@@ -141,7 +141,7 @@ if json_ld and json_ld.string:
                     },
                     {
                         "@type": "Question",
-                        "name": "Что если учет ведется в нескольких разных базах 1С?",
+                        "name": "Что если учет ведется в нескольких разных базах 1С (Интеркампани)?",
                         "acceptedAnswer": {
                             "@type": "Answer",
                             "text": "Агент умеет одновременно опрашивать несколько баз (например, 1С:УТ по торговле и 1С:Бухгалтерию по расходам), сопоставлять справочники номенклатуры и автоматически исключать внутригрупповые обороты (интеркампани).",
@@ -444,9 +444,9 @@ if cases_sec:
         grid.append(
             BeautifulSoup(
                 """
-        <div class="case-card case-card--fintech">
+        <article class="case-card case-card--fintech">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--fintech"></span>🏪 Оптовый дистрибьютор · 3 базы 1С</div>
-          <h3 class="case-card__title">Консолидация P&amp;L и остатков холдинга в Telegram</h3>
+          <h3 class="case-card__title"><a href="/cases/fintech-transaction-reconciliation/" class="case-card__title-link">Консолидация P&amp;L и остатков холдинга в Telegram <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Связали базы 1С:УТ и 1С:БП через агента. Настроили <span class="case-highlight case-highlight--fintech">автоматическое вычитание интеркампани</span> и утреннюю сводку маржи генеральному директору.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -463,11 +463,11 @@ if cases_sec:
             </div>
           </div>
           <div class="case-card__tags"><span>1С:УТ</span><span>1С:БП</span><span>Интеркампани</span><span>P&amp;L</span></div>
-        </div>
+        </article>
 
-        <div class="case-card case-card--retail">
+        <article class="case-card case-card--retail">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--retail"></span>🛒 Розничная сеть · 45 магазинов</div>
-          <h3 class="case-card__title">Предиктивный платежный календарь и защита от кассовых разрывов</h3>
+          <h3 class="case-card__title"><a href="/cases/retail-inventory-automation/" class="case-card__title-link">Предиктивный платежный календарь и защита от кассовых разрывов <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Объединили потоки данных из 1С:Розница и банковских выписок. Запустили <span class="case-highlight case-highlight--retail">предиктивный платежный календарь</span> с алертами неликвидных остатков.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -484,11 +484,11 @@ if cases_sec:
             </div>
           </div>
           <div class="case-card__tags"><span>1С:Розница</span><span>ДДС</span><span>Платежный календарь</span></div>
-        </div>
+        </article>
 
-        <div class="case-card case-card--edi">
+        <article class="case-card case-card--edi">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--edi"></span>🏭 Производственное предприятие · 1С:ERP</div>
-          <h3 class="case-card__title">Оперативный расчет фактической себестоимости и маржи партий</h3>
+          <h3 class="case-card__title"><a href="/cases/manufacturing-edi-automation/" class="case-card__title-link">Оперативный расчет фактической себестоимости и маржи партий <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Подключили агента к регистрам выпуска продукции. Руководство видит <span class="case-highlight case-highlight--edi">фактическую маржинальность</span> каждой спецификации до момента отгрузки клиенту.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -505,7 +505,7 @@ if cases_sec:
             </div>
           </div>
           <div class="case-card__tags"><span>1С:ERP</span><span>ФИФО</span><span>Маржинальность</span></div>
-        </div>
+        </article>
         """,
                 "html.parser",
             )

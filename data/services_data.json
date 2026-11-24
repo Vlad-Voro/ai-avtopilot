@@ -162,7 +162,8 @@
           "Bitrix24",
           "Event Bus",
           "REST API"
-        ]
+        ],
+        "case_slug": "retail-inventory-automation"
       },
       {
         "type": "edi",
@@ -183,7 +184,8 @@
           "SAP",
           "RabbitMQ",
           "СДЭК API"
-        ]
+        ],
+        "case_slug": "manufacturing-edi-automation"
       },
       {
         "type": "service",
@@ -205,7 +207,8 @@
           "amoCRM",
           "Мастер-данные",
           "Дедупликация"
-        ]
+        ],
+        "case_slug": "fintech-transaction-reconciliation"
       }
     ],
     "calculator": {
@@ -446,7 +449,8 @@
           "RPA",
           "ИИ-агент",
           "Склад"
-        ]
+        ],
+        "case_slug": "retail-inventory-automation"
       },
       {
         "type": "edi",
@@ -467,7 +471,8 @@
           "API Ozon",
           "1С:УТ 11",
           "FBS"
-        ]
+        ],
+        "case_slug": "supply-chain-logistics"
       },
       {
         "type": "service",
@@ -489,7 +494,8 @@
           "ТОРГ-2",
           "ТСД",
           "Претензии"
-        ]
+        ],
+        "case_slug": "claims-dispute-automation"
       }
     ],
     "calculator": {
@@ -731,7 +737,8 @@
           "1С:БП 3.0",
           "OCR",
           "Диадок"
-        ]
+        ],
+        "case_slug": "manufacturing-edi-automation"
       },
       {
         "type": "retail",
@@ -752,7 +759,8 @@
           "RAG",
           "Номенклатура",
           "Нейросети"
-        ]
+        ],
+        "case_slug": "claims-dispute-automation"
       },
       {
         "type": "service",
@@ -774,7 +782,8 @@
           "1С:Бухгалтерия",
           "СБИС",
           "Контроль"
-        ]
+        ],
+        "case_slug": "fintech-transaction-reconciliation"
       }
     ],
     "calculator": {
@@ -1018,7 +1027,8 @@
           "Чатбот",
           "CRM",
           "1С"
-        ]
+        ],
+        "case_slug": "service-center-ai-operator"
       },
       {
         "type": "retail",
@@ -1039,7 +1049,8 @@
           "Telegram Bot",
           "Счета PDF",
           "24/7"
-        ]
+        ],
+        "case_slug": "auto-dealer-parts-automation"
       },
       {
         "type": "edi",
@@ -1061,7 +1072,8 @@
           "amoCRM",
           "Лид-скоринг",
           "B2B"
-        ]
+        ],
+        "case_slug": "reviews-reputation-automation"
       }
     ],
     "calculator": {
@@ -1304,7 +1316,8 @@
           "Пилот 14 дней",
           "OCR",
           "ROI 340%"
-        ]
+        ],
+        "case_slug": "fintech-transaction-reconciliation"
       },
       {
         "type": "edi",
@@ -1325,7 +1338,8 @@
           "Спецификации",
           "Пилот",
           "Fixed Price"
-        ]
+        ],
+        "case_slug": "tender-procurement-automation"
       },
       {
         "type": "service",
@@ -1347,7 +1361,8 @@
           "Telegram Bot",
           "Пилот",
           "Масштабирование"
-        ]
+        ],
+        "case_slug": "service-center-ai-operator"
       }
     ],
     "calculator": {
@@ -1590,7 +1605,8 @@
           "Манго АТС",
           "Whisper",
           "152-ФЗ"
-        ]
+        ],
+        "case_slug": "sales-speech-analytics"
       },
       {
         "type": "service",
@@ -1611,7 +1627,8 @@
           "Телефония",
           "Маршрутизация",
           "SLA"
-        ]
+        ],
+        "case_slug": "service-center-ai-operator"
       },
       {
         "type": "retail",
@@ -1633,7 +1650,8 @@
           "UIS",
           "NPS",
           "Качество"
-        ]
+        ],
+        "case_slug": "reviews-reputation-automation"
       }
     ],
     "calculator": {
@@ -1875,7 +1893,8 @@
           "Excel-парсер",
           "Расчет КП",
           "Telegram"
-        ]
+        ],
+        "case_slug": "tender-procurement-automation"
       },
       {
         "type": "retail",
@@ -1895,7 +1914,8 @@
           "1С:УТ 11",
           "Подбор аналогов",
           "Защита маржи"
-        ]
+        ],
+        "case_slug": "auto-dealer-parts-automation"
       },
       {
         "type": "manufacturing",
@@ -1916,7 +1936,8 @@
           "Проектные ТЗ",
           "ОВиК и насосы",
           "Калькуляция себестоимости"
-        ]
+        ],
+        "case_slug": "manufacturing-edi-automation"
       }
     ],
     "calculator": {
@@ -2162,7 +2183,8 @@
           "80 000 SKU",
           "Репрайсинг",
           "OData"
-        ]
+        ],
+        "case_slug": "retail-inventory-automation"
       },
       {
         "type": "edi",
@@ -2182,7 +2204,8 @@
           "1С:ERP 2.5",
           "B2B-опт",
           "Аналитика цен"
-        ]
+        ],
+        "case_slug": "auto-dealer-parts-automation"
       },
       {
         "type": "retail",
@@ -2203,7 +2226,8 @@
           "Контроль МРЦ",
           "Антидемпинг",
           "1С:УТ 11"
-        ]
+        ],
+        "case_slug": "tender-procurement-automation"
       }
     ],
     "calculator": {
@@ -2452,7 +2476,8 @@
           "450 контрагентов",
           "Soft Collection",
           "Telegram"
-        ]
+        ],
+        "case_slug": "claims-dispute-automation"
       },
       {
         "type": "fmcg",
@@ -2473,7 +2498,8 @@
           "1 200 точек",
           "Контроль отгрузок",
           "Расчет пеней"
-        ]
+        ],
+        "case_slug": "fintech-transaction-reconciliation"
       },
       {
         "type": "distribution",
@@ -2494,7 +2520,8 @@
           "Логистика",
           "Контроль постоплаты",
           "DSO"
-        ]
+        ],
+        "case_slug": "supply-chain-logistics"
       }
     ],
     "calculator": {
@@ -2743,7 +2770,8 @@
           "2ГИС",
           "18 филиалов",
           "1С:Медицина"
-        ]
+        ],
+        "case_slug": "reviews-reputation-automation"
       },
       {
         "type": "service",
@@ -2764,7 +2792,8 @@
           "35 техцентров",
           "Антифрод",
           "Модерация карт"
-        ]
+        ],
+        "case_slug": "service-center-ai-operator"
       },
       {
         "type": "fmcg",
@@ -2785,7 +2814,8 @@
           "60 филиалов",
           "1С:Фастфуд",
           "SLA 90 сек"
-        ]
+        ],
+        "case_slug": "retail-inventory-automation"
       }
     ],
     "calculator": {
@@ -3035,7 +3065,8 @@
           "WhatsApp",
           "amoCRM",
           "AI SDR"
-        ]
+        ],
+        "case_slug": "service-center-ai-operator"
       },
       {
         "type": "sales",
@@ -3057,7 +3088,8 @@
           "amoCRM",
           "Сквозной ROMI",
           "Автоворонки"
-        ]
+        ],
+        "case_slug": "sales-speech-analytics"
       },
       {
         "type": "clinic",
@@ -3079,7 +3111,8 @@
           "2ГИС",
           "ORM",
           "Алерты Telegram"
-        ]
+        ],
+        "case_slug": "reviews-reputation-automation"
       }
     ],
     "calculator": {
@@ -3319,7 +3352,8 @@
           "1С:ЗУП",
           "HH.ru",
           "Telegram"
-        ]
+        ],
+        "case_slug": "hr-recruitment-automation"
       },
       {
         "type": "finance",
@@ -3340,7 +3374,8 @@
           "ИИ-агент",
           "Оценка навыков",
           "24/7"
-        ]
+        ],
+        "case_slug": "service-center-ai-operator"
       },
       {
         "type": "production",
@@ -3361,7 +3396,8 @@
           "Речевой аудит",
           "Тестирование",
           "amoCRM"
-        ]
+        ],
+        "case_slug": "sales-speech-analytics"
       }
     ],
     "calculator": {
@@ -3605,7 +3641,8 @@
           "223-ФЗ",
           "1С:ERP",
           "Тендеры"
-        ]
+        ],
+        "case_slug": "tender-procurement-automation"
       },
       {
         "type": "retail",
@@ -3626,7 +3663,8 @@
           "КП и ТЗ",
           "Подбор аналогов",
           "1С:УТ"
-        ]
+        ],
+        "case_slug": "manufacturing-edi-automation"
       },
       {
         "type": "finance",
@@ -3648,7 +3686,8 @@
           "44-ФЗ",
           "Диадок",
           "1С"
-        ]
+        ],
+        "case_slug": "claims-dispute-automation"
       }
     ],
     "calculator": {
@@ -3892,7 +3931,8 @@
           "Wildberries",
           "Ozon",
           "Остатки FBS"
-        ]
+        ],
+        "case_slug": "retail-inventory-automation"
       },
       {
         "type": "finance",
@@ -3913,7 +3953,8 @@
           "Рейтинг WB/Ozon",
           "Автоответы",
           "NLP-анализ"
-        ]
+        ],
+        "case_slug": "reviews-reputation-automation"
       },
       {
         "type": "production",
@@ -3934,7 +3975,8 @@
           "Акты приемки",
           "Претензии WB",
           "1С:ERP"
-        ]
+        ],
+        "case_slug": "claims-dispute-automation"
       }
     ],
     "calculator": {
@@ -4177,7 +4219,8 @@
           "База знаний",
           "Диспетчер",
           "Сервисный центр"
-        ]
+        ],
+        "case_slug": "service-center-ai-operator"
       },
       {
         "type": "finance",
@@ -4198,7 +4241,8 @@
           "Технический архив",
           "OCR",
           "1С:ERP"
-        ]
+        ],
+        "case_slug": "manufacturing-edi-automation"
       },
       {
         "type": "production",
@@ -4219,7 +4263,8 @@
           "ИИ-суфлер",
           "amoCRM",
           "Регламенты"
-        ]
+        ],
+        "case_slug": "sales-speech-analytics"
       }
     ],
     "calculator": {
@@ -4463,7 +4508,8 @@
           "amoCRM",
           "Лидогенерация",
           "Аутрич"
-        ]
+        ],
+        "case_slug": "sales-speech-analytics"
       },
       {
         "type": "service",
@@ -4485,7 +4531,8 @@
           "AI-агент",
           "Telegram",
           "Маршрутизация"
-        ]
+        ],
+        "case_slug": "service-center-ai-operator"
       },
       {
         "type": "production",
@@ -4507,7 +4554,8 @@
           "1С:ERP",
           "КП на автопилоте",
           "Скоринг"
-        ]
+        ],
+        "case_slug": "tender-procurement-automation"
       }
     ],
     "calculator": {
@@ -4757,7 +4805,8 @@
           "Повторные заказы",
           "Склад",
           "Safety Stock"
-        ]
+        ],
+        "case_slug": "retail-inventory-automation"
       },
       {
         "type": "legal",
@@ -4779,7 +4828,8 @@
           "1С:КА",
           "Удержание LTV",
           "Контроль оттока"
-        ]
+        ],
+        "case_slug": "claims-dispute-automation"
       },
       {
         "type": "sales",
@@ -4801,7 +4851,8 @@
           "Битрикс24",
           "Отток клиентов",
           "LTV"
-        ]
+        ],
+        "case_slug": "sales-speech-analytics"
       }
     ],
     "calculator": {
@@ -5051,7 +5102,8 @@
           "1С:ERP УСО",
           "Гранд-Смета",
           "КС-2 / КС-3"
-        ]
+        ],
+        "case_slug": "tender-procurement-automation"
       },
       {
         "type": "edi",
@@ -5073,7 +5125,8 @@
           "Инженеры ПТО",
           "КС-6а",
           "Давальческое сырье"
-        ]
+        ],
+        "case_slug": "manufacturing-edi-automation"
       },
       {
         "type": "service",
@@ -5095,7 +5148,8 @@
           "44-ФЗ",
           "ФЕР / ГЭСН",
           "М-29 отчетность"
-        ]
+        ],
+        "case_slug": "claims-dispute-automation"
       }
     ],
     "calculator": {
@@ -5339,7 +5393,8 @@
           "ГИС ЭПД",
           "Omnicomm",
           "ГЛОНАСС"
-        ]
+        ],
+        "case_slug": "supply-chain-logistics"
       },
       {
         "type": "service",
@@ -5361,7 +5416,8 @@
           "TecDoc API",
           "ТО автопарка",
           "Заказ-наряды"
-        ]
+        ],
+        "case_slug": "auto-dealer-parts-automation"
       },
       {
         "type": "edi",
@@ -5383,7 +5439,8 @@
           "ЭТрН",
           "Межзаводская логистика",
           "Диадок"
-        ]
+        ],
+        "case_slug": "manufacturing-edi-automation"
       }
     ],
     "calculator": {
@@ -5627,7 +5684,8 @@
           "RAG-база",
           "Telegram-бот",
           "Мультиагенты"
-        ]
+        ],
+        "case_slug": "service-center-ai-operator"
       },
       {
         "type": "sales",
@@ -5649,7 +5707,8 @@
           "Битрикс24",
           "Скоринг звонков",
           "152-ФЗ"
-        ]
+        ],
+        "case_slug": "sales-speech-analytics"
       },
       {
         "type": "claims",
@@ -5671,7 +5730,8 @@
           "ТОРГ-2",
           "Рекламации",
           "OData API"
-        ]
+        ],
+        "case_slug": "claims-dispute-automation"
       }
     ],
     "calculator": {
@@ -5915,7 +5975,8 @@
           "MES",
           "Диадок",
           "Спецификации"
-        ]
+        ],
+        "case_slug": "manufacturing-edi-automation"
       },
       {
         "type": "reconciliation",
@@ -5937,7 +5998,8 @@
           "Автосверка",
           "Банк-Клиент",
           "Выписки"
-        ]
+        ],
+        "case_slug": "fintech-transaction-reconciliation"
       },
       {
         "type": "tenders",
@@ -5959,7 +6021,8 @@
           "Калькуляция",
           "Спецификации",
           "Маржинальность"
-        ]
+        ],
+        "case_slug": "tender-procurement-automation"
       }
     ],
     "calculator": {
@@ -6203,7 +6266,8 @@
           "Авито Запчасти",
           "VIN-поиск",
           "Резерв"
-        ]
+        ],
+        "case_slug": "auto-dealer-parts-automation"
       },
       {
         "type": "support",
@@ -6225,7 +6289,8 @@
           "Local LLM",
           "amoCRM",
           "SLA 30 сек"
-        ]
+        ],
+        "case_slug": "service-center-ai-operator"
       },
       {
         "type": "sales",
@@ -6247,7 +6312,8 @@
           "Авито B2B",
           "Контроль качества",
           "Воронка"
-        ]
+        ],
+        "case_slug": "sales-speech-analytics"
       }
     ],
     "calculator": {

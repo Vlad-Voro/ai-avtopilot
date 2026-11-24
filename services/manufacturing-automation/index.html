@@ -94,7 +94,7 @@
   <link rel="preload" href="/assets/fonts/JetBrainsMono-400-12.woff2" as="font" type="font/woff2" crossorigin="" />
 
   <!-- Extenal Stylesheet -->
-  <link rel="stylesheet" href="/assets/css/styles.min.css?v=825d48c9" />
+  <link rel="stylesheet" href="/assets/css/styles.min.css?v=5f6af294" />
 
   <!-- Scripts -->
   <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.4"></script>
@@ -230,7 +230,7 @@
             <span class="terminal__dot terminal__dot--green"></span>
             <span class="terminal__title">autopilot — agent_core v2.4.1</span>
           </div>
-          <div class="terminal__body" id="terminal-body">
+          <div class="terminal__body" id="terminal-body" data-static-terminal="true">
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[14:05:12]</span> <span style="color:var(--accent-1);font-weight:600;">[ERP 2.5 Core]</span> Order #4819 dispatch: 3 production stages generated for Workshop #2</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[14:05:18]</span> <span style="color:var(--accent-2);font-weight:600;">[ShopFloor Tablet]</span> Barcode scan: Material batch M-8819 issued to Stage #1 (Lathe section)</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[14:05:22]</span> <span style="color:var(--green);font-weight:600;">[WIP Register]</span> Register MaterialyIRabotyVProizvodstve updated: variance 0.0%, scrap 0</div>
@@ -440,9 +440,9 @@
         <h2 class="section-title" data-reveal="">Доказанные кейсы внедрения</h2>
       </div>
       <div class="cases__grid cases__grid--static" data-reveal="">
-        <div class="case-card case-card--edi">
+        <article class="case-card case-card--edi">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--edi"></span>🏭 Завод промышленного оборудования · 6 цехов</div>
-          <h3 class="case-card__title">Сквозное ЭДО и диспетчеризация производственных этапов в 1С:ERP</h3>
+          <h3 class="case-card__title"><a href="/cases/manufacturing-edi-automation/" class="case-card__title-link">Сквозное ЭДО и диспетчеризация производственных этапов в 1С:ERP <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Автоматизировали пооперационный учет изготовления узлов, интеграцию с конструкторской PDM и синхронизацию с ЭДО Диадок.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -459,10 +459,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>1С:ERP 2.5</span><span>MES</span><span>Диадок</span><span>Спецификации</span></div>
-        </div>
-        <div class="case-card case-card--reconciliation">
+        </article>
+        <article class="case-card case-card--reconciliation">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--reconciliation"></span>💳 Финтех и расчетный центр · 50 000 операций в сутки</div>
-          <h3 class="case-card__title">Автоматическая сверка транзакций и распределение оплат</h3>
+          <h3 class="case-card__title"><a href="/cases/fintech-transaction-reconciliation/" class="case-card__title-link">Автоматическая сверка транзакций и распределение оплат <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Внедрили интеллектуальный робот сверки банковских выписок с заказами и производственными счетами без зависания базы данных.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -479,10 +479,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>1С:Предприятие</span><span>Автосверка</span><span>Банк-Клиент</span><span>Выписки</span></div>
-        </div>
-        <div class="case-card case-card--tenders">
+        </article>
+        <article class="case-card case-card--tenders">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--tenders"></span>🏗️ Промышленный инжиниринг и комплектация объектов</div>
-          <h3 class="case-card__title">Автоматизация калькуляции себестоимости и спецификаций КП</h3>
+          <h3 class="case-card__title"><a href="/cases/tender-procurement-automation/" class="case-card__title-link">Автоматизация калькуляции себестоимости и спецификаций КП <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Робот за 3 минуты парсит сложные опросные листы заказчиков, сверяет складские остатки сырья в 1С:ERP и рассчитывает маржинальность заказа.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -499,7 +499,7 @@
             </div>
           </div>
           <div class="case-card__tags"><span>1С:ERP</span><span>Калькуляция</span><span>Спецификации</span><span>Маржинальность</span></div>
-        </div>
+        </article>
       </div>
       <div class="carousel-dots" id="carousel-dots"></div>
     </div>

@@ -94,7 +94,7 @@
   <link rel="preload" href="/assets/fonts/JetBrainsMono-400-12.woff2" as="font" type="font/woff2" crossorigin="" />
 
   <!-- Extenal Stylesheet -->
-  <link rel="stylesheet" href="/assets/css/styles.min.css?v=825d48c9" />
+  <link rel="stylesheet" href="/assets/css/styles.min.css?v=5f6af294" />
 
   <!-- Scripts -->
   <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.4"></script>
@@ -230,7 +230,7 @@
             <span class="terminal__dot terminal__dot--green"></span>
             <span class="terminal__title">autopilot — agent_core v2.4.1</span>
           </div>
-          <div class="terminal__body" id="terminal-body">
+          <div class="terminal__body" id="terminal-body" data-static-terminal="true">
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:14:02]</span> <span style="color:var(--accent-1);font-weight:600;">[INBOUND]</span> Получена спецификация &#x27;Заявка_СеверТранс_240.xlsx&#x27; (184 позиции)</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:14:08]</span> <span style="color:var(--accent-1);font-weight:600;">[PARSER]</span> Структура таблицы распознана: артикулы, наименования, количество</div>
             <div class="terminal__line"><span class="terminal__prompt">&gt;</span> <span style="color:var(--text-3);">[10:14:15]</span> <span style="color:var(--green);font-weight:600;">[MATCHER]</span> 179 позиций сопоставлены со справочником 1С (точность 99.4%)</div>
@@ -434,9 +434,9 @@
         <h2 class="section-title" data-reveal="">Доказанные кейсы внедрения</h2>
       </div>
       <div class="cases__grid cases__grid--static" data-reveal="">
-        <div class="case-card case-card--edi">
+        <article class="case-card case-card--edi">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--edi"></span>🏭 Дистрибьютор промышленной электротехники · 50 000 SKU</div>
-          <h3 class="case-card__title">Авторазбор спецификаций на 300+ позиций за 30 секунд</h3>
+          <h3 class="case-card__title"><a href="/cases/tender-procurement-automation/" class="case-card__title-link">Авторазбор спецификаций на 300+ позиций за 30 секунд <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Подключили парсер спецификаций к корпоративной почте отдела продаж. Робот сопоставляет артикулы с 1С:КА и формирует КП с контролем маржи.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -453,10 +453,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>1С:КА 2</span><span>Excel-парсер</span><span>Расчет КП</span><span>Telegram</span></div>
-        </div>
-        <div class="case-card case-card--retail">
+        </article>
+        <article class="case-card case-card--retail">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--retail"></span>🏪 Оптовый поставщик крепежа и метизов · 15 филиалов</div>
-          <h3 class="case-card__title">Исключение ошибок в аналогах и защита маржинальности</h3>
+          <h3 class="case-card__title"><a href="/cases/auto-dealer-parts-automation/" class="case-card__title-link">Исключение ошибок в аналогах и защита маржинальности <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Внедрили алгоритм нормализации номенклатуры при приеме заявок строительных подрядчиков. Робот исключил ошибки подбора типоразмеров.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -473,10 +473,10 @@
             </div>
           </div>
           <div class="case-card__tags"><span>1С:УТ 11</span><span>Подбор аналогов</span><span>Защита маржи</span></div>
-        </div>
-        <div class="case-card case-card--manufacturing">
+        </article>
+        <article class="case-card case-card--manufacturing">
           <div class="case-card__industry"><span class="case-card__badge-dot case-card__badge-dot--manufacturing"></span>🏗️ Комплектация объектов строительства и ОВиК · 120 000 SKU</div>
-          <h3 class="case-card__title">Авторазбор проектных ведомостей и спецификаций в 1С:ERP за 2 минуты</h3>
+          <h3 class="case-card__title"><a href="/cases/manufacturing-edi-automation/" class="case-card__title-link">Авторазбор проектных ведомостей и спецификаций в 1С:ERP за 2 минуты <span class="case-card__arrow" aria-hidden="true">→</span></a></h3>
           <p class="case-card__desc">Внедрили ИИ-парсер опросных листов и чертежных спецификаций заказчиков. Система сопоставляет типоразмеры с производственной номенклатурой 1С:ERP и генерирует калькуляцию себестоимости.</p>
           <div class="case-card__results">
             <div class="case-result">
@@ -493,7 +493,7 @@
             </div>
           </div>
           <div class="case-card__tags"><span>1С:ERP 2.5</span><span>Проектные ТЗ</span><span>ОВиК и насосы</span><span>Калькуляция себестоимости</span></div>
-        </div>
+        </article>
       </div>
       <div class="carousel-dots" id="carousel-dots"></div>
     </div>

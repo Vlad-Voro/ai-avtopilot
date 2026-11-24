@@ -81,7 +81,7 @@
 <link as="font" crossorigin="" href="/assets/fonts/Inter-400-1.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/assets/fonts/Outfit-600-14.woff2" rel="preload" type="font/woff2"/>
 <!-- Inlined Styles (Eliminates Render-Blocking CSS & Critical Request Chains) -->
-<link href="/assets/css/styles.min.css?v=825d48c9" rel="stylesheet"/>
+<link href="/assets/css/styles.min.css?v=5f6af294" rel="stylesheet"/>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
 <script type="text/javascript">
     (function() {
@@ -157,13 +157,10 @@
 <section class="hero" id="home">
 <div class="hero__particles" id="particles"></div>
 <div class="container hero__inner">
-<div class="hero__content">
+<div class="hero__content"><nav aria-label="Хлебные крошки" class="breadcrumbs"><a href="/">Главная</a><span class="breadcrumbs__sep">/</span><a href="/cases/">Кейсы</a><span class="breadcrumbs__sep">/</span><span>Автоматизация найма и онбординга</span></nav>
 <h1 class="hero__title"><span class="hero__title-static">Кейс в ритейле: массовый найм </span><span class="hero__title-accent-box"><span class="hero__title-accent" data-phrases='["−85% времени на отбор", "со скринингом на HH", "с интеграцией в 1С:ЗУП"]' id="typed-text">−85% времени на отбор</span><span aria-hidden="true" class="hero__cursor"></span></span></h1>
 <p class="hero__sub">Агент массового найма: контакт с соискателем на HH.ru и Авито за 45 секунд, авто-интервью и создание карточки в 1С:ЗУП.</p>
-<div class="hero__actions">
-<a class="btn btn--ghost" href="/services/" id="cta-main">Смотреть услуги →</a>
-<a class="btn btn--ghost" href="/cases/">Смотреть кейсы →</a>
-</div>
+<div class="hero__actions"><a class="btn btn--primary" href="#contact" id="cta-main">Хочу такой же результат →</a><a class="btn btn--ghost" href="/services/hr-recruitment/">Услуга: ИИ-найм и рекрутинг →</a></div>
 <div class="hero__kpis"><div class="kpi-card"><span class="kpi-card__num" data-count="-85">−85%</span><span class="kpi-card__label">времени на отбор резюме</span></div><div class="kpi-card"><span class="kpi-card__num case-num--green" data-count="+40">+40%</span><span class="kpi-card__label">скорость закрытия вакансий</span></div><div class="kpi-card"><span class="kpi-card__num case-num--lilac" data-count="0">0</span><span class="kpi-card__label">пропущенных кандидатов</span></div></div>
 </div>
 <div class="hero__terminal-wrap">
@@ -174,42 +171,9 @@
 <span class="terminal__dot terminal__dot--green"></span>
 <span class="terminal__title">autopilot — agent_core v2.4.1</span>
 </div>
-<div class="terminal__body" id="terminal-body">
-<!-- JS fills this -->
+<div class="terminal__body" data-static-terminal="true" id="terminal-body"><div class="terminal__line terminal__line--prompt"><span>$ autopilot-case --inspect hr-recruitment-automation --env prod</span></div><div class="terminal__line terminal__line--ok"><span>  [16:40:10] ✔ HeadHunter API: Зафиксирован новый отклик на вакансию 'Продавец-кассир (ТЦ Авиапарк)'</span></div><div class="terminal__line terminal__line--ok"><span>  [16:40:48] ✔ Telegram Bot: Инициирован квалификационный диалог с соискателем (4 вопроса за 2 мин)</span></div><div class="terminal__line terminal__line--ok"><span>  [16:42:55] ✔ Календарь: Забронирован слот на собеседование с директором филиала #12 на завтра 11:30</span></div><div class="terminal__line terminal__line--ok"><span>  [16:43:02] ✔ 1С:ЗУП: Создана предварительная карточка соискателя с прикрепленным резюме.</span></div></div>
 </div>
-</div>
-<div class="hero__agent-cards">
-<div aria-label="Инспектировать агента Отчёты" class="agent-card" data-agent="reports" role="button" tabindex="0">
-<div class="agent-card__icon">🤖</div>
-<div class="agent-card__info">
-<span class="agent-card__name">Агент: Отчёты</span>
-<span class="agent-card__status agent-card__status--live">Активен</span>
-</div>
-<div class="agent-card__bar">
-<div class="agent-card__fill" style="width:78%"></div>
-</div>
-</div>
-<div aria-label="Инспектировать агента Склад" class="agent-card" data-agent="warehouse" role="button" tabindex="0">
-<div class="agent-card__icon">📦</div>
-<div class="agent-card__info">
-<span class="agent-card__name">Агент: Склад</span>
-<span class="agent-card__status agent-card__status--live">Активен</span>
-</div>
-<div class="agent-card__bar">
-<div class="agent-card__fill" style="width:62%"></div>
-</div>
-</div>
-<div aria-label="Инспектировать агента Счета" class="agent-card" data-agent="invoices" role="button" tabindex="0">
-<div class="agent-card__icon">💳</div>
-<div class="agent-card__info">
-<span class="agent-card__name">Агент: Счета</span>
-<span class="agent-card__status agent-card__status--idle">Ожидает</span>
-</div>
-<div class="agent-card__bar">
-<div class="agent-card__fill" style="width:23%"></div>
-</div>
-</div>
-</div>
+<div class="hero__agent-cards"><div aria-label="Инспектировать агента Агент: Скрининг HH" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ autopilot-hr --screen-resumes --limit 5000"}, {"type": "ok", "text": "  ✔ Отранжировано 5 140 откликов без пропусков"}]' role="button" tabindex="0"><div class="agent-card__icon">👥</div><div class="agent-card__info"><span class="agent-card__name">Агент: Скрининг HH</span><span class="agent-card__status agent-card__status--live">Активен</span></div><div class="agent-card__bar"><div class="agent-card__fill" style="width:92%"></div></div></div><div aria-label="Инспектировать агента Агент: Интервью Бот" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ autopilot-hr --tg-interview"}, {"type": "ok", "text": "  ✔ Первичное анкетирование в Telegram завершено за 4 мин"}]' role="button" tabindex="0"><div class="agent-card__icon">🤖</div><div class="agent-card__info"><span class="agent-card__name">Агент: Интервью Бот</span><span class="agent-card__status agent-card__status--live">Активен</span></div><div class="agent-card__bar"><div class="agent-card__fill" style="width:78%"></div></div></div><div aria-label="Инспектировать агента Агент: Экспорт 1С:ЗУП" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ autopilot-hr --sync-zup"}, {"type": "ok", "text": "  ✔ Проверенные анкеты финалистов переданы в 1С:ЗУП"}]' role="button" tabindex="0"><div class="agent-card__icon">📋</div><div class="agent-card__info"><span class="agent-card__name">Агент: Экспорт 1С:ЗУП</span><span class="agent-card__status agent-card__status--live">Активен</span></div><div class="agent-card__bar"><div class="agent-card__fill" style="width:71%"></div></div></div></div>
 </div>
 </div>
 </section>
@@ -299,7 +263,7 @@
 <div class="section-header">
 <p class="section-tag" data-reveal="">Решения и интеграции</p>
 <h2 class="section-title" data-reveal="">6 модулей сквозной автоматизации рекрутинга</h2>
-</div>
+<p class="case-service-note">Основное решение: <a href="/services/hr-recruitment/">ИИ-найм и рекрутинг</a>, <a href="/services/speech-analytics/">Речевая аналитика</a>, <a href="/services/knowledge-base-rag/">Корпоративная AI-база знаний</a>.</p></div>
 <div aria-label="Сценарии автоматизации" aria-roledescription="carousel" class="services__bento services__bento--static" data-reveal="" role="region" tabindex="0"><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">👥</div><h3 class="scard__title">Парсер и автоотклики HeadHunter API</h3><p class="scard__desc">Автоматическая выгрузка новых откликов и приглашение подходящих соискателей из открытой базы.</p><div class="scard__tags"><span>HH API</span><span>Скрининг</span><span>Парсер</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🤖</div><h3 class="scard__title">Telegram-интервьюер соискателей</h3><p class="scard__desc">Проведение первичного интерактивного собеседования с проверкой обязательных требований.</p><div class="scard__tags"><span>Telegram</span><span>Чат-бот</span><span>Интервью</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📊</div><h3 class="scard__title">Модуль скоринга компетенций и грейдов</h3><p class="scard__desc">Оценка опыта, стека технологий и соответствия профилю должности с присвоением балла.</p><div class="scard__tags"><span>Скоринг</span><span>Грейды</span><span>Компетенции</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📅</div><h3 class="scard__title">Синхронизация с календарями лидов</h3><p class="scard__desc">Автоматическое создание ссылок на видеоконференции в Яндекс Телемост или Google Meet.</p><div class="scard__tags"><span>Календарь</span><span>Телемост</span><span>Собеседование</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📑</div><h3 class="scard__title">Интеграция с кадровым учетом 1С:ЗУП</h3><p class="scard__desc">Создание карточки кандидата и прикрепление резюме к заявке на подбор через OData REST API.</p><div class="scard__tags"><span>1С:ЗУП</span><span>Кадры</span><span>OData</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📈</div><h3 class="scard__title">Аналитика воронки найма и Time-to-Hire</h3><p class="scard__desc">Контроль конверсии на каждом этапе отбора и расчет стоимости привлечения сотрудника.</p><div class="scard__tags"><span>Воронка</span><span>Time-to-Hire</span><span>HR-метрики</span></div></div></div>
 <div class="slider-controls">
 <button aria-label="Предыдущие решения" class="slider-arrow slider-arrow--prev" id="services-prev" title="Предыдущие решения" type="button">
@@ -386,63 +350,7 @@
 <h2 class="section-title">Часто задаваемые вопросы</h2>
 <p class="section-desc" style="color:var(--text-2);margin-top:12px;">Всё, что важно знать о безопасности, сроках внедрения и интеграции ИИ-агентов</p>
 </div>
-<div class="faq__grid" data-reveal="">
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Сколько времени занимает запуск первого пилотного проекта?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p>Развёртывание первого работающего ИИ-агента в вашем контуре занимает ровно <strong>14 календарных дней</strong>. Мы подключаемся к 1–3 ключевым процессам, проводим калибровку точности до 99%+ и передаём результат с гарантией окупаемости.</p>
-</div>
-</div>
-</div>
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Нужно ли дорабатывать или менять существующую 1С, SAP или CRM?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p><strong>Нет, менять ничего не требуется.</strong> ИИ-агенты подключаются через стандартные протоколы (1C OData REST API, HTTP-сервисы, Webhooks, Диадок SDK). Мы не вмешиваемся в типовую конфигурацию и не нарушаем штатные процессы вашей системы.</p>
-</div>
-</div>
-</div>
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Как обеспечивается безопасность коммерческих данных и соблюдение 152-ФЗ?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p>Все данные обрабатываются на защищённых серверах в Российской Федерации в строгом соответствии с <strong>152-ФЗ РФ</strong>. Перед началом работ подписывается соглашение о неразглашении (NDA). Для предприятий с повышенными требованиями безопасности возможно развёртывание <strong>локальных On-Premise моделей</strong> внутри закрытого периметра без выхода во внешние сети.</p>
-</div>
-</div>
-</div>
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Какова средняя окупаемость (ROI) и экономический эффект?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p>В среднем внедрение окупается за <strong>1.5–3 месяца</strong> после ввода в эксплуатацию. Средний доказанный ROI составляет <strong>340% годовых</strong> за счёт сокращения рутинного ручного труда на 70–80% и ликвидации человеческих ошибок в первичных документах.</p>
-</div>
-</div>
-</div>
-<div class="faq-item">
-<button aria-expanded="false" class="faq-item__header" type="button">
-<span class="faq-item__question">Что входит в бесплатный 30-минутный экспресс-аудит?</span>
-<span class="faq-item__icon">+</span>
-</button>
-<div class="faq-item__answer">
-<div class="faq-item__inner">
-<p>В рамках 30-минутного экспресс-аудита наш архитектор анализирует 3 самых трудоёмких процесса вашей компании, рассчитывает индивидуальную матрицу окупаемости (ROI) и готовит пошаговую архитектурную схему внедрения пилотного агента.</p>
-</div>
-</div>
-</div>
-</div>
+<div class="faq__grid" data-reveal=""><div class="faq-item"><button aria-controls="faq-ans-0" aria-expanded="false" class="faq-item__header" type="button"><span class="faq-item__question">Не отпугивает ли кандидатов общение с чат-ботом?</span><span class="faq-item__icon">+</span></button><div class="faq-item__answer" id="faq-ans-0" role="region"><div class="faq-item__inner"><p>Практика показывает обратное: соискатели ценят мгновенную обратную связь без ожидания звонка рекрутера. Конверсия в прохождение скрининга составляет 84%.</p></div></div></div><div class="faq-item"><button aria-controls="faq-ans-1" aria-expanded="false" class="faq-item__header" type="button"><span class="faq-item__question">Как настраиваются критерии оценки резюме?</span><span class="faq-item__icon">+</span></button><div class="faq-item__answer" id="faq-ans-1" role="region"><div class="faq-item__inner"><p>Для каждой вакансии формируется профиль компетенций: ключевые навыки, образование, стаж и стоп-факторы. Модель оценивает семантическое соответствие, а не просто ключевые слова.</p></div></div></div><div class="faq-item"><button aria-controls="faq-ans-2" aria-expanded="false" class="faq-item__header" type="button"><span class="faq-item__question">Соответствует ли обработка резюме требованиям 152-ФЗ?</span><span class="faq-item__icon">+</span></button><div class="faq-item__answer" id="faq-ans-2" role="region"><div class="faq-item__inner"><p>Да. Бот в обязательном порядке запрашивает согласие на обработку персональных данных до начала диалога, а серверная часть размещена в РФ.</p></div></div></div></div>
 </div>
 </section>
 <!-- ═══════════════════ LIVE DASHBOARD ═══════════════════ -->
@@ -501,9 +409,7 @@
 </div>
 <div class="board-panels">
 <div aria-labelledby="tab-log" class="board-panel board-panel--active" id="panel-log" role="tabpanel">
-<div class="log" id="event-log">
-<!-- JS fills this -->
-</div>
+<div class="log" id="case-event-log"><div class="log-item log-item--default"><span class="log-item__time">16:40:10</span><span class="log-item__text">HeadHunter API: Зафиксирован новый отклик на вакансию 'Продавец-кассир (ТЦ Авиапарк)'</span></div><div class="log-item log-item--default"><span class="log-item__time">16:40:48</span><span class="log-item__text">Telegram Bot: Инициирован квалификационный диалог с соискателем (4 вопроса за 2 мин)</span></div><div class="log-item log-item--default"><span class="log-item__time">16:42:55</span><span class="log-item__text">Календарь: Забронирован слот на собеседование с директором филиала #12 на завтра 11:30</span></div><div class="log-item log-item--default"><span class="log-item__time">16:43:02</span><span class="log-item__text">1С:ЗУП: Создана предварительная карточка соискателя с прикрепленным резюме.</span></div></div>
 </div>
 <div aria-labelledby="tab-agents" class="board-panel" hidden="" id="panel-agents" role="tabpanel">
 <div class="agent-list" id="agent-list">
