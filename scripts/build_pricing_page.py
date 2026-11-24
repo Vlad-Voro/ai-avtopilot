@@ -15,6 +15,7 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 from pricing_block import PRICE_RANGE_TEXT, get_offer_catalog_items, render_pricing_section
+from sync_pages import _build_terminal_wrap
 
 PRICING_URL = "https://ai-avtopilot.ru/pricing/"
 PRICING_TITLE = "Стоимость внедрения ИИ-агентов и автоматизация 1С: цены от 50 000 ₽ | АвтоПилот"
@@ -47,12 +48,60 @@ PRICING_FAQS: list[tuple[str, str]] = [
 ]
 
 
+PRICING_TERMINAL: dict = {
+    "title": "agent-pricing.sh — Смета и сроки",
+    "lines": [
+        ("prompt", "$ avtopilot estimate --scope=1c-crm-edo"),
+        ("ok", "[OK] Пилот 14 дней: от 50 000 ₽ (зачет 100%)"),
+        ("ok", "[OK] Под ключ: 125–275 тыс. ₽ · оплата 50/50"),
+        ("dim", "[SEC] On-Premise 152-ФЗ: от 400 000 ₽"),
+        ("ok", "[DOC] ОСНО (НДС 22%) и УСН · ЭДО Диадок/СБИС"),
+    ],
+    "agents": [
+        {
+            "icon": "⚡",
+            "name": "Пилот 14 дней",
+            "status": "от 50 тыс. ₽",
+            "width": "82%",
+            "logs": [
+                {"type": "prompt", "text": "$ run pilot-14d --credit=100%"},
+                {"type": "ok", "text": "Зачет 50 000 ₽ в основной проект за 30 дней"},
+                {"type": "dim", "text": "1 процесс в 1С/CRM и измерение KPI в проде"},
+            ],
+        },
+        {
+            "icon": "📦",
+            "name": "Под ключ",
+            "status": "125–275 тыс.",
+            "width": "94%",
+            "logs": [
+                {"type": "prompt", "text": "$ run turnkey --sla=30d"},
+                {"type": "ok", "text": "Этапность 50/50 · BYOK-токены с наценкой 0%"},
+                {"type": "dim", "text": "Договор, ЭДО Диадок/СБИС и гарантия 30 дней"},
+            ],
+        },
+        {
+            "icon": "🛡",
+            "name": "On-Premise",
+            "status": "от 400 тыс.",
+            "width": "100%",
+            "logs": [
+                {"type": "prompt", "text": "$ deploy --airgap --152fz"},
+                {"type": "ok", "text": "Закрытый контур РФ · локальные LLM в вашей сети"},
+                {"type": "dim", "text": "Без облачных вызовов · исходный код ваш навсегда"},
+            ],
+        },
+    ],
+}
+
+
 def _render_pricing_hero() -> str:
-    return """  <!-- ═══════════════════ HERO ═══════════════════ -->
+    terminal_html = _build_terminal_wrap(PRICING_TERMINAL)
+    return f"""  <!-- ═══════════════════ HERO ═══════════════════ -->
   <section class="hero" id="home">
     <div class="hero__particles" id="hero-particles" aria-hidden="true"></div>
     <div class="container hero__inner">
-      <div class="hero__content" style="max-width:780px">
+      <div class="hero__content">
         <nav class="breadcrumbs" aria-label="Хлебные крошки" style="display:flex;gap:8px;align-items:center;font-size:.875rem;color:var(--text-3);margin-bottom:16px">
           <a href="/" style="color:var(--text-2);text-decoration:none">Главная</a>
           <span aria-hidden="true">/</span>
@@ -69,6 +118,7 @@ def _render_pricing_hero() -> str:
           <a href="#contact" class="btn btn--ghost btn--lg">Запросить смету</a>
         </div>
       </div>
+      {terminal_html}
     </div>
   </section>"""
 

@@ -158,7 +158,7 @@
 <section class="hero" id="home">
 <div aria-hidden="true" class="hero__particles" id="hero-particles"></div>
 <div class="container hero__inner">
-<div class="hero__content" style="max-width:780px">
+<div class="hero__content">
 <nav aria-label="Хлебные крошки" class="breadcrumbs" style="display:flex;gap:8px;align-items:center;font-size:.875rem;color:var(--text-3);margin-bottom:16px">
 <a href="/" style="color:var(--text-2);text-decoration:none">Главная</a>
 <span aria-hidden="true">/</span>
@@ -173,6 +173,49 @@
 <div class="hero__actions">
 <a class="btn btn--primary btn--lg" href="#pricing">Смотреть форматы</a>
 <a class="btn btn--ghost btn--lg" href="#contact">Запросить смету</a>
+</div>
+</div>
+<div class="hero__terminal-wrap">
+<div class="terminal">
+<div class="terminal__header">
+<span class="terminal__dot terminal__dot--red"></span>
+<span class="terminal__dot terminal__dot--yellow"></span>
+<span class="terminal__dot terminal__dot--green"></span>
+<span class="terminal__title">agent-pricing.sh — Смета и сроки</span>
+</div>
+<div class="terminal__body" data-static-terminal="true" id="terminal-body">
+<div class="terminal__line terminal__line--prompt"><span>$ avtopilot estimate --scope=1c-crm-edo</span></div>
+<div class="terminal__line terminal__line--ok"><span>[OK] Пилот 14 дней: от 50 000 ₽ (зачет 100%)</span></div>
+<div class="terminal__line terminal__line--ok"><span>[OK] Под ключ: 125–275 тыс. ₽ · оплата 50/50</span></div>
+<div class="terminal__line terminal__line--dim"><span>[SEC] On-Premise 152-ФЗ: от 400 000 ₽</span></div>
+<div class="terminal__line terminal__line--ok"><span>[DOC] ОСНО (НДС 22%) и УСН · ЭДО Диадок/СБИС</span></div>
+</div>
+</div>
+<div class="hero__agent-cards">
+<div aria-label="Инспектировать Пилот 14 дней" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ run pilot-14d --credit=100%"}, {"type": "ok", "text": "Зачет 50 000 ₽ в основной проект за 30 дней"}, {"type": "dim", "text": "1 процесс в 1С/CRM и измерение KPI в проде"}]' role="button" tabindex="0">
+<div class="agent-card__icon">⚡</div>
+<div class="agent-card__info">
+<span class="agent-card__name">Пилот 14 дней</span>
+<span class="agent-card__status agent-card__status--live">от 50 тыс. ₽</span>
+</div>
+<div class="agent-card__bar"><div class="agent-card__fill" style="width:82%"></div></div>
+</div>
+<div aria-label="Инспектировать Под ключ" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ run turnkey --sla=30d"}, {"type": "ok", "text": "Этапность 50/50 · BYOK-токены с наценкой 0%"}, {"type": "dim", "text": "Договор, ЭДО Диадок/СБИС и гарантия 30 дней"}]' role="button" tabindex="0">
+<div class="agent-card__icon">📦</div>
+<div class="agent-card__info">
+<span class="agent-card__name">Под ключ</span>
+<span class="agent-card__status agent-card__status--live">125–275 тыс.</span>
+</div>
+<div class="agent-card__bar"><div class="agent-card__fill" style="width:94%"></div></div>
+</div>
+<div aria-label="Инспектировать On-Premise" class="agent-card" data-agent-log='[{"type": "prompt", "text": "$ deploy --airgap --152fz"}, {"type": "ok", "text": "Закрытый контур РФ · локальные LLM в вашей сети"}, {"type": "dim", "text": "Без облачных вызовов · исходный код ваш навсегда"}]' role="button" tabindex="0">
+<div class="agent-card__icon">🛡</div>
+<div class="agent-card__info">
+<span class="agent-card__name">On-Premise</span>
+<span class="agent-card__status agent-card__status--live">от 400 тыс.</span>
+</div>
+<div class="agent-card__bar"><div class="agent-card__fill" style="width:100%"></div></div>
+</div>
 </div>
 </div>
 </div>
