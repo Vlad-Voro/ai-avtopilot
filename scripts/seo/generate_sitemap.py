@@ -251,19 +251,7 @@ URL_SPEC = [
         "changefreq": "weekly",
         "priority": "0.8",
     },
-    {
-        "url": "https://ai-avtopilot.ru/dashboard/",
-        "file": "dashboard/index.html",
-        "changefreq": "weekly",
-        "priority": "0.8",
-    },
     {"url": "https://ai-avtopilot.ru/faq/", "file": "faq/index.html", "changefreq": "weekly", "priority": "0.8"},
-    {
-        "url": "https://ai-avtopilot.ru/contact/",
-        "file": "contact/index.html",
-        "changefreq": "weekly",
-        "priority": "0.8",
-    },
     {"url": "https://ai-avtopilot.ru/privacy.html", "file": "privacy.html", "changefreq": "monthly", "priority": "0.5"},
 ]
 

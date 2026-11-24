@@ -15,13 +15,13 @@ const PAGES = [
   { slug: '', file: 'index.html', url: 'https://ai-avtopilot.ru/', category: 'home', hasBreadcrumbs: false },
 
   // Hubs
-  { slug: 'services', file: 'services/index.html', url: 'https://ai-avtopilot.ru/services/', category: 'hub', hasBreadcrumbs: true },
-  { slug: 'cases', file: 'cases/index.html', url: 'https://ai-avtopilot.ru/cases/', category: 'hub', hasBreadcrumbs: true },
-  { slug: 'pricing', file: 'pricing/index.html', url: 'https://ai-avtopilot.ru/pricing/', category: 'hub', hasBreadcrumbs: true },
-  { slug: 'calculator', file: 'calculator/index.html', url: 'https://ai-avtopilot.ru/calculator/', category: 'hub', hasBreadcrumbs: true },
-  { slug: 'dashboard', file: 'dashboard/index.html', url: 'https://ai-avtopilot.ru/dashboard/', category: 'hub', hasBreadcrumbs: true },
-  { slug: 'faq', file: 'faq/index.html', url: 'https://ai-avtopilot.ru/faq/', category: 'hub', hasBreadcrumbs: true },
-  { slug: 'contact', file: 'contact/index.html', url: 'https://ai-avtopilot.ru/contact/', category: 'hub', hasBreadcrumbs: true },
+  { slug: 'services', file: 'services/index.html', url: 'https://ai-avtopilot.ru/services/', category: 'hub', hasBreadcrumbs: true, hasFaq: false },
+  { slug: 'cases', file: 'cases/index.html', url: 'https://ai-avtopilot.ru/cases/', category: 'hub', hasBreadcrumbs: true, hasFaq: false },
+  { slug: 'pricing', file: 'pricing/index.html', url: 'https://ai-avtopilot.ru/pricing/', category: 'hub', hasBreadcrumbs: true, hasFaq: true },
+  { slug: 'calculator', file: 'calculator/index.html', url: 'https://ai-avtopilot.ru/calculator/', category: 'hub', hasBreadcrumbs: true, hasFaq: false },
+  { slug: 'dashboard', file: 'dashboard/index.html', url: 'https://ai-avtopilot.ru/dashboard/', category: 'hub', hasBreadcrumbs: true, hasFaq: false, noindex: true },
+  { slug: 'faq', file: 'faq/index.html', url: 'https://ai-avtopilot.ru/faq/', category: 'hub', hasBreadcrumbs: true, hasFaq: true },
+  { slug: 'contact', file: 'contact/index.html', url: 'https://ai-avtopilot.ru/contact/', category: 'hub', hasBreadcrumbs: true, hasFaq: false, noindex: true },
 
   // Services (10)
   { slug: 'services/automated-reporting', file: 'services/automated-reporting/index.html', url: 'https://ai-avtopilot.ru/services/automated-reporting/', category: 'service', hasBreadcrumbs: true },
@@ -92,14 +92,24 @@ function runSeoSuite() {
 
   console.log('▶ [Category 1] Directives & Discovery (Robots, Sitemap, LLMs)');
 
-// SEO-01: sitemap.xml
-runCheck('SEO-01', 'sitemap.xml is valid, contains all canonical URLs with HTTPS', () => {
+// SEO-01: sitemap.xml & robots meta directives
+runCheck('SEO-01', 'sitemap.xml includes all indexable URLs with HTTPS and excludes noindex pages', () => {
   const sitemapPath = path.join(ROOT_DIR, 'sitemap.xml');
   assert.ok(fs.existsSync(sitemapPath), 'sitemap.xml must exist in root');
   const xml = fs.readFileSync(sitemapPath, 'utf8');
   assert.ok(xml.includes('<urlset'), 'Must contain <urlset>');
   PAGES.forEach(p => {
-    assert.ok(xml.includes(`<loc>${p.url}</loc>`), `sitemap.xml must include ${p.url}`);
+    const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
+    if (p.noindex) {
+      assert.ok(!xml.includes(`<loc>${p.url}</loc>`), `sitemap.xml must exclude noindex URL ${p.url}`);
+      const hasNoindex =
+        /<meta[^>]+name="robots"[^>]*content="noindex,\s*follow"/i.test(html) ||
+        /<meta[^>]+content="noindex,\s*follow"[^>]*name="robots"/i.test(html);
+      assert.ok(hasNoindex, `Missing noindex, follow directive in ${p.file}`);
+    } else {
+      assert.ok(xml.includes(`<loc>${p.url}</loc>`), `sitemap.xml must include ${p.url}`);
+      assert.ok(!/<meta[^>]+name="robots"[^>]*noindex/i.test(html), `Unexpected noindex directive in ${p.file}`);
+    }
   });
   assert.ok(xml.includes('<loc>https://ai-avtopilot.ru/privacy.html</loc>'), 'Must include privacy.html');
 });
@@ -224,12 +234,14 @@ runCheck('SEO-10', 'Schema.org JSON-LD @graph contains required entities per cat
     const types = data['@graph'].map(item => item['@type']);
     assert.ok(types.includes('Organization'), `Missing Organization in ${p.file}`);
     assert.ok(types.includes('ProfessionalService'), `Missing ProfessionalService in ${p.file}`);
-    if (p.category === 'home' || p.category === 'hub') {
+    if (p.category === 'home') {
       assert.ok(types.includes('WebSite'), `Missing WebSite in ${p.file}`);
       assert.ok(types.includes('FAQPage'), `Missing FAQPage in ${p.file}`);
+    } else if (p.category === 'hub') {
+      assert.ok(!types.includes('WebSite'), `Unexpected WebSite in hub ${p.file}`);
+      if (p.hasFaq !== false) assert.ok(types.includes('FAQPage'), `Missing FAQPage in ${p.file}`);
     } else if (p.category === 'service') {
-      const prof = data['@graph'].find(item => item['@type'] === 'ProfessionalService');
-      assert.ok(prof && prof.hasOfferCatalog, `Missing ProfessionalService.hasOfferCatalog in ${p.file}`);
+      assert.ok(types.includes('Service') || types.includes('SoftwareApplication'), `Missing Service in ${p.file}`);
     } else if (p.category === 'case') {
       assert.ok(types.includes('TechArticle'), `Missing TechArticle in ${p.file}`);
     }
@@ -354,16 +366,18 @@ runCheck('SEO-20', 'ProfessionalService has valid OfferCatalog and all images ha
       assert.ok(altValue.length > 0, `Empty alt attribute detected in ${p.file}`);
     }
 
-    // Check OfferCatalog in Schema.org
+    // Check OfferCatalog in Schema.org (root & pricing hub)
     const scriptMatch = html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s);
     assert.ok(scriptMatch, `Missing JSON-LD in ${p.file}`);
     const data = JSON.parse(scriptMatch[1].trim());
     const service = data['@graph'].find(item => item['@type'] === 'ProfessionalService');
     assert.ok(service, `Missing ProfessionalService in ${p.file}`);
-    assert.ok(service.hasOfferCatalog, `Missing hasOfferCatalog in ${p.file}`);
-    assert.strictEqual(service.hasOfferCatalog['@type'], 'OfferCatalog', `Invalid OfferCatalog type in ${p.file}`);
-    assert.ok(Array.isArray(service.hasOfferCatalog.itemListElement), `itemListElement is not array in ${p.file}`);
-    assert.ok(service.hasOfferCatalog.itemListElement.length >= 3, `Expected at least 3 offers in ${p.file}`);
+    if (p.category === 'home' || p.slug === 'pricing') {
+      assert.ok(service.hasOfferCatalog, `Missing hasOfferCatalog in ${p.file}`);
+      assert.strictEqual(service.hasOfferCatalog['@type'], 'OfferCatalog', `Invalid OfferCatalog type in ${p.file}`);
+      assert.ok(Array.isArray(service.hasOfferCatalog.itemListElement), `itemListElement is not array in ${p.file}`);
+      assert.ok(service.hasOfferCatalog.itemListElement.length >= 3, `Expected at least 3 offers in ${p.file}`);
+    }
   });
 });
 

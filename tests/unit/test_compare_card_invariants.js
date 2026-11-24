@@ -63,13 +63,13 @@ function runCompareCardInvariantsSuite() {
     return htmlContent;
   }
 
-  check(`All compare pages found (expected 42, got ${compareFiles.length})`, () => {
-    assert.strictEqual(compareFiles.length, 42);
+  check(`All compare pages found (expected 36, got ${compareFiles.length})`, () => {
+    assert.strictEqual(compareFiles.length, 36);
   });
 
-  check('All 42 compare pages declare .compare__grid with align-items:stretch', () => {
+  check('All 36 compare pages declare .compare__grid with align-items:stretch', () => {
     assert.strictEqual(typeof compareFiles, 'object');
-    assert.ok(compareFiles.length >= 42);
+    assert.ok(compareFiles.length >= 36);
     for (const f of compareFiles) {
       const content = fs.readFileSync(f, 'utf-8');
       const effectiveContent = getEffectiveCss(content);

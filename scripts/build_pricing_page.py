@@ -216,7 +216,7 @@ def build_pricing_page() -> Path:
         graph = []
         for item in data.get("@graph", []):
             item_type = item.get("@type")
-            if item_type in ("FAQPage", "BreadcrumbList"):
+            if item_type in ("FAQPage", "BreadcrumbList", "WebSite"):
                 continue
             if item_type == "ProfessionalService":
                 item["priceRange"] = PRICE_RANGE_TEXT
