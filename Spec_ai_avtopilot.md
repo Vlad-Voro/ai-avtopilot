@@ -173,7 +173,7 @@ index.html (Master Template) & Data Catalogs
 - **Lifecycle**: Pauses execution during inactive browser tabs via `visibilitychange` (`document.hidden === true`).
 
 ### 4.4. KPI Counter Animation Engine
-- **Interpolation**: Numbers interpolate over 1200ms using ease-out quad on `IntersectionObserver` trigger (`threshold: 0.15`).
+- **Interpolation**: Numbers interpolate over `1350ms` (Hero) / `1650ms` (below fold) using `easeOutQuart` (`1 - (1 - p)^4`) in a unified shared `requestAnimationFrame` loop on `IntersectionObserver` trigger (`rootMargin: 0px 0px -5% 0px`), with `tabular-nums`, `contain: layout style`, diff-guarded DOM writes, and `prefers-reduced-motion: reduce` opt-out.
 - **Metric Unit Preservation Contract**: Strictly isolates numeric stems while preserving signs (`+`, `−`), decimal separators (`,`), and suffixes (`%`, `₽`, `ч`, `сек`, `млн ₽`, `★`). Never render naked integers where units are defined.
 
 ---
