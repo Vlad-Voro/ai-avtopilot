@@ -3,8 +3,8 @@
 > **Standard**: ASD-STE100 (Simplified Technical English)  
 > **Status**: Production Hardened | **Updated**: 2026-11-24  
 > **Live URL**: [https://ai-avtopilot.ru/](https://ai-avtopilot.ru/) | **Repo**: `Vlad-Voro/ai-avtopilot` (`main` - Private)  
-> **Local Root**: `d:\AI\data\ai-avtopilot` | **Inventory**: 46 Production URLs (1 Root, 7 Hubs, 24 Services, 11 Cases, 3 Utility) + 1 Canonical Stub (`/automated-reporting/`)  
-> **Verification Matrix**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E, 0 regressions) + 486 Layout Matrix
+> **Local Root**: `d:\AI\data\ai-avtopilot` | **Inventory**: 52 Production URLs (1 Root, 8 Hubs incl. `/guides/`, 24 Services, 11 Cases, 5 Guides, 3 Utility) + 1 Canonical Stub (`/automated-reporting/`)  
+> **Verification Matrix**: **94 / 94 `--fast` PASS** + **212 / 214 Tier 3 E2E** (2 Edge 158 `flex-start -> flow-start` serialization mismatches) + **486 Layout Matrix**
 
 ---
 
@@ -23,12 +23,12 @@ flowchart TD
         VEdge -->|Deployment Isolation| VIgn[".vercelignore (blocks _headers, *.md, tests, bot)"]
     end
 
-    subgraph AppLayer ["2. Multi-Entry Hybrid SSG (46 URLs)"]
+    subgraph AppLayer ["2. Multi-Entry Hybrid SSG (52 URLs)"]
         VEdge --> P1["/ (Main Landing)"]
-        VEdge --> P2["7 Hub Pages (/services/, /cases/, /pricing/, /calculator/, /dashboard/, /faq/, /contact/)"]
+        VEdge --> P2["8 Hub Pages (/services/, /cases/, /pricing/, /calculator/, /guides/, /faq/, + noindex /dashboard/, /contact/)"]
         VEdge --> P3["24 Dedicated Service Pages (/services/<slug>/)"]
         VEdge --> P4["11 Dedicated Case Pages (/cases/<slug>/)"]
-        VEdge --> P5["3 Utility Pages (/privacy.html, /404.html, /success.html) + /automated-reporting/ Stub"]
+        VEdge --> P5["5 MoFu/ToFu Guide Pages (/guides/<slug>/) + 3 Utility Pages (/privacy.html, /404.html, /success.html)"]
     end
 
     subgraph Ingestion ["3. Multi-Cloud Ingestion & Notifications"]
@@ -277,7 +277,7 @@ node data/ai-avtopilot/tests/run_all.js
 | Tier | Scope | Checks | Latency | Key Invariants Verified |
 | :--- | :--- | :--- | :--- | :--- |
 | **Tier 1** | In-Memory Unit | 11 | $\le 20\text{ms}$ | ROI formula ($E \times S \times \frac{H}{160} \times 12$), boundary clamps, sanitization, Russian locale formatting. |
-| **Tier 2** | Static & Integration | 81 | $< 1.5\text{s}$ | **SEO (36)**: `sitemap.xml`, trailing slashes, title $\le 85$c, description $\le 175$c, 1 H1, Schema.org @graph, DOM sequence, `<noscript>` anti-clickjacking restore (`SEO-29`).<br>**Security (19)**: TG HTML escaping, ID parser, 10 KB clamp, honeypot, frame guard, WCAG AA palette contrast.<br>**SSL/TLS (10)**: Edge TLS 1.2/1.3, HSTS, redirects & zero mixed content.<br>**Resiliency (5)**: 6000ms abort, fallback card, Metrica callback, anti-slop audit.<br>**Invariants (11)**: Favicons (6), Compare Cards equal heights across 42 HTML pages (5). |
+| **Tier 2** | Static & Integration | 83 | $< 1.6\text{s}$ | **SEO (38)**: `sitemap.xml` (49 indexable URLs), trailing slashes, title $\le 85$c, description $\le 175$c, 1 H1, Schema.org `@graph` (`AggregateOffer`, PNG logos, scoped `WebSite`), DOM FAQ 1:1 across all pages, `<noscript>` restore (`SEO-29`), case FAQ/terminal/bidirectional links (`SEO-30`), `/guides/` & GEO citations (`SEO-31`).<br>**Security (19)**: TG HTML escaping, ID parser, 10 KB clamp, honeypot, frame guard, 50 form pages (`SEC-10`), WCAG AA palette contrast.<br>**SSL/TLS (10)**: Edge TLS 1.2/1.3, HSTS, redirects & zero mixed content.<br>**Resiliency (5)**: 6000ms abort, fallback card, Metrica callback, anti-slop audit.<br>**Invariants (11)**: Favicons (6), Compare Cards equal heights across 36 compare HTML pages (5). |
 | **Tier 3** | Browser E2E + CWV | 120–129 | $\sim 20\text{s}$ | **Core E2E**: touch, routing, burger menu, viewports (320px–2560px), WCAG AA contrast, lead delivery, formula reactivity.<br>**Express Modal (7)**: dual pill, dialog open/close, tab switch, 1-click email copy.<br>**Slider & Drag + CWV**: desktop LMB drag-to-scroll, grab cursor, `CLS = 0.000`, `TBT = 0 ms`. |
 | **Tier 4** | Layout Matrix | 630 | $\sim 13\text{s}$ | DOM geometry across 35 pages $\times$ 18 canonical viewport profiles. |
 
@@ -323,7 +323,7 @@ node data/ai-avtopilot/tests/run_all.js
 19. ❌ **Desktop 3x3 Static Grids & Strict 3-Case Invariant**: Unlinked module blocks must render as 3-column grid (`repeat(3, minmax(0, 1fr))`). Every service page MUST feature exactly 3 applied case cards.
 20. ❌ **Zero Asymmetric Mobile Cards (Equal-Height Invariant)**: In mobile/tablet horizontal swipe containers (`.services__bento`, `.other-services__bento`, `.cases__grid`, `.pricing__grid` under `@media(max-width: 1024px)`), containers must enforce `align-items: stretch !important` and card items (`.scard`, `.case-card`, `.pricing__card`) must have `align-self: stretch !important`, `height: auto !important`, `display: flex !important`, `flex-direction: column !important`. Description/list blocks must have `flex: 1 1 auto !important`, and trailing tags/results/CTAs must have `margin-top: auto !important`. Sibling card descriptions and tag counts must remain balanced to prevent height disparity.
 21. ❌ **Zero Solo Telegram Footers (Canonical Dual-CTA Footer Invariant)**: Every production page (`/`, hubs, `/services/*`, `/cases/*`) must strictly render the canonical dual conversion footer (`.footer__dual-cta` containing both Telegram button and `#open-express-modal` Email express audit trigger, backed by `<dialog id="express-contact-modal">` and modal controller script). Standalone legacy `.footer__tg-cta` is strictly prohibited.
-22. ❌ **Zero Asymmetric Comparison Cards (Equal-Height & Alignment Invariant)**: In the `#compare` before/after block across all 42 compare pages, `.compare__grid` MUST declare `align-items: stretch` (prohibited: `align-items: center`). Both cards (`.compare__card`) MUST specify `height: 100%` and `box-sizing: border-box` on desktop, and `height: auto` on mobile. Central arrow (`.compare__arrow`) MUST declare `align-self: center` and `justify-content: center`. Enforced by `test_compare_card_invariants.js` and E2E suites `R1.7` / `E2E-7`.
+22. ❌ **Zero Asymmetric Comparison Cards (Equal-Height & Alignment Invariant)**: In the `#compare` before/after block across all 36 compare pages, `.compare__grid` MUST declare `align-items: stretch` (prohibited: `align-items: center`). Both cards (`.compare__card`) MUST specify `height: 100%` and `box-sizing: border-box` on desktop, and `height: auto` on mobile. Central arrow (`.compare__arrow`) MUST declare `align-self: center` and `justify-content: center`. Enforced by `test_compare_card_invariants.js` and E2E suites `R1.7` / `E2E-7`.
 23. ❌ **Zero Negative Scroll Clipping on Touchbar Dots (Mobile Touchbar Invariant)**: On mobile/tablet carousels (`@media(max-width: 1024px)`), `.services-dots, .other-services-dots, .pricing-dots, .carousel-dots` must strictly declare `justify-content: flex-start; scroll-behavior: smooth;`. Enforced by `test_slider_and_drag.js`.
 24. ❌ **Zero Non-JS Anti-Clickjacking Blackout**: Every HTML page carrying `<style id="anti-clickjack">body{display:none !important;}</style>` MUST immediately follow it with `<noscript><style>#anti-clickjack{display:none !important;}body{display:block !important;}[data-reveal]{opacity:1 !important;transform:none !important;visibility:visible !important;}</style></noscript>`. Enforced by `SEO-29`.
 25. ❌ **Zero Typewriter Cursor Pipe Pollution in DOM H1**: `<span class="hero__cursor" aria-hidden="true"></span>` must contain empty DOM text; the pipe glyph (`|`) renders solely via CSS `.hero__cursor::before{content:"|"}` so crawlers never index `|` inside `<h1>`.

@@ -2,9 +2,9 @@
 
 > **Standard**: ASD-STE100 (Simplified Technical English) / SDR  
 > **Status**: Production Deployed | **Target**: [ai-avtopilot.ru](https://ai-avtopilot.ru/) | **Geo**: Russian Federation (Nationwide B2B)  
-> **Inventory**: 46 Production URLs (1 Root, 7 Hubs, 24 Services, 11 Cases, 3 Utility) + 1 Canonical Stub (`/automated-reporting/`)  
+> **Inventory**: 52 Production URLs (1 Root, 8 Hubs incl. `/guides/`, 24 Services, 11 Cases, 5 MoFu/ToFu Guides, 3 Utility) + 1 Canonical Stub (`/automated-reporting/`)  
 > **Search Targets**: Yandex (Web + «Нейро»), Google RU (AI Overviews), Perplexity, Klerk.ru, Infostart.ru  
-> **Verification**: **153 / 153 PASS** (Tier 1: 11 Unit + Tier 2: 54 Static + Tier 3: 88 Browser E2E) | **AI Slop**: **0 Markers** across all 46 URLs
+> **Verification**: **94 / 94 `--fast` PASS** + **212 / 214 Tier 3 E2E** (Waves 4–7 P0/P1 complete) | **AI Slop**: **0 Markers** across all 52 URLs
 ---
 
 ## 1. Demand Capture Topology & Architecture
@@ -18,11 +18,12 @@ flowchart TD
         Val -- "Validated Pool" --> Brief["Validated Semantics Matrix"]
     end
 
-    subgraph Architecture ["2. Production Silo Architecture (46 URLs)"]
+    subgraph Architecture ["2. Production Silo Architecture (52 URLs)"]
         Root["/ (Main Landing Page)"]
-        Hubs["7 Hub Pages (/services/, /cases/, /pricing/, /calculator/, /dashboard/, /faq/, /contact/)"]
+        Hubs["8 Hub Pages (/services/, /cases/, /pricing/, /calculator/, /guides/, /faq/, + noindex /dashboard/, /contact/)"]
         T1["24 Dedicated Service Pages (/services/*)"]
         T3["11 Applied Case Studies (/cases/*)"]
+        G1["5 MoFu/ToFu Guide Articles (/guides/*)"]
         Util["3 Utility Pages (/privacy.html, /404.html, /success.html) + Stub (/automated-reporting/)"]
     end
 
@@ -43,11 +44,17 @@ flowchart TD
     Brief --> Architecture --> Pipeline --> Conversion
 ```
 
-### 1.1. Production Page Inventory (46 URLs)
+### 1.1. Production Page Inventory (52 URLs)
 
 | Route / Slug | Page Type | Core B2B Scope & Value Proposition | Key Metric / KPI |
 | :--- | :--- | :--- | :--- |
 | `/` | Root Landing | Core landing with ROI calculator, bento grid, live telemetry, and direct audit capture. | 80% routine savings |
+| `/guides/` | Hub | Content hub of 5 technical B2B guides (1C OData, 152-FZ On-Premise, Diadoc/SBIS, ROI, WB/Ozon vs 1C). | Cited `<blockquote cite>` |
+| `/guides/1c-odata-integration/` | Guide | 1C OData REST API vs `.cfe` HTTP service architecture and throttling defense. | 1C ITS cited |
+| `/guides/152-fz-on-premise-llm/` | Guide | On-Premise LLM airgap deployment under Federal Law No. 152-FZ Art. 18. | 152-FZ compliant |
+| `/guides/diadoc-sbis-ai-ocr/` | Guide | Diadoc/SBIS UPD OCR, VAT 22% (425-FZ) checks, and 1C:ERP NSI matching. | −90% manual EDI |
+| `/guides/roi-ai-automation-formula/` | Guide | Conservative 80% payroll savings ROI model and pilot acceptance gates. | +340% avg ROI |
+| `/guides/ai-agents-wb-ozon-vs-retail/` | Guide | Marketplace API & DRR auto-bidder vs offline retail ROP auto-order in 1C. | Zero overselling |
 | `/services/` | Hub | Complete catalog of enterprise automation scenarios and 1C integrations. | 12 scenarios |
 | `/cases/` | Hub | Enterprise case studies with verified metrics and 1C architecture workflows. | 10 case studies |
 | `/pricing/` | Hub | Transparent B2B pricing tiers (Pilot from 50k ₽, Turnkey 125k–275k ₽, On-Premise from 400k ₽), Cloud vs On-Premise & SLA. | 100% pilot credit |
@@ -157,13 +164,12 @@ sequenceDiagram
 ## 3. Production Status & Execution Roadmap
 
 ### 3.1. Completed Milestones (Current Baseline)
-- ✅ **Core Infrastructure & Design System**: Inlined CSS (~97 KB on `/` & hubs; shared `/assets/css/styles.min.css?v=825d48c9` on 35 subpages), local WOFF2 font subsetting, WCAG AA contrast, responsive down to 320px.
-- ✅ **Multi-Entry Hybrid SSG Engine**: Synchronization across 6 hubs via `sync_pages.py` (`\s*/?>` meta fix), plus `build_pricing_page.py`, `build_ai_analytics_page.py`, `build_reporting_page.py`, `build_service_page.py --all`, `build_case_page.py --all`.
-- ✅ **Dedicated Service Silos & Tools**: 24 production service landing pages + `/calculator/self-employed/` tool hub (`43` footer in-links, enriched `WebApplication` JSON-LD, 0 Non-JS blackout via `<noscript>` `SEO-29` restore).
-- ✅ **Applied Case Study Cluster & De-cannibalization**: 11 real-world B2B case studies with verified ROI metrics, 3-level Schema.org graphs, and de-cannibalized `Case ↔ Service` Titles/H1s aligned to Wordstat demand (`S-02`).
-- ✅ **Site-Wide Desloping**: All 46 production URLs proofread via `ru_text_humanizer` (0 slop markers, 100% Wordstat keyword retention).
-- ✅ **Linking Mesh & Navigation**: Tri-Cluster 8/8/8 mesh across 24 services (9 links/page), $K_{11}$ mesh across 11 cases (110 links), strict 3-case invariant on service pages.
-- ✅ **Verification Suite**: 92/92 `--fast` passing (incl. `SEO-29`), 219/221 `--cwv` (`CLS = 0.000`, `TBT = 0 ms`; 2 pre-existing Edge `flow-start` serialization mismatches), and 630 layout checks in `audit_runner.js`.
+- ✅ **Core Infrastructure & Design System**: Inlined CSS (~87 KB on `/` & legacy subpages; shared `/assets/css/styles.min.css?v=82892ba5` across 6 standalone hubs, 22 services, `/pricing/`, `/calculator/self-employed/`, 11 cases, and 6 `/guides/*` pages), local WOFF2 font subsetting, WCAG AA contrast, responsive down to 320px.
+- ✅ **Standalone Hubs & De-duplication (`D-02`, Waves 4–7)**: Replaced 6 cloned 202 KB hubs with standalone external-CSS hubs (<70 KB) with DOM `.breadcrumbs` and `noindex, follow` on `/dashboard/` & `/contact/` (`49` canonical URLs in `sitemap.xml`).
+- ✅ **Semantic Interactive Patterns (`D-08`)**: Replaced multi-line 40-word `<a>` card wrappers and 132 inline `onclick`s with clean short heading links + CSS `::after` overlay; bidirectional `Service ↔ Case` linking across 72 service case cards and 11 case pages; Case DOM FAQ parity (`.faq__grid`) and static terminal guard (`data-static-terminal="true"`).
+- ✅ **Schema.org & Truth-Table Consistency (`D-06`, `D-11`)**: Removed `Offer price:"0"` and `icon.svg` logos (`apple-touch-icon.png`), stripped inherited `WebSite`/`hasOfferCatalog` on secondary pages, synchronized VAT 22% (425-ФЗ) and unified `fintech` KPI metrics and `llms*.txt`.
+- ✅ **Content Hub & GEO Citations (`D-10`, `D-12`)**: Differentiated overlapping commercial pages and launched `/guides/` hub + 5 MoFu/ToFu guides with `<blockquote cite="...">` primary citations and brand disambiguation `АвтоПилот (ai-avtopilot.ru)`.
+- ✅ **Verification Suite**: 94/94 `--fast` passing (incl. `SEO-30`, `SEO-31`, `SEC-10` across 50 form pages), 212/214 Tier 3 E2E (2 Edge 158 `flex-start -> flow-start` serialization checks), Wave 4–7 Playwright UI verification PASS, and 630 layout checks in `audit_runner.js`.
 
 ### 3.2. Future Expansion Roadmap
 - **Sprint 4 (Combinatorial Matrix & Long-Tail Registry)**:

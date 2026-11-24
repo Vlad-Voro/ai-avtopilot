@@ -69,7 +69,7 @@ def get_site_inventory() -> dict[str, any]:
             print(f"[WARN] Failed to parse cases_data.json: {e}", file=sys.stderr)
 
     # Hub subpages: directories with index.html
-    known_hubs = ["services", "cases", "pricing", "calculator", "dashboard", "faq", "contact"]
+    known_hubs = ["services", "cases", "pricing", "calculator", "dashboard", "faq", "contact", "guides"]
     active_hubs = [h for h in known_hubs if (REPO_ROOT / h / "index.html").is_file()]
 
     # Dedicated services: all directories under services/ that contain index.html
@@ -84,12 +84,18 @@ def get_site_inventory() -> dict[str, any]:
     if cases_dir.is_dir():
         case_slugs = sorted([d.name for d in cases_dir.iterdir() if d.is_dir() and (d / "index.html").is_file()])
 
+    # Dedicated guides: all directories under guides/ that contain index.html
+    guides_dir = REPO_ROOT / "guides"
+    guide_slugs: list[str] = []
+    if guides_dir.is_dir():
+        guide_slugs = sorted([d.name for d in guides_dir.iterdir() if d.is_dir() and (d / "index.html").is_file()])
+
     # System & legal pages
     known_legal = ["privacy.html", "404.html", "success.html"]
     active_legal = [f for f in known_legal if (REPO_ROOT / f).is_file()]
 
-    # Total active URLs = 1 (root) + hubs + services + cases + legal
-    total_urls = 1 + len(active_hubs) + len(service_slugs) + len(case_slugs) + len(active_legal)
+    # Total active URLs = 1 (root) + hubs + services + cases + guides + legal
+    total_urls = 1 + len(active_hubs) + len(service_slugs) + len(case_slugs) + len(guide_slugs) + len(active_legal)
 
     return {
         "root": "/",
@@ -98,6 +104,7 @@ def get_site_inventory() -> dict[str, any]:
         "cases": cases_data,
         "service_slugs": service_slugs,
         "case_slugs": case_slugs,
+        "guide_slugs": guide_slugs,
         "legal": active_legal,
         "total_urls": total_urls,
     }

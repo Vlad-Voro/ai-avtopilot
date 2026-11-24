@@ -87,7 +87,7 @@ function runCompareCardInvariantsSuite() {
     }
   });
 
-  check('All 42 compare pages declare .compare__card with height:100%', () => {
+  check('All 36 compare pages declare .compare__card with height:100%', () => {
     assert.strictEqual(typeof compareFiles, 'object');
     for (const f of compareFiles) {
       const content = fs.readFileSync(f, 'utf-8');
@@ -105,7 +105,7 @@ function runCompareCardInvariantsSuite() {
     }
   });
 
-  check('All 42 compare pages declare .compare__arrow with align-self:center', () => {
+  check('All 36 compare pages declare .compare__arrow with align-self:center', () => {
     assert.strictEqual(typeof compareFiles, 'object');
     for (const f of compareFiles) {
       const content = fs.readFileSync(f, 'utf-8');
@@ -122,7 +122,7 @@ function runCompareCardInvariantsSuite() {
     }
   });
 
-  check('All 42 compare pages declare mobile .compare__card with height:auto', () => {
+  check('All 36 compare pages declare mobile .compare__card with height:auto', () => {
     assert.strictEqual(typeof compareFiles, 'object');
     for (const f of compareFiles) {
       const content = fs.readFileSync(f, 'utf-8');
