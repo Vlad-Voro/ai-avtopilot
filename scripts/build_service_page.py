@@ -403,7 +403,7 @@ def generate_service_html(data: dict) -> str:
 {stylesheet_tag}
 
   <!-- Scripts -->
-  <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.6"></script>
+  <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.7"></script>
 
   <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
   <script type="text/javascript">
