@@ -69,7 +69,7 @@ def generate_subpage(slug: str, spec: dict, master_html: str) -> str:
     # 1. Update Title & Meta Description
     html = re.sub(r"<title>.*?</title>", f"<title>{spec['title']}</title>", html)
     html = re.sub(
-        r'<meta name="description"\s+content=".*?"\s*/>',
+        r'<meta name="description"\s+content=".*?"\s*/?>',
         f'<meta name="description" content="{spec["description"]}" />',
         html,
         flags=re.DOTALL,

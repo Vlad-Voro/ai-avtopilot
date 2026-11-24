@@ -194,7 +194,7 @@ if hero_sec:
                     f'<span class="hero__title-static">Предиктивная аналитика для 1С </span>'
                     f'<span class="hero__title-accent-box">'
                     f'<span class="hero__title-accent" id="typed-text" data-phrases=\'{phrases_json}\'>без кассовых разрывов</span>'
-                    f'<span aria-hidden="true" class="hero__cursor">|</span></span>',
+                    f'<span aria-hidden="true" class="hero__cursor"></span></span>',
                     "html.parser",
                 )
             )

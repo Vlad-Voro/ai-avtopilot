@@ -182,7 +182,7 @@ if hero_sec:
                     f'<span class="hero__title-static">Сводные отчеты по продажам, остаткам и P&amp;L </span>'
                     f'<span class="hero__title-accent-box">'
                     f'<span class="hero__title-accent" id="typed-text" data-phrases=\'{phrases_json}\'>каждое утро в Telegram в 09:00</span>'
-                    f'<span aria-hidden="true" class="hero__cursor">|</span></span>',
+                    f'<span aria-hidden="true" class="hero__cursor"></span></span>',
                     "html.parser",
                 )
             )

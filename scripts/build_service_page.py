@@ -514,7 +514,7 @@ def generate_service_html(data: dict) -> str:
           <span class="hero__title-static">{h1_static} </span>
           <span class="hero__title-accent-box">
             <span class="hero__title-accent" data-phrases='{phrases_json}' id="typed-text">{first_phrase}</span>
-            <span class="hero__cursor" aria-hidden="true">|</span>
+            <span class="hero__cursor" aria-hidden="true"></span>
           </span>
         </h1>
         <p class="hero__sub">{hero_sub}</p>
@@ -870,6 +870,7 @@ def generate_service_html(data: dict) -> str:
           <a href="/cases/">Кейсы</a>
           <a href="/pricing/">Цены</a>
           <a href="/calculator/">Калькулятор</a>
+          <a href="/calculator/self-employed/">Калькулятор самозанятых</a>
           <a href="/faq/">FAQ</a>
           <a href="/contact/">Контакты</a>
         </div>

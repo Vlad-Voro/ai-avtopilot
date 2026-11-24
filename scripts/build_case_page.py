@@ -198,7 +198,6 @@ def build_case_page(case_key: str) -> str:
             accent_box.append(accent_span)
 
             cursor_span = soup.new_tag("span", attrs={"class": "hero__cursor", "aria-hidden": "true"})
-            cursor_span.string = "|"
             accent_box.append(cursor_span)
 
             title_h1.append(accent_box)

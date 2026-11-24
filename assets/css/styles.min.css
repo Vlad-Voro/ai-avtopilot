@@ -588,6 +588,7 @@ input,select,textarea{font-size:16px !important}
 .terminal__body{height:240px}
 
 .hero__cursor{position:static;display:inline-block;vertical-align:baseline;margin-left:4px;white-space:nowrap}
+.hero__cursor::before{content:"|"}
 
 
 /* Responsive Container & Scroll Stabilization (F2) */
