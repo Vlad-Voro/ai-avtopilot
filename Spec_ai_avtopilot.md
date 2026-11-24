@@ -259,16 +259,16 @@ index.html (Master Template) & Data Catalogs
 ## 8. Verification Matrix: 153 Automated Checks
 
 ```powershell
-# Fast In-Process Static, Security & Unit Suites (78 checks, < 1.4s)
+# Fast In-Process Static, Security & Unit Suites (92 checks, < 1.5s)
 node data/ai-avtopilot/tests/run_all.js --fast
 
-# Responsive Layout & Viewport Matrix (486 checks across 27 pages x 18 devices, ~4s)
+# Responsive Layout & Viewport Matrix (630 checks across 35 pages x 18 devices, ~13s)
 node data/ai-avtopilot/tests/audit/audit_runner.js
 
-# Browser E2E Suites (82 checks, ~18s)
-node data/ai-avtopilot/tests/run_all.js --e2e
+# Browser E2E Suites + Web Vitals (--cwv: 221 checks, ~22s)
+node data/ai-avtopilot/tests/run_all.js --cwv
 
-# Full Test Pyramid Execution (160 checks, ~24s)
+# Full Test Pyramid Execution (212 checks without --cwv, ~20s)
 node data/ai-avtopilot/tests/run_all.js
 ```
 
@@ -277,9 +277,9 @@ node data/ai-avtopilot/tests/run_all.js
 | Tier | Scope | Checks | Latency | Key Invariants Verified |
 | :--- | :--- | :--- | :--- | :--- |
 | **Tier 1** | In-Memory Unit | 11 | $\le 20\text{ms}$ | ROI formula ($E \times S \times \frac{H}{160} \times 12$), boundary clamps, sanitization, Russian locale formatting. |
-| **Tier 2** | Static & Integration | 67 | $< 1.4\text{s}$ | **SEO (34)**: `sitemap.xml`, trailing slashes, title $\le 85$c, description $\le 175$c, 1 H1, Schema.org @graph, DOM sequence.<br>**Security (16)**: TG HTML escaping, ID parser, 10 KB clamp, honeypot, frame guard, WCAG AA palette contrast.<br>**SSL/TLS (1)**: Edge TLS & zero mixed content.<br>**Resiliency (5)**: 6000ms abort, fallback card, Metrica callback, anti-slop audit.<br>**Invariants (11)**: Favicons (6), Compare Cards equal heights across 29 HTML pages (5). |
-| **Tier 3** | Browser E2E | 82 | $\sim 18\text{s}$ | **Core E2E (69)**: touch, routing, burger menu, viewports (320px–2560px), WCAG AA contrast, lead delivery, formula reactivity.<br>**Express Modal (7)**: dual pill, dialog open/close, tab switch, 1-click email copy.<br>**Slider & Drag (6)**: desktop LMB drag-to-scroll, grab cursor, vertical control centering, sNudge animation. |
-| **Tier 4** | Layout Matrix | 486 | $\sim 4\text{s}$ | DOM geometry across 18 canonical viewport profiles: zero horizontal overflow, $\ge 48\text{px}$ touch targets. |
+| **Tier 2** | Static & Integration | 81 | $< 1.5\text{s}$ | **SEO (36)**: `sitemap.xml`, trailing slashes, title $\le 85$c, description $\le 175$c, 1 H1, Schema.org @graph, DOM sequence, `<noscript>` anti-clickjacking restore (`SEO-29`).<br>**Security (19)**: TG HTML escaping, ID parser, 10 KB clamp, honeypot, frame guard, WCAG AA palette contrast.<br>**SSL/TLS (10)**: Edge TLS 1.2/1.3, HSTS, redirects & zero mixed content.<br>**Resiliency (5)**: 6000ms abort, fallback card, Metrica callback, anti-slop audit.<br>**Invariants (11)**: Favicons (6), Compare Cards equal heights across 42 HTML pages (5). |
+| **Tier 3** | Browser E2E + CWV | 120–129 | $\sim 20\text{s}$ | **Core E2E**: touch, routing, burger menu, viewports (320px–2560px), WCAG AA contrast, lead delivery, formula reactivity.<br>**Express Modal (7)**: dual pill, dialog open/close, tab switch, 1-click email copy.<br>**Slider & Drag + CWV**: desktop LMB drag-to-scroll, grab cursor, `CLS = 0.000`, `TBT = 0 ms`. |
+| **Tier 4** | Layout Matrix | 630 | $\sim 13\text{s}$ | DOM geometry across 35 pages $\times$ 18 canonical viewport profiles. |
 
 ---
 
@@ -310,7 +310,7 @@ node data/ai-avtopilot/tests/run_all.js
 6. ❌ **Zero Extra Form Fields**: Prohibited to introduce non-standard `<select>` or radio buttons into the canonical lead form.
 7. ❌ **Zero Incomplete Sliders**: Prohibited to render static sliders without reactive JS bindings and gradient `--fill` updates.
 8. ❌ **Zero Duplicate Event Listeners**: Never re-attach inline listeners for components already wired in `index-Bx30wa4i.js`.
-9. ❌ **Zero Typewriter Phrase Wrapping**: All phrases in `data-phrases` MUST be $\le 19$ characters (`min-height: 1.25em` mobile, CLS = 0.000).
+9. ❌ **Zero Typewriter Phrase Wrapping**: All phrases in `data-phrases` MUST be $\le 26$ characters (`min-height: 1.25em` mobile, CLS = 0.000). Blinking cursor renders exclusively via CSS `.hero__cursor::before{content:"|"}`.
 10. ❌ **Zero Calculator Math Divergence**: Sliders must strictly follow core mathematical contract ($E \times S \times \frac{H}{160} \times 12$, 80% savings).
 11. ❌ **Zero Static SSR Terminal Stubs**: Telemetry terminals, live logs, and KPI badge values must be pre-rendered in SSR HTML.
 12. ❌ **Zero Navigation Link Hijacking**: Subpage navigation links MUST trigger genuine browser navigation.
@@ -323,8 +323,10 @@ node data/ai-avtopilot/tests/run_all.js
 19. ❌ **Desktop 3x3 Static Grids & Strict 3-Case Invariant**: Unlinked module blocks must render as 3-column grid (`repeat(3, minmax(0, 1fr))`). Every service page MUST feature exactly 3 applied case cards.
 20. ❌ **Zero Asymmetric Mobile Cards (Equal-Height Invariant)**: In mobile/tablet horizontal swipe containers (`.services__bento`, `.other-services__bento`, `.cases__grid`, `.pricing__grid` under `@media(max-width: 1024px)`), containers must enforce `align-items: stretch !important` and card items (`.scard`, `.case-card`, `.pricing__card`) must have `align-self: stretch !important`, `height: auto !important`, `display: flex !important`, `flex-direction: column !important`. Description/list blocks must have `flex: 1 1 auto !important`, and trailing tags/results/CTAs must have `margin-top: auto !important`. Sibling card descriptions and tag counts must remain balanced to prevent height disparity.
 21. ❌ **Zero Solo Telegram Footers (Canonical Dual-CTA Footer Invariant)**: Every production page (`/`, hubs, `/services/*`, `/cases/*`) must strictly render the canonical dual conversion footer (`.footer__dual-cta` containing both Telegram button and `#open-express-modal` Email express audit trigger, backed by `<dialog id="express-contact-modal">` and modal controller script). Standalone legacy `.footer__tg-cta` is strictly prohibited.
-22. ❌ **Zero Asymmetric Comparison Cards (Equal-Height & Alignment Invariant)**: In the `#compare` before/after block across all 29 production pages (`/`, 6 hubs, 12 services, 10 cases), `.compare__grid` MUST declare `align-items: stretch` (prohibited: `align-items: center` which vertically centers shorter cards and creates mismatched top/bottom bounds). Both cards (`.compare__card`) MUST specify `height: 100%` and `box-sizing: border-box` on desktop, and `height: auto` on mobile. Central arrow (`.compare__arrow`) MUST declare `align-self: center` and `justify-content: center` to ensure it remains perfectly centered between cards of equal height. Enforced by `test_compare_card_invariants.js` and E2E suites `R1.7` / `E2E-7`.
-23. ❌ **Zero Negative Scroll Clipping on Touchbar Dots (Mobile Touchbar Invariant)**: On mobile/tablet carousels (`@media(max-width: 1024px)`), `.services-dots, .other-services-dots, .pricing-dots, .carousel-dots` must strictly declare `justify-content: flex-start; scroll-behavior: smooth;`. Centering overflowing dot containers (`justify-content: center`) forces the initial dots into negative scroll coordinates on viewports > 380px, clipping the active touchbar dot from view during the first 4–6 rightward swipes. Enforced by `test_slider_and_drag.js`.
+22. ❌ **Zero Asymmetric Comparison Cards (Equal-Height & Alignment Invariant)**: In the `#compare` before/after block across all 42 compare pages, `.compare__grid` MUST declare `align-items: stretch` (prohibited: `align-items: center`). Both cards (`.compare__card`) MUST specify `height: 100%` and `box-sizing: border-box` on desktop, and `height: auto` on mobile. Central arrow (`.compare__arrow`) MUST declare `align-self: center` and `justify-content: center`. Enforced by `test_compare_card_invariants.js` and E2E suites `R1.7` / `E2E-7`.
+23. ❌ **Zero Negative Scroll Clipping on Touchbar Dots (Mobile Touchbar Invariant)**: On mobile/tablet carousels (`@media(max-width: 1024px)`), `.services-dots, .other-services-dots, .pricing-dots, .carousel-dots` must strictly declare `justify-content: flex-start; scroll-behavior: smooth;`. Enforced by `test_slider_and_drag.js`.
+24. ❌ **Zero Non-JS Anti-Clickjacking Blackout**: Every HTML page carrying `<style id="anti-clickjack">body{display:none !important;}</style>` MUST immediately follow it with `<noscript><style>#anti-clickjack{display:none !important;}body{display:block !important;}[data-reveal]{opacity:1 !important;transform:none !important;visibility:visible !important;}</style></noscript>`. Enforced by `SEO-29`.
+25. ❌ **Zero Typewriter Cursor Pipe Pollution in DOM H1**: `<span class="hero__cursor" aria-hidden="true"></span>` must contain empty DOM text; the pipe glyph (`|`) renders solely via CSS `.hero__cursor::before{content:"|"}` so crawlers never index `|` inside `<h1>`.
 
 
 ---
@@ -334,12 +336,12 @@ node data/ai-avtopilot/tests/run_all.js
 ### 10.1. Key Structural Invariants
 - **Routing**: `/cases/<slug>/` (e.g. `/cases/retail-inventory-automation/`).
 - **Conversion Sequence**: `Hero` $\to$ `ROI Calculator` $\to$ `Compare` $\to$ `Bento Architecture` $\to$ `FAQ` $\to$ `Dashboard` $\to$ `Contact Form` $\to$ `Other Cases (#cases)` $\to$ `Footer`.
-- **Bottom Placement of "Другие кейсы"**: On case pages, the `#cases` section is positioned strictly below `#contact` and displays 9 sibling cases (excluding active case). Desktop: 1 slide (10 items, arrows auto-hidden via `hidden`).
+- **Bottom Placement of "Другие кейсы"**: On case pages, the `#cases` section is positioned strictly below `#contact` and displays sibling cases (excluding active case).
 - **Structured Data**: `TechArticle` metadata, `BreadcrumbList` (3 levels), and `FAQPage` matching accordion 1:1.
 - **Declarative Source**: `data/cases_data.json` and `data/cases_semantics.json`.
 
 ### 10.2. Internal Linking Mesh Invariant ($K_{24}$ & $K_{11}$)
-- **Service Silo Mesh ($K_{24}$)**: Every service page cross-links to all 23 sibling services in `#other-services` (552 total directed links, 0 self-links, 0 redirect hops).
+- **Service Silo Mesh ($K_{24}$)**: Tri-cluster 8/8/8 silo links per service page in `#other-services` (0 self-links, 0 redirect hops) plus `/calculator/self-employed/` in `.footer__links` (`43` incoming links).
 - **Case Silo Mesh ($K_{11}$)**: Every case page cross-links to all 10 sibling cases in `#cases` (110 total directed links, 0 self-links).
 
 ---
@@ -347,21 +349,21 @@ node data/ai-avtopilot/tests/run_all.js
 ## 11. Generation Protocol & Build CLI Commands
 
 ```powershell
-# 1. Synchronize all 6 Multi-Entry Hub pages from index.html:
+# 1. Rebuild dedicated service, case, pricing & custom pages BEFORE sync_pages:
+python data/ai-avtopilot/scripts/build_service_page.py --all
+python data/ai-avtopilot/scripts/build_case_page.py --all
+python data/ai-avtopilot/scripts/build_pricing_page.py
+python data/ai-avtopilot/scripts/build_ai_analytics_page.py
+python data/ai-avtopilot/scripts/build_reporting_page.py
+
+# 2. Synchronize all 6 Multi-Entry Hub pages from index.html:
 python data/ai-avtopilot/scripts/sync_pages.py
 
-# 2. Build dedicated service subpages (all 12 services):
-python data/ai-avtopilot/scripts/build_service_page.py --all
-
-# 3. Build dedicated case study subpages (all 10 cases):
-python data/ai-avtopilot/scripts/build_case_page.py --all
-
-# 4. Push instant indexation updates via IndexNow:
+# 3. Push instant indexation updates via IndexNow:
 python data/ai-avtopilot/scripts/seo/push_indexnow.py
 
-# 5. Run full verification suite:
-node data/ai-avtopilot/tests/run_all.js --fast       # 78 fast checks (< 1.4s)
-node data/ai-avtopilot/tests/audit/audit_runner.js # 486 layout checks (~4s)
-node data/ai-avtopilot/tests/run_all.js --e2e        # 82 browser E2E checks (~18s)
-node data/ai-avtopilot/tests/run_all.js              # 179 full checks (~20s)
+# 4. Run full verification suite:
+node data/ai-avtopilot/tests/run_all.js --fast       # 92 fast checks (< 1.5s)
+node data/ai-avtopilot/tests/audit/audit_runner.js # 630 layout checks (~13s)
+node data/ai-avtopilot/tests/run_all.js --cwv        # 221 browser E2E + CWV checks (~22s)
 ```

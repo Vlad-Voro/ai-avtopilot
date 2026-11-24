@@ -150,20 +150,20 @@ sequenceDiagram
 - **0 Slop Markers (64-Pattern Taxonomy)**: Zero tolerance for all 20 Hard Bans («не просто X, а Y», «стоит отметить», buzzwords «бесшовный», «комплексный», demonstrative pointer weeds «данный»).
 - **Morphological Data Protection**: Maintain strict distinction between demonstrative weed «данный/данная» (banned) and technical noun «данные (data)» (databases, 152-FZ data transfer).
 - **SEO Frequency & Density Locks**: Full preservation of primary search queries and LSI tails in `<title>` ($\le 77$c), `<meta name="description">` ($\le 152$c), `<h1>`, Direct Answer blocks, FAQ, and Schema.org.
-- **Typewriter Constraints**: Phrase length constrained to $\le 19$ characters (`min-height: 1.25em` mobile, CLS = 0.000).
+- **Typewriter Constraints & CSS Cursor Separation**: Phrase length constrained to $\le 26$ characters (`min-height: 1.25em` mobile, CLS = 0.000). Blinking `|` renders solely via `.hero__cursor::before { content: "|"; }` with empty DOM `<span class="hero__cursor" aria-hidden="true"></span>` so `<h1>` DOM text stays clean for crawlers.
 
 ---
 
 ## 3. Production Status & Execution Roadmap
 
 ### 3.1. Completed Milestones (Current Baseline)
-- ✅ **Core Infrastructure & Design System**: Inlined CSS (~97 KB), local WOFF2 font subsetting, WCAG AA contrast, responsive down to 320px.
-- ✅ **Multi-Entry Hybrid SSG Engine**: Synchronization across 6 hubs and tools via `sync_pages.py`.
-- ✅ **Dedicated Service Silos**: 12 production service landing pages deployed, verified, and indexed.
-- ✅ **Applied Case Study Cluster**: 10 real-world B2B case studies deployed with verified ROI metrics and 3-level Schema.org graphs.
-- ✅ **Site-Wide Desloping**: All 32 URLs proofread via `ru_text_humanizer` (0 slop markers, 100% Wordstat keyword retention).
-- ✅ **Linking Mesh & Navigation**: $K_{12}$ mesh across 12 services (132 links), $K_{10}$ mesh across 10 cases (90 links), strict 3-case invariant on service pages.
-- ✅ **Verification Suite**: 163/163 tests passing in `tests/run_all.js` + 486 layout checks in `audit_runner.js`.
+- ✅ **Core Infrastructure & Design System**: Inlined CSS (~97 KB on `/` & hubs; shared `/assets/css/styles.min.css?v=825d48c9` on 35 subpages), local WOFF2 font subsetting, WCAG AA contrast, responsive down to 320px.
+- ✅ **Multi-Entry Hybrid SSG Engine**: Synchronization across 6 hubs via `sync_pages.py` (`\s*/?>` meta fix), plus `build_pricing_page.py`, `build_ai_analytics_page.py`, `build_reporting_page.py`, `build_service_page.py --all`, `build_case_page.py --all`.
+- ✅ **Dedicated Service Silos & Tools**: 24 production service landing pages + `/calculator/self-employed/` tool hub (`43` footer in-links, enriched `WebApplication` JSON-LD, 0 Non-JS blackout via `<noscript>` `SEO-29` restore).
+- ✅ **Applied Case Study Cluster & De-cannibalization**: 11 real-world B2B case studies with verified ROI metrics, 3-level Schema.org graphs, and de-cannibalized `Case ↔ Service` Titles/H1s aligned to Wordstat demand (`S-02`).
+- ✅ **Site-Wide Desloping**: All 46 production URLs proofread via `ru_text_humanizer` (0 slop markers, 100% Wordstat keyword retention).
+- ✅ **Linking Mesh & Navigation**: Tri-Cluster 8/8/8 mesh across 24 services (9 links/page), $K_{11}$ mesh across 11 cases (110 links), strict 3-case invariant on service pages.
+- ✅ **Verification Suite**: 92/92 `--fast` passing (incl. `SEO-29`), 219/221 `--cwv` (`CLS = 0.000`, `TBT = 0 ms`; 2 pre-existing Edge `flow-start` serialization mismatches), and 630 layout checks in `audit_runner.js`.
 
 ### 3.2. Future Expansion Roadmap
 - **Sprint 4 (Combinatorial Matrix & Long-Tail Registry)**:
