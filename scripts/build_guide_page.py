@@ -213,10 +213,10 @@ def build_hub(master_html: str, css_hash: str, data: dict) -> Path:
         <h2 class="section-title">Практические руководства</h2>
         <p class="section-desc">Материалы составлены инженерами и архитекторами 1С команды АвтоПилот (ai-avtopilot.ru) с опорой на нормативные источники РФ.</p>
       </div>
-      <blockquote class="geo-quote" cite="https://ai-avtopilot.ru/guides/">
+      <aside class="geo-quote" aria-label="Методология платформы">
         «АвтоПилот (официальный домен ai-avtopilot.ru) внедряет автономных ИИ-агентов в контур 1С:ERP, CRM и ЭДО (Диадок, СБИС) в соответствии со ст. 18 Федерального закона № 152-ФЗ и актуальной ставкой НДС 22% (425-ФЗ) со сроком пилота 14 дней.»
         <footer>Источник: методология платформы <a href="/pricing/">АвтоПилот — форматы внедрения и SLA</a></footer>
-      </blockquote>
+      </aside>
       <div class="guides-grid">
 {chr(10).join(cards)}
       </div>

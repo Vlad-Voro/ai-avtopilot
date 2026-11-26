@@ -127,6 +127,9 @@ runCheck('SEO-02', 'robots.txt contains Yandex directives, AI crawler permits, C
   const robotsPath = path.join(ROOT_DIR, 'robots.txt');
   assert.ok(fs.existsSync(robotsPath), 'robots.txt must exist');
   const txt = fs.readFileSync(robotsPath, 'utf8');
+  assert.ok(txt.includes('Disallow: /automated-reporting/'), 'Must disallow redirect stub /automated-reporting/');
+  assert.ok(txt.includes('Disallow: /*/index.html$'), 'Must disallow explicit nested */index.html$');
+  assert.ok(!txt.includes('/forms.html'), 'Must not contain obsolete /forms.html rule');
   assert.ok(txt.includes('User-agent: Yandex'), 'Must declare Yandex');
   assert.ok(txt.includes('Clean-param:'), 'Must declare Clean-param');
   assert.ok(txt.includes('User-agent: GPTBot'), 'Must allow GPTBot');
@@ -163,6 +166,9 @@ runCheck('SEO-04', 'Internal navigation links in all HTML files use trailing sla
       `File ${p.file} contains links without trailing slash: ${JSON.stringify(invalidLinks)}`
     );
   });
+  const html404 = fs.readFileSync(path.join(ROOT_DIR, '404.html'), 'utf8');
+  const routesMatch = html404.match(/validRoutes\s*=\s*\[([^\]]+)\]/);
+  assert.ok(routesMatch && routesMatch[1].includes("'guides'") && routesMatch[1].includes("'pricing'"), '404.html validRoutes must include guides and pricing');
 });
 
 console.log('\n▶ [Category 3] On-Page Semantics, Headings & Uniqueness');
@@ -772,6 +778,7 @@ runCheck('SEO-31', 'Guides hub & articles include external cited blockquotes, pr
     assert.ok(/href="\/services\/[^"]+\/"/.test(html), `Missing internal service link in ${p.file}`);
   });
   const hubHtml = fs.readFileSync(path.join(ROOT_DIR, 'guides/index.html'), 'utf8');
+  assert.ok(!/<blockquote[^>]+cite="[^"]*ai-avtopilot\.ru/i.test(hubHtml), 'Self-citation forbidden in <blockquote cite> on guides/index.html');
   guidePages.forEach(p => {
     assert.ok(hubHtml.includes(`href="/${p.slug}/"`), `Guides hub missing card link to /${p.slug}/`);
   });
