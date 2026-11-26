@@ -137,13 +137,8 @@ def build_case_page(case_key: str) -> str:
                     "datePublished": data.get("datePublished", "2026-06-01T08:00:00+03:00"),
                     "dateModified": data.get("dateModified", "2026-11-15T12:00:00+03:00"),
                     "inLanguage": "ru-RU",
-                    "author": {"@type": "Organization", "name": "АвтоПилот", "url": "https://ai-avtopilot.ru/"},
-                    "publisher": {
-                        "@type": "Organization",
-                        "name": "АвтоПилот",
-                        "url": "https://ai-avtopilot.ru/",
-                        "logo": {"@type": "ImageObject", "url": "https://ai-avtopilot.ru/apple-touch-icon.png"},
-                    },
+                    "author": {"@id": "https://ai-avtopilot.ru/#organization"},
+                    "publisher": {"@id": "https://ai-avtopilot.ru/#organization"},
                 }
             )
 

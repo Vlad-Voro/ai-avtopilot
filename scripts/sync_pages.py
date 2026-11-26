@@ -538,6 +538,68 @@ def generate_subpage(slug: str, spec: dict, master_html: str, css_hash: str) -> 
                 item.pop("hasOfferCatalog", None)
             new_graph.append(item)
 
+        if slug == "calculator":
+            new_graph.append(
+                {
+                    "@type": "WebApplication",
+                    "@id": f"{canonical_url}#webapp",
+                    "name": "Калькулятор окупаемости ИИ и расчет ROI автоматизации",
+                    "description": spec["description"],
+                    "url": canonical_url,
+                    "inLanguage": "ru-RU",
+                    "applicationCategory": "BusinessApplication",
+                    "operatingSystem": "All",
+                    "browserRequirements": "Requires JavaScript",
+                    "isAccessibleForFree": True,
+                    "provider": {"@id": "https://ai-avtopilot.ru/#organization"},
+                    "featureList": [
+                        "Расчет годовых затрат ФОТ на рутинные процессы в 1С, CRM и ЭДО",
+                        "Оценка потенциальной экономии 80% рутины в рублях и часах в год",
+                        "Ориентировочный срок окупаемости внедрения ИИ-агента",
+                    ],
+                }
+            )
+        elif slug in ("services", "cases"):
+            list_sel, list_name = (
+                ("#services a.scard__title-link", "Каталог услуг АвтоПилот")
+                if slug == "services"
+                else ("#cases a.case-card__title-link", "Кейсы внедрения АвтоПилот")
+            )
+            list_items = []
+            for idx, a_tag in enumerate(soup.select(list_sel), start=1):
+                href = a_tag.get("href", "")
+                clone = BeautifulSoup(str(a_tag), "html.parser")
+                for sp in clone.select("span"):
+                    sp.decompose()
+                item_name = " ".join(clone.get_text(" ", strip=True).split())
+                if href and item_name:
+                    list_items.append(
+                        {
+                            "@type": "ListItem",
+                            "position": idx,
+                            "name": item_name,
+                            "url": f"https://ai-avtopilot.ru{href}" if href.startswith("/") else href,
+                        }
+                    )
+            new_graph.append(
+                {
+                    "@type": "CollectionPage",
+                    "@id": f"{canonical_url}#collection",
+                    "name": spec["h1"],
+                    "description": spec["description"],
+                    "url": canonical_url,
+                    "inLanguage": "ru-RU",
+                    "publisher": {"@id": "https://ai-avtopilot.ru/#organization"},
+                    "mainEntity": {
+                        "@type": "ItemList",
+                        "@id": f"{canonical_url}#itemlist",
+                        "name": list_name,
+                        "numberOfItems": len(list_items),
+                        "itemListElement": list_items,
+                    },
+                }
+            )
+
         new_graph.append(
             {
                 "@type": "BreadcrumbList",

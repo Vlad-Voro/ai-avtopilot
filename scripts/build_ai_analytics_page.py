@@ -23,6 +23,7 @@ SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
 if SCRIPTS_DIR not in sys.path:
     sys.path.insert(0, SCRIPTS_DIR)
 from other_services_block import render_other_services_section, get_other_services_carousel_js
+from sync_pages import get_css_hash
 
 INDEX_PATH = os.path.join(PROJECT_DIR, "index.html")
 OUTPUT_DIR = os.path.join(PROJECT_DIR, "services", "ai-analytics")
@@ -34,6 +35,12 @@ with open(INDEX_PATH, "r", encoding="utf-8") as f:
     html_content = f.read()
 
 soup = BeautifulSoup(html_content, "html.parser")
+
+app_style = soup.find("style", attrs={"id": "app-styles"})
+if app_style:
+    app_style.replace_with(
+        soup.new_tag("link", rel="stylesheet", href=f"/assets/css/styles.min.css?v={get_css_hash()}")
+    )
 
 # 1. Update Head metadata
 title_tag = soup.find("title")

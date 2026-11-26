@@ -240,7 +240,8 @@ runCheck('SEO-10', 'Schema.org JSON-LD @graph contains required entities per cat
     assert.strictEqual(data['@context'], 'https://schema.org');
     assert.ok(Array.isArray(data['@graph']), '@graph must be an array');
     const types = data['@graph'].map(item => item['@type']);
-    assert.ok(types.includes('Organization'), `Missing Organization in ${p.file}`);
+    const orgCount = types.filter(t => t === 'Organization').length;
+    assert.strictEqual(orgCount, 1, `Expected 1 Organization in ${p.file}, got ${orgCount}`);
     assert.ok(types.includes('ProfessionalService'), `Missing ProfessionalService in ${p.file}`);
     if (p.category === 'home') {
       assert.ok(types.includes('WebSite'), `Missing WebSite in ${p.file}`);
@@ -248,6 +249,12 @@ runCheck('SEO-10', 'Schema.org JSON-LD @graph contains required entities per cat
     } else if (p.category === 'hub') {
       assert.ok(!types.includes('WebSite'), `Unexpected WebSite in hub ${p.file}`);
       if (p.hasFaq !== false) assert.ok(types.includes('FAQPage'), `Missing FAQPage in ${p.file}`);
+      if (p.slug === 'calculator') assert.ok(types.includes('WebApplication'), `Missing WebApplication in ${p.file}`);
+      if (p.slug === 'services' || p.slug === 'cases') {
+        const col = data['@graph'].find(item => item['@type'] === 'CollectionPage');
+        assert.ok(col && col.mainEntity && col.mainEntity['@type'] === 'ItemList', `Missing CollectionPage ItemList in ${p.file}`);
+        assert.ok(Array.isArray(col.mainEntity.itemListElement) && col.mainEntity.itemListElement.length > 0, `Empty ItemList in ${p.file}`);
+      }
     } else if (p.category === 'service') {
       assert.ok(!types.includes('WebSite'), `Unexpected WebSite in service ${p.file}`);
       assert.ok(types.includes('Service') || types.includes('SoftwareApplication'), `Missing Service in ${p.file}`);
@@ -262,6 +269,11 @@ runCheck('SEO-10', 'Schema.org JSON-LD @graph contains required entities per cat
       assert.ok(!types.includes('WebSite'), `Unexpected WebSite in guide ${p.file}`);
       assert.ok(types.includes('TechArticle'), `Missing TechArticle in ${p.file}`);
       assert.ok(types.includes('FAQPage'), `Missing FAQPage in ${p.file}`);
+    }
+    const techArticle = data['@graph'].find(item => item['@type'] === 'TechArticle');
+    if (techArticle) {
+      assert.strictEqual(techArticle.author && techArticle.author['@id'], 'https://ai-avtopilot.ru/#organization', `Expected author @id in ${p.file}`);
+      assert.strictEqual(techArticle.publisher && techArticle.publisher['@id'], 'https://ai-avtopilot.ru/#organization', `Expected publisher @id in ${p.file}`);
     }
     const rawJson = m[1];
     assert.ok(!/"price"\s*:\s*"0"/.test(rawJson), `Forbidden Offer price:"0" in JSON-LD of ${p.file}`);

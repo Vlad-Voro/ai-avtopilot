@@ -314,13 +314,8 @@ def build_article(master_html: str, css_hash: str, g: dict) -> Path:
             "datePublished": g["datePublished"],
             "dateModified": g["dateModified"],
             "inLanguage": "ru-RU",
-            "author": {"@type": "Organization", "name": "АвтоПилот", "url": "https://ai-avtopilot.ru/"},
-            "publisher": {
-                "@type": "Organization",
-                "name": "АвтоПилот",
-                "url": "https://ai-avtopilot.ru/",
-                "logo": {"@type": "ImageObject", "url": "https://ai-avtopilot.ru/apple-touch-icon.png"},
-            },
+            "author": {"@id": "https://ai-avtopilot.ru/#organization"},
+            "publisher": {"@id": "https://ai-avtopilot.ru/#organization"},
         },
         faqs=g["faqs"],
     )
