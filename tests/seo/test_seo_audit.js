@@ -168,21 +168,22 @@ runCheck('SEO-04', 'Internal navigation links in all HTML files use trailing sla
 console.log('\n▶ [Category 3] On-Page Semantics, Headings & Uniqueness');
 
 // SEO-05: Title uniqueness & length
-runCheck('SEO-05', 'Title tags are unique across all pages and between 30-85 chars', () => {
+runCheck('SEO-05', 'Title tags are unique across all pages, include brand, and <= 70 chars', () => {
   const titles = new Map();
   PAGES.forEach(p => {
     const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
     const m = html.match(/<title>(.*?)<\/title>/);
     assert.ok(m, `Missing <title> in ${p.file}`);
     const title = m[1].trim();
-    assert.ok(title.length >= 30 && title.length <= 85, `Title length ${title.length} out of range in ${p.file}`);
+    assert.ok(title.length >= 30 && title.length <= 70, `Title length ${title.length} out of range (30-70) in ${p.file}: '${title}'`);
+    assert.ok(title.includes('АвтоПилот'), `Missing brand suffix АвтоПилот in <title> of ${p.file}`);
     assert.ok(!titles.has(title), `Duplicate title '${title}' in ${p.file} and ${titles.get(title)}`);
     titles.set(title, p.file);
   });
 });
 
 // SEO-06: Description uniqueness
-runCheck('SEO-06', 'Meta descriptions are unique across all pages and between 70-175 chars', () => {
+runCheck('SEO-06', 'Meta descriptions are unique across all pages and between 70-160 chars', () => {
   const descs = new Map();
   PAGES.forEach(p => {
     const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
@@ -190,7 +191,7 @@ runCheck('SEO-06', 'Meta descriptions are unique across all pages and between 70
               html.match(/<meta[^>]+content="([^"]+)"[^>]+name="description"[^>]*>/i);
     assert.ok(m, `Missing meta description in ${p.file}`);
     const desc = m[1].trim();
-    assert.ok(desc.length >= 70 && desc.length <= 175, `Description length ${desc.length} out of range in ${p.file}: '${desc}'`);
+    assert.ok(desc.length >= 70 && desc.length <= 160, `Description length ${desc.length} out of range (70-160) in ${p.file}: '${desc}'`);
     assert.ok(!descs.has(desc), `Duplicate description in ${p.file} and ${descs.get(desc)}`);
     descs.set(desc, p.file);
   });
@@ -759,12 +760,14 @@ runCheck('SEO-30', 'Cases have DOM breadcrumbs, working FAQ markup, static termi
 });
 
 // SEO-31: Guides Content Hub, Princeton GEO citations & Brand Disambiguation
-runCheck('SEO-31', 'Guides hub & articles include cited blockquotes, primary references, and brand disambiguation', () => {
+runCheck('SEO-31', 'Guides hub & articles include external cited blockquotes, primary references, and brand disambiguation', () => {
   const guidePages = PAGES.filter(p => p.category === 'guide');
   assert.strictEqual(guidePages.length, 5, 'Expected 5 MoFu/ToFu guides');
   guidePages.forEach(p => {
     const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
-    assert.ok(/<blockquote[^>]+cite="https:\/\/[^"]+"/.test(html), `Missing cited <blockquote cite> in ${p.file}`);
+    const citeMatch = html.match(/<blockquote[^>]+cite="(https:\/\/[^"]+)"/);
+    assert.ok(citeMatch, `Missing cited <blockquote cite> in ${p.file}`);
+    assert.ok(!citeMatch[1].includes('ai-avtopilot.ru'), `Self-citation forbidden in <blockquote cite> of ${p.file}: ${citeMatch[1]}`);
     assert.ok(html.includes('ai-avtopilot.ru'), `Missing brand disambiguation in ${p.file}`);
     assert.ok(/href="\/services\/[^"]+\/"/.test(html), `Missing internal service link in ${p.file}`);
   });

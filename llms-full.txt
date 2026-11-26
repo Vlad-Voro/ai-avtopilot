@@ -198,9 +198,7 @@ $$\text{Годовая экономия (₽)} = N_{\text{сотрудников
 - **Кейс подбора автозапчастей по VIN (СТО)**: https://ai-avtopilot.ru/cases/auto-dealer-parts-automation/
 - **Калькулятор окупаемости ROI**: https://ai-avtopilot.ru/calculator/
 - **Калькулятор налога самозанятого (НПД)**: https://ai-avtopilot.ru/calculator/self-employed/
-- **Интерактивный дашборд**: https://ai-avtopilot.ru/dashboard/
 - **Частые вопросы (FAQ)**: https://ai-avtopilot.ru/faq/
-- **Запись на аудит и контакты**: https://ai-avtopilot.ru/contact/
 - **Гайды и база знаний**: https://ai-avtopilot.ru/guides/
 - **Гайд: Интеграция 1С OData и HTTP-сервисы**: https://ai-avtopilot.ru/guides/1c-odata-integration/
 - **Гайд: On-Premise LLM и 152-ФЗ**: https://ai-avtopilot.ru/guides/152-fz-on-premise-llm/

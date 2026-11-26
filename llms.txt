@@ -10,7 +10,7 @@
 - **Модель внедрения**: Безопасный пилотный проект за 14 дней с гарантией измеримого ROI
 - **Стоимость и форматы** (https://ai-avtopilot.ru/pricing/): Пилот 14 дней от 50 000 ₽ (100% зачет в основное внедрение в течение 30 дней), Внедрение под ключ от 125 000 ₽ (вилка 125 000 – 275 000 ₽, SLA 30 дней), Enterprise On-Premise (152-ФЗ) от 400 000 ₽. Опциональный SLA от 25 000 ₽/мес; токены LLM (BYOK) и GPU без наценки; ОСНО с НДС 22% или УСН, 50%/50%, ЭДО Диадок/СБИС.
 - **Средний ROI**: 340% годовых
-- **Экономия времени**: Более 9 200 часов рутинного труда в год в флагманском ритейл-проекте (всего 47+ реализованных внедрений)
+- **Экономия времени**: Более 9 200 часов рутинного труда в год в крупном ритейл-проекте (всего 47+ реализованных внедрений)
 - **Прямой контакт**: Telegram-бот [@AiAvtopilotbot](https://t.me/AiAvtopilotbot) | E-mail: contact@ai-avtopilot.ru
 
 ---
@@ -119,8 +119,6 @@
 - Калькулятор ROI: https://ai-avtopilot.ru/calculator/
 - Калькулятор налога самозанятого (НПД): https://ai-avtopilot.ru/calculator/self-employed/
 - Частые вопросы (FAQ): https://ai-avtopilot.ru/faq/
-- Интерактивный дашборд: https://ai-avtopilot.ru/dashboard/
-- Запись на бесплатный аудит: https://ai-avtopilot.ru/contact/
 - Гайды и технические руководства: https://ai-avtopilot.ru/guides/
 - Гайд по интеграции 1С OData и .cfe: https://ai-avtopilot.ru/guides/1c-odata-integration/
 - Гайд по локальным On-Premise LLM и 152-ФЗ: https://ai-avtopilot.ru/guides/152-fz-on-premise-llm/
