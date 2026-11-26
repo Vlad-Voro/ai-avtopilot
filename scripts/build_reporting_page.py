@@ -358,6 +358,18 @@ if services_sec:
     h2 = services_sec.find("h2", class_="section-title")
     if h2:
         h2.string = "6 модулей автоматической управленческой отчетности"
+    svc_header = services_sec.find("div", class_="section-header")
+    if svc_header:
+        old_note = svc_header.find("p", class_="case-service-note")
+        if old_note:
+            old_note.decompose()
+        svc_header.append(
+            BeautifulSoup(
+                '<p class="case-service-note">Инженерный гайд по архитектуре обмена: '
+                '<a href="/guides/1c-odata-integration/">Интеграция 1С OData REST API и HTTP-сервисов с ИИ-агентами</a>.</p>',
+                "html.parser",
+            )
+        )
     bento = services_sec.find("div", class_="services__bento")
     if bento:
         classes = bento.get("class", [])

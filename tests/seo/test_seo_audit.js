@@ -156,7 +156,7 @@ runCheck('SEO-04', 'Internal navigation links in all HTML files use trailing sla
   PAGES.forEach(p => {
     const filePath = path.join(ROOT_DIR, p.file);
     const html = fs.readFileSync(filePath, 'utf8');
-    const invalidLinks = html.match(/href="\/(services|cases|pricing|calculator|dashboard|faq|contact)"/g);
+    const invalidLinks = html.match(/href="\/(services|cases|pricing|calculator|dashboard|guides|faq|contact)"/g);
     assert.strictEqual(
       invalidLinks,
       null,
@@ -420,9 +420,13 @@ runCheck('SEO-21', 'Zero aria-hidden attributes on carousel dots or interactive 
 runCheck('SEO-22', 'Chrome Speculation Rules API declared across all pages with moderate prerender', () => {
   PAGES.forEach(p => {
     const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
-    assert.ok(html.includes('<script type="speculationrules">'), `Missing speculationrules script in ${p.file}`);
-    assert.ok(html.includes('"prerender"'), `Missing prerender rule in ${p.file}`);
-    assert.ok(html.includes('"eagerness": "moderate"'), `Expected moderate eagerness in ${p.file}`);
+    const specMatch = html.match(/<script type="speculationrules">([\s\S]*?)<\/script>/);
+    assert.ok(specMatch, `Missing speculationrules script in ${p.file}`);
+    const specJson = specMatch[1];
+    assert.ok(specJson.includes('"prerender"'), `Missing prerender rule in ${p.file}`);
+    assert.ok(specJson.includes('"eagerness": "moderate"'), `Expected moderate eagerness in ${p.file}`);
+    assert.ok(specJson.includes('"/guides/"'), `Expected /guides/ in speculationrules on ${p.file}`);
+    assert.ok(!specJson.includes('"/dashboard/"') && !specJson.includes('"/contact/"'), `Forbidden noindex URL in speculationrules on ${p.file}`);
   });
 });
 

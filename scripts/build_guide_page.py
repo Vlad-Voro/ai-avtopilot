@@ -60,6 +60,12 @@ def _prepare_base_soup(
         if sec:
             sec.decompose()
 
+    for link in soup.select(".nav__link"):
+        link_classes = [c for c in link.get("class", []) if c != "active"]
+        if link.get("href") == "/guides/":
+            link_classes.append("active")
+        link["class"] = link_classes
+
     return soup
 
 

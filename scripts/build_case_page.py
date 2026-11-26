@@ -368,14 +368,57 @@ def build_case_page(case_key: str) -> str:
         parent_svc = data.get("parent_service")
         related_svcs = data.get("related_services", [])
         if svc_header and parent_svc:
+            case_to_guide = {
+                "retail-inventory-automation": (
+                    "ai-agents-wb-ozon-vs-retail",
+                    "Автоматизация маркетплейсов WB/Ozon vs оффлайн-ритейл в 1С:УТ",
+                ),
+                "manufacturing-edi-automation": (
+                    "diadoc-sbis-ai-ocr",
+                    "Автоматизация ЭДО в Диадок и СБИС: OCR УПД и контроль НДС 22%",
+                ),
+                "service-center-ai-operator": (
+                    "152-fz-on-premise-llm",
+                    "Локальные ИИ-модели (On-Premise LLM) и 152-ФЗ",
+                ),
+                "hr-recruitment-automation": ("152-fz-on-premise-llm", "Локальные ИИ-модели (On-Premise LLM) и 152-ФЗ"),
+                "supply-chain-logistics": (
+                    "1c-odata-integration",
+                    "Интеграция 1С OData REST API и HTTP-сервисов с ИИ-агентами",
+                ),
+                "fintech-transaction-reconciliation": (
+                    "roi-ai-automation-formula",
+                    "Как рассчитать ROI внедрения ИИ-агентов в 1С и CRM",
+                ),
+                "sales-speech-analytics": ("152-fz-on-premise-llm", "Локальные ИИ-модели (On-Premise LLM) и 152-ФЗ"),
+                "tender-procurement-automation": (
+                    "diadoc-sbis-ai-ocr",
+                    "Автоматизация ЭДО в Диадок и СБИС: OCR УПД и контроль НДС 22%",
+                ),
+                "claims-dispute-automation": (
+                    "diadoc-sbis-ai-ocr",
+                    "Автоматизация ЭДО в Диадок и СБИС: OCR УПД и контроль НДС 22%",
+                ),
+                "reviews-reputation-automation": (
+                    "roi-ai-automation-formula",
+                    "Как рассчитать ROI внедрения ИИ-агентов в 1С и CRM",
+                ),
+                "auto-dealer-parts-automation": (
+                    "ai-agents-wb-ozon-vs-retail",
+                    "Автоматизация маркетплейсов WB/Ozon vs оффлайн-ритейл в 1С:УТ",
+                ),
+            }
             old_note = svc_header.find("p", class_="case-service-note")
             if old_note:
                 old_note.decompose()
             rel_links = "".join([f', <a href="/services/{rs["slug"]}/">{rs["name"]}</a>' for rs in related_svcs])
+            guide_slug, guide_title = case_to_guide.get(
+                slug, ("1c-odata-integration", "Интеграция 1С OData REST API и HTTP-сервисов с ИИ-агентами")
+            )
             note_html = (
                 f'<p class="case-service-note">Основное решение: '
                 f'<a href="/services/{parent_svc["slug"]}/">{parent_svc["name"]}</a>'
-                f"{rel_links}.</p>"
+                f'{rel_links}. Архитектурный разбор: <a href="/guides/{guide_slug}/">{guide_title}</a>.</p>'
             )
             svc_header.append(BeautifulSoup(note_html, "html.parser"))
 

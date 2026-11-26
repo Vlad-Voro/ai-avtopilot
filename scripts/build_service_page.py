@@ -60,6 +60,52 @@ def generate_service_html(data: dict) -> str:
     faq_items = data["faq"]
     other_services_html = render_other_services_section(slug)
     other_services_js = get_other_services_carousel_js()
+    service_to_guide = {
+        "system-integration": ("1c-odata-integration", "Интеграция 1С OData REST API и HTTP-сервисов с ИИ-агентами"),
+        "ai-agents": ("1c-odata-integration", "Интеграция 1С OData REST API и HTTP-сервисов с ИИ-агентами"),
+        "knowledge-base-rag": ("1c-odata-integration", "Интеграция 1С OData REST API и HTTP-сервисов с ИИ-агентами"),
+        "specifications-kp": ("1c-odata-integration", "Интеграция 1С OData REST API и HTTP-сервисов с ИИ-агентами"),
+        "price-monitoring": ("1c-odata-integration", "Интеграция 1С OData REST API и HTTP-сервисов с ИИ-агентами"),
+        "construction-estimate-audit": (
+            "1c-odata-integration",
+            "Интеграция 1С OData REST API и HTTP-сервисов с ИИ-агентами",
+        ),
+        "manufacturing-automation": (
+            "1c-odata-integration",
+            "Интеграция 1С OData REST API и HTTP-сервисов с ИИ-агентами",
+        ),
+        "fleet-logistics": ("1c-odata-integration", "Интеграция 1С OData REST API и HTTP-сервисов с ИИ-агентами"),
+        "customer-support": ("152-fz-on-premise-llm", "Локальные ИИ-модели (On-Premise LLM) и 152-ФЗ"),
+        "speech-analytics": ("152-fz-on-premise-llm", "Локальные ИИ-модели (On-Premise LLM) и 152-ФЗ"),
+        "hr-recruitment": ("152-fz-on-premise-llm", "Локальные ИИ-модели (On-Premise LLM) и 152-ФЗ"),
+        "marketing-automation": ("152-fz-on-premise-llm", "Локальные ИИ-модели (On-Premise LLM) и 152-ФЗ"),
+        "b2b-outbound": ("152-fz-on-premise-llm", "Локальные ИИ-модели (On-Premise LLM) и 152-ФЗ"),
+        "customer-retention": ("152-fz-on-premise-llm", "Локальные ИИ-модели (On-Premise LLM) и 152-ФЗ"),
+        "document-automation": ("diadoc-sbis-ai-ocr", "Автоматизация ЭДО в Диадок и СБИС: OCR УПД и контроль НДС 22%"),
+        "tender-automation": ("diadoc-sbis-ai-ocr", "Автоматизация ЭДО в Диадок и СБИС: OCR УПД и контроль НДС 22%"),
+        "debt-control": ("diadoc-sbis-ai-ocr", "Автоматизация ЭДО в Диадок и СБИС: OCR УПД и контроль НДС 22%"),
+        "rapid-pilot": ("roi-ai-automation-formula", "Как рассчитать ROI внедрения ИИ-агентов в 1С и CRM"),
+        "reviews-reputation": ("roi-ai-automation-formula", "Как рассчитать ROI внедрения ИИ-агентов в 1С и CRM"),
+        "retail-inventory": (
+            "ai-agents-wb-ozon-vs-retail",
+            "Автоматизация маркетплейсов WB/Ozon vs оффлайн-ритейл в 1С:УТ",
+        ),
+        "marketplace-automation": (
+            "ai-agents-wb-ozon-vs-retail",
+            "Автоматизация маркетплейсов WB/Ozon vs оффлайн-ритейл в 1С:УТ",
+        ),
+        "avito-automation": (
+            "ai-agents-wb-ozon-vs-retail",
+            "Автоматизация маркетплейсов WB/Ozon vs оффлайн-ритейл в 1С:УТ",
+        ),
+    }
+    guide_slug, guide_title = service_to_guide.get(
+        slug, ("1c-odata-integration", "Интеграция 1С OData REST API и HTTP-сервисов с ИИ-агентами")
+    )
+    service_guide_note_html = (
+        f'        <p class="case-service-note">Инженерный разбор: '
+        f'<a href="/guides/{guide_slug}/">{guide_title}</a>.</p>'
+    )
 
     # Calculator math
 
@@ -361,9 +407,8 @@ def generate_service_html(data: dict) -> str:
           "/cases/",
           "/pricing/",
           "/calculator/",
-          "/dashboard/",
-          "/faq/",
-          "/contact/"
+          "/guides/",
+          "/faq/"
         ],
         "eagerness": "moderate"
       }}
@@ -402,7 +447,7 @@ def generate_service_html(data: dict) -> str:
 {stylesheet_tag}
 
   <!-- Scripts -->
-  <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.8"></script>
+  <script type="module" crossorigin="" src="/assets/index-Bx30wa4i.js?v=2.6.9"></script>
 
   <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
   <script type="text/javascript">
@@ -470,7 +515,7 @@ def generate_service_html(data: dict) -> str:
         <li><a href="/cases/" class="nav__link">Кейсы</a></li>
         <li><a href="/pricing/" class="nav__link">Цены</a></li>
         <li><a href="/faq/" class="nav__link">FAQ</a></li>
-        <li><a href="/dashboard/" class="nav__link">Дашборд</a></li>
+        <li><a href="/guides/" class="nav__link">Гайды</a></li>
         <li class="nav__link-mobile"><a href="/contact/" class="nav__link">Контакты</a></li>
       </ul>      <a href="#contact" class="btn btn--nav">Получить аудит</a>
       <button class="nav__burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-links" id="burger">
@@ -637,6 +682,7 @@ def generate_service_html(data: dict) -> str:
       <div class="section-header">
         <p class="section-tag" data-reveal="">{bento_tag}</p>
         <h2 class="section-title" data-reveal="">{bento_title}</h2>
+{service_guide_note_html}
       </div>
       <div class="services__bento services__bento--static" data-reveal="" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Сценарии автоматизации">
 {bento_cards_html}

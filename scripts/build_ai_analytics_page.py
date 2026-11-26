@@ -458,6 +458,18 @@ if services_sec:
     h2 = services_sec.find("h2", class_="section-title")
     if h2:
         h2.string = "6 модулей предиктивной аналитики для 1С и ERP"
+    svc_header = services_sec.find("div", class_="section-header")
+    if svc_header:
+        old_note = svc_header.find("p", class_="case-service-note")
+        if old_note:
+            old_note.decompose()
+        svc_header.append(
+            BeautifulSoup(
+                '<p class="case-service-note">Методика расчёта эффекта: '
+                '<a href="/guides/roi-ai-automation-formula/">Как рассчитать ROI внедрения ИИ-агентов в 1С и CRM</a>.</p>',
+                "html.parser",
+            )
+        )
     bento = services_sec.find("div", class_="services__bento")
     if bento:
         classes = bento.get("class", [])
