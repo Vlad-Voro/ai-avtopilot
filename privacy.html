@@ -40,6 +40,25 @@
   <link rel="icon" type="image/svg+xml" href="/icon.svg" sizes="any" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" crossorigin="anonymous" />
+  <!-- Chrome Speculation Rules API (0ms Instant Page Navigations) -->
+  <script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "source": "list",
+        "urls": [
+          "/services/",
+          "/cases/",
+          "/pricing/",
+          "/calculator/",
+          "/guides/",
+          "/faq/"
+        ],
+        "eagerness": "moderate"
+      }
+    ]
+  }
+  </script>
 
   <!-- Schema.org Microdata -->
   <script type="application/ld+json">

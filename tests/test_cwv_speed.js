@@ -62,6 +62,12 @@ async function measureWebVitals(options = {}) {
     });
 
     await page.goto(baseUrl, { waitUntil: 'load' });
+    await page.waitForFunction(
+      () => performance.getEntriesByType('paint').some((p) => p.name === 'first-contentful-paint') ||
+        (window.__vitals && window.__vitals.fcp !== null),
+      null,
+      { timeout: 5000 }
+    );
     await page.evaluate(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))));
     await page.waitForTimeout(1000); // test-lint: disable=web-01 [CWV longtask accumulation window]
 
@@ -140,6 +146,12 @@ async function measureWebVitals(options = {}) {
         }).observe({ type: 'longtask', buffered: true });
       });
       await mobPage.goto(baseUrl, { waitUntil: 'load' });
+      await mobPage.waitForFunction(
+        () => performance.getEntriesByType('paint').some((p) => p.name === 'first-contentful-paint') ||
+          (window.__mobVitals && window.__mobVitals.fcp !== null),
+        null,
+        { timeout: 5000 }
+      );
       await mobPage.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
       await mobPage.waitForTimeout(400); // test-lint: disable=web-01 [Mobile 4x CPU CWV settle window]
       const mobRes = await mobPage.evaluate(() => {

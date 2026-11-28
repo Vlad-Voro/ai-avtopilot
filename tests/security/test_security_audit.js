@@ -276,8 +276,8 @@ async function runSecuritySuite() {
     });
   });
 
-  // Test 10: SEC-10 - Zero Naked FormSubmit Endpoints & Anti-Spam Form Hardening (all 50 form pages)
-  await test('SEC-10: Zero naked FormSubmit endpoints, no _captcha=false, and valid worker /submit action across all 50 form HTML files', async () => {
+  // Test 10: SEC-10 - Zero Naked FormSubmit Endpoints & Anti-Spam Form Hardening (all 51 form pages)
+  await test('SEC-10: Zero naked FormSubmit endpoints, no _captcha=false, and valid worker /submit action across all 51 form HTML files', async () => {
     const rootDir = path.resolve(__dirname, '../..');
     const expectedAction = 'action="https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev/submit"';
     const formFiles = [];

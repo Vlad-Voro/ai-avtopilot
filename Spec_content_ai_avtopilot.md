@@ -2,9 +2,9 @@
 
 > **Standard**: ASD-STE100 (Simplified Technical English) / SDR  
 > **Status**: Production Deployed | **Target**: [ai-avtopilot.ru](https://ai-avtopilot.ru/) | **Geo**: Russian Federation (Nationwide B2B)  
-> **Inventory**: 52 Production URLs (1 Root, 8 Hubs incl. `/guides/`, 24 Services, 11 Cases, 5 MoFu/ToFu Guides, 3 Utility) + 1 Canonical Stub (`/automated-reporting/`)  
+> **Inventory**: 54 Production URLs (1 Root, 8 Hubs incl. `/guides/`, 2 Sub-Calculators, 24 Services, 11 Cases, 5 MoFu/ToFu Guides, 3 Utility) + 1 Canonical Stub (`/automated-reporting/`)  
 > **Search Targets**: Yandex (Web + «Нейро»), Google RU (AI Overviews), Perplexity, Klerk.ru, Infostart.ru  
-> **Verification**: **94 / 94 `--fast` PASS** + **212 / 214 Tier 3 E2E** (Waves 4–7 P0/P1 complete) | **AI Slop**: **0 Markers** across all 54 URLs
+> **Verification**: **94 / 94 `--fast` PASS** + **121 / 121 `--e2e` PASS** (Waves 4–10 P0/P1 complete) | **AI Slop**: **0 Markers** across all 54 URLs
 ---
 
 ## 1. Demand Capture Topology & Architecture
@@ -18,9 +18,10 @@ flowchart TD
         Val -- "Validated Pool" --> Brief["Validated Semantics Matrix"]
     end
 
-    subgraph Architecture ["2. Production Silo Architecture (52 URLs)"]
+    subgraph Architecture ["2. Production Silo Architecture (54 URLs)"]
         Root["/ (Main Landing Page)"]
         Hubs["8 Hub Pages (/services/, /cases/, /pricing/, /calculator/, /guides/, /faq/, + noindex /dashboard/, /contact/)"]
+        SubCalc["2 Sub-Calculators (/calculator/self-employed/, /calculator/vat-22/)"]
         T1["24 Dedicated Service Pages (/services/*)"]
         T3["11 Applied Case Studies (/cases/*)"]
         G1["5 MoFu/ToFu Guide Articles (/guides/*)"]
@@ -60,6 +61,7 @@ flowchart TD
 | `/pricing/` | Hub | Transparent B2B pricing tiers (Pilot from 50k ₽, Turnkey 125k–275k ₽, On-Premise from 400k ₽), Cloud vs On-Premise & SLA. | 100% pilot credit |
 | `/calculator/` | Tool Hub | Interactive B2B routine savings and payback estimator. | Real-time ROI |
 | `/calculator/self-employed/` | Tool Hub | Self-employed NPD 4%/6% tax calc, 2.4M ₽ threshold, 1C DirectBank & FTS compliance. | 0 ms TBT, 28.9% employer savings |
+| `/calculator/vat-22/` | Tool Hub | VAT 22% calculator (Federal Law No. 425-FZ 2026: add/extract 22%, 20%, 10%, 7%, 5% for 1C & EDI). | 22% vs 20% diff, `#contact-form` |
 | `/dashboard/` | Tool Hub | Live agent telemetry simulator and event stream monitor. | 0 ms TBT |
 | `/faq/` | Hub | Knowledge base: 1C integration, 14-day SLA, on-premise 152-FZ airgap. | Accordion DOM 1:1 |
 | `/contact/` | Hub | Express audit registration and direct communication channels. | 3-field form |
@@ -165,11 +167,11 @@ sequenceDiagram
 
 ### 3.1. Completed Milestones (Current Baseline)
 - ✅ **Core Infrastructure & Design System**: Inlined CSS (~87 KB on `/` & legacy subpages; shared `/assets/css/styles.min.css?v=82892ba5` across 6 standalone hubs, 22 services, `/pricing/`, `/calculator/self-employed/`, 11 cases, and 6 `/guides/*` pages), local WOFF2 font subsetting, WCAG AA contrast, responsive down to 320px.
-- ✅ **Standalone Hubs & De-duplication (`D-02`, Waves 4–7)**: Replaced 6 cloned 202 KB hubs with standalone external-CSS hubs (<70 KB) with DOM `.breadcrumbs` and `noindex, follow` on `/dashboard/` & `/contact/` (`49` canonical URLs in `sitemap.xml`).
+- ✅ **Standalone Hubs & De-duplication (`D-02`, Waves 4–10)**: Replaced cloned hubs with standalone external-CSS hubs (<70 KB) with DOM `.breadcrumbs`, `noindex, follow` on `/dashboard/` & `/contact/`, added `/calculator/vat-22/`, deduplicated `<main>` hubs & `<=580px` SERP titles (`50` canonical URLs in `sitemap.xml`), and unified 3-card static grids in `#cases`.
 - ✅ **Semantic Interactive Patterns (`D-08`)**: Replaced multi-line 40-word `<a>` card wrappers and 132 inline `onclick`s with clean short heading links + CSS `::after` overlay; bidirectional `Service ↔ Case` linking across 72 service case cards and 11 case pages; Case DOM FAQ parity (`.faq__grid`) and static terminal guard (`data-static-terminal="true"`).
 - ✅ **Schema.org & Truth-Table Consistency (`D-06`, `D-11`)**: Removed `Offer price:"0"` and `icon.svg` logos (`apple-touch-icon.png`), stripped inherited `WebSite`/`hasOfferCatalog` on secondary pages, synchronized VAT 22% (425-ФЗ) and unified `fintech` KPI metrics and `llms*.txt`.
 - ✅ **Content Hub & GEO Citations (`D-10`, `D-12`)**: Differentiated overlapping commercial pages and launched `/guides/` hub + 5 MoFu/ToFu guides with `<blockquote cite="...">` primary citations and brand disambiguation `АвтоПилот (ai-avtopilot.ru)`.
-- ✅ **Verification Suite**: 94/94 `--fast` passing (incl. `SEO-30`, `SEO-31`, `SEC-10` across 50 form pages), 212/214 Tier 3 E2E (2 Edge 158 `flex-start -> flow-start` serialization checks), Wave 4–7 Playwright UI verification PASS, and 630 layout checks in `audit_runner.js`.
+- ✅ **Verification Suite**: 94/94 `--fast` passing (incl. `SEO-30`, `SEO-31`, `SEC-10` across 51 form pages), 121/121 `--e2e` PASS, CWV deterministic FCP capture (`test_cwv_speed.js`), Wave 9–10 Playwright & layout verification PASS (`audit_runner --quick` 20/20).
 
 ### 3.2. Future Expansion Roadmap
 - **Sprint 4 (Combinatorial Matrix & Long-Tail Registry)**:

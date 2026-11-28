@@ -3,8 +3,8 @@
 > **Standard**: ASD-STE100 (Simplified Technical English)  
 > **Status**: Production Hardened | **Updated**: 2026-11-28  
 > **Live URL**: [https://ai-avtopilot.ru/](https://ai-avtopilot.ru/) | **Repo**: `Vlad-Voro/ai-avtopilot` (`main` - Private)  
-> **Local Root**: `d:\AI\data\ai-avtopilot` | **Inventory**: 52 Production URLs (1 Root, 8 Hubs incl. `/guides/`, 24 Services, 11 Cases, 5 Guides, 3 Utility) + 1 Canonical Stub (`/automated-reporting/`)  
-> **Verification Matrix**: **94 / 94 `--fast` PASS** + **212 / 214 Tier 3 E2E** (2 Edge 158 `flex-start -> flow-start` serialization mismatches) + **486 Layout Matrix**
+> **Local Root**: `d:\AI\data\ai-avtopilot` | **Inventory**: 54 Production URLs (1 Root, 8 Hubs incl. `/guides/`, 2 Calculators `/calculator/self-employed/` & `/calculator/vat-22/`, 24 Services, 11 Cases, 5 Guides, 3 Utility) + 1 Canonical Stub (`/automated-reporting/`)  
+> **Verification Matrix**: **94 / 94 `--fast` PASS** + **121 / 121 `--e2e` PASS** + **20 / 20 `audit_runner --quick` PASS** + **630 Layout Matrix**
 
 ---
 
@@ -23,9 +23,10 @@ flowchart TD
         VEdge -->|Deployment Isolation| VIgn[".vercelignore (blocks _headers, *.md, tests, bot)"]
     end
 
-    subgraph AppLayer ["2. Multi-Entry Hybrid SSG (52 URLs)"]
+    subgraph AppLayer ["2. Multi-Entry Hybrid SSG (54 URLs)"]
         VEdge --> P1["/ (Main Landing)"]
         VEdge --> P2["8 Hub Pages (/services/, /cases/, /pricing/, /calculator/, /guides/, /faq/, + noindex /dashboard/, /contact/)"]
+        VEdge --> P6["2 Sub-Calculators (/calculator/self-employed/, /calculator/vat-22/)"]
         VEdge --> P3["24 Dedicated Service Pages (/services/<slug>/)"]
         VEdge --> P4["11 Dedicated Case Pages (/cases/<slug>/)"]
         VEdge --> P5["5 MoFu/ToFu Guide Pages (/guides/<slug>/) + 3 Utility Pages (/privacy.html, /404.html, /success.html)"]
@@ -198,7 +199,7 @@ index.html (Master Template) & Data Catalogs
 2. **Tier 2 (Multi-Cloud Failover)**: Vercel Serverless Function `/api/fallback-lead` running independently on Vercel Edge infrastructure, guaranteeing zero-loss if Cloudflare suffers an edge outage.
 3. **Tier 3 (Offline / Network Stall Guard)**: Resilient fallback card with 1-click clipboard payload copy and direct Telegram contact link (`@AiAvtopilotbot`) (`RES-02`, `RES-03`).
 4. **Tier 4 (NoScript Accessibility)**: In-page `<noscript>` container with instant Telegram and mailto direct contact buttons.
-5. **Zero Naked Form Endpoints**: Complete elimination of public third-party endpoints and hardcoded emails across all 44 HTML pages and client bundles.
+5. **Zero Naked Form Endpoints**: Complete elimination of public third-party endpoints and hardcoded emails across all 51 form HTML pages and client bundles.
 
 ---
 
@@ -210,7 +211,7 @@ index.html (Master Template) & Data Catalogs
   ```txt
   Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&_openstat&from&vk_source&gclid&fbclid /
   ```
-- **Machine Discovery**: `/llms.txt` and `/llms-full.txt` indexed via `<link rel="describedby" href="/llms.txt">` (100% route coverage across all 46 active endpoints).
+- **Machine Discovery**: `/llms.txt` and `/llms-full.txt` indexed via `<link rel="describedby" href="/llms.txt">` (100% route coverage across all 50 indexed endpoints in `sitemap.xml`).
 - **No-JS Accessibility & Clickjack Defense**: `<noscript>` block neutralizes `#anti-clickjack` hidden state (`body { display: block !important; }`) and forces `[data-reveal]` visibility (`opacity: 1 !important; transform: none !important;`) without invalid `</meta>` closing elements.
 - **Princeton KDD 2024 GEO Levers**: Content adherence to Aggarwal et al. (KDD 2024) models: verifiable citations (GOST R ISO 9001, 1C:Enterprise exchange standards, 152-FZ, +40.2%), expert architect quotations (`<blockquote cite="...">`, +37.8%), and empirical time-reduction statistics (+34.1%).
 - **Instant Navigation**: Chrome Speculation Rules API prerenders subpages with moderate threshold.
@@ -277,7 +278,7 @@ node data/ai-avtopilot/tests/run_all.js
 | Tier | Scope | Checks | Latency | Key Invariants Verified |
 | :--- | :--- | :--- | :--- | :--- |
 | **Tier 1** | In-Memory Unit | 11 | $\le 20\text{ms}$ | ROI formula ($E \times S \times \frac{H}{160} \times 12$), boundary clamps, sanitization, Russian locale formatting. |
-| **Tier 2** | Static & Integration | 83 | $< 1.6\text{s}$ | **SEO (38)**: `sitemap.xml` (49 indexable URLs), trailing slashes, title $\le 85$c, description $\le 175$c, 1 H1, Schema.org `@graph` (`AggregateOffer`, PNG logos, scoped `WebSite`), DOM FAQ 1:1 across all pages, `<noscript>` restore (`SEO-29`), case FAQ/terminal/bidirectional links (`SEO-30`), `/guides/` & GEO citations (`SEO-31`).<br>**Security (19)**: TG HTML escaping, ID parser, 10 KB clamp, honeypot, frame guard, 50 form pages (`SEC-10`), WCAG AA palette contrast.<br>**SSL/TLS (10)**: Edge TLS 1.2/1.3, HSTS, redirects & zero mixed content.<br>**Resiliency (5)**: 6000ms abort, fallback card, Metrica callback, anti-slop audit.<br>**Invariants (11)**: Favicons (6), Compare Cards equal heights across 36 compare HTML pages (5). |
+| **Tier 2** | Static & Integration | 83 | $< 1.6\text{s}$ | **SEO (38)**: `sitemap.xml` (50 indexable URLs), trailing slashes, title $\le 580\text{px}$ ($\le 85$c), description $\le 175$c, 1 H1, Schema.org `@graph` (`AggregateOffer`, PNG logos, scoped `WebSite`), DOM FAQ 1:1 across all pages, `<noscript>` restore (`SEO-29`), case FAQ/terminal/bidirectional links (`SEO-30`), `/guides/` & GEO citations (`SEO-31`).<br>**Security (19)**: TG HTML escaping, ID parser, 10 KB clamp, honeypot, frame guard, 51 form pages (`SEC-10`), WCAG AA palette contrast.<br>**SSL/TLS (10)**: Edge TLS 1.2/1.3, HSTS, redirects & zero mixed content.<br>**Resiliency (5)**: 6000ms abort, fallback card, Metrica callback, anti-slop audit.<br>**Invariants (11)**: Favicons (6), Compare Cards equal heights across 36 compare HTML pages (5). |
 | **Tier 3** | Browser E2E + CWV | 120–129 | $\sim 20\text{s}$ | **Core E2E**: touch, routing, burger menu, viewports (320px–2560px), WCAG AA contrast, lead delivery, formula reactivity.<br>**Express Modal (7)**: dual pill, dialog open/close, tab switch, 1-click email copy.<br>**Slider & Drag + CWV**: desktop LMB drag-to-scroll, grab cursor, `CLS = 0.000`, `TBT = 0 ms`. |
 | **Tier 4** | Layout Matrix | 630 | $\sim 13\text{s}$ | DOM geometry across 35 pages $\times$ 18 canonical viewport profiles. |
 
