@@ -214,6 +214,7 @@ const ALL_PAGES = [
   { path: '/pricing/', name: 'Хаб: Цены', category: 'hub' },
   { path: '/calculator/', name: 'Хаб: Калькулятор ROI', category: 'hub' },
   { path: '/calculator/self-employed/', name: 'Калькулятор самозанятых (НПД)', category: 'tool' },
+  { path: '/calculator/vat-22/', name: 'Калькулятор НДС 22% (2026)', category: 'tool' },
   { path: '/dashboard/', name: 'Хаб: Дашборд', category: 'hub' },
   { path: '/faq/', name: 'Хаб: FAQ', category: 'hub' },
   { path: '/contact/', name: 'Хаб: Контакты', category: 'hub' },

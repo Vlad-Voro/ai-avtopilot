@@ -253,6 +253,12 @@ URL_SPEC = [
         "changefreq": "weekly",
         "priority": "0.8",
     },
+    {
+        "url": "https://ai-avtopilot.ru/calculator/vat-22/",
+        "file": "calculator/vat-22/index.html",
+        "changefreq": "monthly",
+        "priority": "0.8",
+    },
     {"url": "https://ai-avtopilot.ru/faq/", "file": "faq/index.html", "changefreq": "weekly", "priority": "0.8"},
     {"url": "https://ai-avtopilot.ru/guides/", "file": "guides/index.html", "changefreq": "weekly", "priority": "0.85"},
     {

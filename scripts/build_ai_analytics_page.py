@@ -45,7 +45,7 @@ if app_style:
 # 1. Update Head metadata
 title_tag = soup.find("title")
 if title_tag:
-    title_tag.string = "Предиктивная аналитика 1С: платежи, остатки и цены | АвтоПилот"
+    title_tag.string = "Предиктивная аналитика 1С и цен | АвтоПилот"
 
 desc_tag = soup.find("meta", attrs={"name": "description"})
 if desc_tag:
@@ -67,14 +67,14 @@ if canonical_tag:
 
 # OG / Twitter
 for prop, val in [
-    ("og:title", "Предиктивная аналитика 1С: платежи, остатки и цены | АвтоПилот"),
+    ("og:title", "Предиктивная аналитика 1С и цен | АвтоПилот"),
     ("og:url", "https://ai-avtopilot.ru/services/ai-analytics/"),
     (
         "og:description",
         "Подключите предиктивную аналитику в 1С: предотвращение кассовых разрывов за 10 дней, "
         "расчет неснижаемого остатка и контроль цен. Запустите пилот за 14 дней.",
     ),
-    ("twitter:title", "Предиктивная аналитика 1С: платежи, остатки и цены | АвтоПилот"),
+    ("twitter:title", "Предиктивная аналитика 1С и цен | АвтоПилот"),
     (
         "twitter:description",
         "Подключите предиктивную аналитику в 1С: предотвращение кассовых разрывов за 10 дней, "

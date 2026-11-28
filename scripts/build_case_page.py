@@ -66,7 +66,7 @@ def build_case_page(case_key: str) -> str:
 
         with open(css_path, "rb") as cf:
             raw_css = cf.read().replace(b"\r\n", b"\n").replace(b"\r", b"\n")
-            css_hash = hashlib.md5(raw_css).hexdigest()[:8]
+            css_hash = hashlib.sha256(raw_css).hexdigest()[:8]
     else:
         css_hash = "03f2d5b5"
 
@@ -516,13 +516,25 @@ def build_case_page(case_key: str) -> str:
         if case_title:
             case_title.string = "Другие кейсы"
 
-        # Remove the current case card from "Другие кейсы" grid so only sibling cases show
+        # Remove the current case card and trim to 3 deterministic sibling cards (static grid, zero carousel bloat)
         cases_grid = cases_sec.find("div", class_="cases__grid")
         if cases_grid:
-            card_class = SLUG_TO_CARD_CLASS.get(slug)
-            current_card = cases_grid.find(class_=card_class) if card_class else None
-            if current_card:
-                current_card.decompose()
+            classes = cases_grid.get("class", [])
+            if "cases__grid--static" not in classes:
+                classes.append("cases__grid--static")
+            cases_grid["class"] = classes
+            ordered_slugs = list(SLUG_TO_CARD_CLASS.keys())
+            cur_idx = ordered_slugs.index(slug) if slug in ordered_slugs else 0
+            keep_classes = {
+                SLUG_TO_CARD_CLASS[ordered_slugs[(cur_idx + offset) % len(ordered_slugs)]] for offset in (1, 2, 3)
+            }
+            for card in list(cases_grid.select(".case-card")):
+                card_cls = set(card.get("class", []))
+                if not (card_cls & keep_classes):
+                    card.decompose()
+        slider_ctrl = cases_sec.find("div", class_="slider-controls")
+        if slider_ctrl:
+            slider_ctrl.decompose()
 
     # Write output
     with open(output_path, "w", encoding="utf-8") as f:

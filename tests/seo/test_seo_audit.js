@@ -48,7 +48,8 @@ const PAGES = [
   { slug: 'services/ai-agents', file: 'services/ai-agents/index.html', url: 'https://ai-avtopilot.ru/services/ai-agents/', category: 'service', hasBreadcrumbs: true },
   { slug: 'services/manufacturing-automation', file: 'services/manufacturing-automation/index.html', url: 'https://ai-avtopilot.ru/services/manufacturing-automation/', category: 'service', hasBreadcrumbs: true },
   { slug: 'services/avito-automation', file: 'services/avito-automation/index.html', url: 'https://ai-avtopilot.ru/services/avito-automation/', category: 'service', hasBreadcrumbs: true },
-  { slug: 'calculator/self-employed', file: 'calculator/self-employed/index.html', url: 'https://ai-avtopilot.ru/calculator/self-employed/', category: 'tool', hasBreadcrumbs: true },
+  { slug: 'calculator/self-employed', file: 'calculator/self-employed/index.html', url: 'https://ai-avtopilot.ru/calculator/self-employed/', category: 'tool', hasBreadcrumbs: true, hasFaq: true },
+  { slug: 'calculator/vat-22', file: 'calculator/vat-22/index.html', url: 'https://ai-avtopilot.ru/calculator/vat-22/', category: 'tool', hasBreadcrumbs: true, hasFaq: true },
 
   // Case Studies (7)
   { slug: 'cases/fintech-transaction-reconciliation', file: 'cases/fintech-transaction-reconciliation/index.html', url: 'https://ai-avtopilot.ru/cases/fintech-transaction-reconciliation/', category: 'case', hasBreadcrumbs: true },
@@ -173,15 +174,72 @@ runCheck('SEO-04', 'Internal navigation links in all HTML files use trailing sla
 
 console.log('\n▶ [Category 3] On-Page Semantics, Headings & Uniqueness');
 
-// SEO-05: Title uniqueness & length
-runCheck('SEO-05', 'Title tags are unique across all pages, include brand, and <= 70 chars', () => {
+// SEO-05: Title uniqueness, brand, and 20px Arial SERP pixel width <= 580px
+const ARIAL_20_WIDTHS = {
+  '0': 11.12, '1': 11.12, '2': 11.12, '3': 11.12, '4': 11.12,
+  '5': 11.12, '6': 11.12, '7': 11.12, '8': 11.12, '9': 11.12,
+  ' ': 5.56, '!': 5.56, '"': 7.1, '#': 11.12, '$': 11.12, '%': 17.78,
+  '&': 13.34, "'": 3.82, '(': 6.66, ')': 6.66, '*': 7.78, '+': 11.68,
+  ',': 5.56, '-': 6.66, '.': 5.56, '/': 5.56, ':': 5.56, ';': 5.56,
+  '<': 11.68, '=': 11.68, '>': 11.68, '?': 11.12, '@': 20.3,
+  A: 13.34, B: 13.34, C: 14.44, D: 14.44, E: 13.34, F: 12.22, G: 15.56,
+  H: 14.44, I: 5.56, J: 10, K: 13.34, L: 11.12, M: 16.66, N: 14.44,
+  O: 15.56, P: 13.34, Q: 15.56, R: 14.44, S: 13.34, T: 12.22, U: 14.44,
+  V: 13.34, W: 18.88, X: 13.34, Y: 13.34, Z: 12.22, '[': 5.56, '\\': 5.56,
+  ']': 5.56, '^': 9.38, _: 11.12, '`': 6.66, a: 11.12, b: 11.12, c: 10,
+  d: 11.12, e: 11.12, f: 5.56, g: 11.12, h: 11.12, i: 4.44, j: 4.44,
+  k: 10, l: 4.44, m: 16.66, n: 11.12, o: 11.12, p: 11.12, q: 11.12,
+  r: 6.66, s: 10, t: 5.56, u: 11.12, v: 10, w: 14.44, x: 10, y: 10, z: 10,
+  '|': 5.2, '~': 11.68,
+  'А': 13.34, 'Б': 13.13, 'В': 13.34, 'Г': 10.83, 'Д': 13.54, 'Е': 13.34,
+  'Ё': 13.35, 'Ж': 18.47, 'З': 12.08, 'И': 14.38, 'Й': 14.38, 'К': 11.65,
+  'Л': 13.13, 'М': 16.66, 'Н': 14.44, 'О': 15.56, 'П': 14.38, 'Р': 13.34,
+  'С': 14.44, 'Т': 12.22, 'У': 12.71, 'Ф': 15.21, 'Х': 13.34, 'Ц': 14.79,
+  'Ч': 13.33, 'Ш': 18.33, 'Щ': 18.75, 'Ъ': 15.83, 'Ы': 17.71, 'Ь': 13.13,
+  'Э': 14.38, 'Ю': 20.21, 'Я': 14.44,
+  'а': 11.12, 'б': 11.46, 'в': 10.63, 'г': 7.29, 'д': 11.67, 'е': 11.12,
+  'ё': 11.12, 'ж': 13.38, 'з': 9.17, 'и': 11.17, 'й': 11.17, 'к': 8.75,
+  'л': 11.67, 'м': 13.75, 'н': 11.04, 'о': 11.12, 'п': 10.83, 'р': 11.12,
+  'с': 10, 'т': 9.16, 'у': 10, 'ф': 16.46, 'х': 10, 'ц': 11.46, 'ч': 10.42,
+  'ш': 16.04, 'щ': 16.46, 'ъ': 12.5, 'ы': 14.38, 'ь': 10.42, 'э': 10.21,
+  'ю': 15, 'я': 10.83,
+  '₽': 11.12, '—': 20, '–': 11.12, '−': 11.68, '«': 11.12, '»': 11.12,
+  '№': 21.46, '•': 7, '·': 6.66, '…': 20, '★': 16
+};
+
+function decodeTitleEntities(s) {
+  return s
+    .replace(/&amp;/g, '&')
+    .replace(/&mdash;/g, '—')
+    .replace(/&ndash;/g, '–')
+    .replace(/&minus;/g, '−')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&laquo;/g, '«')
+    .replace(/&raquo;/g, '»')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
+    .trim();
+}
+
+function measureTitlePx20Arial(title) {
+  let px = 0;
+  for (const ch of title) {
+    px += ARIAL_20_WIDTHS[ch] !== undefined ? ARIAL_20_WIDTHS[ch] : 11.5;
+  }
+  return px;
+}
+
+runCheck('SEO-05', 'Title tags are unique across all pages, include brand, >= 30 chars, and <= 580px (20px Arial)', () => {
   const titles = new Map();
   PAGES.forEach(p => {
     const html = fs.readFileSync(path.join(ROOT_DIR, p.file), 'utf8');
     const m = html.match(/<title>(.*?)<\/title>/);
     assert.ok(m, `Missing <title> in ${p.file}`);
-    const title = m[1].trim();
-    assert.ok(title.length >= 30 && title.length <= 70, `Title length ${title.length} out of range (30-70) in ${p.file}: '${title}'`);
+    const title = decodeTitleEntities(m[1]);
+    assert.ok(title.length >= 30, `Title length ${title.length} < 30 in ${p.file}: '${title}'`);
+    const px = measureTitlePx20Arial(title);
+    assert.ok(px <= 580, `Title pixel width ${px.toFixed(1)}px > 580px in ${p.file}: '${title}'`);
     assert.ok(title.includes('АвтоПилот'), `Missing brand suffix АвтоПилот in <title> of ${p.file}`);
     assert.ok(!titles.has(title), `Duplicate title '${title}' in ${p.file} and ${titles.get(title)}`);
     titles.set(title, p.file);
@@ -262,6 +320,10 @@ runCheck('SEO-10', 'Schema.org JSON-LD @graph contains required entities per cat
         assert.ok(col && col.mainEntity && col.mainEntity['@type'] === 'ItemList', `Missing CollectionPage ItemList in ${p.file}`);
         assert.ok(Array.isArray(col.mainEntity.itemListElement) && col.mainEntity.itemListElement.length > 0, `Empty ItemList in ${p.file}`);
       }
+    } else if (p.category === 'tool') {
+      assert.ok(!types.includes('WebSite'), `Unexpected WebSite in tool ${p.file}`);
+      assert.ok(types.includes('WebApplication'), `Missing WebApplication in ${p.file}`);
+      if (p.hasFaq !== false) assert.ok(types.includes('FAQPage'), `Missing FAQPage in ${p.file}`);
     } else if (p.category === 'service') {
       assert.ok(!types.includes('WebSite'), `Unexpected WebSite in service ${p.file}`);
       assert.ok(types.includes('Service') || types.includes('SoftwareApplication'), `Missing Service in ${p.file}`);

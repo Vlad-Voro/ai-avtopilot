@@ -90,12 +90,26 @@ def get_site_inventory() -> dict[str, any]:
     if guides_dir.is_dir():
         guide_slugs = sorted([d.name for d in guides_dir.iterdir() if d.is_dir() and (d / "index.html").is_file()])
 
+    # Dedicated calculators: subdirectories under calculator/ that contain index.html
+    calc_dir = REPO_ROOT / "calculator"
+    calculator_slugs: list[str] = []
+    if calc_dir.is_dir():
+        calculator_slugs = sorted([d.name for d in calc_dir.iterdir() if d.is_dir() and (d / "index.html").is_file()])
+
     # System & legal pages
     known_legal = ["privacy.html", "404.html", "success.html"]
     active_legal = [f for f in known_legal if (REPO_ROOT / f).is_file()]
 
-    # Total active URLs = 1 (root) + hubs + services + cases + guides + legal
-    total_urls = 1 + len(active_hubs) + len(service_slugs) + len(case_slugs) + len(guide_slugs) + len(active_legal)
+    # Total active URLs = 1 (root) + hubs + services + cases + guides + calculators + legal
+    total_urls = (
+        1
+        + len(active_hubs)
+        + len(service_slugs)
+        + len(case_slugs)
+        + len(guide_slugs)
+        + len(calculator_slugs)
+        + len(active_legal)
+    )
 
     return {
         "root": "/",
@@ -105,6 +119,7 @@ def get_site_inventory() -> dict[str, any]:
         "service_slugs": service_slugs,
         "case_slugs": case_slugs,
         "guide_slugs": guide_slugs,
+        "calculator_slugs": calculator_slugs,
         "legal": active_legal,
         "total_urls": total_urls,
     }

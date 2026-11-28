@@ -23,7 +23,7 @@ HUB_ALL_SECTIONS = ("calculator", "compare", "services", "cases", "pricing", "fa
 SUBPAGES_SPEC = {
     "services": {
         "dir": os.path.join(ROOT_DIR, "services"),
-        "title": "Услуги внедрения ИИ-агентов в 1С, SAP, CRM и ЭДО | АвтоПилот",
+        "title": "Услуги внедрения ИИ-агентов в 1С и CRM | АвтоПилот",
         "description": "Выберите готовый сценарий автоматизации: 24 решения для 1С, CRM, склада и клиентского сервиса. Запустите пилотного ИИ-агента за 14 дней с гарантией ROI.",
         "keywords": "услуги ии автоматизации, внедрение ии агентов в 1с, автоматизация crm и эдо, rpa для бизнеса, автопилот услуги",
         "h1": "Услуги внедрения ИИ-агентов и роботизации процессов",
@@ -80,7 +80,7 @@ SUBPAGES_SPEC = {
     },
     "cases": {
         "dir": os.path.join(ROOT_DIR, "cases"),
-        "title": "Кейсы внедрения ИИ-агентов: результаты, окупаемость и ROI | АвтоПилот",
+        "title": "Кейсы внедрения ИИ-агентов и ROI | АвтоПилот",
         "description": "Изучите 11 реальных кейсов автоматизации в ритейле, производстве и B2B: сокращение рутины до 72% и окупаемость от 1.5 месяцев. Цифры и архитектура внедрения.",
         "keywords": "кейсы внедрения ии, автоматизация 1с кейсы, результаты rpa внедрения, окупаемость ии агентов, автопилот кейсы",
         "h1": "Кейсы внедрения ИИ-агентов и результаты автоматизации",
@@ -137,7 +137,7 @@ SUBPAGES_SPEC = {
     },
     "calculator": {
         "dir": os.path.join(ROOT_DIR, "calculator"),
-        "title": "Калькулятор окупаемости ИИ и расчет ROI автоматизации | АвтоПилот",
+        "title": "Калькулятор ROI автоматизации ИИ | АвтоПилот",
         "description": "Рассчитайте годовую экономию фонда оплаты труда на калькуляторе ROI: укажите штат и часы рутины. Получите детальный финансовый расчет окупаемости за 30 секунд.",
         "keywords": "калькулятор окупаемости ии, расчет roi автоматизации, экономия на рутине 1с, оценка эффекта внедрения ии",
         "h1": "Калькулятор окупаемости ИИ-автоматизации и расчет ROI",
@@ -194,7 +194,7 @@ SUBPAGES_SPEC = {
     },
     "dashboard": {
         "dir": os.path.join(ROOT_DIR, "dashboard"),
-        "title": "Интерактивный дашборд и мониторинг работы ИИ-агентов | АвтоПилот",
+        "title": "Дашборд и мониторинг ИИ-агентов | АвтоПилот",
         "description": "Проверьте работу ИИ-агентов в реальном времени: интерактивная телеметрия, статус обработки накладных в 1С и журнал событий. Запустите демо-сессию прямо сейчас.",
         "keywords": "дашборд ии агентов, мониторинг 1с автоматизации, телеметрия rpa, центр управления автопилот",
         "h1": "Интерактивный дашборд мониторинга и метрик ИИ-агентов",
@@ -251,7 +251,7 @@ SUBPAGES_SPEC = {
     },
     "faq": {
         "dir": os.path.join(ROOT_DIR, "faq"),
-        "title": "Частые вопросы по внедрению ИИ-агентов и автоматизации | АвтоПилот",
+        "title": "Частые вопросы по ИИ и 1С (FAQ) | АвтоПилот",
         "description": "Узнайте ответы на главные вопросы о внедрении ИИ-агентов: безопасность данных по 152-ФЗ, интеграция с 1С без доработок и гарантии результата по договору.",
         "keywords": "faq внедрение ии, безопасность 152 фз нейросети, интеграция с 1с без доработок, вопросы по автоматизации",
         "h1": "Часто задаваемые вопросы по внедрению ИИ-агентов",
@@ -308,7 +308,7 @@ SUBPAGES_SPEC = {
     },
     "contact": {
         "dir": os.path.join(ROOT_DIR, "contact"),
-        "title": "Контакты и запись на бесплатный аудит процессов | АвтоПилот",
+        "title": "Контакты и бесплатный аудит 1С | АвтоПилот",
         "description": "Запишитесь на бесплатный аудит процессов за 30 минут: найдем узкие места в 1С и CRM, покажем расчет окупаемости и план пилота. Ответим в течение 15 минут.",
         "keywords": "контакты автопилот, заказать аудит 1с, связаться по внедрению ии, ai avtopilot контакты",
         "h1": "Контакты и бесплатный экспресс-аудит процессов",
@@ -368,7 +368,194 @@ SUBPAGES_SPEC = {
 
 def get_css_hash() -> str:
     raw = open(CSS_PATH, "rb").read().replace(b"\r\n", b"\n").replace(b"\r", b"\n")
-    return hashlib.md5(raw).hexdigest()[:8]
+    return hashlib.sha256(raw).hexdigest()[:8]
+
+
+SERVICES_MATRIX_HTML = """
+<section id="services-matrix" style="padding:28px 0 40px;">
+  <div class="container">
+    <div class="article-content" style="max-width:none;">
+      <p class="section-tag">Архитектура интеграций</p>
+      <h2 class="section-title">Кластеры автоматизации и стек подключения к 1С, CRM и ЭДО</h2>
+      <p>Платформа <strong>АвтоПилот</strong> группирует 24 сценария автоматизации в три прикладных контура. Каждый модуль подключается через стандартный API или внешнее расширение <code>.cfe</code>, не снимает типовые конфигурации 1С с официальной поддержки и запускается в пилот за 14 дней.</p>
+      <div style="overflow-x:auto;margin:20px 0;border:1px solid rgba(255,255,255,.08);border-radius:12px;">
+        <table style="width:100%;border-collapse:collapse;font-size:.92rem;">
+          <thead>
+            <tr style="background:rgba(99,102,241,.12);text-align:left;">
+              <th style="padding:12px 14px;">Направление</th>
+              <th style="padding:12px 14px;">Учётные системы</th>
+              <th style="padding:12px 14px;">Контроль и эффект</th>
+              <th style="padding:12px 14px;">Этап старта</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">Финансы, ЭДО и 1С</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">1С:ERP, 1С:БП, Диадок, СБИС</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">Сверка УПД и НДС 22%, ДДС и дебиторка</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">Пилот 14 дней</td>
+            </tr>
+            <tr>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">Продажи, речевая аналитика и CRM</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">Битрикс24, amoCRM, АТС, Авито</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">100% аудит звонков и расчёт КП за 30 сек</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">Пилот 14 дней</td>
+            </tr>
+            <tr>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">Склад, закупки и логистика</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">1С:УТ, 1С:УАТ, WB, Ozon, ГЛОНАСС</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">Автозаказ по Safety Stock и путевые листы</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">152-ФЗ РФ / On-Premise</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="faq__guides">
+        <span>Инструменты и документы:</span>
+        <a href="/calculator/">Калькулятор ROI</a>
+        <a href="/calculator/vat-22/">Калькулятор НДС 22%</a>
+        <a href="/guides/1c-odata-integration/">1С OData и .cfe</a>
+        <a href="/guides/152-fz-on-premise-llm/">On-Premise 152-ФЗ</a>
+        <a href="/pricing/">Тарифы и SLA</a>
+      </div>
+    </div>
+  </div>
+</section>
+"""
+
+CASES_MATRIX_HTML = """
+<section id="cases-matrix" style="padding:28px 0 40px;">
+  <div class="container">
+    <div class="article-content" style="max-width:none;">
+      <p class="section-tag">Методология аудита</p>
+      <h2 class="section-title">Сводная таблица внедрений и методика фиксации ROI</h2>
+      <p>Эффект по каждому из 11 проектов подтверждается хронометражем до запуска пилота и сверкой журналов событий в рабочей базе заказчика за первые 30 дней промышленной эксплуатации (SLA). Средняя окупаемость составляет 1,5–3 месяца.</p>
+      <div style="overflow-x:auto;margin:20px 0;border:1px solid rgba(255,255,255,.08);border-radius:12px;">
+        <table style="width:100%;border-collapse:collapse;font-size:.92rem;">
+          <thead>
+            <tr style="background:rgba(99,102,241,.12);text-align:left;">
+              <th style="padding:12px 14px;">Отрасль</th>
+              <th style="padding:12px 14px;">Интеграционный контур</th>
+              <th style="padding:12px 14px;">Измеренный результат</th>
+              <th style="padding:12px 14px;">Разбор</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">Розничная сеть (230 точек)</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">1С:Розница, автозаказ</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">−72% рутины, 9 200 ч/год</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);"><a href="/cases/retail-inventory-automation/">Кейс ритейла</a></td>
+            </tr>
+            <tr>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">Производственный холдинг</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">1С:ERP, SAP, Диадок</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">−90% бумажного ЭДО, закрытие за 5 мин</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);"><a href="/cases/manufacturing-edi-automation/">Кейс ЭДО</a></td>
+            </tr>
+            <tr>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">Финтех и B2B-платежи</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">1С DirectBank, CRM, 152-ФЗ</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">50 000 выписок за 8,4 сек</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);"><a href="/cases/fintech-transaction-reconciliation/">Кейс DirectBank</a></td>
+            </tr>
+            <tr>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">Тендеры 44-ФЗ и 223-ФЗ</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">1С:ERP, скоринг ТЗ и смет</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">−85% времени на разбор ТЗ</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);"><a href="/cases/tender-procurement-automation/">Кейс тендеров</a></td>
+            </tr>
+            <tr>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">Логистика и СТО (45 центров)</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">1С:Альфа-Авто, ГЛОНАСС</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">Подбор по VIN за секунды, −30% простоев</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);"><a href="/cases/auto-dealer-parts-automation/">Кейс автодилера</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="faq__guides">
+        <span>Оценка экономики проекта:</span>
+        <a href="/calculator/">Калькулятор ROI</a>
+        <a href="/guides/roi-ai-automation-formula/">Формула расчёта ROI</a>
+        <a href="/services/">Все 24 услуги</a>
+        <a href="/pricing/">Условия и цены</a>
+      </div>
+    </div>
+  </div>
+</section>
+"""
+
+CALC_METHODOLOGY_HTML = """
+<section id="calc-methodology" style="padding:28px 0 40px;">
+  <div class="container">
+    <div class="article-content" style="max-width:none;">
+      <p class="section-tag">Финансовое обоснование</p>
+      <h2 class="section-title">Методика расчёта ROI автоматизации и смежные калькуляторы</h2>
+      <p>Интерактивная модель выше рассчитывает прямую годовую экономию фонда оплаты труда по формуле: <strong>W = E × S × (H / 160) × 12 × 0,80</strong>, где <em>E</em> — количество сотрудников на рутинных операциях, <em>S</em> — средняя зарплата на руки в месяц, <em>H</em> — часов ручного ввода в неделю, 160 — нормо-часы месяца, а 0,80 — консервативный коэффициент автоматизации с учётом ручной эскалации исключений.</p>
+      <p>Для типовой команды из 10 специалистов с окладом 80 000 ₽ и долей рутины 20 часов в неделю (половина рабочего времени) текущие затраты на однотипные операции в 1С, Excel и почте достигают 1 200 000 ₽ в год. Автоматизация 80% рутины высвобождает 960 000 ₽ и до 7 800 рабочих часов ежегодно, благодаря чему пилот стоимостью от 50 000 ₽ и основное внедрение от 125 000 ₽ окупаются за 1,5–3 месяца.</p>
+      <div style="overflow-x:auto;margin:20px 0;border:1px solid rgba(255,255,255,.08);border-radius:12px;">
+        <table style="width:100%;border-collapse:collapse;font-size:.92rem;">
+          <thead>
+            <tr style="background:rgba(99,102,241,.12);text-align:left;">
+              <th style="padding:12px 14px;">Подразделение</th>
+              <th style="padding:12px 14px;">Автоматизируемая рутина</th>
+              <th style="padding:12px 14px;">Штат / нагрузка</th>
+              <th style="padding:12px 14px;">Срок окупаемости</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">Бухгалтерия и ЭДО</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">Ввод УПД, сверка НДС 22%, акты ТОРГ-2</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">6 чел · 18 ч/нед</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">1,5–2 месяца</td>
+            </tr>
+            <tr>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">Отдел продаж и Тендеры</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">Расчёт КП, скоринг ТЗ 44-ФЗ, аудит звонков</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">8 чел · 15 ч/нед</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">2–2,5 месяца</td>
+            </tr>
+            <tr>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">Закупки и склад 1С:УТ</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">Контроль остатков, прайсы, заказы поставщикам</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">5 чел · 20 ч/нед</td>
+              <td style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);">1,5–3 месяца</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="faq__guides">
+        <span>Специализированные налоговые калькуляторы:</span>
+        <a href="/calculator/vat-22/">Калькулятор НДС 22% (2026)</a>
+        <a href="/calculator/self-employed/">Калькулятор самозанятых (НПД)</a>
+        <a href="/guides/roi-ai-automation-formula/">Подробный гайд по ROI</a>
+        <a href="/pricing/">Стоимость внедрения</a>
+      </div>
+    </div>
+  </div>
+</section>
+"""
+
+EXTRA_FAQ_ITEMS: list[tuple[str, str]] = [
+    (
+        "Сколько стоит пилот и как фиксируется гарантия результата?",
+        "Запуск пилотного ИИ-агента на 1 процессе стоит от 50 000 ₽ за 14 дней и на 100% засчитывается в смету основного внедрения (125 000 – 275 000 ₽). Целевые метрики точности и скорости обработки фиксируются в техническом приложении к договору.",
+    ),
+    (
+        "Как контролируются ставки НДС 22%, 10% и УСН 5%/7% в ЭДО?",
+        "Валидатор проверяет XML-файлы Диадок и СБИС и сканы PDF до проводки в 1С: сверяет ставку НДС, формулу 22/122, ИНН/КПП и отклонения от спецификации договора, а для быстрых ручных проверок доступен онлайн-калькулятор НДС 22%.",
+    ),
+    (
+        "Как оплачиваются токены нейросетей и серверы после запуска?",
+        "Наценка на инфраструктуру отсутствует: при облачном сценарии заказчик подключает собственный API-ключ (BYOK) с оплатой напрямую провайдеру, а при On-Premise модель работает на серверах компании без внешней тарификации.",
+    ),
+    (
+        "С кем и в каком формате заключается официальный договор?",
+        "Работаем с юридическими лицами РФ на ОСНО (НДС 22%) или УСН с поэтапной оплатой 50/50, обязательным соглашением о неразглашении (NDA) и обменом документами через Диадок или СБИС.",
+    ),
+]
 
 
 def _build_terminal_wrap(term: dict) -> str:
@@ -508,9 +695,38 @@ def generate_subpage(slug: str, spec: dict, master_html: str, css_hash: str) -> 
             if "services__bento--static" not in cls:
                 cls.append("services__bento--static")
             bento["class"] = cls
+            sdata_path = os.path.join(ROOT_DIR, "data", "services_data.json")
+            if os.path.isfile(sdata_path):
+                sdata = json.loads(open(sdata_path, "r", encoding="utf-8").read())
+                sdata["automated-reporting"] = {
+                    "description": "Ежедневная доставка P&L, остатков и выручки из 1С в Telegram по расписанию без выгрузок в Excel."
+                }
+                sdata["ai-analytics"] = {
+                    "description": "Предиктивный платёжный календарь, расчёт неснижаемого остатка и контроль ценовых отклонений в 1С."
+                }
+                for scard in bento.select(".scard"):
+                    link = scard.select_one("a.scard__title-link")
+                    desc_el = scard.select_one(".scard__desc")
+                    if link and desc_el:
+                        href_slug = link.get("href", "").strip("/").split("/")[-1]
+                        if href_slug in sdata and sdata[href_slug].get("description"):
+                            desc_el.string = sdata[href_slug]["description"]
         nav_cta = soup.select_one(".nav .btn--nav")
         if nav_cta:
             nav_cta["href"] = "#contact"
+        contact_sec = soup.find("section", id="contact")
+        if contact_sec:
+            extra_svc = """
+            <h3 style="margin-top:24px;margin-bottom:10px;">Регламент внедрения за 14 дней</h3>
+            <p>Каждый сценарий проходит 3 последовательных этапа на тестовой копии базы 1С или CRM: аудит узких мест и фиксация целевого SLA (дни 1–3), развёртывание коннектора OData/API или изолированного расширения .cfe (дни 4–10) и опытная эксплуатация на реальных документах без остановки текущих процессов бухгалтерии, склада и продаж (дни 11–14).</p>
+            <p>После подтверждения точности распознавания и скорости реакции агента заказчик переводит решение в промышленный контур на собственных серверах (152-ФЗ РФ) или в защищённом облаке с зачётом 100% стоимости пилота в основной договор внедрения.</p>
+            """
+            mat_soup = BeautifulSoup(SERVICES_MATRIX_HTML, "html.parser")
+            art = mat_soup.select_one(".article-content")
+            guides_bar = mat_soup.select_one(".faq__guides")
+            if art and guides_bar:
+                guides_bar.insert_before(BeautifulSoup(extra_svc, "html.parser"))
+            contact_sec.insert_before(mat_soup)
 
     if slug == "cases":
         grid = soup.select_one("#cases .cases__grid")
@@ -519,6 +735,73 @@ def generate_subpage(slug: str, spec: dict, master_html: str, css_hash: str) -> 
             if "cases__grid--static" not in cls:
                 cls.append("cases__grid--static")
             grid["class"] = cls
+            cdata_path = os.path.join(ROOT_DIR, "data", "cases_data.json")
+            if os.path.isfile(cdata_path):
+                cdata = json.loads(open(cdata_path, "r", encoding="utf-8").read())
+                for ccard in grid.select(".case-card"):
+                    link = ccard.select_one("a.case-card__title-link")
+                    desc_el = ccard.select_one(".case-card__desc")
+                    if link and desc_el:
+                        href_slug = link.get("href", "").strip("/").split("/")[-1]
+                        if href_slug in cdata and cdata[href_slug].get("description"):
+                            desc_el.string = cdata[href_slug]["description"]
+        contact_sec = soup.find("section", id="contact")
+        if contact_sec:
+            extra_case = """
+            <h3 style="margin-top:24px;margin-bottom:10px;">Критерии приёмки и контроль качества в промышленной эксплуатации</h3>
+            <p>В каждом проекте фиксируются три обязательных показателя до старта работ: исходная трудоёмкость операции в часах, доля ручных исправлений в 1С или CRM и время реакции при пиковых нагрузках в конце отчётного периода. Журнал событий агента протоколирует все сверки и автоматически передаёт спорные документы ответственному сотруднику с пояснением причины расхождения.</p>
+            """
+            mat_soup = BeautifulSoup(CASES_MATRIX_HTML, "html.parser")
+            art = mat_soup.select_one(".article-content")
+            guides_bar = mat_soup.select_one(".faq__guides")
+            if art and guides_bar:
+                guides_bar.insert_before(BeautifulSoup(extra_case, "html.parser"))
+            contact_sec.insert_before(mat_soup)
+
+    if slug == "calculator":
+        contact_sec = soup.find("section", id="contact")
+        if contact_sec:
+            extra_calc = """
+            <h3 style="margin-top:24px;margin-bottom:10px;">Учёт страховых взносов 30,2% и стоимости ошибок</h3>
+            <p>Базовый калькулятор выше оценивает экономию строго по окладу на руки, поэтому фактическая выгода бизнеса с учётом страховых взносов работодателя (до 30,2% на ОСНО), отпускных резервов и стоимости ошибок при вводе первички в 1С обычно выше на 25–35%.</p>
+            <p>На этапе 14-дневного пилота команда АвтоПилот измеряет реальную скорость обработки документов по журналу регистрации 1С, Диадок и СБИС, чтобы сравнить расчётную модель с фактической экономией часов. В результате финансовый директор получает точный бюджет масштабирования с фиксированным SLA и 100% зачётом пилота.</p>
+            <p>Для компаний с высокой долей внештатных исполнителей и перехода на новую ставку НДС 22% с 2026 года мы вынесли отдельные прикладные калькуляторы ниже — проверьте налоговую нагрузку по НПД 4%/6% и формулу выделения НДС 22/122 перед согласованием бюджета пилота.</p>
+            """
+            mat_soup = BeautifulSoup(CALC_METHODOLOGY_HTML, "html.parser")
+            art = mat_soup.select_one(".article-content")
+            guides_bar = mat_soup.select_one(".faq__guides")
+            if art and guides_bar:
+                guides_bar.insert_before(BeautifulSoup(extra_calc, "html.parser"))
+            contact_sec.insert_before(mat_soup)
+
+    if slug == "faq":
+        faq_grid = soup.select_one("#faq .faq__grid")
+        if faq_grid:
+            for q, a in EXTRA_FAQ_ITEMS:
+                fitem = soup.new_tag("div", attrs={"class": "faq-item"})
+                fbtn = soup.new_tag(
+                    "button", attrs={"aria-expanded": "false", "class": "faq-item__header", "type": "button"}
+                )
+                qspan = soup.new_tag("span", attrs={"class": "faq-item__question"})
+                qspan.string = q
+                ispan = soup.new_tag("span", attrs={"class": "faq-item__icon"})
+                ispan.string = "+"
+                fbtn.append(qspan)
+                fbtn.append(ispan)
+                fans = soup.new_tag("div", attrs={"class": "faq-item__answer"})
+                fin = soup.new_tag("div", attrs={"class": "faq-item__inner"})
+                p_el = soup.new_tag("p")
+                p_el.string = a
+                fin.append(p_el)
+                fans.append(fin)
+                fitem.append(fbtn)
+                fitem.append(fans)
+                faq_grid.append(fitem)
+        guides_bar = soup.select_one("#faq .faq__guides")
+        if guides_bar and not guides_bar.find("a", href="/calculator/vat-22/"):
+            vat_a = soup.new_tag("a", href="/calculator/vat-22/")
+            vat_a.string = "Калькулятор НДС 22%"
+            guides_bar.append(vat_a)
 
     # 5. Scoped Schema.org JSON-LD (strip homepage WebSite, OfferCatalog, and unused FAQPage)
     json_ld = soup.find("script", attrs={"type": "application/ld+json"})
@@ -532,6 +815,23 @@ def generate_subpage(slug: str, spec: dict, master_html: str, css_hash: str) -> 
             if itype == "FAQPage":
                 if spec["has_faq"]:
                     item["@id"] = f"{canonical_url}#faq"
+                    if slug == "faq":
+                        main_entities = []
+                        for fitem in soup.select("#faq .faq-item"):
+                            q_el = fitem.select_one(".faq-item__question")
+                            a_el = fitem.select_one(".faq-item__inner")
+                            if q_el and a_el:
+                                q_txt = " ".join(q_el.get_text(" ", strip=True).split())
+                                a_txt = " ".join(a_el.get_text(" ", strip=True).split())
+                                main_entities.append(
+                                    {
+                                        "@type": "Question",
+                                        "name": q_txt,
+                                        "acceptedAnswer": {"@type": "Answer", "text": a_txt},
+                                    }
+                                )
+                        if main_entities:
+                            item["mainEntity"] = main_entities
                     new_graph.append(item)
                 continue
             if itype == "ProfessionalService":

@@ -41,7 +41,7 @@ if app_style:
 # 1. Update Head metadata
 title_tag = soup.find("title")
 if title_tag:
-    title_tag.string = "Автоотчетность 1С: управленческий P&L в Telegram | АвтоПилот"
+    title_tag.string = "Автоотчетность 1С: P&L в Telegram | АвтоПилот"
 
 desc_tag = soup.find("meta", attrs={"name": "description"})
 if desc_tag:
@@ -56,14 +56,14 @@ if canonical_tag:
 
 # OG / Twitter
 for prop, val in [
-    ("og:title", "Автоотчетность 1С: управленческий P&L в Telegram | АвтоПилот"),
+    ("og:title", "Автоотчетность 1С: P&L в Telegram | АвтоПилот"),
     ("og:url", "https://ai-avtopilot.ru/services/automated-reporting/"),
     (
         "og:description",
         "Рассчитайте окупаемость за 1 минуту: автоматизация отчетности в 1С за 14 дней. "
         "Сократите рутину аналитиков на 80%. Гарантия окупаемости по договору.",
     ),
-    ("twitter:title", "Автоотчетность 1С: управленческий P&L в Telegram | АвтоПилот"),
+    ("twitter:title", "Автоотчетность 1С: P&L в Telegram | АвтоПилот"),
     (
         "twitter:description",
         "Рассчитайте окупаемость за 1 минуту: автоматизация отчетности в 1С за 14 дней. "

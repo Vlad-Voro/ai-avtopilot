@@ -4,7 +4,7 @@
 > **Status**: Production Deployed | **Target**: [ai-avtopilot.ru](https://ai-avtopilot.ru/) | **Geo**: Russian Federation (Nationwide B2B)  
 > **Inventory**: 52 Production URLs (1 Root, 8 Hubs incl. `/guides/`, 24 Services, 11 Cases, 5 MoFu/ToFu Guides, 3 Utility) + 1 Canonical Stub (`/automated-reporting/`)  
 > **Search Targets**: Yandex (Web + «Нейро»), Google RU (AI Overviews), Perplexity, Klerk.ru, Infostart.ru  
-> **Verification**: **94 / 94 `--fast` PASS** + **212 / 214 Tier 3 E2E** (Waves 4–7 P0/P1 complete) | **AI Slop**: **0 Markers** across all 52 URLs
+> **Verification**: **94 / 94 `--fast` PASS** + **212 / 214 Tier 3 E2E** (Waves 4–7 P0/P1 complete) | **AI Slop**: **0 Markers** across all 54 URLs
 ---
 
 ## 1. Demand Capture Topology & Architecture
@@ -44,7 +44,7 @@ flowchart TD
     Brief --> Architecture --> Pipeline --> Conversion
 ```
 
-### 1.1. Production Page Inventory (52 URLs)
+### 1.1. Production Page Inventory (54 URLs)
 
 | Route / Slug | Page Type | Core B2B Scope & Value Proposition | Key Metric / KPI |
 | :--- | :--- | :--- | :--- |

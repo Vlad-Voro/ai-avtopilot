@@ -18,7 +18,7 @@ from pricing_block import PRICE_RANGE_TEXT, get_offer_catalog_items, render_pric
 from sync_pages import _build_terminal_wrap
 
 PRICING_URL = "https://ai-avtopilot.ru/pricing/"
-PRICING_TITLE = "Цены на внедрение ИИ-агентов в 1С и CRM от 50 000 ₽ | АвтоПилот"
+PRICING_TITLE = "Цены на внедрение ИИ-агентов в 1С | АвтоПилот"
 PRICING_DESC = (
     "Стоимость внедрения ИИ-агентов: пилот 14 дней от 50 000 ₽ с зачетом в проект, "
     "внедрение под ключ от 125 000 ₽, серверы компании (On-Premise) от 400 000 ₽."
@@ -230,7 +230,7 @@ def build_pricing_page() -> Path:
     out_path = out_dir / "index.html"
 
     raw_css = css_path.read_bytes().replace(b"\r\n", b"\n").replace(b"\r", b"\n")
-    css_hash = hashlib.md5(raw_css).hexdigest()[:8]
+    css_hash = hashlib.sha256(raw_css).hexdigest()[:8]
     soup = BeautifulSoup(index_path.read_text(encoding="utf-8"), "html.parser")
 
     # 1. Swap inline #app-styles for cached external styles.min.css

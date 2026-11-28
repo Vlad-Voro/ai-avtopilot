@@ -293,7 +293,7 @@ async function runSecuritySuite() {
       }
     };
     walk(rootDir);
-    assert.strictEqual(formFiles.length, 50, `Expected 50 HTML pages with #contact-form, got ${formFiles.length}`);
+    assert.strictEqual(formFiles.length, 51, `Expected 51 HTML pages with #contact-form, got ${formFiles.length}`);
     formFiles.forEach(({ rel, html }) => {
       assert.ok(!html.includes('https://formsubmit.co/'), `Found naked FormSubmit endpoint in ${rel}`);
       assert.ok(!html.includes('_captcha'), `Found _captcha flag in ${rel}`);

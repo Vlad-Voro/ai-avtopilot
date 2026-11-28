@@ -118,6 +118,7 @@
 - Кейс подбора автозапчастей по VIN (45 СТО, 1С:Альфа-Авто): https://ai-avtopilot.ru/cases/auto-dealer-parts-automation/
 - Калькулятор ROI: https://ai-avtopilot.ru/calculator/
 - Калькулятор налога самозанятого (НПД): https://ai-avtopilot.ru/calculator/self-employed/
+- Калькулятор НДС 22% (с 2026 года) для 1С и ЭДО: https://ai-avtopilot.ru/calculator/vat-22/
 - Частые вопросы (FAQ): https://ai-avtopilot.ru/faq/
 - Гайды и технические руководства: https://ai-avtopilot.ru/guides/
 - Гайд по интеграции 1С OData и .cfe: https://ai-avtopilot.ru/guides/1c-odata-integration/
