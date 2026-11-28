@@ -24,6 +24,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -32,6 +34,7 @@ jobs:
 
       - name: Run offline security, SEO & resiliency checks
         run: |
+          python3 scripts/seo/generate_sitemap.py --check
           node tests/unit/test_roi_calculator.js
           node tests/seo/test_seo_audit.js
           node tests/security/test_security_audit.js
@@ -94,3 +97,10 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Push updated URLs to IndexNow
+        if: github.ref == 'refs/heads/main'
+        continue-on-error: true
+        run: |
+          python3 -c "import time,urllib.request; time.sleep(5); urllib.request.urlopen('https://ai-avtopilot.ru/sitemap.xml', timeout=15).read()"
+          python3 scripts/seo/push_indexnow.py

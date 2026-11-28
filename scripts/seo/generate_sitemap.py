@@ -5,8 +5,10 @@ Extracts real git commit timestamps or file modification times for each canonica
 ensuring W3C ISO 8601 compliance without spoofed/stale dates.
 """
 
+import argparse
 import datetime
 import os
+import re
 import subprocess
 import sys
 import xml.etree.ElementTree as ET
@@ -335,5 +337,60 @@ def generate_sitemap():
     print(f"[Sitemap] Successfully generated {len(URL_SPEC)} entries in {SITEMAP_PATH}")
 
 
-if __name__ == "__main__":
+def check_sitemap() -> int:
+    if not os.path.exists(SITEMAP_PATH):
+        print(f"[Sitemap:CHECK] Missing {SITEMAP_PATH}", file=sys.stderr)
+        return 1
+
+    try:
+        tree = ET.parse(SITEMAP_PATH)
+    except ET.ParseError as exc:
+        print(f"[Sitemap:CHECK] Invalid XML: {exc}", file=sys.stderr)
+        return 1
+
+    root = tree.getroot()
+    ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+    urls = root.findall("sm:url", ns)
+    expected_urls = [item["url"] for item in URL_SPEC]
+    found_urls = []
+
+    for node in urls:
+        loc_el = node.find("sm:loc", ns)
+        lm_el = node.find("sm:lastmod", ns)
+        if loc_el is None or not (loc_el.text or "").strip():
+            print("[Sitemap:CHECK] Empty <loc> element", file=sys.stderr)
+            return 1
+        if lm_el is None or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", (lm_el.text or "").strip()):
+            print(f"[Sitemap:CHECK] Invalid <lastmod> for {loc_el.text}", file=sys.stderr)
+            return 1
+        found_urls.append(loc_el.text.strip())
+
+    if found_urls != expected_urls:
+        missing = sorted(set(expected_urls) - set(found_urls))
+        extra = sorted(set(found_urls) - set(expected_urls))
+        print(f"[Sitemap:CHECK] URL mismatch. missing={missing}, extra={extra}", file=sys.stderr)
+        return 1
+
+    for item in URL_SPEC:
+        full_path = os.path.join(ROOT_DIR, item["file"])
+        if not os.path.exists(full_path):
+            print(f"[Sitemap:CHECK] Referenced file missing: {item['file']}", file=sys.stderr)
+            return 1
+
+    print(f"[Sitemap:CHECK] OK: {len(found_urls)} URLs match URL_SPEC with valid W3C dates.")
+    return 0
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Generate or validate sitemap.xml")
+    parser.add_argument("--check", action="store_true", help="Validate sitemap.xml structure and URL_SPEC parity")
+    args = parser.parse_args()
+
+    if args.check:
+        return check_sitemap()
     generate_sitemap()
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

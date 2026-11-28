@@ -31,7 +31,7 @@ async function measureWebVitals(options = {}) {
 
   try {
     await page.addInitScript(() => {
-      window.__vitals = { cls: 0, lcp: 0, fcp: 0, longTasks: [] };
+      window.__vitals = { cls: 0, lcp: 0, fcp: null, longTasks: [] };
       new PerformanceObserver((entryList) => {
         for (const entry of entryList.getEntries()) {
           if (!entry.hadRecentInput) {
@@ -62,14 +62,16 @@ async function measureWebVitals(options = {}) {
     });
 
     await page.goto(baseUrl, { waitUntil: 'load' });
+    await page.evaluate(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))));
     await page.waitForTimeout(1000); // test-lint: disable=web-01 [CWV longtask accumulation window]
 
     const vitals = await page.evaluate(() => {
-      const fcp = window.__vitals.fcp;
-      // Canonical Lighthouse TBT: sum of (duration - 50) for tasks occurring after FCP
+      const paintFcp = performance.getEntriesByType('paint').find((p) => p.name === 'first-contentful-paint');
+      const fcp = window.__vitals.fcp !== null ? window.__vitals.fcp : (paintFcp ? paintFcp.startTime : null);
+      // Canonical Lighthouse TBT: sum of (duration - 50) for tasks occurring strictly after FCP
       let postFcpTbt = 0;
       for (const task of window.__vitals.longTasks) {
-        if (task.startTime >= fcp) {
+        if (fcp !== null && task.startTime >= fcp) {
           postFcpTbt += Math.max(0, task.duration - 50);
         }
       }
@@ -77,7 +79,7 @@ async function measureWebVitals(options = {}) {
       return {
         cls: Math.round(window.__vitals.cls * 1000) / 1000,
         lcp: Math.round(window.__vitals.lcp),
-        fcp: Math.round(fcp),
+        fcp: fcp !== null ? Math.round(fcp) : null,
         tbt: Math.round(postFcpTbt),
         allTasks: window.__vitals.longTasks.length,
         domContentLoaded: Math.round(nav.domContentLoadedEventEnd || 0),
@@ -98,7 +100,7 @@ async function measureWebVitals(options = {}) {
     let passed = true;
     assert.strictEqual(typeof vitals.cls, 'number', 'CLS must be numeric');
     assert.ok(vitals.cls <= 0.05, 'CLS target <= 0.05');
-    assert.strictEqual(typeof vitals.fcp, 'number', 'FCP must be numeric');
+    assert.ok(vitals.fcp !== null && typeof vitals.fcp === 'number' && vitals.fcp > 0, 'FCP must be captured and numeric');
     assert.ok(vitals.fcp <= 1800, 'FCP target < 1800ms');
     assert.strictEqual(typeof vitals.lcp, 'number', 'LCP must be numeric');
     assert.ok(vitals.lcp <= 2500, 'LCP target < 2500ms');
@@ -126,7 +128,7 @@ async function measureWebVitals(options = {}) {
       const cdp = await mobCtx.newCDPSession(mobPage);
       await cdp.send('Emulation.setCPUThrottlingRate', { rate: 4 });
       await mobPage.addInitScript(() => {
-        window.__mobVitals = { cls: 0, fcp: 0, longTasks: [] };
+        window.__mobVitals = { cls: 0, fcp: null, longTasks: [] };
         new PerformanceObserver(l => {
           for (const e of l.getEntries()) if (!e.hadRecentInput) window.__mobVitals.cls += e.value;
         }).observe({ type: 'layout-shift', buffered: true });
@@ -138,12 +140,14 @@ async function measureWebVitals(options = {}) {
         }).observe({ type: 'longtask', buffered: true });
       });
       await mobPage.goto(baseUrl, { waitUntil: 'load' });
+      await mobPage.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
       await mobPage.waitForTimeout(400); // test-lint: disable=web-01 [Mobile 4x CPU CWV settle window]
       const mobRes = await mobPage.evaluate(() => {
-        const fcp = window.__mobVitals.fcp || 0;
+        const paintFcp = performance.getEntriesByType('paint').find(p => p.name === 'first-contentful-paint');
+        const fcp = window.__mobVitals.fcp !== null ? window.__mobVitals.fcp : (paintFcp ? paintFcp.startTime : null);
         let tbt = 0;
         for (const t of window.__mobVitals.longTasks) {
-          if (t.startTime >= fcp) tbt += Math.max(0, t.duration - 50);
+          if (fcp !== null && t.startTime >= fcp) tbt += Math.max(0, t.duration - 50);
         }
         const roiCard = document.querySelector('#calculator .roi__card');
         const cookieBanner = document.getElementById('cookie-banner');

@@ -59,7 +59,7 @@
   }
   </script>
 <!-- Security Headers & Policies -->
-<meta content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://mc.yandex.com https://yastatic.net https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://ai-avtopilot.ru https://mc.yandex.ru https://mc.yandex.com; connect-src 'self' https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev https://api.web3forms.com https://mc.yandex.ru https://mc.yandex.com wss://mc.yandex.ru wss://mc.yandex.com https://cloudflareinsights.com; frame-src https://mc.yandex.ru https://mc.yandex.com blob:; child-src https://mc.yandex.ru https://mc.yandex.com blob:;" http-equiv="Content-Security-Policy"/>
+<meta content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://mc.yandex.com https://yastatic.net https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://ai-avtopilot.ru https://mc.yandex.ru https://mc.yandex.com; connect-src 'self' https://ai-avtopilot-bot.mr-vladimir-voronin.workers.dev https://api.web3forms.com https://mc.yandex.ru https://mc.yandex.com wss://mc.yandex.ru wss://mc.yandex.com https://cloudflareinsights.com; frame-src https://mc.yandex.ru https://mc.yandex.com blob:; child-src https://mc.yandex.ru https://mc.yandex.com blob:;" http-equiv="Content-Security-Policy"/>
 <meta content="nosniff" http-equiv="X-Content-Type-Options"/>
 <meta content="strict-origin-when-cross-origin" name="referrer"/>
 <!-- Anti-Clickjacking Frame Guard (OWASP Defense) -->
@@ -80,7 +80,7 @@
 <link as="font" crossorigin="" href="/assets/fonts/Inter-400-1.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/assets/fonts/Inter-400-6.woff2" rel="preload" type="font/woff2"/>
 <!-- Inlined Styles (Eliminates Render-Blocking CSS & Critical Request Chains) -->
-<link href="/assets/css/styles.min.css?v=996f6492" rel="stylesheet"/>
+<link href="/assets/css/styles.min.css?v=36204ed1" rel="stylesheet"/>
 <!-- Yandex.Metrika counter (Optimized Non-blocking) -->
 <script type="text/javascript">
     (function() {
@@ -141,7 +141,7 @@
 <li><a class="nav__link" href="/pricing/">Цены</a></li>
 <li><a class="nav__link" href="/faq/">FAQ</a></li>
 <li><a class="nav__link" href="/guides/">Гайды</a></li>
-<li class="nav__link-mobile"><a class="nav__link" href="/contact/">Контакты</a></li>
+<li class="nav__link-mobile"><a class="nav__link" href="/#contact">Контакты</a></li>
 </ul>
 <a class="btn btn--nav" href="#contact">Получить аудит</a>
 <button aria-controls="nav-links" aria-expanded="false" aria-label="Открыть меню" class="nav__burger" id="burger">
@@ -262,7 +262,7 @@
 <div class="section-header">
 <p class="section-tag" data-reveal="">Решения и интеграции</p>
 <h2 class="section-title" data-reveal="">6 модулей речевой аналитики и контроля продаж</h2>
-<p class="case-service-note">Основное решение: <a href="/services/speech-analytics/">Речевая аналитика</a>, <a href="/services/b2b-outbound/">AI SDR и B2B-аутрич</a>, <a href="/services/customer-retention/">Retention и реактивация</a>. Архитектурный разбор: <a href="/guides/152-fz-on-premise-llm/">Локальные ИИ-модели (On-Premise LLM) и 152-ФЗ</a>.</p></div>
+<p class="case-service-note">Основное решение: <a href="/services/speech-analytics/">Речевая аналитика</a>, <a href="/services/b2b-outbound/">AI SDR и B2B-аутрич</a>, <a href="/services/customer-retention/">Retention и реактивация</a>. Архитектурный разбор: <a href="/guides/152-fz-on-premise-llm/">Локальные ИИ-модели (On-Premise LLM) и 152-ФЗ</a>. · Гайд: <a href="/guides/roi-ai-automation-formula/">Формула расчёта ROI (80%)</a></p></div>
 <div aria-label="Сценарии автоматизации" aria-roledescription="carousel" class="services__bento services__bento--static" data-reveal="" role="region" tabindex="0"><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🎙️</div><h3 class="scard__title">Шлюз интеграции с АТС и SIP-телефонией</h3><p class="scard__desc">Автоматический перехват аудиозаписей звонков из Mango, Asterisk, UIS и ТелеСтор по вебхуку.</p><div class="scard__tags"><span>АТС</span><span>Asterisk</span><span>SIP</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🧠</div><h3 class="scard__title">Двухканальный транскрибатор Whisper</h3><p class="scard__desc">Качественное распознавание русской речи с очисткой фоновых шумов и разделением собеседников.</p><div class="scard__tags"><span>Whisper</span><span>STT</span><span>Диаризация</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📋</div><h3 class="scard__title">Конструктор чек-листов оценки звонков</h3><p class="scard__desc">Гибкая настройка критериев качества, стоп-слов и обязательных фраз скрипта под ваши регламенты.</p><div class="scard__tags"><span>Чек-листы</span><span>Скрипты</span><span>Оценка</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🎯</div><h3 class="scard__title">Интеграция с amoCRM и Битрикс24</h3><p class="scard__desc">Прикрепление текстовой расшифровки, оценки звонка и готового саммари прямо в тело сделки.</p><div class="scard__tags"><span>amoCRM</span><span>Битрикс24</span><span>Summary</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">🚨</div><h3 class="scard__title">Система триггерных алертов руководителю</h3><p class="scard__desc">Мгновенные сообщения в Telegram при срыве сделки, токсичности или разговоре о скидках.</p><div class="scard__tags"><span>Telegram</span><span>Алерты</span><span>Контроль</span></div></div><div aria-roledescription="slide" class="scard" role="group"><div class="scard__icon">📈</div><h3 class="scard__title">Дашборд конверсий и возражений</h3><p class="scard__desc">Тепловая карта частых возражений клиентов и корреляция соблюдения скрипта с закрытием сделок.</p><div class="scard__tags"><span>Аналитика</span><span>Возражения</span><span>Конверсия</span></div></div></div>
 <div class="slider-controls">
 <button aria-label="Предыдущие решения" class="slider-arrow slider-arrow--prev" id="services-prev" title="Предыдущие решения" type="button">
@@ -755,7 +755,7 @@
 </div>
 <div class="footer__links-row">
 <div class="footer__links">
-<a href="/dashboard/">Дашборд</a>
+<a href="/#dashboard">Дашборд</a>
 <a href="/services/">Услуги</a>
 <a href="/cases/">Кейсы</a>
 <a href="/guides/">Гайды</a>
@@ -763,7 +763,7 @@
 <a href="/calculator/">Калькулятор</a>
 <a href="/calculator/self-employed/">Калькулятор самозанятых</a>
 <a href="/faq/">FAQ</a>
-<a href="/contact/">Контакты</a>
+<a href="/#contact">Контакты</a>
 </div>
 <div class="footer__meta-links">
 <!--email_off--><a class="footer__email" href="mailto:contact@ai-avtopilot.ru">contact@ai-avtopilot.ru</a><!--/email_off-->
